@@ -1,0 +1,26 @@
+# Simulation heavy outputs
+*.odb
+*.rst
+*.rth
+*.cas
+*.res
+*.sim
+*.lock
+
+# Temporary
+*.tmp
+*.bak
+~$*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

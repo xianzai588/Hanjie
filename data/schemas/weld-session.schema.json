@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WeldSession",
+  "description": "单次焊接过程采集数据（WP6 模块三）",
+  "type": "object",
+  "required": ["sample_id", "timestamp"],
+  "properties": {
+    "sample_id": {
+      "type": "string",
+      "pattern": "^W2026-[0-9]{3}$",
+      "examples": ["W2026-001"]
+    },
+    "current": {
+      "type": "array",
+      "description": "电流采样序列 (A)"
+    },
+    "voltage": {
+      "type": "array",
+      "description": "电压采样序列 (V)"
+    },
+    "temperature": {
+      "type": "array",
+      "description": "温度采样序列 (°C)"
+    },
+    "speed": {
+      "type": "array",
+      "description": "焊接速度采样序列 (mm/s)"
+    },
+    "timestamp": {
+      "type": "array",
+      "description": "采样时间戳序列"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "process": {
+          "type": "string",
+          "description": "工艺：laser-filler / cmt / tig"
+        },
+        "sequence": {
+          "type": "string",
+          "description": "焊接顺序：S1 顺序 / S2 对称 / S3 跳焊"
+        },
+        "preheat_c": {
+          "type": "number",
+          "description": "预热温度 (°C)"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
