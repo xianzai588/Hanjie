@@ -12,9 +12,9 @@
 | E004 | 不同填充材料、TIG 工艺与焊前/焊后热处理会影响球铁焊接接头的组织和力学性能 | Martínez Alcón et al., *Revista de Metalurgia* 2021, 57(2), DOI: [10.3989/revmetalm.194](https://doi.org/10.3989/revmetalm.194) | 机理/相近对象 | 可用于定义小试变量；不能替代本题焊接性试验 | 已有文献 |
 | E005 | QT450-10 的成分、组织和力学性能必须以实际铸件质保书/检验报告为准 | GB/T 1348《球墨铸铁件》 | 标准约束 | 仓库暂未取得本项目铸件质保书；典型成分仅作为模型假设 | 待材料文件 |
 | E006 | Q235B 化学成分和力学性能应按 GB/T 700 及材料证明文件确认 | GB/T 700《碳素结构钢》 | 标准约束 | 本项目薄壁壳体的变形结论仍需几何与边界条件验证 | 待材料文件 |
-| E007 | 6 点短段、对称/跳焊有利于降低整体热输入不均匀性 | 本项目降阶模型：`simulation/results/summary-r1.md`、`summary.csv`；数字基线提交 `39e8883` | 本题数值证据 | 降阶模型只支持相对筛选；二维 FE 已复核 FE-001/002/003，但不是三维 FE 或实物测量 | 二维 FE 已运行，待三维/物理复核 |
+| E007 | 6 点短段、对称/跳焊有利于降低整体热输入不均匀性 | 本项目降阶模型：`simulation/results/summary-r1.md`、`summary.csv`；数字基线提交 `39e8883`；FE/边界更新提交 `923e2de` | 本题数值证据 | 降阶模型只支持相对筛选；二维 FE 已复核 FE-001/002/003，但不是三维 FE 或实物测量 | 二维 FE 已运行，待三维/物理复核 |
 | E008 | 采用无焊渣工艺、内腔防护罩和内窥终检可形成洁净度风险控制链 | 工艺设计 + 比赛固定题约束 | 设计证据 | 只能降低风险，不能声称“零飞溅已实测” | 设计中 |
-| E009 | 输入不确定性、视觉退化和异常规则可通过数字基准进行可追溯压力测试 | `simulation/results/monte-carlo/`、`automation/vision/results/difficult-summary.*`、`automation/anomaly-detection/results/benchmark/` | 本题数字验证 | 全部为仿真/渲染数据；不能外推为实际失效率、相机精度或焊机检测性能 | 数字基准已运行，待实测数据替换 |
+| E009 | 输入不确定性、视觉退化和异常规则可通过数字基准进行可追溯压力测试 | `simulation/results/monte-carlo/`、`automation/vision/results/difficult-summary.*`、`automation/anomaly-detection/results/benchmark/`；本轮结果提交 `923e2de` | 本题数字验证 | 全部为仿真/渲染数据；不能外推为实际失效率、相机精度或焊机检测性能 | 数字基准已运行，待实测数据替换 |
 
 ## 证据使用规则
 
