@@ -7,3 +7,4 @@ jsonschema>=4.20
 opencv-python>=4.8
 scikit-fem>=11.0
 pytest>=8.0
+reportlab>=4.0

@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-09-02",
+  "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
+  "status": "design-review; not manufacturing release",
+  "page_size": "A4 landscape, vector",
+  "sheet_count": 7,
+  "combined": "pdf/HJ-DRW-drawing-set.pdf",
+  "sheets": [
+    {
+      "pdf": "pdf/bearing-seat.pdf",
+      "title": "轴承座零件图 · 六翼柔顺方案",
+      "source": "bearing-seat.svg"
+    },
+    {
+      "pdf": "pdf/fixture-assembly.pdf",
+      "title": "夹具总装图",
+      "source": "fixture-assembly.svg"
+    },
+    {
+      "pdf": "pdf/fixture-part.pdf",
+      "title": "夹具定位销与底板零件图",
+      "source": "fixture-part.svg"
+    },
+    {
+      "pdf": "pdf/joint-detail.pdf",
+      "title": "接头与焊缝细节图",
+      "source": "joint-detail.svg"
+    },
+    {
+      "pdf": "pdf/shell.pdf",
+      "title": "薄壁壳体零件图",
+      "source": "shell.svg"
+    },
+    {
+      "pdf": "pdf/weld-assembly.pdf",
+      "title": "焊接总装与定位基准图",
+      "source": "weld-assembly.svg"
+    },
+    {
+      "pdf": "pdf/weld-layout.pdf",
+      "title": "焊缝布置与顺序图",
+      "source": "weld-layout.svg"
+    }
+  ]
+}
