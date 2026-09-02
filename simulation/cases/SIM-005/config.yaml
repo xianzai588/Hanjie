@@ -8,6 +8,7 @@ case:
   total_heat_input_j: 35640.0
   effective_peak_temperature_c: 550.628437
   haz_width_proxy_mm: 3.996498
+  material_stiffness_factor: 1.0
   hole_center_shift_mm: 0.006574
   axis_tilt_deg: 0.016322
   shell_ellipticity_proxy_mm: 0.005713
@@ -28,6 +29,8 @@ geometry:
   shell_thickness_mm: 5.0
   bearing_bore_diameter_mm: 40.0
   seat_core_outer_diameter_mm: 82.0
+  seat_thickness_mm: 12.0
+  wing_width: 18.0
   wing_outer_radius_mm: 73.8
   weld_segment_length_mm: 18.0
 model:

@@ -1,0 +1,2 @@
+﻿case_id,structure,fixture,layout_points,sequence,mesh_points_per_axis,mesh_nodes,mesh_elements,max_temperature_c,final_temperature_max_c,max_displacement_mm,p_fe_mm,r_max_fe_mm,axis_slope_x,axis_slope_y,pass_in_model,model_statement
+FE-002,baseline,rigid,6,S2,61,2800,5312,463.582129,224.41124,0.00484746,0.001466765,0.000733383,0.0,0.0,True,高分辨率二维 FE 热—结构复核，不是完整三维焊接 FE 或 CMM 结果。

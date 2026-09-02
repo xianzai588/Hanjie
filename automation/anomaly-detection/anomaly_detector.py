@@ -22,6 +22,40 @@ WINDOWS = {
 }
 
 
+def score_events(data: dict[str, object], detection: dict[str, object], tolerance_s: float = 0.2) -> dict[str, object]:
+    """按信号和时间重叠匹配注入事件，输出事件级 TP/FP/FN 与检测延迟。"""
+    meta = data.get("meta", {})
+    truth = list(meta.get("injected_anomalies", [])) if isinstance(meta, dict) else []
+    predicted = list(detection.get("events", []))
+    matched_prediction: set[int] = set()
+    delays: list[float] = []
+    tp = 0
+    for expected in truth:
+        candidates = []
+        for index, event in enumerate(predicted):
+            if index in matched_prediction or event.get("signal") != expected.get("signal"):
+                continue
+            start_gap = float(event["start_s"]) - float(expected["end_s"])
+            end_gap = float(expected["start_s"]) - float(event["end_s"])
+            if start_gap <= tolerance_s and end_gap <= tolerance_s:
+                candidates.append(index)
+        if candidates:
+            index = min(candidates, key=lambda item: abs(float(predicted[item]["start_s"]) - float(expected["start_s"])))
+            matched_prediction.add(index)
+            tp += 1
+            delays.append(max(0.0, float(predicted[index]["start_s"]) - float(expected["start_s"])))
+    fp = len(predicted) - len(matched_prediction)
+    fn = len(truth) - tp
+    return {
+        "tp": tp,
+        "fp": fp,
+        "fn": fn,
+        "delays_s": delays,
+        "truth_count": len(truth),
+        "predicted_count": len(predicted),
+    }
+
+
 def detect(data: dict[str, object]) -> dict[str, object]:
     timestamp = np.asarray(data["timestamp"], dtype=float)
     events = []
@@ -65,4 +99,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-09-02",
+  "source": "cad/parametric/geometry.json",
+  "status": "design-review; not manufacturing release",
+  "drawing_count": 7,
+  "drawings": [
+    "bearing-seat.svg",
+    "fixture-assembly.svg",
+    "fixture-part.svg",
+    "joint-detail.svg",
+    "shell.svg",
+    "weld-assembly.svg",
+    "weld-layout.svg"
+  ],
+  "included_controls": [
+    "A/B/C datums",
+    "position tolerance Ø0.05",
+    "weld symbols",
+    "slot width",
+    "fixture DOF",
+    "materials",
+    "unspecified tolerances"
+  ]
+}

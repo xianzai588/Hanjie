@@ -1,0 +1,45 @@
+{
+  "sample_count": 1000,
+  "seed": 20260902,
+  "limit_mm": 0.05,
+  "baseline_rigid_6p_s1": {
+    "count": 1000,
+    "p05_mm": 0.040831849999999996,
+    "p50_mm": 0.056247,
+    "p95_mm": 0.0924871,
+    "mean_mm": 0.060483852,
+    "worst_mm": 0.106697,
+    "best_mm": 0.033761,
+    "exceed_ratio": 0.706,
+    "pass_ratio": 0.294
+  },
+  "flex_compliant_6p_s3": {
+    "count": 1000,
+    "p05_mm": 0.00873255,
+    "p50_mm": 0.0324,
+    "p95_mm": 0.06036265,
+    "mean_mm": 0.032830568,
+    "worst_mm": 0.06637,
+    "best_mm": 0.006519,
+    "exceed_ratio": 0.196,
+    "pass_ratio": 0.804
+  },
+  "pairwise": {
+    "flex_better_ratio": 1.0,
+    "baseline_better_ratio": 0.0,
+    "mean_flex_minus_baseline_mm": -0.027653284,
+    "mean_reduction_flex_vs_baseline_pct": 47.08260432802461
+  },
+  "uncertainties": {
+    "efficiency": "uniform ±10%",
+    "current": "uniform ±10%",
+    "voltage": "uniform ±10%",
+    "travel_speed": "uniform ±10%",
+    "thermal_conductivity": "independent uniform ±10% per material",
+    "thermal_expansion": "independent uniform ±5% per material",
+    "elastic_modulus": "independent uniform ±5% per material",
+    "fixture_stiffness": "uniform ±20%",
+    "initial_eccentricity": "uniform [-0.03, 0.03] mm along model x axis"
+  },
+  "statement": "蒙特卡洛仅对降阶代理模型做输入不确定性传播；P_sim 不等于 CMM 位置度。"
+}

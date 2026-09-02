@@ -8,4 +8,12 @@
 4. `traceability/`：把一件一码、信号来源和异常事件写入 SQLite。
 5. `app/`：运行一次端到端 Demo。
 
+## 已执行数字基准
+
+- 常规视觉：`python automation/vision/run_benchmark.py --count 1000`；
+- 困难视觉：`python automation/vision/run_benchmark.py --difficult --count-per-condition 100`；结果见 `vision/results/difficult-summary.md`；
+- 异常检测：`python automation/anomaly-detection/run_benchmark.py --normal-count 100 --injected-count 100`；结果见 `anomaly-detection/results/benchmark/summary.md`。
+
+困难视觉条件覆盖噪声、模糊、光照梯度、约 10–30° 透视近似、遮挡、缺失边缘、低对比度、畸变和 ±5 mm 偏移。异常检测基准按事件级输出 TP/FP/FN、precision、recall、FPR 和延迟。
+
 所有结果必须区分 `simulated` 与未来的 `physical`；数字样本测试不能表述为真实相机/焊机采集。

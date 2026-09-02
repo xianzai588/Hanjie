@@ -3,10 +3,11 @@
     "sample_count": 1000,
     "success_count": 1000,
     "success_rate": 1.0,
-    "x_mae_mm": 0.0011914316813151,
-    "y_mae_mm": 0.0011057739257812488,
+    "x_mae_mm": 0.0011914337972799935,
+    "y_mae_mm": 0.0011057733794053372,
     "theta_mae_deg": 0.0018433819067699506,
-    "statement": "数字样本测试结果，不代表真实工业相机精度。"
+    "difficulty": "clean",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
   },
   "path": "automation/path-planning/results/weld-path.json",
   "anomaly_event_count": 7,

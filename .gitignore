@@ -19,6 +19,14 @@ __pycache__/
 
 # Reproducible digital-sample renders (regenerate with automation/vision/run_benchmark.py)
 automation/vision/data/*.png
+automation/vision/data/**/*.png
+
+# Local exploratory FE fixture scans; official cases are FE-001/002/003.
+simulation/cases/K*/
+simulation/cases/baseline-rigid/
+simulation/cases/baseline-compliant/
+simulation/cases/flex-rigid/
+simulation/cases/flex-compliant/
 
 # IDE
 .vscode/

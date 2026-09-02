@@ -1,0 +1,102 @@
+[
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.001349695026874539,
+    "y_mae_mm": 0.001161597768465676,
+    "theta_mae_deg": 0.001759191762723415,
+    "difficulty": "clean",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.02576858321825662,
+    "y_mae_mm": 0.02590459018945694,
+    "theta_mae_deg": 0.043296809934491025,
+    "difficulty": "noise",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.0010312926769256636,
+    "y_mae_mm": 0.0007715882857640662,
+    "theta_mae_deg": 0.0007440012288169654,
+    "difficulty": "blur",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.28790735810995105,
+    "y_mae_mm": 0.005815732379754376,
+    "theta_mae_deg": 0.002067430031153737,
+    "difficulty": "illumination",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 9.043418248809187,
+    "y_mae_mm": 0.531543229305694,
+    "theta_mae_deg": 0.8417787748790164,
+    "difficulty": "perspective",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 1.7740372212727866,
+    "y_mae_mm": 2.3515834548075993,
+    "theta_mae_deg": 2.444295289558645,
+    "difficulty": "occlusion",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.11423807680606841,
+    "y_mae_mm": 0.0021145028869311,
+    "theta_mae_deg": 0.01920050465487622,
+    "difficulty": "missing_edges",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.0010094703237215701,
+    "y_mae_mm": 0.00092295159896215,
+    "theta_mae_deg": 0.0015329409294135288,
+    "difficulty": "low_contrast",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.0010373981793721518,
+    "y_mae_mm": 0.0011090587576230281,
+    "theta_mae_deg": 0.002053722042924927,
+    "difficulty": "distortion",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  },
+  {
+    "sample_count": 100,
+    "success_count": 100,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.0012198444207509455,
+    "y_mae_mm": 0.0011781947811444452,
+    "theta_mae_deg": 0.0020311390812382916,
+    "difficulty": "large_offset",
+    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  }
+]

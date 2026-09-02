@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-09-02T06:54:22.607974+00:00",
+  "mesh_points_per_axis": 61,
+  "case_count": 3,
+  "solver": "scikit-fem mesh + SciPy sparse assembly",
+  "statement": "高分辨率二维 FE 热—结构复核，不是完整三维焊接 FE 或实物测量。"
+}

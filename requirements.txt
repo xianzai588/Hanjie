@@ -5,4 +5,5 @@ matplotlib>=3.8
 PyYAML>=6.0
 jsonschema>=4.20
 opencv-python>=4.8
+scikit-fem>=11.0
 pytest>=8.0

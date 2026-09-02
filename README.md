@@ -37,7 +37,7 @@
 
 ## 当前阶段
 
-**P1 首条可运行链路**（2026-09-02）：已冻结约束与设计假设，正在生成参数化 CAD、降阶仿真和自动化 MVP 结果。
+**P2 数字证据链已运行**（2026-09-02）：已冻结约束与设计假设，完成参数化 CAD 工程表达图、15 组降阶筛选、3 组二维 FE 复核、1000 次蒙特卡洛、困难视觉样本和 100+100 异常检测基准。真实焊接、CMM、金相、硬度、NDT 和 WPS/PQR 仍是可选物理验证。
 后续节点见 [docs/01-roadmap.md](docs/01-roadmap.md)。
 
 ## 工作包与分工
@@ -88,6 +88,7 @@ deliverables/  最终提交物
 - [路线图](docs/01-roadmap.md)
 - [团队分工](docs/02-team.md)
 - [设备清单](docs/03-equipment-inventory.md)
+- [技术说明书 V1（数字工程评审稿）](deliverables/report/technical-report-v1.md)
 - [协作规则](CONTRIBUTING.md)
 
 ## 首版数字样机运行
@@ -96,8 +97,13 @@ deliverables/  最终提交物
 
 ```powershell
 python cad/parametric/generate_drawing.py
+python cad/parametric/generate_engineering_drawings.py
 python simulation/scripts/run_reduced_order.py
+python simulation/fe/run_fe_cases.py
+python simulation/scripts/run_monte_carlo.py --count 1000
 python simulation/scripts/position_tolerance.py --demo
+python automation/vision/run_benchmark.py --difficult --count-per-condition 100
+python automation/anomaly-detection/run_benchmark.py --normal-count 100 --injected-count 100
 python automation/app/run_demo.py
 ```
 

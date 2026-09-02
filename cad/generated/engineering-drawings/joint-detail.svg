@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#ffffff"/>
+<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
+<rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
+<text x="50.0" y="65.0" class="title" text-anchor="start">接头与焊缝细节图</text>
+<text x="50.0" y="90.0" class="subtitle" text-anchor="start">JOINT DETAIL / SECTION A-A / SCHEMATIC WELD SYMBOLS</text>
+<text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-003</text>
+<text x="90.0" y="155.0" class="section" text-anchor="start">SECTION A-A</text>
+<rect x="120.0" y="210.0" width="430.0" height="70.0" class="edge" fill="#e2e8f0" rx="0.0"/>
+<rect x="120.0" y="280.0" width="430.0" height="45.0" class="edge" fill="#fbbf24" rx="0.0"/>
+<line x1="120.0" y1="350.0" x2="550.0" y2="350.0" class="center" stroke-dasharray="9 7"/>
+<polygon points="310.0,280.0 345.0,280.0 310.0,245.0" class="weld" fill="#fecaca"/>
+<line x1="330.0" y1="245.0" x2="330.0" y2="195.0" class="weld"/>
+<line x1="330.0" y1="195.0" x2="490.0" y2="195.0" class="weld"/>
+<text x="495.0" y="190.0" class="note" text-anchor="start">TIG + Ni filler</text>
+<text x="495.0" y="220.0" class="note" text-anchor="start">FILLET WELD SYMBOL</text>
+<text x="145.0" y="390.0" class="dim" text-anchor="start">WELD SEGMENT LENGTH 18</text>
+<text x="145.0" y="425.0" class="dim" text-anchor="start">WELD BRIDGE TO SHELL ID: 1.2 (2D FE equivalent)</text>
+<text x="145.0" y="460.0" class="dim" text-anchor="start">SLOT WIDTH 4 (design assumption)</text>
+<text x="700.0" y="180.0" class="section" text-anchor="start">PROCESS NOTE</text>
+<text x="700.0" y="220.0" class="note" text-anchor="start">Automatic TIG, short segments, S3 sequence</text>
+<text x="700.0" y="255.0" class="note" text-anchor="start">No slag route; internal shielding and borescope</text>
+<text x="700.0" y="305.0" class="note" text-anchor="start">Do not interpret this sheet as a qualified WPS</text>
+<text x="700.0" y="360.0" class="note" text-anchor="start">A: shell seating plane</text>
+<text x="700.0" y="390.0" class="note" text-anchor="start">B: bore axis</text>
+<text x="700.0" y="420.0" class="note" text-anchor="start">C: clocking / weld start</text>
+<polygon points="180.0,325.0 170.0,305.0 190.0,305.0" class="datumbox" fill="#fff"/>
+<text x="180.0" y="319.0" class="datum" text-anchor="middle">A</text>
+<line x1="180.0" y1="305.0" x2="180.0" y2="280.0" class="thin"/>
+<polygon points="540.0,280.0 560.0,270.0 560.0,290.0" class="datumbox" fill="#fff"/>
+<text x="548.0" y="285.0" class="datum" text-anchor="middle">B</text>
+<line x1="560.0" y1="280.0" x2="595.0" y2="280.0" class="thin"/>
+<polygon points="410.0,210.0 400.0,190.0 420.0,190.0" class="datumbox" fill="#fff"/>
+<text x="410.0" y="204.0" class="datum" text-anchor="middle">C</text>
+<line x1="410.0" y1="190.0" x2="410.0" y2="165.0" class="thin"/>
+<line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
+<text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: QT450-10 + Q235B + Ni filler (weld metal grade to be verified)</text>
+<text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
+<text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+</svg>

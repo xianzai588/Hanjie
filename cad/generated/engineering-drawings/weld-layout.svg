@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#ffffff"/>
+<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
+<rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
+<text x="50.0" y="65.0" class="title" text-anchor="start">焊缝布置与顺序图</text>
+<text x="50.0" y="90.0" class="subtitle" text-anchor="start">WELD LAYOUT / PLAN VIEW / S3 PATH REPRESENTATION</text>
+<text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-004</text>
+<circle cx="360.0" cy="365.0" r="255.0" class="edge" fill="#e2e8f0"/>
+<circle cx="360.0" cy="365.0" r="215.0" class="thin" fill="#fff"/>
+<circle cx="360.0" cy="365.0" r="70.0" class="edge" fill="#fef3c7"/>
+<line x1="100.0" y1="365.0" x2="620.0" y2="365.0" class="center" stroke-dasharray="9 7"/>
+<line x1="360.0" y1="105.0" x2="360.0" y2="625.0" class="center" stroke-dasharray="9 7"/>
+<line x1="573.8" y1="387.5" x2="573.8" y2="342.5" class="weld"/>
+<text x="610.0" y="365.0" class="section" text-anchor="middle">W1</text>
+<line x1="486.4" y1="191.1" x2="447.4" y2="168.6" class="weld"/>
+<text x="485.0" y="148.5" class="section" text-anchor="middle">W2</text>
+<line x1="272.6" y1="168.6" x2="233.6" y2="191.1" class="weld"/>
+<text x="235.0" y="148.5" class="section" text-anchor="middle">W3</text>
+<line x1="146.2" y1="342.5" x2="146.2" y2="387.5" class="weld"/>
+<text x="110.0" y="365.0" class="section" text-anchor="middle">W4</text>
+<line x1="233.6" y1="538.9" x2="272.6" y2="561.4" class="weld"/>
+<text x="235.0" y="581.5" class="section" text-anchor="middle">W5</text>
+<line x1="447.4" y1="561.4" x2="486.4" y2="538.9" class="weld"/>
+<text x="485.0" y="581.5" class="section" text-anchor="middle">W6</text>
+<line x1="480.0" y1="365.0" x2="535.0" y2="365.0" class="weld"/>
+<line x1="240.0" y1="365.0" x2="185.0" y2="365.0" class="weld"/>
+<line x1="300.0" y1="261.1" x2="272.5" y2="213.4" class="weld"/>
+<line x1="420.0" y1="468.9" x2="447.5" y2="516.6" class="weld"/>
+<line x1="420.0" y1="261.1" x2="447.5" y2="213.4" class="weld"/>
+<line x1="300.0" y1="468.9" x2="272.5" y2="516.6" class="weld"/>
+<text x="700.0" y="200.0" class="section" text-anchor="start">SEQUENCE S3</text>
+<text x="700.0" y="240.0" class="note" text-anchor="start">W1 → W4 → W3 → W6 → W2 → W5</text>
+<text x="700.0" y="290.0" class="note" text-anchor="start">6 × 18 mm short welds</text>
+<text x="700.0" y="325.0" class="note" text-anchor="start">Symmetric alternation; confirm start point</text>
+<text x="700.0" y="380.0" class="note" text-anchor="start">WELD SYMBOL: fillet / short segment</text>
+<text x="700.0" y="430.0" class="note" text-anchor="start">Thermal record: current, voltage, speed, interpass</text>
+<text x="700.0" y="480.0" class="note" text-anchor="start">A: shell axis</text>
+<text x="700.0" y="510.0" class="note" text-anchor="start">B: seat top plane</text>
+<text x="700.0" y="540.0" class="note" text-anchor="start">C: W1 clocking</text>
+<polygon points="360.0,150.0 350.0,130.0 370.0,130.0" class="datumbox" fill="#fff"/>
+<text x="360.0" y="144.0" class="datum" text-anchor="middle">A</text>
+<line x1="360.0" y1="130.0" x2="360.0" y2="105.0" class="thin"/>
+<polygon points="575.0,365.0 595.0,355.0 595.0,375.0" class="datumbox" fill="#fff"/>
+<text x="583.0" y="370.0" class="datum" text-anchor="middle">B</text>
+<line x1="595.0" y1="365.0" x2="630.0" y2="365.0" class="thin"/>
+<polygon points="360.0,580.0 350.0,560.0 370.0,560.0" class="datumbox" fill="#fff"/>
+<text x="360.0" y="574.0" class="datum" text-anchor="middle">C</text>
+<line x1="360.0" y1="560.0" x2="360.0" y2="535.0" class="thin"/>
+<line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
+<text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Welded joint: QT450-10 / Q235B / Ni filler</text>
+<text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
+<text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+</svg>

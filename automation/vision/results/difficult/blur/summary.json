@@ -1,0 +1,10 @@
+{
+  "sample_count": 100,
+  "success_count": 100,
+  "success_rate": 1.0,
+  "x_mae_mm": 0.0010312926769256636,
+  "y_mae_mm": 0.0007715882857640662,
+  "theta_mae_deg": 0.0007440012288169654,
+  "difficulty": "blur",
+  "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+}

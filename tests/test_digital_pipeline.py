@@ -16,11 +16,15 @@ sys.path.insert(0, str(ROOT / "automation" / "anomaly-detection"))
 sys.path.insert(0, str(ROOT / "automation" / "path-planning"))
 
 from anomaly_detector import detect  # noqa: E402
+from anomaly_detector import score_events  # noqa: E402
 from detect_center import detect_image  # noqa: E402
 from generate_dataset import render_sample  # noqa: E402
 from generate_weld_path import generate_path  # noqa: E402
 from position_tolerance import demo_points, fit_axis  # noqa: E402
 from run_reduced_order import build_cases, load_yaml  # noqa: E402
+from run_monte_carlo import run_monte_carlo  # noqa: E402
+
+from simulation.fe.run_fe_cases import build_mesh  # noqa: E402
 
 
 def test_all_weld_sequences_are_permutations() -> None:
@@ -73,3 +77,36 @@ def test_simulated_session_matches_schema_and_detector() -> None:
     result = detect(session)
     assert session["meta"]["source_type"] == "simulated"
     assert result["event_count"] >= 4
+
+
+def test_fe_mesh_distinguishes_continuous_and_flexible_structures() -> None:
+    config = load_yaml(ROOT / "simulation" / "configs" / "default.yaml")
+    baseline, baseline_seat, _ = build_mesh(config, 41, "baseline")
+    flex, flex_seat, _ = build_mesh(config, 41, "flex")
+    assert baseline.t.shape[1] > flex.t.shape[1]
+    assert baseline_seat.sum() > flex_seat.sum()
+
+
+def test_monte_carlo_records_both_designs() -> None:
+    config = load_yaml(ROOT / "simulation" / "configs" / "default.yaml")
+    rows, summary = run_monte_carlo(config, 20, 123)
+    assert len(rows) == 40
+    assert summary["baseline_rigid_6p_s1"]["count"] == 20
+    assert summary["flex_compliant_6p_s3"]["count"] == 20
+
+
+def test_anomaly_event_score_matches_injected_signal() -> None:
+    data = {
+        "sample_id": "T-001",
+        "timestamp": [0.0, 0.1, 0.2, 0.3],
+        "current": [75.0, 35.0, 35.0, 75.0],
+        "voltage": [12.0, 12.0, 12.0, 12.0],
+        "speed": [1.5, 1.5, 1.5, 1.5],
+        "temperature": [150.0, 150.0, 150.0, 150.0],
+        "meta": {"injected_anomalies": [{"name": "current_drop", "signal": "current", "start_s": 0.1, "end_s": 0.3}]},
+    }
+    result = detect(data)
+    score = score_events(data, result)
+    assert score["tp"] == 1
+    assert score["fp"] == 0
+    assert score["fn"] == 0

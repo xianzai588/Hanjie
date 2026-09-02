@@ -13,6 +13,67 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT = ROOT / "data" / "samples" / "W2026-001-simulated.json"
 
 
+def simulate_trial(trial_id: str, injected: bool, seed: int, duration_s: float = 20.0, sample_rate_hz: float = 20.0) -> dict[str, object]:
+    """生成一个用于检测器基准的正常或注入异常试验。"""
+    rng = np.random.default_rng(seed)
+    timestamp = np.arange(0.0, duration_s, 1.0 / sample_rate_hz)
+    current = 75.0 + rng.normal(0.0, 0.8, timestamp.size)
+    voltage = 12.0 + rng.normal(0.0, 0.08, timestamp.size)
+    speed = 1.5 + rng.normal(0.0, 0.025, timestamp.size)
+    temperature = 150.0 + 25.0 * (1.0 - np.exp(-timestamp / 4.0)) + rng.normal(0.0, 0.5, timestamp.size)
+    anomalies: list[dict[str, object]] = []
+
+    def inject(name: str, signal: str, start: float, end: float, values: dict[str, float]) -> None:
+        mask = (timestamp >= start) & (timestamp < end)
+        if "current" in values:
+            current[mask] = values["current"]
+        if "voltage" in values:
+            voltage[mask] = values["voltage"]
+        if "speed" in values:
+            speed[mask] = values["speed"]
+        if "temperature" in values:
+            temperature[mask] = values["temperature"]
+        anomalies.append({"name": name, "signal": signal, "start_s": start, "end_s": end})
+
+    if injected:
+        anomaly_types = ("current_drop", "voltage_spike", "speed_deviation", "temperature_overrun", "arc_interruption")
+        count = int(rng.integers(1, 4))
+        selected = list(rng.choice(anomaly_types, size=count, replace=False))
+        for index, name in enumerate(selected):
+            start = 3.0 + 4.5 * index
+            end = start + (0.8 if name != "temperature_overrun" else 1.2)
+            if name == "current_drop":
+                inject(name, "current", start, end, {"current": 35.0})
+            elif name == "voltage_spike":
+                inject(name, "voltage", start, end, {"voltage": 16.2})
+            elif name == "speed_deviation":
+                inject(name, "speed", start, end, {"speed": 2.5})
+            elif name == "temperature_overrun":
+                inject(name, "temperature", start, end, {"temperature": 235.0})
+            else:
+                inject(name, "current", start, end, {"current": 0.0, "voltage": 0.0})
+                inject(name, "voltage", start, end, {"voltage": 0.0})
+
+    return {
+        "sample_id": trial_id,
+        "timestamp": [round(float(item), 4) for item in timestamp],
+        "current": [round(float(item), 4) for item in current],
+        "voltage": [round(float(item), 4) for item in voltage],
+        "speed": [round(float(item), 4) for item in speed],
+        "temperature": [round(float(item), 4) for item in temperature],
+        "meta": {
+            "process": "tig-simulated",
+            "sequence": "S3",
+            "preheat_c": 150.0,
+            "operator": "simulation",
+            "source_type": "simulated",
+            "injected": injected,
+            "injected_anomalies": anomalies,
+            "notes": "仅用于异常检测基准；不是实际焊接采集。",
+        },
+    }
+
+
 def simulate(duration_s: float = 20.0, sample_rate_hz: float = 20.0, seed: int = 20260902) -> dict[str, object]:
     rng = np.random.default_rng(seed)
     timestamp = np.arange(0.0, duration_s, 1.0 / sample_rate_hz)

@@ -100,7 +100,14 @@ def evaluate_case(config: dict[str, Any], layout: int, sequence: str,
         * model["residual_fraction"]
         * (weld_length / 18.0) ** 0.25
     )
-    structure_factor = {"baseline": 1.0, "flex": 0.68}[structure]
+    # 降阶模型对弹性模量只做一阶等效刚度修正；完整温度依赖塑性仍需 FE/物理验证。
+    reference_young = 0.5 * (210.0 + 170.0)
+    actual_young = 0.5 * (
+        materials["q235b"]["elastic_modulus_gpa"]
+        + materials["qt450_10"]["elastic_modulus_gpa"]
+    )
+    material_stiffness_factor = math.sqrt(reference_young / actual_young)
+    structure_factor = {"baseline": 1.0, "flex": 0.68}[structure] * material_stiffness_factor
     stiffness = materials["fixture"]["equivalent_stiffness_n_mm"]
     fixture_factor = {
         "rigid": 1.0,
@@ -154,6 +161,7 @@ def evaluate_case(config: dict[str, Any], layout: int, sequence: str,
         "total_heat_input_j": round(q_line * weld_length * layout, 6),
         "effective_peak_temperature_c": round(peak_temp, 6),
         "haz_width_proxy_mm": round(haz_width, 6),
+        "material_stiffness_factor": round(material_stiffness_factor, 6),
         "hole_center_shift_mm": round(center_displacement, 6),
         "axis_tilt_deg": round(math.degrees(tilt_rad), 6),
         "shell_ellipticity_proxy_mm": round(ellipticity, 6),
@@ -240,6 +248,7 @@ def write_summary_markdown(rows: list[dict[str, Any]]) -> None:
         "基准参照为相同连接单元数、刚性基准结构、刚性夹具和 S1 顺序；`P_sim` 是按内孔轴线构造的数值评价指标。",
         "当前代理模型中 S2 与 S3 对称性完全相同，因此不能据此宣称二者存在性能差异；S3 仅作为路径生成的代表顺序。",
         "8 点柔顺方案的 `P_sim` 最小，但 6 点方案在模型内仍低于限值且总焊段更少、总热输入更低，因此 V1 将 6 点作为主方案、8 点作为对照；最终取舍待 FE/物理验证。",
+        "二维 FE 复核没有复现上述柔顺优势：FE-003 的 `P_FE` 高于 FE-001/002。该冲突说明降阶结构因子不能外推为真实结构最优性，V1 同时保留连续座体刚性基准，等待三维/物理证据裁决。",
     ])
     (RESULT_DIR / "summary-r1.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
