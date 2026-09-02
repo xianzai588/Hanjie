@@ -14,10 +14,10 @@
   ],
   "included_controls": [
     "A/B/C datums",
-    "position tolerance Ø0.05",
+    "Ø40 bore axis position tolerance Ø0.05 | A | B",
     "weld symbols",
     "slot width",
-    "fixture DOF",
+    "fixture DOF mapping",
     "materials",
     "unspecified tolerances"
   ]

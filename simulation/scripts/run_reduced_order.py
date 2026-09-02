@@ -20,6 +20,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yaml
 
+from position_tolerance import DATUM_REFERENCE_TEXT
+
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG = ROOT / "simulation" / "configs" / "default.yaml"
@@ -169,6 +171,7 @@ def evaluate_case(config: dict[str, Any], layout: int, sequence: str,
         "limit_mm": model["position_tolerance_limit_mm"],
         "pass_in_model": pass_limit,
         "sequence_indices": "-".join(str(item + 1) for item in order),
+        "datum_reference": DATUM_REFERENCE_TEXT,
     }
 
 
@@ -247,8 +250,9 @@ def write_summary_markdown(rows: list[dict[str, Any]]) -> None:
         "",
         "基准参照为相同连接单元数、刚性基准结构、刚性夹具和 S1 顺序；`P_sim` 是按内孔轴线构造的数值评价指标。",
         "当前代理模型中 S2 与 S3 对称性完全相同，因此不能据此宣称二者存在性能差异；S3 仅作为路径生成的代表顺序。",
-        "8 点柔顺方案的 `P_sim` 最小，但 6 点方案在模型内仍低于限值且总焊段更少、总热输入更低，因此 V1 将 6 点作为主方案、8 点作为对照；最终取舍待 FE/物理验证。",
-        "二维 FE 复核没有复现上述柔顺优势：FE-003 的 `P_FE` 高于 FE-001/002。该冲突说明降阶结构因子不能外推为真实结构最优性，V1 同时保留连续座体刚性基准，等待三维/物理证据裁决。",
+        f"名义基准系：{DATUM_REFERENCE_TEXT}。",
+        "8 点柔顺方案的 `P_sim` 最小，但 6 点方案在模型内仍低于限值且总焊段更少、总热输入更低，因此 V2 将 6 点作为主方案、8 点作为对照；最终取舍待 FE/物理验证。",
+        "二维 FE 代理交叉检查没有复现上述柔顺优势：FE-003 的 `P_FE` 高于 FE-001/002。该冲突说明降阶结构因子不能外推为真实结构最优性，V2 同时保留连续座体刚性基准，等待三维/物理证据裁决。",
     ])
     (RESULT_DIR / "summary-r1.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -295,6 +299,7 @@ def main() -> int:
         "config": str(args.config.relative_to(ROOT)).replace("\\", "/"),
         "case_count": len(rows),
         "model_statement": "降阶热—结构代理模型，仅用于相对比较；不是有限元或实测结果。",
+        "datum_reference": DATUM_REFERENCE_TEXT,
         "python": sys.version,
     }
     (args.output_dir / "run-metadata.json").write_text(

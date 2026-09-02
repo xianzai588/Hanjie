@@ -2,9 +2,20 @@
   "sample_count": 100,
   "success_count": 100,
   "success_rate": 1.0,
+  "detection_return_rate": 1.0,
   "x_mae_mm": 0.001349695026874539,
   "y_mae_mm": 0.001161597768465676,
+  "radial_mae_mm": 0.001965970153591489,
+  "radial_p95_mm": 0.003422174192879749,
   "theta_mae_deg": 0.001759191762723415,
+  "theta_p95_deg": 0.004248418753617367,
   "difficulty": "clean",
-  "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+  "engineering_gate": "PASS",
+  "engineering_gate_pass": true,
+  "gate_limits": {
+    "radial_p95_mm": 0.01,
+    "theta_p95_deg": 0.007763655760580261,
+    "pose_lever_arm_mm": 73.8
+  },
+  "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
 }

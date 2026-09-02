@@ -17,9 +17,9 @@
 <circle cx="230.0" cy="630.0" r="28.0" class="edge" fill="#fff"/>
 <text x="230.0" y="720.0" class="dim" text-anchor="middle">Ø190</text>
 <text x="600.0" y="190.0" class="section" text-anchor="start">PART NOTES</text>
-<text x="600.0" y="230.0" class="note" text-anchor="start">A: base top plane</text>
-<text x="600.0" y="260.0" class="note" text-anchor="start">B: pin axis</text>
-<text x="600.0" y="290.0" class="note" text-anchor="start">C: support clocking hole</text>
+<text x="600.0" y="230.0" class="note" text-anchor="start">A: base top plane → assembly A</text>
+<text x="600.0" y="260.0" class="note" text-anchor="start">B: pin axis → assembly B</text>
+<text x="600.0" y="290.0" class="note" text-anchor="start">C: independent clocking hole → assembly C</text>
 <text x="600.0" y="345.0" class="note" text-anchor="start">Six support stations at 60° pitch</text>
 <text x="600.0" y="375.0" class="note" text-anchor="start">Radial support travel and preload TBD</text>
 <text x="600.0" y="430.0" class="note" text-anchor="start">No manufacturing release without tolerance stack-up</text>
@@ -36,5 +36,5 @@
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
 <text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

@@ -19,20 +19,19 @@
 <text x="700.0" y="210.0" class="note" text-anchor="start">SHELL: Ø160 × H200 × t5</text>
 <text x="700.0" y="245.0" class="note" text-anchor="start">SEAT: bore Ø40; core Ø82</text>
 <text x="700.0" y="280.0" class="note" text-anchor="start">WELDS: 6 × 18; sequence S3</text>
-<text x="700.0" y="330.0" class="note" text-anchor="start">A shell seating plane / B bore axis / C clocking</text>
-<text x="700.0" y="380.0" class="note" text-anchor="start">Inspection hand-off: visual → bore gauge/CMM → records</text>
-<text x="700.0" y="430.0" class="note" text-anchor="start">WPS qualification, material certificates and actual weld data remain open</text>
-<text x="700.0" y="490.0" class="section" text-anchor="start">Position tolerance target: Ø0.05 to A|B|C</text>
-<rect x="700.0" y="513.0" width="88.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="744.0" y="532.0" class="small" text-anchor="middle">POSITION</text>
-<rect x="788.0" y="513.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="815.0" y="532.0" class="small" text-anchor="middle">Ø0.05</text>
-<rect x="842.0" y="513.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="869.0" y="532.0" class="small" text-anchor="middle">A</text>
-<rect x="896.0" y="513.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="923.0" y="532.0" class="small" text-anchor="middle">B</text>
-<rect x="950.0" y="513.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="977.0" y="532.0" class="small" text-anchor="middle">C</text>
+<text x="700.0" y="330.0" class="note" text-anchor="start">A shell seating plane / B shell theoretical axis / C independent clocking</text>
+<text x="700.0" y="380.0" class="note" text-anchor="start">Controlled feature: Ø40 bore axis</text>
+<text x="700.0" y="410.0" class="note" text-anchor="start">Inspection hand-off: visual → bore gauge/CMM → records</text>
+<text x="700.0" y="450.0" class="note" text-anchor="start">WPS qualification, material certificates and actual weld data remain open</text>
+<text x="700.0" y="500.0" class="section" text-anchor="start">Position tolerance target: Ø0.05 | A | B</text>
+<rect x="700.0" y="533.0" width="88.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="744.0" y="552.0" class="small" text-anchor="middle">POSITION</text>
+<rect x="788.0" y="533.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="815.0" y="552.0" class="small" text-anchor="middle">Ø0.05</text>
+<rect x="842.0" y="533.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="869.0" y="552.0" class="small" text-anchor="middle">A</text>
+<rect x="896.0" y="533.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="923.0" y="552.0" class="small" text-anchor="middle">B</text>
 <polygon points="230.0,420.0 220.0,400.0 240.0,400.0" class="datumbox" fill="#fff"/>
 <text x="230.0" y="414.0" class="datum" text-anchor="middle">A</text>
 <line x1="230.0" y1="400.0" x2="230.0" y2="375.0" class="thin"/>
@@ -46,5 +45,5 @@
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Q235B shell + QT450-10 seat + Ni filler + fixture steel TBD</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
 <text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

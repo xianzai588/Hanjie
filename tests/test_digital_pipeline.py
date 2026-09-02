@@ -20,7 +20,7 @@ from anomaly_detector import score_events  # noqa: E402
 from detect_center import detect_image  # noqa: E402
 from generate_dataset import render_sample  # noqa: E402
 from generate_weld_path import generate_path  # noqa: E402
-from position_tolerance import demo_points, fit_axis  # noqa: E402
+from position_tolerance import DATUM_DEFINITION, demo_points, fit_axis  # noqa: E402
 from run_reduced_order import build_cases, load_yaml  # noqa: E402
 from run_monte_carlo import run_monte_carlo  # noqa: E402
 
@@ -48,6 +48,13 @@ def test_optimized_layout_is_lower_than_baseline() -> None:
 def test_position_tolerance_demo_is_reproducible() -> None:
     result = fit_axis(demo_points())
     assert 0.04 < result["p_sim_mm"] < 0.06
+
+
+def test_position_tolerance_uses_independent_assembly_datums() -> None:
+    assert DATUM_DEFINITION["A"] == "壳体安装基准平面（z=0）"
+    assert DATUM_DEFINITION["B"] == "Q235B 壳体理论中心轴（x=0, y=0）"
+    assert DATUM_DEFINITION["position_tolerance"] == "Ø0.05 | A | B"
+    assert "孔轴线" in DATUM_DEFINITION["controlled_feature"]
 
 
 def test_weld_path_approach_points_follow_segment_angle() -> None:
@@ -93,6 +100,7 @@ def test_monte_carlo_records_both_designs() -> None:
     assert len(rows) == 40
     assert summary["baseline_rigid_6p_s1"]["count"] == 20
     assert summary["flex_compliant_6p_s3"]["count"] == 20
+    assert "未由 FE 或实测标定" in summary["model_assumption_status"]["structure_factor"]
 
 
 def test_anomaly_event_score_matches_injected_signal() -> None:

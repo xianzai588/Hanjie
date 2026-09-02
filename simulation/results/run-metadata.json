@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-09-02T07:11:59.118721+00:00",
+  "generated_at": "2026-09-02T08:06:16.163474+00:00",
   "script": "simulation/scripts/run_reduced_order.py",
   "config": "simulation/configs/default.yaml",
   "case_count": 15,
   "model_statement": "降阶热—结构代理模型，仅用于相对比较；不是有限元或实测结果。",
+  "datum_reference": "A=壳体安装基准平面；B=Q235B 壳体理论中心轴；C=独立周向定位特征；受控特征=Ø40 孔轴线；位置度=Ø0.05 | A | B",
   "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
 }

@@ -58,7 +58,7 @@ def footer(lines: list[str], material: str) -> list[str]:
         text(55, 735, f"MATERIAL: {material}"),
         text(380, 735, "UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)", "small"),
         text(1140, 735, "STATUS: DESIGN-REVIEW", "small", "end"),
-        text(55, 758, "A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.", "small"),
+        text(55, 758, "Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.", "small"),
         '</svg>',
     ])
     return lines
@@ -77,7 +77,8 @@ def datum(lines: list[str], label: str, x: float, y: float, direction: str = "up
 
 
 def position_frame(lines: list[str], x: float, y: float) -> None:
-    labels = ["POSITION", "Ø0.05", "A", "B", "C"]
+    # Ø40 孔轴线只引用独立的 A/B 基准；C 仅定义装配周向姿态。
+    labels = ["POSITION", "Ø0.05", "A", "B"]
     cursor = x
     for index, label in enumerate(labels):
         width = 88 if index == 0 else 54
@@ -111,11 +112,11 @@ def seat_drawing(geometry: dict) -> list[str]:
         p2 = (cx + inner * scale * math.cos(angle + 0.105), cy - inner * scale * math.sin(angle + 0.105))
         lines.append(line(*p1, *p2, "weld"))
     dim_h(lines, cx - core, cx + core, 565, f"Ø{design['seat_core_outer_diameter']:.0f} CORE", cy + core)
-    lines += [text(670, 225, f"BORE Ø{official['bearing_bore_diameter']:.0f}"), text(670, 255, f"WING OUTER R{design['wing_outer_radius']:.1f}"), text(670, 285, f"WING WIDTH {design['wing_width']:.0f}"), text(670, 315, f"RADIAL SLOT {design['slot_width']:.0f} WIDE"), text(670, 345, f"6 × {geometry['design_assumptions']['weld_segment_length']:.0f} WELD SEGMENTS", "section"), text(670, 390, "DATUM A: bore axis / primary", "note"), text(670, 420, "DATUM B: seat top face", "note"), text(670, 450, "DATUM C: clocking wing", "note"), text(670, 500, "POSITION TOLERANCE", "section")]
-    position_frame(lines, 670, 545)
-    datum(lines, "A", cx, cy + bore, "up")
-    datum(lines, "B", cx + wing_r, cy, "right")
-    datum(lines, "C", cx, cy - wing_r, "up")
+    lines += [text(670, 225, f"BORE Ø{official['bearing_bore_diameter']:.0f}"), text(670, 255, f"WING OUTER R{design['wing_outer_radius']:.1f}"), text(670, 285, f"WING WIDTH {design['wing_width']:.0f}"), text(670, 315, f"RADIAL SLOT {design['slot_width']:.0f} WIDE"), text(670, 345, f"6 × {geometry['design_assumptions']['weld_segment_length']:.0f} WELD SEGMENTS", "section"), text(670, 390, "DATUM A: shell seating plane", "note"), text(670, 420, "DATUM B: shell theoretical axis", "note"), text(670, 450, "DATUM C: independent clocking feature", "note"), text(670, 480, "CONTROLLED: Ø40 bore axis", "note"), text(670, 520, "POSITION TOLERANCE", "section")]
+    position_frame(lines, 670, 565)
+    datum(lines, "A", cx, cy + wing_r, "up")
+    datum(lines, "B", cx, cy, "up")
+    datum(lines, "C", cx + wing_r, cy, "right")
     return footer(lines, "QT450-10 (actual grade to be verified by certificate)")
 
 
@@ -128,7 +129,7 @@ def shell_drawing(geometry: dict) -> list[str]:
     # top view
     cx, cy = 575, 340
     lines += [circle(cx, cy, 140, "edge", "#e2e8f0"), circle(cx, cy, 122, "thin", "#fff"), line(cx - 165, cy, cx + 165, cy, "center", "9 7"), line(cx, cy - 165, cx, cy + 165, "center", "9 7"), text(cx, cy + 195, f"Ø{official['shell_outer_diameter']:.0f} / Ø{official['shell_outer_diameter'] - 2 * official['shell_thickness']:.0f} ID", "dim", "middle")]
-    lines += [text(830, 215, "MATERIAL: Q235B", "section"), text(830, 250, "Ø160 × H200 × t5", "note"), text(830, 285, "Cylindrical shell; seam and edge prep", "note"), text(830, 330, "DATUM A: bottom seating plane", "note"), text(830, 360, "DATUM B: shell axis", "note"), text(830, 390, "DATUM C: clocking mark", "note"), text(830, 445, "Weld access: internal shield / borescope", "note")]
+    lines += [text(830, 215, "MATERIAL: Q235B", "section"), text(830, 250, "Ø160 × H200 × t5", "note"), text(830, 285, "Cylindrical shell; seam and edge prep", "note"), text(830, 330, "DATUM A: shell seating plane", "note"), text(830, 360, "DATUM B: shell theoretical axis", "note"), text(830, 390, "DATUM C: independent clocking feature", "note"), text(830, 445, "Weld access: internal shield / borescope", "note")]
     datum(lines, "A", x + width / 2, y + height, "up")
     datum(lines, "B", cx, cy - 140, "up")
     datum(lines, "C", cx + 140, cy, "right")
@@ -140,7 +141,7 @@ def joint_drawing(geometry: dict) -> list[str]:
     lines = header("接头与焊缝细节图", "JOINT DETAIL / SECTION A-A / SCHEMATIC WELD SYMBOLS", "HJ-DRW-003")
     lines += [text(90, 155, "SECTION A-A", "section"), rect(120, 210, 430, 70, "edge", "#e2e8f0"), rect(120, 280, 430, 45, "edge", "#fbbf24"), line(120, 350, 550, 350, "center", "9 7")]
     # weld triangles and leader
-    lines += [polygon([(310, 280), (345, 280), (310, 245)], "weld", "#fecaca"), line(330, 245, 330, 195, "weld"), line(330, 195, 490, 195, "weld"), text(495, 190, "TIG + Ni filler", "note"), text(495, 220, "FILLET WELD SYMBOL", "note"), text(145, 390, f"WELD SEGMENT LENGTH {design['weld_segment_length']:.0f}", "dim"), text(145, 425, "WELD BRIDGE TO SHELL ID: 1.2 (2D FE equivalent)", "dim"), text(145, 460, "SLOT WIDTH 4 (design assumption)", "dim"), text(700, 180, "PROCESS NOTE", "section"), text(700, 220, "Automatic TIG, short segments, S3 sequence", "note"), text(700, 255, "No slag route; internal shielding and borescope", "note"), text(700, 305, "Do not interpret this sheet as a qualified WPS", "note"), text(700, 360, "A: shell seating plane", "note"), text(700, 390, "B: bore axis", "note"), text(700, 420, "C: clocking / weld start", "note")]
+    lines += [polygon([(310, 280), (345, 280), (310, 245)], "weld", "#fecaca"), line(330, 245, 330, 195, "weld"), line(330, 195, 490, 195, "weld"), text(495, 190, "TIG + Ni filler", "note"), text(495, 220, "FILLET WELD SYMBOL", "note"), text(145, 390, f"WELD SEGMENT LENGTH {design['weld_segment_length']:.0f}", "dim"), text(145, 425, "WELD BRIDGE TO SHELL ID: 1.2 (2D FE equivalent)", "dim"), text(145, 460, "SLOT WIDTH 4 (design assumption)", "dim"), text(700, 180, "PROCESS NOTE", "section"), text(700, 220, "Automatic TIG, short segments, S3 sequence", "note"), text(700, 255, "No slag route; internal shielding and borescope", "note"), text(700, 305, "Do not interpret this sheet as a qualified WPS", "note"), text(700, 360, "A: shell seating plane", "note"), text(700, 390, "B: shell theoretical axis", "note"), text(700, 420, "C: independent clocking feature", "note"), text(700, 450, "Controlled Ø40 bore axis: position Ø0.05 | A | B", "note")]
     datum(lines, "A", 180, 325, "up")
     datum(lines, "B", 540, 280, "right")
     datum(lines, "C", 410, 210, "up")
@@ -168,7 +169,7 @@ def weld_layout_drawing(geometry: dict) -> list[str]:
         p1 = (cx + 120 * math.cos(angle), cy - 120 * math.sin(angle))
         p2 = (cx + 175 * math.cos(angle), cy - 175 * math.sin(angle))
         lines.append(line(*p1, *p2, "weld"))
-    lines += [text(700, 200, "SEQUENCE S3", "section"), text(700, 240, "W1 → W4 → W3 → W6 → W2 → W5", "note"), text(700, 290, f"6 × {design['weld_segment_length']:.0f} mm short welds", "note"), text(700, 325, "Symmetric alternation; confirm start point", "note"), text(700, 380, "WELD SYMBOL: fillet / short segment", "note"), text(700, 430, "Thermal record: current, voltage, speed, interpass", "note"), text(700, 480, "A: shell axis", "note"), text(700, 510, "B: seat top plane", "note"), text(700, 540, "C: W1 clocking", "note")]
+    lines += [text(700, 200, "SEQUENCE S3", "section"), text(700, 240, "W1 → W4 → W3 → W6 → W2 → W5", "note"), text(700, 290, f"6 × {design['weld_segment_length']:.0f} mm short welds", "note"), text(700, 325, "Symmetric alternation; confirm start point", "note"), text(700, 380, "WELD SYMBOL: fillet / short segment", "note"), text(700, 430, "Thermal record: current, voltage, speed, interpass", "note"), text(700, 480, "A: shell seating plane", "note"), text(700, 510, "B: shell theoretical axis", "note"), text(700, 540, "C: independent clocking feature / W1", "note")]
     datum(lines, "A", cx, cy - radius, "up")
     datum(lines, "B", cx + radius, cy, "right")
     datum(lines, "C", cx, cy + radius, "up")
@@ -188,7 +189,7 @@ def fixture_assembly_drawing(geometry: dict) -> list[str]:
         lines.append(circle(px, py, 11, "edge", "#f59e0b"))
         lines.append(line(cx + 40 * math.cos(angle), cy - 40 * math.sin(angle), px, py, "thin"))
         lines.append(text(px, py + 30, f"S{index + 1}", "small", "middle"))
-    lines += [text(700, 180, "FIXTURE DEFINITION", "section"), text(700, 220, f"BASE Ø{design['fixture_base_diameter']:.0f}", "note"), text(700, 250, f"CENTER PIN Ø{design['fixture_pin_diameter']:.2f}", "note"), text(700, 280, "6 radial compliant supports", "note"), text(700, 315, "Equivalent radial stiffness: 1200 N/mm", "note"), text(700, 355, "DOF CONTROL", "section"), text(700, 390, "A  axial seat / height", "note"), text(700, 420, "B  radial location", "note"), text(700, 450, "C  clocking / tangential restraint", "note"), text(700, 500, "Fixture is a design assumption until assembled and dial/CMM checked", "small")]
+    lines += [text(700, 180, "FIXTURE DEFINITION", "section"), text(700, 220, f"BASE Ø{design['fixture_base_diameter']:.0f}", "note"), text(700, 250, f"CENTER PIN Ø{design['fixture_pin_diameter']:.2f}", "note"), text(700, 280, "6 radial compliant supports", "note"), text(700, 315, "Equivalent radial stiffness: 1200 N/mm", "note"), text(700, 355, "DOF CONTROL / ASSEMBLY MAPPING", "section"), text(700, 390, "A  base top plane → assembly A", "note"), text(700, 420, "B  center pin axis → assembly B", "note"), text(700, 450, "C  independent clocking hole → assembly C", "note"), text(700, 500, "Fixture is a design assumption until assembled and dial/CMM checked", "small")]
     datum(lines, "A", cx, cy + base_r, "up")
     datum(lines, "B", cx + base_r, cy, "right")
     datum(lines, "C", cx, cy - base_r, "up")
@@ -198,7 +199,7 @@ def fixture_assembly_drawing(geometry: dict) -> list[str]:
 def fixture_part_drawing(geometry: dict) -> list[str]:
     design = geometry["design_assumptions"]
     lines = header("夹具定位销与底板零件图", "FIXTURE PART / PIN + BASE / DESIGN-REVIEW DEFINITION", "HJ-DRW-006")
-    lines += [text(110, 150, "CENTER PIN - SECTION", "section"), rect(150, 220, 150, 230, "edge", "#cbd5e1"), rect(185, 170, 80, 50, "edge", "#94a3b8"), line(110, 335, 340, 335, "center", "9 7"), text(340, 250, f"Ø{design['fixture_pin_diameter']:.2f}", "dim"), text(340, 280, "pin height 28 (assumption)", "dim"), text(110, 520, "BASE PLATE - PLAN", "section"), circle(230, 630, design['fixture_base_diameter'] / 2 * 0.55, "edge", "#cbd5e1"), circle(230, 630, 28, "edge", "#fff"), text(230, 720, f"Ø{design['fixture_base_diameter']:.0f}", "dim", "middle"), text(600, 190, "PART NOTES", "section"), text(600, 230, "A: base top plane", "note"), text(600, 260, "B: pin axis", "note"), text(600, 290, "C: support clocking hole", "note"), text(600, 345, "Six support stations at 60° pitch", "note"), text(600, 375, "Radial support travel and preload TBD", "note"), text(600, 430, "No manufacturing release without tolerance stack-up", "note")]
+    lines += [text(110, 150, "CENTER PIN - SECTION", "section"), rect(150, 220, 150, 230, "edge", "#cbd5e1"), rect(185, 170, 80, 50, "edge", "#94a3b8"), line(110, 335, 340, 335, "center", "9 7"), text(340, 250, f"Ø{design['fixture_pin_diameter']:.2f}", "dim"), text(340, 280, "pin height 28 (assumption)", "dim"), text(110, 520, "BASE PLATE - PLAN", "section"), circle(230, 630, design['fixture_base_diameter'] / 2 * 0.55, "edge", "#cbd5e1"), circle(230, 630, 28, "edge", "#fff"), text(230, 720, f"Ø{design['fixture_base_diameter']:.0f}", "dim", "middle"), text(600, 190, "PART NOTES", "section"), text(600, 230, "A: base top plane → assembly A", "note"), text(600, 260, "B: pin axis → assembly B", "note"), text(600, 290, "C: independent clocking hole → assembly C", "note"), text(600, 345, "Six support stations at 60° pitch", "note"), text(600, 375, "Radial support travel and preload TBD", "note"), text(600, 430, "No manufacturing release without tolerance stack-up", "note")]
     datum(lines, "A", 225, 450, "up")
     datum(lines, "B", 265, 170, "right")
     datum(lines, "C", 385, 630, "right")
@@ -209,8 +210,8 @@ def weld_assembly_drawing(geometry: dict) -> list[str]:
     official = geometry["official"]
     design = geometry["design_assumptions"]
     lines = header("焊接总装与定位基准图", "WELD ASSEMBLY / SHELL + SEAT + FIXTURE REFERENCE", "HJ-DRW-007")
-    lines += [text(85, 155, "EXPLODED / AXONOMETRIC SCHEMATIC", "section"), polygon([(180, 330), (480, 330), (530, 375), (230, 375)], "edge", "#cbd5e1"), polygon([(230, 375), (530, 375), (530, 420), (230, 420)], "edge", "#94a3b8"), polygon([(250, 250), (430, 250), (480, 290), (300, 290)], "edge", "#f59e0b"), polygon([(300, 290), (480, 290), (480, 320), (300, 320)], "edge", "#d97706"), circle(340, 270, 24, "edge", "#fff"), line(340, 220, 340, 410, "center", "9 7"), text(200, 455, "fixture base + center pin", "note"), text(300, 215, "seat / bore / six wings", "note"), text(700, 170, "ASSEMBLY CONTROL", "section"), text(700, 210, f"SHELL: Ø{official['shell_outer_diameter']:.0f} × H{official['shell_height']:.0f} × t{official['shell_thickness']:.0f}", "note"), text(700, 245, f"SEAT: bore Ø{official['bearing_bore_diameter']:.0f}; core Ø{design['seat_core_outer_diameter']:.0f}", "note"), text(700, 280, f"WELDS: 6 × {design['weld_segment_length']:.0f}; sequence S3", "note"), text(700, 330, "A shell seating plane / B bore axis / C clocking", "note"), text(700, 380, "Inspection hand-off: visual → bore gauge/CMM → records", "note"), text(700, 430, "WPS qualification, material certificates and actual weld data remain open", "note"), text(700, 490, "Position tolerance target: Ø0.05 to A|B|C", "section")]
-    position_frame(lines, 700, 535)
+    lines += [text(85, 155, "EXPLODED / AXONOMETRIC SCHEMATIC", "section"), polygon([(180, 330), (480, 330), (530, 375), (230, 375)], "edge", "#cbd5e1"), polygon([(230, 375), (530, 375), (530, 420), (230, 420)], "edge", "#94a3b8"), polygon([(250, 250), (430, 250), (480, 290), (300, 290)], "edge", "#f59e0b"), polygon([(300, 290), (480, 290), (480, 320), (300, 320)], "edge", "#d97706"), circle(340, 270, 24, "edge", "#fff"), line(340, 220, 340, 410, "center", "9 7"), text(200, 455, "fixture base + center pin", "note"), text(300, 215, "seat / bore / six wings", "note"), text(700, 170, "ASSEMBLY CONTROL", "section"), text(700, 210, f"SHELL: Ø{official['shell_outer_diameter']:.0f} × H{official['shell_height']:.0f} × t{official['shell_thickness']:.0f}", "note"), text(700, 245, f"SEAT: bore Ø{official['bearing_bore_diameter']:.0f}; core Ø{design['seat_core_outer_diameter']:.0f}", "note"), text(700, 280, f"WELDS: 6 × {design['weld_segment_length']:.0f}; sequence S3", "note"), text(700, 330, "A shell seating plane / B shell theoretical axis / C independent clocking", "note"), text(700, 380, "Controlled feature: Ø40 bore axis", "note"), text(700, 410, "Inspection hand-off: visual → bore gauge/CMM → records", "note"), text(700, 450, "WPS qualification, material certificates and actual weld data remain open", "note"), text(700, 500, "Position tolerance target: Ø0.05 | A | B", "section")]
+    position_frame(lines, 700, 555)
     datum(lines, "A", 230, 420, "up")
     datum(lines, "B", 340, 220, "up")
     datum(lines, "C", 480, 290, "right")
@@ -237,7 +238,7 @@ def main() -> None:
         "status": "design-review; not manufacturing release",
         "drawing_count": len(drawings),
         "drawings": sorted(drawings),
-        "included_controls": ["A/B/C datums", "position tolerance Ø0.05", "weld symbols", "slot width", "fixture DOF", "materials", "unspecified tolerances"],
+        "included_controls": ["A/B/C datums", "Ø40 bore axis position tolerance Ø0.05 | A | B", "weld symbols", "slot width", "fixture DOF mapping", "materials", "unspecified tolerances"],
     }
     (OUTPUT / "drawing-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"已生成 {len(drawings)} 张工程表达图: {OUTPUT}")

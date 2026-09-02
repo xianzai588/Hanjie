@@ -11,7 +11,7 @@
 ## 已执行数字基准
 
 - 常规视觉：`python automation/vision/run_benchmark.py --count 1000`；
-- 困难视觉：`python automation/vision/run_benchmark.py --difficult --count-per-condition 100`；结果见 `vision/results/difficult-summary.md`；
+- 困难视觉：`python automation/vision/run_benchmark.py --difficult --count-per-condition 100`；结果见 `vision/results/difficult-summary.md`，以径向/姿态误差预算和工程 PASS/FAIL 为主指标，检测返回率不等于工程通过；
 - 异常检测：`python automation/anomaly-detection/run_benchmark.py --normal-count 100 --injected-count 100`；结果见 `anomaly-detection/results/benchmark/summary.md`。
 
 困难视觉条件覆盖噪声、模糊、光照梯度、约 10–30° 透视近似、遮挡、缺失边缘、低对比度、畸变和 ±5 mm 偏移。异常检测基准按事件级输出 TP/FP/FN、precision、recall、FPR 和延迟。

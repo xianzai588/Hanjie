@@ -32,10 +32,10 @@
 <text x="700.0" y="250.0" class="note" text-anchor="start">CENTER PIN Ø39.96</text>
 <text x="700.0" y="280.0" class="note" text-anchor="start">6 radial compliant supports</text>
 <text x="700.0" y="315.0" class="note" text-anchor="start">Equivalent radial stiffness: 1200 N/mm</text>
-<text x="700.0" y="355.0" class="section" text-anchor="start">DOF CONTROL</text>
-<text x="700.0" y="390.0" class="note" text-anchor="start">A  axial seat / height</text>
-<text x="700.0" y="420.0" class="note" text-anchor="start">B  radial location</text>
-<text x="700.0" y="450.0" class="note" text-anchor="start">C  clocking / tangential restraint</text>
+<text x="700.0" y="355.0" class="section" text-anchor="start">DOF CONTROL / ASSEMBLY MAPPING</text>
+<text x="700.0" y="390.0" class="note" text-anchor="start">A  base top plane → assembly A</text>
+<text x="700.0" y="420.0" class="note" text-anchor="start">B  center pin axis → assembly B</text>
+<text x="700.0" y="450.0" class="note" text-anchor="start">C  independent clocking hole → assembly C</text>
 <text x="700.0" y="500.0" class="small" text-anchor="start">Fixture is a design assumption until assembled and dial/CMM checked</text>
 <polygon points="350.0,549.5 340.0,529.5 360.0,529.5" class="datumbox" fill="#fff"/>
 <text x="350.0" y="543.5" class="datum" text-anchor="middle">A</text>
@@ -50,5 +50,5 @@
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
 <text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

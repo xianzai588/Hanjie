@@ -35,9 +35,9 @@
 <text x="700.0" y="325.0" class="note" text-anchor="start">Symmetric alternation; confirm start point</text>
 <text x="700.0" y="380.0" class="note" text-anchor="start">WELD SYMBOL: fillet / short segment</text>
 <text x="700.0" y="430.0" class="note" text-anchor="start">Thermal record: current, voltage, speed, interpass</text>
-<text x="700.0" y="480.0" class="note" text-anchor="start">A: shell axis</text>
-<text x="700.0" y="510.0" class="note" text-anchor="start">B: seat top plane</text>
-<text x="700.0" y="540.0" class="note" text-anchor="start">C: W1 clocking</text>
+<text x="700.0" y="480.0" class="note" text-anchor="start">A: shell seating plane</text>
+<text x="700.0" y="510.0" class="note" text-anchor="start">B: shell theoretical axis</text>
+<text x="700.0" y="540.0" class="note" text-anchor="start">C: independent clocking feature / W1</text>
 <polygon points="360.0,150.0 350.0,130.0 370.0,130.0" class="datumbox" fill="#fff"/>
 <text x="360.0" y="144.0" class="datum" text-anchor="middle">A</text>
 <line x1="360.0" y1="130.0" x2="360.0" y2="105.0" class="thin"/>
@@ -51,5 +51,5 @@
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Welded joint: QT450-10 / Q235B / Ni filler</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
 <text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

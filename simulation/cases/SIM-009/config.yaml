@@ -16,6 +16,8 @@ case:
   limit_mm: 0.05
   pass_in_model: true
   sequence_indices: 1-5-4-8-3-7-2-6
+  datum_reference: A=壳体安装基准平面；B=Q235B 壳体理论中心轴；C=独立周向定位特征；受控特征=Ø40 孔轴线；位置度=Ø0.05 |
+    A | B
   reduction_vs_baseline_s1_pct: 75.0
 process:
   current_a: 75.0

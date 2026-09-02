@@ -41,5 +41,10 @@
     "fixture_stiffness": "uniform ±20%",
     "initial_eccentricity": "uniform [-0.03, 0.03] mm along model x axis"
   },
-  "statement": "蒙特卡洛仅对降阶代理模型做输入不确定性传播；P_sim 不等于 CMM 位置度。"
+  "model_assumption_status": {
+    "structure_factor": "未由 FE 或实测标定；baseline=1.0，flex=0.68 是降阶模型预设",
+    "fixture_factor": "未由 FE 或实物标定；rigid/compliant 系数是降阶模型预设",
+    "interpretation": "柔顺优势只在当前模型结构和预设系数成立的条件下具有鲁棒性"
+  },
+  "statement": "蒙特卡洛仅对降阶代理模型做输入不确定性传播；P_sim 不等于 CMM 位置度，也不独立验证结构优劣。"
 }

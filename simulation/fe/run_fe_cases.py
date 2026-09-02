@@ -1,7 +1,7 @@
-"""运行三组高分辨率二维 FE 热—结构复核。
+"""运行三组二维热—结构代理模型交叉检查。
 
-本实现把高分辨率三角形 FE、瞬态热传导、热弹性残余本征应变和位置度后处理
-连接起来。模型是二维复核模型，不是完整三维焊接工艺仿真。
+本实现把三角形 FE、瞬态热传导、热弹性残余本征应变和位置度后处理连接起来。
+模型是二维代理复核，不是完整三维焊接工艺仿真。
 """
 
 from __future__ import annotations
@@ -27,12 +27,19 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT_DIR = ROOT / "simulation" / "scripts"
 sys.path.insert(0, str(SCRIPT_DIR))
-from position_tolerance import fit_axis  # noqa: E402
+from position_tolerance import DATUM_REFERENCE_TEXT, fit_axis  # noqa: E402
 
 
 DEFAULT_CONFIG = ROOT / "simulation" / "configs" / "default.yaml"
 OUTPUT_ROOT = ROOT / "simulation" / "fe"
 CASE_ROOT = ROOT / "simulation" / "cases"
+
+FE_MODEL_STATEMENT = "二维热—结构代理模型交叉检查，不是完整焊接 FE、完整三维焊接仿真或 CMM 结果。"
+FE_MODEL_LIMITATIONS = [
+    "热源峰值约 462–562 °C，远未达到钢/铸铁熔化温度，因此未模拟熔池形成、熔合和焊缝金属激活。",
+    "结构部分采用平面应力、最大温度驱动的等效残余本征应变和等效径向弹簧夹具。",
+    "未包含温度相关塑性、相变、真实焊缝几何与本构、三维壳体高度、接触和真实夹具预紧。",
+]
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -338,7 +345,9 @@ def write_case(case: dict[str, str], config: dict[str, Any], mesh_points: int) -
         "axis_slope_x": round(float(position["x_slope_mm_per_mm"]), 9),
         "axis_slope_y": round(float(position["y_slope_mm_per_mm"]), 9),
         "pass_in_model": bool(position["p_sim_mm"] <= config["model"]["position_tolerance_limit_mm"]),
-        "model_statement": "高分辨率二维 FE 热—结构复核，不是完整三维焊接 FE 或 CMM 结果。",
+        "model_statement": FE_MODEL_STATEMENT,
+        "model_limitations": FE_MODEL_LIMITATIONS,
+        "datum_reference": DATUM_REFERENCE_TEXT,
     }
     with (case_dir / "result.csv").open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=result.keys())
@@ -359,10 +368,11 @@ def write_case(case: dict[str, str], config: dict[str, Any], mesh_points: int) -
     (case_dir / "config.yaml").write_text(yaml.safe_dump(case_config, allow_unicode=True, sort_keys=False), encoding="utf-8")
     (case_dir / "README.md").write_text(
         f"# {case['case_id']}\n\n"
-        "本目录为高分辨率二维 FE 热—结构复核。\n\n"
+        "本目录为二维热—结构代理模型交叉检查。\n\n"
         f"- 方案：{case['structure']} / {case['fixture']} / 6P / {case['sequence']}。\n"
         "- 节点来源：二维三角形 FE 网格；`bore-nodes.csv` 已送入 `position_tolerance.py`。\n"
-        "- 边界：不包含完整三维高度、相变塑性和真实材料温度曲线。\n"
+        "- 热源限制：峰值温度未达到钢/铸铁熔化温度，未模拟熔池、熔合和焊缝金属激活。\n"
+        "- 边界：不包含完整三维高度、温度相关塑性、相变、接触和真实材料温度曲线。\n"
         "- 二维连接：翼端至壳体内壁的 1.2 mm 间隙以等效焊接桥接区表示。\n"
         "- 结果性质：用于排序/趋势复核，不是实物 CMM 认证。\n",
         encoding="utf-8",
@@ -378,9 +388,9 @@ def write_summary(rows: list[dict[str, Any]], output_dir: Path) -> None:
         writer.writerows(rows)
     reference = {row["case_id"]: row["p_fe_mm"] for row in rows}
     lines = [
-        "# FE 三案例复核结果",
+        "# FE 三案例二维代理交叉检查结果",
         "",
-        "> 这是高分辨率二维 FE 热—结构复核，不是完整三维焊接仿真或 CMM 结果。",
+        f"> {FE_MODEL_STATEMENT}",
         "",
         "| Case | 方案 | 顺序 | 网格节点 | 网格单元 | P_FE (mm) | 模型内判定 |",
         "| --- | --- | --- | ---: | ---: | ---: | --- |",
@@ -393,7 +403,11 @@ def write_summary(rows: list[dict[str, Any]], output_dir: Path) -> None:
         "",
         f"当前 FE 案例排序：{min(reference, key=reference.get)} → {sorted(reference, key=reference.get)[1]} → {max(reference, key=reference.get)}。排序只对这三个二维模型成立。",
         "",
-        "FE 内孔节点已经写入各 Case 的 `bore-nodes.csv`，并由 `position_tolerance.fit_axis` 分层拟合圆和轴线。二维模型沿 z 复制截面，因此不提供真实三维倾斜证据。",
+        "FE 内孔节点已经写入各 Case 的 `bore-nodes.csv`，并由 `position_tolerance.fit_axis` 在 A/B 装配基准系中分层拟合圆和轴线。二维模型沿 z 复制截面，因此不提供真实三维倾斜证据。",
+        "## 物理含义与限制",
+        "",
+        *[f"- {item}" for item in FE_MODEL_LIMITATIONS],
+        "该结果的作用是独立于降阶模型的结构反例检查，不是焊后绝对位置度预测或制造放行证据。",
     ])
     (output_dir / "fe-summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -435,7 +449,9 @@ def main() -> int:
         "mesh_points_per_axis": args.mesh_points,
         "case_count": len(rows),
         "solver": "scikit-fem mesh + SciPy sparse assembly",
-        "statement": "高分辨率二维 FE 热—结构复核，不是完整三维焊接 FE 或实物测量。",
+        "statement": FE_MODEL_STATEMENT,
+        "limitations": FE_MODEL_LIMITATIONS,
+        "datum_reference": DATUM_REFERENCE_TEXT,
     }
     (OUTPUT_ROOT / "results" / "run-metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"已完成 {len(rows)} 组二维 FE 复核，结果: {OUTPUT_ROOT / 'results'}")

@@ -37,7 +37,7 @@
 
 ## 当前阶段
 
-**P2 数字证据链已运行**（2026-09-02）：已冻结约束与设计假设，完成参数化 CAD 工程表达图、15 组降阶筛选、3 组二维 FE 复核、1000 次蒙特卡洛、困难视觉样本和 100+100 异常检测基准。真实焊接、CMM、金相、硬度、NDT 和 WPS/PQR 仍是可选物理验证。
+**P2 数字证据链已运行**（2026-09-02）：已冻结约束与设计假设，统一 A/B/C 装配基准，完成参数化 CAD 工程表达图、15 组降阶筛选、3 组二维热—结构代理交叉检查、1000 次蒙特卡洛、带误差预算门限的困难视觉样本和 100+100 异常检测基准。真实焊接、CMM、金相、硬度、NDT 和 WPS/PQR 不是参赛数字方案的提交前置条件，但仍是实际制造放行前的质量门。
 后续节点见 [docs/01-roadmap.md](docs/01-roadmap.md)。
 
 ## 工作包与分工
@@ -88,7 +88,7 @@ deliverables/  最终提交物
 - [路线图](docs/01-roadmap.md)
 - [团队分工](docs/02-team.md)
 - [设备清单](docs/03-equipment-inventory.md)
-- [技术说明书 V1（数字工程评审稿）](deliverables/report/technical-report-v1.md)
+- [技术说明书 V2（数字工程评审稿）](deliverables/report/technical-report-v2.md)
 - [协作规则](CONTRIBUTING.md)
 
 ## 首版数字样机运行

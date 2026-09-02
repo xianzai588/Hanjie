@@ -142,7 +142,12 @@ def run_monte_carlo(config: dict[str, Any], count: int, seed: int) -> tuple[list
             "fixture_stiffness": "uniform ±20%",
             "initial_eccentricity": "uniform [-0.03, 0.03] mm along model x axis",
         },
-        "statement": "蒙特卡洛仅对降阶代理模型做输入不确定性传播；P_sim 不等于 CMM 位置度。",
+        "model_assumption_status": {
+            "structure_factor": "未由 FE 或实测标定；baseline=1.0，flex=0.68 是降阶模型预设",
+            "fixture_factor": "未由 FE 或实物标定；rigid/compliant 系数是降阶模型预设",
+            "interpretation": "柔顺优势只在当前模型结构和预设系数成立的条件下具有鲁棒性",
+        },
+        "statement": "蒙特卡洛仅对降阶代理模型做输入不确定性传播；P_sim 不等于 CMM 位置度，也不独立验证结构优劣。",
     }
     return rows, summary
 
@@ -195,6 +200,7 @@ def write_outputs(rows: list[dict[str, Any]], summary: dict[str, Any], output_di
         "## 解读边界",
         "",
         "材料参数、热输入、速度、夹具等扰动用于风险排序；未建立真实材料温度依赖、塑性、接触和三维测量误差模型，因此不能把超限比例解释成实际失效概率。",
+        "`structure_factor` 与 `fixture_factor` 未由 FE/实测标定，属于模型预设；因此“柔顺方案更优”只表示在当前降阶模型结构及其预设系数下对输入扰动具有鲁棒性，不是第三套独立证据。",
     ]
     (output_dir / "monte-carlo.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

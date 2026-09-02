@@ -48,16 +48,16 @@ $$P_{sim}=2\max_z\sqrt{x(z)^2+y(z)^2}$$
 - 6 组优化：4/6/8 点 × S2/S3，六点柔顺结构 + 柔顺夹具对照；
 - 结果：`simulation/results/summary.csv`、`summary.png`、`summary.svg`；
 - 参数扫描：`python simulation/scripts/run_sensitivity.py`，输出 `sensitivity.csv`；
-- 高分辨率二维 FE：`python simulation/fe/run_fe_cases.py`，输出 FE-001/002/003、内孔节点和 `simulation/fe/results/fe-summary.*`；
+- 二维热—结构代理交叉检查：`python simulation/fe/run_fe_cases.py`，输出 FE-001/002/003、内孔节点和 `simulation/fe/results/fe-summary.*`；
 - 蒙特卡洛：`python simulation/scripts/run_monte_carlo.py --count 1000`，输出 P5/P50/P95、worst、超限比例和配对比较；
 - 输入：`simulation/configs/default.yaml`，设计假设见 [../05-design-assumptions.md](../05-design-assumptions.md)。
 
-当前二维 FE 使用三角形网格、温度无关的材料参数、等效残余本征应变和弹簧夹具；没有三维壳体高度方向、相变塑性、接触、真实焊缝几何和温度依赖材料曲线。它可用于检查结构排序是否出现明显反例，不能包装成商业求解器认证。获得 Abaqus/ANSYS/SYSWELD 等工具后，必须补做三维粗/中/细网格，并记录单元尺寸、单元数、孔轴线评价指标和相邻网格相对差异。
+当前二维 FE 使用三角形网格、温度无关的材料参数、等效残余本征应变和弹簧夹具；峰值温度远未达到钢/铸铁熔化温度，未模拟熔池形成、熔合、焊缝金属激活、温度相关塑性或相变；也没有三维壳体高度方向、接触、真实焊缝几何和温度依赖材料曲线。它的作用是独立结构反例检查，不能包装成完整焊接 FE 或商业求解器认证。获得 Abaqus/ANSYS/SYSWELD 等工具后，必须补做三维粗/中/细网格，并记录单元尺寸、单元数、孔轴线评价指标和相邻网格相对差异。
 
 ## 当前数字证据结论
 
 - 降阶模型：6P-S3 柔顺方案相对 6P-S1 刚性基准更优；1000 次参数传播仍显示柔顺方案的模型内超限比例更低。
-- 二维 FE：FE-001/002/003 均在本模型内低于 Ø0.05，但 FE-003 的 `P_FE` 高于刚性基准，不能继续把柔顺结构写成已被高保真模型证明的最优结构。
+- 二维 FE：FE-001/002/003 均在本模型内低于 Ø0.05，但 FE-003 的 `P_FE` 高于刚性基准，不能继续把柔顺结构写成已被完整焊接 FE 证明的最优结构。
 - 结论分层：V1 设计保留六点柔顺作为候选，同时把连续座体/刚性夹具列为 FE 反例基准；下一轮应优先补三维接触、壳体高度和真实夹具刚度。
 
 ## Case 管理规范

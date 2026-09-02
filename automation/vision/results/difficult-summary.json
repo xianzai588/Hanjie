@@ -3,100 +3,210 @@
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.001349695026874539,
     "y_mae_mm": 0.001161597768465676,
+    "radial_mae_mm": 0.001965970153591489,
+    "radial_p95_mm": 0.003422174192879749,
     "theta_mae_deg": 0.001759191762723415,
+    "theta_p95_deg": 0.004248418753617367,
     "difficulty": "clean",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "PASS",
+    "engineering_gate_pass": true,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.02576858321825662,
     "y_mae_mm": 0.02590459018945694,
+    "radial_mae_mm": 0.040982796828735034,
+    "radial_p95_mm": 0.07963841780770477,
     "theta_mae_deg": 0.043296809934491025,
+    "theta_p95_deg": 0.12878146312657895,
     "difficulty": "noise",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "FAIL",
+    "engineering_gate_pass": false,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.0010312926769256636,
     "y_mae_mm": 0.0007715882857640662,
+    "radial_mae_mm": 0.0013915571998296813,
+    "radial_p95_mm": 0.0027694220417632458,
     "theta_mae_deg": 0.0007440012288169654,
+    "theta_p95_deg": 0.0021186144054802895,
     "difficulty": "blur",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "PASS",
+    "engineering_gate_pass": true,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.28790735810995105,
     "y_mae_mm": 0.005815732379754376,
+    "radial_mae_mm": 0.2880012175794895,
+    "radial_p95_mm": 0.3561183356797504,
     "theta_mae_deg": 0.002067430031153737,
+    "theta_p95_deg": 0.00519374556726826,
     "difficulty": "illumination",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "FAIL",
+    "engineering_gate_pass": false,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 9.043418248809187,
     "y_mae_mm": 0.531543229305694,
+    "radial_mae_mm": 9.068920790092518,
+    "radial_p95_mm": 10.690228862067055,
     "theta_mae_deg": 0.8417787748790164,
+    "theta_p95_deg": 1.833195804508154,
     "difficulty": "perspective",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "FAIL",
+    "engineering_gate_pass": false,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 1.7740372212727866,
     "y_mae_mm": 2.3515834548075993,
+    "radial_mae_mm": 2.9459825154357997,
+    "radial_p95_mm": 3.205838242845112,
     "theta_mae_deg": 2.444295289558645,
+    "theta_p95_deg": 2.9611689391607814,
     "difficulty": "occlusion",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "FAIL",
+    "engineering_gate_pass": false,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.11423807680606841,
     "y_mae_mm": 0.0021145028869311,
+    "radial_mae_mm": 0.11428781103595748,
+    "radial_p95_mm": 0.26452482684077555,
     "theta_mae_deg": 0.01920050465487622,
+    "theta_p95_deg": 0.06368498276249322,
     "difficulty": "missing_edges",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "FAIL",
+    "engineering_gate_pass": false,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.0010094703237215701,
     "y_mae_mm": 0.00092295159896215,
+    "radial_mae_mm": 0.0015304411350320884,
+    "radial_p95_mm": 0.0029233235798987235,
     "theta_mae_deg": 0.0015329409294135288,
+    "theta_p95_deg": 0.0038078937275379805,
     "difficulty": "low_contrast",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "PASS",
+    "engineering_gate_pass": true,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.0010373981793721518,
     "y_mae_mm": 0.0011090587576230281,
+    "radial_mae_mm": 0.0016994195012536523,
+    "radial_p95_mm": 0.0035723947430790722,
     "theta_mae_deg": 0.002053722042924927,
+    "theta_p95_deg": 0.004455798088729195,
     "difficulty": "distortion",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "PASS",
+    "engineering_gate_pass": true,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
   {
     "sample_count": 100,
     "success_count": 100,
     "success_rate": 1.0,
+    "detection_return_rate": 1.0,
     "x_mae_mm": 0.0012198444207509455,
     "y_mae_mm": 0.0011781947811444452,
+    "radial_mae_mm": 0.0019137982772039909,
+    "radial_p95_mm": 0.003829530521426096,
     "theta_mae_deg": 0.0020311390812382916,
+    "theta_p95_deg": 0.004387171790492283,
     "difficulty": "large_offset",
-    "statement": "数字样本测试结果，不代表真实工业相机精度；困难条件标签是变换后的像面标签。"
+    "engineering_gate": "PASS",
+    "engineering_gate_pass": true,
+    "gate_limits": {
+      "radial_p95_mm": 0.01,
+      "theta_p95_deg": 0.007763655760580261,
+      "pose_lever_arm_mm": 73.8
+    },
+    "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   }
 ]

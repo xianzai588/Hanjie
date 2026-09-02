@@ -21,9 +21,9 @@
 <text x="830.0" y="215.0" class="section" text-anchor="start">MATERIAL: Q235B</text>
 <text x="830.0" y="250.0" class="note" text-anchor="start">Ø160 × H200 × t5</text>
 <text x="830.0" y="285.0" class="note" text-anchor="start">Cylindrical shell; seam and edge prep</text>
-<text x="830.0" y="330.0" class="note" text-anchor="start">DATUM A: bottom seating plane</text>
-<text x="830.0" y="360.0" class="note" text-anchor="start">DATUM B: shell axis</text>
-<text x="830.0" y="390.0" class="note" text-anchor="start">DATUM C: clocking mark</text>
+<text x="830.0" y="330.0" class="note" text-anchor="start">DATUM A: shell seating plane</text>
+<text x="830.0" y="360.0" class="note" text-anchor="start">DATUM B: shell theoretical axis</text>
+<text x="830.0" y="390.0" class="note" text-anchor="start">DATUM C: independent clocking feature</text>
 <text x="830.0" y="445.0" class="note" text-anchor="start">Weld access: internal shield / borescope</text>
 <polygon points="285.0,530.0 275.0,510.0 295.0,510.0" class="datumbox" fill="#fff"/>
 <text x="285.0" y="524.0" class="datum" text-anchor="middle">A</text>
@@ -38,5 +38,5 @@
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Q235B (actual grade to be verified by certificate)</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
 <text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

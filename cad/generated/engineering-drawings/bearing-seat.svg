@@ -32,32 +32,31 @@
 <text x="670.0" y="285.0" class="note" text-anchor="start">WING WIDTH 18</text>
 <text x="670.0" y="315.0" class="note" text-anchor="start">RADIAL SLOT 4 WIDE</text>
 <text x="670.0" y="345.0" class="section" text-anchor="start">6 × 18 WELD SEGMENTS</text>
-<text x="670.0" y="390.0" class="note" text-anchor="start">DATUM A: bore axis / primary</text>
-<text x="670.0" y="420.0" class="note" text-anchor="start">DATUM B: seat top face</text>
-<text x="670.0" y="450.0" class="note" text-anchor="start">DATUM C: clocking wing</text>
-<text x="670.0" y="500.0" class="section" text-anchor="start">POSITION TOLERANCE</text>
-<rect x="670.0" y="523.0" width="88.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="714.0" y="542.0" class="small" text-anchor="middle">POSITION</text>
-<rect x="758.0" y="523.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="785.0" y="542.0" class="small" text-anchor="middle">Ø0.05</text>
-<rect x="812.0" y="523.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="839.0" y="542.0" class="small" text-anchor="middle">A</text>
-<rect x="866.0" y="523.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="893.0" y="542.0" class="small" text-anchor="middle">B</text>
-<rect x="920.0" y="523.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
-<text x="947.0" y="542.0" class="small" text-anchor="middle">C</text>
-<polygon points="330.0,430.0 320.0,410.0 340.0,410.0" class="datumbox" fill="#fff"/>
-<text x="330.0" y="424.0" class="datum" text-anchor="middle">A</text>
-<line x1="330.0" y1="410.0" x2="330.0" y2="385.0" class="thin"/>
+<text x="670.0" y="390.0" class="note" text-anchor="start">DATUM A: shell seating plane</text>
+<text x="670.0" y="420.0" class="note" text-anchor="start">DATUM B: shell theoretical axis</text>
+<text x="670.0" y="450.0" class="note" text-anchor="start">DATUM C: independent clocking feature</text>
+<text x="670.0" y="480.0" class="note" text-anchor="start">CONTROLLED: Ø40 bore axis</text>
+<text x="670.0" y="520.0" class="section" text-anchor="start">POSITION TOLERANCE</text>
+<rect x="670.0" y="543.0" width="88.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="714.0" y="562.0" class="small" text-anchor="middle">POSITION</text>
+<rect x="758.0" y="543.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="785.0" y="562.0" class="small" text-anchor="middle">Ø0.05</text>
+<rect x="812.0" y="543.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="839.0" y="562.0" class="small" text-anchor="middle">A</text>
+<rect x="866.0" y="543.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
+<text x="893.0" y="562.0" class="small" text-anchor="middle">B</text>
+<polygon points="330.0,591.4 320.0,571.4 340.0,571.4" class="datumbox" fill="#fff"/>
+<text x="330.0" y="585.4" class="datum" text-anchor="middle">A</text>
+<line x1="330.0" y1="571.4" x2="330.0" y2="546.4" class="thin"/>
+<polygon points="330.0,370.0 320.0,350.0 340.0,350.0" class="datumbox" fill="#fff"/>
+<text x="330.0" y="364.0" class="datum" text-anchor="middle">B</text>
+<line x1="330.0" y1="350.0" x2="330.0" y2="325.0" class="thin"/>
 <polygon points="551.4,370.0 571.4,360.0 571.4,380.0" class="datumbox" fill="#fff"/>
-<text x="559.4" y="375.0" class="datum" text-anchor="middle">B</text>
+<text x="559.4" y="375.0" class="datum" text-anchor="middle">C</text>
 <line x1="571.4" y1="370.0" x2="606.4" y2="370.0" class="thin"/>
-<polygon points="330.0,148.6 320.0,128.6 340.0,128.6" class="datumbox" fill="#fff"/>
-<text x="330.0" y="142.6" class="datum" text-anchor="middle">C</text>
-<line x1="330.0" y1="128.6" x2="330.0" y2="103.6" class="thin"/>
 <line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: QT450-10 (actual grade to be verified by certificate)</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
 <text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">A/B/C are functional datums for the digital definition; dimensions and weld access require CAD/fixture review.</text>
+<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>
