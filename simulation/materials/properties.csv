@@ -1,0 +1,3 @@
+material,density_kg_m3,specific_heat_j_kgk,thermal_conductivity_w_mk,elastic_modulus_gpa,alpha_per_k,source_type
+Q235B,7850,470,45,210,0.000012,design-assumption
+QT450-10,7200,460,35,170,0.0000105,design-assumption

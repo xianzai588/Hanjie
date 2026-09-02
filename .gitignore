@@ -17,6 +17,9 @@ __pycache__/
 *.pyc
 .venv/
 
+# Reproducible digital-sample renders (regenerate with automation/vision/run_benchmark.py)
+automation/vision/data/*.png
+
 # IDE
 .vscode/
 .idea/

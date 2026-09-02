@@ -1,0 +1,2 @@
+﻿case_id,structure,fixture,layout_points,sequence,line_heat_input_j_mm,total_heat_input_j,effective_peak_temperature_c,haz_width_proxy_mm,hole_center_shift_mm,axis_tilt_deg,shell_ellipticity_proxy_mm,position_metric_p_sim_mm,limit_mm,pass_in_model,sequence_indices,reduction_vs_baseline_s1_pct
+BASELINE-RIGID-8P-S1,baseline,rigid,8,S1,330.0,47520.0,550.628437,3.996498,0.024542,0.060932,0.008777,0.061845,0.05,False,1-2-3-4-5-6-7-8,0.0

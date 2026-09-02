@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-09-02T06:22:27.039576+00:00",
+  "script": "simulation/scripts/run_reduced_order.py",
+  "config": "simulation/configs/default.yaml",
+  "case_count": 15,
+  "model_statement": "降阶热—结构代理模型，仅用于相对比较；不是有限元或实测结果。",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+}

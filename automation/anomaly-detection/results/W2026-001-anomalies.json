@@ -1,0 +1,105 @@
+{
+  "sample_id": "W2026-001",
+  "event_count": 7,
+  "events": [
+    {
+      "signal": "current",
+      "type": "out_of_window",
+      "start_s": 6.0,
+      "end_s": 6.75,
+      "duration_s": 0.75,
+      "min": 35.0,
+      "max": 35.0,
+      "window": [
+        70.0,
+        80.0
+      ],
+      "unit": "A"
+    },
+    {
+      "signal": "current",
+      "type": "out_of_window",
+      "start_s": 17.0,
+      "end_s": 17.45,
+      "duration_s": 0.4499999999999993,
+      "min": 0.0,
+      "max": 0.0,
+      "window": [
+        70.0,
+        80.0
+      ],
+      "unit": "A"
+    },
+    {
+      "signal": "voltage",
+      "type": "out_of_window",
+      "start_s": 10.0,
+      "end_s": 10.55,
+      "duration_s": 0.5500000000000007,
+      "min": 16.2,
+      "max": 16.2,
+      "window": [
+        11.0,
+        13.0
+      ],
+      "unit": "V"
+    },
+    {
+      "signal": "voltage",
+      "type": "out_of_window",
+      "start_s": 17.0,
+      "end_s": 17.45,
+      "duration_s": 0.4499999999999993,
+      "min": 0.0,
+      "max": 0.0,
+      "window": [
+        11.0,
+        13.0
+      ],
+      "unit": "V"
+    },
+    {
+      "signal": "speed",
+      "type": "out_of_window",
+      "start_s": 14.0,
+      "end_s": 15.15,
+      "duration_s": 1.1500000000000004,
+      "min": 2.5,
+      "max": 2.5,
+      "window": [
+        1.2,
+        1.8
+      ],
+      "unit": "mm/s"
+    },
+    {
+      "signal": "speed",
+      "type": "out_of_window",
+      "start_s": 17.0,
+      "end_s": 17.45,
+      "duration_s": 0.4499999999999993,
+      "min": 0.0,
+      "max": 0.0,
+      "window": [
+        1.2,
+        1.8
+      ],
+      "unit": "mm/s"
+    },
+    {
+      "signal": "temperature",
+      "type": "out_of_window",
+      "start_s": 14.0,
+      "end_s": 15.15,
+      "duration_s": 1.1500000000000004,
+      "min": 228.8442,
+      "max": 229.9318,
+      "window": [
+        0.0,
+        200.0
+      ],
+      "unit": "°C"
+    }
+  ],
+  "statement": "基于仿真信号的规则检测结果；阈值需由真实设备与工艺评定标定。"
+}

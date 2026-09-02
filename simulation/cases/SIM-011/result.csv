@@ -1,0 +1,2 @@
+﻿case_id,structure,fixture,layout_points,sequence,line_heat_input_j_mm,total_heat_input_j,effective_peak_temperature_c,haz_width_proxy_mm,hole_center_shift_mm,axis_tilt_deg,shell_ellipticity_proxy_mm,position_metric_p_sim_mm,limit_mm,pass_in_model,sequence_indices,reduction_vs_baseline_s1_pct
+FLEX-COMPLIANT-4P-S3,flex,compliant,4,S3,330.0,23760.0,550.628437,3.996498,0.004109,0.010203,0.007338,0.010356,0.05,True,1-3-2-4,73.479

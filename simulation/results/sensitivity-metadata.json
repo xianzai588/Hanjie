@@ -1,0 +1,6 @@
+{
+  "case": "FLEX-COMPLIANT-6P-S3",
+  "parameter_count": 6,
+  "rows": 18,
+  "statement": "参数扰动结果来自降阶模型；网格收敛需在 FE 求解器可用后补充。"
+}

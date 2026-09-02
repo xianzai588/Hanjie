@@ -12,30 +12,36 @@
     },
     "current": {
       "type": "array",
-      "description": "电流采样序列 (A)"
+      "description": "电流采样序列 (A)",
+      "items": {"type": "number"}
     },
     "voltage": {
       "type": "array",
-      "description": "电压采样序列 (V)"
+      "description": "电压采样序列 (V)",
+      "items": {"type": "number"}
     },
     "temperature": {
       "type": "array",
-      "description": "温度采样序列 (°C)"
+      "description": "温度采样序列 (°C)",
+      "items": {"type": "number"}
     },
     "speed": {
       "type": "array",
-      "description": "焊接速度采样序列 (mm/s)"
+      "description": "焊接速度采样序列 (mm/s)",
+      "items": {"type": "number"}
     },
     "timestamp": {
       "type": "array",
-      "description": "采样时间戳序列"
+      "description": "采样时间戳序列 (s)",
+      "items": {"type": "number"}
     },
     "meta": {
       "type": "object",
+      "required": ["source_type"],
       "properties": {
         "process": {
           "type": "string",
-          "description": "工艺：laser-filler / cmt / tig"
+          "description": "工艺：laser-filler / cmt / tig / tig-simulated"
         },
         "sequence": {
           "type": "string",
@@ -50,6 +56,11 @@
         },
         "notes": {
           "type": "string"
+        },
+        "source_type": {
+          "type": "string",
+          "enum": ["simulated", "physical"],
+          "description": "数据来源；必须显式区分仿真与实物"
         }
       }
     }

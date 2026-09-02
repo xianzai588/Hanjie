@@ -1,0 +1,56 @@
+case:
+  case_id: BASELINE-RIGID-8P-S3
+  structure: baseline
+  fixture: rigid
+  layout_points: 8
+  sequence: S3
+  line_heat_input_j_mm: 330.0
+  total_heat_input_j: 47520.0
+  effective_peak_temperature_c: 550.628437
+  haz_width_proxy_mm: 3.996498
+  hole_center_shift_mm: 0.006135
+  axis_tilt_deg: 0.015233
+  shell_ellipticity_proxy_mm: 0.004175
+  position_metric_p_sim_mm: 0.015461
+  limit_mm: 0.05
+  pass_in_model: true
+  sequence_indices: 1-5-4-8-3-7-2-6
+  reduction_vs_baseline_s1_pct: 75.0
+process:
+  current_a: 75.0
+  voltage_v: 12.0
+  travel_speed_mm_s: 1.5
+  efficiency: 0.55
+  preheat_c: 150.0
+  interpass_limit_c: 200.0
+geometry:
+  shell_outer_diameter_mm: 160.0
+  shell_thickness_mm: 5.0
+  bearing_bore_diameter_mm: 40.0
+  seat_core_outer_diameter_mm: 82.0
+  wing_outer_radius_mm: 73.8
+  weld_segment_length_mm: 18.0
+model:
+  name: reduced-order-thermal-structural-v1
+  nominal_temperature_c: 20.0
+  effective_heated_area_mm2: 200.0
+  residual_fraction: 0.12
+  cooling_memory: 0.35
+  bore_effective_height_mm: 12.0
+  initial_eccentricity_mm: 0.0
+  position_tolerance_limit_mm: 0.05
+materials:
+  q235b:
+    density_kg_m3: 7850.0
+    specific_heat_j_kgk: 470.0
+    thermal_conductivity_w_mk: 45.0
+    elastic_modulus_gpa: 210.0
+    alpha_per_k: 1.2e-05
+  qt450_10:
+    density_kg_m3: 7200.0
+    specific_heat_j_kgk: 460.0
+    thermal_conductivity_w_mk: 35.0
+    elastic_modulus_gpa: 170.0
+    alpha_per_k: 1.05e-05
+  fixture:
+    equivalent_stiffness_n_mm: 1200.0

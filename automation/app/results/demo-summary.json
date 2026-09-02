@@ -1,0 +1,15 @@
+{
+  "vision": {
+    "sample_count": 1000,
+    "success_count": 1000,
+    "success_rate": 1.0,
+    "x_mae_mm": 0.0011914316813151,
+    "y_mae_mm": 0.0011057739257812488,
+    "theta_mae_deg": 0.0018433819067699506,
+    "statement": "数字样本测试结果，不代表真实工业相机精度。"
+  },
+  "path": "automation/path-planning/results/weld-path.json",
+  "anomaly_event_count": 7,
+  "traceability_db": "automation/traceability/results/traceability.db",
+  "statement": "端到端结果包含数字样本和仿真过程信号，不代表实物焊接采集。"
+}
