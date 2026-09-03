@@ -9,12 +9,23 @@
   "design_assumptions": {
     "seat_core_outer_diameter": 82.0,
     "seat_thickness": 12.0,
-    "wing_outer_radius": 73.8,
+    "wing_outer_radius": 74.98,
     "wing_width": 18.0,
     "slot_width": 4.0,
     "weld_segment_length": 18.0,
     "primary_layout_points": 6,
-    "fixture_pin_diameter": 39.96,
+    "assembly_fit": "H7/h6",
+    "radial_clearance_min": 0.01,
+    "radial_clearance_max": 0.04,
+    "joint_type": "fillet_weld",
+    "fillet_leg_length": 3.5,
+    "fixture_mandrel_type": "tapered",
+    "mandrel_taper_ratio": 0.02,
+    "mandrel_small_diameter": 39.90,
+    "mandrel_large_diameter": 40.10,
+    "mandrel_effective_length": 10.0,
+    "axial_clamping_force": 500,
+    "positioning_repeatability": 0.008,
     "fixture_base_diameter": 190.0
   }
 }

@@ -73,7 +73,7 @@ def main() -> None:
         f'<rect x="{x+15}" y="218" width="35" height="16" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16"/><text x="{x+60}" y="232" class="note">柔顺翼</text>',
         f'<circle cx="{x+32}" cy="266" r="12" fill="#f8fafc" stroke="#111827" stroke-width="2"/><text x="{x+60}" y="271" class="note">Ø40 孔</text>',
         f'<text x="{x+15}" y="310" class="note">中心刚性区 Ø82</text>',
-        f'<text x="{x+15}" y="335" class="note">翼端 R73.8</text>',
+        f'<text x="{x+15}" y="335" class="note">翼端 R74.98 (H7/h6配合)</text>',
         f'<text x="{x+15}" y="360" class="note">槽宽 4</text>',
         f'<text x="{x+15}" y="385" class="note">6 × 18 焊段</text>',
         f'<text x="{x+15}" y="410" class="note">红线仅为布局符号</text>',

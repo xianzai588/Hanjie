@@ -138,10 +138,10 @@ def shell_drawing(geometry: dict) -> list[str]:
 
 def joint_drawing(geometry: dict) -> list[str]:
     design = geometry["design_assumptions"]
-    lines = header("接头与焊缝细节图", "JOINT DETAIL / SECTION A-A / SCHEMATIC WELD SYMBOLS", "HJ-DRW-003")
+    lines = header("接头与焊缝细节图", "JOINT DETAIL / SECTION A-A / FILLET WELD", "HJ-DRW-003")
     lines += [text(90, 155, "SECTION A-A", "section"), rect(120, 210, 430, 70, "edge", "#e2e8f0"), rect(120, 280, 430, 45, "edge", "#fbbf24"), line(120, 350, 550, 350, "center", "9 7")]
     # weld triangles and leader
-    lines += [polygon([(310, 280), (345, 280), (310, 245)], "weld", "#fecaca"), line(330, 245, 330, 195, "weld"), line(330, 195, 490, 195, "weld"), text(495, 190, "TIG + Ni filler", "note"), text(495, 220, "FILLET WELD SYMBOL", "note"), text(145, 390, f"WELD SEGMENT LENGTH {design['weld_segment_length']:.0f}", "dim"), text(145, 425, "WELD BRIDGE TO SHELL ID: 1.2 (2D FE equivalent)", "dim"), text(145, 460, "SLOT WIDTH 4 (design assumption)", "dim"), text(700, 180, "PROCESS NOTE", "section"), text(700, 220, "Automatic TIG, short segments, S3 sequence", "note"), text(700, 255, "No slag route; internal shielding and borescope", "note"), text(700, 305, "Do not interpret this sheet as a qualified WPS", "note"), text(700, 360, "A: shell seating plane", "note"), text(700, 390, "B: shell theoretical axis", "note"), text(700, 420, "C: independent clocking feature", "note"), text(700, 450, "Controlled Ø40 bore axis: position Ø0.05 | A | B", "note")]
+    lines += [polygon([(310, 280), (345, 280), (310, 245)], "weld", "#fecaca"), line(330, 245, 330, 195, "weld"), line(330, 195, 490, 195, "weld"), text(495, 190, "TIG + Ni filler", "note"), text(495, 220, "FILLET WELD SYMBOL", "note"), text(145, 390, f"WING OD Ø{design['wing_outer_radius']*2:.2f}", "dim"), text(145, 425, f"SHELL ID Ø150.00 {design['assembly_fit']}", "dim"), text(145, 460, f"FILLET WELD LEG {design['fillet_leg_length']:.1f}", "dim"), text(700, 180, "PROCESS NOTE", "section"), text(700, 220, f"Assembly fit {design['assembly_fit']}; radial clearance {design['radial_clearance_min']:.2f}~{design['radial_clearance_max']:.2f}", "note"), text(700, 255, "Fillet weld per GB/T 5185; TIG + Ni filler", "note"), text(700, 290, "Automatic TIG, short segments, S3 sequence", "note"), text(700, 325, "Do not interpret this sheet as a qualified WPS", "note"), text(700, 360, "A: shell seating plane", "note"), text(700, 390, "B: shell theoretical axis", "note"), text(700, 420, "C: independent clocking feature", "note"), text(700, 450, "Controlled Ø40 bore axis: position Ø0.05 | A | B", "note")]
     datum(lines, "A", 180, 325, "up")
     datum(lines, "B", 540, 280, "right")
     datum(lines, "C", 410, 210, "up")
@@ -178,10 +178,16 @@ def weld_layout_drawing(geometry: dict) -> list[str]:
 
 def fixture_assembly_drawing(geometry: dict) -> list[str]:
     design = geometry["design_assumptions"]
-    lines = header("夹具总装图", "FIXTURE ASSEMBLY / SIX SUPPORTS / DOF AND DATUMS", "HJ-DRW-005")
+    lines = header("夹具总装图", "FIXTURE ASSEMBLY / TAPERED MANDREL + SIX SUPPORTS", "HJ-DRW-005")
     cx, cy, scale = 350, 350, 2.1
     base_r = design["fixture_base_diameter"] / 2 * scale
-    lines += [circle(cx, cy, base_r, "edge", "#cbd5e1"), circle(cx, cy, design["fixture_pin_diameter"] / 2 * scale, "edge", "#94a3b8"), circle(cx, cy, 80, "thin", "#fff")]
+    # Draw tapered mandrel (simplified representation)
+    mandrel_small = design["mandrel_small_diameter"] / 2 * scale
+    mandrel_large = design["mandrel_large_diameter"] / 2 * scale
+    lines += [circle(cx, cy, base_r, "edge", "#cbd5e1"),
+              line(cx - mandrel_small, cy - 20, cx - mandrel_large, cy + 20, "edge"),
+              line(cx + mandrel_small, cy - 20, cx + mandrel_large, cy + 20, "edge"),
+              circle(cx, cy, 80, "thin", "#fff")]
     for index in range(6):
         angle = index * math.pi / 3
         px = cx + 86 * scale * math.cos(angle)
@@ -189,7 +195,18 @@ def fixture_assembly_drawing(geometry: dict) -> list[str]:
         lines.append(circle(px, py, 11, "edge", "#f59e0b"))
         lines.append(line(cx + 40 * math.cos(angle), cy - 40 * math.sin(angle), px, py, "thin"))
         lines.append(text(px, py + 30, f"S{index + 1}", "small", "middle"))
-    lines += [text(700, 180, "FIXTURE DEFINITION", "section"), text(700, 220, f"BASE Ø{design['fixture_base_diameter']:.0f}", "note"), text(700, 250, f"CENTER PIN Ø{design['fixture_pin_diameter']:.2f}", "note"), text(700, 280, "6 radial compliant supports", "note"), text(700, 315, "Equivalent radial stiffness: 1200 N/mm", "note"), text(700, 355, "DOF CONTROL / ASSEMBLY MAPPING", "section"), text(700, 390, "A  base top plane → assembly A", "note"), text(700, 420, "B  center pin axis → assembly B", "note"), text(700, 450, "C  independent clocking hole → assembly C", "note"), text(700, 500, "Fixture is a design assumption until assembled and dial/CMM checked", "small")]
+    lines += [text(700, 180, "FIXTURE DEFINITION", "section"),
+              text(700, 220, f"BASE Ø{design['fixture_base_diameter']:.0f}", "note"),
+              text(700, 250, f"TAPERED MANDREL {design['mandrel_taper_ratio']:.3f} (1:50)", "note"),
+              text(700, 280, f"Ø{design['mandrel_small_diameter']:.2f} ~ Ø{design['mandrel_large_diameter']:.2f}", "note"),
+              text(700, 310, f"Axial clamping force {design['axial_clamping_force']} N", "note"),
+              text(700, 340, f"Positioning repeatability {design['positioning_repeatability']:.3f} mm", "note"),
+              text(700, 370, "6 radial compliant supports @ 1200 N/mm equiv", "note"),
+              text(700, 415, "DOF CONTROL / ASSEMBLY MAPPING", "section"),
+              text(700, 450, "A  base top plane → assembly A", "note"),
+              text(700, 480, "B  mandrel axis → assembly B (self-centering)", "note"),
+              text(700, 510, "C  independent clocking pin → assembly C", "note"),
+              text(700, 555, "Tapered fit auto-centers bore axis to fixture axis", "small")]
     datum(lines, "A", cx, cy + base_r, "up")
     datum(lines, "B", cx + base_r, cy, "right")
     datum(lines, "C", cx, cy - base_r, "up")
@@ -198,10 +215,31 @@ def fixture_assembly_drawing(geometry: dict) -> list[str]:
 
 def fixture_part_drawing(geometry: dict) -> list[str]:
     design = geometry["design_assumptions"]
-    lines = header("夹具定位销与底板零件图", "FIXTURE PART / PIN + BASE / DESIGN-REVIEW DEFINITION", "HJ-DRW-006")
-    lines += [text(110, 150, "CENTER PIN - SECTION", "section"), rect(150, 220, 150, 230, "edge", "#cbd5e1"), rect(185, 170, 80, 50, "edge", "#94a3b8"), line(110, 335, 340, 335, "center", "9 7"), text(340, 250, f"Ø{design['fixture_pin_diameter']:.2f}", "dim"), text(340, 280, "pin height 28 (assumption)", "dim"), text(110, 520, "BASE PLATE - PLAN", "section"), circle(230, 630, design['fixture_base_diameter'] / 2 * 0.55, "edge", "#cbd5e1"), circle(230, 630, 28, "edge", "#fff"), text(230, 720, f"Ø{design['fixture_base_diameter']:.0f}", "dim", "middle"), text(600, 190, "PART NOTES", "section"), text(600, 230, "A: base top plane → assembly A", "note"), text(600, 260, "B: pin axis → assembly B", "note"), text(600, 290, "C: independent clocking hole → assembly C", "note"), text(600, 345, "Six support stations at 60° pitch", "note"), text(600, 375, "Radial support travel and preload TBD", "note"), text(600, 430, "No manufacturing release without tolerance stack-up", "note")]
-    datum(lines, "A", 225, 450, "up")
-    datum(lines, "B", 265, 170, "right")
+    lines = header("夹具锥形心轴与底板零件图", "FIXTURE PART / TAPERED MANDREL + BASE / DESIGN-REVIEW", "HJ-DRW-006")
+    lines += [text(110, 150, "TAPERED MANDREL - SECTION", "section"),
+              polygon([(150, 220), (150, 330), (185, 350), (265, 350), (300, 330), (300, 220), (265, 200), (185, 200)], "edge", "#94a3b8"),
+              line(225, 170, 225, 370, "center", "9 7"),
+              line(110, 220, 340, 220, "dimline"),
+              line(110, 350, 340, 350, "dimline"),
+              text(340, 215, f"Ø{design['mandrel_small_diameter']:.2f}", "dim"),
+              text(340, 345, f"Ø{design['mandrel_large_diameter']:.2f}", "dim"),
+              text(340, 280, f"Taper 1:50 (effective L={design['mandrel_effective_length']:.0f})", "dim"),
+              text(110, 520, "BASE PLATE - PLAN", "section"),
+              circle(230, 630, design['fixture_base_diameter'] / 2 * 0.55, "edge", "#cbd5e1"),
+              circle(230, 630, 28, "edge", "#fff"),
+              text(230, 720, f"Ø{design['fixture_base_diameter']:.0f}", "dim", "middle"),
+              text(600, 190, "MANDREL NOTES", "section"),
+              text(600, 230, "Tapered fit auto-centers bore to mandrel axis", "note"),
+              text(600, 260, f"Axial clamping force: {design['axial_clamping_force']} N", "note"),
+              text(600, 290, f"Positioning repeatability: {design['positioning_repeatability']:.3f} mm", "note"),
+              text(600, 345, "DATUM MAPPING", "section"),
+              text(600, 380, "A: base top plane → assembly A", "note"),
+              text(600, 410, "B: mandrel axis → assembly B", "note"),
+              text(600, 440, "C: independent clocking pin → assembly C", "note"),
+              text(600, 490, "Six support stations at 60° pitch; travel & preload TBD", "note"),
+              text(600, 535, "No manufacturing release without tolerance stack-up", "note")]
+    datum(lines, "A", 225, 350, "up")
+    datum(lines, "B", 300, 275, "right")
     datum(lines, "C", 385, 630, "right")
     return footer(lines, "Fixture steel / material and heat treatment TBD")
 

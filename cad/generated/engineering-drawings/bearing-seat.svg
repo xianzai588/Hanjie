@@ -6,29 +6,29 @@
 <text x="50.0" y="65.0" class="title" text-anchor="start">轴承座零件图 · 六翼柔顺方案</text>
 <text x="50.0" y="90.0" class="subtitle" text-anchor="start">BEARING SEAT / PLAN VIEW / ALL DIMENSIONS IN mm</text>
 <text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-001</text>
-<circle cx="330.0" cy="370.0" r="221.4" class="edge" fill="#fef3c7"/>
+<circle cx="330.0" cy="370.0" r="224.9" class="edge" fill="#fef3c7"/>
 <circle cx="330.0" cy="370.0" r="123.0" class="edge" fill="#fde68a"/>
 <circle cx="330.0" cy="370.0" r="60.0" class="edge" fill="#fff"/>
-<line x1="88.6" y1="370.0" x2="571.4" y2="370.0" class="center" stroke-dasharray="9 7"/>
-<line x1="330.0" y1="128.6" x2="330.0" y2="611.4" class="center" stroke-dasharray="9 7"/>
-<polygon points="452.1,385.0 549.7,397.0 549.7,343.0 452.1,355.0" class="edge" fill="#f59e0b"/>
-<line x1="538.2" y1="391.9" x2="538.2" y2="348.1" class="weld"/>
-<polygon points="404.0,271.8 463.3,193.2 416.5,166.2 378.1,256.8" class="edge" fill="#f59e0b"/>
-<line x1="453.1" y1="200.6" x2="415.1" y2="178.7" class="weld"/>
-<polygon points="281.9,256.8 243.5,166.2 196.7,193.2 256.0,271.8" class="edge" fill="#f59e0b"/>
-<line x1="244.9" y1="178.7" x2="206.9" y2="200.6" class="weld"/>
-<polygon points="207.9,355.0 110.3,343.0 110.3,397.0 207.9,385.0" class="edge" fill="#f59e0b"/>
-<line x1="121.8" y1="348.1" x2="121.8" y2="391.9" class="weld"/>
-<polygon points="256.0,468.2 196.7,546.8 243.5,573.8 281.9,483.2" class="edge" fill="#f59e0b"/>
-<line x1="206.9" y1="539.4" x2="244.9" y2="561.3" class="weld"/>
-<polygon points="378.1,483.2 416.5,573.8 463.3,546.8 404.0,468.2" class="edge" fill="#f59e0b"/>
-<line x1="415.1" y1="561.3" x2="453.1" y2="539.4" class="weld"/>
+<line x1="85.1" y1="370.0" x2="574.9" y2="370.0" class="center" stroke-dasharray="9 7"/>
+<line x1="330.0" y1="125.1" x2="330.0" y2="614.9" class="center" stroke-dasharray="9 7"/>
+<polygon points="452.1,384.8 553.3,397.0 553.3,343.0 452.1,355.2" class="edge" fill="#f59e0b"/>
+<line x1="541.8" y1="392.3" x2="541.8" y2="347.7" class="weld"/>
+<polygon points="403.8,271.6 465.0,190.1 418.3,163.1 378.3,256.9" class="edge" fill="#f59e0b"/>
+<line x1="455.2" y1="197.8" x2="416.6" y2="175.4" class="weld"/>
+<polygon points="281.7,256.9 241.7,163.1 195.0,190.1 256.2,271.6" class="edge" fill="#f59e0b"/>
+<line x1="243.4" y1="175.4" x2="204.8" y2="197.8" class="weld"/>
+<polygon points="207.9,355.2 106.7,343.0 106.7,397.0 207.9,384.8" class="edge" fill="#f59e0b"/>
+<line x1="118.2" y1="347.7" x2="118.2" y2="392.3" class="weld"/>
+<polygon points="256.2,468.4 195.0,549.9 241.7,576.9 281.7,483.1" class="edge" fill="#f59e0b"/>
+<line x1="204.8" y1="542.2" x2="243.4" y2="564.6" class="weld"/>
+<polygon points="378.3,483.1 418.3,576.9 465.0,549.9 403.8,468.4" class="edge" fill="#f59e0b"/>
+<line x1="416.6" y1="564.6" x2="455.2" y2="542.2" class="weld"/>
 <line x1="207.0" y1="493.0" x2="207.0" y2="565.0" class="dimline"/>
 <line x1="453.0" y1="493.0" x2="453.0" y2="565.0" class="dimline"/>
 <line x1="207.0" y1="565.0" x2="453.0" y2="565.0" class="dimline"/>
 <text x="330.0" y="558.0" class="dim" text-anchor="middle">Ø82 CORE</text>
 <text x="670.0" y="225.0" class="note" text-anchor="start">BORE Ø40</text>
-<text x="670.0" y="255.0" class="note" text-anchor="start">WING OUTER R73.8</text>
+<text x="670.0" y="255.0" class="note" text-anchor="start">WING OUTER R75.0</text>
 <text x="670.0" y="285.0" class="note" text-anchor="start">WING WIDTH 18</text>
 <text x="670.0" y="315.0" class="note" text-anchor="start">RADIAL SLOT 4 WIDE</text>
 <text x="670.0" y="345.0" class="section" text-anchor="start">6 × 18 WELD SEGMENTS</text>
@@ -45,15 +45,15 @@
 <text x="839.0" y="562.0" class="small" text-anchor="middle">A</text>
 <rect x="866.0" y="543.0" width="54.0" height="28.0" class="frame" fill="none" rx="0.0"/>
 <text x="893.0" y="562.0" class="small" text-anchor="middle">B</text>
-<polygon points="330.0,591.4 320.0,571.4 340.0,571.4" class="datumbox" fill="#fff"/>
-<text x="330.0" y="585.4" class="datum" text-anchor="middle">A</text>
-<line x1="330.0" y1="571.4" x2="330.0" y2="546.4" class="thin"/>
+<polygon points="330.0,594.9 320.0,574.9 340.0,574.9" class="datumbox" fill="#fff"/>
+<text x="330.0" y="588.9" class="datum" text-anchor="middle">A</text>
+<line x1="330.0" y1="574.9" x2="330.0" y2="549.9" class="thin"/>
 <polygon points="330.0,370.0 320.0,350.0 340.0,350.0" class="datumbox" fill="#fff"/>
 <text x="330.0" y="364.0" class="datum" text-anchor="middle">B</text>
 <line x1="330.0" y1="350.0" x2="330.0" y2="325.0" class="thin"/>
-<polygon points="551.4,370.0 571.4,360.0 571.4,380.0" class="datumbox" fill="#fff"/>
-<text x="559.4" y="375.0" class="datum" text-anchor="middle">C</text>
-<line x1="571.4" y1="370.0" x2="606.4" y2="370.0" class="thin"/>
+<polygon points="554.9,370.0 574.9,360.0 574.9,380.0" class="datumbox" fill="#fff"/>
+<text x="562.9" y="375.0" class="datum" text-anchor="middle">C</text>
+<line x1="574.9" y1="370.0" x2="609.9" y2="370.0" class="thin"/>
 <line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
 <text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: QT450-10 (actual grade to be verified by certificate)</text>
 <text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>

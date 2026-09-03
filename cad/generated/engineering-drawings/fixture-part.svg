@@ -3,32 +3,37 @@
 <rect width="1200" height="800" fill="#ffffff"/>
 <style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
 <rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
-<text x="50.0" y="65.0" class="title" text-anchor="start">夹具定位销与底板零件图</text>
-<text x="50.0" y="90.0" class="subtitle" text-anchor="start">FIXTURE PART / PIN + BASE / DESIGN-REVIEW DEFINITION</text>
+<text x="50.0" y="65.0" class="title" text-anchor="start">夹具锥形心轴与底板零件图</text>
+<text x="50.0" y="90.0" class="subtitle" text-anchor="start">FIXTURE PART / TAPERED MANDREL + BASE / DESIGN-REVIEW</text>
 <text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-006</text>
-<text x="110.0" y="150.0" class="section" text-anchor="start">CENTER PIN - SECTION</text>
-<rect x="150.0" y="220.0" width="150.0" height="230.0" class="edge" fill="#cbd5e1" rx="0.0"/>
-<rect x="185.0" y="170.0" width="80.0" height="50.0" class="edge" fill="#94a3b8" rx="0.0"/>
-<line x1="110.0" y1="335.0" x2="340.0" y2="335.0" class="center" stroke-dasharray="9 7"/>
-<text x="340.0" y="250.0" class="dim" text-anchor="start">Ø39.96</text>
-<text x="340.0" y="280.0" class="dim" text-anchor="start">pin height 28 (assumption)</text>
+<text x="110.0" y="150.0" class="section" text-anchor="start">TAPERED MANDREL - SECTION</text>
+<polygon points="150.0,220.0 150.0,330.0 185.0,350.0 265.0,350.0 300.0,330.0 300.0,220.0 265.0,200.0 185.0,200.0" class="edge" fill="#94a3b8"/>
+<line x1="225.0" y1="170.0" x2="225.0" y2="370.0" class="center" stroke-dasharray="9 7"/>
+<line x1="110.0" y1="220.0" x2="340.0" y2="220.0" class="dimline"/>
+<line x1="110.0" y1="350.0" x2="340.0" y2="350.0" class="dimline"/>
+<text x="340.0" y="215.0" class="dim" text-anchor="start">Ø39.90</text>
+<text x="340.0" y="345.0" class="dim" text-anchor="start">Ø40.10</text>
+<text x="340.0" y="280.0" class="dim" text-anchor="start">Taper 1:50 (effective L=10)</text>
 <text x="110.0" y="520.0" class="section" text-anchor="start">BASE PLATE - PLAN</text>
 <circle cx="230.0" cy="630.0" r="52.3" class="edge" fill="#cbd5e1"/>
 <circle cx="230.0" cy="630.0" r="28.0" class="edge" fill="#fff"/>
 <text x="230.0" y="720.0" class="dim" text-anchor="middle">Ø190</text>
-<text x="600.0" y="190.0" class="section" text-anchor="start">PART NOTES</text>
-<text x="600.0" y="230.0" class="note" text-anchor="start">A: base top plane → assembly A</text>
-<text x="600.0" y="260.0" class="note" text-anchor="start">B: pin axis → assembly B</text>
-<text x="600.0" y="290.0" class="note" text-anchor="start">C: independent clocking hole → assembly C</text>
-<text x="600.0" y="345.0" class="note" text-anchor="start">Six support stations at 60° pitch</text>
-<text x="600.0" y="375.0" class="note" text-anchor="start">Radial support travel and preload TBD</text>
-<text x="600.0" y="430.0" class="note" text-anchor="start">No manufacturing release without tolerance stack-up</text>
-<polygon points="225.0,450.0 215.0,430.0 235.0,430.0" class="datumbox" fill="#fff"/>
-<text x="225.0" y="444.0" class="datum" text-anchor="middle">A</text>
-<line x1="225.0" y1="430.0" x2="225.0" y2="405.0" class="thin"/>
-<polygon points="265.0,170.0 285.0,160.0 285.0,180.0" class="datumbox" fill="#fff"/>
-<text x="273.0" y="175.0" class="datum" text-anchor="middle">B</text>
-<line x1="285.0" y1="170.0" x2="320.0" y2="170.0" class="thin"/>
+<text x="600.0" y="190.0" class="section" text-anchor="start">MANDREL NOTES</text>
+<text x="600.0" y="230.0" class="note" text-anchor="start">Tapered fit auto-centers bore to mandrel axis</text>
+<text x="600.0" y="260.0" class="note" text-anchor="start">Axial clamping force: 500 N</text>
+<text x="600.0" y="290.0" class="note" text-anchor="start">Positioning repeatability: 0.008 mm</text>
+<text x="600.0" y="345.0" class="section" text-anchor="start">DATUM MAPPING</text>
+<text x="600.0" y="380.0" class="note" text-anchor="start">A: base top plane → assembly A</text>
+<text x="600.0" y="410.0" class="note" text-anchor="start">B: mandrel axis → assembly B</text>
+<text x="600.0" y="440.0" class="note" text-anchor="start">C: independent clocking pin → assembly C</text>
+<text x="600.0" y="490.0" class="note" text-anchor="start">Six support stations at 60° pitch; travel &amp; preload TBD</text>
+<text x="600.0" y="535.0" class="note" text-anchor="start">No manufacturing release without tolerance stack-up</text>
+<polygon points="225.0,350.0 215.0,330.0 235.0,330.0" class="datumbox" fill="#fff"/>
+<text x="225.0" y="344.0" class="datum" text-anchor="middle">A</text>
+<line x1="225.0" y1="330.0" x2="225.0" y2="305.0" class="thin"/>
+<polygon points="300.0,275.0 320.0,265.0 320.0,285.0" class="datumbox" fill="#fff"/>
+<text x="308.0" y="280.0" class="datum" text-anchor="middle">B</text>
+<line x1="320.0" y1="275.0" x2="355.0" y2="275.0" class="thin"/>
 <polygon points="385.0,630.0 405.0,620.0 405.0,640.0" class="datumbox" fill="#fff"/>
 <text x="393.0" y="635.0" class="datum" text-anchor="middle">C</text>
 <line x1="405.0" y1="630.0" x2="440.0" y2="630.0" class="thin"/>

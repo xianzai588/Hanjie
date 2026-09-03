@@ -10,31 +10,31 @@
 <circle cx="390" cy="390" r="87.0" fill="#f8fafc" stroke="#111827" stroke-width="3"/>
 <line x1="40" y1="390" x2="740" y2="390" stroke="#94a3b8" stroke-dasharray="7 7"/>
 <line x1="390" y1="40" x2="390" y2="740" stroke="#94a3b8" stroke-dasharray="7 7"/>
-<polygon points="567.0,411.8 708.6,429.1 708.6,350.9 567.0,368.2" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
-<line x1="692.0" y1="421.8" x2="692.0" y2="358.2" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
-<text x="735.5" y="395.0" class="dim">1</text>
-<polygon points="497.3,247.6 583.2,133.6 515.4,94.5 459.7,225.8" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
-<line x1="568.5" y1="144.4" x2="513.4" y2="112.6" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
-<text x="559.7" y="90.6" class="dim">2</text>
-<polygon points="320.3,225.8 264.6,94.5 196.8,133.6 282.7,247.6" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
-<line x1="266.6" y1="112.6" x2="211.5" y2="144.4" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
-<text x="208.3" y="90.6" class="dim">3</text>
-<polygon points="213.0,368.2 71.4,350.8 71.4,429.1 213.0,411.8" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
-<line x1="88.0" y1="358.2" x2="88.0" y2="421.8" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
-<text x="32.5" y="395.0" class="dim">4</text>
-<polygon points="282.7,532.4 196.8,646.4 264.6,685.5 320.3,554.2" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
-<line x1="211.5" y1="635.6" x2="266.6" y2="667.4" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
-<text x="208.3" y="699.4" class="dim">5</text>
-<polygon points="459.7,554.2 515.4,685.5 583.2,646.4 497.3,532.4" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
-<line x1="513.4" y1="667.4" x2="568.5" y2="635.6" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
-<text x="559.7" y="699.4" class="dim">6</text>
+<polygon points="567.1,411.4 713.8,429.1 713.8,350.9 567.1,368.6" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
+<line x1="697.1" y1="422.4" x2="697.1" y2="357.6" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+<text x="740.6" y="395.0" class="dim">1</text>
+<polygon points="497.1,247.4 585.8,129.2 518.0,90.0 460.0,226.0" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
+<line x1="571.6" y1="140.3" x2="515.5" y2="107.9" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+<text x="562.3" y="86.2" class="dim">2</text>
+<polygon points="320.0,226.0 262.0,90.0 194.2,129.2 282.9,247.4" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
+<line x1="264.5" y1="107.9" x2="208.4" y2="140.3" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+<text x="205.7" y="86.2" class="dim">3</text>
+<polygon points="212.9,368.6 66.2,350.8 66.2,429.1 212.9,411.4" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
+<line x1="82.9" y1="357.6" x2="82.9" y2="422.4" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+<text x="27.4" y="395.0" class="dim">4</text>
+<polygon points="282.9,532.6 194.2,650.8 262.0,690.0 320.0,554.0" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
+<line x1="208.4" y1="639.7" x2="264.5" y2="672.1" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+<text x="205.7" y="703.8" class="dim">5</text>
+<polygon points="460.0,554.0 518.0,690.0 585.8,650.8 497.1,532.6" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16" stroke-width="2"/>
+<line x1="515.5" y1="672.1" x2="571.6" y2="639.7" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+<text x="562.3" y="703.8" class="dim">6</text>
 <rect x="690" y="140" width="175" height="285" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
 <text x="705" y="170" class="dim" font-weight="700">图例 / Legend</text>
 <line x1="705" y1="195" x2="740" y2="195" stroke="#dc2626" stroke-width="7"/><text x="750" y="200" class="note">短焊段</text>
 <rect x="705" y="218" width="35" height="16" fill="#d19a58" fill-opacity="0.55" stroke="#9a5b16"/><text x="750" y="232" class="note">柔顺翼</text>
 <circle cx="722" cy="266" r="12" fill="#f8fafc" stroke="#111827" stroke-width="2"/><text x="750" y="271" class="note">Ø40 孔</text>
 <text x="705" y="310" class="note">中心刚性区 Ø82</text>
-<text x="705" y="335" class="note">翼端 R73.8</text>
+<text x="705" y="335" class="note">翼端 R74.98 (H7/h6配合)</text>
 <text x="705" y="360" class="note">槽宽 4</text>
 <text x="705" y="385" class="note">6 × 18 焊段</text>
 <text x="705" y="410" class="note">红线仅为布局符号</text>
