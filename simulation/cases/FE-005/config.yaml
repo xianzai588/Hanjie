@@ -1,6 +1,6 @@
 case:
-  case_id: FE-002
-  structure: baseline
+  case_id: FE-005
+  structure: flex
   fixture: rigid
   sequence: S3
 mesh_points_per_axis: 61

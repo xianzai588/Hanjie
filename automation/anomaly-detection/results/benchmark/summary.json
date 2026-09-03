@@ -12,5 +12,87 @@
   "false_positive_rate_event_per_normal_trial": 0.0,
   "mean_detection_delay_s": 0.0,
   "median_detection_delay_s": 0.0,
-  "statement": "事件级规则检测基准，信号和异常均为仿真注入；阈值需用真实设备数据重新标定。"
+  "robustness_curves": {
+    "short_event_duration": [
+      {
+        "duration_s": 0.01,
+        "detection_rate": 0.0
+      },
+      {
+        "duration_s": 0.02,
+        "detection_rate": 0.0
+      },
+      {
+        "duration_s": 0.03,
+        "detection_rate": 0.0
+      },
+      {
+        "duration_s": 0.05,
+        "detection_rate": 1.0
+      },
+      {
+        "duration_s": 0.08,
+        "detection_rate": 1.0
+      },
+      {
+        "duration_s": 0.12,
+        "detection_rate": 1.0
+      },
+      {
+        "duration_s": 0.2,
+        "detection_rate": 1.0
+      }
+    ],
+    "normal_noise": [
+      {
+        "noise_scale": 1.0,
+        "false_positive_trial_rate": 0.0,
+        "false_positive_events_per_trial": 0.0
+      },
+      {
+        "noise_scale": 1.5,
+        "false_positive_trial_rate": 0.0,
+        "false_positive_events_per_trial": 0.0
+      },
+      {
+        "noise_scale": 2.0,
+        "false_positive_trial_rate": 0.0,
+        "false_positive_events_per_trial": 0.0
+      },
+      {
+        "noise_scale": 2.5,
+        "false_positive_trial_rate": 0.0,
+        "false_positive_events_per_trial": 0.0
+      },
+      {
+        "noise_scale": 3.0,
+        "false_positive_trial_rate": 0.1,
+        "false_positive_events_per_trial": 0.1
+      }
+    ],
+    "current_bias": [
+      {
+        "current_bias_a": 0.0,
+        "false_positive_trial_rate": 0.0
+      },
+      {
+        "current_bias_a": 1.0,
+        "false_positive_trial_rate": 0.0
+      },
+      {
+        "current_bias_a": 2.0,
+        "false_positive_trial_rate": 0.0
+      },
+      {
+        "current_bias_a": 3.0,
+        "false_positive_trial_rate": 0.0
+      },
+      {
+        "current_bias_a": 4.0,
+        "false_positive_trial_rate": 0.0
+      }
+    ]
+  },
+  "robustness_trials_per_point": 20,
+  "statement": "事件级规则检测基准，信号和异常均为仿真注入；短事件、噪声和传感器偏置曲线用于暴露在线边界，阈值仍需用真实设备数据重新标定。"
 }

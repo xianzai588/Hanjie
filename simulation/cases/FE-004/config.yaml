@@ -1,7 +1,7 @@
 case:
-  case_id: FE-002
+  case_id: FE-004
   structure: baseline
-  fixture: rigid
+  fixture: compliant
   sequence: S3
 mesh_points_per_axis: 61
 model:

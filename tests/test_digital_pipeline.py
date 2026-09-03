@@ -20,7 +20,7 @@ from anomaly_detector import score_events  # noqa: E402
 from detect_center import detect_image  # noqa: E402
 from generate_dataset import render_sample  # noqa: E402
 from generate_weld_path import generate_path  # noqa: E402
-from position_tolerance import DATUM_DEFINITION, demo_points, fit_axis  # noqa: E402
+from position_tolerance import DATUM_DEFINITION, demo_points, fit_axis, fit_circle_xy  # noqa: E402
 from run_reduced_order import build_cases, load_yaml  # noqa: E402
 from run_monte_carlo import run_monte_carlo  # noqa: E402
 
@@ -57,6 +57,24 @@ def test_position_tolerance_uses_independent_assembly_datums() -> None:
     assert "孔轴线" in DATUM_DEFINITION["controlled_feature"]
 
 
+def test_position_tolerance_robust_fit_reports_outlier() -> None:
+    import numpy as np
+
+    theta = np.linspace(0.0, 2.0 * np.pi, 48, endpoint=False)
+    points = np.column_stack((20.0 * np.cos(theta), 20.0 * np.sin(theta)))
+    points = np.vstack((points, [[20.0, 2.0]]))
+    _, _, _, quality = fit_circle_xy(points, return_quality=True)
+    assert quality["outlier_count"] >= 1
+    assert quality["residual_p95_mm"] < 0.02
+
+
+def test_position_tolerance_reports_uncertainty_proxy() -> None:
+    result = fit_axis(demo_points())
+    assert result["fit_method"] == "huber_irls"
+    assert result["measurement_uncertainty_proxy_mm"] >= 0.0
+    assert len(result["section_quality"]) == 3
+
+
 def test_weld_path_approach_points_follow_segment_angle() -> None:
     result = generate_path(6, "S3")
     assert result["sequence_segment_ids"] == [1, 4, 3, 6, 2, 5]
@@ -75,6 +93,20 @@ def test_vision_detector_on_rendered_sample(tmp_path: Path) -> None:
     assert abs(result["dy_mm"] + 1.0) < 0.02
     # 姿态标记先栅格化为像素，7° 输入允许一个像素级离散误差。
     assert abs(result["theta_deg"] - 7.0) < 0.25
+    assert result["quality"]["accepted"] is True
+
+
+def test_vision_quality_gate_rejects_perspective_sample(tmp_path: Path) -> None:
+    from generate_dataset import apply_difficulty, render_sample_geometry
+    import cv2
+
+    image, points = render_sample_geometry(1.0, -1.0, 7.0, 123)
+    image, _ = apply_difficulty(image, points, "perspective", 123)
+    image_path = tmp_path / "perspective.png"
+    cv2.imwrite(str(image_path), image)
+    result = detect_image(image_path, reject_quality=False)
+    assert result["quality"]["accepted"] is False
+    assert result["quality"]["failed_checks"]
 
 
 def test_simulated_session_matches_schema_and_detector() -> None:
@@ -96,11 +128,23 @@ def test_fe_mesh_distinguishes_continuous_and_flexible_structures() -> None:
 
 def test_monte_carlo_records_both_designs() -> None:
     config = load_yaml(ROOT / "simulation" / "configs" / "default.yaml")
-    rows, summary = run_monte_carlo(config, 20, 123)
-    assert len(rows) == 40
+    rows, summary = run_monte_carlo(config, 20, 123, layouts=(6,))
+    assert len(rows) == 20 * 2 * 2 * 3
+    assert summary["design_count"] == 12
     assert summary["baseline_rigid_6p_s1"]["count"] == 20
     assert summary["flex_compliant_6p_s3"]["count"] == 20
+    assert "structure" in summary["matched_effects"]
+    assert summary["matched_6p_s3_structure"]["baseline_rigid"]["count"] == 20
     assert "未由 FE 或实测标定" in summary["model_assumption_status"]["structure_factor"]
+
+
+def test_monte_carlo_accepts_non_default_layout_subset() -> None:
+    config = load_yaml(ROOT / "simulation" / "configs" / "default.yaml")
+    rows, summary = run_monte_carlo(config, 1, 123, layouts=(4,))
+    assert len(rows) == 12
+    assert summary["reference_layout"] == 4
+    assert summary["baseline_rigid_4p_s1"]["count"] == 1
+    assert summary["matched_4p_s3_structure"]["flex_rigid"]["count"] == 1
 
 
 def test_anomaly_event_score_matches_injected_signal() -> None:
@@ -118,3 +162,14 @@ def test_anomaly_event_score_matches_injected_signal() -> None:
     assert score["tp"] == 1
     assert score["fp"] == 0
     assert score["fn"] == 0
+
+
+def test_anomaly_detector_debounces_short_pulse_and_adapts_current_bias() -> None:
+    from signal_simulator import simulate_trial
+
+    short = simulate_trial("SHORT", True, 7, duration_s=8.0, sample_rate_hz=200.0, anomaly_duration_s=0.02, anomaly_names=("current_drop",))
+    assert not detect(short)["events"]
+    biased = simulate_trial("BIAS", False, 8, current_bias=3.0)
+    result = detect(biased)
+    assert not result["events"]
+    assert abs(result["calibration"]["current"]["estimated_bias"] - 3.0) < 0.2

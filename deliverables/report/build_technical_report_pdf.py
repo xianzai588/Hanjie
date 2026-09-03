@@ -365,7 +365,7 @@ def build_story() -> list[Flowable]:
     # 1 overview
     story.extend(section("项目概览与评审读法", "1"))
     story.append(P("本项目针对 Q235B 薄壁圆柱壳体与 QT450-10 球墨铸铁主轴承座的异种材料连接，围绕焊接性、焊后位置度和内腔洁净度组织数字工程证据。报告的结论分为题面事实、设计假设、模型结果和待验证接口四层。", "BodyCN"))
-    story.append(Table([[metric_card("Ø0.05 mm", "官方位置度限值"), metric_card("15", "降阶方案算例"), metric_card("3", "二维代理 FE 案例"), metric_card("1000", "蒙特卡洛共同扰动")]], colWidths=[42 * mm] * 4, style=TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 2), ("RIGHTPADDING", (0, 0), (-1, -1), 2)])))
+    story.append(Table([[metric_card("Ø0.05 mm", "官方位置度限值"), metric_card("15", "降阶方案算例"), metric_card("5", "二维代理 FE 案例"), metric_card("1000", "36 因子组合扰动")]], colWidths=[42 * mm] * 4, style=TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 2), ("RIGHTPADDING", (0, 0), (-1, -1), 2)])))
     story.extend([Spacer(1, 5 * mm), P("证据链", "H2CN"), Pipeline(), Spacer(1, 3 * mm)])
     story.append(callout("三分钟读法：题目要求什么 → 主方案是什么 → 数字证据做了什么 → 哪些数字只是代理指标 → 下一步如何实测裁决。", "amber"))
     story.extend([Spacer(1, 4 * mm), P("本版不声称实物已满足 Ø0.05 mm；它交付的是一套可复算、边界透明、能指导实物验证的数字工程设计。", "BodyCN"), PageBreak()])
@@ -437,23 +437,25 @@ def build_story() -> list[Flowable]:
     story.append(table([
         ["Case", "结构/夹具/顺序", "节点/单元", "峰值温度", "P_FE (mm)"],
         ["FE-001", "baseline / rigid / S1", "2800 / 5312", "462.413 °C", "0.001449982"],
-        ["FE-002", "baseline / rigid / S2", "2800 / 5312", "463.582 °C", "0.001466765"],
+        ["FE-002", "baseline / rigid / S3", "2800 / 5312", "458.511 °C", "0.001412091"],
         ["FE-003", "flex / compliant / S3", "1678 / 2632", "561.755 °C", "0.002599523"],
+        ["FE-004", "baseline / compliant / S3", "2800 / 5312", "458.511 °C", "0.002051051"],
+        ["FE-005", "flex / rigid / S3", "1678 / 2632", "561.755 °C", "0.001403186"],
     ], [20 * mm, 57 * mm, 38 * mm, 31 * mm, 34 * mm]))
-    story.extend([Spacer(1, 4 * mm), *figure(CHARTS["fe"], "图 3  FE-001/002/003 的二维代理几何响应指标。来源：simulation/fe/results/fe-summary.csv。", 125 * mm)])
-    story.append(callout("独立反例：FE-003 的 P_FE 高于 FE-001/002。该结果保留连续座体刚性基准，说明柔顺结构不能被当前降阶模型直接升级为最终最优。", "red"))
-    story.extend([Spacer(1, 4 * mm), P("模型物理边界", "H2CN"), P("三组峰值约 462-562 °C，远未达到钢/铸铁熔化温度，未模拟熔池形成、熔合、焊缝金属激活；同时未包含温度相关塑性、相变、三维壳体高度、真实焊缝几何/本构、接触和夹具预紧。因此 P_FE 是二维代理模型几何响应指标，不是“FE 证明焊后位置度为 0.0026 mm”。", "BodyCN"), PageBreak()])
+    story.extend([Spacer(1, 4 * mm), *figure(CHARTS["fe"], "图 3  FE-001..005 的二维代理几何响应指标。来源：simulation/fe/results/fe-summary.csv。", 125 * mm)])
+    story.append(callout("匹配对照：FE-002/003 统一 S3 比较结构与柔顺夹具，FE-004/005 进一步交换夹具边界。41/51/61/81 网格检查的最细相邻变化为 29.224%，未通过 5% 参考门；柔顺结构仍不能被当前二维代理升级为唯一最优。", "red"))
+    story.extend([Spacer(1, 4 * mm), P("模型物理边界", "H2CN"), P("五组峰值约 458-562 °C，远未达到钢/铸铁熔化温度，未模拟熔池形成、熔合、焊缝金属激活；同时未包含温度相关塑性、相变、三维壳体高度、真实焊缝几何/本构、接触和夹具预紧。因此 P_FE 是二维代理模型几何响应指标，不是“FE 证明焊后位置度为 0.0026 mm”。", "BodyCN"), PageBreak()])
 
     # 7 MC
     story.extend(section("不确定性传播与结构因子边界", "7"))
-    story.append(P("1000 次共同输入扰动覆盖热效率、电流、电压、焊速 ±10%，材料导热率 ±10%，线膨胀系数/弹性模量 ±5%，夹具刚度 ±20%，初始偏心 [-0.03, 0.03] mm。", "BodyCN"))
+    story.append(P("1000 次共同输入扰动覆盖 4/6/8 点、baseline/flex、rigid/compliant、S1/S2/S3 共 36 个因子组合；热效率、电流、电压、焊速 ±10%，材料导热率 ±10%，线膨胀系数/弹性模量 ±5%，夹具刚度 ±20%，初始偏心 [-0.03, 0.03] mm。", "BodyCN"))
     story.append(table([
         ["设计", "P5", "P50", "P95", "worst", "超限比例"],
-        ["baseline rigid 6P-S1", "0.040832", "0.056247", "0.092487", "0.106697", "70.6%"],
-        ["flex compliant 6P-S3", "0.008733", "0.032400", "0.060363", "0.066370", "19.6%"],
+        ["baseline rigid 6P-S3", "0.015012", "0.035529", "0.065942", "0.072866", "23.7%"],
+        ["flex rigid 6P-S3", "0.010685", "0.033053", "0.062009", "0.068371", "20.7%"],
     ], [43 * mm, 24 * mm, 24 * mm, 24 * mm, 27 * mm, 28 * mm]))
     story.extend([Spacer(1, 3 * mm), *figure(CHARTS["mc"], "图 4  降阶模型共同输入扰动分布。来源：simulation/results/monte-carlo/monte-carlo-summary.json。", 145 * mm)])
-    story.append(callout("模型内鲁棒性，不是独立结构证据：structure_factor（baseline=1.0, flex=0.68）和 fixture_factor 未由 FE/实测标定。100% 柔顺更优只表示该优势对当前模型预设和输入扰动具有鲁棒性，不能解释为真实失效概率或第三种独立验证。", "amber"))
+    story.append(callout("模型内鲁棒性，不是独立结构证据：统一 6P-S3、刚性夹具后，柔顺结构配对更优比例为 84.3%；混合 S1/S3 和刚性/柔顺夹具的旧口径 100% 不再作为因果结论。structure_factor 与 fixture_factor 未由 FE/实测标定。", "amber"))
     story.extend([Spacer(1, 4 * mm), P("一句话回答", "H2CN"), P("为什么降阶与 FE 相反？因为两者对结构连接、夹具边界和材料表达不同；冲突不是需要删除的异常，而是决定下一步三维/物理验证优先级的证据。", "BodyCN"), PageBreak()])
 
     # 8 vision and budget
@@ -471,23 +473,23 @@ def build_story() -> list[Flowable]:
         ["合计", "0.025", "对应 Ø0.05 直径限值"],
     ], [43 * mm, 34 * mm, 91 * mm], compact=True))
     story.extend([Spacer(1, 3 * mm), P("8.2 困难视觉工程门", "H2CN"), table([
-        ["条件", "检测返回率", "径向 P95", "角度 P95", "工程判定"],
-        ["clean", "100%", "0.003422", "0.004248°", "PASS"],
-        ["noise", "100%", "0.079638", "0.128781°", "FAIL"],
-        ["blur", "100%", "0.002769", "0.002119°", "PASS"],
-        ["illumination", "100%", "0.356118", "0.005194°", "FAIL"],
-        ["perspective", "100%", "10.690229", "1.833196°", "FAIL"],
-        ["occlusion", "100%", "3.205838", "2.961169°", "FAIL"],
-        ["missing_edges", "100%", "0.264525", "0.063685°", "FAIL"],
-        ["low_contrast", "100%", "0.002923", "0.003808°", "PASS"],
-        ["distortion", "100%", "0.003572", "0.004456°", "PASS"],
-        ["large_offset", "100%", "0.003830", "0.004387°", "PASS"],
-    ], [36 * mm, 29 * mm, 34 * mm, 34 * mm, 37 * mm], compact=True)])
-    story.extend([PageBreak(), P("8.3 视觉工程判定", "H2CN"), P("困难集揭示了“能返回结果”和“能用于定位”之间的差别：noise、illumination、perspective、occlusion、missing_edges 虽然返回率均为 100%，但 P95 超过设计门限，必须在现场链路中拒绝或转人工复核。", "BodyCN"), source_note("automation/vision/results/difficult-summary.json；姿态门限由 0.010 mm / 73.8 mm 换算为 0.0078°。"), *figure(CHARTS["vision"], "图 5  困难视觉条件的工程门结果；红色为 FAIL，不能以检测返回率替代。", 145 * mm), PageBreak()])
+        ["条件", "原始返回率", "质量接受率", "径向 P95", "工程判定"],
+        ["clean", "100%", "100%", "0.003422", "PASS"],
+        ["noise", "100%", "0%", "0.079638", "FAIL"],
+        ["blur", "100%", "100%", "0.002769", "PASS"],
+        ["illumination", "100%", "0%", "0.356118", "FAIL"],
+        ["perspective", "100%", "0%", "10.690229", "FAIL"],
+        ["occlusion", "100%", "0%", "3.205838", "FAIL"],
+        ["missing_edges", "100%", "0%", "0.264525", "FAIL"],
+        ["low_contrast", "100%", "100%", "0.002923", "PASS"],
+        ["distortion", "100%", "100%", "0.003572", "PASS"],
+        ["large_offset", "100%", "100%", "0.003830", "PASS"],
+    ], [29 * mm, 25 * mm, 28 * mm, 34 * mm, 34 * mm], compact=True)])
+    story.extend([PageBreak(), P("8.3 视觉工程判定", "H2CN"), P("困难集揭示了“能返回结果”和“能用于定位”之间的差别。运行时质量门根据轮廓圆度、椭圆轴比和标记面积拒绝 noise、illumination、perspective、occlusion、missing_edges 等低可信结果，避免错误坐标进入路径规划。质量接受仍不等于真实工业精度认证。", "BodyCN"), source_note("automation/vision/results/difficult-summary.json；姿态门限由 0.010 mm / 73.8 mm 换算为 0.0078°。"), *figure(CHARTS["vision"], "图 5  困难视觉条件的工程门结果；质量接受率与误差门同时使用。", 145 * mm), PageBreak()])
 
     # 9/10 automation and cleanliness
     story.extend(section("过程监测、追溯与内腔洁净度", "9"))
-    story.append(P("规则检测器按电流、电压、焊速和温度窗口识别连续越界事件。数字基准包含 100 个正常试验和 100 个异常注入试验；电弧中断可同时产生电流/电压事件，总真实事件数为 243。", "BodyCN"))
+    story.append(P("规则检测器按电流、电压、焊速和温度窗口识别连续越界事件，并加入在线偏置估计、10% 窗口滞回、5 点中值滤波和 50 ms 最小持续时间。数字基准包含 100 个正常试验和 100 个异常注入试验；电弧中断可同时产生电流/电压事件，总真实事件数为 243。", "BodyCN"))
     story.append(table([
         ["指标", "数字基准结果", "边界"],
         ["TP / FP / FN", "243 / 0 / 0", "只覆盖当前注入模式"],
@@ -495,7 +497,7 @@ def build_story() -> list[Flowable]:
         ["正常试验级 FPR", "0%", "不代表量产误报率"],
         ["平均/中位延迟", "0 s / 0 s", "仿真时间戳，不是设备闭环延迟"],
     ], [53 * mm, 53 * mm, 70 * mm]))
-    story.extend([Spacer(1, 4 * mm), callout("恶意评委问：100% 是不是自己出题自己答？答：是当前注入模式上的规则回归，不是现场分布泛化证明；真实焊机数据将重标定阈值、误报率和延迟。", "amber"), Spacer(1, 6 * mm), P("10  洁净度是硬约束", "H1CN"), P("候选路线采用无焊渣工艺、内腔防护、焊前清洁、分段短焊、焊后目视和内窥检查。数字图、仿真和“无异常事件”都不能替代内腔实物检查；正式记录应建立一件一码、焊材批次、操作者、参数曲线、内窥照片和放行记录的关联。", "BodyCN"), callout("洁净度的最终证据不是算法准确率，而是焊后内窥/目视记录和可追溯放行表。", "red"), PageBreak()])
+    story.extend([Spacer(1, 4 * mm), callout("名义基准的 100% 只覆盖当前注入模式。压力曲线显示 10–30 ms 脉冲按设计去抖，50 ms 及以上可检出；中值滤波后噪声倍数 2.0 的试验级误报率为 0%，3.0 为 10%；±4 A 静态偏置在线校正后误报率为 0%。真实焊机数据仍需重标定阈值、误报率和延迟。", "amber"), Spacer(1, 6 * mm), P("10  洁净度是硬约束", "H1CN"), P("候选路线采用无焊渣工艺、内腔防护、焊前清洁、分段短焊、焊后目视和内窥检查。数字图、仿真和“无异常事件”都不能替代内腔实物检查；正式记录应建立一件一码、焊材批次、操作者、参数曲线、内窥照片和放行记录的关联。", "BodyCN"), callout("洁净度的最终证据不是算法准确率，而是焊后内窥/目视记录和可追溯放行表。", "red"), PageBreak()])
 
     # 11 risks and 12 reproducibility
     story.extend(section("风险、可复现性与物理验证接口", "11"))
@@ -510,7 +512,7 @@ def build_story() -> list[Flowable]:
     story.extend([Spacer(1, 5 * mm), P("12  可复现性索引", "H1CN"), table([
         ["证据", "主入口", "结果"],
         ["降阶筛选", "simulation/scripts/run_reduced_order.py", "summary.csv / summary-r1.md"],
-        ["二维代理 FE", "simulation/fe/run_fe_cases.py", "fe-summary.csv / bore-nodes.csv"],
+        ["二维代理 FE", "simulation/fe/run_fe_cases.py", "fe-summary.csv / fe-convergence.csv / bore-nodes.csv"],
         ["蒙特卡洛", "simulation/scripts/run_monte_carlo.py", "monte-carlo-summary.json / .md"],
         ["视觉门控", "automation/vision/run_benchmark.py", "difficult-summary.json / .md"],
         ["工程图", "cad/parametric/generate_engineering_drawings.py", "7 张 SVG / manifest"],

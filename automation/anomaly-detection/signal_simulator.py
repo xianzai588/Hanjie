@@ -13,14 +13,19 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT = ROOT / "data" / "samples" / "W2026-001-simulated.json"
 
 
-def simulate_trial(trial_id: str, injected: bool, seed: int, duration_s: float = 20.0, sample_rate_hz: float = 20.0) -> dict[str, object]:
+def simulate_trial(trial_id: str, injected: bool, seed: int, duration_s: float = 20.0, sample_rate_hz: float = 20.0,
+                   noise_scale: float = 1.0, current_bias: float = 0.0,
+                   anomaly_duration_s: float | None = None,
+                   anomaly_names: tuple[str, ...] | None = None) -> dict[str, object]:
     """生成一个用于检测器基准的正常或注入异常试验。"""
     rng = np.random.default_rng(seed)
     timestamp = np.arange(0.0, duration_s, 1.0 / sample_rate_hz)
-    current = 75.0 + rng.normal(0.0, 0.8, timestamp.size)
-    voltage = 12.0 + rng.normal(0.0, 0.08, timestamp.size)
-    speed = 1.5 + rng.normal(0.0, 0.025, timestamp.size)
-    temperature = 150.0 + 25.0 * (1.0 - np.exp(-timestamp / 4.0)) + rng.normal(0.0, 0.5, timestamp.size)
+    if noise_scale < 0.0:
+        raise ValueError("noise_scale 必须非负")
+    current = 75.0 + current_bias + rng.normal(0.0, 0.8 * noise_scale, timestamp.size)
+    voltage = 12.0 + rng.normal(0.0, 0.08 * noise_scale, timestamp.size)
+    speed = 1.5 + rng.normal(0.0, 0.025 * noise_scale, timestamp.size)
+    temperature = 150.0 + 25.0 * (1.0 - np.exp(-timestamp / 4.0)) + rng.normal(0.0, 0.5 * noise_scale, timestamp.size)
     anomalies: list[dict[str, object]] = []
 
     def inject(name: str, signal: str, start: float, end: float, values: dict[str, float]) -> None:
@@ -37,11 +42,14 @@ def simulate_trial(trial_id: str, injected: bool, seed: int, duration_s: float =
 
     if injected:
         anomaly_types = ("current_drop", "voltage_spike", "speed_deviation", "temperature_overrun", "arc_interruption")
-        count = int(rng.integers(1, 4))
-        selected = list(rng.choice(anomaly_types, size=count, replace=False))
+        if anomaly_names is None:
+            count = int(rng.integers(1, 4))
+            selected = list(rng.choice(anomaly_types, size=count, replace=False))
+        else:
+            selected = list(anomaly_names)
         for index, name in enumerate(selected):
             start = 3.0 + 4.5 * index
-            end = start + (0.8 if name != "temperature_overrun" else 1.2)
+            end = start + (anomaly_duration_s if anomaly_duration_s is not None else (0.8 if name != "temperature_overrun" else 1.2))
             if name == "current_drop":
                 inject(name, "current", start, end, {"current": 35.0})
             elif name == "voltage_spike":

@@ -21,7 +21,7 @@ __pycache__/
 automation/vision/data/*.png
 automation/vision/data/**/*.png
 
-# Local exploratory FE fixture scans; official cases are FE-001/002/003.
+# Local exploratory FE fixture scans; official cases are FE-001..005.
 simulation/cases/K*/
 simulation/cases/baseline-rigid/
 simulation/cases/baseline-compliant/

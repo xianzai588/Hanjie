@@ -28,43 +28,75 @@ POSE_LEVER_ARM_MM = 73.8
 VISION_ANGLE_MAE_BUDGET_DEG = float(np.degrees(VISION_RADIAL_MAE_BUDGET_MM / POSE_LEVER_ARM_MM))
 
 
+def _finite_mean(values: np.ndarray) -> float:
+    finite = values[np.isfinite(values)]
+    return float(np.mean(finite)) if finite.size else float("nan")
+
+
+def _finite_mean_abs(values: np.ndarray) -> float:
+    finite = values[np.isfinite(values)]
+    return float(np.mean(np.abs(finite))) if finite.size else float("nan")
+
+
+def _finite_percentile_abs(values: np.ndarray, percentile: float) -> float:
+    finite = values[np.isfinite(values)]
+    return float(np.percentile(np.abs(finite), percentile)) if finite.size else float("nan")
+
+
 def run_benchmark(count: int, data_dir: Path, result_dir: Path, difficulty: str = "clean", seed: int = 20260902) -> dict[str, object]:
     annotation_path = generate_dataset(count, data_dir, seed=seed, difficulty=difficulty)
     with annotation_path.open("r", encoding="utf-8-sig", newline="") as handle:
         annotations = list(csv.DictReader(handle))
     errors = []
-    successes = 0
+    raw_successes = 0
+    accepted_successes = 0
+    quality_rejected = 0
     for row in annotations:
         try:
-            prediction = detect_image(data_dir / row["filename"])
+            prediction = detect_image(data_dir / row["filename"], reject_quality=False)
+            raw_successes += 1
+            quality = prediction.get("quality", {})
+            accepted = bool(quality.get("accepted", True))
+            if accepted:
+                accepted_successes += 1
+            else:
+                quality_rejected += 1
             error = {
                 "filename": row["filename"],
                 "dx_error_mm": prediction["dx_mm"] - float(row["dx_mm"]),
                 "dy_error_mm": prediction["dy_mm"] - float(row["dy_mm"]),
                 "theta_error_deg": prediction["theta_deg"] - float(row["theta_deg"]),
+                "quality_accepted": accepted,
+                "quality_confidence": float(quality.get("confidence", 0.0)),
+                "quality_failed_checks": ";".join(quality.get("failed_checks", [])),
             }
             errors.append(error)
-            successes += 1
         except (FileNotFoundError, ValueError):
-            errors.append({"filename": row["filename"], "dx_error_mm": np.nan, "dy_error_mm": np.nan, "theta_error_deg": np.nan})
+            errors.append({"filename": row["filename"], "dx_error_mm": np.nan, "dy_error_mm": np.nan, "theta_error_deg": np.nan, "quality_accepted": False, "quality_confidence": 0.0, "quality_failed_checks": "segmentation_or_io"})
 
     dx = np.asarray([item["dx_error_mm"] for item in errors], dtype=float)
     dy = np.asarray([item["dy_error_mm"] for item in errors], dtype=float)
     theta = np.asarray([item["theta_error_deg"] for item in errors], dtype=float)
     radial_error = np.sqrt(dx * dx + dy * dy)
-    radial_mae = float(np.nanmean(radial_error))
-    radial_p95 = float(np.nanpercentile(radial_error, 95))
-    theta_mae = float(np.nanmean(np.abs(theta)))
-    theta_p95 = float(np.nanpercentile(np.abs(theta), 95))
+    radial_mae = _finite_mean(radial_error)
+    radial_p95 = _finite_percentile_abs(radial_error, 95)
+    theta_mae = _finite_mean_abs(theta)
+    theta_p95 = _finite_percentile_abs(theta, 95)
     # 工程门使用 P95，避免 MAE 掩盖少量大误差；MAE 仍作为描述性统计保留。
-    engineering_gate = radial_p95 <= VISION_RADIAL_MAE_BUDGET_MM and theta_p95 <= VISION_ANGLE_MAE_BUDGET_DEG
+    engineering_gate = bool(np.isfinite(radial_p95) and np.isfinite(theta_p95)
+                            and radial_p95 <= VISION_RADIAL_MAE_BUDGET_MM
+                            and theta_p95 <= VISION_ANGLE_MAE_BUDGET_DEG)
     summary = {
         "sample_count": count,
-        "success_count": successes,
-        "success_rate": successes / count,
-        "detection_return_rate": successes / count,
-        "x_mae_mm": float(np.nanmean(np.abs(dx))),
-        "y_mae_mm": float(np.nanmean(np.abs(dy))),
+        "success_count": accepted_successes,
+        "success_rate": accepted_successes / count,
+        "detection_return_count": raw_successes,
+        "detection_return_rate": raw_successes / count,
+        "quality_accept_count": accepted_successes,
+        "quality_accept_rate": accepted_successes / count,
+        "quality_rejected_count": quality_rejected,
+        "x_mae_mm": _finite_mean_abs(dx),
+        "y_mae_mm": _finite_mean_abs(dy),
         "radial_mae_mm": radial_mae,
         "radial_p95_mm": radial_p95,
         "theta_mae_deg": theta_mae,
@@ -107,7 +139,7 @@ def run_difficult_benchmark(count_per_condition: int, data_root: Path, result_di
 
     result_dir.mkdir(parents=True, exist_ok=True)
     with (result_dir / "difficult-summary.csv").open("w", encoding="utf-8-sig", newline="") as handle:
-        fields = ["difficulty", "sample_count", "success_rate", "x_mae_mm", "y_mae_mm", "theta_mae_deg"]
+        fields = ["difficulty", "sample_count", "detection_return_rate", "quality_accept_rate", "quality_rejected_count", "success_rate", "x_mae_mm", "y_mae_mm", "theta_mae_deg"]
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         for summary in summaries:
@@ -116,9 +148,9 @@ def run_difficult_benchmark(count_per_condition: int, data_root: Path, result_di
 
     labels = [str(item["difficulty"]) for item in summaries]
     gate = [1.0 if item["engineering_gate_pass"] else 0.0 for item in summaries]
-    x_error = [float(item["x_mae_mm"]) for item in summaries]
-    y_error = [float(item["y_mae_mm"]) for item in summaries]
-    theta_error = [float(item["theta_mae_deg"]) for item in summaries]
+    x_error = [float(item["x_mae_mm"]) if item["x_mae_mm"] is not None else np.nan for item in summaries]
+    y_error = [float(item["y_mae_mm"]) if item["y_mae_mm"] is not None else np.nan for item in summaries]
+    theta_error = [float(item["theta_mae_deg"]) if item["theta_mae_deg"] is not None else np.nan for item in summaries]
     fig, axes = plt.subplots(2, 1, figsize=(12, 7), constrained_layout=True)
     axes[0].bar(labels, gate, color=["#0f766e" if value else "#dc2626" for value in gate])
     axes[0].set_ylim(0, 1.05)
@@ -142,18 +174,18 @@ def run_difficult_benchmark(count_per_condition: int, data_root: Path, result_di
         "",
         "> 样本为数字渲染与图像退化，不代表真实工业相机/镜头/光源标定结果。",
         "",
-        "| 条件 | 样本数 | 检测返回率 | 径向 P95 (mm) | 角度 P95 (deg) | 工程判定 |",
-        "| --- | ---: | ---: | ---: | ---: | --- |",
+        "| 条件 | 样本数 | 原始返回率 | 质量接受率 | 拒绝数 | 径向 P95 (mm) | 角度 P95 (deg) | 工程判定 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for item in summaries:
-        lines.append(f"| {item['difficulty']} | {item['sample_count']} | {item['detection_return_rate']:.3%} | {item['radial_p95_mm']:.6f} | {item['theta_p95_deg']:.6f} | {item['engineering_gate']} |")
+        lines.append(f"| {item['difficulty']} | {item['sample_count']} | {item['detection_return_rate']:.3%} | {item['quality_accept_rate']:.3%} | {item['quality_rejected_count']} | {item['radial_p95_mm']:.6f} | {item['theta_p95_deg']:.6f} | {item['engineering_gate']} |")
     lines.extend([
         "",
         "## 工程误差预算",
         "",
         f"比赛位置度限值 Ø{POSITION_TOLERANCE_DIAMETER_LIMIT_MM:.2f} mm 对应径向预算 {POSITION_TOLERANCE_RADIUS_BUDGET_MM:.3f} mm。本数字评审将其按线性最坏情况分配：视觉 {VISION_RADIAL_MAE_BUDGET_MM:.3f} mm、相机标定 0.004 mm、TCP 0.003 mm、机器人重复定位 0.003 mm、夹具 0.003 mm、热变形 0.002 mm，合计 {POSITION_TOLERANCE_RADIUS_BUDGET_MM:.3f} mm。",
         f"视觉数字门限：径向 P95 ≤ {VISION_RADIAL_MAE_BUDGET_MM:.3f} mm；以 {POSE_LEVER_ARM_MM:.1f} mm 姿态作用半径换算，角度 P95 ≤ {VISION_ANGLE_MAE_BUDGET_DEG:.4f}°。MAE 作为描述性统计保留；门限是误差预算中的视觉份额，不是实测精度认证。",
-        "因此“检测返回率”不等于“工程通过”：透视、遮挡、光照梯度等条件可能返回结果但工程判定 FAIL。",
+        "因此“原始返回率”不等于“质量接受率”或“工程通过”：质量门会拒绝透视、遮挡、光照梯度、噪声和缺边等低可信结果，避免错误坐标进入路径规划。",
         "",
         "条件覆盖：噪声、模糊、光照梯度、约 10–30° 像面透视近似、遮挡、缺失边缘、低对比度、畸变和 ±5 mm 大偏移。",
         "所有困难条件均同步变换 shell/seat/marker 标签；指标是变换后像面坐标上的误差。",

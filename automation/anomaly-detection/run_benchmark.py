@@ -18,7 +18,40 @@ from anomaly_detector import detect, score_events  # noqa: E402
 from signal_simulator import simulate_trial  # noqa: E402
 
 
-def run_benchmark(normal_count: int, injected_count: int, seed: int) -> tuple[list[dict[str, object]], dict[str, object]]:
+def _robustness_curves(seed: int, trials: int) -> dict[str, object]:
+    """运行时压力曲线：短事件召回、噪声误报和电流静态偏置误报。"""
+    duration_curve = []
+    for index, duration in enumerate((0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.20)):
+        detected = 0
+        for trial in range(trials):
+            data = simulate_trial(f"D-{index}-{trial}", True, seed + index * 1000 + trial, duration_s=8.0, sample_rate_hz=200.0, anomaly_duration_s=duration, anomaly_names=("current_drop",))
+            score = score_events(data, detect(data))
+            detected += int(score["tp"] > 0)
+        duration_curve.append({"duration_s": duration, "detection_rate": detected / trials})
+
+    noise_curve = []
+    for index, noise_scale in enumerate((1.0, 1.5, 2.0, 2.5, 3.0)):
+        false_trials = 0
+        false_events = 0
+        for trial in range(trials):
+            data = simulate_trial(f"N-{index}-{trial}", False, seed + 10000 + index * 1000 + trial, noise_scale=noise_scale)
+            score = score_events(data, detect(data))
+            false_trials += int(score["fp"] > 0)
+            false_events += int(score["fp"])
+        noise_curve.append({"noise_scale": noise_scale, "false_positive_trial_rate": false_trials / trials, "false_positive_events_per_trial": false_events / trials})
+
+    bias_curve = []
+    for index, bias in enumerate((0.0, 1.0, 2.0, 3.0, 4.0)):
+        false_trials = 0
+        for trial in range(trials):
+            data = simulate_trial(f"B-{index}-{trial}", False, seed + 20000 + index * 1000 + trial, current_bias=bias)
+            score = score_events(data, detect(data))
+            false_trials += int(score["fp"] > 0)
+        bias_curve.append({"current_bias_a": bias, "false_positive_trial_rate": false_trials / trials})
+    return {"short_event_duration": duration_curve, "normal_noise": noise_curve, "current_bias": bias_curve}
+
+
+def run_benchmark(normal_count: int, injected_count: int, seed: int, robustness_trials: int = 20) -> tuple[list[dict[str, object]], dict[str, object]]:
     rows: list[dict[str, object]] = []
     for index in range(normal_count):
         data = simulate_trial(f"N-{index + 1:03d}", False, seed + index)
@@ -54,7 +87,9 @@ def run_benchmark(normal_count: int, injected_count: int, seed: int) -> tuple[li
         "false_positive_rate_event_per_normal_trial": fp / normal_count if normal_count else 0.0,
         "mean_detection_delay_s": float(np.mean(delays)) if delays else None,
         "median_detection_delay_s": float(np.median(delays)) if delays else None,
-        "statement": "事件级规则检测基准，信号和异常均为仿真注入；阈值需用真实设备数据重新标定。",
+        "robustness_curves": _robustness_curves(seed + normal_count + injected_count, robustness_trials) if robustness_trials > 0 else {},
+        "robustness_trials_per_point": robustness_trials,
+        "statement": "事件级规则检测基准，信号和异常均为仿真注入；短事件、噪声和传感器偏置曲线用于暴露在线边界，阈值仍需用真实设备数据重新标定。",
     }
     return rows, summary
 
@@ -86,6 +121,22 @@ def write_outputs(rows: list[dict[str, object]], summary: dict[str, object], out
         f"| 中位检测延迟 (s) | {summary['median_detection_delay_s'] if summary['median_detection_delay_s'] is not None else 'N/A'} |",
         "",
         "匹配规则：同一信号、时间区间重叠或相差不超过 0.2 s 计为命中；FP/FN 为事件级统计，FPR 同时给出正常试验级和事件率口径。",
+        "",
+        "## 鲁棒性曲线",
+        "",
+        "短于最小持续时间的脉冲按设计会被去抖；曲线用于决定采样率、阈值和后续硬件触发策略。",
+        "",
+        "| 电流异常持续时间 (s) | 检出率 |",
+        "| ---: | ---: |",
+        *[f"| {item['duration_s']:.3f} | {item['detection_rate']:.3%} |" for item in summary["robustness_curves"].get("short_event_duration", [])],
+        "",
+        "| 正常噪声倍数 | 试验级误报率 | 每试验误报事件数 |",
+        "| ---: | ---: | ---: |",
+        *[f"| {item['noise_scale']:.1f} | {item['false_positive_trial_rate']:.3%} | {item['false_positive_events_per_trial']:.3f} |" for item in summary["robustness_curves"].get("normal_noise", [])],
+        "",
+        "| 电流静态偏置 (A) | 试验级误报率 |",
+        "| ---: | ---: |",
+        *[f"| {item['current_bias_a']:.1f} | {item['false_positive_trial_rate']:.3%} |" for item in summary["robustness_curves"].get("current_bias", [])],
     ]
     (output_dir / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -96,8 +147,9 @@ def main() -> int:
     parser.add_argument("--injected-count", type=int, default=100)
     parser.add_argument("--seed", type=int, default=20260902)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--robustness-trials", type=int, default=20)
     args = parser.parse_args()
-    rows, summary = run_benchmark(args.normal_count, args.injected_count, args.seed)
+    rows, summary = run_benchmark(args.normal_count, args.injected_count, args.seed, args.robustness_trials)
     write_outputs(rows, summary, args.output_dir)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
