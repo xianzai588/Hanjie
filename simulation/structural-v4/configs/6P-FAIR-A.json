@@ -1,0 +1,36 @@
+{
+  "model_id": "6P-FAIR_A",
+  "family": "FAIR_A",
+  "layout": "6P",
+  "N": 6,
+  "shell": {
+    "outer_diameter_mm": 160.0,
+    "height_mm": 200.0,
+    "thickness_mm": 5.0
+  },
+  "seat": {
+    "bore_nominal_diameter_mm": 40.0,
+    "thickness_mm": 12.0,
+    "outer_radius_mm": 74.98,
+    "core_diameter_mm": 82.0,
+    "slot_width_mm": 4.0,
+    "slot_root_radius_mm": null,
+    "effective_width_each_mm": 18.0,
+    "effective_total_width_mm": 108.0
+  },
+  "geometry": {
+    "planform_area_mm2": null,
+    "solid_volume_mm3": null,
+    "calculated_mass_kg": null
+  },
+  "manufacturing": {
+    "slot_count": 6,
+    "weld_segment_count": 6,
+    "nominal_total_weld_length_mm": null
+  },
+  "generation": {
+    "generator_version": "1.0",
+    "timestamp": "2026-09-03T19:11:47.099125",
+    "rule": "unified_parametric"
+  }
+}
