@@ -10,22 +10,26 @@
 
 CLAIM-001:
   claim: "QT450-10/Q235B 可采用镍基填充 TIG 焊接"
-  status: "supported"
+  status: "literature_supported"
   evidence:
     - LIT-005   # 文献：球铁异种焊接
     - LIT-012   # 文献：镍基填充材料
     - LIT-023   # 文献：TIG 低热输入
   confidence: "high"
-  publication_status: "verified"
+  publication_status: "supported"
+  allowed_wording: "文献与相近材料体系研究支持该工艺路线具有可行性"
+  notes: "仅文献支持，需本项目实物验证"
 
 CLAIM-002:
   claim: "低热输入可降低球铁侧白口和脆硬组织"
-  status: "supported"
+  status: "literature_supported"
   evidence:
     - LIT-007   # 文献
     - LIT-015   # 文献
   confidence: "high"
-  publication_status: "verified"
+  publication_status: "supported"
+  allowed_wording: "文献表明低热输入有助于降低球铁侧脆硬组织"
+  notes: "仅文献支持，需本项目金相验证"
 
 CLAIM-003:
   claim: "预热 150°C 可降低裂纹倾向"
@@ -42,7 +46,7 @@ CLAIM-003:
 
 CLAIM-010:
   claim: "壳体 Ø160×200 mm，壁厚 5 mm"
-  status: "design_assumption"
+  status: "official_requirement"
   evidence:
     - OFFICIAL-SPEC  # 官方题面
   confidence: "certain"
@@ -50,7 +54,7 @@ CLAIM-010:
 
 CLAIM-011:
   claim: "轴承座 Ø40 孔，位置度 ≤Ø0.05 mm"
-  status: "design_assumption"
+  status: "official_requirement"
   evidence:
     - OFFICIAL-SPEC
   confidence: "certain"
@@ -91,9 +95,9 @@ CLAIM-017:
     - CMM-001     # 实物验证（待完成）
   confidence: "low"
   publication_status: "hypothesis"
-  allowed_wording: "候选结构之一，经参数化优化得到"
-  next_gate: "3D FE 公平比较 + 实物验证"
-  notes: "目前降阶模型支持，但二维 FE 反例，网格未收敛，无实物"
+  allowed_wording: "六点低拘束结构作为候选方案之一，待三维热—结构公平比较及参数化优化进一步裁决"
+  next_gate: "3D FE 公平比较 + 参数化优化 + 实物验证"
+  notes: "目前降阶模型支持，但二维 FE 反例，网格未收敛，无实物。不能说'经参数化优化得到'，因为 Pareto 本身还是 planned"
 
 CLAIM-018:
   claim: "连续座 vs 4点 vs 6点 vs 8点结构公平比较"
@@ -205,8 +209,8 @@ CLAIM-060:
   gap: "0.010 mm"
   confidence: "needs_optimization"
   publication_status: "optimization_target"
-  allowed_wording: "误差预算口径已修正（装配链/自动化链分离），当前最坏情况预算尚未闭合，成为 V4 重点优化约束"
-  notes: "这不是硬伤，是优化方向。四个创新点的顶层约束。"
+  allowed_wording: "误差预算口径已修正（装配链/自动化链分离），但当前仍存在 0.010 mm 径向预算缺口，是 V4 尚待解决的设计约束"
+  notes: "口径错误已修正，但预算缺口仍存在。四个创新点的顶层约束。"
 
 CLAIM-061:
   claim: "V4 目标分配可实现"
@@ -314,8 +318,10 @@ CLAIM-084:
 ## 发布规则
 
 **publication_status 定义**：
-- `verified`: 已验证，可直接作为结论
-- `supported`: 有文献支持，可引用
+- `official`: 官方要求
+- `verified`: 已验证，可直接作为结论（需本项目实测数据）
+- `supported`: 有文献支持，可引用（文献证据）
+- `literature_supported`: 文献支持的可行性（无本项目实测）
 - `design_choice`: 设计选择，已明确标注
 - `hypothesis`: 假设，需验证
 - `proposed`: 提出的方法，尚未测试
