@@ -91,6 +91,15 @@ def dim_h(lines: list[str], x1: float, x2: float, y: float, label: str, extensio
     lines.extend([line(x1, extension_y, x1, y, "dimline"), line(x2, extension_y, x2, y, "dimline"), line(x1, y, x2, y, "dimline"), text((x1 + x2) / 2, y - 7, label, "dim", "middle")])
 
 
+def weld_note() -> str:
+    """焊接标准引用修正：GB/T 5185 只用于焊接方法代号，焊缝符号表示用 GB/T 324"""
+    return (
+        "WELDING METHOD: 141 (GTAW/TIG) per GB/T 5185-2005\n"
+        "WELD SYMBOL: per GB/T 324-2008\n"
+        "FILLER: ERNiFe-CI (AWS A5.15 / GB/T 15620)"
+    )
+
+
 def seat_drawing(geometry: dict) -> list[str]:
     design = geometry["design_assumptions"]
     official = geometry["official"]
