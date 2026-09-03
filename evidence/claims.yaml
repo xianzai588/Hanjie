@@ -1,0 +1,340 @@
+# 证据清单 - Hanjie 项目
+
+**版本**：V4
+**日期**：2026-09-03
+**说明**：每个主张（claim）都标注证据来源、置信度和发布状态
+
+---
+
+## 基础可行性主张
+
+CLAIM-001:
+  claim: "QT450-10/Q235B 可采用镍基填充 TIG 焊接"
+  status: "supported"
+  evidence:
+    - LIT-005   # 文献：球铁异种焊接
+    - LIT-012   # 文献：镍基填充材料
+    - LIT-023   # 文献：TIG 低热输入
+  confidence: "high"
+  publication_status: "verified"
+
+CLAIM-002:
+  claim: "低热输入可降低球铁侧白口和脆硬组织"
+  status: "supported"
+  evidence:
+    - LIT-007   # 文献
+    - LIT-015   # 文献
+  confidence: "high"
+  publication_status: "verified"
+
+CLAIM-003:
+  claim: "预热 150°C 可降低裂纹倾向"
+  status: "supported"
+  evidence:
+    - LIT-008   # 文献
+    - LIT-019   # 文献
+  confidence: "medium-high"
+  publication_status: "candidate_parameter"
+
+---
+
+## 设计假设（已明确标注）
+
+CLAIM-010:
+  claim: "壳体 Ø160×200 mm，壁厚 5 mm"
+  status: "design_assumption"
+  evidence:
+    - OFFICIAL-SPEC  # 官方题面
+  confidence: "certain"
+  publication_status: "official"
+
+CLAIM-011:
+  claim: "轴承座 Ø40 孔，位置度 ≤Ø0.05 mm"
+  status: "design_assumption"
+  evidence:
+    - OFFICIAL-SPEC
+  confidence: "certain"
+  publication_status: "official"
+
+CLAIM-012:
+  claim: "轴承座翼端 R74.98，采用小间隙精密定心"
+  status: "design_assumption"
+  evidence:
+    - GEOM-V3  # geometry.json V3
+  confidence: "design_choice"
+  publication_status: "proposed_design"
+  notes: "H7/h6 为定位间隙配合，非过渡配合"
+
+CLAIM-013:
+  claim: "夹具采用锥形心轴 1:50，定位重复性 0.008 mm"
+  status: "design_assumption"
+  evidence:
+    - GEOM-V3
+  confidence: "design_choice"
+  publication_status: "proposed_design"
+  notes: "设计假设值，需实际夹具标定"
+
+---
+
+## 核心创新主张（待验证）
+
+CLAIM-017:
+  claim: "六点低拘束结构降低焊后位置度漂移"
+  status: "unresolved"
+  supporting_evidence:
+    - ROM-006   # 降阶模型显示改善
+  conflicting_evidence:
+    - FE2D-003  # 二维 FE 中柔顺+柔顺夹具反而最差
+  missing_evidence:
+    - FE3D-BASE   # 3D Baseline（待完成）
+    - FE3D-6P     # 3D 六点（待完成）
+    - CMM-001     # 实物验证（待完成）
+  confidence: "low"
+  publication_status: "hypothesis"
+  allowed_wording: "候选结构之一，经参数化优化得到"
+  next_gate: "3D FE 公平比较 + 实物验证"
+  notes: "目前降阶模型支持，但二维 FE 反例，网格未收敛，无实物"
+
+CLAIM-018:
+  claim: "连续座 vs 4点 vs 6点 vs 8点结构公平比较"
+  status: "planned"
+  required_evidence:
+    - FE3D-CONTINUOUS
+    - FE3D-4P
+    - FE3D-6P
+    - FE3D-8P
+  confidence: "to_be_determined"
+  publication_status: "proposed"
+  notes: "必须统一边界条件：热输入、网格、夹具、材料、BC"
+
+CLAIM-025:
+  claim: "温度门控自适应跳焊优于固定 S3"
+  status: "untested"
+  required_evidence:
+    - SIM-S1-baseline
+    - SIM-S2-symmetric
+    - SIM-S3-fixed
+    - SIM-thermal-gate
+    - SIM-adaptive-dynamic
+  confidence: "hypothesis"
+  publication_status: "proposed"
+  allowed_wording: "提出温度状态反馈的自适应焊接顺序策略"
+  next_gate: "完成对照实验，证明相对于固定 S3 有可解释改善"
+  notes: "第一版规则控制即可，不必上 MPC/AI"
+
+CLAIM-030:
+  claim: "焊前反变形补偿降低最终位置度"
+  status: "untested"
+  required_evidence:
+    - SIM-no-compensation
+    - SIM-static-compensation
+    - SIM-adaptive-compensation
+  confidence: "hypothesis"
+  publication_status: "proposed"
+  allowed_wording: "提出焊前位姿—焊后变形联合预测的轨迹补偿方法"
+  next_gate: "基于可信热结构模型，测试补偿效果"
+  notes: "依赖可信变形预测模型，先做好预测再做补偿"
+
+CLAIM-035:
+  claim: "参数化多目标优化得到 Pareto 前沿"
+  status: "planned"
+  required_evidence:
+    - OPT-pareto-front
+  confidence: "hypothesis"
+  publication_status: "proposed"
+  allowed_wording: "构建参数化多目标优化框架"
+  next_gate: "完成 FE 公平比较后，进行多目标优化"
+  notes: "先做公平比较，再做 Pareto，不要现在就跑 NSGA-II"
+
+---
+
+## 数值模型可信度
+
+CLAIM-050:
+  claim: "降阶模型可用于方案筛选"
+  status: "qualified"
+  evidence:
+    - ROM-006
+    - ROM-sensitivity
+  limitations:
+    - "structure_factor 未经 FE 或实验标定"
+    - "fixture_factor 未经标定"
+    - "仅用于相对排序，不用于绝对定量"
+  confidence: "medium"
+  publication_status: "screening_tool"
+  allowed_wording: "降阶模型用于高效方案筛选"
+
+CLAIM-051:
+  claim: "二维 FE 热—结构代理模型"
+  status: "qualified"
+  evidence:
+    - FE2D-001 ~ FE2D-005
+  limitations:
+    - "峰值温度仅 462-562°C，无熔池"
+    - "网格相邻变化 29.224%，远未收敛"
+    - "无三维壳体，无真实孔轴线"
+    - "FE2D-003 柔顺结构反而最差"
+  confidence: "low"
+  publication_status: "preliminary_model"
+  allowed_wording: "二维热—结构代理模型用于参数敏感性分析"
+  next_gate: "升级为收敛的三维模型"
+  notes: "当前不能承担关键定量结论"
+
+CLAIM-052:
+  claim: "三维热—弹塑性模型可信"
+  status: "pending"
+  required_evidence:
+    - FE3D-BASE-convergence  # 网格收敛 < 5%
+    - FE3D-BASE-validation   # 温度场合理性
+    - FE3D-BASE-BC-check     # 边界条件清晰
+  confidence: "to_be_determined"
+  publication_status: "proposed"
+  next_gate: "完成 3D Baseline，通过收敛和物理检查"
+
+---
+
+## 误差预算
+
+CLAIM-060:
+  claim: "误差预算已闭合在 0.025 mm 内"
+  status: "not_closed"
+  evidence:
+    - ERROR-BUDGET-V3
+  current_value: "0.035 mm（最坏情况）"
+  target_value: "0.025 mm"
+  gap: "0.010 mm"
+  confidence: "needs_optimization"
+  publication_status: "optimization_target"
+  allowed_wording: "误差预算口径已修正（装配链/自动化链分离），当前最坏情况预算尚未闭合，成为 V4 重点优化约束"
+  notes: "这不是硬伤，是优化方向。四个创新点的顶层约束。"
+
+CLAIM-061:
+  claim: "V4 目标分配可实现"
+  status: "design_target"
+  target_allocation:
+    - "A/B 基准 ≤0.004"
+    - "定位夹具 ≤0.004"
+    - "初始装配 ≤0.003"
+    - "焊接变形 ≤0.011"
+    - "松夹回弹 ≤0.003"
+  required_evidence:
+    - 精密夹具设计 → 0.004
+    - 柔顺结构+自适应跳焊 → 0.011
+    - 反变形补偿 → 进一步降低
+  confidence: "design_hypothesis"
+  publication_status: "proposed_targets"
+
+---
+
+## 自动化与质量控制
+
+CLAIM-070:
+  claim: "视觉定位 P95 ≤0.010 mm（数字样本）"
+  status: "digital_validation"
+  evidence:
+    - VISION-benchmark-1000
+    - VISION-adversarial
+  limitations:
+    - "数字样本，非真实镜头"
+    - "需真实相机标定"
+  confidence: "medium"
+  publication_status: "digital_prototype"
+  allowed_wording: "数字视觉样本 P95 精度"
+
+CLAIM-071:
+  claim: "异常检测 F1=100%"
+  status: "digital_validation"
+  evidence:
+    - ANOMALY-100-100
+  limitations:
+    - "合成异常，非真实焊机信号"
+    - "阈值需真实数据重新标定"
+  confidence: "medium"
+  publication_status: "digital_prototype"
+  allowed_wording: "合成信号基准 F1 分数"
+  notes: "不要强调 100%，会让评委觉得是自己检测自己"
+
+---
+
+## 实物验证（待完成）
+
+CLAIM-080:
+  claim: "QT450-10/Q235B 小试焊缝可焊性"
+  status: "pending"
+  required_evidence:
+    - EXP-weld-001
+    - EXP-weld-002
+    - EXP-weld-003
+  confidence: "to_be_verified"
+  publication_status: "experimental_validation_pending"
+  priority: "high"
+  notes: "2-3 个接头试样，最有价值的物理证据"
+
+CLAIM-081:
+  claim: "焊缝金相组织无白口/裂纹"
+  status: "pending"
+  required_evidence:
+    - EXP-metallography-001
+  confidence: "to_be_verified"
+  publication_status: "experimental_validation_pending"
+  priority: "high"
+
+CLAIM-082:
+  claim: "焊缝+HAZ 显微硬度分布"
+  status: "pending"
+  required_evidence:
+    - EXP-hardness-001
+  confidence: "to_be_verified"
+  publication_status: "experimental_validation_pending"
+  priority: "high"
+  notes: "1 条硬度曲线即可，用于模型校准"
+
+CLAIM-083:
+  claim: "温度历程测量"
+  status: "pending"
+  required_evidence:
+    - EXP-temperature-001
+  confidence: "to_be_verified"
+  publication_status: "experimental_validation_pending"
+  priority: "high"
+  notes: "热电偶/红外，用于模型校准"
+
+CLAIM-084:
+  claim: "焊后位置度 CMM 测量"
+  status: "pending"
+  required_evidence:
+    - EXP-CMM-001
+  confidence: "to_be_verified"
+  publication_status: "experimental_validation_pending"
+  priority: "medium"
+  notes: "最终验证，如果时间充足"
+
+---
+
+## 发布规则
+
+**publication_status 定义**：
+- `verified`: 已验证，可直接作为结论
+- `supported`: 有文献支持，可引用
+- `design_choice`: 设计选择，已明确标注
+- `hypothesis`: 假设，需验证
+- `proposed`: 提出的方法，尚未测试
+- `screening_tool`: 筛选工具，不用于定量结论
+- `preliminary_model`: 初步模型，有局限性
+- `digital_prototype`: 数字样机，非实物
+- `optimization_target`: 优化目标，尚未实现
+- `experimental_validation_pending`: 等待实验验证
+
+**撰写论文时规则**：
+1. 所有 `hypothesis` / `proposed` 必须用"提出"、"设计"、"构建"等词
+2. 所有 `unresolved` / `untested` 不能写"验证"、"证明"、"表明"
+3. 所有 `digital_prototype` 必须注明"数字样本"
+4. 所有 `preliminary_model` 必须注明局限性
+5. 所有 `pending` 必须写"待验证"或完全不提
+
+---
+
+## 最后更新
+
+- 2026-09-03：V4 证据清单建立
+- 下次更新：3D FE Baseline 完成后
