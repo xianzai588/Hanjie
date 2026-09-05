@@ -4,21 +4,21 @@
 
 | 算例 | 结构 | 夹具 | 点数 | 顺序 | P_sim (mm) | 相对同点数 S1 降低 (%) | 模型内判定 |
 | --- | --- | --- | ---: | --- | ---: | ---: | --- |
-| BASELINE-RIGID-4P-S1 | baseline | rigid | 4 | S1 | 0.039049 | 0.000 | True |
-| BASELINE-RIGID-4P-S2 | baseline | rigid | 4 | S2 | 0.019524 | 50.001 | True |
-| BASELINE-RIGID-4P-S3 | baseline | rigid | 4 | S3 | 0.019524 | 50.001 | True |
-| BASELINE-RIGID-6P-S1 | baseline | rigid | 6 | S1 | 0.049701 | 0.000 | True |
-| BASELINE-RIGID-6P-S2 | baseline | rigid | 6 | S2 | 0.016567 | 66.667 | True |
-| BASELINE-RIGID-6P-S3 | baseline | rigid | 6 | S3 | 0.016567 | 66.667 | True |
-| BASELINE-RIGID-8P-S1 | baseline | rigid | 8 | S1 | 0.061845 | 0.000 | False |
-| BASELINE-RIGID-8P-S2 | baseline | rigid | 8 | S2 | 0.015461 | 75.000 | True |
-| BASELINE-RIGID-8P-S3 | baseline | rigid | 8 | S3 | 0.015461 | 75.000 | True |
-| FLEX-COMPLIANT-4P-S2 | flex | compliant | 4 | S2 | 0.010356 | 73.479 | True |
-| FLEX-COMPLIANT-4P-S3 | flex | compliant | 4 | S3 | 0.010356 | 73.479 | True |
-| FLEX-COMPLIANT-6P-S2 | flex | compliant | 6 | S2 | 0.008787 | 82.320 | True |
-| FLEX-COMPLIANT-6P-S3 | flex | compliant | 6 | S3 | 0.008787 | 82.320 | True |
-| FLEX-COMPLIANT-8P-S2 | flex | compliant | 8 | S2 | 0.008201 | 86.739 | True |
-| FLEX-COMPLIANT-8P-S3 | flex | compliant | 8 | S3 | 0.008201 | 86.739 | True |
+| BASELINE-RIGID-4P-S1 | baseline | rigid | 4 | S1 | 0.039673 | 0.000 | True |
+| BASELINE-RIGID-4P-S2 | baseline | rigid | 4 | S2 | 0.019836 | 50.001 | True |
+| BASELINE-RIGID-4P-S3 | baseline | rigid | 4 | S3 | 0.019836 | 50.001 | True |
+| BASELINE-RIGID-6P-S1 | baseline | rigid | 6 | S1 | 0.050495 | 0.000 | False |
+| BASELINE-RIGID-6P-S2 | baseline | rigid | 6 | S2 | 0.016832 | 66.666 | True |
+| BASELINE-RIGID-6P-S3 | baseline | rigid | 6 | S3 | 0.016832 | 66.666 | True |
+| BASELINE-RIGID-8P-S1 | baseline | rigid | 8 | S1 | 0.062834 | 0.000 | False |
+| BASELINE-RIGID-8P-S2 | baseline | rigid | 8 | S2 | 0.015708 | 75.001 | True |
+| BASELINE-RIGID-8P-S3 | baseline | rigid | 8 | S3 | 0.015708 | 75.001 | True |
+| FLEX-COMPLIANT-4P-S2 | flex | compliant | 4 | S2 | 0.010521 | 73.481 | True |
+| FLEX-COMPLIANT-4P-S3 | flex | compliant | 4 | S3 | 0.010521 | 73.481 | True |
+| FLEX-COMPLIANT-6P-S2 | flex | compliant | 6 | S2 | 0.008928 | 82.319 | True |
+| FLEX-COMPLIANT-6P-S3 | flex | compliant | 6 | S3 | 0.008928 | 82.319 | True |
+| FLEX-COMPLIANT-8P-S2 | flex | compliant | 8 | S2 | 0.008332 | 86.740 | True |
+| FLEX-COMPLIANT-8P-S3 | flex | compliant | 8 | S3 | 0.008332 | 86.740 | True |
 
 ## 解释
 

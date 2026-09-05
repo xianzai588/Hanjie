@@ -429,9 +429,9 @@ def build_story() -> list[Flowable]:
         ["设计变量", "V2 设定", "性质/用途"],
         ["中心刚性区", "Ø82 mm", "为六个径向连接单元留热隔离区"],
         ["连接单元", "6 个，短焊段 18 mm", "主方案；4/8 点为对照"],
-        ["翼端半径", "R73.8 mm", "与壳体内半径 75 mm 留 1.2 mm 装配间隙"],
+        ["翼端半径", "R74.98 mm", "与壳体内半径 75 mm 形成 H7/h6 精密间隙配合 (0.01~0.04 mm)"],
         ["柔顺槽", "宽 4 mm", "降低中心孔与焊区收缩耦合的设计变量"],
-        ["夹具", "中心 Ø39.96 mm 定位销；Ø190 mm 底板；6 个径向支撑", "1200 N/mm 为等效刚度假设"],
+        ["夹具", "1/50 锥形心轴 (Ø39.90~40.10 mm)；Ø190 mm 底板；6 个径向支撑", "1200 N/mm 为等效刚度假设"],
     ], [34 * mm, 51 * mm, 85 * mm]))
     story.extend([Spacer(1, 5 * mm), P("夹具约束映射", "H2CN"), table([
         ["装配自由度", "夹具特征", "映射"],
@@ -524,7 +524,7 @@ def build_story() -> list[Flowable]:
         ["distortion", "100%", "100%", "0.003572", "PASS"],
         ["large_offset", "100%", "100%", "0.003830", "PASS"],
     ], [29 * mm, 25 * mm, 28 * mm, 34 * mm, 34 * mm], compact=True)])
-    story.extend([PageBreak(), P("9.3 视觉工程判定", "H2CN"), P("困难集揭示了“能返回结果”和“能用于定位”之间的差别。运行时质量门根据轮廓圆度、椭圆轴比和标记面积拒绝 noise、illumination、perspective、occlusion、missing_edges 等低可信结果，避免错误坐标进入路径规划。质量接受仍不等于真实工业精度认证。", "BodyCN"), source_note("automation/vision/results/difficult-summary.json；姿态门限由 0.010 mm / 73.8 mm 换算为 0.0078°。"), *figure(CHARTS["vision"], "图 5  困难视觉条件的工程门结果；质量接受率与误差门同时使用。", 145 * mm), PageBreak()])
+    story.extend([PageBreak(), P("9.3 视觉工程判定", "H2CN"), P("困难集揭示了“能返回结果”和“能用于定位”之间的差别。运行时质量门根据轮廓圆度、椭圆轴比和标记面积拒绝 noise、illumination、perspective、occlusion、missing_edges 等低可信结果，避免错误坐标进入路径规划。质量接受仍不等于真实工业精度认证。", "BodyCN"), source_note("automation/vision/results/difficult-summary.json；姿态门限由 0.010 mm / 74.98 mm 换算为 0.0076°。"), *figure(CHARTS["vision"], "图 5  困难视觉条件的工程门结果；质量接受率与误差门同时使用。", 145 * mm), PageBreak()])
 
     # 10/11 automation and cleanliness
     story.extend(section("过程监测、追溯与内腔洁净度", "10"))

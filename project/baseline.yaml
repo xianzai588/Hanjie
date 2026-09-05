@@ -1,0 +1,83 @@
+# Single Source of Truth (SSOT) - Hanjie Engineering Baseline
+# 版本: V4.1
+# 统一设计基线：全仓库所有 CAD、仿真、路径规划、视觉、测试和报告引用的唯一权威参数源。
+# 禁止在任何脚本或测试中自行硬编码 73.8、75A、0.05 等参数。
+
+version: "V4.1"
+last_updated: "2026-09-04"
+
+# 1. 官方固定命题要求
+official:
+  shell_material: "Q235B"
+  shell_outer_diameter_mm: 160.0
+  shell_height_mm: 200.0
+  shell_thickness_mm: 5.0
+  bearing_bore_diameter_mm: 40.0
+  seat_material: "QT450-10"
+  position_tolerance_limit_mm: 0.05
+  cleanliness_requirement: "内部不得出现可能落入压缩机内部的焊渣或飞溅物"
+
+# 2. 正式设计几何基线
+geometry:
+  shell_outer_diameter_mm: 160.0
+  shell_inner_diameter_mm: 150.0
+  shell_thickness_mm: 5.0
+  shell_height_mm: 200.0
+  bearing_bore_diameter_mm: 40.0
+  seat_core_outer_diameter_mm: 82.0
+  seat_thickness_mm: 12.0
+  wing_outer_radius_mm: 74.98
+  wing_width_mm: 18.0
+  slot_width_mm: 4.0
+  weld_segment_length_mm: 18.0
+  primary_layout_points: 6
+  assembly_fit: "H7/h6"
+  radial_clearance_min_mm: 0.01
+  radial_clearance_max_mm: 0.04
+  joint_type: "fillet_weld"
+  fillet_leg_length_mm: 3.5
+
+# 3. 夹具基线 (消除旧版 Ø39.96 销，采用 1/50 锥形心轴)
+fixture:
+  type: "tapered_mandrel"
+  taper_ratio: 0.02  # 1/50
+  taper_str: "1/50"
+  small_diameter_mm: 39.90
+  large_diameter_mm: 40.10
+  effective_length_mm: 10.0
+  axial_clamping_force_n: 500.0
+  positioning_repeatability_mm: 0.008
+  equivalent_stiffness_n_mm: 1200.0
+  fixture_base_diameter_mm: 190.0
+
+# 4. 焊接工艺基线 (TIG + 镍基填充 + 预热)
+process:
+  method: "automatic_TIG"
+  current_a: 75.0
+  voltage_v: 12.0
+  travel_speed_mm_s: 1.5
+  efficiency: 0.55
+  heat_input_j_per_mm: 330.0  # (75 * 12 * 0.55) / 1.5 = 330 J/mm
+  preheat_temperature_c: 150.0
+  interpass_temperature_limit_c: 200.0
+  filler_wire: "ERNiFe-CI"
+  wire_diameter_mm: 1.2
+  shielding_gas: "100% Ar (99.999% purity)"
+  gas_flow_rate_l_min: 10.0
+  polarity: "DCEN"
+
+# 5. 误差预算与质量门限
+tolerance:
+  position_limit_mm: 0.05
+  radial_budget_mm: 0.025
+  allocation_worst_case_mm:
+    vision_mm: 0.010
+    camera_calibration_mm: 0.004
+    tcp_calibration_mm: 0.003
+    robot_repeatability_mm: 0.003
+    fixture_repeatability_mm: 0.003
+    thermal_residual_mm: 0.002
+  vision_gate:
+    radial_p95_mm: 0.010
+    lever_arm_mm: 74.98
+    angle_p95_deg: 0.00764  # arctan(0.010 / 74.98) * 180 / pi

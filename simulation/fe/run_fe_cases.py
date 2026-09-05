@@ -270,10 +270,11 @@ def elasticity_solution(mesh: MeshTri, is_seat: np.ndarray, grads: list[np.ndarr
     support_angles = np.arange(6, dtype=float) * 2.0 * math.pi / 6.0
     support_nodes = []
     outer_nodes = np.flatnonzero(np.linalg.norm(mesh.p, axis=0) > 69.0)
+    target_radius = float(config.get("geometry", {}).get("wing_outer_radius_mm", 74.98))
     for angle in support_angles:
         distances = angle_distance(np.arctan2(mesh.p[1, outer_nodes], mesh.p[0, outer_nodes]), angle)
-        radial_distance = np.abs(np.linalg.norm(mesh.p[:, outer_nodes], axis=0) - 73.8)
-        support_nodes.append(int(outer_nodes[np.argmin(distances + radial_distance / 73.8)]))
+        radial_distance = np.abs(np.linalg.norm(mesh.p[:, outer_nodes], axis=0) - target_radius)
+        support_nodes.append(int(outer_nodes[np.argmin(distances + radial_distance / target_radius)]))
     spring_k = 1.0e8 if fixture == "rigid" else config["materials"]["fixture"]["equivalent_stiffness_n_mm"]
     for node in support_nodes:
         vector = mesh.p[:, node]

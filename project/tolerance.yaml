@@ -1,0 +1,44 @@
+# 误差预算与质量门限 - Hanjie Tolerance & Quality Budget
+# 版本: V4.1
+# 目标: 轴承孔轴线位置度 ≤ Ø0.05 mm (基准 A: 壳体端面, 基准 B: 壳体理论中心轴)
+
+target:
+  tolerance_callout: "Ø0.05 | A | B"
+  cylindrical_tolerance_zone_diameter_mm: 0.050
+  radial_deviation_limit_mm: 0.025
+
+error_budget_tree:
+  worst_case_linear_sum_mm: 0.025
+  subsystems:
+    machining_and_assembly:
+      mandrel_positioning_repeatability_mm: 0.003
+      fixture_clearance_fit_repeatability_mm: 0.003
+      description: "采用 1/50 锥形心轴自动对中消除原始固定间隙偏心"
+    vision_measurement:
+      vision_detection_radial_p95_mm: 0.010
+      camera_extrinsic_calibration_mm: 0.004
+      tcp_calibration_uncertainty_mm: 0.003
+      robot_repeatability_mm: 0.003
+      pose_lever_arm_mm: 74.98
+      derived_angle_p95_deg: 0.00764
+      description: "工位视觉粗定心与焊前位姿复核"
+    welding_thermal_residual:
+      maximum_allowable_bore_axis_drift_mm: 0.002
+      description: "残余位姿漂移分配限额；超出部分由反变形预补偿消除"
+
+quality_gates:
+  vision:
+    rejection_reasons:
+      - "extreme_illumination"
+      - "excessive_blur"
+      - "low_contrast"
+      - "severe_distortion"
+      - "heavy_occlusion"
+    action_on_failure: "REFUSE_AND_ALARM"  # 绝不将不确定坐标下发给机器人
+  temperature:
+    max_peak_temperature_c: 1650.0
+    interpass_gate_temperature_c: 200.0
+    max_circumferential_delta_t_c: 40.0
+  position_tolerance_cmm:
+    acceptance_threshold_mm: 0.050
+    guard_band_safety_margin_mm: 0.005  # 实测建议 ≤0.045 mm

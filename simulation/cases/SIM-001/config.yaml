@@ -9,10 +9,10 @@ case:
   effective_peak_temperature_c: 550.628437
   haz_width_proxy_mm: 3.996498
   material_stiffness_factor: 1.0
-  hole_center_shift_mm: 0.015495
-  axis_tilt_deg: 0.038472
-  shell_ellipticity_proxy_mm: 0.013031
-  position_metric_p_sim_mm: 0.039049
+  hole_center_shift_mm: 0.015743
+  axis_tilt_deg: 0.039088
+  shell_ellipticity_proxy_mm: 0.013239
+  position_metric_p_sim_mm: 0.039673
   limit_mm: 0.05
   pass_in_model: true
   sequence_indices: 1-2-3-4
@@ -33,7 +33,7 @@ geometry:
   seat_core_outer_diameter_mm: 82.0
   seat_thickness_mm: 12.0
   wing_width: 18.0
-  wing_outer_radius_mm: 73.8
+  wing_outer_radius_mm: 74.98
   weld_segment_length_mm: 18.0
 model:
   name: reduced-order-thermal-structural-v1

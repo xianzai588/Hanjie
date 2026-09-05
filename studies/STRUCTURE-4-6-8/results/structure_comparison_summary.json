@@ -1,0 +1,40 @@
+{
+  "comparison": [
+    {
+      "structure_type": "continuous",
+      "points": "连续",
+      "total_weld_length_mm": 471.1,
+      "t_peak_c": 1500.0,
+      "max_stress_mpa": 285.0,
+      "position_metric_p_mm": 0.072765,
+      "meets_p005_limit": false
+    },
+    {
+      "structure_type": "4_point",
+      "points": "4",
+      "total_weld_length_mm": 72.0,
+      "t_peak_c": 1500.0,
+      "max_stress_mpa": 185.25,
+      "position_metric_p_mm": 0.056210962499999996,
+      "meets_p005_limit": false
+    },
+    {
+      "structure_type": "6_point",
+      "points": "6",
+      "total_weld_length_mm": 108.0,
+      "t_peak_c": 1500.0,
+      "max_stress_mpa": 216.6,
+      "position_metric_p_mm": 0.06141366000000001,
+      "meets_p005_limit": false
+    },
+    {
+      "structure_type": "8_point",
+      "points": "8",
+      "total_weld_length_mm": 144.0,
+      "t_peak_c": 1500.0,
+      "max_stress_mpa": 250.8,
+      "position_metric_p_mm": 0.06708933000000002,
+      "meets_p005_limit": false
+    }
+  ]
+}

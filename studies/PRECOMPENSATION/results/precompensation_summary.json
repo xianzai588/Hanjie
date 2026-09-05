@@ -1,0 +1,31 @@
+{
+  "benchmark": [
+    {
+      "key": "no_compensation",
+      "method_name": "无补偿基线 (No-Comp)",
+      "mean_error_mm": 0.05284165986580806,
+      "p95_error_mm": 0.0728749659852939,
+      "max_error_mm": 0.08278475073598977,
+      "boundary_violation_rate_pct": 0.0,
+      "pass_p005_rate_pct": 40.0
+    },
+    {
+      "key": "static_subtraction",
+      "method_name": "经验静态减法 (Static-Minus)",
+      "mean_error_mm": 0.014633722706333212,
+      "p95_error_mm": 0.027246903218497744,
+      "max_error_mm": 0.03911522013035066,
+      "boundary_violation_rate_pct": 1.5,
+      "pass_p005_rate_pct": 100.0
+    },
+    {
+      "key": "inverse_optimization",
+      "method_name": "不确定性逆向优化 (Inverse-Opt)",
+      "mean_error_mm": 0.014750269625356147,
+      "p95_error_mm": 0.028173957944313918,
+      "max_error_mm": 0.03597472703405688,
+      "boundary_violation_rate_pct": 0.5,
+      "pass_p005_rate_pct": 100.0
+    }
+  ]
+}

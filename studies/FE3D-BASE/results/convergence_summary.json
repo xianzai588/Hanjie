@@ -1,0 +1,11 @@
+{
+  "model": "FE3D-BASE",
+  "structure": "continuous",
+  "gate_b1_passed": true,
+  "p_change_pct": 1.522842639593901,
+  "stress_change_pct": 1.5228426395939003,
+  "temp_change_pct": 0.0,
+  "fine_position_metric_p_mm": 0.071673525,
+  "fine_peak_temp_c": 1500.0,
+  "fine_max_stress_mpa": 280.725
+}

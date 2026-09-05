@@ -23,7 +23,19 @@ DIFFICULTIES = ("clean", "noise", "blur", "illumination", "perspective", "occlus
 POSITION_TOLERANCE_DIAMETER_LIMIT_MM = 0.05
 POSITION_TOLERANCE_RADIUS_BUDGET_MM = POSITION_TOLERANCE_DIAMETER_LIMIT_MM / 2.0
 VISION_RADIAL_MAE_BUDGET_MM = 0.010
-POSE_LEVER_ARM_MM = 73.8
+
+BASELINE_PATH = ROOT / "project" / "baseline.yaml"
+if BASELINE_PATH.exists():
+    try:
+        import yaml
+        with BASELINE_PATH.open("r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+            POSE_LEVER_ARM_MM = float(data["geometry"]["wing_outer_radius_mm"])
+    except Exception:
+        POSE_LEVER_ARM_MM = 74.98
+else:
+    POSE_LEVER_ARM_MM = 74.98
+
 # 将姿态误差换算为最不利的切向位移，确保该项不超过视觉径向份额。
 VISION_ANGLE_MAE_BUDGET_DEG = float(np.degrees(VISION_RADIAL_MAE_BUDGET_MM / POSE_LEVER_ARM_MM))
 

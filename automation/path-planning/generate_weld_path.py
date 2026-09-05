@@ -10,6 +10,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT = ROOT / "automation" / "path-planning" / "results" / "weld-path.json"
+BASELINE_PATH = ROOT / "project" / "baseline.yaml"
+
+
+def get_default_radius() -> float:
+    if BASELINE_PATH.exists():
+        try:
+            import yaml
+            with BASELINE_PATH.open("r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+                return float(data["geometry"]["wing_outer_radius_mm"])
+        except Exception:
+            pass
+    return 74.98
 
 
 def sequence_for(name: str, count: int) -> list[int]:
@@ -23,8 +36,10 @@ def sequence_for(name: str, count: int) -> list[int]:
     raise ValueError(f"未知顺序: {name}")
 
 
-def generate_path(points: int = 6, sequence: str = "S3", radius_mm: float = 73.8,
+def generate_path(points: int = 6, sequence: str = "S3", radius_mm: float | None = None,
                   segment_length_mm: float = 18.0) -> dict[str, object]:
+    if radius_mm is None:
+        radius_mm = get_default_radius()
     if points % 2:
         raise ValueError("S2/S3 需要偶数焊接单元")
     delta = segment_length_mm / radius_mm

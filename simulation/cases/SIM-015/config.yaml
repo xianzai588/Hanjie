@@ -9,16 +9,16 @@ case:
   effective_peak_temperature_c: 550.628437
   haz_width_proxy_mm: 3.996498
   material_stiffness_factor: 1.0
-  hole_center_shift_mm: 0.003254
-  axis_tilt_deg: 0.00808
-  shell_ellipticity_proxy_mm: 0.003455
-  position_metric_p_sim_mm: 0.008201
+  hole_center_shift_mm: 0.003306
+  axis_tilt_deg: 0.008209
+  shell_ellipticity_proxy_mm: 0.00351
+  position_metric_p_sim_mm: 0.008332
   limit_mm: 0.05
   pass_in_model: true
   sequence_indices: 1-5-4-8-3-7-2-6
   datum_reference: A=壳体安装基准平面；B=Q235B 壳体理论中心轴；C=独立周向定位特征；受控特征=Ø40 孔轴线；位置度=Ø0.05 |
     A | B
-  reduction_vs_baseline_s1_pct: 86.739
+  reduction_vs_baseline_s1_pct: 86.74
 process:
   current_a: 75.0
   voltage_v: 12.0
@@ -33,7 +33,7 @@ geometry:
   seat_core_outer_diameter_mm: 82.0
   seat_thickness_mm: 12.0
   wing_width: 18.0
-  wing_outer_radius_mm: 73.8
+  wing_outer_radius_mm: 74.98
   weld_segment_length_mm: 18.0
 model:
   name: reduced-order-thermal-structural-v1

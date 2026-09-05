@@ -1,0 +1,58 @@
+# 焊接工艺规范与窗口参数 - Hanjie Process Specification
+# 版本: V4.1
+# 工艺路线: 自动非熔化极气体保护电弧焊 (Automatic TIG) + ERNiFe-CI 填丝 + 预热
+
+process:
+  nominal:
+    method: "automatic_TIG"
+    current_a: 75.0
+    voltage_v: 12.0
+    travel_speed_mm_s: 1.5
+    arc_efficiency: 0.55
+    heat_input_j_per_mm: 330.0
+    preheat_c: 150.0
+    interpass_limit_c: 200.0
+    filler_feed_rate_mm_s: 2.0
+    filler_diameter_mm: 1.2
+    shielding_gas: "99.999% Ar"
+    gas_flow_rate_l_min: 10.0
+    tungsten_electrode: "W-La20 (Ø2.0 mm)"
+    nozzle_diameter_mm: 10.0
+    standoff_distance_mm: 2.5
+
+  acceptable_window:
+    current_a:
+      min: 65.0
+      nominal: 75.0
+      max: 85.0
+    voltage_v:
+      min: 11.0
+      nominal: 12.0
+      max: 13.5
+    travel_speed_mm_s:
+      min: 1.2
+      nominal: 1.5
+      max: 2.0
+    heat_input_j_per_mm:
+      min: 240.0
+      max: 420.0
+    preheat_c:
+      min: 130.0
+      nominal: 150.0
+      max: 180.0
+    interpass_limit_c:
+      max: 200.0
+
+  sequence_strategies:
+    - name: "S1"
+      type: "continuous_sequential"
+      description: "顺次焊接，热累积极高，非对称变形大"
+    - name: "S2"
+      type: "fixed_diagonal"
+      description: "固定对角跳焊，热对称性较好"
+    - name: "S3"
+      type: "fixed_intermittent"
+      description: "固定六点跳焊序列 1->4->3->6->2->5"
+    - name: "ADAPTIVE"
+      type: "temperature_state_driven"
+      description: "在线测温反馈 + 动态加权选段跳焊，受邻段道温门限与温差约束"

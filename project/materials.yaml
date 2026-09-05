@@ -1,0 +1,77 @@
+# 材料参数与物性数据 - Hanjie Engineering Materials
+# 版本: V4.1
+# 关联规范: GB/T 700 (Q235B), GB/T 1348 (QT450-10), GB/T 10044 / AWS A5.15 (ERNiFe-CI)
+
+materials:
+  q235b:
+    name: "碳素结构钢 Q235B"
+    standard: "GB/T 700-2006"
+    composition_nominal_wt_pct:
+      C: 0.17
+      Mn: 0.45
+      Si: 0.20
+      S: 0.035
+      P: 0.035
+    nominal_properties_20c:
+      density_kg_m3: 7850.0
+      specific_heat_j_kgk: 470.0
+      thermal_conductivity_w_mk: 45.0
+      elastic_modulus_gpa: 210.0
+      poisson_ratio: 0.28
+      alpha_per_k: 1.20e-5
+      yield_strength_mpa: 235.0
+      tensile_strength_mpa: 420.0
+    temperature_dependent:
+      temperatures_c: [20, 200, 400, 600, 800, 1000, 1400]
+      thermal_conductivity_w_mk: [45.0, 43.0, 38.0, 31.0, 26.0, 28.0, 32.0]
+      specific_heat_j_kgk: [470.0, 520.0, 610.0, 760.0, 800.0, 650.0, 700.0]
+      elastic_modulus_gpa: [210.0, 195.0, 165.0, 85.0, 25.0, 10.0, 2.0]
+      yield_strength_mpa: [235.0, 210.0, 160.0, 60.0, 20.0, 8.0, 2.0]
+      alpha_per_k: [1.20e-5, 1.28e-5, 1.36e-5, 1.44e-5, 1.48e-5, 1.50e-5, 1.52e-5]
+
+  qt450_10:
+    name: "球墨铸铁 QT450-10"
+    standard: "GB/T 1348-2019"
+    composition_nominal_wt_pct:
+      C: 3.65
+      Si: 2.60
+      Mn: 0.30
+      Mg: 0.045
+      P: 0.04
+      S: 0.015
+    nominal_properties_20c:
+      density_kg_m3: 7200.0
+      specific_heat_j_kgk: 460.0
+      thermal_conductivity_w_mk: 35.0
+      elastic_modulus_gpa: 170.0
+      poisson_ratio: 0.27
+      alpha_per_k: 1.05e-5
+      yield_strength_mpa: 310.0
+      tensile_strength_mpa: 450.0
+      elongation_pct: 10.0
+    temperature_dependent:
+      temperatures_c: [20, 200, 400, 600, 750, 900, 1200]
+      thermal_conductivity_w_mk: [35.0, 34.0, 32.0, 28.0, 24.0, 25.0, 28.0]
+      specific_heat_j_kgk: [460.0, 510.0, 580.0, 710.0, 850.0, 720.0, 750.0]
+      elastic_modulus_gpa: [170.0, 158.0, 135.0, 70.0, 20.0, 8.0, 1.5]
+      yield_strength_mpa: [310.0, 280.0, 210.0, 50.0, 15.0, 5.0, 1.0]
+      alpha_per_k: [1.05e-5, 1.12e-5, 1.20e-5, 1.30e-5, 1.35e-5, 1.38e-5, 1.40e-5]
+
+  ernife_ci:
+    name: "镍铁铸铁焊丝 ERNiFe-CI"
+    standard: "AWS A5.15 / GB/T 10044"
+    composition_nominal_wt_pct:
+      Ni: 55.0
+      Fe: "Balance"
+      C: 0.5
+      Mn: 1.0
+      Si: 0.5
+    nominal_properties_20c:
+      density_kg_m3: 8200.0
+      specific_heat_j_kgk: 480.0
+      thermal_conductivity_w_mk: 22.0
+      elastic_modulus_gpa: 160.0
+      poisson_ratio: 0.30
+      alpha_per_k: 1.10e-5
+      yield_strength_mpa: 290.0
+      tensile_strength_mpa: 480.0
