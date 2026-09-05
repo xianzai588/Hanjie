@@ -1,4 +1,6 @@
 {
+  "evidence_level": "synthetic_demo",
+  "validation_status": "unvalidated",
   "benchmark": [
     {
       "key": "no_compensation",

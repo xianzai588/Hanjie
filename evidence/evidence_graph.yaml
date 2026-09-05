@@ -1,149 +1,178 @@
-# Digital Thread & Evidence Graph - Hanjie 项目全局统一证据图谱
-# 版本: V4.1 (2026-09-04)
-# 统一六维证据编码分类：
-#   SRC-*   外部文献与国家标准 (Source Standards & Literature)
-#   DES-*   CAD 与工程设计基线 (Design Specifications)
-#   SIM-*   数值计算与有限元仿真 (Simulation Studies)
-#   CTRL-*  在线控制与反变形算法 (Control & Optimization)
-#   EXP-*   物理实验与工艺小试 (Experimental Trials)
-#   MET-*   测量、CMM 与视觉检测 (Measurement & Inspection)
-
 taxonomy:
   sources:
     SRC-GB-T700:
-      title: "GB/T 700-2006 碳素结构钢"
-      type: "national_standard"
-      relevance: "Q235B 壳体化学成分与常温力学性能依据"
+      title: GB/T 700-2006 碳素结构钢
+      type: national_standard
+      relevance: Q235B 壳体化学成分与常温力学性能依据
+      evidence_level: literature_supported
+      status: unvalidated
+      verification_status: citation_pending_verification
     SRC-GB-T1348:
-      title: "GB/T 1348-2019 球墨铸铁件"
-      type: "national_standard"
-      relevance: "QT450-10 主轴承座化学成分与抗拉强度依据"
+      title: GB/T 1348-2019 球墨铸铁件
+      type: national_standard
+      relevance: QT450-10 主轴承座化学成分与抗拉强度依据
+      evidence_level: literature_supported
+      status: unvalidated
+      verification_status: citation_pending_verification
     SRC-GB-T10044:
-      title: "GB/T 10044-2006 铸铁焊条及焊丝"
-      type: "national_standard"
-      relevance: "ERNiFe-CI 镍铁基焊丝选型依据"
+      title: GB/T 10044-2006 铸铁焊条及焊丝
+      type: national_standard
+      relevance: ERNiFe-CI 镍铁基焊丝选型依据
+      evidence_level: literature_supported
+      status: unvalidated
+      verification_status: citation_pending_verification
     SRC-LIT-001:
-      citation: "Cárcel-Carrasco et al., Metals 2016, 6, 283"
-      relevance: "球铁异种连接 TIG 根部镍基填充与热管理规律"
+      citation: Cárcel-Carrasco et al., Metals 2016, 6, 283
+      relevance: 球铁异种连接 TIG 根部镍基填充与热管理规律
+      evidence_level: literature_supported
+      status: unvalidated
+      verification_status: citation_pending_verification
     SRC-LIT-002:
-      citation: "El-Shennawy et al., Scientific Reports 2024, 14, 19827"
-      relevance: "ENiFe-CI 熔合线微观组织与碳迁移抑制机制"
+      citation: El-Shennawy et al., Scientific Reports 2024, 14, 19827
+      relevance: ENiFe-CI 熔合线微观组织与碳迁移抑制机制
+      evidence_level: literature_supported
+      status: unvalidated
+      verification_status: citation_pending_verification
     SRC-LIT-003:
-      citation: "Martínez Alcón et al., Revista de Metalurgia 2021, 57(2)"
-      relevance: "低热输入 TIG 配合预热对球墨铸铁脆硬组织的改善效果"
-
+      citation: Martínez Alcón et al., Revista de Metalurgia 2021, 57(2)
+      relevance: 低热输入 TIG 配合预热对球墨铸铁脆硬组织的改善效果
+      evidence_level: literature_supported
+      status: unvalidated
+      verification_status: citation_pending_verification
   designs:
     DES-CAD-BASELINE:
-      path: "project/baseline.yaml"
-      parameters: "Shell Ø160x5 mm, Wing R74.98 mm, H7/h6 fit, Taper 1/50 mandrel"
-      status: "frozen"
+      path: project/baseline.yaml
+      parameters: Shell Ø160x5 mm, Wing R74.98 mm, H7/h6 fit, Taper 1/50 mandrel
+      status: planned
+      evidence_level: design_assumption
     DES-FIXTURE-TAPER:
-      path: "cad/fixture/"
-      parameters: "Taper 1/50 mandrel (Ø39.90~40.10 mm), 500 N axial clamping"
-      status: "validated"
-
+      path: cad/fixture/
+      parameters: Taper 1/50 mandrel (Ø39.90~40.10 mm), 500 N axial clamping
+      status: planned
+      evidence_level: design_assumption
   simulations:
     SIM-FE3D-BASE:
-      path: "studies/FE3D-BASE/results/convergence_summary.json"
-      scope: "3D 热—弹塑性基线连续环形模型，网格收敛率 1.52% (<5%)"
-      status: "gate_b1_passed"
+      path: studies/FE3D-BASE/results/convergence_summary.json
+      scope: 经验代理原型；未运行 FE，Gate B.1 撤销
+      status: unvalidated
+      evidence_level: surrogate_result
     SIM-COMP-4-6-8:
-      path: "studies/STRUCTURE-4-6-8/results/structure_comparison_summary.json"
-      scope: "连续 vs 4点 vs 6点 vs 8点 结构严格公平对比"
-      status: "completed"
+      path: studies/STRUCTURE-4-6-8/results/structure_comparison_summary.json
+      scope: 预设系数比较；尚未满足 FAIR-A/B
+      status: unvalidated
+      evidence_level: surrogate_result
     SIM-ROBUST-OPT:
-      path: "studies/ROBUST-OPT/results/robust_pareto_summary.json"
-      scope: "面向 E(P), P95, CVaR95, 应力, 热输入的 Pareto 前沿解集"
-      status: "completed"
-
+      path: studies/ROBUST-OPT/results/robust_pareto_summary.json
+      scope: 有限候选代理非支配筛选；无全局最优或疲劳证据
+      status: unvalidated
+      evidence_level: surrogate_result
   control_experiments:
     CTRL-ADAPT-SEQ:
-      path: "studies/ADAPTIVE-SEQUENCE/results/adaptive_sequence_study.json"
-      scope: "温度状态驱动在线自适应跳焊，抗初始预热温差扰动"
-      status: "completed"
+      path: studies/ADAPTIVE-SEQUENCE/results/adaptive_sequence_study.json
+      scope: 同一 plant、位置度预测器、评价函数和扰动下的焊序对照；含同序列回放公平性检查，未校准
+      status: unvalidated
+      evidence_level: surrogate_result
     CTRL-INV-PRECOMP:
-      path: "studies/PRECOMPENSATION/results/precompensation_summary.json"
-      scope: "不确定性约束逆向反变形补偿，P95 压制至 0.028 mm"
-      status: "completed"
-
+      path: studies/PRECOMPENSATION/results/precompensation_summary.json
+      scope: 合成模型下预偏置对照，未独立实测验证
+      status: unvalidated
+      evidence_level: synthetic_demo
   physical_experiments:
     EXP-TEMP-001:
-      path: "data/samples/EXP-001-thermal.json"
-      equipment: "松下 YC-300WP4 + Fluke 52-II + K型热电偶"
-      scope: "近缝区降温历程曲线，反演有效电弧热效率 η=0.536"
-      status: "planned_for_gate2"
+      equipment: 待核实
+      scope: 计划采集热电偶数据；设备与原始记录待确认
+      status: planned
+      evidence_level: design_assumption
+      raw_data_path: null
     EXP-HARD-002:
-      path: "data/samples/EXP-002-hardness.json"
-      equipment: "沃伯特 402MVD 显微维氏硬度计 (HV0.2)"
-      scope: "跨接头显微硬度，评定白口渗碳体消除情况"
-      status: "planned_for_gate2"
+      equipment: 待核实
+      scope: 计划采集硬度曲线；设备与原始记录待确认
+      status: planned
+      evidence_level: design_assumption
+      raw_data_path: null
     EXP-WELD-003-005:
-      path: "data/samples/EXP-003-005-cmm.json"
-      equipment: "海克斯康 Explorer 08.10.06 CMM"
-      scope: "3 件工装总成试样实测 Ø40 孔轴线位置度"
-      status: "planned_for_gate2"
-
+      equipment: 待核实
+      scope: 计划采集总成 CMM 数据；设备与原始记录待确认
+      status: planned
+      evidence_level: design_assumption
+      raw_data_path: null
   measurements:
     MET-CMM-BENCH:
-      instrument: "Hexagon CMM (MPEE 1.5+L/350 um)"
-      standard: "ISO 1101 / GB/T 1958"
-      uncertainty: "0.002 mm (满足 1/5 准则)"
+      instrument: 待核实；MPE 不能替代测量不确定度
+      standard: ISO 1101 / GB/T 1958
+      uncertainty: null
+      evidence_level: design_assumption
+      status: planned
     MET-VIS-GATE:
-      path: "automation/vision/results/difficult-summary.json"
-      instrument: "海康 500 万工业相机 + 16mm 镜头"
-      quality_gate: "径向 P95 <= 0.010 mm, 角度 P95 <= 0.0076 deg, 异常拒绝"
-
-# 核心主张与双向证据链
+      path: automation/vision/results/difficult-summary.json
+      instrument: 合成图像基准；实机型号待核实
+      quality_gate: 径向 P95 <= 0.010 mm, 角度 P95 <= 0.0076 deg, 异常拒绝
+      evidence_level: synthetic_demo
+      status: planned
 claims_graph:
   CLAIM-001:
-    statement: "QT450-10/Q235B 可采用镍基填充 TIG 可靠焊接且白口得到有效抑制"
-    confidence: "high"
+    statement: 镍基填充 TIG 为候选工艺；本接头可靠性与白口抑制需小试验证
+    confidence: unresolved
     supporting_evidence:
-      - SRC-GB-T10044
-      - SRC-LIT-001
-      - SRC-LIT-002
-      - SRC-LIT-003
-      - EXP-HARD-002
-    report_section: "§2 材料与焊接性边界"
-
+    - SRC-GB-T10044
+    - SRC-LIT-001
+    - SRC-LIT-002
+    - SRC-LIT-003
+    - EXP-HARD-002
+    report_section: §2 材料与焊接性边界
+    status: unresolved
   CLAIM-002:
-    statement: "FE3D-BASE 3D 热—弹塑性仿真通过网格收敛验证 (<5%)，具备数值可信度"
-    confidence: "high"
+    statement: FE3D 当前为经验代理，不能证明有限元收敛
+    confidence: unresolved
     supporting_evidence:
-      - SIM-FE3D-BASE
-      - DES-CAD-BASELINE
-    report_section: "§4-§6 3D有限元网格收敛"
-
+    - SIM-FE3D-BASE
+    - DES-CAD-BASELINE
+    report_section: §4-§6 3D有限元网格收敛
+    status: unresolved
   CLAIM-003:
-    statement: "六点短焊段结构在变形控制、疲劳承载与工艺复杂度之间处于最优折中平衡"
-    confidence: "high"
+    statement: 最终拓扑未定，六点最优主张撤回
+    confidence: unresolved
     supporting_evidence:
-      - SIM-COMP-4-6-8
-      - SIM-ROBUST-OPT
-    report_section: "§4 结构选型与公平对比"
-
+    - SIM-COMP-4-6-8
+    - SIM-ROBUST-OPT
+    report_section: §4 结构选型与公平对比
+    status: unresolved
   CLAIM-004:
-    statement: "温度门控自适应跳焊在存在扰动时能动态维持热对称性，确保焊后 Ø0.05 mm 位置度"
-    confidence: "high"
+    statement: Adaptive 使用统一代理评价；稳定优于 S3 与实物达标尚未验证
+    confidence: unresolved
     supporting_evidence:
-      - CTRL-ADAPT-SEQ
-      - SIM-FE3D-BASE
-    report_section: "§7 自适应跳焊策略"
-
+    - CTRL-ADAPT-SEQ
+    - SIM-FE3D-BASE
+    report_section: §7 自适应跳焊策略
+    status: unresolved
   CLAIM-005:
-    statement: "逆向反变形补偿能有效吸收收缩各向异性，并受装配间隙边界硬约束保护"
-    confidence: "high"
+    statement: 预偏置为受装配约束的候选控制方法；优于静态补偿尚未验证
+    confidence: unresolved
     supporting_evidence:
-      - CTRL-INV-PRECOMP
-      - DES-CAD-BASELINE
-    report_section: "§8 逆向位姿补偿"
-
+    - CTRL-INV-PRECOMP
+    - DES-CAD-BASELINE
+    report_section: §8 逆向位姿补偿
+    status: unresolved
   CLAIM-006:
-    statement: "5 件少样本物理试验足以反演热效率、刚度与收缩系数，使不确定度缩减近 80%"
-    confidence: "high"
+    statement: 现有校准仅为合成演示；不支持物理后验或不确定度缩减结论
+    confidence: unresolved
     supporting_evidence:
-      - EXP-TEMP-001
-      - EXP-HARD-002
-      - EXP-WELD-003-005
-      - MET-CMM-BENCH
-    report_section: "§10 少样本校准与验证"
+    - EXP-TEMP-001
+    - EXP-HARD-002
+    - EXP-WELD-003-005
+    - MET-CMM-BENCH
+    report_section: §9 合成校准演示边界
+    status: unresolved
+version: '4.2'
+allowed_evidence_levels:
+- official
+- literature_supported
+- design_assumption
+- synthetic_demo
+- surrogate_result
+- solver_result_unvalidated
+- solver_verified
+- experiment_measured
+- experiment_repeated
+- calibrated
+- rejected

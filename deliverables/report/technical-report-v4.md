@@ -1,3 +1,5 @@
+> 历史版本，禁止进入当前提交链。当前报告源：technical-report-v4-unified.md。
+
 # QT450-10/Q235B 主轴承座异种材料焊接数字工程技术说明书 V4
 
 **版本**：V4.0-SKELETON  

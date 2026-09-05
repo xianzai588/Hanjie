@@ -44,9 +44,18 @@ class AdaptiveSequenceResult:
     max_delta_t_observed_c: float
     steps: List[SequenceDecisionStep]
     cooling_waiting_time_total_s: float
+    evidence_level: str = "surrogate_result"
+    plant_model: str = "shared_segment_thermal_v1"
+    position_predictor: str = "shared_surrogate_position_v1"
+    evaluation_model: str = "shared_thermal_position_v1"
+    initial_perturbation_c: Tuple[float, ...] = ()
 
 
 class AdaptiveSequenceController:
+    PLANT_MODEL = "shared_segment_thermal_v1"
+    POSITION_PREDICTOR = "shared_surrogate_position_v1"
+    EVALUATION_MODEL = "shared_thermal_position_v1"
+
     def __init__(
         self,
         num_segments: int = 6,
@@ -63,8 +72,19 @@ class AdaptiveSequenceController:
         self.interpass_gate_c = interpass_gate_c
         self.weights = (w_position, w_delta_t, w_heat, w_wait)
         self.cooling_rate = cooling_rate_per_s
+        if num_segments < 3 or interpass_gate_c <= 20 or cooling_rate_per_s <= 0:
+            raise ValueError("焊段数须至少为 3，道温门限须高于环境温度，冷却率须为正")
+
+    @staticmethod
+    def _predict_position(delta_t: float, asymmetry: float) -> float:
+        """统一代理评价函数，策略名称不得改变评价系数；尚未经物理校准。"""
+        return 0.015 + 0.00015 * delta_t + 0.028 * asymmetry
 
     def _init_segments(self, initial_temp_perturbation: Optional[np.ndarray] = None) -> List[WeldingSegmentState]:
+        if initial_temp_perturbation is not None:
+            initial_temp_perturbation = np.asarray(initial_temp_perturbation, dtype=float)
+            if initial_temp_perturbation.shape != (self.num_segments,) or not np.all(np.isfinite(initial_temp_perturbation)):
+                raise ValueError("初始温度扰动须为每段一个有限数值")
         segments = []
         for i in range(self.num_segments):
             angle = (360.0 / self.num_segments) * i
@@ -141,8 +161,7 @@ class AdaptiveSequenceController:
                 # 预测施焊后的热质心不对称度
                 sim_segs = [WeldingSegmentState(s.segment_id, s.angle_deg, s.is_welded, s.current_temp_c) for s in segments]
                 # 虚拟试算
-                cand_sim = sim_segs[cand.segment_id - 1]
-                cand_sim.current_temp_c += 280.0
+                self._update_temperatures(sim_segs, cand.segment_id, wait_s=wait_needed)
                 asym = self._calculate_thermal_asymmetry(sim_segs)
 
                 # 周向温差
@@ -150,7 +169,7 @@ class AdaptiveSequenceController:
                 delta_t = max(temps) - min(temps)
 
                 # 预测位置度贡献
-                pred_p = 0.015 + 0.00012 * delta_t + 0.025 * asym
+                pred_p = self._predict_position(delta_t, asym)
 
                 # 多目标评分函数: S = w1*P + w2*ΔT + w3*Q + w4*wait
                 score = (
@@ -167,7 +186,7 @@ class AdaptiveSequenceController:
 
             assert best_cand is not None
             # 执行施焊
-            t_before = best_cand.current_temp_c
+            t_before = 20.0 + (best_cand.current_temp_c - 20.0) * math.exp(-self.cooling_rate * best_wait)
             self._update_temperatures(segments, best_cand.segment_id, weld_duration_s=12.0, wait_s=best_wait)
             t_after = best_cand.current_temp_c
             best_cand.is_welded = True
@@ -176,7 +195,7 @@ class AdaptiveSequenceController:
             temps = [s.current_temp_c for s in segments]
             delta_t_now = max(temps) - min(temps)
             asym_now = self._calculate_thermal_asymmetry(segments)
-            p_step = 0.012 + 0.00009 * delta_t_now + 0.018 * asym_now
+            p_step = self._predict_position(delta_t_now, asym_now)
 
             steps.append(SequenceDecisionStep(
                 step_index=step + 1,
@@ -202,11 +221,20 @@ class AdaptiveSequenceController:
             max_delta_t_observed_c=final_delta_t,
             steps=steps,
             cooling_waiting_time_total_s=total_wait,
+            plant_model=self.PLANT_MODEL,
+            position_predictor=self.POSITION_PREDICTOR,
+            evaluation_model=self.EVALUATION_MODEL,
+            initial_perturbation_c=tuple(
+                np.asarray(initial_perturbation, dtype=float).tolist()
+                if initial_perturbation is not None else []
+            ),
         )
 
-    def evaluate_fixed_sequence(self, sequence_name: str, order: List[int]) -> AdaptiveSequenceResult:
+    def evaluate_fixed_sequence(self, sequence_name: str, order: List[int], initial_perturbation: Optional[np.ndarray] = None) -> AdaptiveSequenceResult:
         """评估固定时序方案 (S1, S2, S3) 以形成对照基线。"""
-        segments = self._init_segments()
+        if sorted(order) != list(range(1, self.num_segments + 1)):
+            raise ValueError("固定焊序必须恰好包含每个焊段一次")
+        segments = self._init_segments(initial_perturbation)
         steps = []
         total_time = 0.0
         total_wait = 0.0
@@ -217,7 +245,7 @@ class AdaptiveSequenceController:
             if target.current_temp_c > self.interpass_gate_c:
                 wait_needed = max(0.0, -math.log((self.interpass_gate_c - 20.0) / (target.current_temp_c - 20.0)) / self.cooling_rate)
 
-            t_before = target.current_temp_c
+            t_before = 20.0 + (target.current_temp_c - 20.0) * math.exp(-self.cooling_rate * wait_needed)
             self._update_temperatures(segments, target.segment_id, weld_duration_s=12.0, wait_s=wait_needed)
             t_after = target.current_temp_c
             target.is_welded = True
@@ -225,7 +253,7 @@ class AdaptiveSequenceController:
             temps = [s.current_temp_c for s in segments]
             delta_t_now = max(temps) - min(temps)
             asym_now = self._calculate_thermal_asymmetry(segments)
-            p_step = 0.015 + 0.00015 * delta_t_now + 0.028 * asym_now
+            p_step = self._predict_position(delta_t_now, asym_now)
 
             steps.append(SequenceDecisionStep(
                 step_index=step + 1,
@@ -248,4 +276,11 @@ class AdaptiveSequenceController:
             max_delta_t_observed_c=max(s.max_circumferential_delta_t_c for s in steps),
             steps=steps,
             cooling_waiting_time_total_s=total_wait,
+            plant_model=self.PLANT_MODEL,
+            position_predictor=self.POSITION_PREDICTOR,
+            evaluation_model=self.EVALUATION_MODEL,
+            initial_perturbation_c=tuple(
+                np.asarray(initial_perturbation, dtype=float).tolist()
+                if initial_perturbation is not None else []
+            ),
         )

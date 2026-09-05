@@ -18,7 +18,7 @@ from hanjie.simulation.fe3d import run_structure_fair_comparison
 
 def main() -> int:
     print("=" * 85)
-    print("运行 STRUCTURE-4-6-8 结构严格公平对比研究 (连续 vs 4点 vs 6点 vs 8点)...")
+    print("运行 STRUCTURE-4-6-8 结构标签代理对比（未通过 FAIR-A/B） (连续 vs 4点 vs 6点 vs 8点)...")
     print("=" * 85)
 
     results = run_structure_fair_comparison()
@@ -45,16 +45,14 @@ def main() -> int:
         })
 
     print("-" * 82)
-    print("工程结论：")
-    print("1. 连续环形座体由于全周长连续拘束，焊后残余应力最高 (285 MPa)，位置度 P=0.0728 mm 严重超标。")
-    print("2. 4 点柔顺结构位置度最低 (0.0473 mm)，但焊缝总长较短，长期抗疲劳承载面积裕量相对偏紧。")
-    print("3. 6 点短焊段结构实现了变形控制 (0.0553 mm，结合自适应跳焊可进一步降至 0.041 mm) 与疲劳承载的最佳平衡。")
-    print("4. 8 点结构应力适中，但热累积高于 6 点。四者各具优缺点，客观呈现 Pareto 权衡关系，消除'钦定六点最优'的偏误。")
+    best = min(rows, key=lambda row: row["position_metric_p_mm"])
+    print(f"代理公式下位置度最低：{best['structure_type']}，P={best['position_metric_p_mm']:.5f} mm")
+    print("结构选型 unresolved；未建立真实拓扑或完成 FAIR-A/B，无疲劳承载证据。")
 
     out_dir = ROOT / "studies" / "STRUCTURE-4-6-8" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "structure_comparison_summary.json").write_text(
-        json.dumps({"comparison": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps({"evidence_level": "surrogate_result", "selection_status": "unresolved", "fair_ab_verified": False, "comparison": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print(f"\n对比报告已输出至: {out_dir / 'structure_comparison_summary.json'}")
     return 0

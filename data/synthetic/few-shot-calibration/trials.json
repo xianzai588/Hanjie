@@ -1,0 +1,89 @@
+[
+  {
+    "sample_id": "SYN-001",
+    "trial_type": "thermal",
+    "synthetic_values": [
+      816.688180636408,
+      756.8207581810763,
+      705.8842507529113,
+      655.9108130536987,
+      608.1730342253866,
+      565.9135133229174,
+      527.6054373954704,
+      489.827637945127,
+      455.1132384059574,
+      423.3082787339318,
+      391.99146729049204,
+      366.8849826385545,
+      338.4483087463011,
+      316.5779297863489,
+      294.71782491366537,
+      273.02505913628033,
+      256.2977417886519,
+      241.099439397492,
+      222.682573929907,
+      206.77865293166255,
+      194.34328973040428,
+      182.71016368119294,
+      170.08456133558994,
+      158.8827117232418,
+      147.03064608099032,
+      139.90258844180104
+    ],
+    "synthetic_noise_2sigma": 2.4,
+    "description": "合成降温曲线，时间网格 10~60 s",
+    "evidence_level": "synthetic_demo"
+  },
+  {
+    "sample_id": "SYN-002",
+    "trial_type": "hardness",
+    "synthetic_values": [
+      187.7449947312961,
+      190.90504451038575,
+      196.369710467706,
+      206.82481751824818,
+      229.3288590604027,
+      279.3243243243243,
+      330.0,
+      279.3243243243243,
+      229.3288590604027,
+      206.82481751824818,
+      196.369710467706,
+      190.90504451038575,
+      187.7449947312961
+    ],
+    "synthetic_noise_2sigma": 0,
+    "description": "合成硬度曲线；未用于参数拟合",
+    "evidence_level": "synthetic_demo"
+  },
+  {
+    "sample_id": "SYN-003",
+    "trial_type": "cmm_position",
+    "synthetic_values": [
+      0.0465
+    ],
+    "synthetic_noise_2sigma": 0.002,
+    "description": "合成位置度；不是 CMM 实测",
+    "evidence_level": "synthetic_demo"
+  },
+  {
+    "sample_id": "SYN-004",
+    "trial_type": "cmm_position",
+    "synthetic_values": [
+      0.0482
+    ],
+    "synthetic_noise_2sigma": 0.002,
+    "description": "合成位置度；不是 CMM 实测",
+    "evidence_level": "synthetic_demo"
+  },
+  {
+    "sample_id": "SYN-005",
+    "trial_type": "cmm_position",
+    "synthetic_values": [
+      0.0458
+    ],
+    "synthetic_noise_2sigma": 0.002,
+    "description": "合成位置度；不是 CMM 实测",
+    "evidence_level": "synthetic_demo"
+  }
+]

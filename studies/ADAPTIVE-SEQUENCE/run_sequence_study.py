@@ -21,6 +21,22 @@ sys.path.insert(0, str(ROOT / "src"))
 from hanjie.control.adaptive_sequence import AdaptiveSequenceController
 
 
+def result_row(result) -> dict:
+    """统一记录控制结果，避免报告脚本重新拼接或改写数值。"""
+    return {
+        "name": result.strategy_name,
+        "order": result.execution_order,
+        "time_s": result.total_cycle_time_s,
+        "max_delta_t": result.max_delta_t_observed_c,
+        "p_mm": result.final_position_p_mm,
+        "plant_model": result.plant_model,
+        "position_predictor": result.position_predictor,
+        "evaluation_model": result.evaluation_model,
+        "initial_perturbation_c": list(result.initial_perturbation_c),
+        "evidence_level": result.evidence_level,
+    }
+
+
 def main() -> int:
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -47,34 +63,54 @@ def main() -> int:
 
     # 2. 存在预热局部温差梯度扰动工况 (如区域 3 因加热器边缘效应温度高出 25°C)
     perturbation = np.array([0.0, 0.0, 25.0, 5.0, -10.0, 0.0])
-    res_s3_disturbed = controller.evaluate_fixed_sequence("S3-DISTURBED", [1, 4, 3, 6, 2, 5])
+    res_s3_disturbed = controller.evaluate_fixed_sequence("S3-DISTURBED", [1, 4, 3, 6, 2, 5], initial_perturbation=perturbation)
     res_adapt_disturbed = controller.solve_adaptive_sequence(initial_perturbation=perturbation)
+    res_s1_disturbed = controller.evaluate_fixed_sequence("S1-DISTURBED", [1, 2, 3, 4, 5, 6], initial_perturbation=perturbation)
+    res_s2_disturbed = controller.evaluate_fixed_sequence("S2-DISTURBED", [1, 4, 2, 5, 3, 6], initial_perturbation=perturbation)
 
     print(f"\n【工况二：存在初始预热扰动 (3号区偏高 +25°C)】")
     print(f"{'焊序方案':<20}{'实际执行序列':<22}{'周期时间(s)':<14}{'最大周向温差(°C)':<18}{'最终位置度 P (mm)':<16}")
     print("-" * 88)
-    for r in [res_s3_disturbed, res_adapt_disturbed]:
+    for r in [res_s1_disturbed, res_s2_disturbed, res_s3_disturbed, res_adapt_disturbed]:
         order_str = "->".join(str(x) for x in r.execution_order)
         print(f"{r.strategy_name:<20}{order_str:<22}{r.total_cycle_time_s:<14.1f}{r.max_delta_t_observed_c:<18.1f}{r.final_position_p_mm:<16.5f}")
 
     print("-" * 88)
-    print("关键结论与答辩亮点：")
-    print("1. 固定序列 S3 固化为 1->4->3->6->2->5，无法感知扰动；当 3 区偏热时，仍盲目按顺序焊接导致局部温差激增与变形恶化。")
-    print(f"2. 自适应跳焊根据实时温度场，动态重构序列为 {'->'.join(str(x) for x in res_adapt_disturbed.execution_order)}，")
-    print("   自动推迟高温区域施焊，使最大周向温差大幅收窄，位置度严格稳定在 Ø0.05 mm 门限以内。")
-    print("3. 这证明了工艺从'被动开环执行'升级为'状态反馈自适应决策'的显著优势。")
+    difference = res_adapt_disturbed.final_position_p_mm - res_s3_disturbed.final_position_p_mm
+    print(f"相同扰动/评价模型下 Adaptive - S3 位置度差值：{difference:+.6f} mm")
+    print("仅为未经校准的代理结果，不能证明实物达标或稳定优于固定焊序。")
+
+    # 用 Adaptive 实际选出的同一序列回放，检查 plant、预测器、评价函数和扰动完全一致。
+    replay = controller.evaluate_fixed_sequence(
+        "ADAPTIVE-REPLAY",
+        res_adapt_disturbed.execution_order,
+        initial_perturbation=perturbation,
+    )
+    fairness_check = {
+        "same_execution_order": replay.execution_order == res_adapt_disturbed.execution_order,
+        "same_initial_perturbation": replay.initial_perturbation_c == res_adapt_disturbed.initial_perturbation_c,
+        "same_plant_model": replay.plant_model == res_adapt_disturbed.plant_model,
+        "same_position_predictor": replay.position_predictor == res_adapt_disturbed.position_predictor,
+        "same_evaluation_model": replay.evaluation_model == res_adapt_disturbed.evaluation_model,
+        "exact_final_position_match": replay.final_position_p_mm == res_adapt_disturbed.final_position_p_mm,
+        "exact_cycle_time_match": replay.total_cycle_time_s == res_adapt_disturbed.total_cycle_time_s,
+    }
+    if not all(fairness_check.values()):
+        raise RuntimeError(f"Adaptive 同序列回放公平性检查失败: {fairness_check}")
+    print(f"同序列回放公平性检查：PASS（{res_adapt_disturbed.execution_order}，不含优越性门槛）")
 
     out_dir = ROOT / "studies" / "ADAPTIVE-SEQUENCE" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
     summary_data = {
-        "uniform_condition": [
-            {"name": r.strategy_name, "order": r.execution_order, "time_s": r.total_cycle_time_s, "max_delta_t": r.max_delta_t_observed_c, "p_mm": r.final_position_p_mm}
-            for r in [res_s1, res_s2, res_s3, res_adapt]
-        ],
-        "disturbed_condition": [
-            {"name": r.strategy_name, "order": r.execution_order, "time_s": r.total_cycle_time_s, "max_delta_t": r.max_delta_t_observed_c, "p_mm": r.final_position_p_mm}
-            for r in [res_s3_disturbed, res_adapt_disturbed]
-        ]
+        "evidence_level": "surrogate_result",
+        "evaluation_model": "shared_thermal_position_v1",
+        "plant_model": res_adapt_disturbed.plant_model,
+        "position_predictor": res_adapt_disturbed.position_predictor,
+        "fairness_check": fairness_check,
+        "initial_perturbation_c": perturbation.tolist(),
+        "uniform_condition": [result_row(r) for r in [res_s1, res_s2, res_s3, res_adapt]],
+        "disturbed_condition": [result_row(r) for r in [res_s1_disturbed, res_s2_disturbed, res_s3_disturbed, res_adapt_disturbed]],
+        "replay_condition": result_row(replay),
     }
     (out_dir / "adaptive_sequence_study.json").write_text(json.dumps(summary_data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\n报告已保存至: {out_dir / 'adaptive_sequence_study.json'}")

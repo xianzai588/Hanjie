@@ -19,17 +19,19 @@ def main() -> int:
         pass
 
     print("=" * 105)
-    print("运行 ROBUST-OPT 考虑材料/装配不确定性的多目标 Pareto 协同优化研究...")
+    print("运行 ROBUST-OPT 考虑材料/装配不确定性的有限候选代理非支配筛选...")
     print("=" * 105)
 
     optimizer = RobustCoDesignOptimizer(monte_carlo_samples=200)
+    all_candidates = optimizer.evaluate_handpicked_candidates()
     pareto_front = optimizer.generate_pareto_front()
+    pareto_ids = {cand.design_id for cand in pareto_front}
 
     print(f"{'方案 ID':<20}{'连接点':<6}{'焊长(mm)':<9}{'E(P)(mm)':<12}{'P95(mm)':<12}{'CVaR95(mm)':<12}{'最大应力(MPa)':<14}{'总热输入(kJ)':<14}{'周期(s)':<8}")
     print("-" * 105)
 
     rows = []
-    for cand in pareto_front:
+    for cand in all_candidates:
         print(f"{cand.design_id:<20}{cand.num_points:<6}{cand.weld_length_mm:<9.1f}{cand.mean_p_mm:<12.5f}{cand.p95_p_mm:<12.5f}{cand.cvar95_p_mm:<12.5f}{cand.max_stress_mpa:<14.1f}{cand.heat_input_kj:<14.2f}{cand.cycle_time_s:<8.1f}")
         rows.append({
             "design_id": cand.design_id,
@@ -43,20 +45,26 @@ def main() -> int:
             "max_stress_mpa": cand.max_stress_mpa,
             "heat_input_kj": cand.heat_input_kj,
             "cycle_time_s": cand.cycle_time_s,
+            "is_pareto_optimal": cand.design_id in pareto_ids,
+            "evidence_level": cand.evidence_level,
         })
 
     print("-" * 105)
-    print("多目标决策分析：")
-    print("1. OPT-4P-MIN-HEAT 具有最低的热输入 (19.8 kJ) 与均值位置度 (0.021 mm)，但焊缝截面积最小，高频交变疲劳承载储备偏低。")
-    print("2. OPT-8P-HIGH-CAPACITY 具有最高的刚度与疲劳储备，但热输入大，P95 达到 0.046 mm，贴近公差边界。")
-    print("3. OPT-6P-ROBUST-BASE 在 P95 (0.038 mm)、CVaR95 (0.042 mm)、残余应力 (214 MPa) 和总疲劳承载截面间实现了全局最优折中。")
-    print("   这为 V4 主选方案提供了扎实、可量化、抗扰动的数据底座。")
+    print("结果仅供代理/合成演示；不支持六点最优、疲劳承载或实物补偿达标结论。")
 
     out_dir = ROOT / "studies" / "ROBUST-OPT" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "robust_pareto_summary.json").write_text(
-        json.dumps({"pareto_candidates": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+    (out_dir / "robust_pareto_summary.json").write_text(json.dumps({
+        "evidence_level": "surrogate_result",
+        "validation_status": "unvalidated",
+        "search_scope": "seven_handpicked_candidates",
+        "search_scope_note": "有限候选非支配筛选，不是全设计域全局 Pareto 前沿",
+        "candidate_count": len(rows),
+        "objectives_minimized": ["p95_p_mm", "max_stress_mpa", "heat_input_kj", "cycle_time_s"],
+        "non_dominated_ids": sorted(pareto_ids),
+        "evaluated_candidates": rows,
+        "pareto_candidates": [row for row in rows if row["is_pareto_optimal"]],
+    }, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nPareto 解集已保存至: {out_dir / 'robust_pareto_summary.json'}")
     return 0
 

@@ -10,26 +10,32 @@ from hanjie.measurement.few_shot_calibration import FewShotCalibrator
 from hanjie.simulation.fe3d import run_mesh_convergence_study
 
 
-def test_mesh_convergence_3d_passes_gate_b1() -> None:
-    """3D 有限元网格收敛验证测试：变化率应严格 < 5% (Gate B.1)。"""
+def test_surrogate_cannot_pass_gate_b1() -> None:
     study = run_mesh_convergence_study("continuous")
-    assert study["gate_b1_passed"] is True
-    assert study["p_change_fine_vs_med_pct"] < 5.0
-    assert study["stress_change_pct"] < 15.0
+    assert study["gate_b1_passed"] is False
+    assert study["solver_executed"] is False
+    assert study["fine"].thermal_balance_error_pct is None
 
 
-def test_adaptive_sequence_controller_respects_constraints() -> None:
-    """自适应跳焊控制测试：确保施焊顺序满足道温约束与扰动调整能力。"""
-    controller = AdaptiveSequenceController(num_segments=6)
-    res = controller.solve_adaptive_sequence()
-    assert len(res.execution_order) == 6
-    assert set(res.execution_order) == {1, 2, 3, 4, 5, 6}
-    assert res.final_position_p_mm <= 0.050
+def test_adaptive_replay_uses_identical_plant_and_measurement() -> None:
+    controller = AdaptiveSequenceController()
+    for perturb in [np.zeros(6), np.array([0, 0, 25, 5, -10, 0]), np.full(6, 200)]:
+        adaptive = controller.solve_adaptive_sequence(perturb)
+        replay = controller.evaluate_fixed_sequence("replay", adaptive.execution_order, perturb)
+        assert adaptive.steps == replay.steps
+        assert adaptive.final_position_p_mm == replay.final_position_p_mm
+        assert adaptive.total_cycle_time_s == replay.total_cycle_time_s
+        assert adaptive.plant_model == replay.plant_model
+        assert adaptive.position_predictor == replay.position_predictor
+        assert adaptive.evaluation_model == replay.evaluation_model
+        assert all(s.temp_before_c <= controller.interpass_gate_c + 1e-8 for s in adaptive.steps)
+        assert sorted(adaptive.execution_order) == list(range(1, 7))
 
-    # 在 3 号区域高出 25°C 扰动下，自适应算法应调整施焊次序
-    perturb = np.array([0.0, 0.0, 25.0, 5.0, -10.0, 0.0])
-    res_disturbed = controller.solve_adaptive_sequence(initial_perturbation=perturb)
-    assert res_disturbed.execution_order[0] != 3  # 绝不在最热的 3 号区起焊
+
+def test_fixed_sequence_rejects_duplicate_segments() -> None:
+    import pytest
+    with pytest.raises(ValueError):
+        AdaptiveSequenceController().evaluate_fixed_sequence("invalid", [1, 1, 2, 3, 4, 5])
 
 
 def test_inverse_precompensation_respects_clearance_bound() -> None:
@@ -38,18 +44,34 @@ def test_inverse_precompensation_respects_clearance_bound() -> None:
     x_opt = solver.solve_inverse_pose(np.array([0.0, 0.0]))
     assert np.linalg.norm(x_opt) <= 0.040 + 1e-6
 
-    bench = solver.evaluate_benchmark(num_trials=50)
-    assert bench["inverse_optimization"].p95_position_error_mm < bench["no_compensation"].p95_position_error_mm
-    assert bench["inverse_optimization"].pass_p005_rate_pct >= 98.0
 
 
-def test_few_shot_calibration_reduces_uncertainty() -> None:
-    """少样本物理试验校准测试：后验不确定度应显著低于先验。"""
+def test_calibration_is_synthetic_and_data_driven() -> None:
+    from dataclasses import asdict
+    import json
     calibrator = FewShotCalibrator()
     trials = calibrator.generate_synthetic_physical_trials()
     report = calibrator.calibrate_from_trials(trials)
+    assert report.evidence_level == "synthetic_demo"
+    assert report.uncertainty_reduction_pct is None
+    assert "measured_p_mm" not in json.dumps(asdict(report))
+    assert report.fitted_trial_types == ["thermal", "cmm_position"]
+    assert report.excluded_trial_types == ["hardness"]
+    assert "组合响应系数" in report.identifiability_note
+    values = np.array([t.synthetic_values[0] for t in trials if t.trial_type == "cmm_position"])
+    for i, row in enumerate(report.sample_comparisons):
+        assert np.isclose(row["leave_one_out_pred_mm"], np.delete(values, i).mean())
+    for t in trials:
+        if t.trial_type == "cmm_position":
+            t.synthetic_values *= 1.2
+    changed = calibrator.calibrate_from_trials(trials)
+    assert np.isclose(changed.fitted_combined_response_coeff, report.fitted_combined_response_coeff * 1.2)
 
-    assert 0.50 <= report.posterior_eta <= 0.60
-    assert 1000.0 <= report.posterior_stiffness_n_mm <= 1400.0
-    assert report.uncertainty_reduction_pct > 50.0  # 不确定度缩减率大于 50%
-    assert report.post_calib_error_p95_mm < report.pre_calib_error_p95_mm
+
+def test_synthetic_entry_rejects_measured_labels() -> None:
+    import pytest
+    calibrator = FewShotCalibrator()
+    trials = calibrator.generate_synthetic_physical_trials()
+    trials[0].evidence_level = "experiment_measured"
+    with pytest.raises(ValueError):
+        calibrator.calibrate_from_trials(trials)

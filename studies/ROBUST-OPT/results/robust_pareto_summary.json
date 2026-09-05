@@ -1,5 +1,19 @@
 {
-  "pareto_candidates": [
+  "evidence_level": "surrogate_result",
+  "validation_status": "unvalidated",
+  "search_scope": "seven_handpicked_candidates",
+  "search_scope_note": "有限候选非支配筛选，不是全设计域全局 Pareto 前沿",
+  "candidate_count": 7,
+  "objectives_minimized": [
+    "p95_p_mm",
+    "max_stress_mpa",
+    "heat_input_kj",
+    "cycle_time_s"
+  ],
+  "non_dominated_ids": [
+    "OPT-4P-MIN-HEAT"
+  ],
+  "evaluated_candidates": [
     {
       "design_id": "OPT-4P-MIN-HEAT",
       "num_points": 4,
@@ -11,7 +25,9 @@
       "cvar95_p_mm": 0.0832628483435098,
       "max_stress_mpa": 207.12328767123287,
       "heat_input_kj": 18.55212927699506,
-      "cycle_time_s": 64.0
+      "cycle_time_s": 64.0,
+      "is_pareto_optimal": true,
+      "evidence_level": "surrogate_result"
     },
     {
       "design_id": "OPT-4P-BALANCED",
@@ -24,7 +40,9 @@
       "cvar95_p_mm": 0.09018034959192693,
       "max_stress_mpa": 216.66666666666666,
       "heat_input_kj": 23.852737641850787,
-      "cycle_time_s": 72.0
+      "cycle_time_s": 72.0,
+      "is_pareto_optimal": false,
+      "evidence_level": "surrogate_result"
     },
     {
       "design_id": "OPT-6P-ROBUST-BASE",
@@ -37,7 +55,9 @@
       "cvar95_p_mm": 0.09861020666442624,
       "max_stress_mpa": 216.66666666666666,
       "heat_input_kj": 35.779106462776184,
-      "cycle_time_s": 112.0
+      "cycle_time_s": 112.0,
+      "is_pareto_optimal": false,
+      "evidence_level": "surrogate_result"
     },
     {
       "design_id": "OPT-6P-LOW-STRESS",
@@ -50,7 +70,9 @@
       "cvar95_p_mm": 0.09276126405171078,
       "max_stress_mpa": 209.75342465753425,
       "heat_input_kj": 30.53150418156901,
-      "cycle_time_s": 104.0
+      "cycle_time_s": 104.0,
+      "is_pareto_optimal": false,
+      "evidence_level": "surrogate_result"
     },
     {
       "design_id": "OPT-6P-HIGH-FATIGUE",
@@ -63,7 +85,9 @@
       "cvar95_p_mm": 0.1032738435394446,
       "max_stress_mpa": 222.2097902097902,
       "heat_input_kj": 41.3447452458747,
-      "cycle_time_s": 120.0
+      "cycle_time_s": 120.0,
+      "is_pareto_optimal": false,
+      "evidence_level": "surrogate_result"
     },
     {
       "design_id": "OPT-8P-STIFF",
@@ -76,7 +100,9 @@
       "cvar95_p_mm": 0.10863615622479003,
       "max_stress_mpa": 218.1818181818182,
       "heat_input_kj": 42.40486691884585,
-      "cycle_time_s": 141.33333333333331
+      "cycle_time_s": 141.33333333333331,
+      "is_pareto_optimal": false,
+      "evidence_level": "surrogate_result"
     },
     {
       "design_id": "OPT-8P-HIGH-CAPACITY",
@@ -89,7 +115,26 @@
       "cvar95_p_mm": 0.11635412315390874,
       "max_stress_mpa": 226.47887323943664,
       "heat_input_kj": 50.885840302615016,
-      "cycle_time_s": 152.0
+      "cycle_time_s": 152.0,
+      "is_pareto_optimal": false,
+      "evidence_level": "surrogate_result"
+    }
+  ],
+  "pareto_candidates": [
+    {
+      "design_id": "OPT-4P-MIN-HEAT",
+      "num_points": 4,
+      "weld_length_mm": 15.0,
+      "slot_width_mm": 5.0,
+      "current_a": 70.0,
+      "mean_p_mm": 0.06750251410498635,
+      "p95_p_mm": 0.078442603181771,
+      "cvar95_p_mm": 0.0832628483435098,
+      "max_stress_mpa": 207.12328767123287,
+      "heat_input_kj": 18.55212927699506,
+      "cycle_time_s": 64.0,
+      "is_pareto_optimal": true,
+      "evidence_level": "surrogate_result"
     }
   ]
 }

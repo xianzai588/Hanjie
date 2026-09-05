@@ -1,8 +1,8 @@
 # FE3D V4 冻结设计 - README
 
-**版本**：V4.0-FROZEN  
-**日期**：2026-09-03  
-**状态**：设计输入冻结，FE3D-BASE 实施中
+**版本**：V4.2
+**日期**：2026-09-05
+**状态**：设计输入冻结；真实 FE3D-BASE 尚未实施，当前仅有 surrogate prototype
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### 核心原则
 
-**先建立 Baseline 数值可信度，再开展结构对比。**
+**先建立 Baseline 数值可信度，再开展结构对比。当前 Gate B 不适用于代理代码。**
 
 V4 **只实施 FE3D-BASE**：
 - 连续环形座体（非 4/6/8 点结构）
@@ -19,7 +19,7 @@ V4 **只实施 FE3D-BASE**：
 - 完整的网格收敛验证
 - 热场、边界条件、材料参数验证
 
-**只有 Gate B 全部通过，才允许在后续版本开展结构优化。**
+**只有真实求解的 Gate B 全部通过，才允许在后续版本开展结构优化；当前代理结果不计入通过。**
 
 ---
 
@@ -58,12 +58,12 @@ simulation/fe3d/
         └── results/                    # 结果文件
 
 deliverables/report/
-└── technical-report-v4.md              # V4 技术报告骨架
+└── technical-report-v4-unified.md     # 当前 V4.2 技术报告源
 ```
 
 ---
 
-## ✅ Gate B 验证门（必须全部通过）
+## Gate B 验证门（未来真实求解后执行）
 
 ### B.1 网格收敛验证
 
@@ -155,14 +155,14 @@ deliverables/report/
 
 ## 🔄 实施流程
 
-### 当前状态：Phase 0 已完成
+### 当前状态：Phase 0/G0 纠偏已完成；真实 FE Phase 1 尚未开始
 
 - [x] 设计输入冻结
 - [x] 验证协议编写（结果出来前）
-- [x] 技术报告骨架
+- [x] 当前报告源与 V4.2 边界声明
 - [x] 模型目录创建
 
-### 下一步：Phase 1 几何建模
+### 下一步：Phase 1 真实几何建模
 
 1. 建立壳体几何（Ø160×200×5 mm）
 2. 建立轴承座几何（连续环形座体）
@@ -188,7 +188,7 @@ deliverables/report/
 **交付物**：
 - FE3D-BASE 验证报告
 - Gate B 通过判定
-- `technical-report-v4.md` §7 填充
+- `technical-report-v4-unified.md` §4 状态回填
 
 ### V5 阶段（Gate B 通过后）
 
@@ -259,7 +259,7 @@ deliverables/report/
 | 设计输入冻结 | `design-inputs-frozen-v4.md` | 几何、材料、工艺、边界参数 |
 | 验证协议 | `FE3D-BASE-verification-protocol.md` | Gate B 判据、提取算法 |
 | 状态追踪 | `FE3D-BASE-status.md` | 40 项检查清单 |
-| 技术报告 V4 | `../../deliverables/report/technical-report-v4.md` | 完整技术说明书 |
+| 当前技术报告源 | `../../deliverables/report/technical-report-v4-unified.md` | V4.2 研究草稿 |
 | 证据清单 | `../../evidence/claims.yaml` | CLAIM-052 FE 验证状态 |
 
 ---
@@ -322,6 +322,6 @@ deliverables/report/
 
 ---
 
-**状态**：V4 冻结设计已建立，FE3D-BASE 实施待开始。
+**状态**：V4.2 设计输入已冻结，FE3D-BASE 真实实施待开始；代理结果仅作展示。
 
-**下一步**：开始 Phase 1 几何建模。
+**下一步**：开始 Phase 1 真实几何建模。

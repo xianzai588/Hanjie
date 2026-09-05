@@ -14,7 +14,7 @@ from hanjie.simulation.fe3d import run_mesh_convergence_study
 
 def main() -> int:
     print("=" * 70)
-    print("运行 FE3D-BASE 3D 热—弹塑性基线网格收敛验证 (Gate B.1)...")
+    print("运行 FE3D-BASE 经验代理分辨率演示（非 FE；Gate B.1 不适用）...")
     print("=" * 70)
 
     study = run_mesh_convergence_study(structure_type="continuous")
@@ -36,12 +36,18 @@ def main() -> int:
     print(f"位置度变化率 |P_fine - P_med| / P_fine: {p_change:.2f}% (标准: <5.0%)")
     print(f"峰值温度变化率: {temp_change:.2f}% (标准: <10.0%)")
     print(f"应力变化率: {stress_change:.2f}% (标准: <15.0%)")
-    print(f"Gate B.1 网格收敛判定结果: {'【通过 (PASSED)】' if passed else '【未通过 (FAILED)】'}")
+    print("Gate B.1 不适用：以上变化来自预设代理系数，不是求解器网格收敛。")
 
     out_dir = ROOT / "studies" / "FE3D-BASE" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
     summary_data = {
-        "model": "FE3D-BASE",
+        "model": "FE3D-SURROGATE-PROTOTYPE",
+        "evidence_level": "surrogate_result",
+        "solver_executed": False,
+        "gate_status": "not_applicable_surrogate",
+        "gate_b1_status": "retracted_not_applicable",
+        "energy_balance_error_pct": None,
+        "energy_balance_status": "not_computed",
         "structure": "continuous",
         "gate_b1_passed": passed,
         "p_change_pct": p_change,
@@ -53,7 +59,7 @@ def main() -> int:
     }
     (out_dir / "convergence_summary.json").write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
     print(f"收敛报告已输出至: {out_dir / 'convergence_summary.json'}")
-    return 0 if passed else 1
+    return 0  # 脚本成功与工程验证通过是两个独立状态
 
 
 if __name__ == "__main__":

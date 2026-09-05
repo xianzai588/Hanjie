@@ -1,46 +1,6 @@
 {
-  "prior_vs_posterior": {
-    "eta": {
-      "prior": 0.55,
-      "post": 0.5357827102983433,
-      "std": 0.0005099776357068463
-    },
-    "stiffness": {
-      "prior": 1200.0,
-      "post": 1165.0,
-      "std": 38.0
-    },
-    "shrinkage": {
-      "prior": 0.00035,
-      "post": 0.000338,
-      "std": 1.2e-05
-    }
-  },
-  "samples": [
-    {
-      "sample_id": "EXP-003",
-      "measured_p_mm": 0.0465,
-      "pre_calib_pred_mm": 0.0524,
-      "pre_calib_err_mm": 0.0059000000000000025,
-      "post_calib_pred_mm": 0.0468,
-      "post_calib_err_mm": 0.00030000000000000165
-    },
-    {
-      "sample_id": "EXP-004",
-      "measured_p_mm": 0.0482,
-      "pre_calib_pred_mm": 0.0524,
-      "pre_calib_err_mm": 0.004200000000000002,
-      "post_calib_pred_mm": 0.0468,
-      "post_calib_err_mm": 0.0013999999999999985
-    },
-    {
-      "sample_id": "EXP-005",
-      "measured_p_mm": 0.0458,
-      "pre_calib_pred_mm": 0.0524,
-      "pre_calib_err_mm": 0.006600000000000002,
-      "post_calib_pred_mm": 0.0468,
-      "post_calib_err_mm": 0.0010000000000000009
-    }
-  ],
-  "uncertainty_reduction_pct": 79.74918718067812
+  "evidence_level": "synthetic_demo",
+  "status": "retracted",
+  "reason": "原后验参数与不确定度缩减声明含硬编码；不是实测",
+  "replacement": "data/synthetic/few-shot-calibration/calibration_summary.json"
 }

@@ -1,18 +1,20 @@
+> 2026-09-05 纠偏：src/hanjie/simulation/fe3d.py 是经验代理，旧 Gate B.1 通过声明撤销。下列真实求解工作仍待完成。当前报告源为 technical-report-v4-unified.md。
+
 # FE3D-BASE 实施状态追踪
 
-**版本**：V1.0  
-**日期**：2026-09-03  
+**版本**：V1.1-V4.2
+**日期**：2026-09-05
 **模型代号**：FE3D-BASE  
 
 ---
 
 ## 实施检查清单
 
-### Phase 0: 准备（已完成）
+### Phase 0: 准备与纠偏（已完成）
 
 - [x] 设计输入冻结（`design-inputs-frozen-v4.md`）
 - [x] 验证协议编写（`FE3D-BASE-verification-protocol.md`）
-- [x] 技术报告骨架（`deliverables/report/technical-report-v4.md`）
+- [x] 当前技术报告源冻结（`deliverables/report/technical-report-v4-unified.md`）
 - [x] 模型目录创建（`simulation/fe3d/models/FE3D-BASE/`）
 
 ### Phase 1: 几何建模
@@ -158,14 +160,14 @@
 - `models/FE3D-BASE/results/stress-field.png`
 - `models/FE3D-BASE/results/deformation-field.png`
 
-### Phase 8: Gate B 验证
+### Phase 8: Gate B 验证（当前不适用，待真实求解）
 
 #### Gate B.1: 网格收敛
 
 - [ ] 位置度变化率计算（G71 vs G61, G81 vs G71）
 - [ ] 峰值温度变化率计算
 - [ ] 最大应力变化率计算
-- [ ] 通过/不通过判定
+- [ ] 通过/不通过判定（代理结果不得填写）
 
 #### Gate B.2: 热场合理性
 
@@ -191,7 +193,7 @@
 
 ### Phase 9: 文档更新
 
-- [ ] 更新 `technical-report-v4.md` §7 Gate B 验证结果
+- [ ] 更新 `technical-report-v4-unified.md` §4 Gate B 状态
 - [ ] 更新 `evidence/claims.yaml` CLAIM-052 状态
 - [ ] 编写验证报告总结
 - [ ] 归档模型文件
@@ -200,10 +202,10 @@
 
 ## 当前状态
 
-**阶段**：Phase 0 已完成，Phase 1 待开始  
-**进度**：4 / 40 检查项完成（10%）  
-**阻塞项**：无  
-**下一步**：开始几何建模（Phase 1）
+**阶段**：G0 纠偏已完成，G1 真实几何与静刚度筛选待开始
+**FE 状态**：`fe3d.py` 为 surrogate prototype；Gate B.1 已撤销且不适用，能量平衡未计算
+**设备状态**：设备、材料和检测窗口待核实
+**下一步**：先建立 Continuous、4/6/8P 的真实 FAIR-A/B 几何与 manifest
 
 ---
 
@@ -234,7 +236,7 @@
 
 ## 禁止项（重申）
 
-在 Gate B 全部通过前，**严格禁止**：
+在真实 FE 的 Gate B 全部通过前，**严格禁止将以下结果写成工程结论**：
 
 🚫 开始 4/6/8 点结构建模  
 🚫 柔顺夹具对比  

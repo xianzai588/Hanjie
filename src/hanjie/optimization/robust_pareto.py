@@ -33,7 +33,8 @@ class RobustDesignCandidate:
     max_stress_mpa: float
     heat_input_kj: float
     cycle_time_s: float
-    is_pareto_optimal: bool = True
+    is_pareto_optimal: bool = False
+    evidence_level: str = "surrogate_result"
 
 
 class RobustCoDesignOptimizer:
@@ -111,11 +112,23 @@ class RobustCoDesignOptimizer:
         )
 
     def generate_pareto_front(self) -> List[RobustDesignCandidate]:
-        """求解并生成代表性 Pareto 前沿解集。"""
+        """筛选七个手选候选中的非支配子集；并非全设计域 Pareto 前沿。"""
+        results = self.evaluate_handpicked_candidates()
+        # 当前只有这些代理目标；不包含刚度、疲劳或真实制造约束。
+        objectives = np.array([[r.p95_p_mm, r.max_stress_mpa, r.heat_input_kj, r.cycle_time_s] for r in results])
+        front = [r for i, r in enumerate(results)
+                if not any(np.all(objectives[j] <= objectives[i]) and np.any(objectives[j] < objectives[i])
+                           for j in range(len(results)) if j != i)]
+        for result in results:
+            result.is_pareto_optimal = result in front
+        return front
+
+    def evaluate_handpicked_candidates(self) -> List[RobustDesignCandidate]:
+        """返回七个预先指定候选的完整代理评价集，供审计和有限集合筛选使用。"""
         candidates = [
             ("OPT-4P-MIN-HEAT", 4, 15.0, 5.0, 70.0, 150.0),
             ("OPT-4P-BALANCED", 4, 18.0, 4.0, 75.0, 150.0),
-            ("OPT-6P-ROBUST-BASE", 6, 18.0, 4.0, 75.0, 150.0),  # V4 推荐基线
+            ("OPT-6P-ROBUST-BASE", 6, 18.0, 4.0, 75.0, 150.0),  # 仅为待比较候选
             ("OPT-6P-LOW-STRESS", 6, 16.0, 5.0, 72.0, 160.0),
             ("OPT-6P-HIGH-FATIGUE", 6, 20.0, 3.5, 78.0, 150.0),
             ("OPT-8P-STIFF", 8, 16.0, 3.5, 75.0, 150.0),

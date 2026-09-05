@@ -1,4 +1,7 @@
 {
+  "evidence_level": "surrogate_result",
+  "selection_status": "unresolved",
+  "fair_ab_verified": false,
   "comparison": [
     {
       "structure_type": "continuous",

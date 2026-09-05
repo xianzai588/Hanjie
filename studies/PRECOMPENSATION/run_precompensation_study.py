@@ -42,15 +42,12 @@ def main() -> int:
         })
 
     print("-" * 102)
-    print("研究结论：")
-    print("1. 无补偿基线均值 0.0531 mm，合格率不足 40%，无法稳定满足 Ø0.05 mm 要求。")
-    print("2. 简单经验减法 (Static-Minus) 虽然降低了平均误差，但由于忽略材料热效率分散性，P95 波动大，甚至可能因过补偿导致装配间隙干涉。")
-    print("3. 基于不确定性建模的逆向最优化 (Inverse-Opt) 成功将 P95 压制到 0.023 mm 左右，且 100% 满足间隙边界与 Ø0.05 mm 严苛公差。")
+    print("结果仅供代理/合成演示；不支持六点最优、疲劳承载或实物补偿达标结论。")
 
     out_dir = ROOT / "studies" / "PRECOMPENSATION" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "precompensation_summary.json").write_text(
-        json.dumps({"benchmark": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps({"evidence_level": "synthetic_demo", "validation_status": "unvalidated", "benchmark": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print(f"\n对照研究数据已保存至: {out_dir / 'precompensation_summary.json'}")
     return 0

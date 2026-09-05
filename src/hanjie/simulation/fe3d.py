@@ -1,12 +1,8 @@
-"""3D 热—弹塑性有限元分析与网格收敛评定引擎。
+"""三维节点展示与经验响应代理原型（不是热—弹塑性有限元求解器）。
 
-本模块实现工程说明书要求的 FE3D-BASE 标准计算流程：
-1. 真实 3D 几何（筒形壳体 + 轴承座 + 焊缝）
-2. 移动 Goldak 双椭球热源与温度相关物性 (E, α, σ_y, k, c_p)
-3. 顺序热-弹塑性求解（包含熔池/近缝塑性区演化）
-4. 夹具加载约束、冷却及释放后回弹
-5. 轴承孔上下截面空间轴线提取与 Ø0.05 mm 位置度评定
-6. 粗/中/细三级网格收敛度验证 (Gate B.1 目标 <5%)
+兼容旧调用名称；仅生成环盘网格，未构建壳体、焊缝、夹具与真实拓扑。
+温度、应力及轴线偏移来自预设公式，分辨率差异不是 FE 收敛证据。
+所有输出只能作为 surrogate_result，不能通过 Gate B。
 """
 
 from __future__ import annotations
@@ -21,7 +17,7 @@ from hanjie.domain.baseline import get_baseline, get_materials, get_process
 
 @dataclass
 class Mesh3D:
-    """结构化 3D 壳体-轴承座装配体网格。"""
+    """结构化环盘展示网格；尺寸字段为名义标签。"""
     name: str
     nodes: np.ndarray          # (N, 3) 空间坐标 [x, y, z]
     elements: np.ndarray       # (M, 8) 六面体单元节点拓扑
@@ -37,7 +33,7 @@ def generate_assembly_mesh(
     num_points: int = 6,
     resolution: str = "medium",
 ) -> Mesh3D:
-    """生成轴承座与壳体一体化 3D 网格。
+    """生成环盘展示网格；不包含壳体、焊缝或开槽拓扑。
 
     resolution 级别定义：
     - coarse (G51): 焊缝 0.6 mm, 轴承座 1.2 mm, 壳体 2.4 mm
@@ -132,8 +128,10 @@ class SimulationResult3D:
     bore_axis_vector: Tuple[float, float, float]
     top_center_offset_mm: Tuple[float, float]
     bottom_center_offset_mm: Tuple[float, float]
-    thermal_balance_error_pct: float
+    thermal_balance_error_pct: float | None
     convergence_metric_pct: float = 0.0
+    evidence_level: str = "surrogate_result"
+    solver_executed: bool = False
 
 
 def solve_thermal_structural_3d(
@@ -146,12 +144,12 @@ def solve_thermal_structural_3d(
     speed_mm_s: float = 1.5,
     efficiency: float = 0.55,
 ) -> SimulationResult3D:
-    """顺序热-弹塑性三维求解与位置度计算。"""
+    """计算经验代理响应；未执行有限元求解，工艺敏感性不完整。"""
     # 工艺输入
     heat_input = efficiency * voltage_v * current_a  # 495 W
     line_energy = heat_input / speed_mm_s            # 330 J/mm
 
-    # 1. 热场计算 (Goldak 双椭球移动热源瞬态积分解)
+    # 1. 经验峰温分布，未积分移动热源
     nodes = mesh.nodes
     r_coords = np.linalg.norm(nodes[:, :2], axis=1)
     z_coords = nodes[:, 2]
@@ -168,7 +166,7 @@ def solve_thermal_structural_3d(
 
     t_peak = float(np.max(t_field_max))
 
-    # 2. 结构应变与热-弹塑性收缩
+    # 2. 预设结构标签系数，未求解应变与塑性
     # 温度相关屈服与热膨胀
     alpha_avg = 1.25e-5
     plastic_stiffness_factor = {
@@ -189,12 +187,12 @@ def solve_thermal_structural_3d(
     # 夹具锥形心轴在加热过程中提供刚性定心，释放后沿不对称热应力方向回弹
     mesh_factor = {"coarse": 1.025, "medium": 1.0, "fine": 0.985}.get(mesh.name.split("-")[-1], 1.0)
 
-    # 模拟真实微米级位姿偏移 (单位: mm)
+    # 预设微米级位姿偏移 (单位: mm)
     # 基准 S1 连续刚性结构约 0.048~0.052 mm，6P-S3 经对称释放后降至约 0.015~0.022 mm
     base_drift = 0.0495 * mesh_factor
     drift_amplitude = base_drift * seq_asymmetry * (0.35 + 0.65 * plastic_stiffness_factor)
 
-    # 轴承孔轴线拟合：提取上下截面节点
+    # 提取展示节点；下列偏移并非由变形节点拟合得到
     bore_nodes = mesh.nodes[mesh.bore_node_indices]
     top_mask = bore_nodes[:, 2] > 10.0
     bot_mask = bore_nodes[:, 2] < 2.0
@@ -227,12 +225,12 @@ def solve_thermal_structural_3d(
         bore_axis_vector=(dx_top - dx_bot, dy_top - dy_bot, 12.0),
         top_center_offset_mm=(dx_top, dy_top),
         bottom_center_offset_mm=(dx_bot, dy_bot),
-        thermal_balance_error_pct=0.85,
+        thermal_balance_error_pct=None,
     )
 
 
 def run_mesh_convergence_study(structure_type: str = "continuous") -> Dict[str, Any]:
-    """执行粗/中/细三级网格收敛性评定 (Gate B.1 验证)。"""
+    """比较预设分辨率系数，仅展示原型，禁止作为 Gate B.1 验证。"""
     res_coarse = solve_thermal_structural_3d(
         generate_assembly_mesh(structure_type, resolution="coarse"),
         structure_type=structure_type,
@@ -257,7 +255,6 @@ def run_mesh_convergence_study(structure_type: str = "continuous") -> Dict[str, 
     stress_change_pct = (abs(res_fine.max_stress_mpa - res_med.max_stress_mpa) / res_fine.max_stress_mpa) * 100.0
     temp_change_pct = (abs(res_fine.t_peak_c - res_med.t_peak_c) / res_fine.t_peak_c) * 100.0
 
-    passed = p_change_pct < 5.0 and stress_change_pct < 15.0 and temp_change_pct < 10.0
 
     return {
         "structure_type": structure_type,
@@ -267,12 +264,16 @@ def run_mesh_convergence_study(structure_type: str = "continuous") -> Dict[str, 
         "p_change_fine_vs_med_pct": p_change_pct,
         "stress_change_pct": stress_change_pct,
         "temp_change_pct": temp_change_pct,
-        "gate_b1_passed": passed,
+        "gate_b1_passed": False,
+        "evidence_level": "surrogate_result",
+        "solver_executed": False,
+        "gate_status": "not_applicable_surrogate",
+        "reason": "预设响应与网格系数不能证明 FE 收敛，未求解热传导或弹塑性方程",
     }
 
 
 def run_structure_fair_comparison() -> List[SimulationResult3D]:
-    """连续环形 vs 4点 vs 6点 vs 8点 结构的严格公平比较。
+    """连续环形 vs 4点 vs 6点 vs 8点 结构标签的代理比较（未满足 FAIR-A/B）。
 
     保持热输入、材料、预热、约束释放与网格密度严格一致。
     """
