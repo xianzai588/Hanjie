@@ -2,15 +2,15 @@
   "stage": "THERMAL-0",
   "evidence_level": "solver_result_unvalidated",
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
+  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
   "files": {
-    "thermal0-field.npz": "0f94e7f17ece73f556c523dcb0e0929e7826fd864657b59ea17136b9ab5b5c44",
-    "thermal0-metadata.json": "e8b1164091b10645457d06cd44877e35f29e443a82ca0f535d5bb105ac0d6c24",
-    "thermal0-sensor-history.csv": "a4b5e419afa7297c1868009b942e5f0bdcab39e9216396076defb23d3083554c",
-    "thermal0-sensors.json": "aebb30cd0748acbf501c219292818a27ba0f88a352480ea62b821b23c54b0a4b",
-    "thermal0-t85-samples.csv": "4a63e72557876d0d6b237edd00e1716f67b0bc641f8b2e6562de436cb747ce84",
-    "thermal0-summary.json": "ffe7a17238f05b23d8cd9ed16c3780d6ad9ff484c5238109c97e9def8e04d98a",
-    "thermal0-peak-profile.svg": "07bfd19f547888c497545dfd4550acfa384820e739e1b6a18146e98592f04a35",
-    "thermal0-peak-profile.png": "9b18b5f3e787050ef5d9e1588019b0703a821c946204dd4c0e93b1c1a51ea47a"
+    "thermal0-field.npz": "f396765c9139c9fee60d3f7a2eadb239d282546f2c4adacd6714eaff84e2a071",
+    "thermal0-metadata.json": "7d5f987bc55fd4eff6a5a44eec4eaa65dfcd7d50c6324e30cdb9f8c1e87480e7",
+    "thermal0-sensor-history.csv": "e617499103d292b0af61f45b18f8f1222ac0c150b09b48ee03b710545b7a5220",
+    "thermal0-sensors.json": "52ac6f35d914fbea04ed2c6902abf6b524b733b50f188b1bc5c852c7f055fd3d",
+    "thermal0-t85-samples.csv": "620c218b05f08578a23c9e9ef0baa329bde9c07818c7f118f18f29b3cd8914b8",
+    "thermal0-summary.json": "27f9b7b1f3bb0bfe866abac716ca4fad3cf500815645080216f5954833b0fd85",
+    "thermal0-peak-profile.svg": "c64600348c15b39b350cce2bbb16fac97719e0a420cb635f551bae51ed0dbcfa",
+    "thermal0-peak-profile.png": "953ff4d6ff532ce9aa2cde2293732cba712d104f07145caa13039b2d13fdcf69"
   }
 }

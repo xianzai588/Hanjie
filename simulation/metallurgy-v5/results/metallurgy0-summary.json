@@ -1,6 +1,6 @@
 {
-  "run_timestamp_utc": "2026-09-05T16:49:20.158955+00:00",
-  "git_commit": "4e5fa8f858d1fc8ed0423cd4a14159c92c75dfe6",
+  "run_timestamp_utc": "2026-09-05T18:21:10.371093+00:00",
+  "git_commit": "40007980a157c06cc781b0a411b9f480add110b0",
   "python_version": "3.12.10",
   "solver_version": "METALLURGY-0-risk-mapper-v5",
   "dependency_versions": {
@@ -8,48 +8,48 @@
     "PyYAML": "6.0.3"
   },
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
-  "thermal_input_sha256": "fcefb871919aa8e407ad186a4367d9f261886e02f406b689c1bdbe36b9525b80",
+  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
+  "thermal_input_sha256": "06671a5a676a6ad82e07f9864ed59b0ebe8acc2dbf46793ff13c04ad55b15909",
   "stage": "METALLURGY-0",
   "evidence_level": "literature_supported_plus_solver_result_unvalidated",
   "thermal_input": "simulation/thermal-v5/results/thermal0-field.npz",
   "thermal_evidence_level": "solver_result_unvalidated",
   "material_statistics": {
     "qt450_10_material_zone": {
-      "node_count": 8281,
-      "peak_temperature_c": 390.98751474345363,
-      "peak_temperature_p95_c": 292.18489643457167,
-      "maximum_cooling_rate_c_s": 23.313453593242457,
-      "t8_5_valid_node_count": 0,
-      "t8_5_median_s": null,
-      "t8_5_minimum_s": null
+      "node_count": 46620,
+      "peak_temperature_c": 811.0398396270335,
+      "peak_temperature_p95_c": 302.6117226481396,
+      "maximum_cooling_rate_c_s": 266.3349670423145,
+      "t8_5_valid_node_count": 2,
+      "t8_5_median_s": 1.8468062637633125,
+      "t8_5_minimum_s": 1.8468062637633125
     },
     "q235b_material_zone": {
-      "node_count": 637,
-      "peak_temperature_c": 496.8099932492712,
-      "peak_temperature_p95_c": 481.1994414503522,
-      "maximum_cooling_rate_c_s": 36.21516685468805,
-      "t8_5_valid_node_count": 0,
-      "t8_5_median_s": null,
-      "t8_5_minimum_s": null
+      "node_count": 3330,
+      "peak_temperature_c": 1024.7647510364066,
+      "peak_temperature_p95_c": 530.3899312841479,
+      "maximum_cooling_rate_c_s": 304.43562050681976,
+      "t8_5_valid_node_count": 26,
+      "t8_5_median_s": 3.341766569152668,
+      "t8_5_minimum_s": 3.1946054803190336
     },
     "qt450_10_side_region": {
-      "node_count": 9555,
-      "peak_temperature_c": 1009.6736971797252,
-      "peak_temperature_p95_c": 393.4643168327074,
-      "maximum_cooling_rate_c_s": 1452.783603657358,
-      "t8_5_valid_node_count": 49,
-      "t8_5_median_s": 1.9562516475713778,
-      "t8_5_minimum_s": 1.823246644670121
+      "node_count": 51060,
+      "peak_temperature_c": 1876.032050826783,
+      "peak_temperature_p95_c": 353.6020828940241,
+      "maximum_cooling_rate_c_s": 5702.678630374498,
+      "t8_5_valid_node_count": 130,
+      "t8_5_median_s": 2.8856709106797993,
+      "t8_5_minimum_s": 1.8468062637633125
     },
     "q235b_side_region": {
-      "node_count": 1274,
-      "peak_temperature_c": 627.0643694353072,
-      "peak_temperature_p95_c": 544.751375043991,
-      "maximum_cooling_rate_c_s": 109.2959128403345,
-      "t8_5_valid_node_count": 0,
-      "t8_5_median_s": null,
-      "t8_5_minimum_s": null
+      "node_count": 6660,
+      "peak_temperature_c": 1793.3450763584312,
+      "peak_temperature_p95_c": 651.751588943196,
+      "maximum_cooling_rate_c_s": 4635.116166736293,
+      "t8_5_valid_node_count": 124,
+      "t8_5_median_s": 3.2906871745726463,
+      "t8_5_minimum_s": 2.70076779867113
     }
   },
   "haz_thresholds_c": {
@@ -60,30 +60,30 @@
   },
   "risk_assessment": {
     "qt450_10": {
-      "white_cast_iron_carbide_risk": "Medium",
+      "white_cast_iron_carbide_risk": "High",
       "martensite_high_hardening_risk": "High",
       "haz_embrittlement_risk": "Medium",
       "cold_crack_risk": "Medium",
-      "thermal_exposure_width_tpeak_ge_400c_mm": 2.6875,
+      "thermal_exposure_width_tpeak_ge_400c_mm": 7.221153846153847,
       "hardness_trend": "靠近熔合线和快速冷却区域预计高于 QT450-10 母材；需显微硬度线扫确认",
       "risk_location": {
-        "angle_deg": 44.08163265306122,
+        "angle_deg": 26.765815117888984,
         "n_mm": -0.125,
-        "z_mm": 0.0,
-        "peak_temperature_c": 1009.6736971797252
+        "z_mm": -0.3999999999999986,
+        "peak_temperature_c": 1876.032050826783
       }
     },
     "q235b": {
-      "high_temperature_grain_coarsening_risk": "Low",
-      "hardening_risk": "Medium",
-      "haz_embrittlement_risk": "Low",
+      "high_temperature_grain_coarsening_risk": "Medium",
+      "hardening_risk": "High",
+      "haz_embrittlement_risk": "Medium",
       "hardness_trend": "靠近熔合线处出现热影响梯度；不得由硬度趋势直接推断疲劳寿命",
-      "thermal_exposure_width_tpeak_ge_400c_mm": 5.0,
+      "thermal_exposure_width_tpeak_ge_400c_mm": 4.605769230769226,
       "risk_location": {
-        "angle_deg": 44.08163265306122,
-        "n_mm": 2.4375,
-        "z_mm": 0.0,
-        "peak_temperature_c": 627.0643694353072
+        "angle_deg": 26.765815117888984,
+        "n_mm": 0.6634615384615401,
+        "z_mm": -0.3999999999999986,
+        "peak_temperature_c": 1793.3450763584312
       }
     }
   },

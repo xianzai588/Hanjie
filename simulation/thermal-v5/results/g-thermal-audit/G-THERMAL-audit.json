@@ -2,572 +2,983 @@
   "stage": "G-THERMAL",
   "evidence_level": "solver_result_unvalidated",
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
+  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
   "criteria": {
     "source_power_max_relative_error": 0.01,
-    "energy_balance_error_pct": 1.0,
+    "source_energy_normalization": "PASS when source power integral is within 1%",
+    "global_energy_residual_percent_of_source": 2.0,
     "time_step_travel_distance_must_be_less_than_radial_grid_mm": true,
     "mesh_and_time_thresholds": "拟定工程审计门槛；不替代实验校准"
   },
   "energy_audit": {
+    "source_energy_normalization_pass": true,
+    "global_thermal_energy_balance_pass": true,
     "pass": true,
     "cases": [
       {
         "case": "baseline",
-        "source_power_max_relative_error": 6.890111377067638e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.533188438927285e-12,
+        "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.00000000149,
+          "delta_internal_energy_j": 18421.511106561764,
+          "convection_energy_j": 737.9964246439175,
+          "radiation_energy_j": 641.2041314247041,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.711662628891645,
+          "residual_percent_of_source": 0.003594255701472684,
+          "status": "PASS"
+        }
       },
       {
         "case": "mesh-coarse",
-        "source_power_max_relative_error": 6.890111377067638e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.533188438927285e-12,
+        "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.00000000149,
+          "delta_internal_energy_j": 18420.08794872195,
+          "convection_energy_j": 737.8053922838311,
+          "radiation_energy_j": 642.6762165574869,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.5695575617755821,
+          "residual_percent_of_source": 0.002876553342300703,
+          "status": "PASS"
+        }
       },
       {
         "case": "mesh-fine",
-        "source_power_max_relative_error": 9.186815169423518e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 1.8979960140028987e-11,
+        "discrete_energy_balance_error_pct": 0.004999749993528447,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.000000003758,
+          "delta_internal_energy_j": 18421.1547196297,
+          "convection_energy_j": 737.728482490462,
+          "radiation_energy_j": 641.305851561502,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.18905367790648597,
+          "residual_percent_of_source": 0.0009548165550830813,
+          "status": "PASS"
+        }
       },
       {
         "case": "dt-half",
-        "source_power_max_relative_error": 6.890111377067638e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 1.561758578801998e-12,
+        "discrete_energy_balance_error_pct": 1.561758578801998e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19799.99999999969,
+          "delta_internal_energy_j": 18421.30402704467,
+          "convection_energy_j": 737.9480962013141,
+          "radiation_energy_j": 641.1034335387733,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.35555678506716504,
+          "residual_percent_of_source": 0.0017957413387230837,
+          "status": "PASS"
+        }
       },
       {
         "case": "dt-quarter",
-        "source_power_max_relative_error": 6.890111377067638e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.003824063168178349,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 3.0169501016386836e-11,
+        "discrete_energy_balance_error_pct": 3.0169501016386836e-11,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19799.999999994026,
+          "delta_internal_energy_j": 18421.20071899069,
+          "convection_energy_j": 737.923937549419,
+          "radiation_energy_j": 641.0530543913641,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.1777109374452266,
+          "residual_percent_of_source": 0.0008975299870973749,
+          "status": "PASS"
+        }
       },
       {
         "case": "convection-low",
-        "source_power_max_relative_error": 6.890111377067638e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.533188438927285e-12,
+        "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.00000000149,
+          "delta_internal_energy_j": 18783.280637339663,
+          "convection_energy_j": 370.7190794205646,
+          "radiation_energy_j": 646.7164320563026,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.7161488150377409,
+          "residual_percent_of_source": 0.003616913207261045,
+          "status": "PASS"
+        }
       },
       {
         "case": "convection-high",
-        "source_power_max_relative_error": 6.890111377067638e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.533188438927285e-12,
+        "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.00000000149,
+          "delta_internal_energy_j": 17707.93373663333,
+          "convection_energy_j": 1462.3676487723792,
+          "radiation_energy_j": 630.4015888785974,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.7029742828162853,
+          "residual_percent_of_source": 0.003550375165738547,
+          "status": "PASS"
+        }
       },
       {
         "case": "efficiency-low",
         "source_power_max_relative_error": 7.01770603219852e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.00780399806145351,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.275957614183426e-12,
+        "discrete_energy_balance_error_pct": 7.275957614183426e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 16199.999999998821,
+          "delta_internal_energy_j": 14911.608584529906,
+          "convection_energy_j": 708.9117634927455,
+          "radiation_energy_j": 579.9397227569739,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.460070780804017,
+          "residual_percent_of_source": 0.002839943091383027,
+          "status": "PASS"
+        }
       },
       {
         "case": "efficiency-high",
-        "source_power_max_relative_error": 7.773458989512207e-16,
+        "source_power_max_relative_error": 5.830094242134155e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.007803998061458791,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 4.384230870084885e-12,
+        "discrete_energy_balance_error_pct": 4.384230870084885e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 23399.999999998974,
+          "delta_internal_energy_j": 21924.017241595855,
+          "convection_energy_j": 766.7449787714725,
+          "radiation_energy_j": 710.2568900373674,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -1.0191104057194025,
+          "residual_percent_of_source": 0.004355172674014731,
+          "status": "PASS"
+        }
       },
       {
         "case": "source-narrow",
-        "source_power_max_relative_error": 9.186815169423518e-16,
+        "source_power_max_relative_error": 5.741759480889699e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.533188438927285e-12,
+        "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.00000000149,
+          "delta_internal_energy_j": 18422.363257493464,
+          "convection_energy_j": 737.7355987798916,
+          "radiation_energy_j": 640.604374771225,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.703231043087726,
+          "residual_percent_of_source": 0.0035516719347862273,
+          "status": "PASS"
+        }
       },
       {
         "case": "source-wide",
         "source_power_max_relative_error": 6.890111377067638e-16,
         "power_definition_relative_error": 0.0,
         "line_energy_definition_relative_error": 0.0,
-        "energy_balance_error_pct": 0.0078039980614472695,
-        "discrete_energy_balance_error_pct": 0.0
+        "energy_balance_error_pct": 7.533188438927285e-12,
+        "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+        "global_thermal_energy_balance": {
+          "source_energy_j": 19800.00000000149,
+          "delta_internal_energy_j": 18420.50806976548,
+          "convection_energy_j": 738.3053890046176,
+          "radiation_energy_j": 641.9081276078344,
+          "advective_energy_export_j": 0.0,
+          "residual_j": -0.721586376443156,
+          "residual_percent_of_source": 0.003644375638601524,
+          "status": "PASS"
+        }
       }
     ]
   },
   "mesh_sensitivity": {
-    "tmax_medium_to_coarse_relative_change": 0.1891918111631697,
-    "tmax_medium_to_fine_relative_change": 0.07065395239443775,
+    "tmax_medium_to_coarse_relative_change": 0.01670846119786189,
+    "tmax_medium_to_fine_relative_change": 0.04717567682970096,
     "t85_medium_to_fine_relative_change": null,
     "note": "t8/5 分布的有效节点集合可能随网格变化，先报告有效样本和分位数，不强行用单一值代替。"
   },
   "time_step_sensitivity": {
-    "tmax_base_to_half_relative_change": 0.00026567555468347894,
-    "tmax_half_to_quarter_relative_change": 0.00013942600966283092,
+    "tmax_base_to_half_relative_change": 0.00018187342732094798,
+    "tmax_half_to_quarter_relative_change": 9.304101401454912e-05,
     "t85_valid_counts": {
-      "baseline": 48,
-      "dt-half": 48,
-      "dt-quarter": 48
+      "baseline": 102,
+      "dt-half": 102,
+      "dt-quarter": 102
     },
     "step_travel_distance_mm": {
-      "baseline": 0.07500000000000001,
-      "dt-half": 0.037500000000000006,
-      "dt-quarter": 0.018750000000000003
+      "baseline": 0.015,
+      "dt-half": 0.0075,
+      "dt-quarter": 0.00375
     },
-    "local_radial_grid_mm": 2.5625
+    "source_resolution": {
+      "ds_mm": 1.945945945945946,
+      "dn_mm": 0.7884615384615384,
+      "dz_mm": 0.8,
+      "ds_over_a_front": 0.32432432432432434,
+      "dn_over_b": 0.3153846153846154,
+      "dz_over_c": 0.32,
+      "target_max_ratio": 0.3333333333333333,
+      "target_met": true
+    },
+    "local_radial_grid_mm": 0.7884615384615384
   },
   "boundary_sensitivity": {
     "convection-low": {
-      "peak_relative_change": 0.011574084418976194,
+      "peak_relative_change": 0.0008487192142661111,
       "exposure_width": {
-        "qt450_10_side_above_400c": 5.25,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       }
     },
     "convection-high": {
-      "peak_relative_change": 0.003541110237214381,
+      "peak_relative_change": 0.0016805468643382117,
       "exposure_width": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       }
     },
     "efficiency-low": {
-      "peak_relative_change": 0.1548213669676243,
+      "peak_relative_change": 0.1697561805974067,
       "exposure_width": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 5.64423076923077,
+        "q235b_side_above_400c": 4.605769230769226
       }
     },
     "efficiency-high": {
-      "peak_relative_change": 0.15806030358429501,
+      "peak_relative_change": 0.16919632030863072,
       "exposure_width": {
-        "qt450_10_side_above_400c": 5.25,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 8.009615384615387,
+        "q235b_side_above_400c": 4.605769230769226
       }
     },
     "source-narrow": {
-      "peak_relative_change": 0.09527159883661314,
+      "peak_relative_change": 0.11892495439988064,
       "exposure_width": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       }
     },
     "source-wide": {
-      "peak_relative_change": 0.09883200432510046,
+      "peak_relative_change": 0.09373258457539645,
       "exposure_width": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       }
     }
   },
   "cases": [
     {
       "case": "baseline",
-      "case_config_sha256": "a265fc688b6f7eb988b56fc9c6a61c8a1ae2a6b2cca59a8880d75ac3997d723d",
+      "case_config_sha256": "63a8d8f752f975833cb4bbe29a1056a6a60c1d351b7323d5dbcdd32076e0b330",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 1009.6736971797252,
+      "peak_temperature_c": 1876.0320508267941,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 1.95709298139829,
-        "p25": 1.9392478972903007,
-        "p75": 1.9865322549958897,
-        "minimum": 1.897819150513751,
-        "maximum": 2.012529379313719
+        "valid_node_count": 102,
+        "median": 3.343684204098132,
+        "p25": 3.1842673087527675,
+        "p75": 4.096692172017915,
+        "minimum": 2.8856709106797993,
+        "maximum": 5.812485334380028
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 6.890111377067638e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.533188438927285e-12,
+      "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.00000000149,
+        "delta_internal_energy_j": 18421.511106561764,
+        "convection_energy_j": 737.9964246439175,
+        "radiation_energy_j": 641.2041314247041,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.711662628891645,
+        "residual_percent_of_source": 0.003594255701472684,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "mesh-coarse",
-      "case_config_sha256": "1351230fa6a8a748e2ef1720c79191b360cb2ae04347f3184c39855d9d92d2b9",
+      "case_config_sha256": "0e09dc8cec91c32189c95d9ca9cfad2097296f3685c8b528c5cbd349b15bdb56",
       "grid": {
-        "arc_points": 31,
-        "radial_points": 11,
-        "axial_points": 9,
-        "cell_count": 3069
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 25,
+        "radial_points": 26,
+        "axial_points": 15,
+        "cell_count": 9750,
+        "cell_volume_mm3": 7.266461538461538,
+        "source_resolution": {
+          "ds_mm": 2.88,
+          "dn_mm": 1.5769230769230769,
+          "dz_mm": 1.6,
+          "ds_over_a_front": 0.48,
+          "dn_over_b": 0.6307692307692307,
+          "dz_over_c": 0.64,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": false
+        },
+        "local_source_window_mm": [
+          -34.56,
+          34.56
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 818.6517017264792,
+      "peak_temperature_c": 1844.6864420996094,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 17,
-        "median": 2.3708088978528963,
-        "p25": 2.312224158143735,
-        "p75": 2.532260956707887,
-        "minimum": 2.2842174415008714,
-        "maximum": 2.8771106341228574
+        "valid_node_count": 30,
+        "median": 3.2193838837905666,
+        "p25": 2.8338250144416857,
+        "p75": 3.781624002224838,
+        "minimum": 2.812845441657732,
+        "maximum": 4.3018388745338285
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 3.200000000000003,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 6.826923076923077,
+        "q235b_side_above_400c": 4.21153846153846
       },
-      "source_power_max_relative_error": 6.890111377067638e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.533188438927285e-12,
+      "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.00000000149,
+        "delta_internal_energy_j": 18420.08794872195,
+        "convection_energy_j": 737.8053922838311,
+        "radiation_energy_j": 642.6762165574869,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.5695575617755821,
+        "residual_percent_of_source": 0.002876553342300703,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "mesh-fine",
-      "case_config_sha256": "8c620f16639fbf0b1a473dc3a4a72c93fee7373250d92ca6bb9f7c77b50bf528",
+      "case_config_sha256": "cf44808ec42a618233fae12fb348afaa2091111387d70ac94b9b63092e2e3733",
       "grid": {
-        "arc_points": 61,
-        "radial_points": 21,
-        "axial_points": 15,
-        "cell_count": 19215
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 55,
+        "radial_points": 62,
+        "axial_points": 36,
+        "cell_count": 122760,
+        "cell_volume_mm3": 0.5771260997067448,
+        "source_resolution": {
+          "ds_mm": 1.309090909090909,
+          "dn_mm": 0.6612903225806451,
+          "dz_mm": 0.6666666666666666,
+          "ds_over_a_front": 0.21818181818181817,
+          "dn_over_b": 0.2645161290322581,
+          "dz_over_c": 0.26666666666666666,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.345454545454544,
+          35.345454545454544
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.003,
+        "total_duration_s": 40.0,
+        "steps": 13334
       },
-      "peak_temperature_c": 938.3362598452729,
+      "peak_temperature_c": 1964.53513257876,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 118,
-        "median": 2.6551516025689264,
-        "p25": 2.539380872644017,
-        "p75": 2.694945485569967,
-        "minimum": 2.286717807499251,
-        "maximum": 2.865751863297083
+        "valid_node_count": 226,
+        "median": 3.4304834054126125,
+        "p25": 3.228616218177745,
+        "p75": 3.7635791329850683,
+        "minimum": 2.9393856780733536,
+        "maximum": 6.714232627637024
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 5.2500000000000036,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.233870967741936,
+        "q235b_side_above_400c": 4.669354838709673
       },
-      "source_power_max_relative_error": 9.186815169423518e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 1.8979960140028987e-11,
+      "discrete_energy_balance_error_pct": 0.004999749993528447,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.000000003758,
+        "delta_internal_energy_j": 18421.1547196297,
+        "convection_energy_j": 737.728482490462,
+        "radiation_energy_j": 641.305851561502,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.18905367790648597,
+        "residual_percent_of_source": 0.0009548165550830813,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "dt-half",
-      "case_config_sha256": "cc64c9e4917d89df2818136c897b6a411e9e3cda19c9f5f3ff967ba40f7626ee",
+      "case_config_sha256": "854dded4453709bca112f61f458bea20b0674fd6f8bf0ce5ed2e3b2ecd1a1604",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.025,
-        "total_duration_s": 314.07548955488363,
-        "steps": 12564
+        "time_step_s": 0.005,
+        "total_duration_s": 40.0,
+        "steps": 8000
       },
-      "peak_temperature_c": 1009.4054515601777,
+      "peak_temperature_c": 1875.6908504479463,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 1.9604826461106057,
-        "p25": 1.9422490763921516,
-        "p75": 1.9885827063253565,
-        "minimum": 1.894154640069786,
-        "maximum": 2.018066984008591
+        "valid_node_count": 102,
+        "median": 3.3410084456082227,
+        "p25": 3.186592193361688,
+        "p75": 4.100744252495698,
+        "minimum": 2.888549550526939,
+        "maximum": 5.818973367324006
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 6.890111377067638e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 1.561758578801998e-12,
+      "discrete_energy_balance_error_pct": 1.561758578801998e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19799.99999999969,
+        "delta_internal_energy_j": 18421.30402704467,
+        "convection_energy_j": 737.9480962013141,
+        "radiation_energy_j": 641.1034335387733,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.35555678506716504,
+        "residual_percent_of_source": 0.0017957413387230837,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "dt-quarter",
-      "case_config_sha256": "918e8ab5dd4d0f07f1ff580c5f875530ec87b76a25a8fd438f853bdcc571a5fc",
+      "case_config_sha256": "689b04b2ab2fb1cfa37b04db172f917700b93288b72b682f6f07a79d2dcba3c6",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.0125,
-        "total_duration_s": 314.07548955488363,
-        "steps": 25127
+        "time_step_s": 0.0025,
+        "total_duration_s": 40.0,
+        "steps": 16000
       },
-      "peak_temperature_c": 1009.2647338056497,
+      "peak_temperature_c": 1875.5163505048945,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 1.962526699470331,
-        "p25": 1.9444166034874897,
-        "p75": 1.990321152900961,
-        "minimum": 1.8977413350848433,
-        "maximum": 2.0185553232630724
+        "valid_node_count": 102,
+        "median": 3.341336808096319,
+        "p25": 3.1873404198220254,
+        "p75": 4.10068728518773,
+        "minimum": 2.8909025145787073,
+        "maximum": 5.818891498968924
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 6.890111377067638e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.003824063168178349,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 3.0169501016386836e-11,
+      "discrete_energy_balance_error_pct": 3.0169501016386836e-11,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19799.999999994026,
+        "delta_internal_energy_j": 18421.20071899069,
+        "convection_energy_j": 737.923937549419,
+        "radiation_energy_j": 641.0530543913641,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.1777109374452266,
+        "residual_percent_of_source": 0.0008975299870973749,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "convection-low",
-      "case_config_sha256": "d3fc109838281d4a29b314912d1798764d5d7c78554dd823b1fd9af26245537a",
+      "case_config_sha256": "dc5e39c208e2062c683d71ca5786a03918ff315100c0808a2a8b3a8619ae6d82",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 1021.3597457865031,
+      "peak_temperature_c": 1877.62427527491,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 1.9871158446961985,
-        "p25": 1.9652165603402239,
-        "p75": 2.0105989425137807,
-        "minimum": 1.8988313331608513,
-        "maximum": 2.070878128365564
+        "valid_node_count": 102,
+        "median": 3.3548495470467046,
+        "p25": 3.1924040341976427,
+        "p75": 4.100402923227188,
+        "minimum": 2.8895162345847254,
+        "maximum": 5.972266946524606
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 5.25,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 6.890111377067638e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.533188438927285e-12,
+      "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.00000000149,
+        "delta_internal_energy_j": 18783.280637339663,
+        "convection_energy_j": 370.7190794205646,
+        "radiation_energy_j": 646.7164320563026,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.7161488150377409,
+        "residual_percent_of_source": 0.003616913207261045,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "convection-high",
-      "case_config_sha256": "90b0e113c57fb43f3230a7ece1e37b05f7a616e0e21cca88c8b2999c542c7aa1",
+      "case_config_sha256": "5e1c79b8be8c49d882fec229d04cfbc02dc0f14d8ad3d6161a71c87b76cda517",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 1006.098331314396,
+      "peak_temperature_c": 1872.8792910463792,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 1.9194095092847192,
-        "p25": 1.904618708661296,
-        "p75": 1.949722195517307,
-        "minimum": 1.8901802033580282,
-        "maximum": 1.9893652738372936
+        "valid_node_count": 100,
+        "median": 3.313977507224255,
+        "p25": 3.1673508187852697,
+        "p75": 3.913773924382462,
+        "minimum": 2.878067002492635,
+        "maximum": 5.63396388151768
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 6.890111377067638e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.533188438927285e-12,
+      "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.00000000149,
+        "delta_internal_energy_j": 17707.93373663333,
+        "convection_energy_j": 1462.3676487723792,
+        "radiation_energy_j": 630.4015888785974,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.7029742828162853,
+        "residual_percent_of_source": 0.003550375165738547,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "efficiency-low",
-      "case_config_sha256": "23e81c626834df71168f170095766fd5072bfba9582d718ff4a8ec04c5d9c912",
+      "case_config_sha256": "4a1c71beae1e0763ba9016489199a32fe807b7330da1d03b78f881923c046a05",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 853.354635191105,
+      "peak_temperature_c": 1557.5640152001176,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 2.357434129343531,
-        "p25": 2.351731860355356,
-        "p75": 2.37065383873432,
-        "minimum": 2.342928396801206,
-        "maximum": 2.427873751371745
+        "valid_node_count": 0,
+        "median": null,
+        "p25": null,
+        "p75": null,
+        "minimum": null,
+        "maximum": null
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 5.64423076923077,
+        "q235b_side_above_400c": 4.605769230769226
       },
       "source_power_max_relative_error": 7.01770603219852e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.00780399806145351,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.275957614183426e-12,
+      "discrete_energy_balance_error_pct": 7.275957614183426e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 16199.999999998821,
+        "delta_internal_energy_j": 14911.608584529906,
+        "convection_energy_j": 708.9117634927455,
+        "radiation_energy_j": 579.9397227569739,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.460070780804017,
+        "residual_percent_of_source": 0.002839943091383027,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "efficiency-high",
-      "case_config_sha256": "1dc751e39e8c6dcade0acbfcecf4e5b49ff83382f821be01f3b7aaf21bd2a856",
+      "case_config_sha256": "b24ba4d94d1d2553e230cbe46edea7033e85cded464979bdea5f9dd6f32a8c05",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3153846153846154,
+          "dz_over_c": 0.32,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 1169.2630282770301,
+      "peak_temperature_c": 2193.449770607742,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 2.1526082046407566,
-        "p25": 2.0846788127130935,
-        "p75": 2.226593757405462,
-        "minimum": 1.7159849351739815,
-        "maximum": 2.30478683237601
+        "valid_node_count": 260,
+        "median": 3.450854181642937,
+        "p25": 3.089109853346123,
+        "p75": 3.9839253267024093,
+        "minimum": 2.737128119600677,
+        "maximum": 5.258387298682507
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 5.25,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 8.009615384615387,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 7.773458989512207e-16,
+      "source_power_max_relative_error": 5.830094242134155e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.007803998061458791,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 4.384230870084885e-12,
+      "discrete_energy_balance_error_pct": 4.384230870084885e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 23399.999999998974,
+        "delta_internal_energy_j": 21924.017241595855,
+        "convection_energy_j": 766.7449787714725,
+        "radiation_energy_j": 710.2568900373674,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -1.0191104057194025,
+        "residual_percent_of_source": 0.004355172674014731,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "source-narrow",
-      "case_config_sha256": "6128a493c53c83ee5dd03c8b973721df00186413da65ea8008c9a6d77fffaf4c",
+      "case_config_sha256": "1262682882014259fe637ffa32fc321e27e003cad9906be522600f79f934e992",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.3942307692307692,
+          "dz_over_c": 0.4,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": false
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 1105.866924613312,
+      "peak_temperature_c": 2099.139076924085,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 48,
-        "median": 1.7935511321169457,
-        "p25": 1.7663295130924963,
-        "p75": 1.8302418294148737,
-        "minimum": 1.7018713395241765,
-        "maximum": 1.862771365112927
+        "valid_node_count": 162,
+        "median": 3.1163376368308615,
+        "p25": 2.7932581109452075,
+        "p75": 3.490031584237599,
+        "minimum": 2.6147449174743778,
+        "maximum": 5.887709129954494
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
-      "source_power_max_relative_error": 9.186815169423518e-16,
+      "source_power_max_relative_error": 5.741759480889699e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.533188438927285e-12,
+      "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.00000000149,
+        "delta_internal_energy_j": 18422.363257493464,
+        "convection_energy_j": 737.7355987798916,
+        "radiation_energy_j": 640.604374771225,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.703231043087726,
+        "residual_percent_of_source": 0.0035516719347862273,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     },
     {
       "case": "source-wide",
-      "case_config_sha256": "96059b2c4ac53d1229073c9e1eb6942e2dfea84b384eb49d1ecc855af2beed4d",
+      "case_config_sha256": "d2e5f74784f13930c338020b3256c2e8a9cf0d2c20c0a08f350b1a4527831057",
       "grid": {
-        "arc_points": 49,
-        "radial_points": 17,
-        "axial_points": 13,
-        "cell_count": 10829
+        "coordinate_mode": "local_moving_source",
+        "arc_points": 37,
+        "radial_points": 52,
+        "axial_points": 30,
+        "cell_count": 57720,
+        "cell_volume_mm3": 1.2274428274428275,
+        "source_resolution": {
+          "ds_mm": 1.945945945945946,
+          "dn_mm": 0.7884615384615384,
+          "dz_mm": 0.8,
+          "ds_over_a_front": 0.32432432432432434,
+          "dn_over_b": 0.26282051282051283,
+          "dz_over_c": 0.26666666666666666,
+          "target_max_ratio": 0.3333333333333333,
+          "target_met": true
+        },
+        "local_source_window_mm": [
+          -35.027027027027025,
+          35.02702702702703
+        ]
       },
       "time": {
-        "time_step_s": 0.05,
-        "total_duration_s": 314.07548955488363,
-        "steps": 6282
+        "time_step_s": 0.01,
+        "total_duration_s": 40.0,
+        "steps": 4000
       },
-      "peak_temperature_c": 909.8856219731184,
+      "peak_temperature_c": 1700.1867179565172,
       "t8_5_statistics_s": {
         "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-        "valid_node_count": 47,
-        "median": 2.250288001954303,
-        "p25": 2.24484281046578,
-        "p75": 2.2620919105116,
-        "minimum": 2.2321639576714283,
-        "maximum": 2.2752705827246444
+        "valid_node_count": 28,
+        "median": 4.472154760864026,
+        "p25": 4.428091714724282,
+        "p75": 4.519964887404679,
+        "minimum": 4.369086670199511,
+        "maximum": 4.990291303884405
       },
       "thermal_exposure_width_estimates_mm": {
-        "qt450_10_side_above_400c": 2.6875,
-        "q235b_side_above_400c": 5.0
+        "qt450_10_side_above_400c": 7.221153846153847,
+        "q235b_side_above_400c": 4.605769230769226
       },
       "source_power_max_relative_error": 6.890111377067638e-16,
       "power_definition_relative_error": 0.0,
       "line_energy_definition_relative_error": 0.0,
-      "energy_balance_error_pct": 0.0078039980614472695,
-      "discrete_energy_balance_error_pct": 0.0,
-      "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac"
+      "energy_balance_error_pct": 7.533188438927285e-12,
+      "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+      "global_thermal_energy_balance": {
+        "source_energy_j": 19800.00000000149,
+        "delta_internal_energy_j": 18420.50806976548,
+        "convection_energy_j": 738.3053890046176,
+        "radiation_energy_j": 641.9081276078344,
+        "advective_energy_export_j": 0.0,
+        "residual_j": -0.721586376443156,
+        "residual_percent_of_source": 0.003644375638601524,
+        "status": "PASS"
+      },
+      "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d"
     }
   ],
   "fusion_status": {
-    "baseline_peak_temperature_c": 1009.6736971797252,
+    "baseline_peak_temperature_c": 1876.0320508267941,
     "fusion_threshold_c": 1350.0,
-    "threshold_exceeded": false
+    "threshold_exceeded": true
   },
   "gate_status": "review_required",
   "gate_checks": {
     "energy_pass": true,
-    "mesh_pass": false,
+    "source_resolution_pass": true,
+    "mesh_pass": true,
     "time_step_pass": true,
     "boundary_sensitivity_review_required": true
   },
   "limitations": [
     "热源尚未用热电偶、宏观熔合区或独立验证数据校准。",
+    "局部随动窗口的结果只描述焊源邻域热历史；完整圆周装配体仍需独立周期路径模型。",
     "局部展开坐标不是完整装配体三维热—结构模型。",
     "G-THERMAL 审计通过不等于 THERMAL-1 或物理焊接验证通过。"
   ]

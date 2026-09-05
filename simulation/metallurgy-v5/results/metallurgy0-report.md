@@ -4,20 +4,20 @@
 
 ## 结果摘要
 
-- QT450-10 侧空间区域峰值温度：1009.7 °C；最大离散冷却速率：1452.8 °C/s；t8/5 中位数：1.9562516475713778 s。
-- Q235B 侧空间区域峰值温度：627.1 °C；最大离散冷却速率：109.3 °C/s；t8/5 中位数：无有效节点 s。
+- QT450-10 侧空间区域峰值温度：1876.0 °C；最大离散冷却速率：5702.7 °C/s；t8/5 中位数：2.8856709106797993 s。
+- Q235B 侧空间区域峰值温度：1793.3 °C；最大离散冷却速率：4635.1 °C/s；t8/5 中位数：3.2906871745726463 s。
 
 ## 风险判定
 
 | 材料侧 | 风险项 | 等级 |
 | --- | --- | --- |
-| qt450_10 | white_cast_iron_carbide_risk | **Medium** |
+| qt450_10 | white_cast_iron_carbide_risk | **High** |
 | qt450_10 | martensite_high_hardening_risk | **High** |
 | qt450_10 | haz_embrittlement_risk | **Medium** |
 | qt450_10 | cold_crack_risk | **Medium** |
-| q235b | high_temperature_grain_coarsening_risk | **Low** |
-| q235b | hardening_risk | **Medium** |
-| q235b | haz_embrittlement_risk | **Low** |
+| q235b | high_temperature_grain_coarsening_risk | **Medium** |
+| q235b | hardening_risk | **High** |
+| q235b | haz_embrittlement_risk | **Medium** |
 
 ## 焊缝稀释—成分区间
 

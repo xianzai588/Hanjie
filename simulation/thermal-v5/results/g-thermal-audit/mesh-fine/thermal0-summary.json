@@ -1,6 +1,6 @@
 {
-  "run_timestamp_utc": "2026-09-05T16:49:40.383078+00:00",
-  "git_commit": "4e5fa8f858d1fc8ed0423cd4a14159c92c75dfe6",
+  "run_timestamp_utc": "2026-09-05T18:17:35.045551+00:00",
+  "git_commit": "40007980a157c06cc781b0a411b9f480add110b0",
   "python_version": "3.12.10",
   "dependency_versions": {
     "numpy": "2.3.5",
@@ -10,22 +10,38 @@
   },
   "stage": "THERMAL-0",
   "evidence_level": "solver_result_unvalidated",
-  "solver_version": "THERMAL-0-explicit-finite-volume-v5",
-  "model": "3d_periodic_unwrapped_goldak_explicit_finite_volume",
+  "solver_version": "THERMAL-0.1-conservative-finite-volume-v5",
+  "model": "3d_local_source_window_goldak_conservative_finite_volume",
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
+  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
   "material_file": "project/materials.yaml",
   "material_sha256": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
   "grid": {
-    "arc_points": 61,
-    "radial_points": 21,
-    "axial_points": 15,
-    "cell_count": 19215
+    "coordinate_mode": "local_moving_source",
+    "arc_points": 55,
+    "radial_points": 62,
+    "axial_points": 36,
+    "cell_count": 122760,
+    "cell_volume_mm3": 0.5771260997067448,
+    "source_resolution": {
+      "ds_mm": 1.309090909090909,
+      "dn_mm": 0.6612903225806451,
+      "dz_mm": 0.6666666666666666,
+      "ds_over_a_front": 0.21818181818181817,
+      "dn_over_b": 0.2645161290322581,
+      "dz_over_c": 0.26666666666666666,
+      "target_max_ratio": 0.3333333333333333,
+      "target_met": true
+    },
+    "local_source_window_mm": [
+      -35.345454545454544,
+      35.345454545454544
+    ]
   },
   "time": {
-    "time_step_s": 0.05,
-    "total_duration_s": 314.07548955488363,
-    "steps": 6282
+    "time_step_s": 0.003,
+    "total_duration_s": 40.0,
+    "steps": 13334
   },
   "energy": {
     "nominal_net_power_w": 495.0,
@@ -34,44 +50,63 @@
     "ui_line_energy_j_per_mm": 330.0,
     "power_definition_relative_error": 0.0,
     "line_energy_definition_relative_error": 0.0,
-    "source_input_j": 155479.5,
-    "continuous_expected_source_energy_j": 155467.3673296674,
-    "discrete_expected_source_energy_j": 155479.5,
-    "source_active_steps": 6282,
-    "source_power_min_w": 494.99999999999966,
-    "source_power_max_w": 495.00000000000045,
-    "source_power_max_relative_error": 9.186815169423518e-16,
-    "energy_balance_error_pct": 0.0078039980614472695,
-    "discrete_energy_balance_error_pct": 0.0,
-    "boundary_loss_estimate_j": 122879.71669801339,
-    "energy_balance_note": "热源体积分和焊段积分已审计；内部能量、边界损失和数值耗散仍未按商业 FE 全局能量审计定义闭合。"
+    "source_input_j": 19800.000000003758,
+    "continuous_expected_source_energy_j": 19800.0,
+    "discrete_expected_source_energy_j": 19800.99,
+    "source_active_steps": 13334,
+    "source_power_min_w": 494.9999999999998,
+    "source_power_max_w": 495.0000000000003,
+    "source_power_max_relative_error": 5.741759480889699e-16,
+    "energy_balance_error_pct": 1.8979960140028987e-11,
+    "discrete_energy_balance_error_pct": 0.004999749993528447,
+    "source_energy_normalization": {
+      "status": "PASS",
+      "description": "离散 Goldak 体积分对应名义净输入功率。"
+    },
+    "boundary_loss_estimate_j": 1379.034334051964,
+    "delta_internal_energy_j": 18421.1547196297,
+    "convection_energy_j": 737.728482490462,
+    "radiation_energy_j": 641.305851561502,
+    "advective_energy_export_j": 0.0,
+    "global_thermal_energy_balance": {
+      "source_energy_j": 19800.000000003758,
+      "delta_internal_energy_j": 18421.1547196297,
+      "convection_energy_j": 737.728482490462,
+      "radiation_energy_j": 641.305851561502,
+      "advective_energy_export_j": 0.0,
+      "residual_j": -0.18905367790648597,
+      "residual_percent_of_source": 0.0009548165550830813,
+      "status": "PASS"
+    },
+    "energy_balance_note": "全局账本按 E_source = ΔU + E_convection + E_radiation + residual 记录；残差包含有限体积边界/显式离散误差。"
   },
   "assumptions": [
     "Goldak 尺寸、前后能量比例和效率均为 design_assumption，未用热电偶/宏观截面校准。",
     "接口展开坐标用于局部三维热历史；未包含完整装配体的实体接触换热。",
     "未模拟熔池流动、相变、焊缝逐道激活或温度相关塑性。",
-    "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。"
+    "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。",
+    "焊缝金属采用焊前已存在的 pre-existing weld metal thermal surrogate；逐段激活留待 THERMAL-1。"
   ],
-  "peak_temperature_c": 938.3362598452729,
+  "peak_temperature_c": 1964.53513257876,
   "peak_temperature_location": {
-    "s_mm": 463.39006655638565,
-    "n_mm": 0.8999999999999986,
-    "z_mm": 0.0,
-    "angle_deg": 354.0983606557377
+    "s_mm": 35.345454545454544,
+    "n_mm": 0.040322580645160144,
+    "z_mm": -0.3333333333333339,
+    "angle_deg": 27.00914070986979
   },
   "thermal_exposure_width_estimates_mm": {
-    "qt450_10_side_above_400c": 5.2500000000000036,
-    "q235b_side_above_400c": 5.0
+    "qt450_10_side_above_400c": 7.233870967741936,
+    "q235b_side_above_400c": 4.669354838709673
   },
   "t8_5_statistics_s": {
     "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",
-    "valid_node_count": 118,
-    "median": 2.6551516025689264,
-    "p25": 2.539380872644017,
-    "p75": 2.694945485569967,
-    "minimum": 2.286717807499251,
-    "maximum": 2.865751863297083
+    "valid_node_count": 226,
+    "median": 3.4304834054126125,
+    "p25": 3.228616218177745,
+    "p75": 3.7635791329850683,
+    "minimum": 2.9393856780733536,
+    "maximum": 6.714232627637024
   },
   "fusion_threshold_c": 1350.0,
-  "fusion_threshold_exceeded": false
+  "fusion_threshold_exceeded": true
 }

@@ -1,6 +1,6 @@
 {
-  "run_timestamp_utc": "2026-09-05T16:49:30.186853+00:00",
-  "git_commit": "4e5fa8f858d1fc8ed0423cd4a14159c92c75dfe6",
+  "run_timestamp_utc": "2026-09-05T18:15:11.745561+00:00",
+  "git_commit": "40007980a157c06cc781b0a411b9f480add110b0",
   "python_version": "3.12.10",
   "dependency_versions": {
     "numpy": "2.3.5",
@@ -10,22 +10,38 @@
   },
   "stage": "THERMAL-0",
   "evidence_level": "solver_result_unvalidated",
-  "solver_version": "THERMAL-0-explicit-finite-volume-v5",
-  "model": "3d_periodic_unwrapped_goldak_explicit_finite_volume",
+  "solver_version": "THERMAL-0.1-conservative-finite-volume-v5",
+  "model": "3d_local_source_window_goldak_conservative_finite_volume",
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
+  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
   "material_file": "project/materials.yaml",
   "material_sha256": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
   "grid": {
-    "arc_points": 31,
-    "radial_points": 11,
-    "axial_points": 9,
-    "cell_count": 3069
+    "coordinate_mode": "local_moving_source",
+    "arc_points": 25,
+    "radial_points": 26,
+    "axial_points": 15,
+    "cell_count": 9750,
+    "cell_volume_mm3": 7.266461538461538,
+    "source_resolution": {
+      "ds_mm": 2.88,
+      "dn_mm": 1.5769230769230769,
+      "dz_mm": 1.6,
+      "ds_over_a_front": 0.48,
+      "dn_over_b": 0.6307692307692307,
+      "dz_over_c": 0.64,
+      "target_max_ratio": 0.3333333333333333,
+      "target_met": false
+    },
+    "local_source_window_mm": [
+      -34.56,
+      34.56
+    ]
   },
   "time": {
-    "time_step_s": 0.05,
-    "total_duration_s": 314.07548955488363,
-    "steps": 6282
+    "time_step_s": 0.01,
+    "total_duration_s": 40.0,
+    "steps": 4000
   },
   "energy": {
     "nominal_net_power_w": 495.0,
@@ -34,22 +50,41 @@
     "ui_line_energy_j_per_mm": 330.0,
     "power_definition_relative_error": 0.0,
     "line_energy_definition_relative_error": 0.0,
-    "source_input_j": 155479.5,
-    "continuous_expected_source_energy_j": 155467.3673296674,
-    "discrete_expected_source_energy_j": 155479.5,
-    "source_active_steps": 6282,
+    "source_input_j": 19800.00000000149,
+    "continuous_expected_source_energy_j": 19800.0,
+    "discrete_expected_source_energy_j": 19800.0,
+    "source_active_steps": 4000,
     "source_power_min_w": 494.9999999999997,
-    "source_power_max_w": 495.00000000000034,
-    "source_power_max_relative_error": 6.890111377067638e-16,
-    "energy_balance_error_pct": 0.0078039980614472695,
-    "discrete_energy_balance_error_pct": 0.0,
-    "boundary_loss_estimate_j": 195341.5478329713,
-    "energy_balance_note": "热源体积分和焊段积分已审计；内部能量、边界损失和数值耗散仍未按商业 FE 全局能量审计定义闭合。"
+    "source_power_max_w": 495.0000000000003,
+    "source_power_max_relative_error": 5.741759480889699e-16,
+    "energy_balance_error_pct": 7.533188438927285e-12,
+    "discrete_energy_balance_error_pct": 7.533188438927285e-12,
+    "source_energy_normalization": {
+      "status": "PASS",
+      "description": "离散 Goldak 体积分对应名义净输入功率。"
+    },
+    "boundary_loss_estimate_j": 1380.4816088413181,
+    "delta_internal_energy_j": 18420.08794872195,
+    "convection_energy_j": 737.8053922838311,
+    "radiation_energy_j": 642.6762165574869,
+    "advective_energy_export_j": 0.0,
+    "global_thermal_energy_balance": {
+      "source_energy_j": 19800.00000000149,
+      "delta_internal_energy_j": 18420.08794872195,
+      "convection_energy_j": 737.8053922838311,
+      "radiation_energy_j": 642.6762165574869,
+      "advective_energy_export_j": 0.0,
+      "residual_j": -0.5695575617755821,
+      "residual_percent_of_source": 0.002876553342300703,
+      "status": "PASS"
+    },
+    "energy_balance_note": "全局账本按 E_source = ΔU + E_convection + E_radiation + residual 记录；残差包含有限体积边界/显式离散误差。"
   },
   "assumptions": [
     "Goldak 尺寸、前后能量比例和效率均为 design_assumption，未用热电偶/宏观截面校准。",
     "接口展开坐标用于局部三维热历史；未包含完整装配体的实体接触换热。",
     "未模拟熔池流动、相变、焊缝逐道激活或温度相关塑性。",
-    "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。"
+    "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。",
+    "焊缝金属采用焊前已存在的 pre-existing weld metal thermal surrogate；逐段激活留待 THERMAL-1。"
   ]
 }
