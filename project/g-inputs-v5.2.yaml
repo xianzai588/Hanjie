@@ -1,0 +1,105 @@
+# G-INPUTS：V5.2 计划一冻结输入。
+# 该文件只冻结后续 THERMAL-0 / METALLURGY-0 的共同输入，不代表 WPS/PQR 或实物验证已完成。
+version: "V5.2-plan-1"
+freeze_date: "2026-09-05"
+evidence_level: "design_assumption"
+status: "frozen_for_digital_baseline"
+
+official:
+  shell_material: "Q235B"
+  shell_outer_diameter_mm: 160.0
+  shell_height_mm: 200.0
+  shell_thickness_mm: 5.0
+  bearing_bore_diameter_mm: 40.0
+  seat_material: "QT450-10"
+  position_tolerance_diameter_mm: 0.05
+  cleanliness_requirement: "内腔不得出现可能落入压缩机内部的焊渣、飞溅物或金属颗粒"
+
+geometry:
+  source: "cad/parametric/geometry.json"
+  axis_definition: "壳体理论中心轴为 z 轴；局部热模型沿 R74.98 mm 接口展开"
+  seat_core_diameter_mm: 82.0
+  seat_thickness_mm: 12.0
+  interface_radius_mm: 74.98
+  shell_inner_radius_mm: 75.0
+  joint_type: "fillet_weld"
+  fillet_leg_length_mm: 3.5
+  weld_path: "Continuous circular interface"
+  weld_length_mm: 471.1132343323254
+  weld_segment_count: 1
+  interface_gap_nominal_mm: 0.02
+  interface_gap_note: "R74.98/R75.00 为 CAD 接口假设，实际定心由 A/B 基准和锥形心轴控制"
+
+process:
+  source: "project/process.yaml"
+  method: "automatic_TIG"
+  filler: "ERNiFe-CI"
+  tungsten: "W-La20, 2.0 mm"
+  polarity: "DCEN"
+  shielding_gas: "99.999% Ar"
+  gas_flow_l_min: 10.0
+  current_a: 75.0
+  voltage_v: 12.0
+  travel_speed_mm_s: 1.5
+  efficiency: 0.55
+  efficiency_status: "design_assumption_not_calibrated"
+  net_power_w: 495.0
+  gross_line_energy_j_per_mm: 600.0
+  net_line_energy_j_per_mm: 330.0
+  preheat_temperature_c: 150.0
+  interpass_limit_c: 200.0
+  cooling_environment_c: 20.0
+  convection_coefficient_w_m2k: 12.0
+  emissivity: 0.75
+  cooling_hold_s: 120.0
+  post_release_cooling_s: 360.0
+
+heat_source:
+  model: "Goldak_double_ellipsoid_discrete_3d"
+  a_front_mm: 6.0
+  a_rear_mm: 10.0
+  b_radial_mm: 2.5
+  c_axial_mm: 2.5
+  front_fraction: 0.6
+  rear_fraction: 1.4
+  parameter_status: "design_assumption_not_calibrated"
+  calibration_target: "多测点峰值、升降温曲线、t8/5、HAZ宽度、熔合区尺度"
+
+fixture:
+  source: "project/baseline.yaml"
+  type: "tapered_mandrel"
+  taper: "1/50"
+  small_diameter_mm: 39.90
+  large_diameter_mm: 40.10
+  effective_length_mm: 10.0
+  axial_clamping_force_n: 500.0
+  release_condition: "冷却保持 120 s 且界面最高温度低于 200 C；当前为数字假设，待工艺评定"
+  release_temperature_c: 200.0
+
+thermal_grid:
+  arc_points: 49
+  radial_points: 17
+  axial_points: 13
+  radial_min_offset_mm: -36.0
+  radial_max_offset_mm: 5.0
+  axial_min_offset_mm: -12.0
+  axial_max_offset_mm: 12.0
+  time_step_s: 0.05
+  output_interval_s: 0.5
+  grid_status: "engineering_resolution_unvalidated"
+
+metallurgy:
+  fusion_threshold_c: 1350.0
+  high_temperature_haz_threshold_c: 900.0
+  medium_temperature_haz_threshold_c: 600.0
+  low_temperature_haz_threshold_c: 400.0
+  qt_white_cast_iron_rule: "risk only; do not infer phase fraction"
+  qt_cct_rule: "t8/5 is descriptive only, not a standalone QT450-10 phase criterion"
+  dilution_status: "geometric_estimate_not_measured"
+
+gates:
+  g_inputs: "passed_for_digital_baseline"
+  thermal_0: "solver_result_unvalidated"
+  metallurgy_0: "literature_supported_plus_solver_result_unvalidated"
+  thermal_1: "not_started"
+  experiment: "not_available"

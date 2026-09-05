@@ -1,0 +1,67 @@
+# EXP-THERMAL v1：与 THERMAL-0 坐标和输入对应的最小可行实验协议。
+# 当前只冻结测点和记录格式；设备、材料批次和原始数据仍待核实，不代表实验已执行。
+version: "EXP-THERMAL-v1"
+status: planned
+evidence_level: design_assumption
+purpose: "用热电偶、实际电弧记录和宏观截面约束 Goldak 热源；校准与验证试件必须分离"
+shared_inputs: project/g-inputs-v5.2.yaml
+specimen:
+  parent_materials: [QT450-10, Q235B]
+  shell_thickness_mm: 5.0
+  filler: ERNiFe-CI
+  process: automatic_TIG
+  note: "优先采用与正式接头热阻和焊脚高度一致的工艺试板/缩比接头"
+measurements:
+  thermocouples:
+    - sensor_id: QT-TC1
+      material: QT450-10
+      x_mm: 0.0
+      y_mm: -5.0
+      z_mm: 0.0
+      distance_to_joint_mm: 5.0
+      purpose: "QT 侧近熔合线峰值和冷却曲线"
+      calibration_or_validation: calibration
+    - sensor_id: QT-TC2
+      material: QT450-10
+      x_mm: 0.0
+      y_mm: -10.0
+      z_mm: 0.0
+      distance_to_joint_mm: 10.0
+      purpose: "QT 侧热影响范围和梯度"
+      calibration_or_validation: validation
+    - sensor_id: Q235-TC1
+      material: Q235B
+      x_mm: 0.0
+      y_mm: 5.0
+      z_mm: 0.0
+      distance_to_joint_mm: 5.0
+      purpose: "Q235B 侧近熔合线峰值和冷却曲线"
+      calibration_or_validation: calibration
+    - sensor_id: Q235-TC2
+      material: Q235B
+      x_mm: 0.0
+      y_mm: 10.0
+      z_mm: 0.0
+      distance_to_joint_mm: 10.0
+      purpose: "Q235B 侧热影响范围和梯度"
+      calibration_or_validation: validation
+    - sensor_id: WELD-TC-REF
+      material: ERNiFe-CI
+      x_mm: 0.0
+      y_mm: 0.0
+      z_mm: 0.0
+      distance_to_joint_mm: 0.0
+      purpose: "焊缝附近峰值参考；若无法埋入则记录为不可测并保留原因"
+      calibration_or_validation: reference_only
+  process_log:
+    required_channels: [current_a, voltage_v, travel_speed_mm_s, preheat_temperature_c, interpass_temperature_c, timestamp_s]
+    raw_data_path: experiments/raw-data/EXP-THERMAL-v1/
+  macro_cross_section:
+    required: true
+    measurements: [fusion_width_mm, fusion_depth_mm, qt_parent_fusion_mm, q235b_parent_fusion_mm, weld_leg_mm]
+    sampling: "焊道中部和起止段各至少一处；记录截面照片和标尺"
+  supplementary: [PT, metallography, microhardness_line_scan]
+acceptance:
+  calibration_targets: [multi_point_peak_temperature, heating_cooling_curve, t8_5, macro_fusion_geometry]
+  validation_split: "至少保留独立测点或独立试件；不得同一数据既调参又宣称验证"
+  raw_files_required: [thermocouple_csv, welder_log, macro_image, measurement_sheet, instrument_calibration]

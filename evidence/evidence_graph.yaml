@@ -66,6 +66,21 @@ taxonomy:
       scope: 有限候选代理非支配筛选；无全局最优或疲劳证据
       status: unvalidated
       evidence_level: surrogate_result
+    SIM-THERMAL0-V5:
+      path: simulation/thermal-v5/results/thermal0-summary.json
+      scope: Continuous 接口展开坐标的离散 Goldak 瞬态热历史；未用热电偶、宏观截面或商业求解器校准
+      status: unvalidated
+      evidence_level: solver_result_unvalidated
+    SIM-METALLURGY0-V5:
+      path: simulation/metallurgy-v5/results/metallurgy0-summary.json
+      scope: 基于 THERMAL-0 的 HAZ、风险级和几何稀释区间；未用金相、显微硬度或化学成分实测
+      status: unvalidated
+      evidence_level: solver_result_unvalidated
+    SIM-THERMAL0-AUDIT-V5:
+      path: simulation/thermal-v5/results/g-thermal-audit/G-THERMAL-audit.json
+      scope: 热源功率/累计能量、网格、时间步、换热/效率/热源尺寸敏感性审计；网格与参数仍需复核
+      status: unvalidated
+      evidence_level: solver_result_unvalidated
   control_experiments:
     CTRL-ADAPT-SEQ:
       path: studies/ADAPTIVE-SEQUENCE/results/adaptive_sequence_study.json
@@ -162,6 +177,17 @@ claims_graph:
     - EXP-WELD-003-005
     - MET-CMM-BENCH
     report_section: §9 合成校准演示边界
+    status: unresolved
+  CLAIM-007:
+    statement: V5.2 计划一已建立可追溯的 THERMAL-0 热历史和 METALLURGY-0 风险级基线，但尚未完成物理校准
+    confidence: unresolved
+    supporting_evidence:
+    - SIM-THERMAL0-V5
+    - SIM-METALLURGY0-V5
+    - SIM-THERMAL0-AUDIT-V5
+    - EXP-TEMP-001
+    - EXP-HARD-002
+    report_section: 计划一执行记录 §4-§5
     status: unresolved
 version: '4.2'
 allowed_evidence_levels:

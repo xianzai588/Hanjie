@@ -1,6 +1,6 @@
 # Hanjie · 数字化异种材料焊接工艺设计 2026
 
-> **2026-09-05 V4.2 纠偏**：FE3D 为 surrogate prototype，Gate B 未通过；设备尚未核实；所有新研究结果为代理/合成演示。拓扑与控制优越性 unresolved。正式报告源为 `deliverables/report/technical-report-v4-unified.md`，V2/V3 及旧提交包仅作历史归档。执行计划见 [V4.2 路线](docs/V4.2-competition-roadmap.md)。
+> **2026-09-05 V5.2 计划一已执行**：G-INPUTS 已冻结，THERMAL-0 与 METALLURGY-0 已生成未校准数字基线；设备尚未核实，不能把数字结果写成物理验证。正式执行记录见 [计划一执行记录](docs/plan-1-execution-v5.2.md)，总体路线见 [V4.2 路线](docs/V4.2-competition-roadmap.md)。
 第一届辽宁省大学生材料焊接与铸造工艺设计大赛
 “中铁山桥杯”焊接工艺设计赛——固定命题
 

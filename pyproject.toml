@@ -18,6 +18,7 @@ dependencies = [
     "scikit-fem>=11.0",
     "gmsh>=4.15",
     "pytest>=8.0",
+    "reportlab>=4.0",
 ]
 
 [tool.setuptools.packages.find]

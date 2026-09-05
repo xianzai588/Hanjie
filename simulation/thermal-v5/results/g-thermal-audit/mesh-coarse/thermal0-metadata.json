@@ -1,0 +1,55 @@
+{
+  "run_timestamp_utc": "2026-09-05T16:49:30.186853+00:00",
+  "git_commit": "4e5fa8f858d1fc8ed0423cd4a14159c92c75dfe6",
+  "python_version": "3.12.10",
+  "dependency_versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "PyYAML": "6.0.3"
+  },
+  "stage": "THERMAL-0",
+  "evidence_level": "solver_result_unvalidated",
+  "solver_version": "THERMAL-0-explicit-finite-volume-v5",
+  "model": "3d_periodic_unwrapped_goldak_explicit_finite_volume",
+  "input_file": "project/g-inputs-v5.2.yaml",
+  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
+  "material_file": "project/materials.yaml",
+  "material_sha256": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+  "grid": {
+    "arc_points": 31,
+    "radial_points": 11,
+    "axial_points": 9,
+    "cell_count": 3069
+  },
+  "time": {
+    "time_step_s": 0.05,
+    "total_duration_s": 314.07548955488363,
+    "steps": 6282
+  },
+  "energy": {
+    "nominal_net_power_w": 495.0,
+    "nominal_net_line_energy_j_per_mm": 330.0,
+    "ui_net_power_w": 495.0,
+    "ui_line_energy_j_per_mm": 330.0,
+    "power_definition_relative_error": 0.0,
+    "line_energy_definition_relative_error": 0.0,
+    "source_input_j": 155479.5,
+    "continuous_expected_source_energy_j": 155467.3673296674,
+    "discrete_expected_source_energy_j": 155479.5,
+    "source_active_steps": 6282,
+    "source_power_min_w": 494.9999999999997,
+    "source_power_max_w": 495.00000000000034,
+    "source_power_max_relative_error": 6.890111377067638e-16,
+    "energy_balance_error_pct": 0.0078039980614472695,
+    "discrete_energy_balance_error_pct": 0.0,
+    "boundary_loss_estimate_j": 195341.5478329713,
+    "energy_balance_note": "热源体积分和焊段积分已审计；内部能量、边界损失和数值耗散仍未按商业 FE 全局能量审计定义闭合。"
+  },
+  "assumptions": [
+    "Goldak 尺寸、前后能量比例和效率均为 design_assumption，未用热电偶/宏观截面校准。",
+    "接口展开坐标用于局部三维热历史；未包含完整装配体的实体接触换热。",
+    "未模拟熔池流动、相变、焊缝逐道激活或温度相关塑性。",
+    "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "stage": "THERMAL-0",
+  "evidence_level": "solver_result_unvalidated",
+  "input_file": "project/g-inputs-v5.2.yaml",
+  "input_sha256": "e6a0ecba12298edc78f1cdd1390492c4ae7a8c8a5746935667cc3e5ac97961ac",
+  "files": {
+    "thermal0-field.npz": "08194ddd68e7dca9c56ce4c533b7e463fa9e9ec23277d981167c505d26865267",
+    "thermal0-metadata.json": "a4be9ac93e44efed9e438f7ebc963192bc0067aa334f10dcd0ff9b7d8ec4e198",
+    "thermal0-sensor-history.csv": "28a0d3c4b2a0f45457d3a959a2eb48cc4726f60c3b57e5d66455fa68d0b5aa95",
+    "thermal0-sensors.json": "17f1b0430219e7963dbc41e918e4eff17f73c53126e76e7ef41f69c96ec20a7c",
+    "thermal0-t85-samples.csv": "23c9f5c62fa89c836dee7691ca4a234250ceaee84ac8bf5ac51d9bbc2003a7d5",
+    "thermal0-summary.json": "c8efd5e3f21c9edc1284c8cedf462fefa910decb3e59b6137d2a68b7cc668095",
+    "thermal0-peak-profile.svg": "389c698db03858725b97f33508f7d1a5d506d8605c669a8d5d52228e0b64b79d",
+    "thermal0-peak-profile.png": "6647ddc115e651e09a11c0dc76ea9fde9d0beceb024235b8d3e180a7ca731860"
+  }
+}
