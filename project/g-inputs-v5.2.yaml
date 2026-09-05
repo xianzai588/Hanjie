@@ -77,16 +77,25 @@ fixture:
   release_temperature_c: 200.0
 
 thermal_grid:
-  arc_points: 49
-  radial_points: 17
-  axial_points: 13
+  # 焊源跟随局部子模型：使 Goldak 前/后半轴、b、c 均至少有约 3 个单元跨越。
+  coordinate_mode: local_moving_source
+  arc_points: 37
+  radial_points: 52
+  axial_points: 30
   radial_min_offset_mm: -36.0
   radial_max_offset_mm: 5.0
   axial_min_offset_mm: -12.0
   axial_max_offset_mm: 12.0
-  time_step_s: 0.05
+  arc_min_offset_mm: -36.0
+  arc_max_offset_mm: 36.0
+  local_duration_s: 40.0
+  time_step_s: 0.01
   output_interval_s: 0.5
-  grid_status: "engineering_resolution_unvalidated"
+  grid_status: "thermal0_1_local_source_scale_resolved_unvalidated"
+  spatial_resolution_targets_mm:
+    arc_over_a_front_max: 0.3333333333
+    radial_over_b_max: 0.3333333333
+    axial_over_c_max: 0.3333333333
 
 metallurgy:
   fusion_threshold_c: 1350.0

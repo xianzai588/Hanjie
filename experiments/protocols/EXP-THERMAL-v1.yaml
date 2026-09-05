@@ -12,6 +12,10 @@ specimen:
   process: automatic_TIG
   note: "优先采用与正式接头热阻和焊脚高度一致的工艺试板/缩比接头"
 measurements:
+  exact_model_sampling:
+    method: trilinear_interpolation
+    coordinate_system: "periodic s, interface-normal n, local axial z"
+    note: "模型按精确坐标采样，不以最近节点替代实验测点。"
   thermocouples:
     - sensor_id: QT-TC1
       material: QT450-10

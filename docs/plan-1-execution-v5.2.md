@@ -88,6 +88,20 @@ python simulation/metallurgy-v5/run_metallurgy0.py
 
 ## 7. 计划一验收结论
 
-**计划一数字执行：完成；G-INPUTS：通过数字基线冻结；THERMAL-0：已运行但未通过物理校准 Gate；METALLURGY-0：已完成风险级输出但未通过物理验证 Gate。**
+**计划一数字执行：完成；G-INPUTS：通过数字基线冻结；THERMAL-0：已完成 THERMAL0.1 数值纠偏，但仍未通过物理校准 Gate；METALLURGY-0：已基于修正热场重跑风险级输出，但未通过物理验证 Gate。**
+
+## 8. V5.2-THERMAL0.1 数值纠偏记录
+
+针对首轮审查发现的空间采样、测点映射、边界换热和能量审计问题，已完成以下修正并重新运行：
+
+- 热源邻域改为 `local_moving_source` 局部窗口；基准 `37×52×30`，`ds=1.946 mm`、`dn=0.788 mm`、`dz=0.800 mm`，三个 Goldak 尺度比均不超过 `1/3`。
+- 热源沿固定局部窗口移动；导热采用保守面通量，局部窗口两端为零通量边界，避免把非物理数值输运写入热能账本。
+- 传感器改为精确坐标三线性插值；`QT_HAZ=-5 mm`、`fusion_line=0 mm`、`weld_center=1 mm`、`Q235B_HAZ=5 mm` 均写入结果元数据和材料区域。
+- 对流、辐射按暴露面面积折算到单元体积；全局账本显式报告 `E_source`、`ΔU`、`E_convection`、`E_radiation`、残差。
+- 基准最大温度 `1876.03 °C`；源能量归一化误差为 `0`，全局热能最大残差为 `0.0044%`。
+- G-THERMAL：源能量归一化、全局热能、时间步、源尺度和 medium→fine 网格审计均通过；medium→fine 峰值变化 `4.72%`。效率/热源尺寸敏感性仍保持 `REVIEW`，总状态为 `review_required`。
+- METALLURGY-0 已消费 `THERMAL0.1` 新热场并重新生成风险结果；仍只输出风险等级、区间和趋势，不输出未经验证的相含量或硬度。
+
+当前仍有边界：焊缝金属是 `pre-existing weld metal thermal surrogate`，尚未逐段激活；局部窗口结果描述焊源邻域，不等于完整圆周装配体热—结构模型；尚无热电偶、宏观截面、金相和硬度校准数据。因此不进入 THERMAL-1 或正式 STRUCT-0。
 
 下一步按 Route A/Route B 选择：取得实验条件则先做热电偶、宏观截面、金相和显微硬度校准；没有实验条件则完成热源、网格、时间步和边界敏感性，并将最终作品定位为 `solver-verified engineering design`，不得使用 calibrated、experiment 或 physical validated 表述。

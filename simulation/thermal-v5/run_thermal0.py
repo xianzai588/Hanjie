@@ -101,10 +101,11 @@ def _goldak_source(
     c: float,
     front_fraction: float,
     rear_fraction: float,
-    cell_volume_mm3: float,
+    cell_volume_mm3: np.ndarray,
+    periodic_s: bool = True,
 ) -> np.ndarray:
     """按当前离散网格归一化 Goldak 双椭球，使每个时间步输入功率可追溯。"""
-    delta_s = (s - center_s + circumference_mm / 2.0) % circumference_mm - circumference_mm / 2.0
+    delta_s = (s - center_s + circumference_mm / 2.0) % circumference_mm - circumference_mm / 2.0 if periodic_s else s - center_s
     front = delta_s >= 0.0
     a = np.where(front, a_front, a_rear)
     fraction = np.where(front, front_fraction, rear_fraction)
@@ -112,7 +113,100 @@ def _goldak_source(
     weight_sum = float(weights.sum())
     if weight_sum <= 0.0:
         return np.zeros_like(weights)
-    return weights * (power_w / (weight_sum * cell_volume_mm3))
+    return weights * (power_w / weight_sum) / cell_volume_mm3
+
+
+def _cell_centers(start: float, stop: float, count: int) -> tuple[np.ndarray, float]:
+    """返回有限体积单元中心和统一单元宽度。"""
+    width = (stop - start) / count
+    return start + (np.arange(count, dtype=float) + 0.5) * width, width
+
+
+def _locally_refined_cells(
+    start: float,
+    stop: float,
+    fine_start: float,
+    fine_stop: float,
+    fine_width: float,
+    coarse_width: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    """构造焊源附近细化、远场较粗的有限体积单元中心和宽度。"""
+    segments = ((start, fine_start, coarse_width), (fine_start, fine_stop, fine_width), (fine_stop, stop, coarse_width))
+    edges: list[float] = []
+    for index, (lower, upper, target_width) in enumerate(segments):
+        count = max(1, int(math.ceil((upper - lower) / target_width)))
+        segment_edges = np.linspace(lower, upper, count + 1)
+        edges.extend(segment_edges if index == 0 else segment_edges[1:])
+    faces = np.asarray(edges, dtype=float)
+    return 0.5 * (faces[:-1] + faces[1:]), np.diff(faces)
+
+
+def _enthalpy_per_mass(temperature_c: np.ndarray, material_id: np.ndarray, materials: dict[str, Any]) -> np.ndarray:
+    """按分段线性 cp 积分得到相对 20 C 的比焓，用于全局能量账本。"""
+    result = np.empty_like(temperature_c, dtype=float)
+    for material_key, material_code in (("q235b", 1), ("qt450_10", 2)):
+        mask = material_id == material_code
+        table = materials[material_key]["temperature_dependent"]
+        temperatures = np.asarray(table["temperatures_c"], dtype=float)
+        cp = np.asarray(table["specific_heat_j_kgk"], dtype=float)
+        values = np.zeros(np.count_nonzero(mask), dtype=float)
+        selected = temperature_c[mask]
+        for index in range(len(temperatures) - 1):
+            lower = temperatures[index]
+            upper = temperatures[index + 1]
+            segment = np.maximum(0.0, np.clip(selected, lower, upper) - lower)
+            values += segment * (cp[index] + (cp[index + 1] - cp[index]) * segment / (2.0 * (upper - lower)))
+        below = selected < temperatures[0]
+        values[below] = (selected[below] - temperatures[0]) * cp[0]
+        above = selected > temperatures[-1]
+        values[above] += (selected[above] - temperatures[-1]) * cp[-1]
+        result[mask] = values
+    weld_mask = material_id == 3
+    weld_cp = float(materials["ernife_ci"]["nominal_properties_20c"]["specific_heat_j_kgk"])
+    result[weld_mask] = (temperature_c[weld_mask] - 20.0) * weld_cp
+    return result
+
+
+def _trilinear_periodic(
+    values: np.ndarray,
+    s: np.ndarray,
+    n: np.ndarray,
+    z: np.ndarray,
+    target: tuple[float, float, float],
+    circumference_mm: float,
+    periodic_s: bool = True,
+) -> float:
+    """在精确物理坐标处输出周期 s 方向和 n/z 方向的三线性插值。"""
+    target_s, target_n, target_z = target
+    def bracket(axis: np.ndarray, value: float) -> tuple[int, int, float]:
+        position = float(np.clip(value, axis[0], axis[-1]))
+        upper = int(np.searchsorted(axis, position, side="right"))
+        upper = min(max(upper, 1), len(axis) - 1)
+        lower = upper - 1
+        fraction = (position - axis[lower]) / (axis[upper] - axis[lower])
+        return lower, upper, fraction
+
+    if periodic_s:
+        s_position = target_s % circumference_mm
+        s_step = circumference_mm / len(s)
+        s_float = s_position / s_step - 0.5
+        s0 = math.floor(s_float) % len(s)
+        s_weight = s_float - math.floor(s_float)
+    else:
+        s0, s1, s_weight = bracket(s, target_s)
+        s_indices = ((s0, 1.0 - s_weight), (s1, s_weight))
+
+    n0, n1, nw = bracket(n, target_n)
+    z0, z1, zw = bracket(z, target_z)
+    value = 0.0
+    for si, sw in s_indices if not periodic_s else ((s0, 1.0 - s_weight), ((s0 + 1) % len(s), s_weight)):
+        value += sw * (
+            (1.0 - nw) * (1.0 - zw) * values[si, n0, z0]
+            + (1.0 - nw) * zw * values[si, n0, z1]
+            + nw * (1.0 - zw) * values[si, n1, z0]
+            + nw * zw * values[si, n1, z1]
+        )
+    return float(value)
 
 
 def _crossing_time(previous: np.ndarray, current: np.ndarray, threshold: float, time_s: float, time_step: float) -> np.ndarray:
@@ -142,14 +236,34 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     heat_source = config["heat_source"]
     grid = config["thermal_grid"]
     circumference = 2.0 * math.pi * float(geometry["interface_radius_mm"])
-    s = np.linspace(0.0, circumference, int(grid["arc_points"]), endpoint=False)
-    n = np.linspace(float(grid["radial_min_offset_mm"]), float(grid["radial_max_offset_mm"]), int(grid["radial_points"]))
-    z = np.linspace(float(grid["axial_min_offset_mm"]), float(grid["axial_max_offset_mm"]), int(grid["axial_points"]))
+    local_mode = grid.get("coordinate_mode") == "local_moving_source"
+    if local_mode:
+        s, ds = _cell_centers(float(grid["arc_min_offset_mm"]), float(grid["arc_max_offset_mm"]), int(grid["arc_points"]))
+        source_path_length = float(grid["arc_max_offset_mm"]) - float(grid["arc_min_offset_mm"])
+    else:
+        s, ds = _cell_centers(0.0, circumference, int(grid["arc_points"]))
+        source_path_length = circumference
+    n, dn = _cell_centers(float(grid["radial_min_offset_mm"]), float(grid["radial_max_offset_mm"]), int(grid["radial_points"]))
+    z, dz = _cell_centers(float(grid["axial_min_offset_mm"]), float(grid["axial_max_offset_mm"]), int(grid["axial_points"]))
     ss, nn, zz = np.meshgrid(s, n, z, indexing="ij")
-    ds = circumference / len(s)
-    dn = float(n[1] - n[0])
-    dz = float(z[1] - z[0])
     cell_volume = ds * dn * dz
+    source_resolution = {
+        "ds_mm": ds,
+        "dn_mm": dn,
+        "dz_mm": dz,
+        "ds_over_a_front": ds / float(heat_source["a_front_mm"]),
+        "dn_over_b": dn / float(heat_source["b_radial_mm"]),
+        "dz_over_c": dz / float(heat_source["c_axial_mm"]),
+        "target_max_ratio": 1.0 / 3.0,
+        "target_met": all(
+            ratio <= 1.0 / 3.0
+            for ratio in (
+                ds / float(heat_source["a_front_mm"]),
+                dn / float(heat_source["b_radial_mm"]),
+                dz / float(heat_source["c_axial_mm"]),
+            )
+        ),
+    }
 
     # n<0 为 QT 座体侧，n>0 为 Q235B 壳体侧，中间带作为 NiFe 焊缝。
     material_id = np.where(nn < -3.0, 2, np.where(nn > 3.0, 1, 3)).astype(np.int8)
@@ -162,22 +276,25 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     t800_down = np.full_like(temperature, np.nan)
     t500_down = np.full_like(temperature, np.nan)
     history: list[dict[str, float]] = []
-    sensor_indices = {
-        "QT_HAZ": (len(s) // 4, max(0, np.searchsorted(n, -5.0)), len(z) // 2),
-        "fusion_line": (0, np.searchsorted(n, 0.0), len(z) // 2),
-        "weld_center": (0, np.searchsorted(n, 1.0), len(z) // 2),
-        "Q235B_HAZ": (len(s) // 4, min(len(n) - 1, np.searchsorted(n, 5.0)), len(z) // 2),
+    sensor_coordinates = {
+        "QT_HAZ": (0.0, -5.0, 0.0),
+        "fusion_line": (0.0, 0.0, 0.0),
+        "weld_center": (0.0, 1.0, 0.0),
+        "Q235B_HAZ": (0.0, 5.0, 0.0),
     }
-    sensor_history: dict[str, list[dict[str, float]]] = {key: [] for key in sensor_indices}
+    sensor_history: dict[str, list[dict[str, float]]] = {key: [] for key in sensor_coordinates}
 
     time_step = float(grid["time_step_s"])
     output_interval = float(grid["output_interval_s"])
-    weld_duration = float(geometry["weld_length_mm"]) / float(process["travel_speed_mm_s"])
+    weld_duration = (
+        float(grid.get("local_duration_s", 0.0))
+        if local_mode
+        else float(geometry["weld_length_mm"]) / float(process["travel_speed_mm_s"])
+    )
     total_duration = weld_duration + float(process["cooling_hold_s"]) + float(process.get("post_release_cooling_s", 0.0))
     ui_net_power_w = float(process["efficiency"]) * float(process["current_a"]) * float(process["voltage_v"])
     ui_line_energy_j_per_mm = ui_net_power_w / float(process["travel_speed_mm_s"])
     steps = int(math.ceil(total_duration / time_step))
-    kappa_source = (float(process["convection_coefficient_w_m2k"]) / 1e6) * time_step
     epsilon = float(process["emissivity"])
     sigma = 5.670374419e-8 / 1e6
     source_energy_j = 0.0
@@ -185,22 +302,50 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     source_power_max_w = -math.inf
     source_power_max_relative_error = 0.0
     source_active_steps = 0
-    loss_energy_j = 0.0
+    convection_energy_j = 0.0
+    radiation_energy_j = 0.0
+    advective_energy_export_j = 0.0
     max_cooling_rate = np.zeros_like(temperature)
     next_output = 0.0
+    initial_density = _material_fields(temperature, material_id, materials)[1]
+    initial_internal_energy_j = float(np.sum(_enthalpy_per_mass(temperature, material_id, materials) * initial_density * cell_volume))
 
-    for step in range(steps + 1):
+    for step in range(steps):
         time_s = step * time_step
+        step_dt = min(time_step, max(0.0, total_duration - time_s))
+        if step_dt <= 0.0:
+            break
         conductivity, density, capacity = _material_fields(temperature, material_id, materials)
-        # 周向周期；法向和轴向采用绝热内部边界，外边界再施加对流/辐射损失。
-        lap_s = (np.roll(temperature, -1, axis=0) - 2.0 * temperature + np.roll(temperature, 1, axis=0)) / ds**2
-        lap_n = _laplacian_neumann(temperature, dn, axis=1)
-        lap_z = _laplacian_neumann(temperature, dz, axis=2)
-        alpha = np.divide(conductivity, density * capacity, out=np.zeros_like(temperature), where=density * capacity > 0)
-        temperature += time_step * alpha * (lap_s + lap_n + lap_z)
+        # 面心谐均导热系数使内部导热通量守恒；局部窗口的两端为零通量边界。
+        if local_mode:
+            k_s_faces = 2.0 * conductivity[:-1, :, :] * conductivity[1:, :, :] / np.maximum(conductivity[:-1, :, :] + conductivity[1:, :, :], 1e-30)
+            cond_s = np.zeros_like(temperature)
+            cond_s[0, :, :] = k_s_faces[0, :, :] * (temperature[1, :, :] - temperature[0, :, :]) / ds**2
+            cond_s[1:-1, :, :] = (k_s_faces[1:, :, :] * (temperature[2:, :, :] - temperature[1:-1, :, :]) - k_s_faces[:-1, :, :] * (temperature[1:-1, :, :] - temperature[:-2, :, :])) / ds**2
+            cond_s[-1, :, :] = -k_s_faces[-1, :, :] * (temperature[-1, :, :] - temperature[-2, :, :]) / ds**2
+        else:
+            k_s_plus = 2.0 * conductivity * np.roll(conductivity, -1, axis=0) / np.maximum(conductivity + np.roll(conductivity, -1, axis=0), 1e-30)
+            k_s_minus = np.roll(k_s_plus, 1, axis=0)
+            cond_s = (k_s_plus * (np.roll(temperature, -1, axis=0) - temperature) - k_s_minus * (temperature - np.roll(temperature, 1, axis=0))) / ds**2
+        cond_n = np.zeros_like(temperature)
+        k_n_plus = 2.0 * conductivity[:, 1:, :] * conductivity[:, :-1, :] / np.maximum(conductivity[:, 1:, :] + conductivity[:, :-1, :], 1e-30)
+        cond_n[:, 0, :] = k_n_plus[:, 0, :] * (temperature[:, 1, :] - temperature[:, 0, :]) / dn**2
+        cond_n[:, 1:-1, :] = (k_n_plus[:, 1:, :] * (temperature[:, 2:, :] - temperature[:, 1:-1, :]) - k_n_plus[:, :-1, :] * (temperature[:, 1:-1, :] - temperature[:, :-2, :])) / dn**2
+        cond_n[:, -1, :] = -k_n_plus[:, -1, :] * (temperature[:, -1, :] - temperature[:, -2, :]) / dn**2
+        cond_z = np.zeros_like(temperature)
+        k_z_plus = 2.0 * conductivity[:, :, 1:] * conductivity[:, :, :-1] / np.maximum(conductivity[:, :, 1:] + conductivity[:, :, :-1], 1e-30)
+        cond_z[:, :, 0] = k_z_plus[:, :, 0] * (temperature[:, :, 1] - temperature[:, :, 0]) / dz**2
+        cond_z[:, :, 1:-1] = (k_z_plus[:, :, 1:] * (temperature[:, :, 2:] - temperature[:, :, 1:-1]) - k_z_plus[:, :, :-1] * (temperature[:, :, 1:-1] - temperature[:, :, :-2])) / dz**2
+        cond_z[:, :, -1] = -k_z_plus[:, :, -1] * (temperature[:, :, -1] - temperature[:, :, -2]) / dz**2
+        temperature += step_dt * (cond_s + cond_n + cond_z) / (density * capacity)
 
-        if time_s <= weld_duration:
-            center_s = (float(process["travel_speed_mm_s"]) * time_s) % circumference
+        if time_s < weld_duration - 1e-12:
+            source_dt = min(step_dt, weld_duration - time_s)
+            center_s = (
+                -float(grid["arc_max_offset_mm"]) / 2.0 + float(process["travel_speed_mm_s"]) * (time_s + source_dt / 2.0)
+                if local_mode
+                else (float(process["travel_speed_mm_s"]) * (time_s + source_dt / 2.0)) % circumference
+            )
             source = _goldak_source(
                 ss,
                 nn,
@@ -215,8 +360,9 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
                 float(heat_source["front_fraction"]),
                 float(heat_source["rear_fraction"]),
                 cell_volume,
+                periodic_s=not local_mode,
             )
-            temperature += time_step * source / (density * capacity)
+            temperature += source_dt * source / (density * capacity)
             source_power_w = float(np.sum(source) * cell_volume)
             source_power_min_w = min(source_power_min_w, source_power_w)
             source_power_max_w = max(source_power_max_w, source_power_w)
@@ -224,57 +370,67 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
                 source_power_max_relative_error,
                 abs(source_power_w - float(process["net_power_w"])) / float(process["net_power_w"]),
             )
-            source_energy_j += source_power_w * time_step
+            source_energy_j += source_power_w * source_dt
             source_active_steps += 1
 
-        boundary = np.zeros_like(temperature, dtype=bool)
-        boundary[:, 0, :] = True
-        boundary[:, -1, :] = True
-        boundary[:, :, 0] = True
-        boundary[:, :, -1] = True
-        delta_t = np.maximum(temperature - float(process["cooling_environment_c"]), 0.0)
-        loss_w_mm3 = np.zeros_like(temperature)
-        loss_w_mm3[boundary] = (
-            float(process["convection_coefficient_w_m2k"]) * delta_t[boundary] / 1e6
-            + epsilon * sigma * ((temperature[boundary] + 273.15) ** 4 - (float(process["cooling_environment_c"]) + 273.15) ** 4)
-        )
-        temperature[boundary] -= time_step * loss_w_mm3[boundary] / (density[boundary] * capacity[boundary])
-        loss_energy_j += float(np.sum(loss_w_mm3) * cell_volume * time_step)
-        max_cooling_rate = np.maximum(max_cooling_rate, np.maximum(previous - temperature, 0.0) / time_step)
+        # 外边界按暴露面面积计热损失；角单元会自然累加两个面的面积。
+        ambient = float(process["cooling_environment_c"])
+        delta_t = temperature - ambient
+        convection_flux = float(process["convection_coefficient_w_m2k"]) * delta_t / 1e6
+        radiation_flux = epsilon * sigma * ((temperature + 273.15) ** 4 - (ambient + 273.15) ** 4)
+        exposed_area = np.zeros_like(temperature)
+        exposed_area[:, 0, :] += ds * dz
+        exposed_area[:, -1, :] += ds * dz
+        exposed_area[:, :, 0] += ds * dn
+        exposed_area[:, :, -1] += ds * dn
+        loss_w_mm3 = (convection_flux + radiation_flux) * exposed_area / cell_volume
+        temperature -= step_dt * loss_w_mm3 / (density * capacity)
+        convection_energy_j += float(np.sum(convection_flux * exposed_area) * step_dt)
+        radiation_energy_j += float(np.sum(radiation_flux * exposed_area) * step_dt)
+        max_cooling_rate = np.maximum(max_cooling_rate, np.maximum(previous - temperature, 0.0) / step_dt)
 
         higher = temperature > peak
         peak = np.where(higher, temperature, peak)
         peak_time = np.where(higher, time_s, peak_time)
-        crossing_800 = _crossing_time(previous, temperature, 800.0, time_s, time_step)
-        crossing_500 = _crossing_time(previous, temperature, 500.0, time_s, time_step)
+        sample_time = time_s + step_dt
+        crossing_800 = _crossing_time(previous, temperature, 800.0, sample_time, step_dt)
+        crossing_500 = _crossing_time(previous, temperature, 500.0, sample_time, step_dt)
         t800_down = np.where(np.isnan(t800_down), crossing_800, t800_down)
         t500_down = np.where((~np.isnan(t800_down)) & np.isnan(t500_down), crossing_500, t500_down)
-        if time_s + 1e-9 >= next_output:
-            row = {"time_s": time_s}
-            for name, (i, j, k) in sensor_indices.items():
-                row[name + "_c"] = float(temperature[i, j, k])
-                sensor_history[name].append({"time_s": time_s, "temperature_c": float(temperature[i, j, k])})
+        if sample_time + 1e-9 >= next_output:
+            row = {"time_s": sample_time}
+            for name, target in sensor_coordinates.items():
+                sensor_target = (target[0] - float(process["travel_speed_mm_s"]) * sample_time, target[1], target[2]) if local_mode else target
+                sensor_temperature = _trilinear_periodic(temperature, s, n, z, sensor_target, circumference, periodic_s=not local_mode)
+                row[name + "_c"] = sensor_temperature
+                sensor_history[name].append({"time_s": sample_time, "temperature_c": sensor_temperature})
             history.append(row)
-            next_output += output_interval
+            while next_output <= sample_time + 1e-9:
+                next_output += output_interval
         previous = temperature.copy()
 
     valid_t85 = (peak > 800.0) & np.isfinite(t800_down) & np.isfinite(t500_down) & (t500_down >= t800_down)
     t85 = np.where(valid_t85, t500_down - t800_down, np.nan)
     continuous_expected_energy_j = float(process["net_power_w"]) * weld_duration
     discrete_expected_energy_j = float(process["net_power_w"]) * source_active_steps * time_step
+    final_density = _material_fields(temperature, material_id, materials)[1]
+    final_internal_energy_j = float(np.sum(_enthalpy_per_mass(temperature, material_id, materials) * final_density * cell_volume))
+    delta_internal_energy_j = final_internal_energy_j - initial_internal_energy_j
+    loss_energy_j = convection_energy_j + radiation_energy_j
+    global_energy_residual_j = source_energy_j - convection_energy_j - radiation_energy_j - advective_energy_export_j - delta_internal_energy_j
     energy_balance_error_pct = abs(source_energy_j - continuous_expected_energy_j) / continuous_expected_energy_j * 100.0
     discrete_energy_balance_error_pct = abs(source_energy_j - discrete_expected_energy_j) / discrete_expected_energy_j * 100.0
     metadata = {
         **_traceability(),
         "stage": "THERMAL-0",
         "evidence_level": "solver_result_unvalidated",
-        "solver_version": "THERMAL-0-explicit-finite-volume-v5",
-        "model": "3d_periodic_unwrapped_goldak_explicit_finite_volume",
+        "solver_version": "THERMAL-0.1-conservative-finite-volume-v5",
+        "model": "3d_local_source_window_goldak_conservative_finite_volume",
         "input_file": str(INPUT_PATH.relative_to(ROOT)).replace("\\", "/"),
         "input_sha256": _sha256(INPUT_PATH),
         "material_file": str(MATERIAL_PATH.relative_to(ROOT)).replace("\\", "/"),
         "material_sha256": _sha256(MATERIAL_PATH),
-        "grid": {"arc_points": len(s), "radial_points": len(n), "axial_points": len(z), "cell_count": int(temperature.size)},
+        "grid": {"coordinate_mode": "local_moving_source" if local_mode else "periodic_full_path", "arc_points": len(s), "radial_points": len(n), "axial_points": len(z), "cell_count": int(temperature.size), "cell_volume_mm3": cell_volume, "source_resolution": source_resolution, "local_source_window_mm": [float(s[0]), float(s[-1])] if local_mode else None},
         "time": {"time_step_s": time_step, "total_duration_s": total_duration, "steps": steps},
         "energy": {
             "nominal_net_power_w": float(process["net_power_w"]),
@@ -292,14 +448,33 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
             "source_power_max_relative_error": source_power_max_relative_error,
             "energy_balance_error_pct": energy_balance_error_pct,
             "discrete_energy_balance_error_pct": discrete_energy_balance_error_pct,
+            "source_energy_normalization": {
+                "status": "PASS" if source_power_max_relative_error < 0.01 else "REVIEW",
+                "description": "离散 Goldak 体积分对应名义净输入功率。",
+            },
             "boundary_loss_estimate_j": loss_energy_j,
-            "energy_balance_note": "热源体积分和焊段积分已审计；内部能量、边界损失和数值耗散仍未按商业 FE 全局能量审计定义闭合。",
+            "delta_internal_energy_j": delta_internal_energy_j,
+            "convection_energy_j": convection_energy_j,
+            "radiation_energy_j": radiation_energy_j,
+            "advective_energy_export_j": advective_energy_export_j,
+            "global_thermal_energy_balance": {
+                "source_energy_j": source_energy_j,
+                "delta_internal_energy_j": delta_internal_energy_j,
+                "convection_energy_j": convection_energy_j,
+                "radiation_energy_j": radiation_energy_j,
+                "advective_energy_export_j": advective_energy_export_j,
+                "residual_j": global_energy_residual_j,
+                "residual_percent_of_source": abs(global_energy_residual_j) / max(abs(source_energy_j), 1e-30) * 100.0,
+                "status": "PASS" if abs(global_energy_residual_j) / max(abs(source_energy_j), 1e-30) < 0.02 else "REVIEW",
+            },
+            "energy_balance_note": "全局账本按 E_source = ΔU + E_convection + E_radiation + residual 记录；残差包含有限体积边界/显式离散误差。",
         },
         "assumptions": [
             "Goldak 尺寸、前后能量比例和效率均为 design_assumption，未用热电偶/宏观截面校准。",
             "接口展开坐标用于局部三维热历史；未包含完整装配体的实体接触换热。",
             "未模拟熔池流动、相变、焊缝逐道激活或温度相关塑性。",
             "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。",
+            "焊缝金属采用焊前已存在的 pre-existing weld metal thermal surrogate；逐段激活留待 THERMAL-1。",
         ],
     }
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -326,9 +501,15 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         writer.writerows(history)
     sensor_metadata = {
         "evidence_level": metadata["evidence_level"],
+        "sampling": {"method": "trilinear_interpolation", "coordinate_system": "local_moving_source_s_n_z_cell_centers" if local_mode else "periodic_s_n_z_cell_centers"},
         "sensors": {
-            name: {"index": [int(value) for value in index], "arc_position_deg": float(index[0] * 360.0 / len(s))}
-            for name, index in sensor_indices.items()
+            name: {
+                "requested_coordinate_mm": [float(value) for value in target],
+                "material_region": "QT450-10" if target[1] < -3.0 else "Q235B" if target[1] > 3.0 else "ERNiFe-CI",
+                "arc_position_mm": float(target[0]),
+                "arc_position_deg": float(target[0] / circumference * 360.0),
+            }
+            for name, target in sensor_coordinates.items()
         },
         "history": sensor_history,
     }
@@ -396,7 +577,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
             "minimum": float(np.nanmin(t85)) if np.any(np.isfinite(t85)) else None,
             "maximum": float(np.nanmax(t85)) if np.any(np.isfinite(t85)) else None,
         },
-        "fusion_threshold_c": float(process.get("fusion_threshold_c", 1350.0)),
+        "fusion_threshold_c": float(config["metallurgy"]["fusion_threshold_c"]),
         "fusion_threshold_exceeded": bool(np.max(peak) >= float(config["metallurgy"]["fusion_threshold_c"])),
     }
     (output_dir / "thermal0-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
