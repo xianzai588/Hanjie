@@ -16,39 +16,95 @@
     "slot_width_mm": 4.0,
     "slot_root_radius_mm": 2.0,
     "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
-    "effective_width_each_mm": 27.0,
-    "effective_total_width_mm": 108.0,
-    "connection_width_definition": "outer radial face straight segment after common R2.0 fillets"
+    "fair_target_width_each_mm": 27.0,
+    "fair_target_total_width_mm": 108.0,
+    "effective_width_each_mm": 26.999999999999943,
+    "effective_total_width_mm": 107.99999999999977,
+    "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
   },
   "geometry": {
-    "planform_area_mm2": 8329.323391968965,
-    "solid_volume_mm3": 99951.88070362757,
-    "calculated_mass_kg": 0.7196535410661186,
+    "planform_area_mm2": 7731.349118895499,
+    "solid_volume_mm3": 92776.18942674599,
+    "calculated_mass_kg": 0.6679885638725712,
     "bounding_box_mm": {
       "x": 149.9600002,
       "y": 149.9600002,
       "z": 12.000000199999999
     },
-    "seat_min_remaining_wall_thickness_mm": 21.0,
+    "seat_min_remaining_wall_thickness_mm": 19.0,
     "min_remaining_wall_thickness_mm": 5.0,
-    "minimum_wall_scope": "seat plus common Q235B shell wall",
+    "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+    "bore_ligament_mm": 21.0,
+    "slot_root_min_radius_mm": 39.0,
     "slot_root_radius_applied_mm": 2.0,
     "solid_count": 1,
+    "brep_valid": true,
     "solid_valid": true,
+    "single_solid": true,
+    "algorithmic_self_interference_free": true,
     "self_intersection_free": true,
-    "zero_thickness_free": true
+    "minimum_face_area_mm2": 3.7230118681699116,
+    "minimum_edge_length_mm": 0.3102509890146674,
+    "zero_thickness_free": true,
+    "max_radial_envelope_mm": 74.98,
+    "shell_inner_radius_mm": 75.0,
+    "seat_shell_min_gap_mm": 0.019999999999980624,
+    "seat_shell_max_penetration_mm": 0.0,
+    "seat_shell_intersection_volume_mm3": 0.0,
+    "seat_outside_shell_inner_volume_mm3": 0.0,
+    "shell_interference_free": true
   },
   "manufacturing": {
     "slot_count": 4,
     "weld_segment_count": 4,
-    "actual_total_weld_length_mm": 108.0,
+    "weld_segments": [
+      {
+        "segment_id": 1,
+        "start_angle_deg": -10.315991243353018,
+        "end_angle_deg": 10.315991243353018,
+        "arc_angle_deg": 20.631982486706036,
+        "arc_length_mm": 26.99999999999993,
+        "interface_area_mm2": 323.9999999999992,
+        "face_count": 2
+      },
+      {
+        "segment_id": 2,
+        "start_angle_deg": 79.68400875664697,
+        "end_angle_deg": 100.31599124335303,
+        "arc_angle_deg": 20.631982486706047,
+        "arc_length_mm": 26.999999999999947,
+        "interface_area_mm2": 323.9999999999994,
+        "face_count": 2
+      },
+      {
+        "segment_id": 3,
+        "start_angle_deg": 169.684008756647,
+        "end_angle_deg": 190.315991243353,
+        "arc_angle_deg": 20.631982486706026,
+        "arc_length_mm": 26.999999999999915,
+        "interface_area_mm2": 323.999999999999,
+        "face_count": 2
+      },
+      {
+        "segment_id": 4,
+        "start_angle_deg": 259.68400875664696,
+        "end_angle_deg": 280.31599124335304,
+        "arc_angle_deg": 20.631982486706075,
+        "arc_length_mm": 26.99999999999998,
+        "interface_area_mm2": 323.9999999999998,
+        "face_count": 2
+      }
+    ],
+    "cad_measured_total_weld_length_mm": 107.99999999999977,
+    "cad_measured_weld_interface_area_mm2": 1295.9999999999973,
+    "actual_total_weld_length_mm": 107.99999999999977,
     "nominal_total_weld_length_mm": 108.0,
-    "effective_connection_width_mm": 108.0,
-    "weld_length_definition": "outer-edge effective connection width"
+    "effective_connection_width_mm": 107.99999999999977,
+    "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
   },
   "generation": {
-    "generator_version": "2.0-ocp",
-    "timestamp_utc": "2026-09-05T03:01:08.635922Z",
+    "generator_version": "2.1-ocp-cylindrical-interface",
+    "timestamp_utc": "2026-09-05T12:28:39.533223Z",
     "rule": "single_unified_parametric_cad_function",
     "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
     "step_file": "models/4p-fair-a/4P-FAIR_A.step",

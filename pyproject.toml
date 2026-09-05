@@ -16,6 +16,7 @@ dependencies = [
     "jsonschema>=4.20",
     "opencv-python>=4.8",
     "scikit-fem>=11.0",
+    "gmsh>=4.15",
     "pytest>=8.0",
 ]
 
@@ -24,5 +25,5 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 addopts = "-v"

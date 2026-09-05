@@ -1,0 +1,300 @@
+{
+  "evidence_level": "solver_result_unvalidated",
+  "criteria": {
+    "medium_to_fine_displacement_relative_tolerance": 0.03,
+    "medium_to_fine_p95_stress_relative_tolerance": 0.1,
+    "fine_bc_sensitivity_relative_tolerance": 0.1
+  },
+  "convergence": [
+    {
+      "model_id": "4P-FAIR_A",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.0037315944181078495,
+      "medium_to_fine_p95_stress_relative_change": 0.0007101494998180804,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "4P-FAIR_A",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.0010428262401988239,
+      "medium_to_fine_p95_stress_relative_change": 0.001621725763732308,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "4P-FAIR_B",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.004377751104340793,
+      "medium_to_fine_p95_stress_relative_change": 0.0005348530998083828,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "4P-FAIR_B",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.0006549239323581051,
+      "medium_to_fine_p95_stress_relative_change": 0.0010179894571353545,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "6P-FAIR_A",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.0038143736149260435,
+      "medium_to_fine_p95_stress_relative_change": 0.002551980692395798,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "6P-FAIR_A",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.00140748716326177,
+      "medium_to_fine_p95_stress_relative_change": 0.0025231348192538403,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "6P-FAIR_B",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.0038143736149260435,
+      "medium_to_fine_p95_stress_relative_change": 0.002551980692395798,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "6P-FAIR_B",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.00140748716326177,
+      "medium_to_fine_p95_stress_relative_change": 0.0025231348192538403,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "8P-FAIR_A",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.007654802450839216,
+      "medium_to_fine_p95_stress_relative_change": 0.0003836863899824789,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "8P-FAIR_A",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.003661214803671448,
+      "medium_to_fine_p95_stress_relative_change": 8.332467061157302e-05,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "8P-FAIR_B",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.0011751650357739707,
+      "medium_to_fine_p95_stress_relative_change": 0.0022986044698107347,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "8P-FAIR_B",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.006174094136128156,
+      "medium_to_fine_p95_stress_relative_change": 0.0010104962635662392,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "Continuous",
+      "boundary_condition": "BC-1",
+      "medium_to_fine_displacement_relative_change": 0.006726468755718588,
+      "medium_to_fine_p95_stress_relative_change": 0.0014023845596408402,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "Continuous",
+      "boundary_condition": "BC-2",
+      "medium_to_fine_displacement_relative_change": 0.01341099306532367,
+      "medium_to_fine_p95_stress_relative_change": 0.0018908177858158008,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    }
+  ],
+  "boundary_sensitivity": [
+    {
+      "model_id": "4P-FAIR_A",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.012465607174585634,
+      "bc1_bc2_p95_stress_relative_change": 6.208929413086193e-05,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "4P-FAIR_B",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.012122775021056669,
+      "bc1_bc2_p95_stress_relative_change": 4.227879505530421e-06,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "6P-FAIR_A",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.012782848762378876,
+      "bc1_bc2_p95_stress_relative_change": 0.0004889302730058366,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "6P-FAIR_B",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.012782848762378876,
+      "bc1_bc2_p95_stress_relative_change": 0.0004889302730058366,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "8P-FAIR_A",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.012589652820372428,
+      "bc1_bc2_p95_stress_relative_change": 0.0007483573935509219,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "8P-FAIR_B",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.012472570192854998,
+      "bc1_bc2_p95_stress_relative_change": 0.00032877295760114114,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    },
+    {
+      "model_id": "Continuous",
+      "resolution": "fine",
+      "bc1_bc2_displacement_relative_change": 0.009196138762272212,
+      "bc1_bc2_p95_stress_relative_change": 0.0006505869194849866,
+      "displacement_pass": true,
+      "p95_stress_pass": true,
+      "pass": true
+    }
+  ],
+  "ranking": [
+    {
+      "model_id": "Continuous",
+      "mass_kg": 1.417426395294208,
+      "fine_average_displacement_diameter_mm": 0.00030441818380720783,
+      "fine_average_p95_stress_mpa": 0.6324652629434376,
+      "fine_average_compliance_mm_per_n": 1.5372614574587255e-07,
+      "specific_compliance_mm_per_n_per_kg": 1.0845441164086999e-07
+    },
+    {
+      "model_id": "8P-FAIR_B",
+      "mass_kg": 0.7968603468742826,
+      "fine_average_displacement_diameter_mm": 0.0005701772863380809,
+      "fine_average_p95_stress_mpa": 0.9718905499014796,
+      "fine_average_compliance_mm_per_n": 2.8659432335230894e-07,
+      "specific_compliance_mm_per_n_per_kg": 3.5965439173436964e-07
+    },
+    {
+      "model_id": "8P-FAIR_A",
+      "mass_kg": 0.7048135454728169,
+      "fine_average_displacement_diameter_mm": 0.0006963353937672998,
+      "fine_average_p95_stress_mpa": 1.2258784912206386,
+      "fine_average_compliance_mm_per_n": 3.49469486609334e-07,
+      "specific_compliance_mm_per_n_per_kg": 4.95832534510806e-07
+    },
+    {
+      "model_id": "6P-FAIR_A",
+      "mass_kg": 0.6845718722434827,
+      "fine_average_displacement_diameter_mm": 0.0007498481882447761,
+      "fine_average_p95_stress_mpa": 1.2813103383684026,
+      "fine_average_compliance_mm_per_n": 3.7636588471349066e-07,
+      "specific_compliance_mm_per_n_per_kg": 5.497828642594711e-07
+    },
+    {
+      "model_id": "6P-FAIR_B",
+      "mass_kg": 0.6845718722434827,
+      "fine_average_displacement_diameter_mm": 0.0007498481882447761,
+      "fine_average_p95_stress_mpa": 1.2813103383684026,
+      "fine_average_compliance_mm_per_n": 3.7636588471349066e-07,
+      "specific_compliance_mm_per_n_per_kg": 5.497828642594711e-07
+    },
+    {
+      "model_id": "4P-FAIR_A",
+      "mass_kg": 0.6679885638725712,
+      "fine_average_displacement_diameter_mm": 0.0008980894247598736,
+      "fine_average_p95_stress_mpa": 1.4089178449554292,
+      "fine_average_compliance_mm_per_n": 4.5021406139596654e-07,
+      "specific_compliance_mm_per_n_per_kg": 6.739846843872788e-07
+    },
+    {
+      "model_id": "4P-FAIR_B",
+      "mass_kg": 0.5722833976126809,
+      "fine_average_displacement_diameter_mm": 0.0012467796613035926,
+      "fine_average_p95_stress_mpa": 1.9192401068186724,
+      "fine_average_compliance_mm_per_n": 6.241187492298221e-07,
+      "specific_compliance_mm_per_n_per_kg": 1.090576367990712e-06
+    }
+  ],
+  "6P_A_B_equivalence": [
+    {
+      "resolution": "coarse",
+      "boundary_condition": "BC-1",
+      "max_metric_absolute_difference": 0.0,
+      "pass": true
+    },
+    {
+      "resolution": "coarse",
+      "boundary_condition": "BC-2",
+      "max_metric_absolute_difference": 0.0,
+      "pass": true
+    },
+    {
+      "resolution": "medium",
+      "boundary_condition": "BC-1",
+      "max_metric_absolute_difference": 0.0,
+      "pass": true
+    },
+    {
+      "resolution": "medium",
+      "boundary_condition": "BC-2",
+      "max_metric_absolute_difference": 0.0,
+      "pass": true
+    },
+    {
+      "resolution": "fine",
+      "boundary_condition": "BC-1",
+      "max_metric_absolute_difference": 0.0,
+      "pass": true
+    },
+    {
+      "resolution": "fine",
+      "boundary_condition": "BC-2",
+      "max_metric_absolute_difference": 0.0,
+      "pass": true
+    }
+  ],
+  "static_screening_pass": true,
+  "full_thermal_structural_gate_pass": false,
+  "limitation": "仅为修复后实体的三维线弹性静力筛查，不含焊接热源、温度相关塑性、相变、焊缝金属本构和显式壳体实体柔度。"
+}

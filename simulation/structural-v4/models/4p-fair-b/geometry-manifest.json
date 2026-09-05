@@ -16,39 +16,95 @@
     "slot_width_mm": 4.0,
     "slot_root_radius_mm": 2.0,
     "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
+    "fair_target_width_each_mm": 18.0,
+    "fair_target_total_width_mm": 72.0,
     "effective_width_each_mm": 18.0,
     "effective_total_width_mm": 72.0,
-    "connection_width_definition": "outer radial face straight segment after common R2.0 fillets"
+    "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
   },
   "geometry": {
-    "planform_area_mm2": 7026.644722688234,
-    "solid_volume_mm3": 84319.7366722588,
-    "calculated_mass_kg": 0.6071021040402634,
+    "planform_area_mm2": 6623.650435331954,
+    "solid_volume_mm3": 79483.80522398345,
+    "calculated_mass_kg": 0.5722833976126809,
     "bounding_box_mm": {
       "x": 149.9600002,
       "y": 149.9600002,
       "z": 12.000000199999999
     },
-    "seat_min_remaining_wall_thickness_mm": 21.0,
+    "seat_min_remaining_wall_thickness_mm": 19.0,
     "min_remaining_wall_thickness_mm": 5.0,
-    "minimum_wall_scope": "seat plus common Q235B shell wall",
+    "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+    "bore_ligament_mm": 21.0,
+    "slot_root_min_radius_mm": 39.0,
     "slot_root_radius_applied_mm": 2.0,
     "solid_count": 1,
+    "brep_valid": true,
     "solid_valid": true,
+    "single_solid": true,
+    "algorithmic_self_interference_free": true,
     "self_intersection_free": true,
-    "zero_thickness_free": true
+    "minimum_face_area_mm2": 19.64858078301967,
+    "minimum_edge_length_mm": 0.8573522005682583,
+    "zero_thickness_free": true,
+    "max_radial_envelope_mm": 74.98,
+    "shell_inner_radius_mm": 75.0,
+    "seat_shell_min_gap_mm": 0.019999999999983305,
+    "seat_shell_max_penetration_mm": 0.0,
+    "seat_shell_intersection_volume_mm3": 0.0,
+    "seat_outside_shell_inner_volume_mm3": 0.0,
+    "shell_interference_free": true
   },
   "manufacturing": {
     "slot_count": 4,
     "weld_segment_count": 4,
+    "weld_segments": [
+      {
+        "segment_id": 1,
+        "start_angle_deg": -6.877327495568701,
+        "end_angle_deg": 6.877327495568701,
+        "arc_angle_deg": 13.754654991137402,
+        "arc_length_mm": 18.00000000000001,
+        "interface_area_mm2": 216.0000000000001,
+        "face_count": 2
+      },
+      {
+        "segment_id": 2,
+        "start_angle_deg": 83.1226725044313,
+        "end_angle_deg": 96.8773274955687,
+        "arc_angle_deg": 13.754654991137388,
+        "arc_length_mm": 17.999999999999993,
+        "interface_area_mm2": 215.99999999999994,
+        "face_count": 2
+      },
+      {
+        "segment_id": 3,
+        "start_angle_deg": 173.1226725044313,
+        "end_angle_deg": 186.8773274955687,
+        "arc_angle_deg": 13.754654991137366,
+        "arc_length_mm": 17.999999999999964,
+        "interface_area_mm2": 215.99999999999957,
+        "face_count": 2
+      },
+      {
+        "segment_id": 4,
+        "start_angle_deg": 263.1226725044313,
+        "end_angle_deg": 276.8773274955687,
+        "arc_angle_deg": 13.754654991137414,
+        "arc_length_mm": 18.00000000000003,
+        "interface_area_mm2": 216.00000000000034,
+        "face_count": 2
+      }
+    ],
+    "cad_measured_total_weld_length_mm": 72.0,
+    "cad_measured_weld_interface_area_mm2": 864.0,
     "actual_total_weld_length_mm": 72.0,
     "nominal_total_weld_length_mm": 72.0,
     "effective_connection_width_mm": 72.0,
-    "weld_length_definition": "outer-edge effective connection width"
+    "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
   },
   "generation": {
-    "generator_version": "2.0-ocp",
-    "timestamp_utc": "2026-09-05T03:01:08.835509Z",
+    "generator_version": "2.1-ocp-cylindrical-interface",
+    "timestamp_utc": "2026-09-05T12:28:41.104608Z",
     "rule": "single_unified_parametric_cad_function",
     "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
     "step_file": "models/4p-fair-b/4P-FAIR_B.step",

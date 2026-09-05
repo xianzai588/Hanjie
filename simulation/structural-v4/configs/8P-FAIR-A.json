@@ -16,39 +16,131 @@
     "slot_width_mm": 4.0,
     "slot_root_radius_mm": 2.0,
     "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
-    "effective_width_each_mm": 13.5,
-    "effective_total_width_mm": 108.0,
-    "connection_width_definition": "outer radial face straight segment after common R2.0 fillets"
+    "fair_target_width_each_mm": 13.5,
+    "fair_target_total_width_mm": 108.0,
+    "effective_width_each_mm": 13.499999999999975,
+    "effective_total_width_mm": 107.9999999999998,
+    "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
   },
   "geometry": {
-    "planform_area_mm2": 8761.97533146314,
-    "solid_volume_mm3": 105143.70397755767,
-    "calculated_mass_kg": 0.7570346686384153,
+    "planform_area_mm2": 8157.564183713159,
+    "solid_volume_mm3": 97890.7702045579,
+    "calculated_mass_kg": 0.7048135454728169,
     "bounding_box_mm": {
       "x": 149.9600002,
       "y": 149.9600002,
       "z": 12.000000199999999
     },
-    "seat_min_remaining_wall_thickness_mm": 21.0,
+    "seat_min_remaining_wall_thickness_mm": 19.0,
     "min_remaining_wall_thickness_mm": 5.0,
-    "minimum_wall_scope": "seat plus common Q235B shell wall",
+    "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+    "bore_ligament_mm": 21.0,
+    "slot_root_min_radius_mm": 39.0,
     "slot_root_radius_applied_mm": 2.0,
     "solid_count": 1,
+    "brep_valid": true,
     "solid_valid": true,
+    "single_solid": true,
+    "algorithmic_self_interference_free": true,
     "self_intersection_free": true,
-    "zero_thickness_free": true
+    "minimum_face_area_mm2": 24.3012781322998,
+    "minimum_edge_length_mm": 1.2739949567941504,
+    "zero_thickness_free": true,
+    "max_radial_envelope_mm": 74.98,
+    "shell_inner_radius_mm": 75.0,
+    "seat_shell_min_gap_mm": 0.019999999999978646,
+    "seat_shell_max_penetration_mm": 0.0,
+    "seat_shell_intersection_volume_mm3": 0.0,
+    "seat_outside_shell_inner_volume_mm3": 0.0,
+    "shell_interference_free": true
   },
   "manufacturing": {
     "slot_count": 8,
     "weld_segment_count": 8,
-    "actual_total_weld_length_mm": 108.0,
+    "weld_segments": [
+      {
+        "segment_id": 1,
+        "start_angle_deg": -5.157995621676522,
+        "end_angle_deg": 5.157995621676522,
+        "arc_angle_deg": 10.315991243353045,
+        "arc_length_mm": 13.5,
+        "interface_area_mm2": 162.0,
+        "face_count": 2
+      },
+      {
+        "segment_id": 2,
+        "start_angle_deg": 39.84200437832349,
+        "end_angle_deg": 50.15799562167651,
+        "arc_angle_deg": 10.315991243353023,
+        "arc_length_mm": 13.499999999999973,
+        "interface_area_mm2": 161.9999999999997,
+        "face_count": 2
+      },
+      {
+        "segment_id": 3,
+        "start_angle_deg": 84.84200437832348,
+        "end_angle_deg": 95.15799562167652,
+        "arc_angle_deg": 10.315991243353025,
+        "arc_length_mm": 13.499999999999975,
+        "interface_area_mm2": 161.9999999999997,
+        "face_count": 2
+      },
+      {
+        "segment_id": 4,
+        "start_angle_deg": 129.84200437832348,
+        "end_angle_deg": 140.15799562167652,
+        "arc_angle_deg": 10.315991243353013,
+        "arc_length_mm": 13.499999999999957,
+        "interface_area_mm2": 161.9999999999995,
+        "face_count": 2
+      },
+      {
+        "segment_id": 5,
+        "start_angle_deg": 174.84200437832348,
+        "end_angle_deg": 185.15799562167652,
+        "arc_angle_deg": 10.315991243353013,
+        "arc_length_mm": 13.499999999999957,
+        "interface_area_mm2": 161.9999999999995,
+        "face_count": 2
+      },
+      {
+        "segment_id": 6,
+        "start_angle_deg": 219.84200437832348,
+        "end_angle_deg": 230.15799562167652,
+        "arc_angle_deg": 10.315991243353064,
+        "arc_length_mm": 13.500000000000025,
+        "interface_area_mm2": 162.00000000000028,
+        "face_count": 2
+      },
+      {
+        "segment_id": 7,
+        "start_angle_deg": 264.8420043783235,
+        "end_angle_deg": 275.1579956216765,
+        "arc_angle_deg": 10.315991243353013,
+        "arc_length_mm": 13.499999999999957,
+        "interface_area_mm2": 161.9999999999995,
+        "face_count": 2
+      },
+      {
+        "segment_id": 8,
+        "start_angle_deg": 309.8420043783235,
+        "end_angle_deg": 320.1579956216765,
+        "arc_angle_deg": 10.315991243353013,
+        "arc_length_mm": 13.499999999999957,
+        "interface_area_mm2": 161.9999999999995,
+        "face_count": 2
+      }
+    ],
+    "cad_measured_total_weld_length_mm": 107.9999999999998,
+    "cad_measured_weld_interface_area_mm2": 1295.9999999999977,
+    "actual_total_weld_length_mm": 107.9999999999998,
     "nominal_total_weld_length_mm": 108.0,
-    "effective_connection_width_mm": 108.0,
-    "weld_length_definition": "outer-edge effective connection width"
+    "effective_connection_width_mm": 107.9999999999998,
+    "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
   },
   "generation": {
-    "generator_version": "2.0-ocp",
-    "timestamp_utc": "2026-09-05T03:01:10.228362Z",
+    "generator_version": "2.1-ocp-cylindrical-interface",
+    "timestamp_utc": "2026-09-05T12:28:46.980863Z",
     "rule": "single_unified_parametric_cad_function",
     "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
     "step_file": "models/8p-fair-a/8P-FAIR_A.step",

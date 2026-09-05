@@ -2,7 +2,7 @@
 
 **任务**：Gate C-pre / 三维结构静刚度公平筛选  
 **版本**：V4-P1A  
-**状态**：P1A Phase 1 - 七个实体已生成，等待独立几何审查
+**状态**：P1A Phase 1 - 接口修正完成，七个实体通过独立几何审查
 
 ---
 
@@ -41,12 +41,15 @@ simulation/structural-v4/
 │   ├── 6p-fair-b/
 │   ├── 8p-fair-a/
 │   └── 8p-fair-b/
+├── common/                        # 独立壳体实体（Ø160×H200×t5）
+│   ├── shell.brep
+│   └── shell.step
 ├── meshes/                        # 网格文件（coarse/medium/fine）
-├── raw/                           # 原始求解器输出
-├── processed/                     # 处理后结果
-│   ├── results.csv                # 主结果表
-│   ├── convergence.csv            # 收敛表
-│   └── screening-summary.json     # 筛选摘要
+├── results/static-screening/      # 本地三维线弹性静力筛查结果
+│   ├── static-screening-raw.json  # 294 个方向/边界原始结果
+│   ├── static-screening.csv       # 汇总主表
+│   ├── static-screening-analysis.json
+│   └── static-screening-analysis.md
 ├── figures/                       # 图表
 │   ├── polar-radial-compliance.svg
 │   └── pareto-stiffness-stress-mass.svg
@@ -57,13 +60,13 @@ simulation/structural-v4/
 
 ## 两套公平设计族
 
-### FAIR-A：固定总外缘有效连接宽度 108 mm
+### FAIR-A：固定 R74.98 圆柱接口总弧长 108 mm
 - 回答："拓扑本身哪个好？"
 - 4P: 27 mm/段 × 4 = 108 mm
 - 6P: 18 mm/段 × 6 = 108 mm
 - 8P: 13.5 mm/段 × 8 = 108 mm
 
-### FAIR-B：固定每段外缘有效连接宽度 18 mm
+### FAIR-B：固定每段 R74.98 圆柱接口弧长 18 mm
 - 回答："实际工程方案哪个好？"
 - 4P: 18 mm/段 × 4 = 72 mm
 - 6P: 18 mm/段 × 6 = 108 mm
@@ -118,7 +121,9 @@ simulation/structural-v4/
 - 几何参数：`cad/parametric/geometry.json`
 - 实体生成：`generate_seat_geometry.py`
 - 独立审查材料：`geometry-audit.md`
+- 独立回读程序：`audit_geometry_independent.py`
+- 机器可读审查结果：`geometry-independent-audit.json`
 
 ---
 
-**当前状态**：七个真实 OCC 实体已生成并通过脚本自检；当前暂停等待独立几何审查。审查通过前不进入结构性能筛选。
+**当前状态**：七个真实 OCC 实体已生成，并通过 STEP/BREP 独立回读、壳体零穿透、接口弧长和局部退化审查。基于新 STEP 的 21 个 Gmsh 三维实体网格和 294 个线弹性静力方向/边界结果已完成，网格收敛与支承敏感性筛查通过；完整焊接热—结构 FE 仍需补充温度场、焊缝本构和显式壳体柔度后独立审查。

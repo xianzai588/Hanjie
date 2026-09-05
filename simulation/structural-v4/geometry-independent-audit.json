@@ -1,0 +1,468 @@
+{
+  "audit": "P1A independent geometry interface audit",
+  "method": "read exported BREP and STEP with independent OCC path",
+  "shell_file": "common/shell.brep",
+  "models": [
+    {
+      "model_id": "4P-FAIR_A",
+      "brep_file": "models/4p-fair-a/4P-FAIR_A.brep",
+      "step_file": "models/4p-fair-a/4P-FAIR_A.step",
+      "brep_volume_mm3": 92776.18942674597,
+      "step_volume_mm3": 92776.18942674642,
+      "cad_measured_total_weld_length_mm": 107.99999999999976,
+      "cad_measured_weld_interface_area_mm2": 1295.9999999999973,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 26.999999999999925,
+          "interface_area_mm2": 323.9999999999991,
+          "face_count": 2
+        },
+        {
+          "segment_id": 2,
+          "arc_length_mm": 26.999999999999943,
+          "interface_area_mm2": 323.9999999999993,
+          "face_count": 2
+        },
+        {
+          "segment_id": 3,
+          "arc_length_mm": 26.999999999999915,
+          "interface_area_mm2": 323.999999999999,
+          "face_count": 2
+        },
+        {
+          "segment_id": 4,
+          "arc_length_mm": 26.99999999999998,
+          "interface_area_mm2": 323.9999999999998,
+          "face_count": 2
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.01999999999997691,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 19.0,
+      "minimum_face_area_mm2": 3.7230118681699125,
+      "minimum_edge_length_mm": 0.3102509890146603,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    },
+    {
+      "model_id": "4P-FAIR_B",
+      "brep_file": "models/4p-fair-b/4P-FAIR_B.brep",
+      "step_file": "models/4p-fair-b/4P-FAIR_B.step",
+      "brep_volume_mm3": 79483.80522398351,
+      "step_volume_mm3": 79483.80522400512,
+      "cad_measured_total_weld_length_mm": 72.0,
+      "cad_measured_weld_interface_area_mm2": 864.0,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 18.00000000000001,
+          "interface_area_mm2": 216.0000000000001,
+          "face_count": 2
+        },
+        {
+          "segment_id": 2,
+          "arc_length_mm": 17.999999999999993,
+          "interface_area_mm2": 215.99999999999994,
+          "face_count": 2
+        },
+        {
+          "segment_id": 3,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999957,
+          "face_count": 2
+        },
+        {
+          "segment_id": 4,
+          "arc_length_mm": 18.00000000000003,
+          "interface_area_mm2": 216.00000000000034,
+          "face_count": 2
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.019999999999983125,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 19.0,
+      "minimum_face_area_mm2": 19.648580783019668,
+      "minimum_edge_length_mm": 0.8573522005682599,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    },
+    {
+      "model_id": "6P-FAIR_A",
+      "brep_file": "models/6p-fair-a/6P-FAIR_A.brep",
+      "step_file": "models/6p-fair-a/6P-FAIR_A.step",
+      "brep_volume_mm3": 95079.42670048375,
+      "step_volume_mm3": 95079.42670049217,
+      "cad_measured_total_weld_length_mm": 107.99999999999983,
+      "cad_measured_weld_interface_area_mm2": 1295.999999999998,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 18.00000000000001,
+          "interface_area_mm2": 216.0000000000001,
+          "face_count": 2
+        },
+        {
+          "segment_id": 2,
+          "arc_length_mm": 17.999999999999986,
+          "interface_area_mm2": 215.99999999999983,
+          "face_count": 2
+        },
+        {
+          "segment_id": 3,
+          "arc_length_mm": 17.999999999999947,
+          "interface_area_mm2": 215.99999999999937,
+          "face_count": 2
+        },
+        {
+          "segment_id": 4,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999957,
+          "face_count": 2
+        },
+        {
+          "segment_id": 5,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999955,
+          "face_count": 2
+        },
+        {
+          "segment_id": 6,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999955,
+          "face_count": 2
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.019999999999951862,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 19.0,
+      "minimum_face_area_mm2": 19.648580783019433,
+      "minimum_edge_length_mm": 0.8573522005684202,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    },
+    {
+      "model_id": "6P-FAIR_B",
+      "brep_file": "models/6p-fair-b/6P-FAIR_B.brep",
+      "step_file": "models/6p-fair-b/6P-FAIR_B.step",
+      "brep_volume_mm3": 95079.42670048375,
+      "step_volume_mm3": 95079.42670049217,
+      "cad_measured_total_weld_length_mm": 107.99999999999983,
+      "cad_measured_weld_interface_area_mm2": 1295.999999999998,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 18.00000000000001,
+          "interface_area_mm2": 216.0000000000001,
+          "face_count": 2
+        },
+        {
+          "segment_id": 2,
+          "arc_length_mm": 17.999999999999986,
+          "interface_area_mm2": 215.99999999999983,
+          "face_count": 2
+        },
+        {
+          "segment_id": 3,
+          "arc_length_mm": 17.999999999999947,
+          "interface_area_mm2": 215.99999999999937,
+          "face_count": 2
+        },
+        {
+          "segment_id": 4,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999957,
+          "face_count": 2
+        },
+        {
+          "segment_id": 5,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999955,
+          "face_count": 2
+        },
+        {
+          "segment_id": 6,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999955,
+          "face_count": 2
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.019999999999951862,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 19.0,
+      "minimum_face_area_mm2": 19.648580783019433,
+      "minimum_edge_length_mm": 0.8573522005684202,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    },
+    {
+      "model_id": "8P-FAIR_A",
+      "brep_file": "models/8p-fair-a/8P-FAIR_A.brep",
+      "step_file": "models/8p-fair-a/8P-FAIR_A.step",
+      "brep_volume_mm3": 97890.77020455792,
+      "step_volume_mm3": 97890.77020454724,
+      "cad_measured_total_weld_length_mm": 107.9999999999998,
+      "cad_measured_weld_interface_area_mm2": 1295.9999999999975,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 13.5,
+          "interface_area_mm2": 162.0,
+          "face_count": 2
+        },
+        {
+          "segment_id": 2,
+          "arc_length_mm": 13.499999999999972,
+          "interface_area_mm2": 161.99999999999966,
+          "face_count": 2
+        },
+        {
+          "segment_id": 3,
+          "arc_length_mm": 13.499999999999975,
+          "interface_area_mm2": 161.9999999999997,
+          "face_count": 2
+        },
+        {
+          "segment_id": 4,
+          "arc_length_mm": 13.499999999999957,
+          "interface_area_mm2": 161.9999999999995,
+          "face_count": 2
+        },
+        {
+          "segment_id": 5,
+          "arc_length_mm": 13.499999999999957,
+          "interface_area_mm2": 161.9999999999995,
+          "face_count": 2
+        },
+        {
+          "segment_id": 6,
+          "arc_length_mm": 13.500000000000023,
+          "interface_area_mm2": 162.00000000000028,
+          "face_count": 2
+        },
+        {
+          "segment_id": 7,
+          "arc_length_mm": 13.499999999999956,
+          "interface_area_mm2": 161.99999999999946,
+          "face_count": 2
+        },
+        {
+          "segment_id": 8,
+          "arc_length_mm": 13.499999999999956,
+          "interface_area_mm2": 161.99999999999946,
+          "face_count": 2
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.019999999999956126,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 19.0,
+      "minimum_face_area_mm2": 24.3012781322998,
+      "minimum_edge_length_mm": 1.2739949567941502,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    },
+    {
+      "model_id": "8P-FAIR_B",
+      "brep_file": "models/8p-fair-b/8P-FAIR_B.brep",
+      "step_file": "models/8p-fair-b/8P-FAIR_B.step",
+      "brep_volume_mm3": 110675.04817698363,
+      "step_volume_mm3": 110675.04817699488,
+      "cad_measured_total_weld_length_mm": 143.9999999999999,
+      "cad_measured_weld_interface_area_mm2": 1727.9999999999986,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 18.00000000000001,
+          "interface_area_mm2": 216.0000000000001,
+          "face_count": 2
+        },
+        {
+          "segment_id": 2,
+          "arc_length_mm": 17.99999999999999,
+          "interface_area_mm2": 215.9999999999999,
+          "face_count": 2
+        },
+        {
+          "segment_id": 3,
+          "arc_length_mm": 17.999999999999993,
+          "interface_area_mm2": 215.99999999999994,
+          "face_count": 2
+        },
+        {
+          "segment_id": 4,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.9999999999996,
+          "face_count": 2
+        },
+        {
+          "segment_id": 5,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999957,
+          "face_count": 2
+        },
+        {
+          "segment_id": 6,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999957,
+          "face_count": 2
+        },
+        {
+          "segment_id": 7,
+          "arc_length_mm": 18.00000000000003,
+          "interface_area_mm2": 216.00000000000034,
+          "face_count": 2
+        },
+        {
+          "segment_id": 8,
+          "arc_length_mm": 17.999999999999964,
+          "interface_area_mm2": 215.99999999999955,
+          "face_count": 2
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.019999999999983125,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 19.0,
+      "minimum_face_area_mm2": 19.648580783019668,
+      "minimum_edge_length_mm": 0.8573522005682399,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    },
+    {
+      "model_id": "Continuous",
+      "brep_file": "models/continuous/Continuous.brep",
+      "step_file": "models/continuous/Continuous.step",
+      "brep_volume_mm3": 196864.77712419574,
+      "step_volume_mm3": 196864.7771241999,
+      "cad_measured_total_weld_length_mm": 471.1132343323254,
+      "cad_measured_weld_interface_area_mm2": 5653.358811987905,
+      "weld_segments": [
+        {
+          "segment_id": 1,
+          "arc_length_mm": 471.1132343323254,
+          "interface_area_mm2": 5653.358811987905,
+          "face_count": 1
+        }
+      ],
+      "seat_shell_min_gap_mm": 0.019999999999983094,
+      "seat_shell_max_penetration_mm": 0.0,
+      "seat_shell_intersection_volume_mm3": 0.0,
+      "seat_outside_shell_inner_volume_mm3": 0.0,
+      "independent_minimum_ligament_mm": 21.0,
+      "minimum_face_area_mm2": 1507.9644737231008,
+      "minimum_edge_length_mm": 12.0,
+      "checks": {
+        "brep_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "step_brep_volume_match": true,
+        "manifest_brep_volume_match": true,
+        "fair_target_matches_cad_interface": true,
+        "shell_intersection_volume_zero": true,
+        "seat_outside_inner_volume_zero": true,
+        "positive_shell_gap": true,
+        "minimum_face_area_positive": true,
+        "minimum_edge_length_positive": true,
+        "minimum_ligament_positive": true,
+        "frozen_interface_parameters_match": true,
+        "pass": true
+      }
+    }
+  ],
+  "pass": true
+}

@@ -5,8 +5,9 @@ P1A 统一参数化轴承座实体生成器。
 Continuous、4/6/8P FAIR-A、4/6/8P FAIR-B 共七个模型，并输出 STEP、BREP
 和可追溯的 geometry-manifest.json。
 
-几何语义：离散方案由统一的 Ø82 mm 中心环和等角度布置的圆角翼组成；翼端
-位于 R74.98 mm，外缘直线有效连接宽度按 FAIR 规则冻结。翼的四个平面角均
+几何语义：离散方案由统一的 Ø82 mm 中心环和等角度布置的圆角翼组成；所有
+座体点先与 R74.98 mm 圆柱求交，R74.98 因而是真实最大径向包络，而不是某个
+平面端点坐标。FAIR 宽度冻结为该圆柱面上的焊接接口弧长。翼的四个平面角均
 采用 R2.0 mm 圆角，避免用数学尖角代替槽根/连接过渡。Continuous 是同一
 中心环向外延伸至 R74.98 mm 的连续环形基线。
 
@@ -20,24 +21,27 @@ import math
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from OCP.BRepAdaptor import BRepAdaptor_Curve
-from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut, BRepAlgoAPI_Fuse
+from OCP.BRepAdaptor import BRepAdaptor_Curve, BRepAdaptor_Surface
+from OCP.BRepAlgoAPI import BRepAlgoAPI_Check, BRepAlgoAPI_Common, BRepAlgoAPI_Cut, BRepAlgoAPI_Fuse
 from OCP.BRepBndLib import BRepBndLib
 from OCP.BRepBuilderAPI import BRepBuilderAPI_Transform
 from OCP.BRepCheck import BRepCheck_Analyzer
 from OCP.BRepFilletAPI import BRepFilletAPI_MakeFillet
 from OCP.BRepGProp import BRepGProp
+from OCP.BRepMesh import BRepMesh_IncrementalMesh
 from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox, BRepPrimAPI_MakeCylinder
 from OCP.BRepTools import BRepTools
 from OCP.Bnd import Bnd_Box
+from OCP.GCPnts import GCPnts_AbscissaPoint
 from OCP.GProp import GProp_GProps
-from OCP.GeomAbs import GeomAbs_Line
+from OCP.GeomAbs import GeomAbs_Cylinder, GeomAbs_Line
 from OCP.IFSelect import IFSelect_RetDone
 from OCP.STEPControl import STEPControl_AsIs, STEPControl_Writer
-from OCP.TopAbs import TopAbs_EDGE, TopAbs_SOLID
+from OCP.TopAbs import TopAbs_EDGE, TopAbs_FACE, TopAbs_SOLID, TopAbs_VERTEX
 from OCP.TopExp import TopExp, TopExp_Explorer
 from OCP.TopTools import TopTools_IndexedMapOfShape
 from OCP.TopoDS import TopoDS
+from OCP.BRep import BRep_Tool
 from OCP.gp import gp_Ax1, gp_Dir, gp_Pnt, gp_Trsf, gp_Vec
 
 
@@ -102,7 +106,7 @@ class BearingSeatGenerator:
 
     def __init__(self, params: UnifiedParameters):
         self.params = params
-        self.version = "2.0-ocp"
+        self.version = "2.1-ocp-cylindrical-interface"
 
     @staticmethod
     def _model_spec(N: int, family: str) -> tuple[str, str, Optional[float]]:
@@ -137,11 +141,11 @@ class BearingSeatGenerator:
             return self._annular_solid(outer_radius, bore_radius, p.seat_thickness)
 
         assert width_each is not None
-        # 为保证外缘的直线有效宽度仍等于 FAIR 输入，先把翼宽增加两个圆角
-        # 半径；四个竖直角采用 R2 后，外端平直段回到 width_each。
-        wing_box_width = width_each + 2.0 * p.slot_root_radius
         root_start = core_radius - 4.0
         wing_length = outer_radius - root_start
+        # width_each 是圆柱焊接接口的目标弧长。平面母体宽度通过同一套 OCC
+        # 圆柱裁切几何反求，避免把弦长或平面端面宽度误当成焊缝长度。
+        wing_box_width = self._solve_raw_wing_width(width_each, wing_length, root_start)
         if wing_box_width <= 2.0 * p.slot_root_radius or wing_length <= 2.0 * p.slot_root_radius:
             raise ValueError("discrete wing dimensions cannot accommodate R2.0 fillets")
 
@@ -163,6 +167,10 @@ class BearingSeatGenerator:
                 raise RuntimeError(f"OCC fuse failed for discrete wing {index + 1}")
             seat = fuse.Shape()
 
+        # 这是接口几何的关键约束：布尔交集后，翼端变成 R74.98 圆柱面，
+        # 而不是保留沿 x 方向终止的平面端面。
+        seat = self._clip_to_radial_envelope(seat, outer_radius, p.seat_thickness)
+
         # 在每个翼间隙的中线上切出真实 4 mm 径向槽。槽底由半径 2 mm
         # 的圆柱端帽形成，端帽中心落在中心环外缘，因而槽根最深到 R39 mm。
         # 这一步让 manifest 中的 R2.0 是实体几何，而不是仅有参数记录。
@@ -183,6 +191,59 @@ class BearingSeatGenerator:
             seat = cut.Shape()
 
         return seat
+
+    def _clip_to_radial_envelope(self, shape: Any, radius: float, height: float) -> Any:
+        """将实体裁切到真实圆柱包络内，保留圆柱共形焊接接口。"""
+        envelope = BRepPrimAPI_MakeCylinder(radius, height + 0.4).Shape()
+        envelope = self._transform(envelope, (0.0, 0.0, -0.2), 0.0)
+        common = BRepAlgoAPI_Common(shape, envelope)
+        common.Build()
+        if not common.IsDone():
+            raise RuntimeError("cylindrical radial envelope intersection failed")
+        return common.Shape()
+
+    def _solve_raw_wing_width(self, target_arc: float, length: float, root_start: float) -> float:
+        """反求圆柱裁切前的平面母体宽度，使实测接口弧长等于 FAIR 目标。"""
+        low = max(2.0 * self.params.slot_root_radius + 1e-6, target_arc * 0.5)
+        high = target_arc + 2.0 * self.params.slot_root_radius + 2.0
+        for _ in range(48):
+            mid = 0.5 * (low + high)
+            wing = self._rounded_wing(
+                length,
+                mid,
+                self.params.seat_thickness,
+                self.params.slot_root_radius,
+                root_start,
+                0.0,
+            )
+            clipped = self._clip_to_radial_envelope(
+                wing, self.params.seat_outer_radius, self.params.seat_thickness
+            )
+            measured = self._outer_interface_length(clipped)
+            if measured < target_arc:
+                low = mid
+            else:
+                high = mid
+        return 0.5 * (low + high)
+
+    def _outer_interface_length(self, shape: Any) -> float:
+        """从 R74.98 圆柱面的 OCC 面积读取接口弧长。"""
+        total = 0.0
+        explorer = TopExp_Explorer(shape, TopAbs_FACE)
+        while explorer.More():
+            face = TopoDS.Face_s(explorer.Current())
+            surface = BRepAdaptor_Surface(face, True)
+            if (
+                surface.GetType() == GeomAbs_Cylinder
+                and math.isclose(
+                    surface.Cylinder().Radius(), self.params.seat_outer_radius, abs_tol=1e-6
+                )
+            ):
+                props = GProp_GProps()
+                BRepGProp.SurfaceProperties_s(face, props)
+                total += float(props.Mass()) / self.params.seat_thickness
+            explorer.Next()
+        return total
 
     @staticmethod
     def _annular_solid(outer_radius: float, bore_radius: float, height: float) -> Any:
@@ -279,18 +340,52 @@ class BearingSeatGenerator:
         area = volume / p.seat_thickness
         outer_radius = p.seat_outer_radius
         continuous_width = 2.0 * math.pi * outer_radius
-        total_width = continuous_width if family == "Continuous" else width_each * N  # type: ignore[operator]
-        total_weld = total_width
+        fair_target_each = None if family == "Continuous" else width_each
+        fair_target_total = continuous_width if family == "Continuous" else width_each * N  # type: ignore[operator]
+        weld_segments = self._measure_weld_segments(solid, N, family)
+        measured_weld = sum(segment["arc_length_mm"] for segment in weld_segments)
+        measured_area = sum(segment["interface_area_mm2"] for segment in weld_segments)
 
         analyzer = BRepCheck_Analyzer(solid)
-        solid_valid = bool(analyzer.IsValid())
+        brep_valid = bool(analyzer.IsValid())
+        algo_check = BRepAlgoAPI_Check(solid)
+        algo_check.Perform()
+        algorithmic_self_interference_free = bool(algo_check.IsValid())
         solid_explorer = TopExp_Explorer(solid, TopAbs_SOLID)
         solid_count = 0
         while solid_explorer.More():
             solid_count += 1
             solid_explorer.Next()
-        seat_wall = p.seat_core_diameter / 2.0 - p.bearing_bore_diameter / 2.0
-        min_wall = min(seat_wall, p.shell_thickness)
+        bore_radius = p.bearing_bore_diameter / 2.0
+        core_radius = p.seat_core_diameter / 2.0
+        seat_wall = core_radius - bore_radius
+        slot_root_min_radius = core_radius - p.slot_root_radius if N > 0 else seat_wall + bore_radius
+        min_seat_ligament = min(seat_wall, slot_root_min_radius - bore_radius)
+        min_wall = min(min_seat_ligament, p.shell_thickness)
+        min_face_area, min_edge_length = self._minimum_topological_scales(solid)
+        max_radial = self._maximum_radial_envelope(solid, outer_radius)
+        shell_shape = self._shell_shape()
+        shell_common = BRepAlgoAPI_Common(solid, shell_shape)
+        shell_common.Build()
+        common_props = GProp_GProps()
+        BRepGProp.VolumeProperties_s(shell_common.Shape(), common_props)
+        shell_intersection_volume = float(common_props.Mass())
+        shell_distance = self._shape_distance(solid, shell_shape)
+        shell_inner_radius = p.shell_outer_diameter / 2.0 - p.shell_thickness
+        inner_void = BRepPrimAPI_MakeCylinder(
+            shell_inner_radius, p.shell_height + 0.4
+        ).Shape()
+        inner_void = self._transform(inner_void, (0.0, 0.0, -0.2), 0.0)
+        outside_inner = BRepAlgoAPI_Cut(solid, inner_void)
+        outside_inner.Build()
+        outside_props = GProp_GProps()
+        BRepGProp.VolumeProperties_s(outside_inner.Shape(), outside_props)
+        outside_inner_volume = float(outside_props.Mass())
+        max_penetration = (
+            0.0
+            if outside_inner_volume <= 1e-8
+            else max(0.0, max_radial - shell_inner_radius)
+        )
         bbox = Bnd_Box()
         BRepBndLib.Add_s(solid, bbox)
         xmin, ymin, zmin, xmax, ymax, zmax = bbox.Get()
@@ -318,12 +413,17 @@ class BearingSeatGenerator:
                     if N > 0
                     else None
                 ),
-                "effective_width_each_mm": width_each,
-                "effective_total_width_mm": total_width,
+                "fair_target_width_each_mm": fair_target_each,
+                "fair_target_total_width_mm": fair_target_total,
+                # 兼容旧配置名；新语义明确为 CAD 实测接口弧长。
+                "effective_width_each_mm": (
+                    measured_weld / len(weld_segments) if weld_segments else 0.0
+                ),
+                "effective_total_width_mm": measured_weld,
                 "connection_width_definition": (
-                    "outer radial face straight segment after common R2.0 fillets"
+                    "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
                     if N > 0
-                    else "continuous outer circumference at R74.98"
+                    else "continuous R74.98 cylindrical outer circumference"
                 ),
             },
             geometry={
@@ -335,30 +435,51 @@ class BearingSeatGenerator:
                     "y": float(ymax - ymin),
                     "z": float(zmax - zmin),
                 },
-                "seat_min_remaining_wall_thickness_mm": seat_wall,
+                "seat_min_remaining_wall_thickness_mm": min_seat_ligament,
                 "min_remaining_wall_thickness_mm": min_wall,
-                "minimum_wall_scope": "seat plus common Q235B shell wall",
+                "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+                "bore_ligament_mm": seat_wall,
+                "slot_root_min_radius_mm": slot_root_min_radius if N > 0 else None,
                 "slot_root_radius_applied_mm": p.slot_root_radius if N > 0 else None,
                 "solid_count": solid_count,
-                "solid_valid": solid_valid,
-                "self_intersection_free": solid_valid,
+                "brep_valid": brep_valid,
+                "solid_valid": brep_valid,
+                "single_solid": solid_count == 1,
+                "algorithmic_self_interference_free": algorithmic_self_interference_free,
+                "self_intersection_free": algorithmic_self_interference_free,
+                "minimum_face_area_mm2": min_face_area,
+                "minimum_edge_length_mm": min_edge_length,
                 "zero_thickness_free": bool(
                     volume > 0
                     and z_length > 1e-6
                     and p.seat_thickness > 0
                     and p.slot_width > 0
                     and p.slot_root_radius > 0
-                    and min_wall > 0
+                    and min_seat_ligament > 0
+                    and min_face_area > 1e-8
+                    and min_edge_length > 1e-8
+                ),
+                "max_radial_envelope_mm": max_radial,
+                "shell_inner_radius_mm": shell_inner_radius,
+                "seat_shell_min_gap_mm": shell_distance,
+                "seat_shell_max_penetration_mm": max_penetration,
+                "seat_shell_intersection_volume_mm3": shell_intersection_volume,
+                "seat_outside_shell_inner_volume_mm3": outside_inner_volume,
+                "shell_interference_free": bool(
+                    shell_intersection_volume <= 1e-8 and max_penetration <= 1e-8
                 ),
             },
             manufacturing={
                 "slot_count": N if N > 0 else 0,
-                "weld_segment_count": N if N > 0 else 1,
-                "actual_total_weld_length_mm": total_weld,
-                # 保留旧字段名以兼容已有配置；数值来自同一几何定义。
-                "nominal_total_weld_length_mm": total_weld,
-                "effective_connection_width_mm": total_width,
-                "weld_length_definition": "outer-edge effective connection width",
+                "weld_segment_count": len(weld_segments),
+                "weld_segments": weld_segments,
+                "cad_measured_total_weld_length_mm": measured_weld,
+                "cad_measured_weld_interface_area_mm2": measured_area,
+                # 保留旧字段名以兼容已有配置，但现在确实来自 CAD 接口测量。
+                "actual_total_weld_length_mm": measured_weld,
+                "nominal_total_weld_length_mm": fair_target_total,
+                "effective_connection_width_mm": measured_weld,
+                "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness",
             },
             generation={
                 "generator_version": self.version,
@@ -367,6 +488,175 @@ class BearingSeatGenerator:
                 "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
             },
         )
+
+    def _measure_weld_segments(self, shape: Any, N: int, family: str) -> list[Dict[str, Any]]:
+        """从最终实体外圆柱面提取每个焊接段的弧长、面积和角度。"""
+        faces: list[tuple[float, float, float]] = []
+        explorer = TopExp_Explorer(shape, TopAbs_FACE)
+        while explorer.More():
+            face = TopoDS.Face_s(explorer.Current())
+            surface = BRepAdaptor_Surface(face, True)
+            if (
+                surface.GetType() == GeomAbs_Cylinder
+                and math.isclose(
+                    surface.Cylinder().Radius(), self.params.seat_outer_radius, abs_tol=1e-6
+                )
+            ):
+                props = GProp_GProps()
+                BRepGProp.SurfaceProperties_s(face, props)
+                arc_length = float(props.Mass()) / self.params.seat_thickness
+                angles: list[float] = []
+                vertices = TopExp_Explorer(face, TopAbs_VERTEX)
+                while vertices.More():
+                    point = BRep_Tool.Pnt_s(TopoDS.Vertex_s(vertices.Current()))
+                    if math.hypot(point.X(), point.Y()) > 1e-6:
+                        angles.append(math.atan2(point.Y(), point.X()))
+                    vertices.Next()
+                if angles:
+                    sx = sum(math.cos(value) for value in angles)
+                    sy = sum(math.sin(value) for value in angles)
+                    center_angle = math.atan2(sy, sx)
+                else:
+                    center_angle = 0.0
+                faces.append((center_angle, arc_length, float(props.Mass())))
+            explorer.Next()
+
+        if family == "Continuous":
+            return [
+                {
+                    "segment_id": 1,
+                    "start_angle_deg": -180.0,
+                    "end_angle_deg": 180.0,
+                    "arc_angle_deg": 360.0,
+                    "arc_length_mm": sum(item[1] for item in faces),
+                    "interface_area_mm2": sum(item[2] for item in faces),
+                    "face_count": len(faces),
+                }
+            ]
+
+        groups: list[list[tuple[float, float, float]]] = [[] for _ in range(N)]
+        for item in faces:
+            angle = item[0] % (2.0 * math.pi)
+            index = min(
+                range(N),
+                key=lambda candidate: abs(
+                    math.atan2(
+                        math.sin(angle - candidate * 2.0 * math.pi / N),
+                        math.cos(angle - candidate * 2.0 * math.pi / N),
+                    )
+                ),
+            )
+            groups[index].append(item)
+
+        segments: list[Dict[str, Any]] = []
+        for index, group in enumerate(groups, start=1):
+            if not group:
+                raise RuntimeError(f"no cylindrical weld interface found for segment {index}")
+            center = (index - 1) * 360.0 / N
+            arc_length = sum(item[1] for item in group)
+            arc_angle = math.degrees(arc_length / self.params.seat_outer_radius)
+            segments.append(
+                {
+                    "segment_id": index,
+                    "start_angle_deg": center - arc_angle / 2.0,
+                    "end_angle_deg": center + arc_angle / 2.0,
+                    "arc_angle_deg": arc_angle,
+                    "arc_length_mm": arc_length,
+                    "interface_area_mm2": sum(item[2] for item in group),
+                    "face_count": len(group),
+                }
+            )
+        return segments
+
+    @staticmethod
+    def _minimum_topological_scales(shape: Any) -> tuple[float, float]:
+        """用面面积和边曲线长度检查局部退化，而非只看总体积。"""
+        min_face_area = float("inf")
+        faces = TopExp_Explorer(shape, TopAbs_FACE)
+        while faces.More():
+            props = GProp_GProps()
+            BRepGProp.SurfaceProperties_s(TopoDS.Face_s(faces.Current()), props)
+            min_face_area = min(min_face_area, float(props.Mass()))
+            faces.Next()
+
+        min_edge_length = float("inf")
+        edges = TopExp_Explorer(shape, TopAbs_EDGE)
+        while edges.More():
+            curve = BRepAdaptor_Curve(TopoDS.Edge_s(edges.Current()))
+            length = GCPnts_AbscissaPoint.Length_s(
+                curve, curve.FirstParameter(), curve.LastParameter()
+            )
+            min_edge_length = min(min_edge_length, float(length))
+            edges.Next()
+        return min_face_area, min_edge_length
+
+    @staticmethod
+    def _maximum_radial_envelope(shape: Any, expected_outer_radius: float) -> float:
+        """从面解析几何和顶点独立估计实体最大径向坐标。"""
+        maximum = 0.0
+        outer_face_radius = 0.0
+        vertices = TopExp_Explorer(shape, TopAbs_VERTEX)
+        while vertices.More():
+            point = BRep_Tool.Pnt_s(TopoDS.Vertex_s(vertices.Current()))
+            maximum = max(maximum, math.hypot(point.X(), point.Y()))
+            vertices.Next()
+        faces = TopExp_Explorer(shape, TopAbs_FACE)
+        while faces.More():
+            surface = BRepAdaptor_Surface(TopoDS.Face_s(faces.Current()), True)
+            if surface.GetType() == GeomAbs_Cylinder:
+                cylinder = surface.Cylinder()
+                if math.isclose(cylinder.Radius(), expected_outer_radius, abs_tol=1e-6):
+                    # 共形接口面本身给出精确包络；不能把被裁切的 R2
+                    # 圆角母面完整圆柱半径误加到轴心距离上。
+                    outer_face_radius = max(outer_face_radius, cylinder.Radius())
+                else:
+                    maximum = max(
+                        maximum,
+                        math.hypot(cylinder.Axis().Location().X(), cylinder.Axis().Location().Y())
+                        + cylinder.Radius(),
+                    )
+            faces.Next()
+        if outer_face_radius > 0.0:
+            return outer_face_radius
+        # 退化到网格节点包络，供没有显式圆柱接口的输入形状诊断。
+        BRepMesh_IncrementalMesh(shape, 1e-4, True, 0.1, True)
+        mesh_faces = TopExp_Explorer(shape, TopAbs_FACE)
+        from OCP.TopLoc import TopLoc_Location
+
+        while mesh_faces.More():
+            triangulation = BRep_Tool.Triangulation_s(
+                TopoDS.Face_s(mesh_faces.Current()), TopLoc_Location()
+            )
+            if triangulation is not None:
+                for index in range(1, triangulation.NbNodes() + 1):
+                    point = triangulation.Node(index)
+                    maximum = max(maximum, math.hypot(point.X(), point.Y()))
+            mesh_faces.Next()
+        return maximum
+
+    def _shell_shape(self) -> Any:
+        """构造独立的 Q235B Ø160×t5 壳体实体。"""
+        outer = BRepPrimAPI_MakeCylinder(
+            self.params.shell_outer_diameter / 2.0, self.params.shell_height
+        ).Shape()
+        inner = BRepPrimAPI_MakeCylinder(
+            self.params.shell_outer_diameter / 2.0 - self.params.shell_thickness,
+            self.params.shell_height,
+        ).Shape()
+        cut = BRepAlgoAPI_Cut(outer, inner)
+        cut.Build()
+        if not cut.IsDone():
+            raise RuntimeError("shell annulus construction failed")
+        return cut.Shape()
+
+    def _shape_distance(self, first: Any, second: Any) -> float:
+        from OCP.BRepExtrema import BRepExtrema_DistShapeShape
+
+        distance = BRepExtrema_DistShapeShape(first, second)
+        distance.Perform()
+        if not distance.IsDone():
+            raise RuntimeError("seat-shell distance calculation failed")
+        return float(distance.Value())
 
     def generate_model(
         self,
@@ -451,21 +741,39 @@ def validate_geometry_manifest(manifest: GeometryManifest) -> Dict[str, bool]:
             manifest.manufacturing.get("actual_total_weld_length_mm", 0.0)
         )
         > 0.0,
+        "brep_valid": manifest.geometry.get("brep_valid") is True,
         "solid_valid": manifest.geometry.get("solid_valid") is True,
-        "single_solid": manifest.geometry.get("solid_count") == 1,
+        "single_solid": manifest.geometry.get("single_solid") is True
+        and manifest.geometry.get("solid_count") == 1,
+        "algorithmic_self_interference_free": manifest.geometry.get(
+            "algorithmic_self_interference_free"
+        )
+        is True,
         "self_intersection_free": manifest.geometry.get("self_intersection_free") is True,
         "zero_thickness_free": manifest.geometry.get("zero_thickness_free") is True,
+        "shell_interference_free": manifest.geometry.get("shell_interference_free") is True,
+        "radial_envelope_clear": float(
+            manifest.geometry.get("seat_shell_max_penetration_mm", 1.0)
+        )
+        <= 1e-8,
+        "minimum_ligament_positive": float(
+            manifest.geometry.get("seat_min_remaining_wall_thickness_mm", 0.0)
+        )
+        > 0.0,
         "slot_root_radius_frozen": manifest.N == 0
         or math.isclose(manifest.seat.get("slot_root_radius_mm", 0.0), 2.0),
     }
 
+    target_total = float(manifest.seat.get("fair_target_total_width_mm", 0.0))
+    measured_total = float(manifest.manufacturing.get("cad_measured_total_weld_length_mm", 0.0))
+    checks["fair_target_matches_cad_interface"] = math.isclose(
+        measured_total, target_total, abs_tol=1e-5
+    )
     if manifest.family == "FAIR_A":
-        checks["fair_a_total_width"] = math.isclose(
-            manifest.seat.get("effective_total_width_mm", 0.0), 108.0, abs_tol=1e-6
-        )
+        checks["fair_a_total_target"] = math.isclose(target_total, 108.0, abs_tol=1e-6)
     if manifest.family == "FAIR_B":
-        checks["fair_b_each_width"] = math.isclose(
-            manifest.seat.get("effective_width_each_mm", 0.0), 18.0, abs_tol=1e-6
+        checks["fair_b_each_target"] = math.isclose(
+            float(manifest.seat.get("fair_target_width_each_mm", 0.0)), 18.0, abs_tol=1e-6
         )
     return checks
 
@@ -503,11 +811,46 @@ def export_model(model: GeneratedModel, output_root: Path) -> GeometryManifest:
     return manifest
 
 
+def export_shell(generator: BearingSeatGenerator, output_root: Path) -> Dict[str, Any]:
+    """导出独立壳体实体，供后续接口和干涉审查复用。"""
+    common_dir = output_root / "common"
+    common_dir.mkdir(parents=True, exist_ok=True)
+    shell = generator._shell_shape()
+    step_path = common_dir / "shell.step"
+    brep_path = common_dir / "shell.brep"
+    manifest_path = common_dir / "shell-manifest.json"
+    writer = STEPControl_Writer()
+    writer.Transfer(shell, STEPControl_AsIs)
+    if writer.Write(str(step_path)) != IFSelect_RetDone:
+        raise RuntimeError(f"shell STEP export failed: {step_path}")
+    if not BRepTools.Write_s(shell, str(brep_path)):
+        raise RuntimeError(f"shell BREP export failed: {brep_path}")
+    analyzer = BRepCheck_Analyzer(shell)
+    payload = {
+        "outer_diameter_mm": generator.params.shell_outer_diameter,
+        "inner_diameter_mm": generator.params.shell_outer_diameter
+        - 2.0 * generator.params.shell_thickness,
+        "height_mm": generator.params.shell_height,
+        "thickness_mm": generator.params.shell_thickness,
+        "brep_valid": bool(analyzer.IsValid()),
+        "step_file": step_path.relative_to(output_root).as_posix(),
+        "brep_file": brep_path.relative_to(output_root).as_posix(),
+    }
+    manifest_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return payload
+
+
 def main() -> int:
     """生成并验证七个 P1A 实体；完成后停在独立几何审查门。"""
     output_root = Path(__file__).parent
     generator = BearingSeatGenerator(UnifiedParameters())
     models = generator.generate_all_p1a_geometry()
+    shell_manifest = export_shell(generator, output_root)
+    print(
+        "Shell exported: "
+        f"OD={shell_manifest['outer_diameter_mm']:.2f} mm, "
+        f"ID={shell_manifest['inner_diameter_mm']:.2f} mm"
+    )
 
     all_valid = True
     print("Generating seven P1A CAD solids...")
@@ -528,7 +871,7 @@ def main() -> int:
             )
 
     print("\nP1A geometry summary")
-    print(f"{'Model ID':<16} {'Family':<12} {'N':<4} {'Effective width (mm)':>22} {'Weld (mm)':>12}")
+    print(f"{'Model ID':<16} {'Family':<12} {'N':<4} {'CAD interface (mm)':>22} {'Weld (mm)':>12}")
     print("-" * 72)
     for model_id, model in models.items():
         manifest = model.manifest

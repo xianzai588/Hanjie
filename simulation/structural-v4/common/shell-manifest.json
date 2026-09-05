@@ -1,0 +1,9 @@
+{
+  "outer_diameter_mm": 160.0,
+  "inner_diameter_mm": 150.0,
+  "height_mm": 200.0,
+  "thickness_mm": 5.0,
+  "brep_valid": true,
+  "step_file": "common/shell.step",
+  "brep_file": "common/shell.brep"
+}
