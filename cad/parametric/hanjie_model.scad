@@ -11,7 +11,7 @@ shell_t = 5;
 bore_d = 40;
 seat_core_od = 82;
 seat_h = 12;
-wing_ro = 73.8;
+wing_ro = 74.98;
 wing_width = 18;
 slot_width = 4;
 layout = 6;
@@ -23,6 +23,7 @@ module ring(outer_d, inner_d, height) {
     }
 }
 
+// 该 SCAD 版本仅用于快速视觉表达；P1A 结构实体以 OCP 生成器及其 manifest 为准。
 module flexible_seat(points=layout) {
     wing_length = wing_ro - seat_core_od / 2;
     difference() {
@@ -70,4 +71,3 @@ if (part == "shell") shell();
 else if (part == "seat") flexible_seat();
 else if (part == "fixture") fixture();
 else assembly();
-

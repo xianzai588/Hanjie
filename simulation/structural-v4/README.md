@@ -2,7 +2,7 @@
 
 **任务**：Gate C-pre / 三维结构静刚度公平筛选  
 **版本**：V4-P1A  
-**状态**：Phase 0 - 目录结构已建立
+**状态**：P1A Phase 1 - 七个实体已生成，等待独立几何审查
 
 ---
 
@@ -33,7 +33,7 @@ simulation/structural-v4/
 │   ├── 6p-fair-b.json
 │   ├── 8p-fair-a.json
 │   └── 8p-fair-b.json
-├── models/                        # 几何模型
+├── models/                        # 每个目录含 STEP/BREP/geometry-manifest.json
 │   ├── continuous/
 │   ├── 4p-fair-a/
 │   ├── 4p-fair-b/
@@ -57,13 +57,13 @@ simulation/structural-v4/
 
 ## 两套公平设计族
 
-### FAIR-A：固定总连接宽度 108 mm
+### FAIR-A：固定总外缘有效连接宽度 108 mm
 - 回答："拓扑本身哪个好？"
 - 4P: 27 mm/段 × 4 = 108 mm
 - 6P: 18 mm/段 × 6 = 108 mm
 - 8P: 13.5 mm/段 × 8 = 108 mm
 
-### FAIR-B：固定每段 18 mm
+### FAIR-B：固定每段外缘有效连接宽度 18 mm
 - 回答："实际工程方案哪个好？"
 - 4P: 18 mm/段 × 4 = 72 mm
 - 6P: 18 mm/段 × 6 = 108 mm
@@ -116,7 +116,9 @@ simulation/structural-v4/
 - 执行状态：`P1A-status.md`
 - V4 统一报告：`deliverables/report/technical-report-v4-unified.md`
 - 几何参数：`cad/parametric/geometry.json`
+- 实体生成：`generate_seat_geometry.py`
+- 独立审查材料：`geometry-audit.md`
 
 ---
 
-**当前状态**：Phase 0 完成，等待 Phase 1 几何建模开始。
+**当前状态**：七个真实 OCC 实体已生成并通过脚本自检；当前暂停等待独立几何审查。审查通过前不进入结构性能筛选。

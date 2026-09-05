@@ -11,7 +11,7 @@
 | Phase | 任务 | 状态 | 完成项/总项 |
 | --- | --- | :---: | :---: |
 | Phase 0 | 准备 | ✅ | 5/5 |
-| Phase 1 | 几何建模 | ⏳ | 0/5 |
+| Phase 1 | 几何建模 | ⏸️ | 5/5（实体已生成，待独立审查） |
 | Phase 2 | 网格划分 | ⏳ | 0/4 |
 | Phase 3 | 边界与载荷 | ⏳ | 0/6 |
 | Phase 4 | 求解 | ⏳ | 0/2 |
@@ -19,19 +19,19 @@
 | Phase 6 | 分析与筛选 | ⏳ | 0/6 |
 | Phase 7 | 审查 | ⏳ | 0/3 |
 
-**总体进度**：5/37 (14%)
+**总体进度**：10/37 (27%)；P1A 当前停在独立几何审查门
 
 ---
 
-## Phase 0: 准备（当前）
+## Phase 0: 准备（已完成）
 
-- [x] G0 V4 unified 基线确认（commit 3987f11）
+- [x] G0 V4 unified 基线确认（当前基线 commit 29d2188）
 - [x] 读取 `technical-report-v4-unified.md`
 - [x] 读取 `cad/parametric/geometry.json`
 - [x] P1A 设计输入冻结 → `P1A-design-inputs.md`
 - [x] 创建 `simulation/structural-v4/` 目录结构
 
-**当前状态**：Phase 0 完成，准备进入 Phase 1 几何建模
+**当前状态**：Phase 0 已完成；Phase 1 实体生成已完成，等待独立几何审查
 
 ---
 
@@ -39,23 +39,26 @@
 
 ### 待建立的模型（7 个）
 
-| 模型 ID | 结构 | 公平口径 | 每段宽度 | 总连接长度 | 状态 |
+| 模型 ID | 结构 | 公平口径 | 每段宽度 | 总外缘有效连接宽度 | 状态 |
 | --- | --- | --- | ---: | ---: | :---: |
-| CONT | Continuous | baseline | - | 连续 | ⏳ |
-| 4P-A | 4-point | FAIR-A | 27 mm | 108 mm | ⏳ |
-| 4P-B | 4-point | FAIR-B | 18 mm | 72 mm | ⏳ |
-| 6P-A | 6-point | FAIR-A | 18 mm | 108 mm | ⏳ |
-| 6P-B | 6-point | FAIR-B | 18 mm | 108 mm | ⏳ |
-| 8P-A | 8-point | FAIR-A | 13.5 mm | 108 mm | ⏳ |
-| 8P-B | 8-point | FAIR-B | 18 mm | 144 mm | ⏳ |
+| CONT | Continuous | baseline | - | 连续外缘（471.113 mm） | ⏸️ 待审查 |
+| 4P-A | 4-point | FAIR-A | 27 mm | 108 mm | ⏸️ 待审查 |
+| 4P-B | 4-point | FAIR-B | 18 mm | 72 mm | ⏸️ 待审查 |
+| 6P-A | 6-point | FAIR-A | 18 mm | 108 mm | ⏸️ 待审查 |
+| 6P-B | 6-point | FAIR-B | 18 mm | 108 mm | ⏸️ 待审查 |
+| 8P-A | 8-point | FAIR-A | 13.5 mm | 108 mm | ⏸️ 待审查 |
+| 8P-B | 8-point | FAIR-B | 18 mm | 144 mm | ⏸️ 待审查 |
 
 ### 检查清单
 
-- [ ] 所有模型使用统一壳体：Ø160 × H200 × t5 mm
-- [ ] 所有模型使用统一孔径：Ø40 H7
-- [ ] 所有模型使用统一翼端半径：R74.98 mm
-- [ ] 槽根圆角已建模（非数学尖角）
-- [ ] 几何质量检查通过（无干涉、无重叠）
+- [x] 所有模型使用统一壳体：Ø160 × H200 × t5 mm
+- [x] 所有模型使用统一孔径：Ø40 H7
+- [x] 所有模型使用统一翼端半径：R74.98 mm
+- [x] 槽根/翼角采用统一 R2.0 mm 实体圆角（非数学尖角）
+- [x] OCC 几何质量检查通过（单实体、无自交、无零厚度）
+- [ ] 独立几何审查（审查通过前不得进入 Phase 2/结构求解）
+
+实体输出与审查材料：`geometry-audit.md`。七个模型均位于 `models/<model>/`，各自包含 STEP、BREP 和 `geometry-manifest.json`；生成入口为 `generate_seat_geometry.py`。
 
 ---
 
@@ -216,7 +219,8 @@
 
 | 里程碑 | 预计日期 | 状态 |
 | --- | --- | :---: |
-| Phase 0 完成 | 2026-09-03 | 🔄 |
+| Phase 0 完成 | 2026-09-03 | ✅ |
+| P1A Phase 1 实体生成 | 2026-09-05 | ⏸️ 独立审查待完成 |
 | Phase 1-3 完成 | 2026-09-06 | ⏳ |
 | Phase 4 完成 | 2026-09-08 | ⏳ |
 | Phase 5-6 完成 | 2026-09-11 | ⏳ |
@@ -250,4 +254,4 @@
 
 ---
 
-**当前状态**：Phase 0 进行中（3/5），准备创建目录结构。
+**当前状态**：G0/Phase 0 已完成；P1A Phase 1 已生成七个真实 OCC 实体并通过脚本自检，当前暂停等待独立几何审查。未开始结构性能排序、热 FE、Adaptive、预偏置或 Pareto。

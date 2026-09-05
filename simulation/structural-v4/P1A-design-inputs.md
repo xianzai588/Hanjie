@@ -2,7 +2,7 @@
 
 **版本**：V4-P1A  
 **日期**：2026-09-03  
-**状态**：设计输入冻结，准备建模
+**状态**：设计输入冻结；七个实体已生成，等待独立几何审查
 
 ---
 
@@ -32,7 +32,7 @@
 - 轴承座：QT450-10, Ø40 H7 孔, 12 mm 设计厚度, R74.98 mm 外缘
 - 座体中心刚性区：Ø82 mm
 - 槽宽：4 mm
-- **槽根必须使用实际圆角几何**（禁止数学尖角）
+- **槽根/翼角统一冻结为实际 R2.0 mm 圆角几何**（禁止数学尖角或拓扑专属调参）
 
 ### 2. 两套公平设计族（关键）
 
@@ -322,15 +322,16 @@ simulation/structural-v4/
 - [x] 读取 `technical-report-v4-unified.md`
 - [x] 读取 `cad/parametric/geometry.json`
 - [x] P1A 设计输入冻结
-- [ ] 创建 `simulation/structural-v4/` 目录结构
+- [x] 创建 `simulation/structural-v4/` 目录结构
 
 ### Phase 1: 几何建模（3-4 天）
 
-- [ ] Continuous 三维模型
-- [ ] 4P/6P/8P FAIR-A 三维模型
-- [ ] 4P/6P/8P FAIR-B 三维模型
-- [ ] 槽根圆角验证
-- [ ] 几何质量检查（无干涉、无重叠）
+- [x] Continuous 三维实体（STEP/BREP）
+- [x] 4P/6P/8P FAIR-A 三维实体（STEP/BREP）
+- [x] 4P/6P/8P FAIR-B 三维实体（STEP/BREP）
+- [x] 槽根/翼角统一 R2.0 mm 圆角验证
+- [x] OCC 几何质量检查（单实体、无自交、无零厚度）
+- [ ] 独立几何审查；通过后才允许进入结构筛选
 
 ### Phase 2: 网格划分（2-3 天）
 

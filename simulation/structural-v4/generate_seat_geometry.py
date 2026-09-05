@@ -1,44 +1,64 @@
 """
-统一参数化轴承座几何生成器
+P1A 统一参数化轴承座实体生成器。
 
-用途：
-- 为 P1A 结构静刚度公平筛选生成 7 个三维模型
-- 确保除拓扑参数 N 和公平族定义外，所有几何由统一规则产生
-- 避免人为独立修模导致的比较不公平
+本脚本是 P1A Phase 1 的唯一几何入口：同一套参数和同一个建模函数生成
+Continuous、4/6/8P FAIR-A、4/6/8P FAIR-B 共七个模型，并输出 STEP、BREP
+和可追溯的 geometry-manifest.json。
 
-原则：
-- 禁止手工绘制
-- 所有模型由此脚本生成
-- 几何规则可重复、可审查
+几何语义：离散方案由统一的 Ø82 mm 中心环和等角度布置的圆角翼组成；翼端
+位于 R74.98 mm，外缘直线有效连接宽度按 FAIR 规则冻结。翼的四个平面角均
+采用 R2.0 mm 圆角，避免用数学尖角代替槽根/连接过渡。Continuous 是同一
+中心环向外延伸至 R74.98 mm 的连续环形基线。
+
+本阶段只负责可复算实体和几何质量检查，不运行结构求解、热 FE 或候选排序。
 """
 
-from dataclasses import dataclass, asdict
-from typing import Optional, Dict, Any
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 import json
-from datetime import datetime
-from pathlib import Path
 import math
+from pathlib import Path
+from typing import Any, Dict, Optional
+
+from OCP.BRepAdaptor import BRepAdaptor_Curve
+from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut, BRepAlgoAPI_Fuse
+from OCP.BRepBndLib import BRepBndLib
+from OCP.BRepBuilderAPI import BRepBuilderAPI_Transform
+from OCP.BRepCheck import BRepCheck_Analyzer
+from OCP.BRepFilletAPI import BRepFilletAPI_MakeFillet
+from OCP.BRepGProp import BRepGProp
+from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox, BRepPrimAPI_MakeCylinder
+from OCP.BRepTools import BRepTools
+from OCP.Bnd import Bnd_Box
+from OCP.GProp import GProp_GProps
+from OCP.GeomAbs import GeomAbs_Line
+from OCP.IFSelect import IFSelect_RetDone
+from OCP.STEPControl import STEPControl_AsIs, STEPControl_Writer
+from OCP.TopAbs import TopAbs_EDGE, TopAbs_SOLID
+from OCP.TopExp import TopExp, TopExp_Explorer
+from OCP.TopTools import TopTools_IndexedMapOfShape
+from OCP.TopoDS import TopoDS
+from OCP.gp import gp_Ax1, gp_Dir, gp_Pnt, gp_Trsf, gp_Vec
 
 
-# 统一参数定义（V4 冻结）
 @dataclass
 class UnifiedParameters:
-    """统一几何参数（所有模型共享）"""
+    """所有 P1A 实体共享的几何、材料和题面参数。"""
 
     # 壳体（题面固定）
     shell_outer_diameter: float = 160.0  # mm
     shell_height: float = 200.0  # mm
     shell_thickness: float = 5.0  # mm
 
-    # 轴承座（V4 设计）
-    bearing_bore_diameter: float = 40.000  # mm，名义尺寸（FE用）
+    # 轴承座（V4 冻结）
+    bearing_bore_diameter: float = 40.000  # mm，名义尺寸（FE 用）
     seat_thickness: float = 12.0  # mm
     seat_outer_radius: float = 74.98  # mm
     seat_core_diameter: float = 82.0  # mm
 
-    # 槽（V4 设计）
-    slot_width: float = 4.0  # mm
-    slot_root_radius: Optional[float] = None  # mm，待 Phase 1 确定
+    # 离散翼/槽（P1A Phase 1 冻结）
+    slot_width: float = 4.0  # mm，记录制造槽宽；翼之间的自由间隔由拓扑决定
+    slot_root_radius: float = 2.0  # mm，统一公共圆角；不得按拓扑分别调参
 
     # 材料（V4 冻结）
     material_qr450_density: float = 7200.0  # kg/m³
@@ -47,265 +67,485 @@ class UnifiedParameters:
 
 @dataclass
 class GeometryManifest:
-    """几何清单（每个模型输出）"""
+    """单个实体模型的参数、派生量、验证结果和文件索引。"""
 
     model_id: str
     family: str  # 'FAIR_A' / 'FAIR_B' / 'Continuous'
     layout: str  # '4P' / '6P' / '8P' / 'Continuous'
     N: int  # 连接点数量，0=Continuous
-
-    # 壳体
     shell: Dict[str, float]
-
-    # 轴承座
     seat: Dict[str, Any]
-
-    # 几何属性
-    geometry: Dict[str, Optional[float]]
-
-    # 制造属性
-    manufacturing: Dict[str, Optional[int]]
-
-    # 生成信息
-    generation: Dict[str, str]
+    geometry: Dict[str, Any]
+    manufacturing: Dict[str, Any]
+    generation: Dict[str, Any]
 
     def to_dict(self) -> Dict[str, Any]:
-        """转换为字典"""
         return asdict(self)
 
     def to_json(self, filepath: Path) -> None:
-        """保存为 JSON"""
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(self.to_dict(), f, indent=2, ensure_ascii=False)
+        filepath.parent.mkdir(parents=True, exist_ok=True)
+        with filepath.open("w", encoding="utf-8") as handle:
+            json.dump(self.to_dict(), handle, indent=2, ensure_ascii=False)
+            handle.write("\n")
+
+
+@dataclass
+class GeneratedModel:
+    """实体和其 manifest 的内部组合，避免用文件名替代几何对象。"""
+
+    manifest: GeometryManifest
+    shape: Any
 
 
 class BearingSeatGenerator:
-    """统一参数化轴承座生成器"""
+    """用同一个参数化函数生成 Continuous 与六个离散公平模型。"""
 
     def __init__(self, params: UnifiedParameters):
         self.params = params
-        self.version = "1.0"
+        self.version = "2.0-ocp"
 
-    def generate(
+    @staticmethod
+    def _model_spec(N: int, family: str) -> tuple[str, str, Optional[float]]:
+        """校验拓扑并返回布局、模型 ID 与外缘有效宽度。"""
+        if family == "Continuous":
+            if N != 0:
+                raise ValueError("Continuous must have N=0")
+            return "Continuous", "Continuous", None
+
+        if family not in {"FAIR_A", "FAIR_B"}:
+            raise ValueError(f"Unknown family: {family}")
+        if N not in {4, 6, 8}:
+            raise ValueError("Discrete P1A layouts require N in {4, 6, 8}")
+
+        width_each = 108.0 / N if family == "FAIR_A" else 18.0
+        return f"{N}P", f"{N}P-{family}", width_each
+
+    def _build_shape(self, N: int, family: str, width_each: Optional[float]) -> Any:
+        """构造真实 OCC 实体；Continuous 与离散方案共用中心环参数。"""
+        p = self.params
+        outer_radius = p.seat_outer_radius
+        core_radius = p.seat_core_diameter / 2.0
+        bore_radius = p.bearing_bore_diameter / 2.0
+
+        if not outer_radius > core_radius > bore_radius > 0:
+            raise ValueError("outer/core/bore radius ordering is invalid")
+        if p.seat_thickness <= 0 or p.slot_root_radius <= 0:
+            raise ValueError("seat thickness and slot root radius must be positive")
+
+        if family == "Continuous":
+            # 同一个中心环规则向外延伸，作为连续环形基线，而不是实心圆盘。
+            return self._annular_solid(outer_radius, bore_radius, p.seat_thickness)
+
+        assert width_each is not None
+        # 为保证外缘的直线有效宽度仍等于 FAIR 输入，先把翼宽增加两个圆角
+        # 半径；四个竖直角采用 R2 后，外端平直段回到 width_each。
+        wing_box_width = width_each + 2.0 * p.slot_root_radius
+        root_start = core_radius - 4.0
+        wing_length = outer_radius - root_start
+        if wing_box_width <= 2.0 * p.slot_root_radius or wing_length <= 2.0 * p.slot_root_radius:
+            raise ValueError("discrete wing dimensions cannot accommodate R2.0 fillets")
+
+        core = self._annular_solid(core_radius, bore_radius, p.seat_thickness)
+        seat = core
+        for index in range(N):
+            # 从中心环内部起翼，保证融合是有面积的实体连接，而非相切拼接。
+            wing = self._rounded_wing(
+                wing_length,
+                wing_box_width,
+                p.seat_thickness,
+                p.slot_root_radius,
+                root_start,
+                index * 360.0 / N,
+            )
+            fuse = BRepAlgoAPI_Fuse(seat, wing)
+            fuse.Build()
+            if not fuse.IsDone():
+                raise RuntimeError(f"OCC fuse failed for discrete wing {index + 1}")
+            seat = fuse.Shape()
+
+        # 在每个翼间隙的中线上切出真实 4 mm 径向槽。槽底由半径 2 mm
+        # 的圆柱端帽形成，端帽中心落在中心环外缘，因而槽根最深到 R39 mm。
+        # 这一步让 manifest 中的 R2.0 是实体几何，而不是仅有参数记录。
+        for index in range(N):
+            slot = self._rounded_slot_cutter(
+                p.slot_width,
+                p.slot_root_radius,
+                outer_radius - core_radius + 4.0,
+                p.seat_thickness + 0.4,
+                core_radius,
+                -0.2,
+                (index + 0.5) * 360.0 / N,
+            )
+            cut = BRepAlgoAPI_Cut(seat, slot)
+            cut.Build()
+            if not cut.IsDone():
+                raise RuntimeError(f"OCC rounded slot cut failed for slot {index + 1}")
+            seat = cut.Shape()
+
+        return seat
+
+    @staticmethod
+    def _annular_solid(outer_radius: float, bore_radius: float, height: float) -> Any:
+        """用 OCC 圆柱布尔差生成有孔环体。"""
+        outer = BRepPrimAPI_MakeCylinder(outer_radius, height).Shape()
+        inner = BRepPrimAPI_MakeCylinder(bore_radius, height).Shape()
+        cut = BRepAlgoAPI_Cut(outer, inner)
+        cut.Build()
+        if not cut.IsDone():
+            raise RuntimeError("OCC annulus cut failed")
+        return cut.Shape()
+
+    @staticmethod
+    def _transform(shape: Any, translation: tuple[float, float, float], angle_deg: float) -> Any:
+        """按先平移、后绕 Z 轴旋转的统一规则放置翼。"""
+        translate = gp_Trsf()
+        translate.SetTranslation(gp_Vec(*translation))
+        moved = BRepBuilderAPI_Transform(shape, translate, True).Shape()
+
+        rotate = gp_Trsf()
+        rotate.SetRotation(
+            gp_Ax1(gp_Pnt(0.0, 0.0, 0.0), gp_Dir(0.0, 0.0, 1.0)),
+            math.radians(angle_deg),
+        )
+        return BRepBuilderAPI_Transform(moved, rotate, True).Shape()
+
+    @classmethod
+    def _rounded_wing(
+        cls,
+        length: float,
+        width: float,
+        height: float,
+        radius: float,
+        root_start: float,
+        angle_deg: float,
+    ) -> Any:
+        """对翼的四条竖直棱做真实 OCC R2.0 圆角，再统一放置。"""
+        box = BRepPrimAPI_MakeBox(length, width, height).Shape()
+        fillet = BRepFilletAPI_MakeFillet(box)
+        edge_map = TopTools_IndexedMapOfShape()
+        TopExp.MapShapes_s(box, TopAbs_EDGE, edge_map)
+        vertical_edges = 0
+        for edge_index in range(1, edge_map.Extent() + 1):
+            edge = TopoDS.Edge_s(edge_map.FindKey(edge_index))
+            curve = BRepAdaptor_Curve(edge)
+            if curve.GetType() == GeomAbs_Line and abs(curve.Line().Direction().Z()) > 0.99:
+                fillet.Add(radius, edge)
+                vertical_edges += 1
+        if vertical_edges != 4:
+            raise RuntimeError(f"expected four vertical wing edges, got {vertical_edges}")
+        fillet.Build()
+        if not fillet.IsDone():
+            raise RuntimeError("OCC R2.0 wing fillet failed")
+        return cls._transform(fillet.Shape(), (root_start, -width / 2.0, 0.0), angle_deg)
+
+    @classmethod
+    def _rounded_slot_cutter(
+        cls,
+        width: float,
+        radius: float,
+        length: float,
+        height: float,
+        root_center: float,
+        z_start: float,
+        angle_deg: float,
+    ) -> Any:
+        """生成宽 4 mm、槽根 R2.0 mm 的径向圆头切刀。"""
+        if not math.isclose(width, 2.0 * radius, abs_tol=1e-9):
+            raise ValueError("the frozen slot geometry requires slot_width = 2 * root_radius")
+        box = BRepPrimAPI_MakeBox(length, width, height).Shape()
+        box = cls._transform(box, (0.0, -width / 2.0, 0.0), 0.0)
+        cap = BRepPrimAPI_MakeCylinder(radius, height).Shape()
+        fuse = BRepAlgoAPI_Fuse(box, cap)
+        fuse.Build()
+        if not fuse.IsDone():
+            raise RuntimeError("OCC rounded slot cutter construction failed")
+        return cls._transform(fuse.Shape(), (root_center, 0.0, z_start), angle_deg)
+
+    def _manifest(
         self,
         N: int,
         family: str,
-        wing_width_each: Optional[float] = None
+        layout: str,
+        model_id: str,
+        width_each: Optional[float],
+        shape: Any,
     ) -> GeometryManifest:
-        """
-        生成轴承座几何
+        """从 OCC 实体读取派生量，不把手算值当作求解结果。"""
+        p = self.params
+        solid = shape
+        volume_properties = GProp_GProps()
+        BRepGProp.VolumeProperties_s(solid, volume_properties)
+        volume = float(volume_properties.Mass())
+        area = volume / p.seat_thickness
+        outer_radius = p.seat_outer_radius
+        continuous_width = 2.0 * math.pi * outer_radius
+        total_width = continuous_width if family == "Continuous" else width_each * N  # type: ignore[operator]
+        total_weld = total_width
 
-        Parameters:
-        -----------
-        N : int
-            连接点数量（4/6/8）或 0（Continuous）
-        family : str
-            公平族（'FAIR_A' / 'FAIR_B' / 'Continuous'）
-        wing_width_each : float, optional
-            每个翼的有效连接宽度（mm）
-            - FAIR-A: 根据 N 计算（总和 = 108 mm）
-            - FAIR-B: 固定 18 mm
-            - Continuous: None
+        analyzer = BRepCheck_Analyzer(solid)
+        solid_valid = bool(analyzer.IsValid())
+        solid_explorer = TopExp_Explorer(solid, TopAbs_SOLID)
+        solid_count = 0
+        while solid_explorer.More():
+            solid_count += 1
+            solid_explorer.Next()
+        seat_wall = p.seat_core_diameter / 2.0 - p.bearing_bore_diameter / 2.0
+        min_wall = min(seat_wall, p.shell_thickness)
+        bbox = Bnd_Box()
+        BRepBndLib.Add_s(solid, bbox)
+        xmin, ymin, zmin, xmax, ymax, zmax = bbox.Get()
+        z_length = zmax - zmin
 
-        Returns:
-        --------
-        manifest : GeometryManifest
-            几何清单
-        """
-
-        # 验证输入
-        if family == 'Continuous':
-            assert N == 0, "Continuous must have N=0"
-            layout = 'Continuous'
-        else:
-            assert N in [4, 6, 8], "N must be 4, 6, or 8"
-            layout = f'{N}P'
-
-        # 确定 wing_width_each
-        if family == 'FAIR_A':
-            total_width = 108.0  # mm
-            wing_width_each = total_width / N
-        elif family == 'FAIR_B':
-            wing_width_each = 18.0  # mm
-        elif family == 'Continuous':
-            wing_width_each = None
-        else:
-            raise ValueError(f"Unknown family: {family}")
-
-        # 生成模型 ID
-        model_id = f"{layout}-{family}" if family != 'Continuous' else 'Continuous'
-
-        # 创建清单
-        manifest = GeometryManifest(
+        return GeometryManifest(
             model_id=model_id,
             family=family,
             layout=layout,
             N=N,
             shell={
-                'outer_diameter_mm': self.params.shell_outer_diameter,
-                'height_mm': self.params.shell_height,
-                'thickness_mm': self.params.shell_thickness
+                "outer_diameter_mm": p.shell_outer_diameter,
+                "height_mm": p.shell_height,
+                "thickness_mm": p.shell_thickness,
             },
             seat={
-                'bore_nominal_diameter_mm': self.params.bearing_bore_diameter,
-                'thickness_mm': self.params.seat_thickness,
-                'outer_radius_mm': self.params.seat_outer_radius,
-                'core_diameter_mm': self.params.seat_core_diameter,
-                'slot_width_mm': self.params.slot_width if N > 0 else None,
-                'slot_root_radius_mm': self.params.slot_root_radius if N > 0 else None,
-                'effective_width_each_mm': wing_width_each,
-                'effective_total_width_mm': wing_width_each * N if N > 0 else None
+                "bore_nominal_diameter_mm": p.bearing_bore_diameter,
+                "thickness_mm": p.seat_thickness,
+                "outer_radius_mm": p.seat_outer_radius,
+                "core_diameter_mm": p.seat_core_diameter,
+                "slot_width_mm": p.slot_width if N > 0 else None,
+                "slot_root_radius_mm": p.slot_root_radius if N > 0 else None,
+                "slot_root_profile": (
+                    "R2.0 circular end cap at R41 centerline, deepest point R39"
+                    if N > 0
+                    else None
+                ),
+                "effective_width_each_mm": width_each,
+                "effective_total_width_mm": total_width,
+                "connection_width_definition": (
+                    "outer radial face straight segment after common R2.0 fillets"
+                    if N > 0
+                    else "continuous outer circumference at R74.98"
+                ),
             },
             geometry={
-                'planform_area_mm2': None,  # 待计算
-                'solid_volume_mm3': None,  # 待计算
-                'calculated_mass_kg': None  # 待计算
+                "planform_area_mm2": area,
+                "solid_volume_mm3": volume,
+                "calculated_mass_kg": volume * 1e-9 * p.material_qr450_density,
+                "bounding_box_mm": {
+                    "x": float(xmax - xmin),
+                    "y": float(ymax - ymin),
+                    "z": float(zmax - zmin),
+                },
+                "seat_min_remaining_wall_thickness_mm": seat_wall,
+                "min_remaining_wall_thickness_mm": min_wall,
+                "minimum_wall_scope": "seat plus common Q235B shell wall",
+                "slot_root_radius_applied_mm": p.slot_root_radius if N > 0 else None,
+                "solid_count": solid_count,
+                "solid_valid": solid_valid,
+                "self_intersection_free": solid_valid,
+                "zero_thickness_free": bool(
+                    volume > 0
+                    and z_length > 1e-6
+                    and p.seat_thickness > 0
+                    and p.slot_width > 0
+                    and p.slot_root_radius > 0
+                    and min_wall > 0
+                ),
             },
             manufacturing={
-                'slot_count': N if N > 0 else 0,
-                'weld_segment_count': N if N > 0 else None,
-                'nominal_total_weld_length_mm': None  # 待计算
+                "slot_count": N if N > 0 else 0,
+                "weld_segment_count": N if N > 0 else 1,
+                "actual_total_weld_length_mm": total_weld,
+                # 保留旧字段名以兼容已有配置；数值来自同一几何定义。
+                "nominal_total_weld_length_mm": total_weld,
+                "effective_connection_width_mm": total_width,
+                "weld_length_definition": "outer-edge effective connection width",
             },
             generation={
-                'generator_version': self.version,
-                'timestamp': datetime.now().isoformat(),
-                'rule': 'unified_parametric'
-            }
+                "generator_version": self.version,
+                "timestamp_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                "rule": "single_unified_parametric_cad_function",
+                "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
+            },
         )
 
-        # FAIR-A 断言
-        if family == 'FAIR_A':
-            total_width_check = manifest.seat['effective_total_width_mm']
-            assert abs(total_width_check - 108.0) < 1e-6, \
-                f"FAIR-A total width must be 108 mm, got {total_width_check}"
+    def generate_model(
+        self,
+        N: int,
+        family: str,
+        wing_width_each: Optional[float] = None,
+    ) -> GeneratedModel:
+        """生成一个真实实体及其 manifest；所有拓扑均走此函数。"""
+        layout, model_id, computed_width = self._model_spec(N, family)
+        # FAIR 宽度是规则的一部分，禁止调用者为单个拓扑注入不同数值。
+        if family != "Continuous":
+            if wing_width_each is not None and not math.isclose(
+                wing_width_each, computed_width, rel_tol=0.0, abs_tol=1e-9
+            ):
+                raise ValueError("wing_width_each must match the frozen FAIR rule")
+            wing_width_each = computed_width
+        else:
+            wing_width_each = None
 
-        # FAIR-B 断言
-        if family == 'FAIR_B':
-            width_each_check = manifest.seat['effective_width_each_mm']
-            assert abs(width_each_check - 18.0) < 1e-6, \
-                f"FAIR-B each width must be 18 mm, got {width_each_check}"
+        shape = self._build_shape(N, family, wing_width_each)
+        manifest = self._manifest(N, family, layout, model_id, wing_width_each, shape)
+        return GeneratedModel(manifest=manifest, shape=shape)
 
-        return manifest
+    def generate(
+        self,
+        N: int,
+        family: str,
+        wing_width_each: Optional[float] = None,
+    ) -> GeometryManifest:
+        """兼容旧调用接口：返回 manifest；实体生成仍由同一入口完成。"""
+        return self.generate_model(N, family, wing_width_each).manifest
 
     def generate_all_p1a_models(self) -> Dict[str, GeometryManifest]:
-        """生成 P1A 所有 7 个模型清单"""
+        """生成 P1A 七个模型的 manifest，不启动任何结构求解。"""
+        return {
+            model_id: self.generate(N, family)
+            for model_id, N, family in [
+                ("Continuous", 0, "Continuous"),
+                ("4P-FAIR_A", 4, "FAIR_A"),
+                ("4P-FAIR_B", 4, "FAIR_B"),
+                ("6P-FAIR_A", 6, "FAIR_A"),
+                ("6P-FAIR_B", 6, "FAIR_B"),
+                ("8P-FAIR_A", 8, "FAIR_A"),
+                ("8P-FAIR_B", 8, "FAIR_B"),
+            ]
+        }
 
-        models = {}
-
-        # Continuous
-        models['Continuous'] = self.generate(N=0, family='Continuous')
-
-        # FAIR-A: 4/6/8P
-        for N in [4, 6, 8]:
-            key = f'{N}P-FAIR-A'
-            models[key] = self.generate(N=N, family='FAIR_A')
-
-        # FAIR-B: 4/6/8P
-        for N in [4, 6, 8]:
-            key = f'{N}P-FAIR-B'
-            models[key] = self.generate(N=N, family='FAIR_B')
-
-        return models
+    def generate_all_p1a_geometry(self) -> Dict[str, GeneratedModel]:
+        """生成 P1A 七个真实实体；这是 Phase 1 的批量唯一入口。"""
+        return {
+            model_id: self.generate_model(N, family)
+            for model_id, N, family in [
+                ("Continuous", 0, "Continuous"),
+                ("4P-FAIR_A", 4, "FAIR_A"),
+                ("4P-FAIR_B", 4, "FAIR_B"),
+                ("6P-FAIR_A", 6, "FAIR_A"),
+                ("6P-FAIR_B", 6, "FAIR_B"),
+                ("8P-FAIR_A", 8, "FAIR_A"),
+                ("8P-FAIR_B", 8, "FAIR_B"),
+            ]
+        }
 
 
 def validate_geometry_manifest(manifest: GeometryManifest) -> Dict[str, bool]:
-    """
-    验证几何清单
+    """验证参数、派生量和实体质量检查；返回可审计的逐项结果。"""
+    checks: Dict[str, bool] = {
+        "has_model_id": bool(manifest.model_id),
+        "has_family": manifest.family in {"FAIR_A", "FAIR_B", "Continuous"},
+        "has_layout": bool(manifest.layout),
+        "N_valid": manifest.N == 0
+        if manifest.family == "Continuous"
+        else manifest.N in {4, 6, 8},
+        "shell_od_valid": manifest.shell.get("outer_diameter_mm") == 160.0,
+        "shell_height_valid": manifest.shell.get("height_mm") == 200.0,
+        "shell_thickness_valid": manifest.shell.get("thickness_mm") == 5.0,
+        "bore_valid": manifest.seat.get("bore_nominal_diameter_mm") == 40.0,
+        "thickness_valid": manifest.seat.get("thickness_mm") == 12.0,
+        "outer_radius_valid": manifest.seat.get("outer_radius_mm") == 74.98,
+        "volume_computed": float(manifest.geometry.get("solid_volume_mm3", 0.0)) > 0.0,
+        "mass_computed": float(manifest.geometry.get("calculated_mass_kg", 0.0)) > 0.0,
+        "weld_length_computed": float(
+            manifest.manufacturing.get("actual_total_weld_length_mm", 0.0)
+        )
+        > 0.0,
+        "solid_valid": manifest.geometry.get("solid_valid") is True,
+        "single_solid": manifest.geometry.get("solid_count") == 1,
+        "self_intersection_free": manifest.geometry.get("self_intersection_free") is True,
+        "zero_thickness_free": manifest.geometry.get("zero_thickness_free") is True,
+        "slot_root_radius_frozen": manifest.N == 0
+        or math.isclose(manifest.seat.get("slot_root_radius_mm", 0.0), 2.0),
+    }
 
-    Returns:
-    --------
-    checks : dict
-        检查结果
-    """
-    checks = {}
-
-    # 基本字段存在性
-    checks['has_model_id'] = bool(manifest.model_id)
-    checks['has_family'] = manifest.family in ['FAIR_A', 'FAIR_B', 'Continuous']
-    checks['has_layout'] = bool(manifest.layout)
-
-    # N 值合理性
-    if manifest.family == 'Continuous':
-        checks['N_valid'] = manifest.N == 0
-    else:
-        checks['N_valid'] = manifest.N in [4, 6, 8]
-
-    # 壳体参数
-    checks['shell_od_valid'] = manifest.shell['outer_diameter_mm'] == 160.0
-    checks['shell_height_valid'] = manifest.shell['height_mm'] == 200.0
-    checks['shell_thickness_valid'] = manifest.shell['thickness_mm'] == 5.0
-
-    # 轴承座参数
-    checks['bore_valid'] = manifest.seat['bore_nominal_diameter_mm'] == 40.0
-    checks['thickness_valid'] = manifest.seat['thickness_mm'] == 12.0
-    checks['outer_radius_valid'] = manifest.seat['outer_radius_mm'] == 74.98
-
-    # FAIR-A 特定检查
-    if manifest.family == 'FAIR_A':
-        total_width = manifest.seat.get('effective_total_width_mm')
-        checks['fair_a_total_width'] = abs(total_width - 108.0) < 1e-6 if total_width else False
-
-    # FAIR-B 特定检查
-    if manifest.family == 'FAIR_B':
-        width_each = manifest.seat.get('effective_width_each_mm')
-        checks['fair_b_each_width'] = abs(width_each - 18.0) < 1e-6 if width_each else False
-
+    if manifest.family == "FAIR_A":
+        checks["fair_a_total_width"] = math.isclose(
+            manifest.seat.get("effective_total_width_mm", 0.0), 108.0, abs_tol=1e-6
+        )
+    if manifest.family == "FAIR_B":
+        checks["fair_b_each_width"] = math.isclose(
+            manifest.seat.get("effective_width_each_mm", 0.0), 18.0, abs_tol=1e-6
+        )
     return checks
 
 
-def main():
-    """生成 P1A 所有模型清单"""
+def _model_directory_name(model_id: str) -> str:
+    """使用已有目录命名约定，避免 Windows 大小写冲突。"""
+    return model_id.lower().replace("_", "-")
 
-    # 创建统一参数（槽根圆角待 Phase 1 确定）
-    params = UnifiedParameters(slot_root_radius=None)
 
-    # 创建生成器
-    generator = BearingSeatGenerator(params)
+def export_model(model: GeneratedModel, output_root: Path) -> GeometryManifest:
+    """导出一个实体的 STEP、BREP 和 geometry-manifest.json。"""
+    manifest = model.manifest
+    model_dir = output_root / "models" / _model_directory_name(manifest.model_id)
+    model_dir.mkdir(parents=True, exist_ok=True)
 
-    # 生成所有模型清单
-    print("Generating P1A model manifests...")
-    models = generator.generate_all_p1a_models()
+    step_path = model_dir / f"{manifest.model_id}.step"
+    brep_path = model_dir / f"{manifest.model_id}.brep"
+    manifest_path = model_dir / "geometry-manifest.json"
 
-    # 输出目录
-    output_dir = Path(__file__).parent / 'configs'
-    output_dir.mkdir(exist_ok=True)
+    step_writer = STEPControl_Writer()
+    step_writer.Transfer(model.shape, STEPControl_AsIs)
+    if step_writer.Write(str(step_path)) != IFSelect_RetDone:
+        raise RuntimeError(f"STEP export failed: {step_path}")
+    if not BRepTools.Write_s(model.shape, str(brep_path)):
+        raise RuntimeError(f"BREP export failed: {brep_path}")
 
-    # 保存每个模型清单
-    for model_id, manifest in models.items():
-        filepath = output_dir / f'{model_id}.json'
-        manifest.to_json(filepath)
-        print(f"  Generated: {filepath.name}")
+    manifest.generation.update(
+        {
+            "step_file": step_path.relative_to(output_root).as_posix(),
+            "brep_file": brep_path.relative_to(output_root).as_posix(),
+            "manifest_file": manifest_path.relative_to(output_root).as_posix(),
+        }
+    )
+    manifest.to_json(manifest_path)
+    return manifest
 
-    # 验证所有清单
-    print("\nValidating manifests...")
+
+def main() -> int:
+    """生成并验证七个 P1A 实体；完成后停在独立几何审查门。"""
+    output_root = Path(__file__).parent
+    generator = BearingSeatGenerator(UnifiedParameters())
+    models = generator.generate_all_p1a_geometry()
+
     all_valid = True
-    for model_id, manifest in models.items():
+    print("Generating seven P1A CAD solids...")
+    for model_id, model in models.items():
+        manifest = export_model(model, output_root)
+        config_path = output_root / "configs" / f"{model_id.replace('_', '-')}.json"
+        manifest.to_json(config_path)
         checks = validate_geometry_manifest(manifest)
-        failed_checks = [k for k, v in checks.items() if not v]
-        if failed_checks:
-            print(f"  [FAIL] {model_id}: Failed checks: {failed_checks}")
+        failed = [name for name, passed in checks.items() if not passed]
+        if failed:
             all_valid = False
+            print(f"  [FAIL] {model_id}: {', '.join(failed)}")
         else:
-            print(f"  [PASS] {model_id}: All checks passed")
+            print(
+                f"  [PASS] {model_id}: V={manifest.geometry['solid_volume_mm3']:.3f} mm3, "
+                f"m={manifest.geometry['calculated_mass_kg']:.6f} kg, "
+                f"weld={manifest.manufacturing['actual_total_weld_length_mm']:.3f} mm"
+            )
 
-    # 输出汇总表
-    print("\nModel summary:")
-    print(f"{'Model ID':<20} {'Family':<12} {'N':<4} {'Width Each':<12} {'Total Width':<12}")
-    print("-" * 80)
-    for model_id, manifest in models.items():
-        width_each = manifest.seat.get('effective_width_each_mm')
-        total_width = manifest.seat.get('effective_total_width_mm')
-        width_each_str = f"{width_each:.1f}" if width_each else "N/A"
-        total_width_str = f"{total_width:.1f}" if total_width else "N/A"
-        print(f"{model_id:<20} {manifest.family:<12} {manifest.N:<4} {width_each_str:<12} {total_width_str:<12}")
+    print("\nP1A geometry summary")
+    print(f"{'Model ID':<16} {'Family':<12} {'N':<4} {'Effective width (mm)':>22} {'Weld (mm)':>12}")
+    print("-" * 72)
+    for model_id, model in models.items():
+        manifest = model.manifest
+        width = manifest.seat["effective_total_width_mm"]
+        print(
+            f"{model_id:<16} {manifest.family:<12} {manifest.N:<4} "
+            f"{width:>22.3f} {manifest.manufacturing['actual_total_weld_length_mm']:>12.3f}"
+        )
 
-    if all_valid:
-        print("\n[SUCCESS] All manifests valid. Ready for Phase 1 geometry modeling.")
-        return 0
-    else:
-        print("\n[ERROR] Some manifests invalid. Fix errors before proceeding.")
+    if not all_valid:
+        print("\n[ERROR] Geometry validation failed; do not enter P1A structural screening.")
         return 1
 
+    print("\n[SUCCESS] Seven CAD solids exported and self-checked.")
+    print("[HOLD] Stop here for independent geometry audit before any structural solve.")
+    return 0
 
-if __name__ == '__main__':
-    exit(main())
+
+if __name__ == "__main__":
+    raise SystemExit(main())
