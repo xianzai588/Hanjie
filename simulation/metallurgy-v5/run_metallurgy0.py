@@ -68,25 +68,6 @@ def _material_stats(field: dict[str, np.ndarray], material_code: int) -> dict[st
     }
 
 
-def _side_stats(field: dict[str, np.ndarray], side: str) -> dict[str, Any]:
-    """按接口法向空间区域统计，避免焊缝分类带来的母材侧风险漏计。"""
-    n_grid = field["n"][None, :, None]
-    mask = np.broadcast_to(n_grid < 0.0 if side == "qt450_10_side" else n_grid > 0.0, field["temperature_peak"].shape)
-    peak = field["temperature_peak"][mask]
-    cooling = field["max_cooling_rate_c_s"][mask]
-    t85 = field["t8_5_s"][mask]
-    valid_t85 = t85[np.isfinite(t85)]
-    return {
-        "node_count": int(mask.sum()),
-        "peak_temperature_c": float(np.max(peak)),
-        "peak_temperature_p95_c": float(np.percentile(peak, 95)),
-        "maximum_cooling_rate_c_s": float(np.max(cooling)),
-        "t8_5_valid_node_count": int(valid_t85.size),
-        "t8_5_median_s": float(np.median(valid_t85)) if valid_t85.size else None,
-        "t8_5_minimum_s": float(np.min(valid_t85)) if valid_t85.size else None,
-    }
-
-
 def _risk_location(field: dict[str, np.ndarray], material_code: int, radius_mm: float) -> dict[str, float]:
     mask = field["material_id"] == material_code
     score = np.where(mask, field["temperature_peak"], -np.inf)
@@ -104,17 +85,19 @@ def _risk_location(field: dict[str, np.ndarray], material_code: int, radius_mm: 
     }
 
 
-def _risk_location_side(field: dict[str, np.ndarray], side: str, radius_mm: float) -> dict[str, float]:
-    n_grid = field["n"][None, :, None]
-    mask = np.broadcast_to(n_grid < 0.0 if side == "qt450_10_side" else n_grid > 0.0, field["temperature_peak"].shape)
-    score = np.where(mask, field["temperature_peak"], -np.inf)
-    location = np.unravel_index(int(np.argmax(score)), field["temperature_peak"].shape)
-    return {
-        "angle_deg": float(field["s"][location[0]] / (2.0 * np.pi * radius_mm) * 360.0),
-        "n_mm": float(field["n"][location[1]]),
-        "z_mm": float(field["z"][location[2]]),
-        "peak_temperature_c": float(field["temperature_peak"][location]),
-    }
+def _parent_exposure_width(
+    field: dict[str, np.ndarray],
+    material_code: int,
+    interface_n_mm: float,
+    threshold_c: float,
+) -> float:
+    """从代理母材—焊缝界面量到达到阈值的最远母材单元中心。"""
+    peak_by_n = np.max(field["temperature_peak"], axis=(0, 2))
+    material_by_n = field["material_id"][0, :, 0]
+    indices = np.where((peak_by_n >= threshold_c) & (material_by_n == material_code))[0]
+    if not indices.size:
+        return 0.0
+    return float(max(abs(float(field["n"][index]) - interface_n_mm) for index in indices))
 
 
 def _dilution_estimate(config: dict[str, Any], materials: dict[str, Any]) -> dict[str, Any]:
@@ -171,21 +154,18 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
     metallurgy = config["metallurgy"]
     qt = _material_stats(field, 2)
     q235 = _material_stats(field, 1)
-    qt_side = _side_stats(field, "qt450_10_side")
-    q235_side = _side_stats(field, "q235b_side")
-    peak_by_n = np.max(field["temperature_peak"], axis=(0, 2))
+    weld = _material_stats(field, 3)
+    weld_half_width = float(metallurgy["surrogate_weld_half_width_mm"])
     low_haz_threshold = float(metallurgy["low_temperature_haz_threshold_c"])
-    qt_haz_indices = np.where((peak_by_n >= low_haz_threshold) & (field["n"] < 0.0))[0]
-    q235_haz_indices = np.where((peak_by_n >= low_haz_threshold) & (field["n"] > 0.0))[0]
-    qt_haz_width = float(abs(field["n"][qt_haz_indices[0]])) if qt_haz_indices.size else 0.0
-    q235_haz_width = float(field["n"][q235_haz_indices[-1]]) if q235_haz_indices.size else 0.0
-    qt_t85 = qt_side["t8_5_median_s"]
-    q235_t85 = q235_side["t8_5_median_s"]
-    qt_white_score = int(qt_side["peak_temperature_c"] >= 1200.0) + int(qt_side["maximum_cooling_rate_c_s"] >= 100.0) + int(qt_t85 is not None and qt_t85 < 8.0)
-    qt_hardening_score = int(qt_side["peak_temperature_c"] >= 900.0) + int(qt_side["maximum_cooling_rate_c_s"] >= 80.0) + int(qt_t85 is not None and qt_t85 < 12.0)
-    qt_crack_score = int(qt_side["peak_temperature_c"] >= 900.0) + int(qt_side["maximum_cooling_rate_c_s"] >= 80.0) + int(float(config["process"]["preheat_temperature_c"]) < 130.0)
-    q235_grain_score = int(q235_side["peak_temperature_c"] >= 900.0) + int(q235_side["peak_temperature_c"] >= 1100.0)
-    q235_hardening_score = int(q235_side["peak_temperature_c"] >= 723.0) + int(q235_side["maximum_cooling_rate_c_s"] >= 80.0) + int(q235_t85 is not None and q235_t85 < 12.0)
+    qt_haz_width = _parent_exposure_width(field, 2, -weld_half_width, low_haz_threshold)
+    q235_haz_width = _parent_exposure_width(field, 1, weld_half_width, low_haz_threshold)
+    qt_t85 = qt["t8_5_median_s"]
+    q235_t85 = q235["t8_5_median_s"]
+    qt_white_score = int(qt["peak_temperature_c"] >= 1200.0) + int(qt["maximum_cooling_rate_c_s"] >= 100.0) + int(qt_t85 is not None and qt_t85 < 8.0)
+    qt_hardening_score = int(qt["peak_temperature_c"] >= 900.0) + int(qt["maximum_cooling_rate_c_s"] >= 80.0) + int(qt_t85 is not None and qt_t85 < 12.0)
+    qt_crack_score = int(qt["peak_temperature_c"] >= 900.0) + int(qt["maximum_cooling_rate_c_s"] >= 80.0) + int(float(config["process"]["preheat_temperature_c"]) < 130.0)
+    q235_grain_score = int(q235["peak_temperature_c"] >= 900.0) + int(q235["peak_temperature_c"] >= 1100.0)
+    q235_hardening_score = int(q235["peak_temperature_c"] >= 723.0) + int(q235["maximum_cooling_rate_c_s"] >= 80.0) + int(q235_t85 is not None and q235_t85 < 12.0)
     risk = {
         "qt450_10": {
             "white_cast_iron_carbide_risk": _risk(qt_white_score),
@@ -193,16 +173,22 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
             "haz_embrittlement_risk": _risk(int(qt["peak_temperature_c"] >= 900.0) + int(qt_white_score >= 2)),
             "cold_crack_risk": _risk(qt_crack_score),
             "thermal_exposure_width_tpeak_ge_400c_mm": qt_haz_width,
-            "hardness_trend": "靠近熔合线和快速冷却区域预计高于 QT450-10 母材；需显微硬度线扫确认",
-            "risk_location": _risk_location_side(field, "qt450_10_side", float(config["geometry"]["interface_radius_mm"])),
+            "hardness_trend": "靠近代理母材—焊缝界面和快速冷却区域预计高于 QT450-10 母材；需显微硬度线扫确认",
+            "risk_location": _risk_location(field, 2, float(config["geometry"]["interface_radius_mm"])),
         },
         "q235b": {
             "high_temperature_grain_coarsening_risk": _risk(q235_grain_score),
             "hardening_risk": _risk(q235_hardening_score),
             "haz_embrittlement_risk": _risk(int(q235["peak_temperature_c"] >= 900.0) + int(q235_hardening_score >= 2)),
-            "hardness_trend": "靠近熔合线处出现热影响梯度；不得由硬度趋势直接推断疲劳寿命",
+            "hardness_trend": "靠近代理母材—焊缝界面处出现热影响梯度；不得由硬度趋势直接推断疲劳寿命",
             "thermal_exposure_width_tpeak_ge_400c_mm": q235_haz_width,
-            "risk_location": _risk_location_side(field, "q235b_side", float(config["geometry"]["interface_radius_mm"])),
+            "risk_location": _risk_location(field, 1, float(config["geometry"]["interface_radius_mm"])),
+        },
+        "ernife_ci_weld_surrogate": {
+            "peak_temperature_c": weld["peak_temperature_c"],
+            "fusion_threshold_exceeded": weld["peak_temperature_c"] >= float(metallurgy["fusion_threshold_c"]),
+            "risk_status": "not_scored_pending_high_temperature_properties_and_calibration",
+            "risk_location": _risk_location(field, 3, float(config["geometry"]["interface_radius_mm"])),
         },
     }
     dilution = _dilution_estimate(config, materials)
@@ -210,7 +196,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
         "run_timestamp_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "git_commit": _git_commit(),
         "python_version": platform.python_version(),
-        "solver_version": "METALLURGY-0-risk-mapper-v5",
+        "solver_version": "METALLURGY-0.2-parent-material-risk-mapper-v5",
         "dependency_versions": {name: importlib.metadata.version(name) for name in ("numpy", "PyYAML")},
         "input_file": str(INPUT_PATH.relative_to(ROOT)).replace("\\", "/"),
         "input_sha256": _sha256(INPUT_PATH),
@@ -219,7 +205,15 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
         "evidence_level": "literature_supported_plus_solver_result_unvalidated",
         "thermal_input": "simulation/thermal-v5/results/thermal0-field.npz",
         "thermal_evidence_level": "solver_result_unvalidated",
-        "material_statistics": {"qt450_10_material_zone": qt, "q235b_material_zone": q235, "qt450_10_side_region": qt_side, "q235b_side_region": q235_side},
+        "material_statistics": {"qt450_10_parent_material": qt, "q235b_parent_material": q235, "ernife_ci_weld_surrogate": weld},
+        "region_semantics": {
+            "surrogate_weld_band_n_mm": [-weld_half_width, weld_half_width],
+            "qt450_10_parent_condition": f"material_id == 2 (n < {-weld_half_width:g} mm)",
+            "q235b_parent_condition": f"material_id == 1 (n > {weld_half_width:g} mm)",
+            "parent_risk_mask_includes_weld_cells": 0,
+            "parent_haz_width_includes_weld": False,
+            "interfaces_are_surrogate_not_calibrated_fusion_lines": True,
+        },
         "haz_thresholds_c": {
             "fusion": float(metallurgy["fusion_threshold_c"]),
             "high_temperature": float(metallurgy["high_temperature_haz_threshold_c"]),
@@ -252,8 +246,10 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
         "",
         "## 结果摘要",
         "",
-        f"- QT450-10 侧空间区域峰值温度：{qt_side['peak_temperature_c']:.1f} °C；最大离散冷却速率：{qt_side['maximum_cooling_rate_c_s']:.1f} °C/s；t8/5 中位数：{qt_t85 if qt_t85 is not None else '无有效节点'} s。",
-        f"- Q235B 侧空间区域峰值温度：{q235_side['peak_temperature_c']:.1f} °C；最大离散冷却速率：{q235_side['maximum_cooling_rate_c_s']:.1f} °C/s；t8/5 中位数：{q235_t85 if q235_t85 is not None else '无有效节点'} s。",
+        f"- QT450-10 母材峰值温度：{qt['peak_temperature_c']:.1f} °C；最大离散冷却速率：{qt['maximum_cooling_rate_c_s']:.1f} °C/s；t8/5 中位数：{qt_t85 if qt_t85 is not None else '无有效节点'} s。",
+        f"- Q235B 母材峰值温度：{q235['peak_temperature_c']:.1f} °C；最大离散冷却速率：{q235['maximum_cooling_rate_c_s']:.1f} °C/s；t8/5 中位数：{q235_t85 if q235_t85 is not None else '无有效节点'} s。",
+        f"- ERNiFe-CI 代理焊缝峰值温度：{weld['peak_temperature_c']:.1f} °C；高温物性和相变模型补齐前不评分焊缝冶金风险。",
+        f"- 母材热暴露宽度（Tpeak≥400 °C，排除 ±{weld_half_width:g} mm 代理焊缝带）：QT450-10={qt_haz_width:.3f} mm，Q235B={q235_haz_width:.3f} mm。",
         "",
         "## 风险判定",
         "",
