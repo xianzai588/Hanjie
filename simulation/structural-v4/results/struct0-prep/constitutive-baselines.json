@@ -1,0 +1,185 @@
+{
+  "stage": "STRUCT-0-PREP-CONSTITUTIVE-BASELINES",
+  "evidence_level": "component_unit_verification",
+  "model": "一维小应变、关联流动、理想弹塑性材料点",
+  "temperature_field_source": "prescribed_independent_cases",
+  "uses_thermal_0_4r1": false,
+  "cases": {
+    "q235b": {
+      "inputs": {
+        "elastic_modulus_mpa": 210000.0,
+        "yield_strength_mpa": 235.0,
+        "alpha_per_k": 1.2e-05,
+        "hardening_modulus_mpa": 0.0
+      },
+      "yield_unload": {
+        "total_strain": [
+          0.0,
+          0.0005595238095238096,
+          0.0016785714285714286,
+          0.0022380952380952382,
+          0.0
+        ],
+        "stress_mpa": [
+          0.0,
+          117.50000000000001,
+          235.0,
+          235.0,
+          -235.0
+        ],
+        "plastic_strain": [
+          0.0,
+          0.0,
+          0.0005595238095238096,
+          0.0011190476190476191,
+          0.001119047619047619
+        ],
+        "plastic_work_mj_mm3": [
+          0.0,
+          0.0,
+          0.13148809523809524,
+          0.2629761904761905,
+          0.26297619047619053
+        ],
+        "checks": {
+          "yield_bound_respected": true,
+          "permanent_strain_generated": true,
+          "plastic_work_nonnegative_monotonic": true
+        }
+      },
+      "constrained_thermal_expansion": {
+        "delta_temperature_c": [
+          0.0,
+          40.0,
+          80.0,
+          160.0,
+          240.0
+        ],
+        "thermal_strain": [
+          0.0,
+          0.00048,
+          0.00096,
+          0.00192,
+          0.00288
+        ],
+        "stress_mpa": [
+          0.0,
+          -100.8,
+          -201.6,
+          -235.0,
+          -235.0
+        ],
+        "plastic_strain": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0008009523809523809,
+          -0.001760952380952381
+        ],
+        "plastic_work_mj_mm3": [
+          0.0,
+          0.0,
+          0.0,
+          0.18822380952380952,
+          0.41382380952380954
+        ],
+        "checks": {
+          "compression_sign": true,
+          "yield_bound_respected": true,
+          "plastic_work_nonnegative_monotonic": true
+        }
+      }
+    },
+    "qt450_10": {
+      "inputs": {
+        "elastic_modulus_mpa": 170000.0,
+        "yield_strength_mpa": 310.0,
+        "alpha_per_k": 1.05e-05,
+        "hardening_modulus_mpa": 0.0
+      },
+      "yield_unload": {
+        "total_strain": [
+          0.0,
+          0.0009117647058823529,
+          0.002735294117647059,
+          0.0036470588235294117,
+          0.0
+        ],
+        "stress_mpa": [
+          0.0,
+          155.0,
+          310.0,
+          310.0,
+          -310.0
+        ],
+        "plastic_strain": [
+          0.0,
+          0.0,
+          0.0009117647058823529,
+          0.0018235294117647058,
+          0.0018235294117647058
+        ],
+        "plastic_work_mj_mm3": [
+          0.0,
+          0.0,
+          0.2826470588235294,
+          0.5652941176470588,
+          0.5652941176470588
+        ],
+        "checks": {
+          "yield_bound_respected": true,
+          "permanent_strain_generated": true,
+          "plastic_work_nonnegative_monotonic": true
+        }
+      },
+      "constrained_thermal_expansion": {
+        "delta_temperature_c": [
+          0.0,
+          40.0,
+          80.0,
+          160.0,
+          240.0
+        ],
+        "thermal_strain": [
+          0.0,
+          0.00041999999999999996,
+          0.0008399999999999999,
+          0.0016799999999999999,
+          0.0025199999999999997
+        ],
+        "stress_mpa": [
+          0.0,
+          -71.39999999999999,
+          -142.79999999999998,
+          -285.59999999999997,
+          -310.0
+        ],
+        "plastic_strain": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0006964705882352936
+        ],
+        "plastic_work_mj_mm3": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.21590588235294103
+        ],
+        "checks": {
+          "compression_sign": true,
+          "yield_bound_respected": true,
+          "plastic_work_nonnegative_monotonic": true
+        }
+      }
+    }
+  },
+  "all_checks_pass": true,
+  "limitations": [
+    "不是三维 J2 整件有限元求解器",
+    "未包含温度相关插值、焊材本构、接触、焊道激活和应力自由出生状态",
+    "不能作为实际焊接残余应力或位置度结果"
+  ]
+}

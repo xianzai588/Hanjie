@@ -2,7 +2,11 @@ version: STRUCT-0-PREP-v1
 status: partial_preparation_formal_coupling_blocked
 evidence_level: design_assumption
 formal_thermal_coupling_allowed: false
-thermal_gate: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+thermal_gate: simulation/thermal-v5/results/credibility04r1/assessment.json
+thermal_gate_field: thermal_1_allowed
+thermal_gate_value: false
+historical_thermal_gate: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+stage_status: project/stage-status.yaml
 geometry:
   shell: {status: existing_valid_brep, source: simulation/structural-v4/common/shell-manifest.json}
   seat: {status: existing_continuous_solid, source: simulation/structural-v4/models/continuous/geometry-manifest.json}
@@ -11,7 +15,8 @@ geometry:
 constitutive:
   temperature_dependent_parent_E_yield_alpha: {status: existing_assumed_curves, source: project/materials.yaml}
   temperature_dependent_weld_E_yield_alpha: {status: missing_evidence}
-  elastoplastic_solver: {status: not_implemented, required_verification: [uniaxial_yield_unload, constrained_thermal_expansion, plastic_work_balance]}
+  material_point_baselines: {status: unit_verified, source: simulation/structural-v4/results/struct0-prep/constitutive-baselines.json, scope: ideal_elastoplastic_1d}
+  elastoplastic_solver: {status: not_implemented, completed_component_checks: [uniaxial_yield_unload, constrained_thermal_expansion, plastic_work_nonnegative], remaining_verification: [three_dimensional_j2_return_mapping, temperature_dependent_interpolation, global_equilibrium_and_energy_balance]}
   progressive_weld_activation: {status: pending_mass_consistent_geometry_and_stress_free_birth_state}
 fixture:
   source: project/g-inputs-v5.2.yaml
@@ -37,5 +42,5 @@ service:
   performance_results: not_computed
 acceptance:
   struct_0_continuous_baseline_ready: false
-  requires: [mass_consistent_unified_mesh, verified_elastoplastic_solver, fixture_contact, release_and_complete_cooling, agreed_cmm_protocol, physical_thermal_gate]
+  requires: [mass_consistent_unified_mesh, verified_elastoplastic_solver, fixture_contact, release_and_complete_cooling, agreed_cmm_protocol, admitted_thermal_model]
   working_tree_audit: "本轮开始工作区干净；审计贴文提及的5个未提交结构修改在本地不存在，未擅自恢复或合并。"

@@ -5,6 +5,46 @@ import numpy as np
 from scipy.optimize import least_squares
 
 
+def uniaxial_elastoplastic_history(total_strain, thermal_strain, elastic_modulus_mpa, yield_strength_mpa, hardening_modulus_mpa=0.0):
+    """一维小应变返回映射基准，用于校核本构语义，不代替三维整件求解器。"""
+    strain = np.asarray(total_strain, float)
+    thermal = np.asarray(thermal_strain, float)
+    if strain.ndim != 1 or strain.shape != thermal.shape or not len(strain):
+        raise ValueError("总应变与热应变必须为等长非空向量")
+    if not np.isfinite(strain).all() or not np.isfinite(thermal).all():
+        raise ValueError("应变历史必须有限")
+    elastic_modulus_mpa = float(elastic_modulus_mpa)
+    yield_strength_mpa = float(yield_strength_mpa)
+    hardening_modulus_mpa = float(hardening_modulus_mpa)
+    if elastic_modulus_mpa <= 0 or yield_strength_mpa <= 0 or hardening_modulus_mpa < 0:
+        raise ValueError("材料参数必须满足 E>0、屈服强度>0、硬化模量>=0")
+
+    stress = np.zeros_like(strain)
+    plastic_strain = np.zeros_like(strain)
+    equivalent_plastic_strain = np.zeros_like(strain)
+    plastic_work_mj_mm3 = np.zeros_like(strain)
+    for index in range(len(strain)):
+        previous_plastic = plastic_strain[index - 1] if index else 0.0
+        previous_equivalent = equivalent_plastic_strain[index - 1] if index else 0.0
+        trial = elastic_modulus_mpa * (strain[index] - thermal[index] - previous_plastic)
+        current_yield = yield_strength_mpa + hardening_modulus_mpa * previous_equivalent
+        excess = abs(trial) - current_yield
+        increment = max(0.0, excess / (elastic_modulus_mpa + hardening_modulus_mpa))
+        direction = np.sign(trial) if trial else 0.0
+        plastic_strain[index] = previous_plastic + increment * direction
+        equivalent_plastic_strain[index] = previous_equivalent + increment
+        stress[index] = trial - elastic_modulus_mpa * increment * direction
+        previous_work = plastic_work_mj_mm3[index - 1] if index else 0.0
+        # 1 MPa = 1 mJ/mm³；塑性功采用当前返回应力乘等效塑性增量。
+        plastic_work_mj_mm3[index] = previous_work + abs(stress[index]) * increment
+    return {
+        "stress_mpa": stress,
+        "plastic_strain": plastic_strain,
+        "equivalent_plastic_strain": equivalent_plastic_strain,
+        "plastic_work_mj_mm3": plastic_work_mj_mm3,
+    }
+
+
 def volume_weighted_p95(stress_mpa, volume_mm3):
     stress, volume = np.asarray(stress_mpa,float), np.asarray(volume_mm3,float)
     if stress.ndim != 1 or stress.shape != volume.shape or not len(stress):

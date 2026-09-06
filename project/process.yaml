@@ -30,6 +30,17 @@ process:
     deposition_efficiency_range: [0.85, 1.0]
     closure_status: "not_closed_pending_macrosection_and_load_basis"
     rule: "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
+    scenarios:
+      current_single_pass_diagnostic:
+        pass_count: 1
+        identity: "当前 1.737 mm 等效焊脚局部热诊断基线"
+        disposition: "diagnostic_only"
+      target_3p5_four_pass_candidate:
+        pass_count: 4
+        identity: "3.5 mm 理想三角截面的等面积四道设计候选"
+        disposition: "candidate_pending_load_basis_macrosection_and_thermal_revalidation"
+        feed_policy: "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值"
+        thermal_policy: "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论"
 
   acceptable_window:
     current_a:

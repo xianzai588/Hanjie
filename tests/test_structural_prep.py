@@ -3,7 +3,7 @@ import numpy as np
 import pytest
 from scipy.spatial.transform import Rotation
 
-from hanjie.simulation.structural_prep import fit_position_diameter, fixture_released, service_loads, volume_weighted_p95
+from hanjie.simulation.structural_prep import fit_position_diameter, fixture_released, service_loads, uniaxial_elastoplastic_history, volume_weighted_p95
 
 
 def ring(radius,z):
@@ -48,3 +48,23 @@ def test_service_resultant_force_and_overturning_moment(axis):
         assert loads.sum(axis=0) == pytest.approx(np.array(axis)*force,abs=1e-8)
         torque = np.cross(points-points.mean(axis=0),loads).sum(axis=0)
         assert torque == pytest.approx(np.array(axis)*moment,abs=1e-8)
+
+
+def test_uniaxial_yield_unload_and_plastic_work():
+    elastic, yield_strength = 210000.0, 235.0
+    yield_strain = yield_strength / elastic
+    strain = np.array([0.0, 0.5 * yield_strain, 1.5 * yield_strain, 2.0 * yield_strain, 0.0])
+    result = uniaxial_elastoplastic_history(strain, np.zeros_like(strain), elastic, yield_strength)
+    assert np.max(np.abs(result["stress_mpa"])) <= yield_strength + 1e-9
+    assert result["equivalent_plastic_strain"][-1] > 0
+    assert result["stress_mpa"][-1] < 0
+    assert np.all(np.diff(result["plastic_work_mj_mm3"]) >= -1e-12)
+
+
+def test_constrained_thermal_expansion_yields_in_compression():
+    delta_temperature = np.array([0.0, 40.0, 80.0, 160.0, 240.0])
+    thermal_strain = 1.2e-5 * delta_temperature
+    result = uniaxial_elastoplastic_history(np.zeros_like(thermal_strain), thermal_strain, 210000.0, 235.0)
+    assert np.all(result["stress_mpa"][1:] < 0)
+    assert result["stress_mpa"][-1] == pytest.approx(-235.0)
+    assert result["plastic_strain"][-1] < 0

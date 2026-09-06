@@ -2,6 +2,23 @@
 
 当前权威配置与已执行结果；非实测证据仍保留原等级
 
+## 阶段状态
+
+| 阶段 | 执行状态 | 验收结果 | 允许用途 |
+| --- | --- | --- | --- |
+| G-INPUTS | controlled_inputs_and_volume_closed_candidate_defined | not_closed | 受控设计输入；接头承载依据和成形关系仍待闭合 |
+| THERMAL-0.4R1 | ten_case_run_and_audit_completed | failed_spatial_convergence | 未校准局部热诊断；禁止正式整件性能结论 |
+| METALLURGY-0 | executor_and_historical_diagnostics_completed | current_joint_not_physically_validated | 风险识别；禁止宣称当前接头组织或连接质量已验证 |
+| EXP-THERMAL | protocol_completed_experiment_not_run | not_executed | 试验准备 |
+| THERMAL-1 | blocked | not_admitted | 不允许正式结构耦合 |
+| STRUCT-0-PREP | partial_with_1d_constitutive_baselines_verified | not_ready | 独立组件验证；不得冒充实际焊接残余位置度 |
+| STRUCT-0 | not_executed | blocked_by_thermal_and_prep | 无 |
+| STRUCT-1 | static_screening_only | formal_comparison_not_executed | 当前载荷和支承下的静力筛查 |
+| SERVICE | load_builder_unit_verified_results_not_computed | not_executed | 载荷构造验证；无整件性能结论 |
+| PROCESS-CONTROL | surrogate_prototypes_completed | formal_study_not_executed | 算法演示和拒绝逻辑验证 |
+| EXP-FINAL | not_executed | not_executed | 无 |
+| DECISION | candidate_retention_decisions_only | final_decision_not_available | 阶段设计评审 |
+
 ## 公差与接头闭合状态
 
 | 项目 | 当前值 |

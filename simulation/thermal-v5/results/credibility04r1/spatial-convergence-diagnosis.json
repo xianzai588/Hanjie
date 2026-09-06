@@ -1,0 +1,62 @@
+{
+  "stage": "THERMAL-0.4R1-SPATIAL-DIAGNOSIS",
+  "evidence_level": "postprocess_of_solver_result_unvalidated",
+  "fixed_scenario": "surface45, nominal properties, dt=0.1 s; process and source parameters unchanged",
+  "method": "将细网格峰温按材料和体积投影到中网格共同控制体后比较",
+  "peak_absolute_limit_c": 10.0,
+  "sources": {
+    "simulation/thermal-v5/results/credibility04r1/medium/field.npz": "94142a6b591c218c323966a704d69978e28c4103304d2b650b7506aa1a76a20d",
+    "simulation/thermal-v5/results/credibility04r1/fine/field.npz": "7560d94e6804542dcad8267aeef5e0d3a4d8f46468ca70003f543a16544f6206",
+    "project/thermal-credibility-v5.4r1.yaml": "1b3e094544954b9aa067a06067e3e804efd4859026243385128e4f414cccf547"
+  },
+  "material_comparison": {
+    "q235b": {
+      "matched_volume_fraction": 1.0,
+      "volume_weighted_mean_abs_peak_difference_c": 1.6408036398420631,
+      "volume_weighted_p95_abs_peak_difference_c": 6.694012788841519,
+      "maximum_abs_peak_difference_c": 70.48923106518419,
+      "solidus_threshold_flip_volume_mm3": 0.0,
+      "projected_field_p95_pass": true,
+      "projected_field_max_pass": false,
+      "registered_peak_extrema_difference_c": 38.68592410961605
+    },
+    "qt450_10": {
+      "matched_volume_fraction": 1.0,
+      "volume_weighted_mean_abs_peak_difference_c": 0.7202174869467177,
+      "volume_weighted_p95_abs_peak_difference_c": 3.3638824513678856,
+      "maximum_abs_peak_difference_c": 72.44600588123876,
+      "solidus_threshold_flip_volume_mm3": 15.257649310400053,
+      "projected_field_p95_pass": true,
+      "projected_field_max_pass": false,
+      "registered_peak_extrema_difference_c": 35.23684556440821
+    },
+    "ernife_ci": {
+      "matched_volume_fraction": 1.0,
+      "volume_weighted_mean_abs_peak_difference_c": 45.87972247796363,
+      "volume_weighted_p95_abs_peak_difference_c": 74.55378361600197,
+      "maximum_abs_peak_difference_c": 80.45207154018476,
+      "solidus_threshold_flip_volume_mm3": 10.461503536454014,
+      "projected_field_p95_pass": false,
+      "projected_field_max_pass": false,
+      "registered_peak_extrema_difference_c": 12.138398801909261
+    }
+  },
+  "geometry_comparison": {
+    "medium_weld_cell_count": 560,
+    "fine_weld_cell_count": 1620,
+    "medium_allocated_weld_cell_count": 1316,
+    "fine_allocated_weld_cell_count": 3780,
+    "medium_effective_weld_volume_mm3": 90.47786842338607,
+    "fine_effective_weld_volume_mm3": 90.47786842338606,
+    "effective_weld_volume_relative_change": 1.5706442871424771e-16,
+    "interpretation": "沉积体积守恒，但焊道/热源边界由更多单元重新离散；体积一致不能证明局部峰温场收敛。"
+  },
+  "diagnosis": {
+    "parent_bulk_field": "Q235B 和 QT450-10 的体积加权 P95 差异低于 10 °C，但局部最大差异仍超限。",
+    "threshold_sensitivity": "QT450-10 在共同控制体上出现固相线跨越翻转，阈值型熔化指标对局部离散敏感。",
+    "weld_hot_zone": "ERNiFe-CI 的体积加权 P95 峰温差异仍显著超限，不是仅靠阈值口径即可解释。",
+    "root_cause_class": "局部高梯度焊道/热源空间离散未收敛，并叠加固相线阈值翻转；不是总沉积体积不守恒。"
+  },
+  "spatial_convergence_pass": false,
+  "allowed_use": "定位后续网格/热源离散验证；不开放 THERMAL-1 或熔合几何结论"
+}

@@ -1,4 +1,5 @@
 """独立检验0.4R角度、浅层吸收和物性端点，不依赖熔化目标。"""
+import json
 import sys
 from pathlib import Path
 
@@ -88,3 +89,13 @@ def test_convergence_does_not_call_zero_fusion_converged():
     b = copy.deepcopy(a)
     b['material_statistics']['qt450_10']['ever_solidus_exceeded_volume_mm3'] = .01
     assert not compare(a,b,rules)['nonzero_metrics_pass']
+
+
+def test_spatial_diagnosis_preserves_failed_gate_and_common_volume() -> None:
+    result = json.loads((ROOT / "simulation/thermal-v5/results/credibility04r1/spatial-convergence-diagnosis.json").read_text(encoding="utf-8"))
+    assert result["spatial_convergence_pass"] is False
+    assert result["material_comparison"]["q235b"]["matched_volume_fraction"] == pytest.approx(1.0)
+    assert result["material_comparison"]["ernife_ci"]["projected_field_p95_pass"] is False
+    assert result["material_comparison"]["qt450_10"]["solidus_threshold_flip_volume_mm3"] > 0
+    assert result["geometry_comparison"]["effective_weld_volume_relative_change"] < 1e-12
+    assert "不是总沉积体积不守恒" in result["diagnosis"]["root_cause_class"]

@@ -17,11 +17,13 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
     from hanjie.domain.joint import joint_design_metrics
 
     tolerance = yaml.safe_load((root/"project/tolerance.yaml").read_text(encoding="utf-8"))
+    stages = yaml.safe_load((root/"project/stage-status.yaml").read_text(encoding="utf-8"))
     structural = _json(root/"simulation/structural-v4/results/static-screening/static-screening-analysis.json")
     thermal = _json(root/"simulation/thermal-v5/results/credibility04r1/assessment.json")
     precomp = _json(root/"studies/PRECOMPENSATION/results/precompensation_summary.json")
     return {
         "generated_from":"当前权威配置与已执行结果；非实测证据仍保留原等级",
+        "stages": stages,
         "tolerance":{
             "status":tolerance["budget_status"],
             "radial_limit_mm":tolerance["target"]["radial_deviation_limit_mm"],
@@ -59,6 +61,10 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
 def render_markdown(status: Dict[str, Any]) -> str:
     tol,joint,structural,thermal = (status[k] for k in ("tolerance","joint","structural","thermal"))
     lines = ["# 自动生成的当前证据摘要","",status["generated_from"],"",
+        "## 阶段状态","","| 阶段 | 执行状态 | 验收结果 | 允许用途 |","| --- | --- | --- | --- |"]
+    for stage,row in status["stages"]["stages"].items():
+        lines.append(f"| {stage} | {row['execution_status']} | {row['acceptance_result']} | {row['allowed_use']} |")
+    lines += ["",
         "## 公差与接头闭合状态","","| 项目 | 当前值 |","| --- | ---: |",
         f"| 产品几何链径向限值 | {tol['radial_limit_mm']:.3f} mm |",
         f"| 产品链最坏情况设计和 | {tol['product_worst_case_design_sum_mm']:.3f} mm |",

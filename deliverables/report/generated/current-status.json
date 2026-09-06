@@ -1,5 +1,139 @@
 {
   "generated_from": "当前权威配置与已执行结果；非实测证据仍保留原等级",
+  "stages": {
+    "version": "STAGE-STATUS-1.0",
+    "updated": "2026-09-06",
+    "authority": "当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”",
+    "stages": {
+      "G-INPUTS": {
+        "execution_status": "controlled_inputs_and_volume_closed_candidate_defined",
+        "acceptance_result": "not_closed",
+        "evidence_level": "design_assumption",
+        "allowed_use": "受控设计输入；接头承载依据和成形关系仍待闭合",
+        "upstream_dependencies": [],
+        "next_action": "为四道候选补承载依据、分层几何和宏观截面验证"
+      },
+      "THERMAL-0.4R1": {
+        "execution_status": "ten_case_run_and_audit_completed",
+        "acceptance_result": "failed_spatial_convergence",
+        "evidence_level": "solver_result_unvalidated",
+        "allowed_use": "未校准局部热诊断；禁止正式整件性能结论",
+        "evidence": "simulation/thermal-v5/results/credibility04r1/assessment.json",
+        "diagnostic_evidence": "simulation/thermal-v5/results/credibility04r1/spatial-convergence-diagnosis.json",
+        "gate_field": "thermal_1_allowed",
+        "upstream_dependencies": [
+          "G-INPUTS"
+        ],
+        "next_action": "局部高梯度焊道/热源离散已定位；固定情景改进边界表示并复算网格序列"
+      },
+      "METALLURGY-0": {
+        "execution_status": "executor_and_historical_diagnostics_completed",
+        "acceptance_result": "current_joint_not_physically_validated",
+        "evidence_level": "literature_analogue_and_design_assumption",
+        "allowed_use": "风险识别；禁止宣称当前接头组织或连接质量已验证",
+        "upstream_dependencies": [
+          "G-INPUTS",
+          "THERMAL-0.4R1"
+        ],
+        "next_action": "待可信热场或实测热循环后复核组织风险"
+      },
+      "EXP-THERMAL": {
+        "execution_status": "protocol_completed_experiment_not_run",
+        "acceptance_result": "not_executed",
+        "evidence_level": "protocol_only",
+        "allowed_use": "试验准备",
+        "upstream_dependencies": [
+          "G-INPUTS"
+        ],
+        "next_action": "条件具备时执行并保留独立验证试件"
+      },
+      "THERMAL-1": {
+        "execution_status": "blocked",
+        "acceptance_result": "not_admitted",
+        "evidence_level": "none",
+        "allowed_use": "不允许正式结构耦合",
+        "upstream_dependencies": [
+          "THERMAL-0.4R1",
+          "EXP-THERMAL"
+        ],
+        "next_action": "满足登记的数值准入，物理校准另列证据等级"
+      },
+      "STRUCT-0-PREP": {
+        "execution_status": "partial_with_1d_constitutive_baselines_verified",
+        "acceptance_result": "not_ready",
+        "evidence_level": "component_unit_verification",
+        "allowed_use": "独立组件验证；不得冒充实际焊接残余位置度",
+        "evidence": "project/struct-0-prep.yaml",
+        "upstream_dependencies": [
+          "G-INPUTS"
+        ],
+        "next_action": "推进三维 J2、温变插值、统一网格、夹具接触及释放后冷却状态流"
+      },
+      "STRUCT-0": {
+        "execution_status": "not_executed",
+        "acceptance_result": "blocked_by_thermal_and_prep",
+        "evidence_level": "none",
+        "allowed_use": "无",
+        "upstream_dependencies": [
+          "THERMAL-1",
+          "STRUCT-0-PREP"
+        ],
+        "next_action": "前置通过后执行 Continuous 整件基线"
+      },
+      "STRUCT-1": {
+        "execution_status": "static_screening_only",
+        "acceptance_result": "formal_comparison_not_executed",
+        "evidence_level": "solver_result_static_screening",
+        "allowed_use": "当前载荷和支承下的静力筛查",
+        "upstream_dependencies": [
+          "STRUCT-0"
+        ],
+        "next_action": "在统一可信热场下比较至多两个候选"
+      },
+      "SERVICE": {
+        "execution_status": "load_builder_unit_verified_results_not_computed",
+        "acceptance_result": "not_executed",
+        "evidence_level": "component_unit_verification",
+        "allowed_use": "载荷构造验证；无整件性能结论",
+        "upstream_dependencies": [
+          "STRUCT-1"
+        ],
+        "next_action": "补齐实际载荷包络后计算轴向、径向、倾覆、模态和疲劳风险"
+      },
+      "PROCESS-CONTROL": {
+        "execution_status": "surrogate_prototypes_completed",
+        "acceptance_result": "formal_study_not_executed",
+        "evidence_level": "synthetic_demo",
+        "allowed_use": "算法演示和拒绝逻辑验证",
+        "upstream_dependencies": [
+          "STRUCT-1"
+        ],
+        "next_action": "在可信整件模型下公平比较工艺与控制策略"
+      },
+      "EXP-FINAL": {
+        "execution_status": "not_executed",
+        "acceptance_result": "not_executed",
+        "evidence_level": "none",
+        "allowed_use": "无",
+        "upstream_dependencies": [
+          "PROCESS-CONTROL"
+        ],
+        "next_action": "执行 CMM、NDT、洁净度等实物验证"
+      },
+      "DECISION": {
+        "execution_status": "candidate_retention_decisions_only",
+        "acceptance_result": "final_decision_not_available",
+        "evidence_level": "mixed",
+        "allowed_use": "阶段设计评审",
+        "upstream_dependencies": [
+          "STRUCT-1",
+          "SERVICE",
+          "EXP-FINAL"
+        ],
+        "next_action": "硬约束淘汰后裁决结构、工艺和焊序"
+      }
+    }
+  },
   "tolerance": {
     "status": "not_closed",
     "radial_limit_mm": 0.025,
@@ -37,6 +171,46 @@
       "at_100pct_efficiency_mm_s": 8.123533553648825,
       "at_min_declared_efficiency_mm_s": 9.557098298410382,
       "usage": "仅量化缺口，未经成形、热输入和承载验证，不得直接写入 WPS"
+    },
+    "design_scenarios": {
+      "current_single_pass_diagnostic": {
+        "pass_count": 1,
+        "identity": "当前 1.737 mm 等效焊脚局部热诊断基线",
+        "disposition": "diagnostic_only",
+        "area_per_pass_mm2": 1.5079644737231008,
+        "total_deposited_area_mm2": 1.5079644737231008,
+        "equivalent_ideal_fillet_leg_mm": 1.7366430109398425,
+        "wire_feed_range_mm_s": [
+          2.0,
+          2.0
+        ],
+        "total_arc_energy_per_weld_length_j_mm": 330.0,
+        "total_retained_filler_volume_mm3": 162.8601631620949,
+        "total_retained_filler_mass_g": 1.335453337929178,
+        "load_basis_status": "pending",
+        "macrosection_status": "pending",
+        "wps_status": "not_available"
+      },
+      "target_3p5_four_pass_candidate": {
+        "pass_count": 4,
+        "identity": "3.5 mm 理想三角截面的等面积四道设计候选",
+        "disposition": "candidate_pending_load_basis_macrosection_and_thermal_revalidation",
+        "feed_policy": "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值",
+        "thermal_policy": "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论",
+        "area_per_pass_mm2": 1.53125,
+        "total_deposited_area_mm2": 6.125,
+        "equivalent_ideal_fillet_leg_mm": 3.5,
+        "wire_feed_range_mm_s": [
+          2.030883388412206,
+          2.389274574602595
+        ],
+        "total_arc_energy_per_weld_length_j_mm": 1320.0,
+        "total_retained_filler_volume_mm3": 661.5,
+        "total_retained_filler_mass_g": 5.4243,
+        "load_basis_status": "pending",
+        "macrosection_status": "pending",
+        "wps_status": "not_available"
+      }
     },
     "release_boundary": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
   },

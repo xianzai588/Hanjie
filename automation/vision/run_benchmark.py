@@ -9,6 +9,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+import yaml
 
 from detect_center import detect_image
 from generate_dataset import DEFAULT_OUTPUT, generate_dataset
@@ -18,11 +19,13 @@ ROOT = Path(__file__).resolve().parents[2]
 RESULT_DIR = ROOT / "automation" / "vision" / "results"
 DIFFICULTIES = ("clean", "noise", "blur", "illumination", "perspective", "occlusion", "missing_edges", "low_contrast", "distortion", "large_offset")
 
-# Ø0.05 是直径限值，先换算为 0.025 mm 的径向总预算，再做保守的线性分配。
-# 视觉门限是数字评审门，不是相机/机器人实测验收门限。
-POSITION_TOLERANCE_DIAMETER_LIMIT_MM = 0.05
-POSITION_TOLERANCE_RADIUS_BUDGET_MM = POSITION_TOLERANCE_DIAMETER_LIMIT_MM / 2.0
-VISION_RADIAL_MAE_BUDGET_MM = 0.010
+TOLERANCE_PATH = ROOT / "project" / "tolerance.yaml"
+TOLERANCE = yaml.safe_load(TOLERANCE_PATH.read_text(encoding="utf-8"))
+
+# 视觉门限来自自动化路径链，只约束数字样本；产品几何链不得在此拼接闭合。
+POSITION_TOLERANCE_DIAMETER_LIMIT_MM = float(TOLERANCE["target"]["cylindrical_tolerance_zone_diameter_mm"])
+POSITION_TOLERANCE_RADIUS_LIMIT_MM = float(TOLERANCE["target"]["radial_deviation_limit_mm"])
+VISION_RADIAL_P95_LIMIT_MM = float(TOLERANCE["automation_path_chain"]["vision_radial_p95"])
 
 BASELINE_PATH = ROOT / "project" / "baseline.yaml"
 if BASELINE_PATH.exists():
@@ -36,8 +39,8 @@ if BASELINE_PATH.exists():
 else:
     POSE_LEVER_ARM_MM = 74.98
 
-# 将姿态误差换算为最不利的切向位移，确保该项不超过视觉径向份额。
-VISION_ANGLE_MAE_BUDGET_DEG = float(np.degrees(VISION_RADIAL_MAE_BUDGET_MM / POSE_LEVER_ARM_MM))
+# 将姿态误差换算为最不利的切向位移，确保数字样本门限与路径链视觉分配一致。
+VISION_ANGLE_P95_LIMIT_DEG = float(np.degrees(VISION_RADIAL_P95_LIMIT_MM / POSE_LEVER_ARM_MM))
 
 
 def _finite_mean(values: np.ndarray) -> float:
@@ -96,8 +99,8 @@ def run_benchmark(count: int, data_dir: Path, result_dir: Path, difficulty: str 
     theta_p95 = _finite_percentile_abs(theta, 95)
     # 工程门使用 P95，避免 MAE 掩盖少量大误差；MAE 仍作为描述性统计保留。
     engineering_gate = bool(np.isfinite(radial_p95) and np.isfinite(theta_p95)
-                            and radial_p95 <= VISION_RADIAL_MAE_BUDGET_MM
-                            and theta_p95 <= VISION_ANGLE_MAE_BUDGET_DEG)
+                            and radial_p95 <= VISION_RADIAL_P95_LIMIT_MM
+                            and theta_p95 <= VISION_ANGLE_P95_LIMIT_DEG)
     summary = {
         "sample_count": count,
         "success_count": accepted_successes,
@@ -117,9 +120,10 @@ def run_benchmark(count: int, data_dir: Path, result_dir: Path, difficulty: str 
         "engineering_gate": "PASS" if engineering_gate else "FAIL",
         "engineering_gate_pass": engineering_gate,
         "gate_limits": {
-            "radial_p95_mm": VISION_RADIAL_MAE_BUDGET_MM,
-            "theta_p95_deg": VISION_ANGLE_MAE_BUDGET_DEG,
+            "radial_p95_mm": VISION_RADIAL_P95_LIMIT_MM,
+            "theta_p95_deg": VISION_ANGLE_P95_LIMIT_DEG,
             "pose_lever_arm_mm": POSE_LEVER_ARM_MM,
+            "source": "project/tolerance.yaml automation_path_chain",
         },
         "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。",
     }
@@ -139,6 +143,40 @@ def run_benchmark(count: int, data_dir: Path, result_dir: Path, difficulty: str 
     fig.savefig(result_dir / "error-distribution.svg")
     plt.close(fig)
     return summary
+
+
+def render_difficult_summary(summaries: list[dict[str, object]]) -> str:
+    """生成困难条件摘要，明确区分路径链、产品链和未知输入。"""
+    path_chain = TOLERANCE["automation_path_chain"]
+    product_chain = TOLERANCE["product_geometry_chain"]
+
+    def display(value: object) -> str:
+        return "待核实" if value is None else f"{float(value):.3f} mm"
+
+    lines = [
+        "# 困难视觉条件基准",
+        "",
+        "> 样本为数字渲染与图像退化，不代表真实工业相机/镜头/光源标定结果。",
+        "",
+        "| 条件 | 样本数 | 原始返回率 | 质量接受率 | 拒绝数 | 径向 P95 (mm) | 角度 P95 (deg) | 工程判定 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for item in summaries:
+        lines.append(f"| {item['difficulty']} | {item['sample_count']} | {item['detection_return_rate']:.3%} | {item['quality_accept_rate']:.3%} | {item['quality_rejected_count']} | {item['radial_p95_mm']:.6f} | {item['theta_p95_deg']:.6f} | {item['engineering_gate']} |")
+    lines.extend([
+        "",
+        "## 工程误差预算",
+        "",
+        f"位置度限值 Ø{POSITION_TOLERANCE_DIAMETER_LIMIT_MM:.2f} mm 对应径向限值 {POSITION_TOLERANCE_RADIUS_LIMIT_MM:.3f} mm，但这不是可由自动化路径项直接线性分配并宣称闭合的总预算。",
+        f"自动化路径链（来自 `project/tolerance.yaml`）：视觉径向 P95 {display(path_chain['vision_radial_p95'])}、相机外参 {display(path_chain['camera_extrinsic'])}、TCP 标定 {display(path_chain['tcp_calibration'])}、机器人重复定位 {display(path_chain['robot_repeatability'])}；产品灵敏度为{'待核实' if path_chain['product_sensitivities'] is None else path_chain['product_sensitivities']}。未知项未回填，路径链当前不闭合。",
+        f"产品几何链另行管理，当前最坏情况设计和为 {float(product_chain['worst_case_design_sum_mm']):.3f} mm，预算状态为 `{TOLERANCE['budget_status']}`；夹具、热变形等产品项不与上述路径链直接相加。",
+        f"视觉数字门限：径向 P95 ≤ {VISION_RADIAL_P95_LIMIT_MM:.3f} mm；以 {POSE_LEVER_ARM_MM:.1f} mm 姿态作用半径换算，角度 P95 ≤ {VISION_ANGLE_P95_LIMIT_DEG:.4f}°。MAE 作为描述性统计保留；该门限仅是数字样本的视觉份额，不是相机、机器人或产品精度认证。",
+        "因此“原始返回率”不等于“质量接受率”或“工程通过”：质量门会拒绝透视、遮挡、光照梯度、噪声和缺边等低可信结果，避免错误坐标进入路径规划。",
+        "",
+        "条件覆盖：噪声、模糊、光照梯度、约 10–30° 像面透视近似、遮挡、缺失边缘、低对比度、畸变和 ±5 mm 大偏移。",
+        "所有困难条件均同步变换 shell/seat/marker 标签；指标是变换后像面坐标上的误差。",
+    ])
+    return "\n".join(lines) + "\n"
 
 
 def run_difficult_benchmark(count_per_condition: int, data_root: Path, result_dir: Path) -> list[dict[str, object]]:
@@ -181,28 +219,7 @@ def run_difficult_benchmark(count_per_condition: int, data_root: Path, result_di
     fig.savefig(result_dir / "difficult-summary.svg")
     plt.close(fig)
 
-    lines = [
-        "# 困难视觉条件基准",
-        "",
-        "> 样本为数字渲染与图像退化，不代表真实工业相机/镜头/光源标定结果。",
-        "",
-        "| 条件 | 样本数 | 原始返回率 | 质量接受率 | 拒绝数 | 径向 P95 (mm) | 角度 P95 (deg) | 工程判定 |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
-    ]
-    for item in summaries:
-        lines.append(f"| {item['difficulty']} | {item['sample_count']} | {item['detection_return_rate']:.3%} | {item['quality_accept_rate']:.3%} | {item['quality_rejected_count']} | {item['radial_p95_mm']:.6f} | {item['theta_p95_deg']:.6f} | {item['engineering_gate']} |")
-    lines.extend([
-        "",
-        "## 工程误差预算",
-        "",
-        f"比赛位置度限值 Ø{POSITION_TOLERANCE_DIAMETER_LIMIT_MM:.2f} mm 对应径向预算 {POSITION_TOLERANCE_RADIUS_BUDGET_MM:.3f} mm。本数字评审将其按线性最坏情况分配：视觉 {VISION_RADIAL_MAE_BUDGET_MM:.3f} mm、相机标定 0.004 mm、TCP 0.003 mm、机器人重复定位 0.003 mm、夹具 0.003 mm、热变形 0.002 mm，合计 {POSITION_TOLERANCE_RADIUS_BUDGET_MM:.3f} mm。",
-        f"视觉数字门限：径向 P95 ≤ {VISION_RADIAL_MAE_BUDGET_MM:.3f} mm；以 {POSE_LEVER_ARM_MM:.1f} mm 姿态作用半径换算，角度 P95 ≤ {VISION_ANGLE_MAE_BUDGET_DEG:.4f}°。MAE 作为描述性统计保留；门限是误差预算中的视觉份额，不是实测精度认证。",
-        "因此“原始返回率”不等于“质量接受率”或“工程通过”：质量门会拒绝透视、遮挡、光照梯度、噪声和缺边等低可信结果，避免错误坐标进入路径规划。",
-        "",
-        "条件覆盖：噪声、模糊、光照梯度、约 10–30° 像面透视近似、遮挡、缺失边缘、低对比度、畸变和 ±5 mm 大偏移。",
-        "所有困难条件均同步变换 shell/seat/marker 标签；指标是变换后像面坐标上的误差。",
-    ])
-    (result_dir / "difficult-summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (result_dir / "difficult-summary.md").write_text(render_difficult_summary(summaries), encoding="utf-8")
     return summaries
 
 

@@ -25,6 +25,7 @@ from generate_weld_path import generate_path  # noqa: E402
 from position_tolerance import DATUM_DEFINITION, demo_points, fit_axis, fit_circle_xy  # noqa: E402
 from run_reduced_order import build_cases, load_yaml  # noqa: E402
 from run_monte_carlo import run_monte_carlo  # noqa: E402
+from automation.vision.run_benchmark import render_difficult_summary  # noqa: E402
 
 from simulation.fe.run_fe_cases import build_mesh  # noqa: E402
 
@@ -85,6 +86,15 @@ def test_joint_design_and_wire_deposition_are_not_conflated() -> None:
     assert metrics["nominal_wire_deposition"]["equivalent_ideal_fillet_leg_mm"] == pytest.approx(1.7366430137)
     assert metrics["closure_status"].startswith("not_closed")
     assert "不得直接写入 WPS" in metrics["diagnostic_only_feed_for_target"]["usage"]
+    diagnostic = metrics["design_scenarios"]["current_single_pass_diagnostic"]
+    candidate = metrics["design_scenarios"]["target_3p5_four_pass_candidate"]
+    assert diagnostic["equivalent_ideal_fillet_leg_mm"] == pytest.approx(1.7366430137)
+    assert candidate["pass_count"] == 4
+    assert candidate["total_deposited_area_mm2"] == pytest.approx(6.125)
+    assert candidate["equivalent_ideal_fillet_leg_mm"] == pytest.approx(3.5)
+    assert candidate["wire_feed_range_mm_s"] == pytest.approx([2.030883, 2.389275], rel=1e-5)
+    assert candidate["load_basis_status"] == "pending"
+    assert candidate["wps_status"] == "not_available"
 
 
 def test_rom_reference_case_reproducible() -> None:
@@ -172,6 +182,16 @@ def test_vision_quality_gate_rejects_perspective_sample(tmp_path: Path) -> None:
     result = detect_image(image_path, reject_quality=False)
     assert result["quality"]["accepted"] is False
     assert result["quality"]["failed_checks"]
+
+
+def test_vision_summary_keeps_path_and_product_budget_chains_separate() -> None:
+    summary = render_difficult_summary([])
+    assert "机器人重复定位 待核实" in summary
+    assert "产品灵敏度为待核实" in summary
+    assert "产品几何链另行管理" in summary
+    assert "最坏情况设计和为 0.035 mm" in summary
+    assert "机器人重复定位 0.003 mm" not in summary
+    assert "合计 0.025 mm" not in summary
 
 
 def test_simulated_session_matches_schema_and_detector() -> None:

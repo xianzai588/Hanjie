@@ -25,6 +25,33 @@ def joint_design_metrics() -> Dict[str,Any]:
     density_kg_m3 = float(get_materials()["materials"]["ernife_ci"]["nominal_properties_20c"]["density_kg_m3"])
     required_feed = target_area*float(nominal["travel_speed_mm_s"])/wire_area
     lower_efficiency = min(map(float,rule["deposition_efficiency_range"]))
+    scenarios = {}
+    for scenario_id, scenario in rule["scenarios"].items():
+        pass_count = int(scenario["pass_count"])
+        if scenario_id == "current_single_pass_diagnostic":
+            area_per_pass = deposited_area
+            feed_range = [float(nominal["filler_feed_rate_mm_s"])] * 2
+        else:
+            area_per_pass = target_area / pass_count
+            # 按沉积效率边界反算区间，避免把体积核算值误写成单一工艺设定。
+            feed_range = [
+                area_per_pass * float(nominal["travel_speed_mm_s"]) / wire_area,
+                area_per_pass * float(nominal["travel_speed_mm_s"]) / (wire_area * lower_efficiency),
+            ]
+        total_area = area_per_pass * pass_count
+        scenarios[scenario_id] = {
+            **scenario,
+            "area_per_pass_mm2": area_per_pass,
+            "total_deposited_area_mm2": total_area,
+            "equivalent_ideal_fillet_leg_mm": math.sqrt(2 * total_area),
+            "wire_feed_range_mm_s": feed_range,
+            "total_arc_energy_per_weld_length_j_mm": float(nominal["heat_input_j_per_mm"]) * pass_count,
+            "total_retained_filler_volume_mm3": total_area * total_length,
+            "total_retained_filler_mass_g": total_area * total_length * density_kg_m3 / 1e6,
+            "load_basis_status": "pending",
+            "macrosection_status": "pending",
+            "wps_status": "not_available",
+        }
     return {
         "evidence_level":"design_assumption",
         "closure_status":rule["closure_status"],
@@ -51,5 +78,6 @@ def joint_design_metrics() -> Dict[str,Any]:
             "at_min_declared_efficiency_mm_s":required_feed/lower_efficiency,
             "usage":"仅量化缺口，未经成形、热输入和承载验证，不得直接写入 WPS",
         },
+        "design_scenarios":scenarios,
         "release_boundary":rule["rule"],
     }

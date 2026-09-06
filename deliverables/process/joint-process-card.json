@@ -30,5 +30,45 @@
     "at_min_declared_efficiency_mm_s": 9.557098298410382,
     "usage": "仅量化缺口，未经成形、热输入和承载验证，不得直接写入 WPS"
   },
+  "design_scenarios": {
+    "current_single_pass_diagnostic": {
+      "pass_count": 1,
+      "identity": "当前 1.737 mm 等效焊脚局部热诊断基线",
+      "disposition": "diagnostic_only",
+      "area_per_pass_mm2": 1.5079644737231008,
+      "total_deposited_area_mm2": 1.5079644737231008,
+      "equivalent_ideal_fillet_leg_mm": 1.7366430109398425,
+      "wire_feed_range_mm_s": [
+        2.0,
+        2.0
+      ],
+      "total_arc_energy_per_weld_length_j_mm": 330.0,
+      "total_retained_filler_volume_mm3": 162.8601631620949,
+      "total_retained_filler_mass_g": 1.335453337929178,
+      "load_basis_status": "pending",
+      "macrosection_status": "pending",
+      "wps_status": "not_available"
+    },
+    "target_3p5_four_pass_candidate": {
+      "pass_count": 4,
+      "identity": "3.5 mm 理想三角截面的等面积四道设计候选",
+      "disposition": "candidate_pending_load_basis_macrosection_and_thermal_revalidation",
+      "feed_policy": "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值",
+      "thermal_policy": "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论",
+      "area_per_pass_mm2": 1.53125,
+      "total_deposited_area_mm2": 6.125,
+      "equivalent_ideal_fillet_leg_mm": 3.5,
+      "wire_feed_range_mm_s": [
+        2.030883388412206,
+        2.389274574602595
+      ],
+      "total_arc_energy_per_weld_length_j_mm": 1320.0,
+      "total_retained_filler_volume_mm3": 661.5,
+      "total_retained_filler_mass_g": 5.4243,
+      "load_basis_status": "pending",
+      "macrosection_status": "pending",
+      "wps_status": "not_available"
+    }
+  },
   "release_boundary": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
 }

@@ -135,11 +135,24 @@ def test_v42_artifacts_keep_current_evidence_boundaries() -> None:
 def test_generated_report_status_uses_current_authorities() -> None:
     from hanjie.reporting.current_status import collect_current_status,render_markdown
     status = collect_current_status(ROOT)
+    assert status["stages"]["stages"]["THERMAL-0.4R1"]["execution_status"]=="ten_case_run_and_audit_completed"
+    assert status["stages"]["stages"]["THERMAL-0.4R1"]["acceptance_result"]=="failed_spatial_convergence"
+    assert status["stages"]["stages"]["STRUCT-0"]["execution_status"]=="not_executed"
     assert status["tolerance"]["status"]=="not_closed"
     assert status["joint"]["nominal_wire_deposition"]["equivalent_ideal_fillet_leg_mm"]==pytest.approx(1.7366430137)
     assert status["structural"]["ranking"][0]["model_id"]=="Continuous"
     assert status["thermal"]["stage"]=="THERMAL-0.4R1"
     assert "自动生成的当前证据摘要" in render_markdown(status)
+    assert "未校准局部热诊断；禁止正式整件性能结论" in render_markdown(status)
+
+
+def test_active_structural_gate_points_to_current_failed_assessment() -> None:
+    prep = yaml.safe_load((ROOT/"project/struct-0-prep.yaml").read_text(encoding="utf-8"))
+    gate = json.loads((ROOT/prep["thermal_gate"]).read_text(encoding="utf-8"))
+    assert gate["stage"] == "THERMAL-0.4R1"
+    assert prep["thermal_gate_field"] == "thermal_1_allowed"
+    assert gate[prep["thermal_gate_field"]] is False
+    assert prep["formal_thermal_coupling_allowed"] is False
 
 
 def test_current_report_has_no_known_v42_stale_claims() -> None:
