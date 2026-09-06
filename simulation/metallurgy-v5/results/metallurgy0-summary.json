@@ -1,56 +1,58 @@
 {
-  "run_timestamp_utc": "2026-09-05T18:21:10.371093+00:00",
-  "git_commit": "40007980a157c06cc781b0a411b9f480add110b0",
+  "run_timestamp_utc": "2026-09-06T04:36:37.208555+00:00",
+  "git_commit": "24f00d6c2c1e77174fa0d9dcd038d8733f83f141",
   "python_version": "3.12.10",
-  "solver_version": "METALLURGY-0-risk-mapper-v5",
+  "solver_version": "METALLURGY-0.2-parent-material-risk-mapper-v5",
   "dependency_versions": {
     "numpy": "2.3.5",
     "PyYAML": "6.0.3"
   },
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
-  "thermal_input_sha256": "06671a5a676a6ad82e07f9864ed59b0ebe8acc2dbf46793ff13c04ad55b15909",
+  "input_sha256": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
+  "thermal_input_sha256": "f1106b96b665e1f6796b16b9b12f6f8ce116e87a81080bbd9779565f793221ad",
   "stage": "METALLURGY-0",
   "evidence_level": "literature_supported_plus_solver_result_unvalidated",
   "thermal_input": "simulation/thermal-v5/results/thermal0-field.npz",
   "thermal_evidence_level": "solver_result_unvalidated",
   "material_statistics": {
-    "qt450_10_material_zone": {
-      "node_count": 46620,
-      "peak_temperature_c": 811.0398396270335,
-      "peak_temperature_p95_c": 302.6117226481396,
-      "maximum_cooling_rate_c_s": 266.3349670423145,
-      "t8_5_valid_node_count": 2,
-      "t8_5_median_s": 1.8468062637633125,
-      "t8_5_minimum_s": 1.8468062637633125
+    "qt450_10_parent_material": {
+      "node_count": 90720,
+      "peak_temperature_c": 434.87971175197345,
+      "peak_temperature_p95_c": 254.26361338293285,
+      "maximum_cooling_rate_c_s": 115.33272637444725,
+      "t8_5_valid_node_count": 0,
+      "t8_5_median_s": null,
+      "t8_5_minimum_s": null
     },
-    "q235b_material_zone": {
-      "node_count": 3330,
-      "peak_temperature_c": 1024.7647510364066,
-      "peak_temperature_p95_c": 530.3899312841479,
-      "maximum_cooling_rate_c_s": 304.43562050681976,
-      "t8_5_valid_node_count": 26,
-      "t8_5_median_s": 3.341766569152668,
-      "t8_5_minimum_s": 3.1946054803190336
+    "q235b_parent_material": {
+      "node_count": 6480,
+      "peak_temperature_c": 525.8731320993082,
+      "peak_temperature_p95_c": 458.2375148813464,
+      "maximum_cooling_rate_c_s": 125.0000381950656,
+      "t8_5_valid_node_count": 0,
+      "t8_5_median_s": null,
+      "t8_5_minimum_s": null
     },
-    "qt450_10_side_region": {
-      "node_count": 51060,
-      "peak_temperature_c": 1876.032050826783,
-      "peak_temperature_p95_c": 353.6020828940241,
-      "maximum_cooling_rate_c_s": 5702.678630374498,
-      "t8_5_valid_node_count": 130,
-      "t8_5_median_s": 2.8856709106797993,
-      "t8_5_minimum_s": 1.8468062637633125
-    },
-    "q235b_side_region": {
-      "node_count": 6660,
-      "peak_temperature_c": 1793.3450763584312,
-      "peak_temperature_p95_c": 651.751588943196,
-      "maximum_cooling_rate_c_s": 4635.116166736293,
-      "t8_5_valid_node_count": 124,
-      "t8_5_median_s": 3.2906871745726463,
-      "t8_5_minimum_s": 2.70076779867113
+    "ernife_ci_weld_surrogate": {
+      "node_count": 15120,
+      "peak_temperature_c": 896.991325781074,
+      "peak_temperature_p95_c": 587.4410406589919,
+      "maximum_cooling_rate_c_s": 2647.102026853463,
+      "t8_5_valid_node_count": 144,
+      "t8_5_median_s": 3.237171029718219,
+      "t8_5_minimum_s": 0.38828022181863986
     }
+  },
+  "region_semantics": {
+    "surrogate_weld_band_n_mm": [
+      -3.0,
+      3.0
+    ],
+    "qt450_10_parent_condition": "material_id == 2 (n < -3 mm)",
+    "q235b_parent_condition": "material_id == 1 (n > 3 mm)",
+    "parent_risk_mask_includes_weld_cells": 0,
+    "parent_haz_width_includes_weld": false,
+    "interfaces_are_surrogate_not_calibrated_fusion_lines": true
   },
   "haz_thresholds_c": {
     "fusion": 1350.0,
@@ -60,30 +62,41 @@
   },
   "risk_assessment": {
     "qt450_10": {
-      "white_cast_iron_carbide_risk": "High",
-      "martensite_high_hardening_risk": "High",
-      "haz_embrittlement_risk": "Medium",
+      "white_cast_iron_carbide_risk": "Medium",
+      "martensite_high_hardening_risk": "Medium",
+      "haz_embrittlement_risk": "Low",
       "cold_crack_risk": "Medium",
-      "thermal_exposure_width_tpeak_ge_400c_mm": 7.221153846153847,
-      "hardness_trend": "靠近熔合线和快速冷却区域预计高于 QT450-10 母材；需显微硬度线扫确认",
+      "thermal_exposure_width_tpeak_ge_400c_mm": 0.2788461538461533,
+      "hardness_trend": "靠近代理母材—焊缝界面和快速冷却区域预计高于 QT450-10 母材；需显微硬度线扫确认",
       "risk_location": {
-        "angle_deg": 26.765815117888984,
-        "n_mm": -0.125,
+        "angle_deg": 18.573029501921635,
+        "n_mm": -3.2788461538461533,
         "z_mm": -0.3999999999999986,
-        "peak_temperature_c": 1876.032050826783
+        "peak_temperature_c": 434.87971175197345
       }
     },
     "q235b": {
-      "high_temperature_grain_coarsening_risk": "Medium",
-      "hardening_risk": "High",
-      "haz_embrittlement_risk": "Medium",
-      "hardness_trend": "靠近熔合线处出现热影响梯度；不得由硬度趋势直接推断疲劳寿命",
-      "thermal_exposure_width_tpeak_ge_400c_mm": 4.605769230769226,
+      "high_temperature_grain_coarsening_risk": "Low",
+      "hardening_risk": "Medium",
+      "haz_embrittlement_risk": "Low",
+      "hardness_trend": "靠近代理母材—焊缝界面处出现热影响梯度；不得由硬度趋势直接推断疲劳寿命",
+      "thermal_exposure_width_tpeak_ge_400c_mm": 1.6057692307692264,
       "risk_location": {
-        "angle_deg": 26.765815117888984,
-        "n_mm": 0.6634615384615401,
+        "angle_deg": 18.573029501921635,
+        "n_mm": 3.0288461538461533,
         "z_mm": -0.3999999999999986,
-        "peak_temperature_c": 1793.3450763584312
+        "peak_temperature_c": 525.8731320993082
+      }
+    },
+    "ernife_ci_weld_surrogate": {
+      "peak_temperature_c": 896.991325781074,
+      "fusion_threshold_exceeded": false,
+      "risk_status": "not_scored_pending_high_temperature_properties_and_calibration",
+      "risk_location": {
+        "angle_deg": 20.058871862075364,
+        "n_mm": -0.125,
+        "z_mm": -0.3999999999999986,
+        "peak_temperature_c": 896.991325781074
       }
     }
   },

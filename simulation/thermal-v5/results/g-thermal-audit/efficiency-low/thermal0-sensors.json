@@ -2,7 +2,8 @@
   "evidence_level": "solver_result_unvalidated",
   "sampling": {
     "method": "trilinear_interpolation",
-    "coordinate_system": "local_moving_source_s_n_z_cell_centers"
+    "coordinate_system": "fixed_local_window_moving_source_s_n_z_cell_centers",
+    "maximum_coordinate_drift_mm": 0.0
   },
   "sensors": {
     "QT_HAZ": {
@@ -11,12 +12,37 @@
         -5.0,
         0.0
       ],
+      "sampled_coordinate_mm": [
+        0.0,
+        -5.0,
+        0.0
+      ],
       "material_region": "QT450-10",
       "arc_position_mm": 0.0,
       "arc_position_deg": 0.0
     },
-    "fusion_line": {
+    "QT_SURROGATE_INTERFACE_REF": {
       "requested_coordinate_mm": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "sampled_coordinate_mm": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "material_region": "surrogate_parent_weld_interface",
+      "arc_position_mm": 0.0,
+      "arc_position_deg": 0.0
+    },
+    "WELD_CENTER": {
+      "requested_coordinate_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sampled_coordinate_mm": [
         0.0,
         0.0,
         0.0
@@ -25,18 +51,28 @@
       "arc_position_mm": 0.0,
       "arc_position_deg": 0.0
     },
-    "weld_center": {
+    "Q235B_SURROGATE_INTERFACE_REF": {
       "requested_coordinate_mm": [
         0.0,
-        1.0,
+        3.0,
         0.0
       ],
-      "material_region": "ERNiFe-CI",
+      "sampled_coordinate_mm": [
+        0.0,
+        3.0,
+        0.0
+      ],
+      "material_region": "surrogate_parent_weld_interface",
       "arc_position_mm": 0.0,
       "arc_position_deg": 0.0
     },
     "Q235B_HAZ": {
       "requested_coordinate_mm": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "sampled_coordinate_mm": [
         0.0,
         5.0,
         0.0
@@ -54,975 +90,1301 @@
       },
       {
         "time_s": 0.5,
-        "temperature_c": 150.00014717510584
+        "temperature_c": 149.99997450356756
       },
       {
         "time_s": 1.0,
-        "temperature_c": 150.00951898337257
+        "temperature_c": 149.99813419261878
       },
       {
         "time_s": 1.5,
-        "temperature_c": 150.1073417273813
+        "temperature_c": 149.98988278338697
       },
       {
         "time_s": 2.0,
-        "temperature_c": 150.53856000862544
+        "temperature_c": 149.9737852049564
       },
       {
         "time_s": 2.5,
-        "temperature_c": 151.57204656014525
+        "temperature_c": 149.95098187652488
       },
       {
         "time_s": 3.0,
-        "temperature_c": 154.09107573836758
+        "temperature_c": 149.92350250223762
       },
       {
         "time_s": 3.5,
-        "temperature_c": 158.4300166773387
+        "temperature_c": 149.89384516983262
       },
       {
         "time_s": 4.0,
-        "temperature_c": 165.35356186695088
+        "temperature_c": 149.8650194199472
       },
       {
         "time_s": 4.5,
-        "temperature_c": 176.63957757390227
+        "temperature_c": 149.8406567219111
       },
       {
         "time_s": 5.0,
-        "temperature_c": 191.25238385389622
+        "temperature_c": 149.82510164318157
       },
       {
         "time_s": 5.5,
-        "temperature_c": 209.63278425390192
+        "temperature_c": 149.82345833415687
       },
       {
         "time_s": 6.0,
-        "temperature_c": 230.43953369591947
+        "temperature_c": 149.84164103896086
       },
       {
         "time_s": 6.5,
-        "temperature_c": 250.3798123359676
+        "temperature_c": 149.88642279580444
       },
       {
         "time_s": 7.0,
-        "temperature_c": 261.46933135676613
+        "temperature_c": 149.96550612580904
       },
       {
         "time_s": 7.5,
-        "temperature_c": 266.9320231743268
+        "temperature_c": 150.08768771480817
       },
       {
         "time_s": 8.0,
-        "temperature_c": 266.4079479481362
+        "temperature_c": 150.26291188158712
       },
       {
         "time_s": 8.5,
-        "temperature_c": 260.7374549055468
+        "temperature_c": 150.50271665770958
       },
       {
         "time_s": 9.0,
-        "temperature_c": 252.78196059513334
+        "temperature_c": 150.82017526502995
       },
       {
         "time_s": 9.5,
-        "temperature_c": 244.18526909878832
+        "temperature_c": 151.23074506550392
       },
       {
         "time_s": 10.0,
-        "temperature_c": 235.8223034962477
+        "temperature_c": 151.75229895148493
       },
       {
         "time_s": 10.5,
-        "temperature_c": 228.11655213973776
+        "temperature_c": 152.4058481602771
       },
       {
         "time_s": 11.0,
-        "temperature_c": 221.60162243353352
+        "temperature_c": 153.21733027286496
       },
       {
         "time_s": 11.5,
-        "temperature_c": 215.77458166074098
+        "temperature_c": 154.21496539230003
       },
       {
         "time_s": 12.0,
-        "temperature_c": 210.8816485573348
+        "temperature_c": 155.437883217669
       },
       {
         "time_s": 12.5,
-        "temperature_c": 206.65161491047277
+        "temperature_c": 156.9242253584306
       },
       {
         "time_s": 13.0,
-        "temperature_c": 202.85741009605377
+        "temperature_c": 158.73129197809385
       },
       {
         "time_s": 13.5,
-        "temperature_c": 199.7309862669607
+        "temperature_c": 160.91666237503222
       },
       {
         "time_s": 14.0,
-        "temperature_c": 196.86848215395833
+        "temperature_c": 163.54851244125643
       },
       {
         "time_s": 14.5,
-        "temperature_c": 194.3634387289793
+        "temperature_c": 166.72995029481103
       },
       {
         "time_s": 15.0,
-        "temperature_c": 192.187654572479
+        "temperature_c": 170.50739245487512
       },
       {
         "time_s": 15.5,
-        "temperature_c": 190.1652241513341
+        "temperature_c": 175.05096678091934
       },
       {
         "time_s": 16.0,
-        "temperature_c": 188.48953702363963
+        "temperature_c": 180.3678770901871
       },
       {
         "time_s": 16.500000000000004,
-        "temperature_c": 186.95219719354395
+        "temperature_c": 186.64795058587663
       },
       {
         "time_s": 17.000000000000004,
-        "temperature_c": 185.5737147874605
+        "temperature_c": 193.88112770605744
       },
       {
         "time_s": 17.500000000000004,
-        "temperature_c": 184.44468656086065
+        "temperature_c": 202.13606358331484
       },
       {
         "time_s": 18.000000000000004,
-        "temperature_c": 183.38084378111074
+        "temperature_c": 211.3826298288226
       },
       {
         "time_s": 18.500000000000004,
-        "temperature_c": 182.53108793569578
+        "temperature_c": 221.44665904848688
       },
       {
         "time_s": 19.000000000000004,
-        "temperature_c": 181.80009750545815
+        "temperature_c": 232.50246784584635
       },
       {
         "time_s": 19.500000000000004,
-        "temperature_c": 181.12714240099945
+        "temperature_c": 243.32751117498782
       },
       {
         "time_s": 20.000000000000004,
-        "temperature_c": 180.69241051002817
+        "temperature_c": 255.47498884404757
       },
       {
         "time_s": 20.500000000000004,
-        "temperature_c": 180.28062757167217
+        "temperature_c": 266.19886219498403
       },
       {
         "time_s": 21.000000000000004,
-        "temperature_c": 179.99575726538112
+        "temperature_c": 275.8423702117917
       },
       {
         "time_s": 21.500000000000004,
-        "temperature_c": 179.83403257767594
+        "temperature_c": 284.74690701242696
       },
       {
         "time_s": 22.000000000000004,
-        "temperature_c": 179.68051601867967
+        "temperature_c": 291.55951543042676
       },
       {
         "time_s": 22.500000000000004,
-        "temperature_c": 179.71830457718212
+        "temperature_c": 295.9276647992913
       },
       {
         "time_s": 23.000000000000004,
-        "temperature_c": 179.77581671962702
+        "temperature_c": 299.12649147623415
       },
       {
         "time_s": 23.500000000000004,
-        "temperature_c": 179.8892558733943
+        "temperature_c": 300.87946845701083
       },
       {
         "time_s": 24.000000000000004,
-        "temperature_c": 180.13285040695854
+        "temperature_c": 300.2840145813943
       },
       {
         "time_s": 24.500000000000004,
-        "temperature_c": 180.36428193291795
+        "temperature_c": 299.2913612082559
       },
       {
         "time_s": 25.000000000000004,
-        "temperature_c": 180.5841110493163
+        "temperature_c": 297.30802920011917
       },
       {
         "time_s": 25.500000000000004,
-        "temperature_c": 180.7928760657009
+        "temperature_c": 294.2524219877505
       },
       {
         "time_s": 26.000000000000004,
-        "temperature_c": 180.99109343826404
+        "temperature_c": 291.27937312319
       },
       {
         "time_s": 26.500000000000004,
-        "temperature_c": 181.17925823127746
+        "temperature_c": 287.785926267636
       },
       {
         "time_s": 27.000000000000004,
-        "temperature_c": 181.35784462422856
+        "temperature_c": 284.1815459140479
       },
       {
         "time_s": 27.500000000000004,
-        "temperature_c": 181.5273064689228
+        "temperature_c": 280.79792686777625
       },
       {
         "time_s": 28.000000000000004,
-        "temperature_c": 181.6880778891354
+        "temperature_c": 277.36431248782293
       },
       {
         "time_s": 28.500000000000004,
-        "temperature_c": 181.84057391193613
+        "temperature_c": 274.1235611571856
       },
       {
         "time_s": 29.000000000000004,
-        "temperature_c": 181.9851911162251
+        "temperature_c": 271.10891459702555
       },
       {
         "time_s": 29.500000000000004,
-        "temperature_c": 182.1223082879642
+        "temperature_c": 268.24444228427694
       },
       {
         "time_s": 30.000000000000004,
-        "temperature_c": 182.25228707667497
+        "temperature_c": 265.5985927172455
       },
       {
         "time_s": 30.500000000000004,
-        "temperature_c": 182.37547264869397
+        "temperature_c": 263.14594789241823
       },
       {
         "time_s": 31.000000000000004,
-        "temperature_c": 182.49219432078763
+        "temperature_c": 260.8633160996418
       },
       {
         "time_s": 31.500000000000004,
-        "temperature_c": 182.60276616797415
+        "temperature_c": 258.753735628355
       },
       {
         "time_s": 32.0,
-        "temperature_c": 182.70748765536027
+        "temperature_c": 256.79454172748734
       },
       {
         "time_s": 32.5,
-        "temperature_c": 182.80664429991128
+        "temperature_c": 254.96945007940366
       },
       {
         "time_s": 33.0,
-        "temperature_c": 182.9005083046575
+        "temperature_c": 253.26768560345604
       },
       {
         "time_s": 33.5,
-        "temperature_c": 182.989339147283
+        "temperature_c": 251.67417303061444
       },
       {
         "time_s": 34.0,
-        "temperature_c": 183.073384135287
+        "temperature_c": 250.17689397128055
       },
       {
         "time_s": 34.5,
-        "temperature_c": 183.15287893960578
+        "temperature_c": 248.76596349298975
       },
       {
         "time_s": 35.0,
-        "temperature_c": 183.22804811265246
+        "temperature_c": 247.4315466109012
       },
       {
         "time_s": 35.5,
-        "temperature_c": 183.29910559129394
+        "temperature_c": 246.16526974290196
       },
       {
         "time_s": 36.0,
-        "temperature_c": 183.36625518162532
+        "temperature_c": 244.96000552554386
       },
       {
         "time_s": 36.5,
-        "temperature_c": 183.42969101972432
+        "temperature_c": 243.8093057412018
       },
       {
         "time_s": 37.0,
-        "temperature_c": 183.48959800970914
+        "temperature_c": 242.7075852353242
       },
       {
         "time_s": 37.5,
-        "temperature_c": 183.54615226367758
+        "temperature_c": 241.65003241181773
       },
       {
         "time_s": 38.0,
-        "temperature_c": 183.59952154830802
+        "temperature_c": 240.63241423325718
       },
       {
         "time_s": 38.5,
-        "temperature_c": 183.64986571598584
+        "temperature_c": 239.6510544287293
       },
       {
         "time_s": 39.0,
-        "temperature_c": 183.69733711071257
+        "temperature_c": 238.70277209236278
       },
       {
         "time_s": 39.5,
-        "temperature_c": 183.74208095181217
+        "temperature_c": 237.7847858408428
       },
       {
         "time_s": 40.0,
-        "temperature_c": 183.78423570095407
+        "temperature_c": 236.89466615297124
       }
     ],
-    "fusion_line": [
+    "QT_SURROGATE_INTERFACE_REF": [
       {
         "time_s": 0.01,
-        "temperature_c": 150.0000000000548
+        "temperature_c": 150.0
       },
       {
         "time_s": 0.5,
-        "temperature_c": 149.9939253560099
+        "temperature_c": 149.999824949646
       },
       {
         "time_s": 1.0,
-        "temperature_c": 149.98621551207071
+        "temperature_c": 149.99586874259842
       },
       {
         "time_s": 1.5,
-        "temperature_c": 150.11817370409477
+        "temperature_c": 149.98374309456358
       },
       {
         "time_s": 2.0,
-        "temperature_c": 150.82840866777957
+        "temperature_c": 149.96323602906006
       },
       {
         "time_s": 2.5,
-        "temperature_c": 152.646953696598
+        "temperature_c": 149.93596234411808
       },
       {
         "time_s": 3.0,
-        "temperature_c": 158.22524627694474
+        "temperature_c": 149.9041156896855
       },
       {
         "time_s": 3.5,
-        "temperature_c": 169.2378365843115
+        "temperature_c": 149.87027745154893
       },
       {
         "time_s": 4.0,
-        "temperature_c": 192.13927939088632
+        "temperature_c": 149.8375525954868
       },
       {
         "time_s": 4.5,
-        "temperature_c": 240.6303827827623
+        "temperature_c": 149.8097241614717
       },
       {
         "time_s": 5.0,
-        "temperature_c": 314.9416742265097
+        "temperature_c": 149.79136382472586
       },
       {
         "time_s": 5.5,
-        "temperature_c": 416.32891954931665
+        "temperature_c": 149.78789404537656
       },
       {
         "time_s": 6.0,
-        "temperature_c": 583.7543937766941
+        "temperature_c": 149.80564734805364
       },
       {
         "time_s": 6.5,
-        "temperature_c": 703.5265927312975
+        "temperature_c": 149.85193670445307
       },
       {
         "time_s": 7.0,
-        "temperature_c": 673.5568930381435
+        "temperature_c": 149.93515255669837
       },
       {
         "time_s": 7.5,
-        "temperature_c": 622.6140570875317
+        "temperature_c": 150.0649650717966
       },
       {
         "time_s": 8.0,
-        "temperature_c": 551.8911044207786
+        "temperature_c": 150.25245502214602
       },
       {
         "time_s": 8.5,
-        "temperature_c": 460.4177899034347
+        "temperature_c": 150.5106248221989
       },
       {
         "time_s": 9.0,
-        "temperature_c": 390.7008346512356
+        "temperature_c": 150.85449443541654
       },
       {
         "time_s": 9.5,
-        "temperature_c": 341.99051016686985
+        "temperature_c": 151.30216782185894
       },
       {
         "time_s": 10.0,
-        "temperature_c": 304.7885550609383
+        "temperature_c": 151.8750066336495
       },
       {
         "time_s": 10.5,
-        "temperature_c": 278.64916313728247
+        "temperature_c": 152.5991645577674
       },
       {
         "time_s": 11.0,
-        "temperature_c": 261.5572376188727
+        "temperature_c": 153.5074038220646
       },
       {
         "time_s": 11.5,
-        "temperature_c": 247.92838315741906
+        "temperature_c": 154.6379823153908
       },
       {
         "time_s": 12.0,
-        "temperature_c": 237.80722219347746
+        "temperature_c": 156.0455431390639
       },
       {
         "time_s": 12.5,
-        "temperature_c": 229.66841060265932
+        "temperature_c": 157.7864927230263
       },
       {
         "time_s": 13.0,
-        "temperature_c": 222.64843807285484
+        "temperature_c": 159.95713332594332
       },
       {
         "time_s": 13.5,
-        "temperature_c": 217.1345039163059
+        "temperature_c": 162.64629388126502
       },
       {
         "time_s": 14.0,
-        "temperature_c": 212.18969120877154
+        "temperature_c": 166.00674907638125
       },
       {
         "time_s": 14.5,
-        "temperature_c": 207.9551131719322
+        "temperature_c": 170.22739822970726
       },
       {
         "time_s": 15.0,
-        "temperature_c": 204.35041851860228
+        "temperature_c": 175.45892737162075
       },
       {
         "time_s": 15.5,
-        "temperature_c": 201.04795111284022
+        "temperature_c": 182.1625529411783
       },
       {
         "time_s": 16.0,
-        "temperature_c": 198.34231427503818
+        "temperature_c": 190.24308750752965
       },
       {
         "time_s": 16.500000000000004,
-        "temperature_c": 195.88887212559945
+        "temperature_c": 200.53715255649144
       },
       {
         "time_s": 17.000000000000004,
-        "temperature_c": 193.70675477926665
+        "temperature_c": 212.80357013231958
       },
       {
         "time_s": 17.500000000000004,
-        "temperature_c": 191.9187464241424
+        "temperature_c": 227.60267338660083
       },
       {
         "time_s": 18.000000000000004,
-        "temperature_c": 190.25039951936876
+        "temperature_c": 244.8664920314324
       },
       {
         "time_s": 18.500000000000004,
-        "temperature_c": 188.90232569956262
+        "temperature_c": 264.37102928678075
       },
       {
         "time_s": 19.000000000000004,
-        "temperature_c": 187.7373351901261
+        "temperature_c": 285.701058619509
       },
       {
         "time_s": 19.500000000000004,
-        "temperature_c": 186.66854682508273
+        "temperature_c": 308.6964811179285
       },
       {
         "time_s": 20.000000000000004,
-        "temperature_c": 185.93056085679825
+        "temperature_c": 335.4585424663813
       },
       {
         "time_s": 20.500000000000004,
-        "temperature_c": 185.23574762786217
+        "temperature_c": 354.33008488173255
       },
       {
         "time_s": 21.000000000000004,
-        "temperature_c": 184.71645267827924
+        "temperature_c": 373.94338893835993
       },
       {
         "time_s": 21.500000000000004,
-        "temperature_c": 184.36491751711816
+        "temperature_c": 388.2551203537868
       },
       {
         "time_s": 22.000000000000004,
-        "temperature_c": 184.032124154718
+        "temperature_c": 395.7582349748942
       },
       {
         "time_s": 22.500000000000004,
-        "temperature_c": 183.94795898978902
+        "temperature_c": 395.2480809157872
       },
       {
         "time_s": 23.000000000000004,
-        "temperature_c": 183.89398387846433
+        "temperature_c": 394.89213692942866
       },
       {
         "time_s": 23.500000000000004,
-        "temperature_c": 183.91457865492308
+        "temperature_c": 389.1545290959754
       },
       {
         "time_s": 24.000000000000004,
-        "temperature_c": 184.10083080522452
+        "temperature_c": 379.83567542553504
       },
       {
         "time_s": 24.500000000000004,
-        "temperature_c": 184.27476183415942
+        "temperature_c": 371.98469814417723
       },
       {
         "time_s": 25.000000000000004,
-        "temperature_c": 184.43700837001654
+        "temperature_c": 360.64332791347215
       },
       {
         "time_s": 25.500000000000004,
-        "temperature_c": 184.58817700532663
+        "temperature_c": 349.89271270459983
       },
       {
         "time_s": 26.000000000000004,
-        "temperature_c": 184.72884544632666
+        "temperature_c": 340.2695144014384
       },
       {
         "time_s": 26.500000000000004,
-        "temperature_c": 184.8595636253824
+        "temperature_c": 329.9847190462484
       },
       {
         "time_s": 27.000000000000004,
-        "temperature_c": 184.98085483941423
+        "temperature_c": 321.1090821091092
       },
       {
         "time_s": 27.500000000000004,
-        "temperature_c": 185.09321690108763
+        "temperature_c": 313.0469654269149
       },
       {
         "time_s": 28.000000000000004,
-        "temperature_c": 185.19712328159744
+        "temperature_c": 305.60426328470794
       },
       {
         "time_s": 28.500000000000004,
-        "temperature_c": 185.2930242306246
+        "temperature_c": 299.17620151589404
       },
       {
         "time_s": 29.000000000000004,
-        "temperature_c": 185.38134786394448
+        "temperature_c": 293.38262332118086
       },
       {
         "time_s": 29.500000000000004,
-        "temperature_c": 185.46250121208897
+        "temperature_c": 288.24793199356327
       },
       {
         "time_s": 30.000000000000004,
-        "temperature_c": 185.53687122385475
+        "temperature_c": 283.7298596817906
       },
       {
         "time_s": 30.500000000000004,
-        "temperature_c": 185.60482570158783
+        "temperature_c": 279.6832864938119
       },
       {
         "time_s": 31.000000000000004,
-        "temperature_c": 185.66671412564156
+        "temperature_c": 276.06883595047884
       },
       {
         "time_s": 31.500000000000004,
-        "temperature_c": 185.72286851709583
+        "temperature_c": 272.8237848823769
       },
       {
         "time_s": 32.0,
-        "temperature_c": 185.77360445483436
+        "temperature_c": 269.8852353588762
       },
       {
         "time_s": 32.5,
-        "temperature_c": 185.81922199084408
+        "temperature_c": 267.2123110764272
       },
       {
         "time_s": 33.0,
-        "temperature_c": 185.86000641411835
+        "temperature_c": 264.7658250222943
       },
       {
         "time_s": 33.5,
-        "temperature_c": 185.89622894191922
+        "temperature_c": 262.51277524230386
       },
       {
         "time_s": 34.0,
-        "temperature_c": 185.92814737874463
+        "temperature_c": 260.4270531230913
       },
       {
         "time_s": 34.5,
-        "temperature_c": 185.95600675307622
+        "temperature_c": 258.4862903994275
       },
       {
         "time_s": 35.0,
-        "temperature_c": 185.9800399325756
+        "temperature_c": 256.6716547198813
       },
       {
         "time_s": 35.5,
-        "temperature_c": 186.00046821554568
+        "temperature_c": 254.96752127477126
       },
       {
         "time_s": 36.0,
-        "temperature_c": 186.0175018863596
+        "temperature_c": 253.36067781360936
       },
       {
         "time_s": 36.5,
-        "temperature_c": 186.0313407132023
+        "temperature_c": 251.83990161654378
       },
       {
         "time_s": 37.0,
-        "temperature_c": 186.04217445043952
+        "temperature_c": 250.3956724800177
       },
       {
         "time_s": 37.5,
-        "temperature_c": 186.05018339975123
+        "temperature_c": 249.01986787920646
       },
       {
         "time_s": 38.0,
-        "temperature_c": 186.0555389446523
+        "temperature_c": 247.70552355573903
       },
       {
         "time_s": 38.5,
-        "temperature_c": 186.05840402232067
+        "temperature_c": 246.44665435565616
       },
       {
         "time_s": 39.0,
-        "temperature_c": 186.05893355228704
+        "temperature_c": 245.2381042263622
       },
       {
         "time_s": 39.5,
-        "temperature_c": 186.05727484079654
+        "temperature_c": 244.07540941802617
       },
       {
         "time_s": 40.0,
-        "temperature_c": 186.05356796963852
+        "temperature_c": 242.95468720651832
       }
     ],
-    "weld_center": [
+    "WELD_CENTER": [
       {
         "time_s": 0.01,
-        "temperature_c": 150.0000000000352
+        "temperature_c": 150.0
       },
       {
         "time_s": 0.5,
-        "temperature_c": 149.98258905268685
+        "temperature_c": 149.99342618455162
       },
       {
         "time_s": 1.0,
-        "temperature_c": 149.96141510515005
+        "temperature_c": 149.96846686446182
       },
       {
         "time_s": 1.5,
-        "temperature_c": 150.09903482448433
+        "temperature_c": 149.93518054475032
       },
       {
         "time_s": 2.0,
-        "temperature_c": 150.85981106430668
+        "temperature_c": 149.8966759931987
       },
       {
         "time_s": 2.5,
-        "temperature_c": 152.78288175988075
+        "temperature_c": 149.85433420052942
       },
       {
         "time_s": 3.0,
-        "temperature_c": 158.36391728640956
+        "temperature_c": 149.80982738653358
       },
       {
         "time_s": 3.5,
-        "temperature_c": 169.03859485961868
+        "temperature_c": 149.76545063975078
       },
       {
         "time_s": 4.0,
-        "temperature_c": 190.17845979799705
+        "temperature_c": 149.72430124611947
       },
       {
         "time_s": 4.5,
-        "temperature_c": 233.32519142903917
+        "temperature_c": 149.69040048662342
       },
       {
         "time_s": 5.0,
-        "temperature_c": 297.9766325128957
+        "temperature_c": 149.6687707553349
       },
       {
         "time_s": 5.5,
-        "temperature_c": 385.76397964720394
+        "temperature_c": 149.66548286817505
       },
       {
         "time_s": 6.0,
-        "temperature_c": 525.4559130515119
+        "temperature_c": 149.6877065460777
       },
       {
         "time_s": 6.5,
-        "temperature_c": 628.1286336408574
+        "temperature_c": 149.74381347606095
       },
       {
         "time_s": 7.0,
-        "temperature_c": 611.9319447196106
+        "temperature_c": 149.8434892817129
       },
       {
         "time_s": 7.5,
-        "temperature_c": 574.4688426597845
+        "temperature_c": 149.9980202667881
       },
       {
         "time_s": 8.0,
-        "temperature_c": 518.5298746453195
+        "temperature_c": 150.22049611698577
       },
       {
         "time_s": 8.5,
-        "temperature_c": 443.6170006140769
+        "temperature_c": 150.52641867790447
       },
       {
         "time_s": 9.0,
-        "temperature_c": 384.1591686637035
+        "temperature_c": 150.93407956260992
       },
       {
         "time_s": 9.5,
-        "temperature_c": 341.1981793161738
+        "temperature_c": 151.46569681401857
       },
       {
         "time_s": 10.0,
-        "temperature_c": 307.27316692000727
+        "temperature_c": 152.14826733496153
       },
       {
         "time_s": 10.5,
-        "temperature_c": 282.5893193201929
+        "temperature_c": 153.01565721779016
       },
       {
         "time_s": 11.0,
-        "temperature_c": 265.7653442764818
+        "temperature_c": 154.11107685670964
       },
       {
         "time_s": 11.5,
-        "temperature_c": 252.05363415052392
+        "temperature_c": 155.48951159829275
       },
       {
         "time_s": 12.0,
-        "temperature_c": 241.63902943260234
+        "temperature_c": 157.22884015028598
       },
       {
         "time_s": 12.5,
-        "temperature_c": 233.1517379595001
+        "temperature_c": 159.4241257566162
       },
       {
         "time_s": 13.0,
-        "temperature_c": 225.7828148112668
+        "temperature_c": 162.24408856511053
       },
       {
         "time_s": 13.5,
-        "temperature_c": 219.95750778718877
+        "temperature_c": 165.85442078741352
       },
       {
         "time_s": 14.0,
-        "temperature_c": 214.72398684519473
+        "temperature_c": 170.65608412396793
       },
       {
         "time_s": 14.5,
-        "temperature_c": 210.2360436883299
+        "temperature_c": 176.99114405006324
       },
       {
         "time_s": 15.0,
-        "temperature_c": 206.41311115343336
+        "temperature_c": 185.6329542894964
       },
       {
         "time_s": 15.5,
-        "temperature_c": 202.91126314389962
+        "temperature_c": 197.84401003736448
       },
       {
         "time_s": 16.0,
-        "temperature_c": 200.04142406596077
+        "temperature_c": 213.36508091448877
       },
       {
         "time_s": 16.500000000000004,
-        "temperature_c": 197.4402721398577
+        "temperature_c": 236.08408312722858
       },
       {
         "time_s": 17.000000000000004,
-        "temperature_c": 195.1272649027396
+        "temperature_c": 263.06963332038157
       },
       {
         "time_s": 17.500000000000004,
-        "temperature_c": 193.23046459148588
+        "temperature_c": 299.7899487797285
       },
       {
         "time_s": 18.000000000000004,
-        "temperature_c": 191.4618702070128
+        "temperature_c": 345.21475263795423
       },
       {
         "time_s": 18.500000000000004,
-        "temperature_c": 190.03008361157254
+        "temperature_c": 393.67436795765616
       },
       {
         "time_s": 19.000000000000004,
-        "temperature_c": 188.7915630082505
+        "temperature_c": 447.74802124277517
       },
       {
         "time_s": 19.500000000000004,
-        "temperature_c": 187.6554275499049
+        "temperature_c": 534.4159176131407
       },
       {
         "time_s": 20.000000000000004,
-        "temperature_c": 186.86455751547453
+        "temperature_c": 603.970729952186
       },
       {
         "time_s": 20.500000000000004,
-        "temperature_c": 186.1202778658528
+        "temperature_c": 643.3840686329142
       },
       {
         "time_s": 21.000000000000004,
-        "temperature_c": 185.55919459916925
+        "temperature_c": 707.7540962964447
       },
       {
         "time_s": 21.500000000000004,
-        "temperature_c": 185.17290986164926
+        "temperature_c": 729.6669825450844
       },
       {
         "time_s": 22.000000000000004,
-        "temperature_c": 184.80724739715217
+        "temperature_c": 720.1915515957403
       },
       {
         "time_s": 22.500000000000004,
-        "temperature_c": 184.69904470585732
+        "temperature_c": 691.9561747290111
       },
       {
         "time_s": 23.000000000000004,
-        "temperature_c": 184.6228448794406
+        "temperature_c": 673.1226321824711
       },
       {
         "time_s": 23.500000000000004,
-        "temperature_c": 184.62421598978358
+        "temperature_c": 624.4699566225795
       },
       {
         "time_s": 24.000000000000004,
-        "temperature_c": 184.79670902352385
+        "temperature_c": 585.946853482949
       },
       {
         "time_s": 24.500000000000004,
-        "temperature_c": 184.95705770474888
+        "temperature_c": 553.8590128021583
       },
       {
         "time_s": 25.000000000000004,
-        "temperature_c": 185.10590237898552
+        "temperature_c": 505.83959936020483
       },
       {
         "time_s": 25.500000000000004,
-        "temperature_c": 185.24385234475636
+        "temperature_c": 473.0862267969477
       },
       {
         "time_s": 26.000000000000004,
-        "temperature_c": 185.37148708700968
+        "temperature_c": 441.3495684016868
       },
       {
         "time_s": 26.500000000000004,
-        "temperature_c": 185.48935750899278
+        "temperature_c": 413.2990577040442
       },
       {
         "time_s": 27.000000000000004,
-        "temperature_c": 185.59798719403494
+        "temperature_c": 391.67161434098773
       },
       {
         "time_s": 27.500000000000004,
-        "temperature_c": 185.69787366862667
+        "temperature_c": 371.443185236852
       },
       {
         "time_s": 28.000000000000004,
-        "temperature_c": 185.78948964250264
+        "temperature_c": 355.5471799022675
       },
       {
         "time_s": 28.500000000000004,
-        "temperature_c": 185.87328421189267
+        "temperature_c": 342.5257008068352
       },
       {
         "time_s": 29.000000000000004,
-        "temperature_c": 185.94968401840066
+        "temperature_c": 331.23952331968576
       },
       {
         "time_s": 29.500000000000004,
-        "temperature_c": 186.0190943587681
+        "temperature_c": 322.0709230826908
       },
       {
         "time_s": 30.000000000000004,
-        "temperature_c": 186.08190023805827
+        "temperature_c": 314.2375843822444
       },
       {
         "time_s": 30.500000000000004,
-        "temperature_c": 186.13846733050377
+        "temperature_c": 307.5374470563577
       },
       {
         "time_s": 31.000000000000004,
-        "temperature_c": 186.18914280677694
+        "temperature_c": 301.76833162527987
       },
       {
         "time_s": 31.500000000000004,
-        "temperature_c": 186.23425628645435
+        "temperature_c": 296.67602619336225
       },
       {
         "time_s": 32.0,
-        "temperature_c": 186.27412094784938
+        "temperature_c": 292.17056460218794
       },
       {
         "time_s": 32.5,
-        "temperature_c": 186.30903444416745
+        "temperature_c": 288.1332505761668
       },
       {
         "time_s": 33.0,
-        "temperature_c": 186.33927965488434
+        "temperature_c": 284.4772604755482
       },
       {
         "time_s": 33.5,
-        "temperature_c": 186.36512537795124
+        "temperature_c": 281.1432686524365
       },
       {
         "time_s": 34.0,
-        "temperature_c": 186.38682699754577
+        "temperature_c": 278.0804101120017
       },
       {
         "time_s": 34.5,
-        "temperature_c": 186.4046271314391
+        "temperature_c": 275.2492490916467
       },
       {
         "time_s": 35.0,
-        "temperature_c": 186.41875625585402
+        "temperature_c": 272.6186788676788
       },
       {
         "time_s": 35.5,
-        "temperature_c": 186.4294333038009
+        "temperature_c": 270.16278314889996
       },
       {
         "time_s": 36.0,
-        "temperature_c": 186.4368662181174
+        "temperature_c": 267.8603166077102
       },
       {
         "time_s": 36.5,
-        "temperature_c": 186.44125243896707
+        "temperature_c": 265.6936708252413
       },
       {
         "time_s": 37.0,
-        "temperature_c": 186.44277943076455
+        "temperature_c": 263.6478783502067
       },
       {
         "time_s": 37.5,
-        "temperature_c": 186.44162527380794
+        "temperature_c": 261.71024887913137
       },
       {
         "time_s": 38.0,
-        "temperature_c": 186.43795919865335
+        "temperature_c": 259.86995607946835
       },
       {
         "time_s": 38.5,
-        "temperature_c": 186.43194204772783
+        "temperature_c": 258.11764454654735
       },
       {
         "time_s": 39.0,
-        "temperature_c": 186.42372669652525
+        "temperature_c": 256.4452311305412
       },
       {
         "time_s": 39.5,
-        "temperature_c": 186.4134584541413
+        "temperature_c": 254.84569422661912
       },
       {
         "time_s": 40.0,
-        "temperature_c": 186.40127545033215
+        "temperature_c": 253.31288245749528
+      }
+    ],
+    "Q235B_SURROGATE_INTERFACE_REF": [
+      {
+        "time_s": 0.01,
+        "temperature_c": 150.0
+      },
+      {
+        "time_s": 0.5,
+        "temperature_c": 149.92451591624805
+      },
+      {
+        "time_s": 1.0,
+        "temperature_c": 149.85426716501587
+      },
+      {
+        "time_s": 1.5,
+        "temperature_c": 149.79176572075485
+      },
+      {
+        "time_s": 2.0,
+        "temperature_c": 149.73210886413204
+      },
+      {
+        "time_s": 2.5,
+        "temperature_c": 149.67402899813737
+      },
+      {
+        "time_s": 3.0,
+        "temperature_c": 149.61828743477662
+      },
+      {
+        "time_s": 3.5,
+        "temperature_c": 149.56714806416144
+      },
+      {
+        "time_s": 4.0,
+        "temperature_c": 149.52420739411522
+      },
+      {
+        "time_s": 4.5,
+        "temperature_c": 149.49430908343112
+      },
+      {
+        "time_s": 5.0,
+        "temperature_c": 149.48352628865382
+      },
+      {
+        "time_s": 5.5,
+        "temperature_c": 149.49913408585815
+      },
+      {
+        "time_s": 6.0,
+        "temperature_c": 149.54969480514276
+      },
+      {
+        "time_s": 6.5,
+        "temperature_c": 149.64513673282067
+      },
+      {
+        "time_s": 7.0,
+        "temperature_c": 149.79694111325037
+      },
+      {
+        "time_s": 7.5,
+        "temperature_c": 150.01848736663447
+      },
+      {
+        "time_s": 8.0,
+        "temperature_c": 150.3251505147703
+      },
+      {
+        "time_s": 8.5,
+        "temperature_c": 150.73530191054846
+      },
+      {
+        "time_s": 9.0,
+        "temperature_c": 151.2699998040099
+      },
+      {
+        "time_s": 9.5,
+        "temperature_c": 151.9550206474251
+      },
+      {
+        "time_s": 10.0,
+        "temperature_c": 152.8204294535626
+      },
+      {
+        "time_s": 10.5,
+        "temperature_c": 153.90277970268838
+      },
+      {
+        "time_s": 11.0,
+        "temperature_c": 155.24777674924016
+      },
+      {
+        "time_s": 11.5,
+        "temperature_c": 156.9062587232811
+      },
+      {
+        "time_s": 12.0,
+        "temperature_c": 158.95150075572982
+      },
+      {
+        "time_s": 12.5,
+        "temperature_c": 161.45391952296427
+      },
+      {
+        "time_s": 13.0,
+        "temperature_c": 164.53244755121085
+      },
+      {
+        "time_s": 13.5,
+        "temperature_c": 168.29169638546506
+      },
+      {
+        "time_s": 14.0,
+        "temperature_c": 172.90001381145956
+      },
+      {
+        "time_s": 14.5,
+        "temperature_c": 178.56268216342806
+      },
+      {
+        "time_s": 15.0,
+        "temperature_c": 185.42386682821444
+      },
+      {
+        "time_s": 15.5,
+        "temperature_c": 193.9470853968594
+      },
+      {
+        "time_s": 16.0,
+        "temperature_c": 204.03350490651502
+      },
+      {
+        "time_s": 16.500000000000004,
+        "temperature_c": 216.4685728454753
+      },
+      {
+        "time_s": 17.000000000000004,
+        "temperature_c": 231.0226951761598
+      },
+      {
+        "time_s": 17.500000000000004,
+        "temperature_c": 248.2146299407691
+      },
+      {
+        "time_s": 18.000000000000004,
+        "temperature_c": 267.9280899723732
+      },
+      {
+        "time_s": 18.500000000000004,
+        "temperature_c": 289.9799471316567
+      },
+      {
+        "time_s": 19.000000000000004,
+        "temperature_c": 314.0243150894098
+      },
+      {
+        "time_s": 19.500000000000004,
+        "temperature_c": 339.35067571384275
+      },
+      {
+        "time_s": 20.000000000000004,
+        "temperature_c": 368.3714522402221
+      },
+      {
+        "time_s": 20.500000000000004,
+        "temperature_c": 390.589871741623
+      },
+      {
+        "time_s": 21.000000000000004,
+        "temperature_c": 412.7754735561193
+      },
+      {
+        "time_s": 21.500000000000004,
+        "temperature_c": 430.2832745750542
+      },
+      {
+        "time_s": 22.000000000000004,
+        "temperature_c": 441.2382835040063
+      },
+      {
+        "time_s": 22.500000000000004,
+        "temperature_c": 444.23715996563453
+      },
+      {
+        "time_s": 23.000000000000004,
+        "temperature_c": 446.31921323486085
+      },
+      {
+        "time_s": 23.500000000000004,
+        "temperature_c": 443.0049490997094
+      },
+      {
+        "time_s": 24.000000000000004,
+        "temperature_c": 435.2088817591417
+      },
+      {
+        "time_s": 24.500000000000004,
+        "temperature_c": 427.93638817328065
+      },
+      {
+        "time_s": 25.000000000000004,
+        "temperature_c": 417.11371203462846
+      },
+      {
+        "time_s": 25.500000000000004,
+        "temperature_c": 405.92252619800036
+      },
+      {
+        "time_s": 26.000000000000004,
+        "temperature_c": 395.42015464808594
+      },
+      {
+        "time_s": 26.500000000000004,
+        "temperature_c": 384.0161746169391
+      },
+      {
+        "time_s": 27.000000000000004,
+        "temperature_c": 373.52565508251047
+      },
+      {
+        "time_s": 27.500000000000004,
+        "temperature_c": 363.7147446966711
+      },
+      {
+        "time_s": 28.000000000000004,
+        "temperature_c": 354.360561714241
+      },
+      {
+        "time_s": 28.500000000000004,
+        "temperature_c": 345.87699502144005
+      },
+      {
+        "time_s": 29.000000000000004,
+        "temperature_c": 338.03679727415033
+      },
+      {
+        "time_s": 29.500000000000004,
+        "temperature_c": 330.84046038491306
+      },
+      {
+        "time_s": 30.000000000000004,
+        "temperature_c": 324.28930391422944
+      },
+      {
+        "time_s": 30.500000000000004,
+        "temperature_c": 318.2815360353004
+      },
+      {
+        "time_s": 31.000000000000004,
+        "temperature_c": 312.7741323389147
+      },
+      {
+        "time_s": 31.500000000000004,
+        "temperature_c": 307.722839133186
+      },
+      {
+        "time_s": 32.0,
+        "temperature_c": 303.072585774978
+      },
+      {
+        "time_s": 32.5,
+        "temperature_c": 298.77935633892093
+      },
+      {
+        "time_s": 33.0,
+        "temperature_c": 294.8060455457742
+      },
+      {
+        "time_s": 33.5,
+        "temperature_c": 291.11711117405184
+      },
+      {
+        "time_s": 34.0,
+        "temperature_c": 287.68168147778533
+      },
+      {
+        "time_s": 34.5,
+        "temperature_c": 284.47396508023627
+      },
+      {
+        "time_s": 35.0,
+        "temperature_c": 281.4702889022135
+      },
+      {
+        "time_s": 35.5,
+        "temperature_c": 278.64985357912343
+      },
+      {
+        "time_s": 36.0,
+        "temperature_c": 275.99483445689896
+      },
+      {
+        "time_s": 36.5,
+        "temperature_c": 273.4892290391758
+      },
+      {
+        "time_s": 37.0,
+        "temperature_c": 271.1189156303364
+      },
+      {
+        "time_s": 37.5,
+        "temperature_c": 268.8715638775367
+      },
+      {
+        "time_s": 38.0,
+        "temperature_c": 266.73619421747134
+      },
+      {
+        "time_s": 38.5,
+        "temperature_c": 264.7030933602058
+      },
+      {
+        "time_s": 39.0,
+        "temperature_c": 262.7636994355148
+      },
+      {
+        "time_s": 39.5,
+        "temperature_c": 260.9103839940136
+      },
+      {
+        "time_s": 40.0,
+        "temperature_c": 259.1363512669452
       }
     ],
     "Q235B_HAZ": [
@@ -1032,323 +1394,323 @@
       },
       {
         "time_s": 0.5,
-        "temperature_c": 149.859224725184
+        "temperature_c": 149.85867680595712
       },
       {
         "time_s": 1.0,
-        "temperature_c": 149.8131031587314
+        "temperature_c": 149.7811644060684
       },
       {
         "time_s": 1.5,
-        "temperature_c": 150.01340046631637
+        "temperature_c": 149.71463760758598
       },
       {
         "time_s": 2.0,
-        "temperature_c": 150.98322023736145
+        "temperature_c": 149.65218744381627
       },
       {
         "time_s": 2.5,
-        "temperature_c": 153.21253293428396
+        "temperature_c": 149.59212585289504
       },
       {
         "time_s": 3.0,
-        "temperature_c": 158.3591720952171
+        "temperature_c": 149.53512944630123
       },
       {
         "time_s": 3.5,
-        "temperature_c": 166.89395235145844
+        "temperature_c": 149.4835178701022
       },
       {
         "time_s": 4.0,
-        "temperature_c": 180.13748082573315
+        "temperature_c": 149.4410190101203
       },
       {
         "time_s": 4.5,
-        "temperature_c": 201.14243456267576
+        "temperature_c": 149.41265008118825
       },
       {
         "time_s": 5.0,
-        "temperature_c": 228.01041266057572
+        "temperature_c": 149.40468702727316
       },
       {
         "time_s": 5.5,
-        "temperature_c": 261.477378950961
+        "temperature_c": 149.4246243057984
       },
       {
         "time_s": 6.0,
-        "temperature_c": 299.3998265511302
+        "temperature_c": 149.48127366249776
       },
       {
         "time_s": 6.5,
-        "temperature_c": 335.5027436034044
+        "temperature_c": 149.58483015808588
       },
       {
         "time_s": 7.0,
-        "temperature_c": 355.193028207441
+        "temperature_c": 149.74708656071172
       },
       {
         "time_s": 7.5,
-        "temperature_c": 364.2672924040019
+        "temperature_c": 149.98177096786645
       },
       {
         "time_s": 8.0,
-        "temperature_c": 361.85890560339897
+        "temperature_c": 150.30463242887453
       },
       {
         "time_s": 8.5,
-        "temperature_c": 349.54486084672095
+        "temperature_c": 150.73451892134796
       },
       {
         "time_s": 9.0,
-        "temperature_c": 332.86723073406097
+        "temperature_c": 151.29287337540518
       },
       {
         "time_s": 9.5,
-        "temperature_c": 315.05620350026226
+        "temperature_c": 152.00604101319507
       },
       {
         "time_s": 10.0,
-        "temperature_c": 297.75712726553365
+        "temperature_c": 152.9043711122872
       },
       {
         "time_s": 10.5,
-        "temperature_c": 281.84914246195723
+        "temperature_c": 154.02463890753566
       },
       {
         "time_s": 11.0,
-        "temperature_c": 268.4470588892648
+        "temperature_c": 155.41254413676938
       },
       {
         "time_s": 11.5,
-        "temperature_c": 256.4706455142005
+        "temperature_c": 157.11729377298266
       },
       {
         "time_s": 12.0,
-        "temperature_c": 246.48968489235386
+        "temperature_c": 159.21045098043314
       },
       {
         "time_s": 12.5,
-        "temperature_c": 237.93605995710493
+        "temperature_c": 161.75653113629198
       },
       {
         "time_s": 13.0,
-        "temperature_c": 230.3261623881759
+        "temperature_c": 164.86315748054025
       },
       {
         "time_s": 13.5,
-        "temperature_c": 224.16337745949568
+        "temperature_c": 168.62518154566618
       },
       {
         "time_s": 14.0,
-        "temperature_c": 218.58444436889158
+        "temperature_c": 173.17036421532907
       },
       {
         "time_s": 14.5,
-        "temperature_c": 213.76965361036957
+        "temperature_c": 178.6760449144765
       },
       {
         "time_s": 15.0,
-        "temperature_c": 209.65051575642093
+        "temperature_c": 185.21551334853223
       },
       {
         "time_s": 15.5,
-        "temperature_c": 205.8713581148069
+        "temperature_c": 193.10995508195717
       },
       {
         "time_s": 16.0,
-        "temperature_c": 202.76710893670662
+        "temperature_c": 202.32926302949102
       },
       {
         "time_s": 16.500000000000004,
-        "temperature_c": 199.95199718213382
+        "temperature_c": 213.2616635187449
       },
       {
         "time_s": 17.000000000000004,
-        "temperature_c": 197.44670772457167
+        "temperature_c": 225.8460735000883
       },
       {
         "time_s": 17.500000000000004,
-        "temperature_c": 195.38703657804615
+        "temperature_c": 240.26024156300957
       },
       {
         "time_s": 18.000000000000004,
-        "temperature_c": 193.46716613218734
+        "temperature_c": 256.40794459975257
       },
       {
         "time_s": 18.500000000000004,
-        "temperature_c": 191.9066099504381
+        "temperature_c": 274.0367966460559
       },
       {
         "time_s": 19.000000000000004,
-        "temperature_c": 190.55348141749073
+        "temperature_c": 293.4241464331757
       },
       {
         "time_s": 19.500000000000004,
-        "temperature_c": 189.31157770858653
+        "temperature_c": 312.391922249225
       },
       {
         "time_s": 20.000000000000004,
-        "temperature_c": 188.43502756448822
+        "temperature_c": 333.84541435806204
       },
       {
         "time_s": 20.500000000000004,
-        "temperature_c": 187.61019842187147
+        "temperature_c": 352.5942210019757
       },
       {
         "time_s": 21.000000000000004,
-        "temperature_c": 186.97940005637807
+        "temperature_c": 369.4628474643531
       },
       {
         "time_s": 21.500000000000004,
-        "temperature_c": 186.53334780610373
+        "temperature_c": 384.8917759514361
       },
       {
         "time_s": 22.000000000000004,
-        "temperature_c": 186.11092489455046
+        "temperature_c": 396.41078300808556
       },
       {
         "time_s": 22.500000000000004,
-        "temperature_c": 185.95814883763498
+        "temperature_c": 403.39834983494274
       },
       {
         "time_s": 23.000000000000004,
-        "temperature_c": 185.8402270351999
+        "temperature_c": 408.0960016210837
       },
       {
         "time_s": 23.500000000000004,
-        "temperature_c": 185.80425666924012
+        "temperature_c": 410.0121860820219
       },
       {
         "time_s": 24.000000000000004,
-        "temperature_c": 185.9469841034475
+        "temperature_c": 407.5033625742834
       },
       {
         "time_s": 24.500000000000004,
-        "temperature_c": 186.0781817104836
+        "temperature_c": 404.11527826548934
       },
       {
         "time_s": 25.000000000000004,
-        "temperature_c": 186.19848135377927
+        "temperature_c": 398.828656792101
       },
       {
         "time_s": 25.500000000000004,
-        "temperature_c": 186.3084826813398
+        "temperature_c": 391.51169749933655
       },
       {
         "time_s": 26.000000000000004,
-        "temperature_c": 186.40875448430603
+        "temperature_c": 384.29522952539395
       },
       {
         "time_s": 26.500000000000004,
-        "temperature_c": 186.49983616154645
+        "temperature_c": 376.13201583316237
       },
       {
         "time_s": 27.000000000000004,
-        "temperature_c": 186.58223920466736
+        "temperature_c": 367.7869517904212
       },
       {
         "time_s": 27.500000000000004,
-        "temperature_c": 186.65644864902993
+        "temperature_c": 359.8766964426201
       },
       {
         "time_s": 28.000000000000004,
-        "temperature_c": 186.72292446757518
+        "temperature_c": 351.9407312596626
       },
       {
         "time_s": 28.500000000000004,
-        "temperature_c": 186.78210289896242
+        "temperature_c": 344.4248415483607
       },
       {
         "time_s": 29.000000000000004,
-        "temperature_c": 186.8343977079765
+        "temperature_c": 337.394422711014
       },
       {
         "time_s": 29.500000000000004,
-        "temperature_c": 186.880201377262
+        "temperature_c": 330.72491719104187
       },
       {
         "time_s": 30.000000000000004,
-        "temperature_c": 186.91988621294465
+        "temperature_c": 324.53870597982
       },
       {
         "time_s": 30.500000000000004,
-        "temperature_c": 186.95380527808868
+        "temperature_c": 318.79044553800736
       },
       {
         "time_s": 31.000000000000004,
-        "temperature_c": 186.98229320747012
+        "temperature_c": 313.4395969525797
       },
       {
         "time_s": 31.500000000000004,
-        "temperature_c": 187.00566748060174
+        "temperature_c": 308.4887021760905
       },
       {
         "time_s": 32.0,
-        "temperature_c": 187.02422962890725
+        "temperature_c": 303.894523812609
       },
       {
         "time_s": 32.5,
-        "temperature_c": 187.0382660354972
+        "temperature_c": 299.6246288694395
       },
       {
         "time_s": 33.0,
-        "temperature_c": 187.04804862458565
+        "temperature_c": 295.65571955622573
       },
       {
         "time_s": 33.5,
-        "temperature_c": 187.05383554349808
+        "temperature_c": 291.95676636371167
       },
       {
         "time_s": 34.0,
-        "temperature_c": 187.05587183718538
+        "temperature_c": 288.50199053254823
       },
       {
         "time_s": 34.5,
-        "temperature_c": 187.05439010394147
+        "temperature_c": 285.26952627363437
       },
       {
         "time_s": 35.0,
-        "temperature_c": 187.04961112527857
+        "temperature_c": 282.23755719792126
       },
       {
         "time_s": 35.5,
-        "temperature_c": 187.04174445950468
+        "temperature_c": 279.3869536025321
       },
       {
         "time_s": 36.0,
-        "temperature_c": 187.0309889550616
+        "temperature_c": 276.7010404538589
       },
       {
         "time_s": 36.5,
-        "temperature_c": 187.01753321018057
+        "temperature_c": 274.16445601715395
       },
       {
         "time_s": 37.0,
-        "temperature_c": 187.00155620056196
+        "temperature_c": 271.7635754403249
       },
       {
         "time_s": 37.5,
-        "temperature_c": 186.9832279100709
+        "temperature_c": 269.4863924542263
       },
       {
         "time_s": 38.0,
-        "temperature_c": 186.96270981986757
+        "temperature_c": 267.3221060992929
       },
       {
         "time_s": 38.5,
-        "temperature_c": 186.94015532695735
+        "temperature_c": 265.2611234259591
       },
       {
         "time_s": 39.0,
-        "temperature_c": 186.91571014069203
+        "temperature_c": 263.2949478673153
       },
       {
         "time_s": 39.5,
-        "temperature_c": 186.8895126697808
+        "temperature_c": 261.4159695622578
       },
       {
         "time_s": 40.0,
-        "temperature_c": 186.86169440021933
+        "temperature_c": 259.61739032152104
       }
     ]
   }

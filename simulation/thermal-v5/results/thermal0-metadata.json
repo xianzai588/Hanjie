@@ -1,6 +1,6 @@
 {
-  "run_timestamp_utc": "2026-09-05T18:14:35.373004+00:00",
-  "git_commit": "40007980a157c06cc781b0a411b9f480add110b0",
+  "run_timestamp_utc": "2026-09-06T04:04:17.875131+00:00",
+  "git_commit": "24f00d6c2c1e77174fa0d9dcd038d8733f83f141",
   "python_version": "3.12.10",
   "dependency_versions": {
     "numpy": "2.3.5",
@@ -10,36 +10,51 @@
   },
   "stage": "THERMAL-0",
   "evidence_level": "solver_result_unvalidated",
-  "solver_version": "THERMAL-0.1-conservative-finite-volume-v5",
-  "model": "3d_local_source_window_goldak_conservative_finite_volume",
+  "solver_version": "THERMAL-0.2-fixed-window-conservative-finite-volume-v5",
+  "model": "3d_fixed_local_window_moving_goldak_conservative_finite_volume",
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "368b2bf4a5755f5c5055fd658395c44f58091a0247111f8c509e9c497d3e854d",
+  "input_sha256": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
   "material_file": "project/materials.yaml",
   "material_sha256": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
   "grid": {
-    "coordinate_mode": "local_moving_source",
-    "arc_points": 37,
+    "coordinate_mode": "fixed_local_window_moving_source",
+    "arc_points": 72,
     "radial_points": 52,
     "axial_points": 30,
-    "cell_count": 57720,
-    "cell_volume_mm3": 1.2274428274428275,
+    "cell_count": 112320,
+    "cell_volume_mm3": 1.2264957264957266,
     "source_resolution": {
-      "ds_mm": 1.945945945945946,
+      "ds_mm": 1.9444444444444444,
       "dn_mm": 0.7884615384615384,
       "dz_mm": 0.8,
-      "ds_over_a_front": 0.32432432432432434,
+      "ds_over_a_front": 0.32407407407407407,
       "dn_over_b": 0.3153846153846154,
       "dz_over_c": 0.32,
       "target_max_ratio": 0.3333333333333333,
       "target_met": true
     },
-    "local_source_window_mm": [
-      -35.027027027027025,
-      35.02702702702703
+    "local_source_window_cell_centers_mm": [
+      -69.02777777777777,
+      69.02777777777777
+    ],
+    "local_source_window_boundaries_mm": [
+      -70.0,
+      70.0
     ]
+  },
+  "source_path": {
+    "start_s_mm": -30.0,
+    "end_s_mm": 30.0,
+    "path_length_mm": 60.0,
+    "duration_s": 40.0,
+    "center_outside_domain_steps": 0,
+    "minimum_s_boundary_margin_mm": 40.0,
+    "required_s_boundary_margin_mm": 30.0,
+    "boundary_margin_status": "PASS"
   },
   "time": {
     "time_step_s": 0.01,
+    "weld_duration_s": 40.0,
     "total_duration_s": 520.0,
     "steps": 52000
   },
@@ -54,35 +69,41 @@
     "continuous_expected_source_energy_j": 19800.0,
     "discrete_expected_source_energy_j": 19800.0,
     "source_active_steps": 4000,
-    "source_power_min_w": 494.9999999999997,
+    "source_power_min_w": 494.9999999999998,
     "source_power_max_w": 495.0000000000003,
     "source_power_max_relative_error": 5.741759480889699e-16,
+    "source_domain_capture": {
+      "minimum_fraction": 0.9999995183214953,
+      "required_minimum_fraction": 0.999,
+      "status": "PASS",
+      "description": "连续 Goldak 源在离散归一化前落入有限计算域的解析比例。"
+    },
     "energy_balance_error_pct": 7.533188438927285e-12,
     "discrete_energy_balance_error_pct": 7.533188438927285e-12,
     "source_energy_normalization": {
       "status": "PASS",
       "description": "离散 Goldak 体积分对应名义净输入功率。"
     },
-    "boundary_loss_estimate_j": 17587.990614756498,
-    "delta_internal_energy_j": 2212.8603954060127,
-    "convection_energy_j": 9712.051596508287,
-    "radiation_energy_j": 7875.93901824821,
+    "boundary_loss_estimate_j": 26958.49346898472,
+    "delta_internal_energy_j": -7157.758917418039,
+    "convection_energy_j": 15751.208681782604,
+    "radiation_energy_j": 11207.284787202116,
     "advective_energy_export_j": 0.0,
     "global_thermal_energy_balance": {
       "source_energy_j": 19800.00000000149,
-      "delta_internal_energy_j": 2212.8603954060127,
-      "convection_energy_j": 9712.051596508287,
-      "radiation_energy_j": 7875.93901824821,
+      "delta_internal_energy_j": -7157.758917418039,
+      "convection_energy_j": 15751.208681782604,
+      "radiation_energy_j": 11207.284787202116,
       "advective_energy_export_j": 0.0,
-      "residual_j": -0.8510101610181664,
-      "residual_percent_of_source": 0.004298031116253042,
+      "residual_j": -0.7345515651886672,
+      "residual_percent_of_source": 0.0037098563898414743,
       "status": "PASS"
     },
     "energy_balance_note": "全局账本按 E_source = ΔU + E_convection + E_radiation + residual 记录；残差包含有限体积边界/显式离散误差。"
   },
   "assumptions": [
     "Goldak 尺寸、前后能量比例和效率均为 design_assumption，未用热电偶/宏观截面校准。",
-    "接口展开坐标用于局部三维热历史；未包含完整装配体的实体接触换热。",
+    "固定局部窗口坐标用于局部三维热历史；母材、边界和测点固定，仅热源沿 s 移动。",
     "未模拟熔池流动、相变、焊缝逐道激活或温度相关塑性。",
     "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。",
     "焊缝金属采用焊前已存在的 pre-existing weld metal thermal surrogate；逐段激活留待 THERMAL-1。"
