@@ -81,6 +81,11 @@ taxonomy:
       scope: 材料独立相变焓、假设高温物性、激活对照与有限工艺采样；焊缝体积不闭合，禁止校准和正式结构耦合
       status: unvalidated
       evidence_level: solver_result_unvalidated
+    SIM-MASS-CLOSED04-V5:
+      path: simulation/thermal-v5/results/mass-closed04/summary.json
+      scope: 仅填丝连续出生的质量闭合角焊道与首个材料表面双高斯热流；名义工况质量/源沉积/能量闭合，焊丝局部熔化，母材两侧未熔合；尚无新网格收敛和实测高温物性
+      status: unvalidated
+      evidence_level: solver_result_unvalidated
     SIM-THERMAL0-AUDIT-V5:
       path: simulation/thermal-v5/results/g-thermal-audit/G-THERMAL-audit.json
       scope: 热源域捕获、功率/累计能量、同时间步网格、时间步、换热/效率/热源尺寸敏感性审计；参数与实验校准仍需复核

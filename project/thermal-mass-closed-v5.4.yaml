@@ -1,0 +1,50 @@
+version: THERMAL-0.4-MASS-CLOSED
+evidence_level: solver_result_unvalidated
+inputs: project/g-inputs-v5.2.yaml
+process_input: project/process.yaml
+material_input: project/materials.yaml
+thermal_properties: project/thermal-physics-v5.3.yaml
+geometry:
+  coordinate_system: "s沿焊道；n=0为壳体内壁；z=0为座体上表面"
+  parent_regions: "QT: n<=-gap且-12<=z<=0；Q235: 0<=n<=5"
+  deposited_bead: "0<z<leg，-width(z)<n<0；由面积精确的阶梯三角截面离散，仅填丝出生"
+  leg_rule: "leg=sqrt(2*wire_area*wire_feed/travel_speed*deposition_efficiency)"
+  nominal_design_leg_mm: 3.5
+  note: "推导出的填丝角焊道不是已实现3.5mm焊脚；母材熔入仍保持原材料编号。"
+  gap_model: "保留输入0.02mm间隙；间隙无固体导热，未计间隙气体导热/相互辐射，焊丝出生后建立两侧接触。"
+deposition:
+  efficiency: 1.0
+  efficiency_range: [0.85, 1.0]
+  evidence_level: design_assumption
+  temperature_c: 20.0
+  progress: "按已走焊长在s单元内连续增加填丝占据体积；每步质量对应积分送丝量，不把母材当作新增填丝。"
+mesh:
+  arc_spacing_mm: 2.0
+  near_spacing_mm: 0.6
+  far_spacing_mm: 2.0
+  bead_strips: 4
+  status: nominal_model_check_not_convergence
+source:
+  model: split_gaussian_projected_surface_flux
+  direction_n_z: [1.0, -1.0]
+  cross_coordinate: "u=(n+z)/sqrt(2)"
+  parameters: "a_front/a_rear/b及前后权重继承0.2；c不用于表面模型，未收缩热源尺度。"
+  normalization: "在无限s/u投影平面解析归一化；光线到首个可见材料表面，有限域未捕获部分独立记账，禁止活动域重归一化。"
+  minimum_active_source_fraction: 0.95
+  gate_basis: "预先冻结的工程数值门槛，不是文献物理标准"
+  evidence_level: design_assumption_not_calibrated
+solver:
+  time_step_s: 0.1
+  cooling_after_source_s: 20.0
+  energy_residual_pct_limit: 0.02
+  nonlinear_residual_j: 1.0e-8
+  maximum_newton_iterations: 30
+  mass_relative_tolerance: 1.0e-10
+  method: "守恒FV，旧温度导热系数，隐式相变焓；出生焓计入总能量，侧面接触面积跟随填丝长度。"
+  scope: "局部展开角接头、参考质量固定，未模拟熔池流动、蒸发、自由表面运动或成分混合。"
+convergence_requirements:
+  deferred_until: nominal_mass_source_energy_checks_pass_and_properties_frozen
+  metrics: [peak_temperature, qt_fusion_geometry, q235b_fusion_geometry, parent_thermal_exposure, energy_residual]
+  inherited_thermal02_mesh_pass: false
+thermal_1_allowed: false
+formal_struct_0_allowed: false
