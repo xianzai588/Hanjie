@@ -24,3 +24,15 @@ def test_capacity_scales_with_leg_and_no_false_design_freeze():
     assert result["decision"]["three_point_five_mm_necessary"] is None
     assert result["existing_radial_static_screening"]["Continuous"]["compliance_mm_per_n"] < result["existing_radial_static_screening"]["6P-FAIR_B"]["compliance_mm_per_n"]
     assert "未显式建模焊缝" in result["existing_radial_static_screening"]["6P-FAIR_B"]["limitation"]
+
+
+def test_leg_curve_separates_radial_axial_and_overturning_components():
+    from pathlib import Path
+    root=Path(__file__).resolve().parents[1]
+    row=build_load_basis(root)["layouts"]["6P-FAIR_B"]["rows"][2]
+    components=row["reference_envelope_component_required_allowable_mpa"]
+    assert components["radial_only"]==pytest.approx(components["axial_only"])
+    assert components["combined_force"]==pytest.approx(2**.5*components["radial_only"])
+    assert row["reference_envelope_corner_required_allowable_mpa"]==pytest.approx(
+        (components["combined_force"]**2+components["overturning_only"]**2)**.5
+    )

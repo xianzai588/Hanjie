@@ -7,15 +7,16 @@
 | 阶段 | 执行状态 | 验收结果 | 允许用途 |
 | --- | --- | --- | --- |
 | G-INPUTS | controlled_inputs_volume_candidate_and_conditional_load_basis_defined | not_closed | 条件性数值筛查；真实载荷、许用与成形关系仍待闭合 |
-| LOAD-BASIS-0 | conditional_weld_group_screening_completed | reference_envelope_only_actual_load_missing | 焊脚、焊长、单位载荷响应和热量/节拍敏感性比较 |
+| LOAD-BASIS-0 | conditional_weld_group_screening_and_component_leg_curves_completed | reference_envelope_only_actual_load_missing | 焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较 |
 | THERMAL-0.4R1 | ten_case_run_and_audit_completed | failed_spatial_convergence | 未校准局部热诊断；禁止正式整件性能结论 |
 | THERMAL-0.4R2-A | fixed_six_strip_geometry_coarse_medium_fine_and_directional_controls_completed | fixed_geometry_reduced_but_did_not_close_spatial_error | 分离场网格与阶梯几何影响；禁止正式整件性能结论 |
+| THERMAL-0.5-XSEC | local_xsec_m_f_vf_run_and_second_layer_diagnosis_completed | nonmonotonic_not_in_asymptotic_region | 局部离散根因诊断；禁止给最终空间/时间准入或正式整件性能结论 |
 | METALLURGY-0 | executor_and_historical_diagnostics_completed | current_joint_not_physically_validated | 风险识别；禁止宣称当前接头组织或连接质量已验证 |
 | EXP-THERMAL | protocol_completed_experiment_not_run | not_executed | 试验准备 |
-| THERMAL-NUMERICAL-GATE | evaluated_after_0p4r2_a | not_passed | 通过后仅可标记 solver_verified 并进入无实物 Route B |
+| THERMAL-NUMERICAL-GATE | evaluated_after_0p5_xsec | not_passed | 通过后仅可标记 solver_verified 并进入无实物 Route B |
 | THERMAL-PHYSICAL-CALIBRATION | protocol_only | not_executed | 通过后方可标记 calibrated/physical_validated 并进入 Route A |
 | THERMAL-1 | blocked | not_admitted | 不允许正式结构耦合 |
-| STRUCT-0-PREP | partial_with_3d_j2_and_affine_small_mesh_verified | not_ready | 独立组件验证；不得冒充实际焊接残余位置度 |
+| STRUCT-0-PREP | partial_with_consistent_tangent_global_newton_and_continuous_mesh | not_ready | 独立组件验证；不得冒充实际焊接残余位置度 |
 | STRUCT-0 | not_executed | blocked_by_thermal_and_prep | 无 |
 | STRUCT-1 | static_screening_only | formal_comparison_not_executed | 当前载荷和支承下的静力筛查 |
 | SERVICE | load_builder_and_conditional_weld_group_screening_completed | not_executed | 单位载荷与参考包络敏感性；无整件性能或寿命结论 |
@@ -67,4 +68,11 @@
 固定六条带几何的场网格 A 对照已执行；medium→fine 焊材热区 P95 差为 16.682 °C，QT 固相线翻转体积为 14.637 mm³，空间 Gate 仍为未通过。
 方向控制结论：截面细化的剩余影响更大。
 条件性接头承载证据等级：`design_assumption_reference_envelope`；3.5 mm 是否唯一必要：尚不能确定。
-三维 J2 与六四面体小网格登记检查：全部通过；任意边界全局求解、接触与整件网格仍未完成。
+三维 J2 与六四面体小网格登记检查：全部通过；其后续全局求解状态见 Plan 4。
+
+## Plan 4 数值准入与结构预备证据
+
+局部截面 M→F/F→VF 焊材 P95 差为 9.597/18.260 °C，缩减比 1.903；未进入渐近区，停止 xfine 和时间步复查。
+一致切线与全局 Newton 小网格登记检查：全部通过；仍不等于整件求解。
+Continuous 预备网格含 52210 节点、176524 四面体，无倒置单元；但 minSICN<0.1 仍有 1381 个，热场映射和接触求解尚未完成。
+THERMAL 数值 Gate 与 STRUCT-PREP Gate 均保持关闭。

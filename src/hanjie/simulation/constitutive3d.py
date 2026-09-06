@@ -5,6 +5,27 @@ from __future__ import annotations
 import numpy as np
 
 
+_ROOT_TWO=np.sqrt(2.0)
+
+
+def symmetric_to_mandel(tensor):
+    """对称二阶张量转 Mandel 六分量，保持张量内积。"""
+    value=np.asarray(tensor,float)
+    if value.shape!=(3,3) or not np.allclose(value,value.T,atol=1e-12):
+        raise ValueError("Mandel 转换要求对称 3x3 张量")
+    return np.array([value[0,0],value[1,1],value[2,2],_ROOT_TWO*value[1,2],_ROOT_TWO*value[0,2],_ROOT_TWO*value[0,1]])
+
+
+def mandel_to_symmetric(vector):
+    """Mandel 六分量转对称二阶张量。"""
+    value=np.asarray(vector,float)
+    if value.shape!=(6,):
+        raise ValueError("Mandel 向量必须有六个分量")
+    return np.array([[value[0],value[5]/_ROOT_TWO,value[4]/_ROOT_TWO],
+                     [value[5]/_ROOT_TWO,value[1],value[3]/_ROOT_TWO],
+                     [value[4]/_ROOT_TWO,value[3]/_ROOT_TWO,value[2]]])
+
+
 def interpolate_curve(temperature_c, temperatures_c, values, *, out_of_range="error"):
     temperature = np.asarray(temperature_c,float)
     knots = np.asarray(temperatures_c,float)
@@ -40,43 +61,64 @@ def elastic_constants(elastic_modulus_mpa,poisson_ratio):
     return elastic/(2*(1+poisson)),elastic/(3*(1-2*poisson))
 
 
+def stress_free_birth_state(total_strain,thermal_strain):
+    """登记激活瞬间的参考应变，使高温出生与冷丝热焓问题相互独立。"""
+    strain=np.asarray(total_strain,float)
+    thermal=np.eye(3)*float(thermal_strain) if np.ndim(thermal_strain)==0 else np.asarray(thermal_strain,float)
+    if strain.shape!=(3,3) or thermal.shape!=(3,3):
+        raise ValueError("出生参考态要求 3x3 总应变和标量或 3x3 热应变")
+    return {"stress_free_strain":strain-thermal,"plastic_strain":np.zeros((3,3)),
+            "equivalent_plastic_strain":0.,"plastic_dissipation_mj_mm3":0.}
+
+
 def j2_update(total_strain,thermal_strain,state,elastic_modulus_mpa,poisson_ratio,yield_strength_mpa,hardening_modulus_mpa=0.0):
     """三维径向返回；张量剪切分量采用真实应变 εxy，不采用工程剪应变。"""
     strain=np.asarray(total_strain,float)
     if strain.shape!=(3,3) or not np.allclose(strain,strain.T,atol=1e-12):
         raise ValueError("总应变必须为对称 3x3 张量")
     plastic=np.asarray(state.get("plastic_strain",np.zeros((3,3))),float)
+    reference=np.asarray(state.get("stress_free_strain",np.zeros((3,3))),float)
     equivalent=float(state.get("equivalent_plastic_strain",0.0))
     dissipation=float(state.get("plastic_dissipation_mj_mm3",0.0))
-    if plastic.shape!=(3,3) or not np.allclose(plastic,plastic.T,atol=1e-12) or equivalent<0 or dissipation<0:
+    if plastic.shape!=(3,3) or reference.shape!=(3,3) or not np.allclose(plastic,plastic.T,atol=1e-12) or not np.allclose(reference,reference.T,atol=1e-12) or equivalent<0 or dissipation<0:
         raise ValueError("J2 状态无效")
     thermal=np.eye(3)*float(thermal_strain) if np.ndim(thermal_strain)==0 else np.asarray(thermal_strain,float)
     if thermal.shape!=(3,3):
         raise ValueError("热应变必须为标量或 3x3 张量")
     shear,bulk=elastic_constants(elastic_modulus_mpa,poisson_ratio)
-    elastic_trial=strain-thermal-plastic
+    elastic_trial=strain-thermal-reference-plastic
     stress_trial=2*shear*(elastic_trial-np.trace(elastic_trial)/3*np.eye(3))+bulk*np.trace(elastic_trial)*np.eye(3)
     deviator=stress_trial-np.trace(stress_trial)/3*np.eye(3)
     equivalent_trial=float(np.sqrt(1.5*np.sum(deviator*deviator)))
     current_yield=float(yield_strength_mpa)+float(hardening_modulus_mpa)*equivalent
     increment=max(0.0,(equivalent_trial-current_yield)/(3*shear+float(hardening_modulus_mpa)))
+    identity=np.eye(6)
+    volumetric=np.outer([1.,1.,1.,0.,0.,0.],[1.,1.,1.,0.,0.,0.])/3
+    deviatoric_projector=identity-volumetric
+    tangent=3*bulk*volumetric+2*shear*deviatoric_projector
     if increment>0:
         direction=1.5*deviator/equivalent_trial
         plastic=plastic+increment*direction
         equivalent=equivalent+increment
         deviator=deviator*(1-3*shear*increment/equivalent_trial)
+        beta=1-3*shear*increment/equivalent_trial
+        direction_mandel=symmetric_to_mandel(direction)
+        correction=1/(3*shear+float(hardening_modulus_mpa))-increment/equivalent_trial
+        tangent=3*bulk*volumetric+2*shear*beta*deviatoric_projector-4*shear**2*correction*np.outer(direction_mandel,direction_mandel)
     stress=deviator+np.trace(stress_trial)/3*np.eye(3)
     updated_yield=float(yield_strength_mpa)+float(hardening_modulus_mpa)*equivalent
     dissipation += updated_yield*increment
-    elastic_strain=strain-thermal-plastic
+    elastic_strain=strain-thermal-reference-plastic
     return {
         "stress_mpa":stress,
         "plastic_strain":plastic,
+        "stress_free_strain":reference,
         "equivalent_plastic_strain":equivalent,
         "plastic_dissipation_mj_mm3":dissipation,
         "elastic_energy_mj_mm3":float(0.5*np.sum(stress*elastic_strain)),
         "equivalent_stress_mpa":float(np.sqrt(1.5*np.sum((stress-np.trace(stress)/3*np.eye(3))**2))),
         "plastic_increment":increment,
+        "consistent_tangent_mpa":tangent,
     }
 
 

@@ -28,6 +28,10 @@ def main() -> int:
     lines += ["","## 结论","",result["decision"]["reason"],result["decision"]["current_1p737_limitation"],result["decision"]["four_pass_disposition"],"",
               "既有 1000 N 径向静力筛查仅作为座体孔轴位移影响系数引用；它没有显式焊缝，不能给 3.5 mm 焊脚背书。",
               "疲劳只登记焊趾、焊根、离散焊段端部和翼根圆角为风险位置；没有载荷谱时不计算或宣称寿命。"]
+    lines += ["","## 6P 焊脚—分量敏感曲线","","| 焊脚 (mm) | 径向 (MPa) | 轴向 (MPa) | 合力 (MPa) | 倾覆 (MPa) | 包络角点 (MPa) |","| ---: | ---: | ---: | ---: | ---: | ---: |"]
+    for row in result["layouts"]["6P-FAIR_B"]["rows"]:
+        component=row["reference_envelope_component_required_allowable_mpa"]
+        lines.append(f"| {row['fillet_leg_mm']:.3f} | {component['radial_only']:.3f} | {component['axial_only']:.3f} | {component['combined_force']:.3f} | {component['overturning_only']:.3f} | {row['reference_envelope_corner_required_allowable_mpa']:.3f} |")
     (output/"joint-design-basis.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     print(output/"joint-load-basis.json")
     return 0

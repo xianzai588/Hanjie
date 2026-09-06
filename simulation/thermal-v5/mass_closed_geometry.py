@@ -7,11 +7,17 @@ import numpy as np
 from scipy.special import erf
 
 
-def _edges(anchors, near, far, zone):
-    anchors = np.unique(anchors)
+def _edges(anchors, near, far, zone, refinements=()):
+    """按冻结分区生成网格；局部细化只替换指定区间内的步长。"""
+    refinement_edges = [value for item in refinements for value in item[0]]
+    anchors = np.unique([*anchors,*refinement_edges])
     result = [anchors[0]]
     for lo,hi in zip(anchors[:-1],anchors[1:]):
         step = near if lo>=zone[0] and hi<=zone[1] else far
+        midpoint = (lo+hi)/2
+        for bounds,local_step in refinements:
+            if bounds[0]<=midpoint<=bounds[1]:
+                step = min(step,local_step)
         result.extend(np.linspace(lo,hi,max(1,math.ceil((hi-lo)/step))+1)[1:])
     return np.asarray(result)
 
@@ -34,8 +40,11 @@ def build_geometry(config, process_input, spec):
         raise ValueError("填丝截面至少需要两层")
     bead_z = np.linspace(0.,leg,strips+1)
     widths = leg-(bead_z[:-1]+bead_z[1:])/2
-    n = _edges([grid["radial_min_offset_mm"],-5.,-leg,*(-widths),-gap,0.,grid["radial_max_offset_mm"]],mesh["near_spacing_mm"],mesh["far_spacing_mm"],(-5.,5.))
-    z = _edges([grid["axial_min_offset_mm"],-4.,*bead_z,4.,grid["axial_max_offset_mm"]],mesh["near_spacing_mm"],mesh["far_spacing_mm"],(-4.,4.))
+    local_spacing = mesh.get("cross_local_spacing_mm")
+    n_refinements = [] if local_spacing is None else [(mesh["radial_local_zone_mm"],float(local_spacing))]
+    z_refinements = [] if local_spacing is None else [(mesh["axial_local_zone_mm"],float(local_spacing))]
+    n = _edges([grid["radial_min_offset_mm"],-5.,-leg,*(-widths),-gap,0.,grid["radial_max_offset_mm"]],mesh["near_spacing_mm"],mesh["far_spacing_mm"],(-5.,5.),n_refinements)
+    z = _edges([grid["axial_min_offset_mm"],-4.,*bead_z,4.,grid["axial_max_offset_mm"]],mesh["near_spacing_mm"],mesh["far_spacing_mm"],(-4.,4.),z_refinements)
     path = config["heat_source_path"]
     s = _edges([grid["arc_min_offset_mm"],path["source_start_s_mm"],path["source_end_s_mm"],grid["arc_max_offset_mm"]],mesh["arc_spacing_mm"],mesh["arc_spacing_mm"],(-np.inf,np.inf))
     nc,zc = (n[:-1]+n[1:])/2,(z[:-1]+z[1:])/2

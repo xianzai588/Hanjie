@@ -75,6 +75,38 @@ def test_fixed_bead_geometry_is_independent_of_field_spacing(setup):
         assert area == pytest.approx(profiles[0][2],rel=1e-12)
 
 
+def test_local_cross_section_refinement_preserves_background_and_geometry(setup):
+    import copy
+    spec,config,process,_ = setup
+    medium_spec = copy.deepcopy(spec)
+    medium_spec["mesh"].update(
+        arc_spacing_mm=1.0,
+        near_spacing_mm=0.6,
+        far_spacing_mm=1.5,
+        bead_strips=6,
+        bead_geometry_strips=6,
+        cross_local_spacing_mm=0.4,
+        radial_local_zone_mm=[-3.0,1.5],
+        axial_local_zone_mm=[-2.0,2.0],
+    )
+    fine_spec = copy.deepcopy(medium_spec)
+    fine_spec["mesh"]["cross_local_spacing_mm"] = 0.2
+    medium = build_geometry(config,process,medium_spec)
+    very_fine = build_geometry(config,process,fine_spec)
+
+    # 局部区外背景节点完全冻结，避免把整域细化重新混入对照。
+    for key,zone in (("n_edges",(-3.0,1.5)),("z_edges",(-2.0,2.0))):
+        medium_outer = medium[key][(medium[key]<zone[0])|(medium[key]>zone[1])]
+        fine_outer = very_fine[key][(very_fine[key]<zone[0])|(very_fine[key]>zone[1])]
+        np.testing.assert_allclose(medium_outer,fine_outer)
+    medium_dn = np.diff(medium["n_edges"])[np.searchsorted(medium["n_edges"],-1.0)]
+    fine_dn = np.diff(very_fine["n_edges"])[np.searchsorted(very_fine["n_edges"],-1.0)]
+    assert fine_dn < medium_dn
+    np.testing.assert_allclose(medium["bead_z"],very_fine["bead_z"])
+    np.testing.assert_allclose(medium["bead_widths"],very_fine["bead_widths"])
+    assert medium["bead_area_mm2"] == pytest.approx(very_fine["bead_area_mm2"])
+
+
 def test_surface_flux_hits_first_material_and_never_unborn_bead(setup):
     _,config,_,g = setup
     bare = surface_weights(g,False,2.5)

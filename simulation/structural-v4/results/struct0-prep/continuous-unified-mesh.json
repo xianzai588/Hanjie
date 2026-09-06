@@ -1,0 +1,127 @@
+{
+  "stage": "STRUCT-0-PREP-CONTINUOUS-UNIFIED-MESH",
+  "evidence_level": "geometry_and_mesh_preparation",
+  "mesh_file": "simulation/structural-v4/results/struct0-prep/continuous-unified-prep.msh",
+  "mesh_format": "Gmsh MSH 4.1 binary",
+  "geometry": {
+    "shell": "simulation/structural-v4/common/shell.step",
+    "seat": "simulation/structural-v4/models/continuous/Continuous.step",
+    "weld_leg_mm": 1.73664301094,
+    "weld_rule": "单道质量闭合焊脚的环形等面积直角三角形，根点跨越0.02mm装配间隙"
+  },
+  "regions": {
+    "physical_volume_ids": {
+      "Q235B_SHELL": 1,
+      "QT450_10_SEAT": 2,
+      "ERNIFE_CI_WELD": 3
+    },
+    "tetrahedron_counts": {
+      "Q235B_SHELL": 87555,
+      "QT450_10_SEAT": 60499,
+      "ERNIFE_CI_WELD": 28470
+    },
+    "quality_by_region": {
+      "Q235B_SHELL": {
+        "minimum": 0.16843937629151765,
+        "p01": 0.339941023281374,
+        "below_0p1_count": 0
+      },
+      "QT450_10_SEAT": {
+        "minimum": 0.28089756017620515,
+        "p01": 0.5299376641408944,
+        "below_0p1_count": 0
+      },
+      "ERNIFE_CI_WELD": {
+        "minimum": 0.04972501640893284,
+        "p01": 0.05663519825313335,
+        "below_0p1_count": 1381
+      }
+    }
+  },
+  "interfaces": {
+    "physical_surface_ids": {
+      "WELD_SHELL_INTERFACE": 101,
+      "WELD_SEAT_INTERFACE": 102,
+      "SEAT_GAP_FACE": 103,
+      "SHELL_GAP_FACE": 104,
+      "FIXTURE_BORE": 105,
+      "DATUM_B_SHELL_OUTER": 106,
+      "DATUM_A_SHELL_Z0": 107
+    },
+    "surface_tags": {
+      "WELD_SHELL_INTERFACE": [
+        11
+      ],
+      "WELD_SEAT_INTERFACE": [
+        18
+      ],
+      "SEAT_GAP_FACE": [
+        17
+      ],
+      "SHELL_GAP_FACE": [
+        15,
+        16
+      ],
+      "FIXTURE_BORE": [
+        21
+      ],
+      "DATUM_B_SHELL_OUTER": [
+        12
+      ],
+      "DATUM_A_SHELL_Z0": [
+        14
+      ]
+    },
+    "surface_node_counts": {
+      "WELD_SHELL_INTERFACE": 2331,
+      "WELD_SEAT_INTERFACE": 2330,
+      "SEAT_GAP_FACE": 2473,
+      "SHELL_GAP_FACE": 24307,
+      "FIXTURE_BORE": 108,
+      "DATUM_B_SHELL_OUTER": 4837,
+      "DATUM_A_SHELL_Z0": 197
+    },
+    "seat_shell_relation": "未焊圆柱面保持0.02mm间隙；不做节点绑定，留作法向接触/释放面"
+  },
+  "activation_groups": {
+    "weld_ring_1": {
+      "region": "ERNIFE_CI_WELD",
+      "status": "registered_not_activated_in_part_solve",
+      "stress_reference": "activation-time stress-free reference configuration"
+    }
+  },
+  "metrology_sets": {
+    "datum_a": "DATUM_A_SHELL_Z0",
+    "datum_b": "DATUM_B_SHELL_OUTER",
+    "bore": "FIXTURE_BORE",
+    "status": "mesh_sets_defined_cmm_equivalence_not_confirmed"
+  },
+  "counts": {
+    "nodes": 52210,
+    "tetrahedra": 176524
+  },
+  "quality": {
+    "metric": "Gmsh minSICN",
+    "minimum": 0.04972501640893284,
+    "p01": 0.17884181386588555,
+    "median": 0.7195351062301403,
+    "nonpositive_count": 0,
+    "below_0p1_count": 1381
+  },
+  "checks": {
+    "three_material_regions": true,
+    "weld_interfaces_complete": true,
+    "contact_gap_faces_separate": true,
+    "evaluation_sets_present": true,
+    "no_inverted_tetrahedra": true
+  },
+  "heat_to_structure_mapping": {
+    "status": "not_executed",
+    "reason": "当前热场仅为局部60mm移动源诊断窗口，不能伪装成Continuous整圈保守场传递"
+  },
+  "contact": {
+    "status": "surfaces_registered_solver_not_implemented",
+    "first_model": "normal_contact_releasable_mu_0_then_engineering_mu_sensitivity"
+  },
+  "struct_prep_gate_pass": false
+}

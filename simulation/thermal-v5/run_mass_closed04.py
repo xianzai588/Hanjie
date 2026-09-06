@@ -20,7 +20,9 @@ SPEC = ROOT/"project/thermal-mass-closed-v5.4r1.yaml"
 OUTPUT = ROOT/"simulation/thermal-v5/results/mass-closed04r1"
 
 
-@njit(cache=True)
+# 可信度批次会用隔离模块实例注入观测器；磁盘缓存会固化临时模块名并导致
+# 同一进程后续规范导入失败。保留 JIT，但禁用跨模块身份不安全的磁盘缓存。
+@njit(cache=False)
 def material_state(temperature, ids, tables, lengths):
     h,cp,k = np.empty(len(ids)),np.empty(len(ids)),np.empty(len(ids))
     for cell in range(len(ids)):

@@ -9,9 +9,11 @@
 | 三维静力筛查 | Continuous、6P、8P-FAIR_B 保留；细网格平均受载轴线偏移直径分别为 0.000304、0.000750、0.000570 mm | solver_result_unvalidated；不代表焊后位置度 | `simulation/structural-v4/stiffness-screening-v4.md` |
 | 局部热模型 | 0.4R1 名义峰温：Q235B 1015.79 °C、QT450-10 1088.14 °C、ERNiFe-CI 1520.82 °C；共同控制体诊断确认焊材热区 P95 差异仍为 74.554 °C | 能量/时间步通过，空间网格未收敛；未校准 | `simulation/thermal-v5/results/credibility04r1/assessment.json`、`simulation/thermal-v5/results/credibility04r1/spatial-convergence-diagnosis.json` |
 | 固定几何场网格对照 | 0.4R2-A 实际重算 coarse/medium/fine 和两个方向控制；固定六条带后 medium→fine 焊材热区 P95 差降至 16.682 °C，QT 固相线翻转 14.637 mm³；方向对照显示截面细化影响占主导 | 较旧混合序列改善但仍未通过；THERMAL-1 继续冻结 | `simulation/thermal-v5/results/spatial-fix-study/assessment.json` |
+| 局部截面三级细化 | XSEC-M/F/VF 实际重算；焊材 P95 差 9.60/18.26 °C，缩减比 1.903；VF 对 F 的 QT/NiFe solidus flip 为 0.86/2.93 mm³ | 非单调、未进入渐近区；停止 xfine 与新网格时间步复查 | `simulation/thermal-v5/results/xsec-refinement-study/assessment.json` |
 | 接头一致性 | 当前单道等效焊脚 1.737 mm；另登记 3.5 mm 等面积四道候选，体积核算为 6.125 mm² | 候选仅体积自洽；承载、成形、热循环未闭合，不得作为 WPS | `deliverables/process/joint-process-card.json` |
-| 条件性接头承载 | 参考包络下 6P 的 1.737/3.5 mm 焊脚所需许用分别约 105.149/52.173 MPa；同时登记各布局单位载荷影响系数和热量/节拍 | design_assumption_reference_envelope；不能证明实际服役安全或 3.5 mm 唯一必要 | `simulation/structural-v4/results/joint-load-basis/joint-load-basis.json` |
-| STRUCT-0 准备 | 三维 J2 覆盖单轴/纯剪/静水/组合/卸载/旋转一致性；六四面体小网格完成自由与约束热膨胀、塑性加载和支承释放平衡检查 | algorithm_and_small_mesh_verification；任意边界全局 Newton、焊材、接触和统一整件网格仍未完成 | `simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json` |
+| 条件性接头承载 | 参考包络下 6P 的 1.737/2.0/2.5/3.0/3.5 mm 所需许用为 105.149/91.303/73.042/60.869/52.173 MPa，并分列径向、轴向与倾覆贡献 | design_assumption_reference_envelope；不能证明实际服役安全或 3.5 mm 唯一必要 | `simulation/structural-v4/results/joint-load-basis/joint-load-basis.json` |
+| STRUCT-0 全局求解准备 | 一致切线有限差分核对、硬化拉杆解析对照、约束升温—释放—冷却及高温应力自由出生全部通过；拉杆最终 300 MPa 步最多 6 次 Newton，释放步 3 次 | algorithm_and_small_mesh_verification；尚非整件焊接求解 | `simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json` |
+| Continuous 统一预备网格 | Q235B/QT450-10/ERNiFe-CI 三材料共形网格 52,210 节点、176,524 四面体，焊接/间隙/夹具/基准/孔集合完整且无倒置单元 | 仍有 1,381 个 minSICN<0.1 单元；热映射和接触未执行，STRUCT-PREP Gate 不通过 | `simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json` |
 | 逐件预偏置 | 逆补偿合成代理均值 0.00647 mm、P95 0.01585 mm、总体通过率 100% | synthetic_demo；未做实物标定 | `studies/PRECOMPENSATION/results/precompensation_summary.json` |
 | 误差预算 | 最坏径向 0.035 mm，对应 Ø0.070 mm | 未满足 Ø0.05 mm 目标 | `project/tolerance.yaml` |
 

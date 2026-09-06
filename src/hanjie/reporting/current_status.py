@@ -21,8 +21,11 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
     structural = _json(root/"simulation/structural-v4/results/static-screening/static-screening-analysis.json")
     thermal = _json(root/"simulation/thermal-v5/results/credibility04r1/assessment.json")
     thermal_fix = _json(root/"simulation/thermal-v5/results/spatial-fix-study/assessment.json")
+    thermal_xsec = _json(root/"simulation/thermal-v5/results/xsec-refinement-study/assessment.json")
     joint_load = _json(root/"simulation/structural-v4/results/joint-load-basis/joint-load-basis.json")
     structural_3d = _json(root/"simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json")
+    structural_newton = _json(root/"simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json")
+    continuous_mesh = _json(root/"simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json")
     precomp = _json(root/"studies/PRECOMPENSATION/results/precompensation_summary.json")
     return {
         "generated_from":"当前权威配置与已执行结果；非实测证据仍保留原等级",
@@ -64,6 +67,14 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
             "medium_to_fine_weld_p95_c":thermal_fix["pairs"]["A-field-medium-fixed6_to_A-field-fine-fixed6"]["common_control_volume_peak_field"]["ernife_ci"]["volume_weighted_p95_abs_peak_difference_c"],
             "medium_to_fine_qt_flip_volume_mm3":thermal_fix["pairs"]["A-field-medium-fixed6_to_A-field-fine-fixed6"]["common_control_volume_peak_field"]["qt450_10"]["solidus_threshold_flip_volume_mm3"],
         },
+        "thermal_xsec":{
+            "stage":thermal_xsec["stage"],"spatial_gate_pass":thermal_xsec["spatial_gate_pass"],
+            "time_step_recheck_allowed":thermal_xsec["time_step_recheck_allowed"],
+            "asymptotic_diagnosis":thermal_xsec["asymptotic_diagnosis"],
+            "m_to_f_weld_p95_c":thermal_xsec["pairs"]["XSEC-M_to_XSEC-F"]["continuous_peak_field"]["ernife_ci"]["volume_weighted_p95_abs_peak_difference_c"],
+            "f_to_vf_weld_p95_c":thermal_xsec["pairs"]["XSEC-F_to_XSEC-VF"]["continuous_peak_field"]["ernife_ci"]["volume_weighted_p95_abs_peak_difference_c"],
+            "second_layer_diagnosis":thermal_xsec["second_layer_diagnosis"],
+        },
         "joint_load_basis":{
             "evidence_level":joint_load["evidence_level"],"reference_envelope":joint_load["reference_envelope"],
             "decision":joint_load["decision"],
@@ -71,6 +82,10 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
         "structural_3d_components":{
             "evidence_level":structural_3d["evidence_level"],"checks":structural_3d["checks"],"limitations":structural_3d["limitations"],
         },
+        "structural_global_newton":{"evidence_level":structural_newton["evidence_level"],"checks":structural_newton["checks"],
+                                    "struct_prep_gate_pass":structural_newton["struct_prep_gate_pass"]},
+        "continuous_unified_mesh":{"counts":continuous_mesh["counts"],"quality":continuous_mesh["quality"],
+                                   "checks":continuous_mesh["checks"],"struct_prep_gate_pass":continuous_mesh["struct_prep_gate_pass"]},
         "precompensation":precomp,
     }
 
@@ -110,7 +125,13 @@ def render_markdown(status: Dict[str, Any]) -> str:
               f"固定六条带几何的场网格 A 对照已执行；medium→fine 焊材热区 P95 差为 {fix['medium_to_fine_weld_p95_c']:.3f} °C，QT 固相线翻转体积为 {fix['medium_to_fine_qt_flip_volume_mm3']:.3f} mm³，空间 Gate 仍为未通过。",
               f"方向控制结论：{fix['direction_diagnosis']}。",
               f"条件性接头承载证据等级：`{status['joint_load_basis']['evidence_level']}`；3.5 mm 是否唯一必要：尚不能确定。",
-              f"三维 J2 与六四面体小网格登记检查：{'全部通过' if all(status['structural_3d_components']['checks'].values()) else '存在失败'}；任意边界全局求解、接触与整件网格仍未完成。"]
+              f"三维 J2 与六四面体小网格登记检查：{'全部通过' if all(status['structural_3d_components']['checks'].values()) else '存在失败'}；其后续全局求解状态见 Plan 4。"]
+    xsec=status["thermal_xsec"]; newton=status["structural_global_newton"]; mesh=status["continuous_unified_mesh"]
+    lines += ["","## Plan 4 数值准入与结构预备证据","",
+              f"局部截面 M→F/F→VF 焊材 P95 差为 {xsec['m_to_f_weld_p95_c']:.3f}/{xsec['f_to_vf_weld_p95_c']:.3f} °C，缩减比 {xsec['asymptotic_diagnosis']['ernife_p95_reduction_ratio']:.3f}；未进入渐近区，停止 xfine 和时间步复查。",
+              f"一致切线与全局 Newton 小网格登记检查：{'全部通过' if all(newton['checks'].values()) else '存在失败'}；仍不等于整件求解。",
+              f"Continuous 预备网格含 {mesh['counts']['nodes']} 节点、{mesh['counts']['tetrahedra']} 四面体，无倒置单元；但 minSICN<0.1 仍有 {mesh['quality']['below_0p1_count']} 个，热场映射和接触求解尚未完成。",
+              "THERMAL 数值 Gate 与 STRUCT-PREP Gate 均保持关闭。"]
     return "\n".join(lines)+"\n"
 
 

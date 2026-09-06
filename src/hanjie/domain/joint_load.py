@@ -30,7 +30,9 @@ def evaluate_layout(manifest: dict[str, Any], legs_mm: list[float], envelope: di
     radius = float(manifest["seat"]["outer_radius_mm"])
     length,inertia = _segment_integrals(radius,manifest["manufacturing"]["weld_segments"])
     principal = np.linalg.eigvalsh(inertia)
-    maximum_force = math.hypot(float(envelope["radial_force_n"][1]),float(envelope["axial_force_n"][1]))
+    maximum_radial = float(envelope["radial_force_n"][1])
+    maximum_axial = float(envelope["axial_force_n"][1])
+    maximum_force = math.hypot(maximum_radial,maximum_axial)
     maximum_moment = float(envelope["overturning_moment_n_mm"][1])
     rows = []
     for leg in legs_mm:
@@ -39,6 +41,12 @@ def evaluate_layout(manifest: dict[str, Any], legs_mm: list[float], envelope: di
         force_coefficient = math.sqrt(3.0)/area
         moment_coefficient = radius/(throat*float(principal[0]))
         corner_stress = math.hypot(force_coefficient*maximum_force,moment_coefficient*maximum_moment)
+        components={
+            "radial_only":force_coefficient*maximum_radial,
+            "axial_only":force_coefficient*maximum_axial,
+            "combined_force":force_coefficient*maximum_force,
+            "overturning_only":moment_coefficient*maximum_moment,
+        }
         rows.append({
             "fillet_leg_mm":float(leg),
             "effective_throat_mm":throat,
@@ -46,6 +54,7 @@ def evaluate_layout(manifest: dict[str, Any], legs_mm: list[float], envelope: di
             "von_mises_per_resultant_force_mpa_per_n":force_coefficient,
             "worst_overturning_stress_mpa_per_n_mm":moment_coefficient,
             "reference_envelope_corner_required_allowable_mpa":corner_stress,
+            "reference_envelope_component_required_allowable_mpa":components,
             "force_capacity_n_per_allowable_mpa":1.0/force_coefficient,
             "moment_capacity_n_mm_per_allowable_mpa":1.0/moment_coefficient,
         })

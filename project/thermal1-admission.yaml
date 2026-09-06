@@ -1,16 +1,16 @@
 # 当前数值/物理分路线准入；历史结果只保留为证据，不自动开放下游。
 version: THERMAL1-ADMISSION-v1
-status: blocked_by_numerical_convergence
+status: blocked_by_nonmonotonic_local_spatial_convergence
 evidence_level: design_assumption
 inputs: project/g-inputs-v5.2.yaml
 materials: project/materials.yaml
 physics_specification: project/thermal-physics-v5.3.yaml
-physics_gate: simulation/thermal-v5/results/spatial-fix-study/assessment.json
+physics_gate: simulation/thermal-v5/results/xsec-refinement-study/assessment.json
 physics_gate_field: spatial_gate_pass
 physics_gate_value: false
-historical_physics_gates: [simulation/thermal-v5/results/physics03/G-PHYSICS.json, simulation/thermal-v5/results/credibility04r1/assessment.json]
+historical_physics_gates: [simulation/thermal-v5/results/physics03/G-PHYSICS.json, simulation/thermal-v5/results/credibility04r1/assessment.json, simulation/thermal-v5/results/spatial-fix-study/assessment.json]
 numerical_route_b:
-  gate: simulation/thermal-v5/results/spatial-fix-study/assessment.json
+  gate: simulation/thermal-v5/results/xsec-refinement-study/assessment.json
   field: spatial_gate_pass
   current_value: false
   evidence_label_after_pass: solver_verified
@@ -52,3 +52,8 @@ downstream:
   candidates: [Continuous, 6P, 8P-FAIR_B]
   next_after_thermal_admission: STRUCT-0_Continuous
   frozen: [STRUCT-1, SERVICE_production, adaptive, inverse_precompensation, dashboard, vision_ai, large_monte_carlo]
+current_numerical_decision:
+  xfine_allowed: false
+  final_mesh_time_step_recheck_allowed: false
+  reason: XSEC-F到VF焊材P95差反增且QT/NiFe阈值翻转未稳定，未进入渐近区
+  next_diagnostic: [local_surface_source_density, per_face_interface_flux, nested_interface_aligned_mesh, staircase_corner_cell_geometry]

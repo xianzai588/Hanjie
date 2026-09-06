@@ -1,0 +1,12 @@
+{
+  "files": {
+    "field.npz": "0b81de5b391461bfe8843e5e71f550633925a8ebd0dd59cef255e7dc81575bea",
+    "fixed-point-history.json": "5445f6a11cab6020e3288ac31979e9a2cd4d2edd3f4af1a6caf7f7c9edc74722",
+    "G-PHYSICS-R1.json": "584d82dde6dbdb37a71a8ae0112013d12f323ca78ec9b63b60d3491c5e67ff8b",
+    "history.json": "2e37db42d72fc074606fc12436fac4c703813594278288cdd7b103abf02b67c3",
+    "material-energy-history.json": "5405e01b56bfcdfe4d8ef6b3049395d56c114c937179a6d3f156dcd3949fff61",
+    "run-inputs.json": "c3c403dd5fe972375eedac618434d6d47b9c2e0df218a3e069110c7c190e4b7a",
+    "summary.json": "fc38c33881c373757de3885a5539ba224520113e33144abf1647df76f5e1e139"
+  },
+  "evidence_level": "solver_result_unvalidated"
+}

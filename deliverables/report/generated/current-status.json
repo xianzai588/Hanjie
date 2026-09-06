@@ -14,10 +14,10 @@
         "next_action": "取得真实载荷/许用依据后裁决焊脚；四道候选继续等待分层几何和宏观截面验证"
       },
       "LOAD-BASIS-0": {
-        "execution_status": "conditional_weld_group_screening_completed",
+        "execution_status": "conditional_weld_group_screening_and_component_leg_curves_completed",
         "acceptance_result": "reference_envelope_only_actual_load_missing",
         "evidence_level": "design_assumption_reference_envelope",
-        "allowed_use": "焊脚、焊长、单位载荷响应和热量/节拍敏感性比较",
+        "allowed_use": "焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较",
         "evidence": "simulation/structural-v4/results/joint-load-basis/joint-load-basis.json",
         "upstream_dependencies": [
           "G-INPUTS"
@@ -46,7 +46,18 @@
         "upstream_dependencies": [
           "THERMAL-0.4R1"
         ],
-        "next_action": "方向对照确认截面影响占主导；优先细化焊材/界面截面高梯度区，再决定 xfine 并复查时间步"
+        "next_action": "已转入THERMAL-0.5局部截面三级序列"
+      },
+      "THERMAL-0.5-XSEC": {
+        "execution_status": "local_xsec_m_f_vf_run_and_second_layer_diagnosis_completed",
+        "acceptance_result": "nonmonotonic_not_in_asymptotic_region",
+        "evidence_level": "solver_result_unvalidated",
+        "allowed_use": "局部离散根因诊断；禁止给最终空间/时间准入或正式整件性能结论",
+        "evidence": "simulation/thermal-v5/results/xsec-refinement-study/assessment.json",
+        "upstream_dependencies": [
+          "THERMAL-0.4R2-A"
+        ],
+        "next_action": "停止xfine和新网格时间步；补逐面界面通量、局部源密度及接口/阶梯边界对齐的嵌套网格诊断"
       },
       "METALLURGY-0": {
         "execution_status": "executor_and_historical_diagnostics_completed",
@@ -70,14 +81,14 @@
         "next_action": "条件具备时执行并保留独立验证试件"
       },
       "THERMAL-NUMERICAL-GATE": {
-        "execution_status": "evaluated_after_0p4r2_a",
+        "execution_status": "evaluated_after_0p5_xsec",
         "acceptance_result": "not_passed",
         "evidence_level": "solver_result_unvalidated",
         "allowed_use": "通过后仅可标记 solver_verified 并进入无实物 Route B",
         "upstream_dependencies": [
-          "THERMAL-0.4R2-A"
+          "THERMAL-0.5-XSEC"
         ],
-        "next_action": "完成分离误差来源的空间准入与新细网格时间步复查"
+        "next_action": "先关闭局部非单调根因；空间门通过后才能在最终网格复查时间步"
       },
       "THERMAL-PHYSICAL-CALIBRATION": {
         "execution_status": "protocol_only",
@@ -101,15 +112,16 @@
         "next_action": "数值 Gate 通过后可进入 solver_verified Route B；物理校准通过才可使用 calibrated/validated 标签"
       },
       "STRUCT-0-PREP": {
-        "execution_status": "partial_with_3d_j2_and_affine_small_mesh_verified",
+        "execution_status": "partial_with_consistent_tangent_global_newton_and_continuous_mesh",
         "acceptance_result": "not_ready",
         "evidence_level": "component_unit_verification",
         "allowed_use": "独立组件验证；不得冒充实际焊接残余位置度",
-        "evidence": "simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json",
+        "evidence": "simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json",
+        "mesh_evidence": "simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json",
         "upstream_dependencies": [
           "G-INPUTS"
         ],
-        "next_action": "推进任意边界非线性全局求解、统一网格、夹具接触及释放后冷却状态流"
+        "next_action": "修整低质量四面体，完成局部热场映射边界定义与法向接触/释放；不得接入未准入热场"
       },
       "STRUCT-0": {
         "execution_status": "not_executed",
@@ -431,6 +443,173 @@
     "medium_to_fine_weld_p95_c": 16.682343655746536,
     "medium_to_fine_qt_flip_volume_mm3": 14.637419663635821
   },
+  "thermal_xsec": {
+    "stage": "THERMAL-0.5-XSEC",
+    "spatial_gate_pass": false,
+    "time_step_recheck_allowed": false,
+    "asymptotic_diagnosis": {
+      "ernife_p95_reduction_ratio": 1.9027457432895574,
+      "required_maximum": 0.5,
+      "qt_and_ernife_flips_stable": false,
+      "entered_asymptotic_region": false
+    },
+    "m_to_f_weld_p95_c": 9.596646366068853,
+    "f_to_vf_weld_p95_c": 18.25997802289271,
+    "second_layer_diagnosis": {
+      "direct_source_partition_spread_j": {
+        "q235b": 9.094947017729282e-13,
+        "qt450_10": 1.8189894035458565e-12,
+        "ernife_ci": 1.8189894035458565e-12
+      },
+      "cumulative_net_conduction_relative_spread": {
+        "q235b": 0.0038573064858669825,
+        "qt450_10": 0.002417099564537634,
+        "ernife_ci": 0.0006451318200519909
+      },
+      "local_edge_nesting_fraction": {
+        "XSEC-M_to_XSEC-F": {
+          "n": 0.875,
+          "z": 0.8787878787878788
+        },
+        "XSEC-F_to_XSEC-VF": {
+          "n": 0.84,
+          "z": 0.8285714285714286
+        }
+      },
+      "fixed_point_to_represented_cell_center_distance_mm": {
+        "weld_center": {
+          "XSEC-F": 0.5104478614087086,
+          "XSEC-VF": 0.5000850364735563
+        },
+        "qt_near_interface": {
+          "XSEC-F": 0.5111407922371819,
+          "XSEC-VF": 0.5101879450328621
+        },
+        "qt_far": {
+          "XSEC-F": 0.5170485721106944,
+          "XSEC-VF": 0.5133406947726131
+        },
+        "q235_near_interface": {
+          "XSEC-F": 0.5229186849061066,
+          "XSEC-VF": 0.5117006451588497
+        },
+        "q235_far": {
+          "XSEC-F": 0.5229186849061066,
+          "XSEC-VF": 0.5061744267107763
+        }
+      },
+      "largest_f_to_vf_peak_difference_cells": [
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            28.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 31.261120608213105
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            29.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 30.407204513261945
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -29.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.86417017477538
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -28.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.829109881448403
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -27.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.730881141701957
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -20.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.71350652970159
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -22.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.609725273134586
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -23.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.609699061635297
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -25.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.59085567647469
+        },
+        {
+          "material": "qt450_10",
+          "s_n_z_mm": [
+            -21.5,
+            -1.8629787098458581,
+            -0.1428571428571429
+          ],
+          "absolute_peak_difference_c": 29.586179973137746
+        }
+      ],
+      "findings": [
+        "三档各材料直接吸收能量在浮点精度内一致，可排除总量归一化或材料源分配漂移为主因。",
+        "六条带边界、焊材面积、沿焊道和背景边界均冻结，可排除上一轮那种几何档位变化。",
+        "材料累计净导热和400℃以上暴露体积整体变化小，但局部峰值与包含固定点的控制体历史明显不稳，问题集中在局部离散而非总体能量账本。",
+        "0.4/0.3/0.2mm局部边并非严格嵌套，固定坐标所落控制体中心也随档位移动；当前非单调结果不能直接归因于单一物理项。",
+        "下一诊断应记录公共面逐面累计通量和瞬时表面源密度，并使用接口/阶梯边界完全对齐的嵌套局部网格；在该诊断前停止xfine。"
+      ],
+      "ruled_out_at_integral_level": [
+        "总吸收功率",
+        "按材料直接源分配",
+        "焊材质量与六条带几何"
+      ],
+      "still_open": [
+        "局部表面热源投影密度",
+        "非嵌套控制体采样",
+        "异材界面逐面通量",
+        "阶梯拐角附近单元几何"
+      ]
+    }
+  },
   "joint_load_basis": {
     "evidence_level": "design_assumption_reference_envelope",
     "reference_envelope": {
@@ -470,6 +649,43 @@
       "未包含焊材本构、接触或焊道激活",
       "算法通过不代表 QT450-10/ERNiFe-CI 裂纹或疲劳性能已验证"
     ]
+  },
+  "structural_global_newton": {
+    "evidence_level": "algorithm_and_small_mesh_verification",
+    "checks": {
+      "consistent_tangent_relative_error": true,
+      "tensile_analytic_strain": true,
+      "all_newton_steps_converged": true,
+      "force_balance": true,
+      "moment_balance": true,
+      "plastic_dissipation_nonnegative": true,
+      "released_cold_force_free": true,
+      "stress_free_birth": true,
+      "stress_free_birth_cooling_response": true
+    },
+    "struct_prep_gate_pass": false
+  },
+  "continuous_unified_mesh": {
+    "counts": {
+      "nodes": 52210,
+      "tetrahedra": 176524
+    },
+    "quality": {
+      "metric": "Gmsh minSICN",
+      "minimum": 0.04972501640893284,
+      "p01": 0.17884181386588555,
+      "median": 0.7195351062301403,
+      "nonpositive_count": 0,
+      "below_0p1_count": 1381
+    },
+    "checks": {
+      "three_material_regions": true,
+      "weld_interfaces_complete": true,
+      "contact_gap_faces_separate": true,
+      "evaluation_sets_present": true,
+      "no_inverted_tetrahedra": true
+    },
+    "struct_prep_gate_pass": false
   },
   "precompensation": {
     "evidence_level": "synthetic_demo",

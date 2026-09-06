@@ -53,6 +53,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.0029939170799738297,
           "worst_overturning_stress_mpa_per_n_mm": 4.610666396517229e-05,
           "reference_envelope_corner_required_allowable_mpa": 24.104792116149508,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 14.969585399869148,
+            "axial_only": 14.969585399869148,
+            "combined_force": 21.17019069559722,
+            "overturning_only": 11.526665991293072
+          },
           "force_capacity_n_per_allowable_mpa": 334.0105865619836,
           "moment_capacity_n_mm_per_allowable_mpa": 21688.838749109513
         },
@@ -63,6 +69,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.0025996825861352227,
           "worst_overturning_stress_mpa_per_n_mm": 4.00354078664378e-05,
           "reference_envelope_corner_required_allowable_mpa": 20.93070937933633,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 12.998412930676114,
+            "axial_only": 12.998412930676114,
+            "combined_force": 18.38253185588797,
+            "overturning_only": 10.00885196660945
+          },
           "force_capacity_n_per_allowable_mpa": 384.66234506214636,
           "moment_capacity_n_mm_per_allowable_mpa": 24977.889655479517
         },
@@ -73,6 +85,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.002079746068908178,
           "worst_overturning_stress_mpa_per_n_mm": 3.202832629315024e-05,
           "reference_envelope_corner_required_allowable_mpa": 16.744567503469064,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 10.39873034454089,
+            "axial_only": 10.39873034454089,
+            "combined_force": 14.706025484710375,
+            "overturning_only": 8.00708157328756
+          },
           "force_capacity_n_per_allowable_mpa": 480.8279313276829,
           "moment_capacity_n_mm_per_allowable_mpa": 31222.362069349398
         },
@@ -83,6 +101,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.0017331217240901483,
           "worst_overturning_stress_mpa_per_n_mm": 2.6690271910958532e-05,
           "reference_envelope_corner_required_allowable_mpa": 13.953806252890885,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 8.665608620450742,
+            "axial_only": 8.665608620450742,
+            "combined_force": 12.255021237258644,
+            "overturning_only": 6.672567977739633
+          },
           "force_capacity_n_per_allowable_mpa": 576.9935175932195,
           "moment_capacity_n_mm_per_allowable_mpa": 37466.834483219274
         },
@@ -93,6 +117,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.0014855329063629846,
           "worst_overturning_stress_mpa_per_n_mm": 2.2877375923678743e-05,
           "reference_envelope_corner_required_allowable_mpa": 11.960405359620761,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 7.427664531814923,
+            "axial_only": 7.427664531814923,
+            "combined_force": 10.504303917650269,
+            "overturning_only": 5.719343980919686
+          },
           "force_capacity_n_per_allowable_mpa": 673.159103858756,
           "moment_capacity_n_mm_per_allowable_mpa": 43711.306897089155
         }
@@ -115,6 +145,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.013059944063604296,
           "worst_overturning_stress_mpa_per_n_mm": 0.00020112462578616703,
           "reference_envelope_corner_required_allowable_mpa": 105.14894978469952,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 65.29972031802149,
+            "axial_only": 65.29972031802149,
+            "combined_force": 92.34775009291593,
+            "overturning_only": 50.28115644654176
+          },
           "force_capacity_n_per_allowable_mpa": 76.57000635912517,
           "moment_capacity_n_mm_per_allowable_mpa": 4972.041569206877
         },
@@ -125,6 +161,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.011340230290662872,
           "worst_overturning_stress_mpa_per_n_mm": 0.00017464083784973495,
           "reference_envelope_corner_required_allowable_mpa": 91.30309437563972,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 56.70115145331436,
+            "axial_only": 56.70115145331436,
+            "combined_force": 80.18753738744809,
+            "overturning_only": 43.66020946243374
+          },
           "force_capacity_n_per_allowable_mpa": 88.18163074019434,
           "moment_capacity_n_mm_per_allowable_mpa": 5726.037576963661
         },
@@ -135,6 +177,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.009072184232530298,
           "worst_overturning_stress_mpa_per_n_mm": 0.00013971267027978795,
           "reference_envelope_corner_required_allowable_mpa": 73.04247550051178,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 45.360921162651486,
+            "axial_only": 45.360921162651486,
+            "combined_force": 64.15002990995848,
+            "overturning_only": 34.928167569946986
+          },
           "force_capacity_n_per_allowable_mpa": 110.22703842524291,
           "moment_capacity_n_mm_per_allowable_mpa": 7157.546971204577
         },
@@ -145,6 +193,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.007560153527108582,
           "worst_overturning_stress_mpa_per_n_mm": 0.00011642722523315663,
           "reference_envelope_corner_required_allowable_mpa": 60.868729583759816,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 37.80076763554291,
+            "axial_only": 37.80076763554291,
+            "combined_force": 53.45835825829873,
+            "overturning_only": 29.10680630828916
+          },
           "force_capacity_n_per_allowable_mpa": 132.2724461102915,
           "moment_capacity_n_mm_per_allowable_mpa": 8589.056365445493
         },
@@ -155,6 +209,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.006480131594664499,
           "worst_overturning_stress_mpa_per_n_mm": 9.979476448556283e-05,
           "reference_envelope_corner_required_allowable_mpa": 52.17319678607985,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 32.400657973322495,
+            "axial_only": 32.400657973322495,
+            "combined_force": 45.82144993568463,
+            "overturning_only": 24.948691121390706
+          },
           "force_capacity_n_per_allowable_mpa": 154.31785379534006,
           "moment_capacity_n_mm_per_allowable_mpa": 10020.565759686408
         }
@@ -177,6 +237,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.009794958047703207,
           "worst_overturning_stress_mpa_per_n_mm": 0.00015084346933962498,
           "reference_envelope_corner_required_allowable_mpa": 78.86171233852453,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 48.974790238516036,
+            "axial_only": 48.974790238516036,
+            "combined_force": 69.26081256968685,
+            "overturning_only": 37.71086733490625
+          },
           "force_capacity_n_per_allowable_mpa": 102.09334181216705,
           "moment_capacity_n_mm_per_allowable_mpa": 6629.388758942517
         },
@@ -187,6 +253,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.008505172717997143,
           "worst_overturning_stress_mpa_per_n_mm": 0.00013098062838730098,
           "reference_envelope_corner_required_allowable_mpa": 68.47732078172969,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 42.52586358998571,
+            "axial_only": 42.52586358998571,
+            "combined_force": 60.14065304058599,
+            "overturning_only": 32.745157096825245
+          },
           "force_capacity_n_per_allowable_mpa": 117.5755076535926,
           "moment_capacity_n_mm_per_allowable_mpa": 7634.716769284895
         },
@@ -197,6 +269,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.006804138174397714,
           "worst_overturning_stress_mpa_per_n_mm": 0.00010478450270984077,
           "reference_envelope_corner_required_allowable_mpa": 54.78185662538375,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 34.02069087198857,
+            "axial_only": 34.02069087198857,
+            "combined_force": 48.112522432468786,
+            "overturning_only": 26.196125677460195
+          },
           "force_capacity_n_per_allowable_mpa": 146.96938456699075,
           "moment_capacity_n_mm_per_allowable_mpa": 9543.39596160612
         },
@@ -207,6 +285,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.005670115145331428,
           "worst_overturning_stress_mpa_per_n_mm": 8.73204189248673e-05,
           "reference_envelope_corner_required_allowable_mpa": 45.651547187819794,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 28.35057572665714,
+            "axial_only": 28.35057572665714,
+            "combined_force": 40.093768693723995,
+            "overturning_only": 21.830104731216824
+          },
           "force_capacity_n_per_allowable_mpa": 176.3632614803889,
           "moment_capacity_n_mm_per_allowable_mpa": 11452.075153927346
         },
@@ -217,6 +301,12 @@
           "von_mises_per_resultant_force_mpa_per_n": 0.004860098695998367,
           "worst_overturning_stress_mpa_per_n_mm": 7.484607336417198e-05,
           "reference_envelope_corner_required_allowable_mpa": 39.12989758955982,
+          "reference_envelope_component_required_allowable_mpa": {
+            "radial_only": 24.300493479991832,
+            "axial_only": 24.300493479991832,
+            "combined_force": 34.36608745176342,
+            "overturning_only": 18.711518341042993
+          },
           "force_capacity_n_per_allowable_mpa": 205.75713839378707,
           "moment_capacity_n_mm_per_allowable_mpa": 13360.754346248568
         }

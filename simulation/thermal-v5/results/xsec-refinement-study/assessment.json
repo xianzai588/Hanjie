@@ -1,0 +1,1331 @@
+{
+  "stage": "THERMAL-0.5-XSEC",
+  "evidence_level": "solver_result_unvalidated",
+  "experiment": "local_cross_section_refinement",
+  "fixed_inputs": "固定六条带焊道、沿焊道1.0mm、背景近区0.6mm/远区1.5mm、物理输入和dt=0.1s，仅细化焊材及两侧接口的n-z局部高梯度区",
+  "pre_registered_acceptance": {
+    "field_volume_weighted_mae_limit_c": 5.0,
+    "field_volume_weighted_p95_limit_c": 10.0,
+    "field_maximum_limit_c": 50.0,
+    "fixed_point_rms_limit_c": 5.0,
+    "fixed_point_peak_limit_c": 10.0,
+    "threshold_flip_volume_limit_mm3": 1.0,
+    "integral_relative_limit": 0.05,
+    "exposure_geometry_limit_mm": 0.1,
+    "asymptotic_reduction_ratio_max": 0.5,
+    "rule": "门槛在运行前登记；只有F到VF相对M到F明显缩小且QT/NiFe阈值翻转同步稳定，才允许进入最终网格时间步复查"
+  },
+  "levels": [
+    "XSEC-M",
+    "XSEC-F",
+    "XSEC-VF"
+  ],
+  "mesh_isolation_checks": {
+    "arc_edges_identical": true,
+    "radial_background_edges_identical": true,
+    "axial_background_edges_identical": true
+  },
+  "pairs": {
+    "XSEC-M_to_XSEC-F": {
+      "registered_metrics": {
+        "materials": {
+          "q235b": {
+            "peak_temperature_c": {
+              "absolute_change": 19.73376169390167,
+              "relative_change": 0.01827980611001132,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 2.44796088839513,
+              "relative_change": 0.029818408085300455,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.04102056511016805,
+              "relative_change": 0.0117294087910688,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 8.129875895939222,
+              "relative_change": 0.0018854356381160424,
+              "passed": true
+            }
+          },
+          "qt450_10": {
+            "peak_temperature_c": {
+              "absolute_change": 27.127994710745497,
+              "relative_change": 0.023533584415537632,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 0.6615782898818487,
+              "relative_change": 0.05970149253731377,
+              "passed": false
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 0.09923674348227657,
+              "relative_change": 0.2857142857142853,
+              "passed": false
+            },
+            "maximum_section_solidus_width_mm": {
+              "absolute_change": 0.0,
+              "relative_change": 0.0,
+              "passed": true
+            },
+            "maximum_section_solidus_depth_mm": {
+              "absolute_change": 0.1142857142857141,
+              "relative_change": 0.2857142857142853,
+              "passed": false
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 1.7414931292652795,
+              "relative_change": 0.013058973268685159,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.0029482138751211195,
+              "relative_change": 0.001049230631202734,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 3.5280778842011387,
+              "relative_change": 0.0029325783467581477,
+              "passed": true
+            }
+          },
+          "ernife_ci": {
+            "peak_temperature_c": {
+              "absolute_change": 3.892108344358121,
+              "relative_change": 0.0025347104198270827,
+              "passed": true
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 1.6755160819145587,
+              "relative_change": 0.09174311926605515,
+              "passed": false
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "absolute_change": 0.4188790204786397,
+              "relative_change": 0.03571428571428576,
+              "passed": true
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 0.0,
+              "relative_change": 0.0,
+              "passed": true
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 0.0,
+              "relative_change": 0.0,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.004958274177419675,
+              "relative_change": 0.0021153729469747637,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 0.0,
+              "relative_change": 0.0,
+              "passed": true
+            }
+          }
+        },
+        "nonzero_metrics_pass": false,
+        "fusion_geometry_demonstrated": false
+      },
+      "continuous_peak_field": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.43976979767454866,
+          "volume_weighted_p95_abs_peak_difference_c": 0.817140960849315,
+          "maximum_abs_peak_difference_c": 46.52941458650628,
+          "threshold_flip_volume_mm3": {
+            "solidus": 0.0,
+            "liquidus": 0.0
+          },
+          "registered_peak_difference_c": 19.73376169390167,
+          "checks": {
+            "mae": true,
+            "p95": true,
+            "maximum": true,
+            "threshold_flips": true
+          }
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.0991060134960641,
+          "volume_weighted_p95_abs_peak_difference_c": 0.14210070858757717,
+          "maximum_abs_peak_difference_c": 31.723522308792894,
+          "threshold_flip_volume_mm3": {
+            "solidus": 5.094152832090203,
+            "liquidus": 0.0
+          },
+          "registered_peak_difference_c": 27.127994710745497,
+          "checks": {
+            "mae": true,
+            "p95": true,
+            "maximum": true,
+            "threshold_flips": false
+          }
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 4.470743372090686,
+          "volume_weighted_p95_abs_peak_difference_c": 9.596646366068853,
+          "maximum_abs_peak_difference_c": 12.497326635689205,
+          "threshold_flip_volume_mm3": {
+            "solidus": 1.6755160819145567,
+            "liquidus": 0.4188790204786391
+          },
+          "registered_peak_difference_c": 3.892108344358121,
+          "checks": {
+            "mae": true,
+            "p95": true,
+            "maximum": true,
+            "threshold_flips": false
+          }
+        }
+      },
+      "fixed_physical_point_histories": {
+        "weld_center": {
+          "maximum_same_time_abs_difference_c": 5.033514013160811,
+          "rms_same_time_difference_c": 0.9846279781573429,
+          "peak_temperature_difference_c": 4.038509736729566,
+          "checks": {
+            "rms": true,
+            "peak": true
+          },
+          "lower_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          }
+        },
+        "qt_near_interface": {
+          "maximum_same_time_abs_difference_c": 16.820101100628904,
+          "rms_same_time_difference_c": 3.256769240800376,
+          "peak_temperature_difference_c": 7.789183404443293,
+          "checks": {
+            "rms": true,
+            "peak": true
+          },
+          "lower_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.28944050182330705,
+              -0.19999999999999996
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.3999999999999999
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.28944050182330705,
+              -0.1428571428571429
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.2857142857142858
+            ]
+          }
+        },
+        "qt_far": {
+          "maximum_same_time_abs_difference_c": 1.7309976199896937,
+          "rms_same_time_difference_c": 0.3787255777162674,
+          "peak_temperature_difference_c": 1.26445409658254,
+          "checks": {
+            "rms": true,
+            "peak": true
+          },
+          "lower_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.8683215054699212,
+              -0.9999999999999999
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.40000000000000013
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.8683215054699212,
+              -1.0
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.2857142857142856
+            ]
+          }
+        },
+        "q235_near_interface": {
+          "maximum_same_time_abs_difference_c": 15.116808720335712,
+          "rms_same_time_difference_c": 3.7476298074069154,
+          "peak_temperature_difference_c": 14.586458326682987,
+          "checks": {
+            "rms": true,
+            "peak": false
+          },
+          "lower_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.1875,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.375,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.15,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.3,
+              0.2894405018233071
+            ]
+          }
+        },
+        "q235_far": {
+          "maximum_same_time_abs_difference_c": 18.8897581474331,
+          "rms_same_time_difference_c": 4.6597718971827655,
+          "peak_temperature_difference_c": 17.36148627492787,
+          "checks": {
+            "rms": true,
+            "peak": false
+          },
+          "lower_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.9375,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.375,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              1.0499999999999998,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.30000000000000004,
+              0.2894405018233071
+            ]
+          }
+        }
+      },
+      "integral_quantities": {
+        "q235b": {
+          "direct_source_j": {
+            "lower": 4184.393891343239,
+            "upper": 4184.393891343239,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "cumulative_net_conduction_j": {
+            "lower": 4865.825143722681,
+            "upper": 4865.750481992547,
+            "absolute_difference": 0.07466173013381194,
+            "relative_difference": 1.534410463354438e-05
+          },
+          "exposure_above_400c_volume_mm3": {
+            "lower": 4303.805112276197,
+            "upper": 4311.934988172136,
+            "absolute_difference": 8.129875895939222,
+            "relative_difference": 0.0018854356381160424
+          },
+          "t8_5_valid_volume_mm3": {
+            "lower": 79.64766545732849,
+            "upper": 82.09562634572362,
+            "absolute_difference": 2.44796088839513,
+            "relative_difference": 0.029818408085300455
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "lower": 3.456220075134429,
+            "upper": 3.497240640244597,
+            "absolute_difference": 0.04102056511016805,
+            "relative_difference": 0.0117294087910688
+          },
+          "integral_relative_check": true
+        },
+        "qt450_10": {
+          "direct_source_j": {
+            "lower": 4436.686322454018,
+            "upper": 4436.6863224540175,
+            "absolute_difference": 9.094947017729282e-13,
+            "relative_difference": 2.049941410484636e-16
+          },
+          "cumulative_net_conduction_j": {
+            "lower": 5918.909577580479,
+            "upper": 5921.515727118042,
+            "absolute_difference": 2.6061495375633967,
+            "relative_difference": 0.00044011527751726333
+          },
+          "exposure_above_400c_volume_mm3": {
+            "lower": 1203.0634707854583,
+            "upper": 1199.5353929012572,
+            "absolute_difference": 3.5280778842011387,
+            "relative_difference": 0.0029325783467581477
+          },
+          "t8_5_valid_volume_mm3": {
+            "lower": 133.35605284079287,
+            "upper": 131.6145597115276,
+            "absolute_difference": 1.7414931292652795,
+            "relative_difference": 0.013058973268685159
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "lower": 2.8098816289242143,
+            "upper": 2.806933415049093,
+            "absolute_difference": 0.0029482138751211195,
+            "relative_difference": 0.001049230631202734
+          },
+          "integral_relative_check": true
+        },
+        "ernife_ci": {
+          "direct_source_j": {
+            "lower": 11178.919786202565,
+            "upper": 11178.919786202565,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "cumulative_net_conduction_j": {
+            "lower": -10784.734721303017,
+            "upper": -10787.26620911058,
+            "absolute_difference": 2.531487807562371,
+            "relative_difference": 0.00023467371236508074
+          },
+          "exposure_above_400c_volume_mm3": {
+            "lower": 90.47786842338606,
+            "upper": 90.47786842338606,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "lower": 90.47207961334959,
+            "upper": 90.47207961334959,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "lower": 2.3389660841777347,
+            "upper": 2.3439243583551543,
+            "absolute_difference": 0.004958274177419675,
+            "relative_difference": 0.0021153729469747637
+          },
+          "integral_relative_check": true
+        }
+      },
+      "exposure_geometry": {
+        "q235b": {
+          "maximum_section_solidus_width_mm": {
+            "lower": 0.0,
+            "upper": 0.0,
+            "absolute_difference_mm": 0.0,
+            "pass": true
+          },
+          "maximum_section_solidus_depth_mm": {
+            "lower": 0.0,
+            "upper": 0.0,
+            "absolute_difference_mm": 0.0,
+            "pass": true
+          }
+        },
+        "qt450_10": {
+          "maximum_section_solidus_width_mm": {
+            "lower": 0.8683215054699216,
+            "upper": 0.8683215054699216,
+            "absolute_difference_mm": 0.0,
+            "pass": true
+          },
+          "maximum_section_solidus_depth_mm": {
+            "lower": 0.3999999999999999,
+            "upper": 0.2857142857142858,
+            "absolute_difference_mm": 0.1142857142857141,
+            "pass": false
+          }
+        }
+      }
+    },
+    "XSEC-F_to_XSEC-VF": {
+      "registered_metrics": {
+        "materials": {
+          "q235b": {
+            "peak_temperature_c": {
+              "absolute_change": 29.719006686286093,
+              "relative_change": 0.026791791731799665,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 1.6040115919085167,
+              "relative_change": 0.019163901199951764,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.003203135459976192,
+              "relative_change": 0.0009159036478977222,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 14.436193197423563,
+              "relative_change": 0.003336790254980764,
+              "passed": true
+            }
+          },
+          "qt450_10": {
+            "peak_temperature_c": {
+              "absolute_change": 16.252513921630225,
+              "relative_change": 0.013903064692095393,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 1.9101724477220703,
+              "relative_change": 0.17237588940989582,
+              "passed": false
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 0.04548350742937696,
+              "relative_change": 0.18333333333333376,
+              "passed": false
+            },
+            "maximum_section_solidus_width_mm": {
+              "absolute_change": 0.14472025091165341,
+              "relative_change": 0.1428571428571427,
+              "passed": false
+            },
+            "maximum_section_solidus_depth_mm": {
+              "absolute_change": 0.08571428571428585,
+              "relative_change": 0.3000000000000004,
+              "passed": false
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 1.896100440055875,
+              "relative_change": 0.014201865513233977,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.03960743672713596,
+              "relative_change": 0.013914234430333607,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 7.431336948130593,
+              "relative_change": 0.006195179393712414,
+              "passed": true
+            }
+          },
+          "ernife_ci": {
+            "peak_temperature_c": {
+              "absolute_change": 55.39068079569893,
+              "relative_change": 0.034902266934326916,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 0.7749261878854803,
+              "relative_change": 0.04671717171717159,
+              "passed": true
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "absolute_change": 3.6233035271402283,
+              "relative_change": 0.32037037037037036,
+              "passed": false
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 0.1047197551196597,
+              "relative_change": 0.2499999999999998,
+              "passed": false
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 0.0028944050182246883,
+              "relative_change": 3.199224590165832e-05,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.013377509963270917,
+              "relative_change": 0.005674924430791601,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 0.0,
+              "relative_change": 0.0,
+              "passed": true
+            }
+          }
+        },
+        "nonzero_metrics_pass": false,
+        "fusion_geometry_demonstrated": false
+      },
+      "continuous_peak_field": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.3399174825952526,
+          "volume_weighted_p95_abs_peak_difference_c": 0.8663214119924305,
+          "maximum_abs_peak_difference_c": 22.136512586429262,
+          "threshold_flip_volume_mm3": {
+            "solidus": 0.0,
+            "liquidus": 0.0
+          },
+          "registered_peak_difference_c": 29.719006686286093,
+          "checks": {
+            "mae": true,
+            "p95": true,
+            "maximum": true,
+            "threshold_flips": true
+          }
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.14168248411091583,
+          "volume_weighted_p95_abs_peak_difference_c": 0.4671638025275797,
+          "maximum_abs_peak_difference_c": 31.261120608213105,
+          "threshold_flip_volume_mm3": {
+            "solidus": 0.8626072197556358,
+            "liquidus": 0.0
+          },
+          "registered_peak_difference_c": 16.252513921630225,
+          "checks": {
+            "mae": true,
+            "p95": true,
+            "maximum": true,
+            "threshold_flips": true
+          }
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 11.348897290807088,
+          "volume_weighted_p95_abs_peak_difference_c": 18.25997802289271,
+          "maximum_abs_peak_difference_c": 21.690828618260184,
+          "threshold_flip_volume_mm3": {
+            "solidus": 2.932153143350474,
+            "liquidus": 1.6755160819145565
+          },
+          "registered_peak_difference_c": 55.39068079569893,
+          "checks": {
+            "mae": false,
+            "p95": false,
+            "maximum": true,
+            "threshold_flips": false
+          }
+        }
+      },
+      "fixed_physical_point_histories": {
+        "weld_center": {
+          "maximum_same_time_abs_difference_c": 17.384745113058898,
+          "rms_same_time_difference_c": 4.66903614516809,
+          "peak_temperature_difference_c": 15.293023887147001,
+          "checks": {
+            "rms": true,
+            "peak": false
+          },
+          "lower_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.5065208781907874,
+              0.5065208781907875
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.14472025091165341,
+              0.14472025091165353
+            ]
+          }
+        },
+        "qt_near_interface": {
+          "maximum_same_time_abs_difference_c": 53.150660163156886,
+          "rms_same_time_difference_c": 14.342089632355162,
+          "peak_temperature_difference_c": 49.67000822782006,
+          "checks": {
+            "rms": false,
+            "peak": false
+          },
+          "lower_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.28944050182330705,
+              -0.1428571428571429
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.2857142857142858
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.21708037636748023,
+              -0.29999999999999993
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.14472025091165364,
+              0.19999999999999996
+            ]
+          }
+        },
+        "qt_far": {
+          "maximum_same_time_abs_difference_c": 21.31234960501922,
+          "rms_same_time_difference_c": 5.029649735793723,
+          "peak_temperature_difference_c": 19.161738837833695,
+          "checks": {
+            "rms": false,
+            "peak": false
+          },
+          "lower_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.8683215054699212,
+              -1.0
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.2857142857142856
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.940681630925748,
+              -0.8999999999999999
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.14472025091165364,
+              0.20000000000000018
+            ]
+          }
+        },
+        "q235_near_interface": {
+          "maximum_same_time_abs_difference_c": 72.56184871426024,
+          "rms_same_time_difference_c": 17.605142588466403,
+          "peak_temperature_difference_c": 68.14038403078155,
+          "checks": {
+            "rms": false,
+            "peak": false
+          },
+          "lower_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.15,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.3,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.28125,
+              0.07236012545582678
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.1875,
+              0.14472025091165355
+            ]
+          }
+        },
+        "q235_far": {
+          "maximum_same_time_abs_difference_c": 4.887757028163946,
+          "rms_same_time_difference_c": 1.2959512110883036,
+          "peak_temperature_difference_c": 4.762514830757141,
+          "checks": {
+            "rms": true,
+            "peak": true
+          },
+          "lower_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              1.0499999999999998,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.30000000000000004,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              1.03125,
+              0.07236012545582678
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.1875,
+              0.14472025091165355
+            ]
+          }
+        }
+      },
+      "integral_quantities": {
+        "q235b": {
+          "direct_source_j": {
+            "lower": 4184.393891343239,
+            "upper": 4184.39389134324,
+            "absolute_difference": 9.094947017729282e-13,
+            "relative_difference": 2.1735398850823042e-16
+          },
+          "cumulative_net_conduction_j": {
+            "lower": 4865.750481992547,
+            "upper": 4847.056164836705,
+            "absolute_difference": 18.694317155842327,
+            "relative_difference": 0.0038420213336107854
+          },
+          "exposure_above_400c_volume_mm3": {
+            "lower": 4311.934988172136,
+            "upper": 4326.37118136956,
+            "absolute_difference": 14.436193197423563,
+            "relative_difference": 0.003336790254980764
+          },
+          "t8_5_valid_volume_mm3": {
+            "lower": 82.09562634572362,
+            "upper": 83.69963793763213,
+            "absolute_difference": 1.6040115919085167,
+            "relative_difference": 0.019163901199951764
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "lower": 3.497240640244597,
+            "upper": 3.494037504784621,
+            "absolute_difference": 0.003203135459976192,
+            "relative_difference": 0.0009159036478977222
+          },
+          "integral_relative_check": true
+        },
+        "qt450_10": {
+          "direct_source_j": {
+            "lower": 4436.6863224540175,
+            "upper": 4436.686322454019,
+            "absolute_difference": 1.8189894035458565e-12,
+            "relative_difference": 4.099882820969271e-16
+          },
+          "cumulative_net_conduction_j": {
+            "lower": 5921.515727118042,
+            "upper": 5933.25083559148,
+            "absolute_difference": 11.735108473437322,
+            "relative_difference": 0.001977854771121852
+          },
+          "exposure_above_400c_volume_mm3": {
+            "lower": 1199.5353929012572,
+            "upper": 1192.1040559531266,
+            "absolute_difference": 7.431336948130593,
+            "relative_difference": 0.006195179393712414
+          },
+          "t8_5_valid_volume_mm3": {
+            "lower": 131.6145597115276,
+            "upper": 133.51066015158347,
+            "absolute_difference": 1.896100440055875,
+            "relative_difference": 0.014201865513233977
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "lower": 2.806933415049093,
+            "upper": 2.846540851776229,
+            "absolute_difference": 0.03960743672713596,
+            "relative_difference": 0.013914234430333607
+          },
+          "integral_relative_check": true
+        },
+        "ernife_ci": {
+          "direct_source_j": {
+            "lower": 11178.919786202565,
+            "upper": 11178.919786202563,
+            "absolute_difference": 1.8189894035458565e-12,
+            "relative_difference": 1.627160260860732e-16
+          },
+          "cumulative_net_conduction_j": {
+            "lower": -10787.26620911058,
+            "upper": -10780.30700042771,
+            "absolute_difference": 6.959208682868848,
+            "relative_difference": 0.0006451318200519909
+          },
+          "exposure_above_400c_volume_mm3": {
+            "lower": 90.47786842338606,
+            "upper": 90.47786842338606,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "lower": 90.47207961334959,
+            "upper": 90.46918520833137,
+            "absolute_difference": 0.0028944050182246883,
+            "relative_difference": 3.199224590165832e-05
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "lower": 2.3439243583551543,
+            "upper": 2.3573018683184253,
+            "absolute_difference": 0.013377509963270917,
+            "relative_difference": 0.005674924430791601
+          },
+          "integral_relative_check": true
+        }
+      },
+      "exposure_geometry": {
+        "q235b": {
+          "maximum_section_solidus_width_mm": {
+            "lower": 0.0,
+            "upper": 0.0,
+            "absolute_difference_mm": 0.0,
+            "pass": true
+          },
+          "maximum_section_solidus_depth_mm": {
+            "lower": 0.0,
+            "upper": 0.0,
+            "absolute_difference_mm": 0.0,
+            "pass": true
+          }
+        },
+        "qt450_10": {
+          "maximum_section_solidus_width_mm": {
+            "lower": 0.8683215054699216,
+            "upper": 1.013041756381575,
+            "absolute_difference_mm": 0.14472025091165341,
+            "pass": false
+          },
+          "maximum_section_solidus_depth_mm": {
+            "lower": 0.2857142857142858,
+            "upper": 0.19999999999999996,
+            "absolute_difference_mm": 0.08571428571428585,
+            "pass": true
+          }
+        }
+      }
+    }
+  },
+  "second_layer_diagnosis": {
+    "direct_source_partition_spread_j": {
+      "q235b": 9.094947017729282e-13,
+      "qt450_10": 1.8189894035458565e-12,
+      "ernife_ci": 1.8189894035458565e-12
+    },
+    "cumulative_net_conduction_relative_spread": {
+      "q235b": 0.0038573064858669825,
+      "qt450_10": 0.002417099564537634,
+      "ernife_ci": 0.0006451318200519909
+    },
+    "local_edge_nesting_fraction": {
+      "XSEC-M_to_XSEC-F": {
+        "n": 0.875,
+        "z": 0.8787878787878788
+      },
+      "XSEC-F_to_XSEC-VF": {
+        "n": 0.84,
+        "z": 0.8285714285714286
+      }
+    },
+    "fixed_point_to_represented_cell_center_distance_mm": {
+      "weld_center": {
+        "XSEC-F": 0.5104478614087086,
+        "XSEC-VF": 0.5000850364735563
+      },
+      "qt_near_interface": {
+        "XSEC-F": 0.5111407922371819,
+        "XSEC-VF": 0.5101879450328621
+      },
+      "qt_far": {
+        "XSEC-F": 0.5170485721106944,
+        "XSEC-VF": 0.5133406947726131
+      },
+      "q235_near_interface": {
+        "XSEC-F": 0.5229186849061066,
+        "XSEC-VF": 0.5117006451588497
+      },
+      "q235_far": {
+        "XSEC-F": 0.5229186849061066,
+        "XSEC-VF": 0.5061744267107763
+      }
+    },
+    "largest_f_to_vf_peak_difference_cells": [
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          28.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 31.261120608213105
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          29.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 30.407204513261945
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -29.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.86417017477538
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -28.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.829109881448403
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -27.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.730881141701957
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -20.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.71350652970159
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -22.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.609725273134586
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -23.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.609699061635297
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -25.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.59085567647469
+      },
+      {
+        "material": "qt450_10",
+        "s_n_z_mm": [
+          -21.5,
+          -1.8629787098458581,
+          -0.1428571428571429
+        ],
+        "absolute_peak_difference_c": 29.586179973137746
+      }
+    ],
+    "findings": [
+      "三档各材料直接吸收能量在浮点精度内一致，可排除总量归一化或材料源分配漂移为主因。",
+      "六条带边界、焊材面积、沿焊道和背景边界均冻结，可排除上一轮那种几何档位变化。",
+      "材料累计净导热和400℃以上暴露体积整体变化小，但局部峰值与包含固定点的控制体历史明显不稳，问题集中在局部离散而非总体能量账本。",
+      "0.4/0.3/0.2mm局部边并非严格嵌套，固定坐标所落控制体中心也随档位移动；当前非单调结果不能直接归因于单一物理项。",
+      "下一诊断应记录公共面逐面累计通量和瞬时表面源密度，并使用接口/阶梯边界完全对齐的嵌套局部网格；在该诊断前停止xfine。"
+    ],
+    "ruled_out_at_integral_level": [
+      "总吸收功率",
+      "按材料直接源分配",
+      "焊材质量与六条带几何"
+    ],
+    "still_open": [
+      "局部表面热源投影密度",
+      "非嵌套控制体采样",
+      "异材界面逐面通量",
+      "阶梯拐角附近单元几何"
+    ]
+  },
+  "asymptotic_diagnosis": {
+    "ernife_p95_reduction_ratio": 1.9027457432895574,
+    "required_maximum": 0.5,
+    "qt_and_ernife_flips_stable": false,
+    "entered_asymptotic_region": false
+  },
+  "spatial_gate_pass": false,
+  "time_step_recheck_allowed": false,
+  "xfine_allowed": false,
+  "thermal_1_allowed": false,
+  "decision": "若三级局部细化未进入渐近区或阈值翻转未稳定，则按预登记规则停止暴力xfine，转入热源投影/阶梯边界/界面通量/局部单元几何诊断。"
+}

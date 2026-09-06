@@ -10,10 +10,10 @@ stages:
     upstream_dependencies: []
     next_action: 取得真实载荷/许用依据后裁决焊脚；四道候选继续等待分层几何和宏观截面验证
   LOAD-BASIS-0:
-    execution_status: conditional_weld_group_screening_completed
+    execution_status: conditional_weld_group_screening_and_component_leg_curves_completed
     acceptance_result: reference_envelope_only_actual_load_missing
     evidence_level: design_assumption_reference_envelope
-    allowed_use: 焊脚、焊长、单位载荷响应和热量/节拍敏感性比较
+    allowed_use: 焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较
     evidence: simulation/structural-v4/results/joint-load-basis/joint-load-basis.json
     upstream_dependencies: [G-INPUTS]
     next_action: 取得实际径向/轴向/倾覆包络、许用与载荷谱；不得用参考包络认证服役安全
@@ -34,7 +34,15 @@ stages:
     allowed_use: 分离场网格与阶梯几何影响；禁止正式整件性能结论
     evidence: simulation/thermal-v5/results/spatial-fix-study/assessment.json
     upstream_dependencies: [THERMAL-0.4R1]
-    next_action: 方向对照确认截面影响占主导；优先细化焊材/界面截面高梯度区，再决定 xfine 并复查时间步
+    next_action: 已转入THERMAL-0.5局部截面三级序列
+  THERMAL-0.5-XSEC:
+    execution_status: local_xsec_m_f_vf_run_and_second_layer_diagnosis_completed
+    acceptance_result: nonmonotonic_not_in_asymptotic_region
+    evidence_level: solver_result_unvalidated
+    allowed_use: 局部离散根因诊断；禁止给最终空间/时间准入或正式整件性能结论
+    evidence: simulation/thermal-v5/results/xsec-refinement-study/assessment.json
+    upstream_dependencies: [THERMAL-0.4R2-A]
+    next_action: 停止xfine和新网格时间步；补逐面界面通量、局部源密度及接口/阶梯边界对齐的嵌套网格诊断
   METALLURGY-0:
     execution_status: executor_and_historical_diagnostics_completed
     acceptance_result: current_joint_not_physically_validated
@@ -50,12 +58,12 @@ stages:
     upstream_dependencies: [G-INPUTS]
     next_action: 条件具备时执行并保留独立验证试件
   THERMAL-NUMERICAL-GATE:
-    execution_status: evaluated_after_0p4r2_a
+    execution_status: evaluated_after_0p5_xsec
     acceptance_result: not_passed
     evidence_level: solver_result_unvalidated
     allowed_use: 通过后仅可标记 solver_verified 并进入无实物 Route B
-    upstream_dependencies: [THERMAL-0.4R2-A]
-    next_action: 完成分离误差来源的空间准入与新细网格时间步复查
+    upstream_dependencies: [THERMAL-0.5-XSEC]
+    next_action: 先关闭局部非单调根因；空间门通过后才能在最终网格复查时间步
   THERMAL-PHYSICAL-CALIBRATION:
     execution_status: protocol_only
     acceptance_result: not_executed
@@ -72,13 +80,14 @@ stages:
     optional_physical_dependency: THERMAL-PHYSICAL-CALIBRATION
     next_action: 数值 Gate 通过后可进入 solver_verified Route B；物理校准通过才可使用 calibrated/validated 标签
   STRUCT-0-PREP:
-    execution_status: partial_with_3d_j2_and_affine_small_mesh_verified
+    execution_status: partial_with_consistent_tangent_global_newton_and_continuous_mesh
     acceptance_result: not_ready
     evidence_level: component_unit_verification
     allowed_use: 独立组件验证；不得冒充实际焊接残余位置度
-    evidence: simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json
+    evidence: simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json
+    mesh_evidence: simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json
     upstream_dependencies: [G-INPUTS]
-    next_action: 推进任意边界非线性全局求解、统一网格、夹具接触及释放后冷却状态流
+    next_action: 修整低质量四面体，完成局部热场映射边界定义与法向接触/释放；不得接入未准入热场
   STRUCT-0:
     execution_status: not_executed
     acceptance_result: blocked_by_thermal_and_prep
