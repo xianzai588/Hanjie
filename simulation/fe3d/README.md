@@ -1,6 +1,8 @@
 # FE3D V4 冻结设计 - README
 
-**版本**：V4.2
+**版本**：V4.3
+
+> 当前边界：七个真实三维实体的线弹性静力筛查已在 `simulation/structural-v4/` 完成；本目录的 `src/hanjie/simulation/fe3d.py` 仍为历史代理，完整工件热—弹塑性、松夹后位置度和 Gate B 尚未完成。以下未勾选项均指完整耦合模型，不得再解释为“真实三维几何尚未建立”。
 **日期**：2026-09-05
 **状态**：设计输入冻结；真实 FE3D-BASE 尚未实施，当前仅有 surrogate prototype
 
@@ -58,7 +60,7 @@ simulation/fe3d/
         └── results/                    # 结果文件
 
 deliverables/report/
-└── technical-report-v4-unified.md     # 当前 V4.2 技术报告源
+└── technical-report-v4-unified.md     # 当前 V4.3 技术报告源
 ```
 
 ---
@@ -159,7 +161,7 @@ deliverables/report/
 
 - [x] 设计输入冻结
 - [x] 验证协议编写（结果出来前）
-- [x] 当前报告源与 V4.2 边界声明
+- [x] 当前报告源与 V4.3 边界声明
 - [x] 模型目录创建
 
 ### 下一步：Phase 1 真实几何建模
@@ -259,7 +261,7 @@ deliverables/report/
 | 设计输入冻结 | `design-inputs-frozen-v4.md` | 几何、材料、工艺、边界参数 |
 | 验证协议 | `FE3D-BASE-verification-protocol.md` | Gate B 判据、提取算法 |
 | 状态追踪 | `FE3D-BASE-status.md` | 40 项检查清单 |
-| 当前技术报告源 | `../../deliverables/report/technical-report-v4-unified.md` | V4.2 研究草稿 |
+| 当前技术报告源 | `../../deliverables/report/technical-report-v4-unified.md` | V4.3 工艺设计说明书 |
 | 证据清单 | `../../evidence/claims.yaml` | CLAIM-052 FE 验证状态 |
 
 ---
@@ -322,6 +324,6 @@ deliverables/report/
 
 ---
 
-**状态**：V4.2 设计输入已冻结，FE3D-BASE 真实实施待开始；代理结果仅作展示。
+**状态**：V4.3 静力筛查已完成；完整工件 FE3D-BASE 热—弹塑性实施待开始，历史代理仅作展示。
 
 **下一步**：开始 Phase 1 真实几何建模。

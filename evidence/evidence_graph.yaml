@@ -42,7 +42,7 @@ taxonomy:
   designs:
     DES-CAD-BASELINE:
       path: project/baseline.yaml
-      parameters: Shell Ø160x5 mm, Wing R74.98 mm, H7/h6 fit, Taper 1/50 mandrel
+      parameters: Shell Ø160x5 mm, Wing R74.98 mm with explicit Ø149.94~149.98/Ø150.00~150.02 limit fit, Taper 1/50 mandrel
       status: planned
       evidence_level: design_assumption
     DES-FIXTURE-TAPER:
@@ -66,6 +66,11 @@ taxonomy:
       scope: 有限候选代理非支配筛选；无全局最优或疲劳证据
       status: unvalidated
       evidence_level: surrogate_result
+    SIM-STATIC3D-V4:
+      path: simulation/structural-v4/results/static-screening/static-screening-analysis.json
+      scope: 七个OpenCascade实体的三维线弹性静力筛查，含三档网格与两类支承敏感性；不含焊接热源、温度相关塑性或松夹残余位置度
+      status: screening_completed
+      evidence_level: solver_result_unvalidated
     SIM-THERMAL0-V5:
       path: simulation/thermal-v5/results/thermal0-summary.json
       scope: 固定局部窗口内移动 Goldak 热源的瞬态热历史，含归一化前有限域捕获审计；未用热电偶、宏观截面或商业求解器校准
@@ -89,6 +94,11 @@ taxonomy:
     SIM-CREDIBILITY04R-V5:
       path: simulation/thermal-v5/results/credibility04r/assessment.json
       scope: 材料直接源与净导热账本、固定工艺的三种源结构及物性端点、三档网格和时间步条件验证；不代表实测物性、熔合验证或工艺窗口放行
+      status: superseded_by_series_resistance_rerun
+      evidence_level: solver_result_unvalidated
+    SIM-CREDIBILITY04R1-V5:
+      path: simulation/thermal-v5/results/credibility04r1/assessment.json
+      scope: 修正非均匀异材界面串联热阻后的名义、源结构、物性端点、三档网格和时间步重跑；与历史0.4R差异仅表示离散修正影响
       status: unvalidated
       evidence_level: solver_result_unvalidated
     SIM-THERMAL0-AUDIT-V5:
@@ -152,19 +162,21 @@ claims_graph:
     report_section: §2 材料与焊接性边界
     status: unresolved
   CLAIM-002:
-    statement: FE3D 当前为经验代理，不能证明有限元收敛
+    statement: 七实体三维静力筛查已完成，但不能证明焊后残余位置度或完整热—结构收敛
     confidence: unresolved
     supporting_evidence:
     - SIM-FE3D-BASE
+    - SIM-STATIC3D-V4
     - DES-CAD-BASELINE
     report_section: §4-§6 3D有限元网格收敛
     status: unresolved
   CLAIM-003:
-    statement: 最终拓扑未定，六点最优主张撤回
+    statement: 静力筛查保留Continuous、6P、8P-FAIR_B；最终拓扑须由热变形、接头质量与疲劳联合裁决
     confidence: unresolved
     supporting_evidence:
     - SIM-COMP-4-6-8
     - SIM-ROBUST-OPT
+    - SIM-STATIC3D-V4
     report_section: §4 结构选型与公平对比
     status: unresolved
   CLAIM-004:
@@ -176,7 +188,7 @@ claims_graph:
     report_section: §7 自适应跳焊策略
     status: unresolved
   CLAIM-005:
-    statement: 预偏置为受装配约束的候选控制方法；优于静态补偿尚未验证
+    statement: 预偏置已按逐件初偏心求相对调整量并统一执行约束；物理响应与实物效果尚未验证
     confidence: unresolved
     supporting_evidence:
     - CTRL-INV-PRECOMP
@@ -194,17 +206,18 @@ claims_graph:
     report_section: §9 合成校准演示边界
     status: unresolved
   CLAIM-007:
-    statement: V5.2 计划一已建立可追溯的 THERMAL-0 热历史和 METALLURGY-0 风险级基线，但尚未完成物理校准
+    statement: 0.4R1已修正非均匀异材界面离散并重跑数值可信度序列，但尚未完成物理校准和两侧熔合证明
     confidence: unresolved
     supporting_evidence:
     - SIM-THERMAL0-V5
     - SIM-METALLURGY0-V5
     - SIM-THERMAL0-AUDIT-V5
+    - SIM-CREDIBILITY04R1-V5
     - EXP-TEMP-001
     - EXP-HARD-002
     report_section: 计划一执行记录 §4-§5
     status: unresolved
-version: '4.2'
+version: '4.3'
 allowed_evidence_levels:
 - official
 - literature_supported

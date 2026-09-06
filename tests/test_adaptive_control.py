@@ -39,10 +39,32 @@ def test_fixed_sequence_rejects_duplicate_segments() -> None:
 
 
 def test_inverse_precompensation_respects_clearance_bound() -> None:
-    """逆向反变形补偿测试：反演出的预置位姿必须严格处于 H7/h6 间隙裕量内。"""
+    """相对调整量与最终装配位置分别满足行程和间隙约束。"""
     solver = InversePrecompensationSolver(max_clearance_mm=0.040)
-    x_opt = solver.solve_inverse_pose(np.array([0.0, 0.0]))
-    assert np.linalg.norm(x_opt) <= 0.040 + 1e-6
+    initial = np.array([0.006,-0.004])
+    adjustment = solver.solve_inverse_pose(initial)
+    assert np.all(np.abs(adjustment)<=solver.max_stroke+1e-9)
+    assert np.linalg.norm(initial+adjustment)<=0.040+1e-9
+    assert solver.execution_is_feasible(initial,adjustment)
+
+
+def test_inverse_precompensation_uses_each_measured_initial_offset() -> None:
+    solver = InversePrecompensationSolver()
+    first = np.array([0.006,-0.004])
+    second = np.array([-0.003,0.007])
+    delta_first = solver.solve_inverse_pose(first)
+    delta_second = solver.solve_inverse_pose(second)
+    assert not np.allclose(delta_first,delta_second)
+    # 正则化会保留少量初态影响，但补偿后两件差异应显著小于原始差异。
+    assert np.linalg.norm((first+delta_first)-(second+delta_second))<0.1*np.linalg.norm(first-second)
+
+
+def test_precompensation_benchmark_reports_rejections_without_clipping() -> None:
+    result = InversePrecompensationSolver(max_clearance_mm=0.012,max_stroke_mm=0.010).evaluate_benchmark(30)
+    for row in result.values():
+        assert row.accepted_count+row.rejected_count==30
+        assert row.boundary_violation_rate_pct==row.rejected_count/30*100
+        assert row.overall_pass_rate_pct<=row.pass_p005_rate_pct+1e-12
 
 
 

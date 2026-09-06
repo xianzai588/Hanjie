@@ -77,8 +77,9 @@ fixture:
   large_diameter_mm: 40.10
   effective_length_mm: 10.0
   axial_clamping_force_n: 500.0
-  release_condition: "冷却保持 120 s 且界面最高温度低于 200 C；当前为数字假设，待工艺评定"
-  release_temperature_c: 200.0
+  release_condition: "冷却后界面最高温度进入 50±5 C 再解除夹具；当前为数字假设，待完整工件测温确认"
+  release_temperature_c: 50.0
+  release_temperature_band_c: 5.0
 
 thermal_grid:
   # 固定局部窗口内仅热源移动；测点和母材均使用固定空间坐标。

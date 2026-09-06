@@ -1,33 +1,44 @@
 {
   "evidence_level": "synthetic_demo",
   "validation_status": "unvalidated",
+  "variable_definition": "delta为相对调整量；实际装配位置=逐件实测初偏心+delta",
+  "constraint_policy": "三种方法采用相同行程与最终间隙约束；失败样本拒绝，不截断",
   "benchmark": [
     {
       "key": "no_compensation",
       "method_name": "无补偿基线 (No-Comp)",
-      "mean_error_mm": 0.05284165986580806,
-      "p95_error_mm": 0.0728749659852939,
-      "max_error_mm": 0.08278475073598977,
+      "mean_error_mm": 0.053603479772317254,
+      "p95_error_mm": 0.07651011542199598,
+      "max_error_mm": 0.08393315450784734,
       "boundary_violation_rate_pct": 0.0,
-      "pass_p005_rate_pct": 40.0
+      "pass_p005_rate_pct": 39.5,
+      "accepted_count": 200,
+      "rejected_count": 0,
+      "overall_pass_rate_pct": 39.5
     },
     {
       "key": "static_subtraction",
       "method_name": "经验静态减法 (Static-Minus)",
-      "mean_error_mm": 0.014633722706333212,
-      "p95_error_mm": 0.027246903218497744,
-      "max_error_mm": 0.03911522013035066,
-      "boundary_violation_rate_pct": 1.5,
-      "pass_p005_rate_pct": 100.0
+      "mean_error_mm": 0.014662409229335703,
+      "p95_error_mm": 0.026918268365848406,
+      "max_error_mm": 0.04175255973272323,
+      "boundary_violation_rate_pct": 0.5,
+      "pass_p005_rate_pct": 100.0,
+      "accepted_count": 199,
+      "rejected_count": 1,
+      "overall_pass_rate_pct": 99.5
     },
     {
       "key": "inverse_optimization",
       "method_name": "不确定性逆向优化 (Inverse-Opt)",
-      "mean_error_mm": 0.014750269625356147,
-      "p95_error_mm": 0.028173957944313918,
-      "max_error_mm": 0.03597472703405688,
-      "boundary_violation_rate_pct": 0.5,
-      "pass_p005_rate_pct": 100.0
+      "mean_error_mm": 0.006468402326998649,
+      "p95_error_mm": 0.015845744678329193,
+      "max_error_mm": 0.021141906349367478,
+      "boundary_violation_rate_pct": 0.0,
+      "pass_p005_rate_pct": 100.0,
+      "accepted_count": 200,
+      "rejected_count": 0,
+      "overall_pass_rate_pct": 100.0
     }
   ]
 }

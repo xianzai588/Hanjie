@@ -13,11 +13,11 @@
 <line x1="110.0" y1="350.0" x2="340.0" y2="350.0" class="dimline"/>
 <text x="340.0" y="215.0" class="dim" text-anchor="start">Ø39.90</text>
 <text x="340.0" y="345.0" class="dim" text-anchor="start">Ø40.10</text>
-<text x="340.0" y="280.0" class="dim" text-anchor="start">Taper 1:50 (effective L=10)</text>
+<text x="340.0" y="280.0" class="dim" text-anchor="start">ΔD=0.20 over L=10; (D-d)/L=1:50</text>
 <text x="110.0" y="520.0" class="section" text-anchor="start">BASE PLATE - PLAN</text>
 <circle cx="230.0" cy="630.0" r="52.3" class="edge" fill="#cbd5e1"/>
 <circle cx="230.0" cy="630.0" r="28.0" class="edge" fill="#fff"/>
-<text x="230.0" y="720.0" class="dim" text-anchor="middle">Ø190</text>
+<text x="230.0" y="685.0" class="dim" text-anchor="middle">Ø190</text>
 <text x="600.0" y="190.0" class="section" text-anchor="start">MANDREL NOTES</text>
 <text x="600.0" y="230.0" class="note" text-anchor="start">Tapered fit auto-centers bore to mandrel axis</text>
 <text x="600.0" y="260.0" class="note" text-anchor="start">Axial clamping force: 500 N</text>
@@ -37,9 +37,9 @@
 <polygon points="385.0,630.0 405.0,620.0 405.0,640.0" class="datumbox" fill="#fff"/>
 <text x="393.0" y="635.0" class="datum" text-anchor="middle">C</text>
 <line x1="405.0" y1="630.0" x2="440.0" y2="630.0" class="thin"/>
-<line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
-<text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
-<text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
-<text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
+<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
+<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
+<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
+<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

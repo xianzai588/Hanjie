@@ -12,12 +12,12 @@ from scipy.sparse import coo_matrix, diags
 from scipy.sparse.linalg import cg
 from threadpoolctl import threadpool_limits
 
-from mass_closed_geometry import build_geometry, filled_fraction, surface_weights, source_power, face_geometry
+from mass_closed_geometry import build_geometry, filled_fraction, surface_weights, source_power, face_geometry, face_half_distances
 from physics import material_tables
 from run_physics03 import ROOT, digest, load, write_json
 
-SPEC = ROOT/"project/thermal-mass-closed-v5.4.yaml"
-OUTPUT = ROOT/"simulation/thermal-v5/results/mass-closed04"
+SPEC = ROOT/"project/thermal-mass-closed-v5.4r1.yaml"
+OUTPUT = ROOT/"simulation/thermal-v5/results/mass-closed04r1"
 
 
 @njit(cache=True)
@@ -73,10 +73,17 @@ def enthalpy_step(temperature,mass,old_energy,conductance,external_energy,ids,ta
     raise RuntimeError("达到相变焓非线性迭代上限")
 
 
+def series_face_conductance(area,distance_i,distance_j,conductivity_i,conductivity_j):
+    """按两侧串联热阻计算正交有限体积公共面导热系数。"""
+    denominator = distance_i/conductivity_i+distance_j/conductivity_j
+    return np.divide(area,denominator,out=np.zeros_like(area,dtype=float),where=area>0)
+
+
 def _conductance_matrix(geometry,fraction,conductivity,dt):
-    area,distance,exposed = face_geometry(geometry,fraction)
+    area,_,exposed = face_geometry(geometry,fraction)
+    distance_i,distance_j = face_half_distances(geometry,fraction)
     i,j = geometry["edge_i"],geometry["edge_j"]
-    value = dt*area/distance*2*conductivity[i]*conductivity[j]/(conductivity[i]+conductivity[j])
+    value = dt*series_face_conductance(area,distance_i,distance_j,conductivity[i],conductivity[j])
     size = len(fraction)
     matrix = coo_matrix((np.r_[value,value,-value,-value],(np.r_[i,j,i,j],np.r_[i,j,j,i])),shape=(size,size)).tocsr()
     return matrix,exposed
@@ -204,7 +211,7 @@ def run(spec,output):
         material_specific_enthalpy_implemented=True,phase_change_triggered=any(v["ever_solidus_exceeded_volume_mm3"]>0 for v in stats.values()),
         two_parent_solidus_exceeded=both,plausible_two_sided_fusion=False,
         evidence_supported_high_temperature_properties=False,progressive_mesh_convergence=False)
-    summary = dict(stage="THERMAL-0.4-MASS-CLOSED",evidence_level="solver_result_unvalidated",geometry=dict(
+    summary = dict(stage="THERMAL-0.4R1-SERIES-RESISTANCE",evidence_level="solver_result_unvalidated",geometry=dict(
         cell_count=len(ids),grid_shape=list(geometry["lattice"].shape),bead_area_mm2=geometry["bead_area_mm2"],
         deposited_equivalent_leg_mm=geometry["deposited_leg_mm"],nominal_design_leg_mm=spec["geometry"]["nominal_design_leg_mm"],
         parent_material_ids_preserved=True,gap_mm=geometry["gap_mm"]),

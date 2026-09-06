@@ -1,3 +1,5 @@
+version: "TOLERANCE-1.0"
+authority: "产品几何、自动化路径和测量不确定度三条链的唯一权威配置"
 # 三链分离；数值为设计分配，未完成实测预算闭合。
 target:
   tolerance_callout: Ø0.05 | A | B

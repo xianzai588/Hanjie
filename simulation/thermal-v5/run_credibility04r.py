@@ -1,4 +1,4 @@
-"""0.4R热量去向、源结构/物性情景及条件收敛；封存0.4求解源码。"""
+"""0.4R1串联热阻修正版的热量去向、源/物性情景及条件收敛。"""
 import argparse
 import copy
 import importlib.util
@@ -11,8 +11,8 @@ from threadpoolctl import threadpool_limits
 from credibility_source import projected_weights
 from run_physics03 import ROOT, load, digest, write_json
 
-SPEC = ROOT/"project/thermal-credibility-v5.4r.yaml"
-OUTPUT = ROOT/"simulation/thermal-v5/results/credibility04r"
+SPEC = ROOT/"project/thermal-credibility-v5.4r1.yaml"
+OUTPUT = ROOT/"simulation/thermal-v5/results/credibility04r1"
 NAMES = ("q235b","qt450_10","ernife_ci")
 
 
@@ -102,7 +102,7 @@ def run_case(plan, case, out):
         hashes={p.relative_to(ROOT).as_posix():digest(p) for p in sources}))
     with threadpool_limits(limits=1):
         summary = core.run(spec,out)
-    summary["stage"] = "THERMAL-0.4R"
+    summary["stage"] = "THERMAL-0.4R1"
     summary["case"] = case
     summary["energy"]["direct_source_by_material_j"] = dict(zip(NAMES,ledger["source"].tolist()))
     summary["energy"]["direct_source_by_material_fraction"] = dict(zip(NAMES,(ledger["source"]/ledger["source"].sum()).tolist()))

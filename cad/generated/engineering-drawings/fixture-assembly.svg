@@ -30,7 +30,7 @@
 <text x="440.3" y="536.4" class="small" text-anchor="middle">S6</text>
 <text x="700.0" y="180.0" class="section" text-anchor="start">FIXTURE DEFINITION</text>
 <text x="700.0" y="220.0" class="note" text-anchor="start">BASE Ø190</text>
-<text x="700.0" y="250.0" class="note" text-anchor="start">TAPERED MANDREL 0.020 (1:50)</text>
+<text x="700.0" y="250.0" class="note" text-anchor="start">DIAMETER TAPER (D-d)/L = 0.020 = 1:50</text>
 <text x="700.0" y="280.0" class="note" text-anchor="start">Ø39.90 ~ Ø40.10</text>
 <text x="700.0" y="310.0" class="note" text-anchor="start">Axial clamping force 500 N</text>
 <text x="700.0" y="340.0" class="note" text-anchor="start">Positioning repeatability 0.008 mm</text>
@@ -49,9 +49,9 @@
 <polygon points="350.0,150.5 340.0,130.5 360.0,130.5" class="datumbox" fill="#fff"/>
 <text x="350.0" y="144.5" class="datum" text-anchor="middle">C</text>
 <line x1="350.0" y1="130.5" x2="350.0" y2="105.5" class="thin"/>
-<line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
-<text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
-<text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
-<text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
+<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
+<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
+<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
+<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#ffffff"/>
+<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
+<rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
+<text x="50.0" y="65.0" class="title" text-anchor="start">内腔防护焊接工序总装</text>
+<text x="50.0" y="90.0" class="subtitle" text-anchor="start">PROCESS ASSEMBLY / ACCESS + SHIELD + CONTROLLED WITHDRAWAL</text>
+<text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-008</text>
+<text x="80.0" y="145.0" class="section" text-anchor="start">SECTION THROUGH WELD STATION</text>
+<rect x="150.0" y="190.0" width="45.0" height="420.0" class="edge" fill="#e2e8f0" rx="0.0"/>
+<text x="115.0" y="630.0" class="small" text-anchor="start">Q235B SHELL</text>
+<rect x="195.0" y="390.0" width="300.0" height="55.0" class="edge" fill="#fbbf24" rx="0.0"/>
+<text x="280.0" y="465.0" class="small" text-anchor="start">QT450-10 SEAT WING</text>
+<polygon points="195.0,390.0 240.0,390.0 195.0,345.0" class="weld" fill="#fecaca"/>
+<polygon points="335.0,120.0 365.0,120.0 255.0,320.0 225.0,320.0" class="edge" fill="#94a3b8"/>
+<text x="390.0" y="125.0" class="note" text-anchor="start">TIG TORCH</text>
+<line x1="430.0" y1="130.0" x2="245.0" y2="340.0" class="weld"/>
+<text x="455.0" y="105.0" class="note" text-anchor="start">FILLER WIRE</text>
+<polygon points="215.0,470.0 475.0,470.0 455.0,540.0 235.0,540.0" class="edge" fill="#bfdbfe"/>
+<text x="285.0" y="520.0" class="small" text-anchor="start">REMOVABLE INTERNAL SHIELD / CAPTURE TRAY</text>
+<line x1="455.0" y1="540.0" x2="570.0" y2="575.0" class="dimline"/>
+<text x="335.0" y="580.0" class="dim" text-anchor="start">WITHDRAWAL PATH →</text>
+<text x="690.0" y="165.0" class="section" text-anchor="start">CONTROLLED PROCESS</text>
+<text x="690.0" y="205.0" class="note" text-anchor="start">1  Insert clean, low-shedding shield before seat locking</text>
+<text x="690.0" y="240.0" class="note" text-anchor="start">2  Verify torch/wire/gas clearance with dry run</text>
+<text x="690.0" y="275.0" class="note" text-anchor="start">3  Weld with shield retained below the joint</text>
+<text x="690.0" y="310.0" class="note" text-anchor="start">4  Cool and unlock fixture; keep capture face upward</text>
+<text x="690.0" y="345.0" class="note" text-anchor="start">5  Withdraw shield along shown path without inversion</text>
+<text x="690.0" y="380.0" class="note" text-anchor="start">6  Inspect shield inventory and borescope internal cavity</text>
+<text x="690.0" y="430.0" class="section" text-anchor="start">OPEN DESIGN ITEMS</text>
+<text x="690.0" y="470.0" class="note" text-anchor="start">Shield material, coating, gas-flow influence and clearances TBD</text>
+<text x="690.0" y="505.0" class="note" text-anchor="start">No cleanliness release without real spatter/debris trial</text>
+<text x="690.0" y="540.0" class="note" text-anchor="start">Protect machined bore and datum surfaces during insertion</text>
+<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
+<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: Process tooling concept; material and dimensions pending access trial</text>
+<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
+<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
+<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+</svg>

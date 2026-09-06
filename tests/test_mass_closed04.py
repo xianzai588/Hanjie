@@ -8,8 +8,8 @@ from scipy.sparse import csr_matrix
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"simulation/thermal-v5"))
-from mass_closed_geometry import build_geometry, filled_fraction, surface_weights, source_power, face_geometry
-from run_mass_closed04 import SPEC, load, material_tables, material_state, enthalpy_step
+from mass_closed_geometry import build_geometry, filled_fraction, surface_weights, source_power, face_geometry, face_half_distances
+from run_mass_closed04 import SPEC, load, material_tables, material_state, enthalpy_step, series_face_conductance, _conductance_matrix
 
 
 @pytest.fixture(scope="module")
@@ -116,6 +116,52 @@ def test_faces_to_unborn_bead_are_exposed_not_conducting(setup):
     area,_,exposed = face_geometry(g,f)
     assert np.all(exposed>=0.)
     assert np.any(area[((g["ids"][i]==3)&(g["ids"][j]!=3))|((g["ids"][j]==3)&(g["ids"][i]!=3))]>0.)
+
+
+@pytest.mark.parametrize(
+    "width_i,width_j,k_i,k_j,expected",
+    [
+        (1.0,3.0,0.010,0.030,0.010),  # 异宽异材独立反例，单位为 mm/W 制下的 W/K
+        (2.0,2.0,0.010,0.030,0.0075), # 等宽异材退化为普通调和平均
+        (1.0,3.0,0.020,0.020,0.010),  # 异宽同材退化为 kA/中心距
+        (3.0,1.0,0.030,0.010,0.010),  # 左右交换不改变串联热阻
+    ],
+)
+def test_series_face_conductance_matches_two_cell_resistance(width_i,width_j,k_i,k_j,expected):
+    area = np.array([1.0])
+    value = series_face_conductance(area,np.array([width_i/2]),np.array([width_j/2]),np.array([k_i]),np.array([k_j]))
+    assert value[0]==pytest.approx(expected,rel=1e-12)
+
+
+def test_independent_counterexample_quantifies_old_formula_bias():
+    width_i,width_j,k_i,k_j = 1.0,3.0,0.010,0.030
+    old = 2*k_i*k_j/(k_i+k_j)/((width_i+width_j)/2)
+    exact = series_face_conductance(np.array([1.0]),np.array([width_i/2]),np.array([width_j/2]),
+                                    np.array([k_i]),np.array([k_j]))[0]
+    assert old==pytest.approx(0.0075)
+    assert exact==pytest.approx(0.0100)
+    assert old/exact==pytest.approx(0.75)
+
+
+def test_partial_birth_uses_active_half_length_and_preserves_matrix_conservation():
+    geometry = {
+        "edge_i": np.array([0]), "edge_j": np.array([1]), "edge_axis": np.array([0]),
+        "edge_area": np.array([1.0]), "edge_distance": np.array([2.0]),
+        "dims": np.array([[1.0,1.0,1.0],[3.0,1.0,1.0]]),
+        "index": np.array([[0,0,0],[1,0,0]]),
+        "s_edges": np.array([0.0,1.0,4.0]), "n_edges": np.array([0.0,1.0]), "z_edges": np.array([0.0,1.0]),
+        "ids": np.array([3,3]),
+    }
+    fraction = np.array([1.0,0.5])
+    di,dj = face_half_distances(geometry,fraction)
+    assert di[0]==pytest.approx(0.5)
+    assert dj[0]==pytest.approx(0.75)
+    matrix,_ = _conductance_matrix(geometry,fraction,np.array([0.010,0.030]),1.0)
+    expected = 1.0/(0.5/0.010+0.75/0.030)
+    assert matrix[0,0]==pytest.approx(expected)
+    assert matrix[0,1]==pytest.approx(-expected)
+    np.testing.assert_allclose(matrix.toarray(),matrix.toarray().T)
+    np.testing.assert_allclose(np.asarray(matrix.sum(axis=1)).ravel(),0.0,atol=1e-15)
 
 
 def test_implicit_enthalpy_accounts_for_cold_mass_birth_and_latent_heat(setup):

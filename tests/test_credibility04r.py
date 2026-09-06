@@ -16,7 +16,7 @@ from audit_credibility04r import compare
 
 @pytest.fixture(scope="module")
 def geometry():
-    spec = load(ROOT/"project/thermal-mass-closed-v5.4.yaml")
+    spec = load(ROOT/"project/thermal-mass-closed-v5.4r1.yaml")
     config = load(ROOT/spec["inputs"])
     return build_geometry(config,load(ROOT/spec["process_input"]),spec),config
 
@@ -81,7 +81,7 @@ def test_convergence_does_not_call_zero_fusion_converged():
         maximum_cross_section_solidus_area_mm2=0.,maximum_section_solidus_width_mm=0.,maximum_section_solidus_depth_mm=0.,
         t8_5_valid_volume_mm3=1.,t8_5_volume_weighted_mean_s=2.,exposure_above_400c_volume_mm3=3.)
     a = dict(material_statistics={n:copy.deepcopy(fields) for n in ('q235b','qt450_10','ernife_ci')})
-    rules = load(ROOT/'project/thermal-credibility-v5.4r.yaml')['convergence']
+    rules = load(ROOT/'project/thermal-credibility-v5.4r1.yaml')['convergence']
     equal = compare(a,a,rules)
     assert equal['nonzero_metrics_pass']
     assert not equal['fusion_geometry_demonstrated']

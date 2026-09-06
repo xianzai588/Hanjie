@@ -16,24 +16,20 @@ from pathlib import Path
 
 from reportlab.lib.colors import HexColor
 from reportlab.lib.pagesizes import A4, landscape
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen.canvas import Canvas
 
 ROOT = Path(__file__).resolve().parents[2]
 SVG_DIR = ROOT / "cad" / "generated" / "engineering-drawings"
 PDF_DIR = SVG_DIR / "pdf"
 NS = "{http://www.w3.org/2000/svg}"
-FONT_REGULAR = Path("C:/Windows/Fonts/Deng.ttf")
-FONT_BOLD = Path("C:/Windows/Fonts/Dengb.ttf")
 COMBINED_NAME = "HJ-DRW-drawing-set.pdf"
+import sys
+sys.path.insert(0,str(ROOT/"src"))
+from hanjie.reporting.fonts import register_project_fonts
 
 
 def register_fonts() -> None:
-    if not FONT_REGULAR.exists() or not FONT_BOLD.exists():
-        raise FileNotFoundError("Windows Deng 字体不可用，无法保证中文 PDF 字形完整")
-    pdfmetrics.registerFont(TTFont("Deng", str(FONT_REGULAR)))
-    pdfmetrics.registerFont(TTFont("Deng-Bold", str(FONT_BOLD)))
+    register_project_fonts(ROOT)
 
 
 def parse_css(css_text: str) -> dict[str, dict[str, str]]:
@@ -102,7 +98,7 @@ def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float,
             if not title and cls == "title":
                 title = element.text or ""
             size = float(style.get("font-size", "14").removesuffix("px")) * scale
-            canvas.setFont("Deng-Bold" if style.get("font-weight") == "700" else "Deng", size)
+            canvas.setFont("HanjieCN-Bold" if style.get("font-weight") == "700" else "HanjieCN",size)
             canvas.setFillColor(fill or HexColor("#111827"))
             text = element.text or ""
             anchor = attrib.get("text-anchor", "start")
@@ -165,7 +161,7 @@ def main() -> None:
         pdf_path = PDF_DIR / (svg_path.stem + ".pdf")
         canvas = Canvas(str(pdf_path), pagesize=landscape(A4))
         title = export_sheet(svg_path, canvas, page_pw, page_ph, rules)
-        canvas.setFont("Deng", 7)
+        canvas.setFont("HanjieCN",7)
         canvas.setFillColor(HexColor("#475569"))
         canvas.drawCentredString(
             page_pw / 2, 10,
@@ -181,7 +177,7 @@ def main() -> None:
         style_element = root.find(f"{NS}style")
         rules = parse_css(style_element.text or "") if style_element is not None else {}
         title = export_sheet(SVG_DIR / sheet["source"], combined, page_pw, page_ph, rules)
-        combined.setFont("Deng", 7)
+        combined.setFont("HanjieCN",7)
         combined.setFillColor(HexColor("#475569"))
         position = sheets.index(sheet) + 1
         combined.drawCentredString(

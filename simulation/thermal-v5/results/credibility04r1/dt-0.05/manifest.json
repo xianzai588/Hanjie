@@ -1,0 +1,11 @@
+{
+  "files": {
+    "field.npz": "0745071dcd4dc15960ae3e819b90b7724f3f113523dc16295e7c59b5677a2a76",
+    "G-PHYSICS-R1.json": "584d82dde6dbdb37a71a8ae0112013d12f323ca78ec9b63b60d3491c5e67ff8b",
+    "history.json": "7e0b3fbdd3b2027ea619281d28085095a5113c03860f5cc4e4f2b7e63f80da8a",
+    "material-energy-history.json": "bd99e1e4b28c66d435961058e9e705e08c055047ff9a901cb55589bfab42bb53",
+    "run-inputs.json": "5656d2e5eb0f8625166c1f98fd03893ab064037ca0649441040bc9d4ef239598",
+    "summary.json": "b5451d3192662443b8690e1c996bd853dac405c7877014577b7b5889026c096d"
+  },
+  "evidence_level": "solver_result_unvalidated"
+}

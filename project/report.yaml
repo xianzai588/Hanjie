@@ -1,0 +1,13 @@
+version: "REPORT-1.0"
+pdf:
+  font_candidates:
+    - regular: "C:/Windows/Fonts/Deng.ttf"
+      bold: "C:/Windows/Fonts/Dengb.ttf"
+    - regular: "C:/Windows/Fonts/msyh.ttc"
+      bold: "C:/Windows/Fonts/msyhbd.ttc"
+    - regular: "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+      bold: "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
+  environment_overrides:
+    regular: "HANJIE_PDF_FONT_REGULAR"
+    bold: "HANJIE_PDF_FONT_BOLD"
+  page_footer: "V4.3 研究设计说明书 | 未完成实物验证"

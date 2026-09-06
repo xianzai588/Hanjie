@@ -1,0 +1,253 @@
+{
+  "generated_from": "当前权威配置与已执行结果；非实测证据仍保留原等级",
+  "tolerance": {
+    "status": "not_closed",
+    "radial_limit_mm": 0.025,
+    "product_worst_case_design_sum_mm": 0.035,
+    "measurement_expanded_uncertainty_mm": null
+  },
+  "joint": {
+    "evidence_level": "design_assumption",
+    "closure_status": "not_closed_pending_macrosection_and_load_basis",
+    "design_target": {
+      "fillet_leg_mm": 3.5,
+      "ideal_triangular_area_mm2": 6.125,
+      "basis": "结构设计目标；承载、疲劳和宏观截面尚未验证"
+    },
+    "nominal_wire_deposition": {
+      "wire_diameter_mm": 1.2,
+      "wire_feed_mm_s": 2.0,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency": 1.0,
+      "area_per_weld_length_mm2": 1.5079644737231008,
+      "equivalent_ideal_fillet_leg_mm": 1.7366430109398425,
+      "target_area_fraction": 0.24619828142417974
+    },
+    "primary_6p_layout": {
+      "segment_count": 6,
+      "segment_length_mm": 18.0,
+      "total_weld_length_mm": 108.0,
+      "nominal_wire_length_mm": 144.0,
+      "nominal_retained_filler_volume_mm3": 162.8601631620949,
+      "nominal_retained_filler_mass_g": 1.335453337929178,
+      "design_target_external_volume_mm3": 661.5,
+      "design_target_filler_equivalent_mass_g": 5.4243
+    },
+    "diagnostic_only_feed_for_target": {
+      "at_100pct_efficiency_mm_s": 8.123533553648825,
+      "at_min_declared_efficiency_mm_s": 9.557098298410382,
+      "usage": "仅量化缺口，未经成形、热输入和承载验证，不得直接写入 WPS"
+    },
+    "release_boundary": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
+  },
+  "structural": {
+    "evidence_level": "solver_result_unvalidated",
+    "static_screening_pass": true,
+    "full_thermal_structural_gate_pass": false,
+    "ranking": [
+      {
+        "model_id": "Continuous",
+        "mass_kg": 1.417426395294208,
+        "fine_average_displacement_diameter_mm": 0.00030441818380720783,
+        "fine_average_p95_stress_mpa": 0.6324652629434376,
+        "fine_average_compliance_mm_per_n": 1.5372614574587255e-07,
+        "specific_compliance_mm_per_n_per_kg": 1.0845441164086999e-07
+      },
+      {
+        "model_id": "8P-FAIR_B",
+        "mass_kg": 0.7968603468742826,
+        "fine_average_displacement_diameter_mm": 0.0005701772863380809,
+        "fine_average_p95_stress_mpa": 0.9718905499014796,
+        "fine_average_compliance_mm_per_n": 2.8659432335230894e-07,
+        "specific_compliance_mm_per_n_per_kg": 3.5965439173436964e-07
+      },
+      {
+        "model_id": "8P-FAIR_A",
+        "mass_kg": 0.7048135454728169,
+        "fine_average_displacement_diameter_mm": 0.0006963353937672998,
+        "fine_average_p95_stress_mpa": 1.2258784912206386,
+        "fine_average_compliance_mm_per_n": 3.49469486609334e-07,
+        "specific_compliance_mm_per_n_per_kg": 4.95832534510806e-07
+      },
+      {
+        "model_id": "6P-FAIR_A",
+        "mass_kg": 0.6845718722434827,
+        "fine_average_displacement_diameter_mm": 0.0007498481882447761,
+        "fine_average_p95_stress_mpa": 1.2813103383684026,
+        "fine_average_compliance_mm_per_n": 3.7636588471349066e-07,
+        "specific_compliance_mm_per_n_per_kg": 5.497828642594711e-07
+      },
+      {
+        "model_id": "6P-FAIR_B",
+        "mass_kg": 0.6845718722434827,
+        "fine_average_displacement_diameter_mm": 0.0007498481882447761,
+        "fine_average_p95_stress_mpa": 1.2813103383684026,
+        "fine_average_compliance_mm_per_n": 3.7636588471349066e-07,
+        "specific_compliance_mm_per_n_per_kg": 5.497828642594711e-07
+      },
+      {
+        "model_id": "4P-FAIR_A",
+        "mass_kg": 0.6679885638725712,
+        "fine_average_displacement_diameter_mm": 0.0008980894247598736,
+        "fine_average_p95_stress_mpa": 1.4089178449554292,
+        "fine_average_compliance_mm_per_n": 4.5021406139596654e-07,
+        "specific_compliance_mm_per_n_per_kg": 6.739846843872788e-07
+      },
+      {
+        "model_id": "4P-FAIR_B",
+        "mass_kg": 0.5722833976126809,
+        "fine_average_displacement_diameter_mm": 0.0012467796613035926,
+        "fine_average_p95_stress_mpa": 1.9192401068186724,
+        "fine_average_compliance_mm_per_n": 6.241187492298221e-07,
+        "specific_compliance_mm_per_n_per_kg": 1.090576367990712e-06
+      }
+    ]
+  },
+  "thermal": {
+    "stage": "THERMAL-0.4R1",
+    "evidence_level": "solver_result_unvalidated",
+    "conditional_numerical_convergence": false,
+    "experimentally_validated": false,
+    "thermal_1_allowed": false,
+    "baseline": {
+      "q235b": {
+        "peak_temperature_c": 1015.7895158202658,
+        "solidus_c": 1474.85,
+        "liquidus_c": 1519.85,
+        "ever_solidus_exceeded_volume_mm3": 0.0,
+        "ever_liquidus_exceeded_volume_mm3": 0.0,
+        "maximum_cross_section_solidus_area_mm2": 0.0,
+        "solidus_region_n_extent_mm": null,
+        "solidus_region_z_extent_mm": null,
+        "t8_5_valid_count": 157,
+        "exposure_above_400c_volume_mm3": 4276.9337121544795,
+        "maximum_section_solidus_width_mm": 0.0,
+        "maximum_section_solidus_depth_mm": 0.0,
+        "t8_5_valid_volume_mm3": 79.10204839286737,
+        "t8_5_volume_weighted_mean_s": 3.4839084274215746
+      },
+      "qt450_10": {
+        "peak_temperature_c": 1088.1403744207746,
+        "solidus_c": 1100.0,
+        "liquidus_c": 1200.0,
+        "ever_solidus_exceeded_volume_mm3": 0.0,
+        "ever_liquidus_exceeded_volume_mm3": 0.0,
+        "maximum_cross_section_solidus_area_mm2": 0.0,
+        "solidus_region_n_extent_mm": null,
+        "solidus_region_z_extent_mm": null,
+        "t8_5_valid_count": 313,
+        "exposure_above_400c_volume_mm3": 1172.5184316598006,
+        "maximum_section_solidus_width_mm": 0.0,
+        "maximum_section_solidus_depth_mm": 0.0,
+        "t8_5_valid_volume_mm3": 130.1782541843677,
+        "t8_5_volume_weighted_mean_s": 2.773981926822337
+      },
+      "ernife_ci": {
+        "peak_temperature_c": 1520.8162517120234,
+        "solidus_c": 1380.0,
+        "liquidus_c": 1450.0,
+        "ever_solidus_exceeded_volume_mm3": 26.389378290154276,
+        "ever_liquidus_exceeded_volume_mm3": 9.424777960769383,
+        "maximum_cross_section_solidus_area_mm2": 0.5654866776461629,
+        "solidus_region_n_extent_mm": [
+          -1.3024822582048818,
+          -0.4341607527349606
+        ],
+        "solidus_region_z_extent_mm": [
+          0.21708037636748032,
+          1.0854018818374016
+        ],
+        "t8_5_valid_count": 420,
+        "exposure_above_400c_volume_mm3": 90.47786842338604,
+        "maximum_section_solidus_width_mm": null,
+        "maximum_section_solidus_depth_mm": null,
+        "t8_5_valid_volume_mm3": 90.47786842338604,
+        "t8_5_volume_weighted_mean_s": 2.3311434318169457
+      }
+    },
+    "baseline_energy": {
+      "nominal_source_j": 19799.999999999854,
+      "absorbed_source_j": 19799.999999999854,
+      "uncaptured_source_j": 0.0,
+      "minimum_active_source_fraction": 0.9999999999999997,
+      "birth_enthalpy_j": 0.0,
+      "convection_j": 2357.8798361420277,
+      "radiation_j": 2559.2173604835434,
+      "internal_energy_change_j": 14882.902808459243,
+      "residual_j": -5.084959411760792e-06,
+      "residual_pct": 2.568161319071126e-08,
+      "direct_source_by_material_j": {
+        "q235b": 4184.39389134324,
+        "qt450_10": 4603.336002711764,
+        "ernife_ci": 11012.27010594485
+      },
+      "direct_source_by_material_fraction": {
+        "q235b": 0.2113330248153167,
+        "qt450_10": 0.23249171730867665,
+        "ernife_ci": 0.5561752578760066
+      },
+      "net_conductive_by_material_j": {
+        "q235b": 4904.1625701879875,
+        "qt450_10": 5719.4423108798555,
+        "ernife_ci": -10623.604881067646
+      },
+      "material_source_partition_residual_j": 0.0
+    },
+    "spatial_convergence_pass": false,
+    "time_step_convergence_pass": true,
+    "discretization_change": {
+      "reference": "历史 mass-closed04 名义工况（旧无权调和平均）",
+      "new": "0.4R1 两侧串联热阻",
+      "baseline_peak_difference_c": {
+        "q235b": -2.5505882758168354,
+        "qt450_10": 0.8786785941933886,
+        "ernife_ci": 3.547107824027762
+      },
+      "interpretation": "仅量化离散修正影响；不是相对实测真值误差，旧结果保留且不得与新结果混用"
+    }
+  },
+  "precompensation": {
+    "evidence_level": "synthetic_demo",
+    "validation_status": "unvalidated",
+    "variable_definition": "delta为相对调整量；实际装配位置=逐件实测初偏心+delta",
+    "constraint_policy": "三种方法采用相同行程与最终间隙约束；失败样本拒绝，不截断",
+    "benchmark": [
+      {
+        "key": "no_compensation",
+        "method_name": "无补偿基线 (No-Comp)",
+        "mean_error_mm": 0.053603479772317254,
+        "p95_error_mm": 0.07651011542199598,
+        "max_error_mm": 0.08393315450784734,
+        "boundary_violation_rate_pct": 0.0,
+        "pass_p005_rate_pct": 39.5,
+        "accepted_count": 200,
+        "rejected_count": 0,
+        "overall_pass_rate_pct": 39.5
+      },
+      {
+        "key": "static_subtraction",
+        "method_name": "经验静态减法 (Static-Minus)",
+        "mean_error_mm": 0.014662409229335703,
+        "p95_error_mm": 0.026918268365848406,
+        "max_error_mm": 0.04175255973272323,
+        "boundary_violation_rate_pct": 0.5,
+        "pass_p005_rate_pct": 100.0,
+        "accepted_count": 199,
+        "rejected_count": 1,
+        "overall_pass_rate_pct": 99.5
+      },
+      {
+        "key": "inverse_optimization",
+        "method_name": "不确定性逆向优化 (Inverse-Opt)",
+        "mean_error_mm": 0.006468402326998649,
+        "p95_error_mm": 0.015845744678329193,
+        "max_error_mm": 0.021141906349367478,
+        "boundary_violation_rate_pct": 0.0,
+        "pass_p005_rate_pct": 100.0,
+        "accepted_count": 200,
+        "rejected_count": 0,
+        "overall_pass_rate_pct": 100.0
+      }
+    ]
+  }
+}

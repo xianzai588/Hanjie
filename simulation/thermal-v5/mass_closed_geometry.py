@@ -156,3 +156,21 @@ def face_geometry(geometry, fraction):
     if exposed.min() < -1e-9:
         raise ValueError("接触面重复扣减导致负暴露面积")
     return area,distance,np.maximum(0.,exposed)
+
+
+def face_half_distances(geometry, fraction):
+    """返回相邻单元中心到公共面的两侧距离。
+
+    非均匀网格的界面导热必须分别保留两侧距离，不能只保留中心距后再做
+    无权调和平均。沿焊道方向的填丝单元可能部分出生，此时活动材料从公共
+    面向单元内部延伸，其等效中心距随出生比例缩短；其余方向仅接触面积随
+    焊道出生长度变化，法向中心距不变。
+    """
+    i,j,axis = geometry["edge_i"],geometry["edge_j"],geometry["edge_axis"]
+    dimensions = geometry["dims"]
+    distance_i = dimensions[i,axis]/2
+    distance_j = dimensions[j,axis]/2
+    along_path = axis==0
+    distance_i[along_path] *= fraction[i[along_path]]
+    distance_j[along_path] *= fraction[j[along_path]]
+    return np.maximum(distance_i,1e-30),np.maximum(distance_j,1e-30)

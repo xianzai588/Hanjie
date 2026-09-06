@@ -69,7 +69,7 @@ CLAIM-012:
     - GEOM-V3  # geometry.json V3
   confidence: "design_choice"
   publication_status: "proposed_design"
-  notes: "H7/h6 为定位间隙配合，非过渡配合"
+  notes: "当前以 Ø149.94~149.98/Ø150.00~150.02 极限尺寸定义径向间隙 0.01~0.04 mm，不再用未展开的配合代号作为检验依据"
 
 CLAIM-013:
   claim: "夹具采用锥形心轴 1:50，定位重复性 0.008 mm"

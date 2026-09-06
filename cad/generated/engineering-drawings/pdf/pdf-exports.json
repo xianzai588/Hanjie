@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02",
+  "generated_at": "2026-09-06",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 7,
+  "sheet_count": 8,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -18,13 +18,18 @@
     },
     {
       "pdf": "pdf/fixture-part.pdf",
-      "title": "夹具定位销与底板零件图",
+      "title": "夹具锥形心轴与底板零件图",
       "source": "fixture-part.svg"
     },
     {
       "pdf": "pdf/joint-detail.pdf",
       "title": "接头与焊缝细节图",
       "source": "joint-detail.svg"
+    },
+    {
+      "pdf": "pdf/protected-process-assembly.pdf",
+      "title": "内腔防护焊接工序总装",
+      "source": "protected-process-assembly.svg"
     },
     {
       "pdf": "pdf/shell.pdf",

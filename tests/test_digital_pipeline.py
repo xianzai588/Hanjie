@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 import jsonschema
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,13 +38,14 @@ def test_all_weld_sequences_are_permutations() -> None:
             assert sorted(result) == list(range(count))
 
 
-from hanjie.domain.baseline import get_baseline, validate_parameter_consistency  # noqa: E402
+from hanjie.domain.baseline import get_baseline, get_process, get_tolerance, validate_parameter_consistency  # noqa: E402
 
 
 def test_baseline_parameter_consistency() -> None:
     """全工程唯一参数源 (SSOT) 一致性校验：禁止任何模块出现硬编码分叉。"""
     res = validate_parameter_consistency()
     assert res["status"] == "PASSED"
+    assert res["budget_status"] == "not_closed"
 
     # 交叉核验 CAD、仿真配置与 SSOT 基线
     base = get_baseline()
@@ -55,9 +57,34 @@ def test_baseline_parameter_consistency() -> None:
     assert abs(cad_config["design_assumptions"]["wing_outer_radius"] - 74.98) < 1e-6
     assert abs(base["geometry"]["wing_outer_radius_mm"] - 74.98) < 1e-6
 
-    # 配合间隙一致性 (H7/h6)
-    assert cad_config["design_assumptions"]["assembly_fit"] == "H7/h6"
-    assert base["geometry"]["assembly_fit"] == "H7/h6"
+    # 配合采用包内可检验的极限尺寸，不再以未展开的配合代号替代检验定义。
+    assert cad_config["design_assumptions"]["assembly_fit"] == "controlled_limit_clearance_fit"
+    assert base["geometry"]["assembly_fit"] == "controlled_limit_clearance_fit"
+    nominal_clearance = base["geometry"]["shell_inner_diameter_mm"] / 2 - base["geometry"]["wing_outer_radius_mm"]
+    assert nominal_clearance == pytest.approx(0.02)
+    assert base["geometry"]["radial_clearance_min_mm"] <= nominal_clearance <= base["geometry"]["radial_clearance_max_mm"]
+    shell_limits = base["geometry"]["shell_inner_diameter_limits_mm"]
+    wing_limits = base["geometry"]["wing_outer_diameter_limits_mm"]
+    assert (shell_limits[0] - wing_limits[1]) / 2 == pytest.approx(0.01)
+    assert (shell_limits[1] - wing_limits[0]) / 2 == pytest.approx(0.04)
+    diameter_taper = (
+        base["fixture"]["large_diameter_mm"] - base["fixture"]["small_diameter_mm"]
+    ) / base["fixture"]["effective_length_mm"]
+    assert diameter_taper == pytest.approx(base["fixture"]["taper_ratio"])
+    assert "tolerance" not in base and "process" not in base
+    tolerance = get_tolerance()
+    assert tolerance["product_geometry_chain"]["contributions_mm"]["fixture_repeatability"] == base["fixture"]["positioning_repeatability_mm"]
+    assert get_process()["authority"].startswith("焊接工艺")
+
+
+def test_joint_design_and_wire_deposition_are_not_conflated() -> None:
+    from hanjie.domain.joint import joint_design_metrics
+    metrics = joint_design_metrics()
+    assert metrics["design_target"]["ideal_triangular_area_mm2"] == pytest.approx(6.125)
+    assert metrics["nominal_wire_deposition"]["area_per_weld_length_mm2"] == pytest.approx(1.5079644737)
+    assert metrics["nominal_wire_deposition"]["equivalent_ideal_fillet_leg_mm"] == pytest.approx(1.7366430137)
+    assert metrics["closure_status"].startswith("not_closed")
+    assert "不得直接写入 WPS" in metrics["diagnostic_only_feed_for_target"]["usage"]
 
 
 def test_rom_reference_case_reproducible() -> None:

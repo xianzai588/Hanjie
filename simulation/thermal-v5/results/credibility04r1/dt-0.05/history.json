@@ -1,0 +1,132 @@
+[
+  {
+    "time_s": 0.05,
+    "deposit_volume_mm3": 0.11309733552923149,
+    "expected_deposit_volume_mm3": 0.11309733552923257,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 371.97253944179073,
+    "source_j": 24.75,
+    "absorbed_source_j": 24.75,
+    "energy_residual_j": -1.758948542374128e-10
+  },
+  {
+    "time_s": 5.04999999999999,
+    "deposit_volume_mm3": 11.422830888452468,
+    "expected_deposit_volume_mm3": 11.422830888452467,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1428.74425840289,
+    "source_j": 2499.75,
+    "absorbed_source_j": 2499.75,
+    "energy_residual_j": -4.019442258140771e-06
+  },
+  {
+    "time_s": 10.050000000000008,
+    "deposit_volume_mm3": 22.73256444137577,
+    "expected_deposit_volume_mm3": 22.732564441375764,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1481.6732361989223,
+    "source_j": 4974.75,
+    "absorbed_source_j": 4974.75,
+    "energy_residual_j": -7.264862688316498e-06
+  },
+  {
+    "time_s": 15.050000000000079,
+    "deposit_volume_mm3": 34.04229799429919,
+    "expected_deposit_volume_mm3": 34.042297994299176,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1502.830249622602,
+    "source_j": 7449.75,
+    "absorbed_source_j": 7449.75,
+    "energy_residual_j": -9.950183994078543e-06
+  },
+  {
+    "time_s": 20.05000000000015,
+    "deposit_volume_mm3": 45.35203154722261,
+    "expected_deposit_volume_mm3": 45.352031547222595,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1513.3169411883998,
+    "source_j": 9924.75,
+    "absorbed_source_j": 9924.75,
+    "energy_residual_j": -1.2251413863850757e-05
+  },
+  {
+    "time_s": 25.05000000000022,
+    "deposit_volume_mm3": 56.66176510014603,
+    "expected_deposit_volume_mm3": 56.66176510014601,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1519.2924661313264,
+    "source_j": 12399.75,
+    "absorbed_source_j": 12399.75,
+    "energy_residual_j": -1.468398841097951e-05
+  },
+  {
+    "time_s": 30.050000000000292,
+    "deposit_volume_mm3": 67.97149865306945,
+    "expected_deposit_volume_mm3": 67.97149865306943,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1522.6130679391424,
+    "source_j": 14874.75,
+    "absorbed_source_j": 14874.75,
+    "energy_residual_j": -1.7012996977427974e-05
+  },
+  {
+    "time_s": 35.050000000000146,
+    "deposit_volume_mm3": 79.28123220599238,
+    "expected_deposit_volume_mm3": 79.28123220599235,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1524.3684292553412,
+    "source_j": 17349.75,
+    "absorbed_source_j": 17349.75,
+    "energy_residual_j": -1.9296998289064504e-05
+  },
+  {
+    "time_s": 40.05,
+    "deposit_volume_mm3": 90.47786842338607,
+    "expected_deposit_volume_mm3": 90.47786842338606,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1525.2378475470612,
+    "source_j": 19800.000000000065,
+    "absorbed_source_j": 19800.000000000065,
+    "energy_residual_j": -2.1574731363216415e-05
+  },
+  {
+    "time_s": 45.04999999999971,
+    "deposit_volume_mm3": 90.47786842338607,
+    "expected_deposit_volume_mm3": 90.47786842338606,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1525.2378475470612,
+    "source_j": 19800.000000000065,
+    "absorbed_source_j": 19800.000000000065,
+    "energy_residual_j": -2.4324599507963285e-05
+  },
+  {
+    "time_s": 50.04999999999943,
+    "deposit_volume_mm3": 90.47786842338607,
+    "expected_deposit_volume_mm3": 90.47786842338606,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1525.2378475470612,
+    "source_j": 19800.000000000065,
+    "absorbed_source_j": 19800.000000000065,
+    "energy_residual_j": -2.432732071611099e-05
+  },
+  {
+    "time_s": 55.049999999999145,
+    "deposit_volume_mm3": 90.47786842338607,
+    "expected_deposit_volume_mm3": 90.47786842338606,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1525.2378475470612,
+    "source_j": 19800.000000000065,
+    "absorbed_source_j": 19800.000000000065,
+    "energy_residual_j": -2.432935798424296e-05
+  },
+  {
+    "time_s": 59.99999999999886,
+    "deposit_volume_mm3": 90.47786842338607,
+    "expected_deposit_volume_mm3": 90.47786842338606,
+    "parent_mass_kg": 0.56709408,
+    "peak_temperature_c": 1525.2378475470612,
+    "source_j": 19800.000000000065,
+    "absorbed_source_j": 19800.000000000065,
+    "energy_residual_j": -2.433056761219632e-05
+  }
+]

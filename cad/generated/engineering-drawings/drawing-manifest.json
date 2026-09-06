@@ -1,13 +1,14 @@
 {
-  "generated_at": "2026-09-02",
+  "generated_at": "2026-09-06",
   "source": "cad/parametric/geometry.json",
   "status": "design-review; not manufacturing release",
-  "drawing_count": 7,
+  "drawing_count": 8,
   "drawings": [
     "bearing-seat.svg",
     "fixture-assembly.svg",
     "fixture-part.svg",
     "joint-detail.svg",
+    "protected-process-assembly.svg",
     "shell.svg",
     "weld-assembly.svg",
     "weld-layout.svg"
@@ -16,8 +17,10 @@
     "A/B/C datums",
     "Ø40 bore axis position tolerance Ø0.05 | A | B",
     "weld symbols",
+    "design/deposition non-closure",
     "slot width",
     "fixture DOF mapping",
+    "internal shield installation and withdrawal",
     "materials",
     "unspecified tolerances"
   ]

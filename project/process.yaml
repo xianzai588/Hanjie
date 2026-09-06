@@ -1,6 +1,9 @@
 # 焊接工艺规范与窗口参数 - Hanjie Process Specification
-# 版本: V4.1
+# 版本: V4.3
 # 工艺路线: 自动非熔化极气体保护电弧焊 (Automatic TIG) + ERNiFe-CI 填丝 + 预热
+
+version: "PROCESS-1.0"
+authority: "焊接工艺与填丝参数的唯一权威配置"
 
 process:
   nominal:
@@ -19,6 +22,14 @@ process:
     tungsten_electrode: "W-La20 (Ø2.0 mm)"
     nozzle_diameter_mm: 10.0
     standoff_distance_mm: 2.5
+
+  joint_consistency:
+    design_fillet_leg_mm: 3.5
+    design_basis: "结构设计目标；承载、疲劳和宏观截面尚未验证"
+    deposition_efficiency_nominal: 1.0
+    deposition_efficiency_range: [0.85, 1.0]
+    closure_status: "not_closed_pending_macrosection_and_load_basis"
+    rule: "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
 
   acceptable_window:
     current_a:

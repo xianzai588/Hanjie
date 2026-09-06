@@ -1,0 +1,29 @@
+version: THERMAL-0.4R1
+baseline: project/thermal-mass-closed-v5.4r1.yaml
+evidence_level: solver_result_unvalidated
+policy: "修正非均匀异材界面串联热阻后重新运行；保持η/I/U/v/送丝/预热，禁止按峰温调参。旧0.4R结果原目录保留。"
+sources:
+  surface45: {angle_deg: 45.0, penetration_fraction: 0.0}
+  shallow45: {angle_deg: 45.0, penetration_fraction: 0.1, attenuation_length_mm: 0.5}
+  surface30: {angle_deg: 30.0, penetration_fraction: 0.0}
+source_basis: "均为待标定结构假设。浅层情景把10%投影功率沿射线按0.5mm材料路径指数吸收，90%仍在首个表面；不增功率，不在有限域重归一化。角度从竖直方向计。"
+property_scenarios: [nominal, lower, upper]
+property_basis: "lower/upper为0.3各参数工程区间端点的联合情景，不是温度上下界或统计置信区间；rho参考质量不变，alpha不参与固定参考域热方程。"
+meshes:
+  coarse: {arc_spacing_mm: 2.0, near_spacing_mm: 0.8, far_spacing_mm: 2.0, bead_strips: 3}
+  medium: {arc_spacing_mm: 1.5, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 4}
+  fine: {arc_spacing_mm: 1.0, near_spacing_mm: 0.4, far_spacing_mm: 1.0, bead_strips: 6}
+convergence:
+  spatial_dt_s: 0.1
+  temporal_mesh: medium
+  time_steps_s: [0.1, 0.05, 0.025]
+  relative_limit: 0.05
+  peak_absolute_limit_c: 10.0
+  fusion_dimension_absolute_limit_mm: 0.1
+  scope: "冻结名义代理物性和surface45后的条件数值收敛，不代替高温物性/实验验证。两级均无熔化仅算状态一致，不能证明熔合几何已收敛。"
+process_scan:
+  status: blocked_pending_source_properties_and_convergence
+  variables: [current_a, voltage_v, travel_speed_mm_s, filler_feed_rate_mm_s, preheat_temperature_c]
+  efficiency: 0.55
+  line_energy_bounds_j_mm: [240, 420]
+  rule: "先完成可信度诊断；不恢复0.3的243组。送丝量决定实际新增面积，母材熔化不能自动补外部焊脚体积。"

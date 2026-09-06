@@ -25,7 +25,7 @@ def main() -> int:
     solver = InversePrecompensationSolver()
     bench = solver.evaluate_benchmark(num_trials=200)
 
-    print(f"{'补偿方案':<24}{'均值误差(mm)':<16}{'P95 误差(mm)':<16}{'最大误差(mm)':<16}{'超差越界率(%)':<14}{'Ø0.05 合格率(%)':<16}")
+    print(f"{'补偿方案':<24}{'均值误差(mm)':<16}{'P95 误差(mm)':<16}{'最大误差(mm)':<16}{'拒绝率(%)':<14}{'已接收合格率(%)':<18}")
     print("-" * 102)
 
     rows = []
@@ -39,6 +39,9 @@ def main() -> int:
             "max_error_mm": res.max_position_error_mm,
             "boundary_violation_rate_pct": res.boundary_violation_rate_pct,
             "pass_p005_rate_pct": res.pass_p005_rate_pct,
+            "accepted_count": res.accepted_count,
+            "rejected_count": res.rejected_count,
+            "overall_pass_rate_pct": res.overall_pass_rate_pct,
         })
 
     print("-" * 102)
@@ -47,7 +50,10 @@ def main() -> int:
     out_dir = ROOT / "studies" / "PRECOMPENSATION" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "precompensation_summary.json").write_text(
-        json.dumps({"evidence_level": "synthetic_demo", "validation_status": "unvalidated", "benchmark": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps({"evidence_level": "synthetic_demo", "validation_status": "unvalidated",
+                    "variable_definition": "delta为相对调整量；实际装配位置=逐件实测初偏心+delta",
+                    "constraint_policy": "三种方法采用相同行程与最终间隙约束；失败样本拒绝，不截断",
+                    "benchmark": rows}, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print(f"\n对照研究数据已保存至: {out_dir / 'precompensation_summary.json'}")
     return 0

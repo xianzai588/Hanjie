@@ -9,12 +9,17 @@ from __future__ import annotations
 import json
 import math
 from pathlib import Path
+import sys
 from xml.sax.saxutils import escape
 
 
 ROOT = Path(__file__).resolve().parents[2]
 GEOMETRY = ROOT / "cad" / "parametric" / "geometry.json"
 OUTPUT = ROOT / "cad" / "generated" / "engineering-drawings"
+sys.path.insert(0,str(ROOT/"src"))
+
+from hanjie.domain.baseline import validate_parameter_consistency
+from hanjie.domain.joint import joint_design_metrics
 
 
 def text(x: float, y: float, value: str, cls: str = "note", anchor: str = "start") -> str:
@@ -54,11 +59,11 @@ def header(title: str, subtitle: str, drawing_number: str) -> list[str]:
 
 def footer(lines: list[str], material: str) -> list[str]:
     lines.extend([
-        line(50, 710, 1150, 710, "thin"),
-        text(55, 735, f"MATERIAL: {material}"),
-        text(380, 735, "UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)", "small"),
-        text(1140, 735, "STATUS: DESIGN-REVIEW", "small", "end"),
-        text(55, 758, "Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.", "small"),
+        line(50, 700, 1150, 700, "thin"),
+        text(55, 722, f"MATERIAL: {material}", "small"),
+        text(1140, 722, "STATUS: DESIGN-REVIEW", "small", "end"),
+        text(55, 742, "GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)", "small"),
+        text(55, 762, "Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.", "small"),
         '</svg>',
     ])
     return lines
@@ -96,7 +101,7 @@ def weld_note() -> str:
     return (
         "WELDING METHOD: 141 (GTAW/TIG) per GB/T 5185-2005\n"
         "WELD SYMBOL: per GB/T 324-2008\n"
-        "FILLER: ERNiFe-CI (AWS A5.15 / GB/T 15620)"
+        "FILLER: ERNiFe-CI candidate; product form/specification/lot pending"
     )
 
 
@@ -121,7 +126,8 @@ def seat_drawing(geometry: dict) -> list[str]:
         p2 = (cx + inner * scale * math.cos(angle + 0.105), cy - inner * scale * math.sin(angle + 0.105))
         lines.append(line(*p1, *p2, "weld"))
     dim_h(lines, cx - core, cx + core, 565, f"Ø{design['seat_core_outer_diameter']:.0f} CORE", cy + core)
-    lines += [text(670, 225, f"BORE Ø{official['bearing_bore_diameter']:.0f}"), text(670, 255, f"WING OUTER R{design['wing_outer_radius']:.1f}"), text(670, 285, f"WING WIDTH {design['wing_width']:.0f}"), text(670, 315, f"RADIAL SLOT {design['slot_width']:.0f} WIDE"), text(670, 345, f"6 × {geometry['design_assumptions']['weld_segment_length']:.0f} WELD SEGMENTS", "section"), text(670, 390, "DATUM A: shell seating plane", "note"), text(670, 420, "DATUM B: shell theoretical axis", "note"), text(670, 450, "DATUM C: independent clocking feature", "note"), text(670, 480, "CONTROLLED: Ø40 bore axis", "note"), text(670, 520, "POSITION TOLERANCE", "section")]
+    wing_limits = design["wing_outer_diameter_limits"]
+    lines += [text(670, 225, f"BORE Ø{official['bearing_bore_diameter']:.0f}"), text(670, 255, f"WING OUTER R{design['wing_outer_radius']:.2f}; LIMIT {wing_limits[0]/2:.2f}~{wing_limits[1]/2:.2f}"), text(670, 285, f"WING WIDTH {design['wing_width']:.0f}"), text(670, 315, f"RADIAL SLOT {design['slot_width']:.0f} WIDE"), text(670, 345, f"6 × {geometry['design_assumptions']['weld_segment_length']:.0f} WELD SEGMENTS", "section"), text(670, 390, "DATUM A: shell seating plane", "note"), text(670, 420, "DATUM B: shell theoretical axis", "note"), text(670, 450, "DATUM C: independent clocking feature", "note"), text(670, 480, "CONTROLLED: Ø40 bore axis", "note"), text(670, 520, "POSITION TOLERANCE", "section")]
     position_frame(lines, 670, 565)
     datum(lines, "A", cx, cy + wing_r, "up")
     datum(lines, "B", cx, cy, "up")
@@ -145,12 +151,15 @@ def shell_drawing(geometry: dict) -> list[str]:
     return footer(lines, "Q235B (actual grade to be verified by certificate)")
 
 
-def joint_drawing(geometry: dict) -> list[str]:
+def joint_drawing(geometry: dict,joint: dict) -> list[str]:
     design = geometry["design_assumptions"]
+    deposit = joint["nominal_wire_deposition"]
+    shell_limits = design["shell_inner_diameter_limits"]
+    wing_limits = design["wing_outer_diameter_limits"]
     lines = header("接头与焊缝细节图", "JOINT DETAIL / SECTION A-A / FILLET WELD", "HJ-DRW-003")
     lines += [text(90, 155, "SECTION A-A", "section"), rect(120, 210, 430, 70, "edge", "#e2e8f0"), rect(120, 280, 430, 45, "edge", "#fbbf24"), line(120, 350, 550, 350, "center", "9 7")]
     # weld triangles and leader
-    lines += [polygon([(310, 280), (345, 280), (310, 245)], "weld", "#fecaca"), line(330, 245, 330, 195, "weld"), line(330, 195, 490, 195, "weld"), text(495, 190, "TIG + Ni filler", "note"), text(495, 220, "FILLET WELD SYMBOL", "note"), text(145, 390, f"WING OD Ø{design['wing_outer_radius']*2:.2f}", "dim"), text(145, 425, f"SHELL ID Ø150.00 {design['assembly_fit']}", "dim"), text(145, 460, f"FILLET WELD LEG {design['fillet_leg_length']:.1f}", "dim"), text(700, 180, "PROCESS NOTE", "section"), text(700, 220, f"Assembly fit {design['assembly_fit']}; radial clearance {design['radial_clearance_min']:.2f}~{design['radial_clearance_max']:.2f}", "note"), text(700, 255, "Fillet weld per GB/T 5185; TIG + Ni filler", "note"), text(700, 290, "Automatic TIG, short segments, S3 sequence", "note"), text(700, 325, "Do not interpret this sheet as a qualified WPS", "note"), text(700, 360, "A: shell seating plane", "note"), text(700, 390, "B: shell theoretical axis", "note"), text(700, 420, "C: independent clocking feature", "note"), text(700, 450, "Controlled Ø40 bore axis: position Ø0.05 | A | B", "note")]
+    lines += [polygon([(310, 280), (345, 280), (310, 245)], "weld", "#fecaca"), line(330, 245, 330, 195, "weld"), line(330, 195, 490, 195, "weld"), text(495, 190, "TIG + Ni filler", "note"), text(495, 220, "FILLET SYMBOL", "note"), text(145, 390, f"WING OD Ø{design['wing_outer_radius']*2:.2f}; LIMIT {wing_limits[0]:.2f}~{wing_limits[1]:.2f}", "dim"), text(145, 425, f"SHELL ID Ø150.00; LIMIT {shell_limits[0]:.2f}~{shell_limits[1]:.2f}", "dim"), text(145, 460, f"RADIAL CLEARANCE {design['radial_clearance_min']:.2f}~{design['radial_clearance_max']:.2f}", "dim"), text(145, 495, f"DESIGN LEG TARGET {design['fillet_leg_length']:.1f} (UNVERIFIED)", "dim"), text(700, 180, "PROCESS NOTE", "section"), text(700, 220, f"Controlled limit fit; radial clearance {design['radial_clearance_min']:.2f}~{design['radial_clearance_max']:.2f}", "note"), text(700, 255, "Fillet weld symbol per GB/T 324; TIG + Ni filler", "note"), text(700, 290, "Automatic TIG, short segments, S3 sequence", "note"), text(700, 325, f"Current feed equivalent ideal leg {deposit['equivalent_ideal_fillet_leg_mm']:.2f} mm", "note"), text(700, 355, "Design/deposition geometry NOT CLOSED; macrosection required", "note"), text(700, 390, "A: shell seating plane", "note"), text(700, 420, "B: shell theoretical axis", "note"), text(700, 450, "C: independent clocking feature", "note"), text(700, 480, "Controlled Ø40 bore axis: position Ø0.05 | A | B", "note")]
     datum(lines, "A", 180, 325, "up")
     datum(lines, "B", 540, 280, "right")
     datum(lines, "C", 410, 210, "up")
@@ -206,7 +215,7 @@ def fixture_assembly_drawing(geometry: dict) -> list[str]:
         lines.append(text(px, py + 30, f"S{index + 1}", "small", "middle"))
     lines += [text(700, 180, "FIXTURE DEFINITION", "section"),
               text(700, 220, f"BASE Ø{design['fixture_base_diameter']:.0f}", "note"),
-              text(700, 250, f"TAPERED MANDREL {design['mandrel_taper_ratio']:.3f} (1:50)", "note"),
+              text(700, 250, f"DIAMETER TAPER (D-d)/L = {design['mandrel_taper_ratio']:.3f} = 1:50", "note"),
               text(700, 280, f"Ø{design['mandrel_small_diameter']:.2f} ~ Ø{design['mandrel_large_diameter']:.2f}", "note"),
               text(700, 310, f"Axial clamping force {design['axial_clamping_force']} N", "note"),
               text(700, 340, f"Positioning repeatability {design['positioning_repeatability']:.3f} mm", "note"),
@@ -232,11 +241,11 @@ def fixture_part_drawing(geometry: dict) -> list[str]:
               line(110, 350, 340, 350, "dimline"),
               text(340, 215, f"Ø{design['mandrel_small_diameter']:.2f}", "dim"),
               text(340, 345, f"Ø{design['mandrel_large_diameter']:.2f}", "dim"),
-              text(340, 280, f"Taper 1:50 (effective L={design['mandrel_effective_length']:.0f})", "dim"),
+              text(340, 280, f"ΔD=0.20 over L={design['mandrel_effective_length']:.0f}; (D-d)/L=1:50", "dim"),
               text(110, 520, "BASE PLATE - PLAN", "section"),
               circle(230, 630, design['fixture_base_diameter'] / 2 * 0.55, "edge", "#cbd5e1"),
               circle(230, 630, 28, "edge", "#fff"),
-              text(230, 720, f"Ø{design['fixture_base_diameter']:.0f}", "dim", "middle"),
+              text(230, 685, f"Ø{design['fixture_base_diameter']:.0f}", "dim", "middle"),
               text(600, 190, "MANDREL NOTES", "section"),
               text(600, 230, "Tapered fit auto-centers bore to mandrel axis", "note"),
               text(600, 260, f"Axial clamping force: {design['axial_clamping_force']} N", "note"),
@@ -265,27 +274,58 @@ def weld_assembly_drawing(geometry: dict) -> list[str]:
     return footer(lines, "Q235B shell + QT450-10 seat + Ni filler + fixture steel TBD")
 
 
+def protected_process_assembly_drawing(geometry: dict) -> list[str]:
+    """把接头、焊枪、送丝、防护和退出路径放在同一工序剖面中。"""
+    lines = header("内腔防护焊接工序总装", "PROCESS ASSEMBLY / ACCESS + SHIELD + CONTROLLED WITHDRAWAL", "HJ-DRW-008")
+    lines += [
+        text(80,145,"SECTION THROUGH WELD STATION", "section"),
+        rect(150,190,45,420,"edge","#e2e8f0"), text(115,630,"Q235B SHELL","small"),
+        rect(195,390,300,55,"edge","#fbbf24"), text(280,465,"QT450-10 SEAT WING","small"),
+        polygon([(195,390),(240,390),(195,345)],"weld","#fecaca"),
+        polygon([(335,120),(365,120),(255,320),(225,320)],"edge","#94a3b8"), text(390,125,"TIG TORCH","note"),
+        line(430,130,245,340,"weld"), text(455,105,"FILLER WIRE","note"),
+        polygon([(215,470),(475,470),(455,540),(235,540)],"edge","#bfdbfe"),
+        text(285,520,"REMOVABLE INTERNAL SHIELD / CAPTURE TRAY","small"),
+        line(455,540,570,575,"dimline"), text(335,580,"WITHDRAWAL PATH →","dim"),
+        text(690,165,"CONTROLLED PROCESS", "section"),
+        text(690,205,"1  Insert clean, low-shedding shield before seat locking", "note"),
+        text(690,240,"2  Verify torch/wire/gas clearance with dry run", "note"),
+        text(690,275,"3  Weld with shield retained below the joint", "note"),
+        text(690,310,"4  Cool and unlock fixture; keep capture face upward", "note"),
+        text(690,345,"5  Withdraw shield along shown path without inversion", "note"),
+        text(690,380,"6  Inspect shield inventory and borescope internal cavity", "note"),
+        text(690,430,"OPEN DESIGN ITEMS", "section"),
+        text(690,470,"Shield material, coating, gas-flow influence and clearances TBD", "note"),
+        text(690,505,"No cleanliness release without real spatter/debris trial", "note"),
+        text(690,540,"Protect machined bore and datum surfaces during insertion", "note"),
+    ]
+    return footer(lines,"Process tooling concept; material and dimensions pending access trial")
+
+
 def main() -> None:
+    validate_parameter_consistency()
     geometry = json.loads(GEOMETRY.read_text(encoding="utf-8"))
+    joint = joint_design_metrics()
     OUTPUT.mkdir(parents=True, exist_ok=True)
     drawings = {
         "bearing-seat.svg": seat_drawing(geometry),
         "shell.svg": shell_drawing(geometry),
-        "joint-detail.svg": joint_drawing(geometry),
+        "joint-detail.svg": joint_drawing(geometry,joint),
         "weld-layout.svg": weld_layout_drawing(geometry),
         "fixture-assembly.svg": fixture_assembly_drawing(geometry),
         "fixture-part.svg": fixture_part_drawing(geometry),
         "weld-assembly.svg": weld_assembly_drawing(geometry),
+        "protected-process-assembly.svg": protected_process_assembly_drawing(geometry),
     }
     for filename, lines in drawings.items():
         (OUTPUT / filename).write_text("\n".join(lines), encoding="utf-8")
     manifest = {
-        "generated_at": "2026-09-02",
+        "generated_at": "2026-09-06",
         "source": "cad/parametric/geometry.json",
         "status": "design-review; not manufacturing release",
         "drawing_count": len(drawings),
         "drawings": sorted(drawings),
-        "included_controls": ["A/B/C datums", "Ø40 bore axis position tolerance Ø0.05 | A | B", "weld symbols", "slot width", "fixture DOF mapping", "materials", "unspecified tolerances"],
+        "included_controls": ["A/B/C datums", "Ø40 bore axis position tolerance Ø0.05 | A | B", "weld symbols", "design/deposition non-closure", "slot width", "fixture DOF mapping", "internal shield installation and withdrawal", "materials", "unspecified tolerances"],
     }
     (OUTPUT / "drawing-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"已生成 {len(drawings)} 张工程表达图: {OUTPUT}")

@@ -1,4 +1,4 @@
-"""从唯一 V4 Markdown 报告源构建研究草稿 PDF，不嵌入历史 V2 正文。"""
+"""从唯一 V4.3 Markdown 源和自动证据摘要构建工艺设计说明书 PDF。"""
 from __future__ import annotations
 
 from html import escape
@@ -10,31 +10,41 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "deliverables/report/technical-report-v4-unified.md"
 OUT = ROOT / "output/pdf/technical-report-v4.pdf"
 sys.path.insert(0, str(ROOT / "src"))
 from hanjie.domain.evidence import validate_evidence_graph
+from hanjie.reporting.fonts import register_project_fonts
+from hanjie.reporting.current_status import write_status_artifacts
 import yaml
+
+REGULAR_FONT = "HanjieCN"
+BOLD_FONT = "HanjieCN-Bold"
 
 
 def inline(text: str) -> str:
-    # 先转义再转换有限 Markdown 子集，避免数学不等式被当成 XML 标签。
+    # ReportLab 不解析 LaTeX；将本报告使用的有限命令显式转为可读 Unicode。
     text = text.replace("✅", "[记录]").replace("⚠️", "[注意]").replace("🔄", "[进行中]").replace("⏳", "[待验证]").replace("❌", "[撤回]")
     text = re.sub(r"\[([^]]+)\]\([^)]+\)", r"\1", text)
-    text = escape(text.replace("`", "").replace("$", ""))
+    replacements = {r"\widetilde{\Delta T}":"ΔT~",r"\Delta":"Δ",r"\lambda":"λ",r"\delta":"δ",
+                    r"\theta":"θ",r"\le":"≤",r"\ge":"≥",r"\rightarrow":"→",r"\times":"×",r"\text":""}
+    for source,target in replacements.items():
+        text = text.replace(source,target)
+    text = re.sub(r"\\tilde\{([^}]+)\}",r"\1~",text)
+    text = re.sub(r"([A-Za-z])_\{?([A-Za-z0-9]+)\}?",r"\1_\2",text)
+    text = text.replace("{","").replace("}","").replace("`","").replace("$","")
+    text = escape(text)
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
 
 
 def build_story(source: Path = SOURCE) -> list:
-    body = ParagraphStyle("BodyCN", fontName="Deng", fontSize=9, leading=14,
+    body = ParagraphStyle("BodyCN", fontName=REGULAR_FONT, fontSize=9, leading=14,
                           wordWrap="CJK", spaceAfter=5)
     cell = ParagraphStyle("CellCN", parent=body, fontSize=8, leading=12)
-    headings = {i: ParagraphStyle(f"H{i}", parent=body, fontName="Deng-Bold",
+    headings = {i: ParagraphStyle(f"H{i}", parent=body, fontName=BOLD_FONT,
                 fontSize=19 if i == 1 else 14 if i == 2 else 11,
                 leading=25 if i == 1 else 19, spaceBefore=12, spaceAfter=7,
                 keepWithNext=True) for i in range(1, 7)}
@@ -77,8 +87,9 @@ def build_story(source: Path = SOURCE) -> list:
 
 
 def on_page(canvas, doc) -> None:
-    canvas.setFont("Deng", 8)
-    canvas.drawString(20 * mm, 12 * mm, "V4.2 研究草稿 | 工程验证尚未完成")
+    canvas.setFont(REGULAR_FONT,8)
+    footer = yaml.safe_load((ROOT/"project/report.yaml").read_text(encoding="utf-8"))["pdf"]["page_footer"]
+    canvas.drawString(20*mm,12*mm,footer)
     canvas.drawRightString(A4[0] - 20 * mm, 12 * mm, str(doc.page))
 
 
@@ -87,15 +98,15 @@ def main() -> int:
     errors = validate_evidence_graph(graph, ROOT)
     if errors:
         raise ValueError("证据登记校验失败：" + "; ".join(errors))
-    pdfmetrics.registerFont(TTFont("Deng", "C:/Windows/Fonts/Deng.ttf"))
-    pdfmetrics.registerFont(TTFont("Deng-Bold", "C:/Windows/Fonts/Dengb.ttf"))
-    pdfmetrics.registerFontFamily("Deng", normal="Deng", bold="Deng-Bold", italic="Deng", boldItalic="Deng-Bold")
+    register_project_fonts(ROOT)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm,
                             topMargin=18 * mm, bottomMargin=22 * mm,
-                            title="QT450-10/Q235B V4.2 Research Draft", author="")
-    doc.build(build_story(), onFirstPage=on_page, onLaterPages=on_page)
-    print(f"研究草稿已生成：{OUT}")
+                            title="QT450-10/Q235B V4.3 Competition Design Report",author="")
+    generated_status = write_status_artifacts(ROOT)
+    story = build_story()+[PageBreak()]+build_story(generated_status)
+    doc.build(story,onFirstPage=on_page,onLaterPages=on_page)
+    print(f"工艺设计说明书已生成：{OUT}")
     return 0
 
 

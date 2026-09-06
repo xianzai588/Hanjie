@@ -1,4 +1,4 @@
-"""汇总实跑的0.4R结果，分开报告材料假设、数值敏感性和物理验证。"""
+"""汇总实跑的0.4R1结果，并量化相对历史0.4R的离散修正影响。"""
 import argparse
 import json
 from pathlib import Path
@@ -62,8 +62,6 @@ def audit(directory):
         results[case["name"]] = summary
     frozen = json.loads((ROOT/"simulation/thermal-v5/results/mass-closed04/summary.json").read_text(encoding="utf-8"))
     baseline_difference = {n:results["baseline"]["material_statistics"][n]["peak_temperature_c"]-frozen["material_statistics"][n]["peak_temperature_c"] for n in NAMES}
-    if any(abs(v)>1e-6 for v in baseline_difference.values()):
-        raise ValueError("观测接口改变了冻结名义峰温")
     pairs = [("coarse","medium"),("medium","fine"),("medium","dt-0.05"),("dt-0.05","dt-0.025")]
     comparisons = {a+"_to_"+b:compare(results[a],results[b],plan["convergence"]) for a,b in pairs}
     phy = load(ROOT/"project/thermal-physics-v5.3.yaml")
@@ -76,10 +74,12 @@ def audit(directory):
             density_evidence="design_assumption_reference_density_from_materials_yaml_not_high_temperature_measurement",
             alpha_evidence="design_assumption_not_used_in_reference_domain_thermal_equation",
             uncertainty_scope="工程敏感性范围，不是实测范围或置信区间")
-    report = dict(stage="THERMAL-0.4R",evidence_level="solver_result_unvalidated",audit_source_sha256=digest(Path(__file__)),sources=phy["sources"],material_evidence=evidence,
+    report = dict(stage="THERMAL-0.4R1",evidence_level="solver_result_unvalidated",audit_source_sha256=digest(Path(__file__)),sources=phy["sources"],material_evidence=evidence,
         source_method_reference=dict(url="https://journals.sagepub.com/doi/10.1243/09544054JEM1886",scope="AA1050 GTAW比较表面/体积热源，只支持比较方法，不支持本项目10%/0.5mm/30°参数"),
         source_review=dict(date="2026-09-06",supplier="复查生产商网页只有成分/用途/机械性能，没有高温k/cp/相变数据。",mdpi="本轮原页面429；保留既有来源及证据分级，没有新增逐值核验声明。"),
-        baseline_peak_difference_c=baseline_difference,comparisons=comparisons,cases={k:dict(material_statistics=v["material_statistics"],energy=v["energy"],mesh=v["geometry"],case=v["case"]) for k,v in results.items()},
+        discretization_change=dict(reference="历史 mass-closed04 名义工况（旧无权调和平均）",new="0.4R1 两侧串联热阻",baseline_peak_difference_c=baseline_difference,
+            interpretation="仅量化离散修正影响；不是相对实测真值误差，旧结果保留且不得与新结果混用"),
+        comparisons=comparisons,cases={k:dict(material_statistics=v["material_statistics"],energy=v["energy"],mesh=v["geometry"],case=v["case"]) for k,v in results.items()},
         conditional_numerical_convergence=all(v["nonzero_metrics_pass"] for v in comparisons.values()),
         experimentally_validated=False,high_temperature_evidence_complete=False,
         process_scan_status="not_run_prerequisites_unmet",thermal_1_allowed=False,formal_struct_0_allowed=False,

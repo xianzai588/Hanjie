@@ -34,9 +34,9 @@
 <polygon points="715.0,340.0 735.0,330.0 735.0,350.0" class="datumbox" fill="#fff"/>
 <text x="723.0" y="345.0" class="datum" text-anchor="middle">C</text>
 <line x1="735.0" y1="340.0" x2="770.0" y2="340.0" class="thin"/>
-<line x1="50.0" y1="710.0" x2="1150.0" y2="710.0" class="thin"/>
-<text x="55.0" y="735.0" class="note" text-anchor="start">MATERIAL: Q235B (actual grade to be verified by certificate)</text>
-<text x="380.0" y="735.0" class="small" text-anchor="start">UNSPECIFIED TOLERANCES: ±0.10 mm (design assumption; verify before release)</text>
-<text x="1140.0" y="735.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="758.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
+<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: Q235B (actual grade to be verified by certificate)</text>
+<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
+<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
+<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
 </svg>
