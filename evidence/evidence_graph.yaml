@@ -72,8 +72,13 @@ taxonomy:
       status: unvalidated
       evidence_level: solver_result_unvalidated
     SIM-METALLURGY0-V5:
-      path: simulation/metallurgy-v5/results/metallurgy0-summary.json
-      scope: 基于 THERMAL-0 母材掩码的 HAZ、风险级和几何稀释区间，排除代理焊缝带；未用金相、显微硬度或化学成分实测
+      path: simulation/metallurgy-v5/results/physics03/metallurgy0-summary.json
+      scope: THERMAL0.2 母材 t8/5 有效数为0；未热激活风险标记 unresolved，不解释为Low或工艺安全；旧评分封存
+      status: unvalidated
+      evidence_level: solver_result_unvalidated
+    SIM-PHYSICS03-V5:
+      path: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+      scope: 材料独立相变焓、假设高温物性、激活对照与有限工艺采样；焊缝体积不闭合，禁止校准和正式结构耦合
       status: unvalidated
       evidence_level: solver_result_unvalidated
     SIM-THERMAL0-AUDIT-V5:

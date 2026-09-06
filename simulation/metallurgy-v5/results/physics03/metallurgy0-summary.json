@@ -1,0 +1,153 @@
+{
+  "run_timestamp_utc": "2026-09-06T04:54:52.794871+00:00",
+  "git_commit": "0ad10ebbbe9bef71aedcd8cafea1a14f13be467b",
+  "python_version": "3.12.10",
+  "solver_version": "METALLURGY-0.3-thermal-activation-guard-v5",
+  "dependency_versions": {
+    "numpy": "2.3.5",
+    "PyYAML": "6.0.3"
+  },
+  "input_file": "project/g-inputs-v5.2.yaml",
+  "input_sha256": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
+  "thermal_input_sha256": "f1106b96b665e1f6796b16b9b12f6f8ce116e87a81080bbd9779565f793221ad",
+  "stage": "METALLURGY-0",
+  "evidence_level": "literature_supported_plus_solver_result_unvalidated",
+  "thermal_input": "simulation/thermal-v5/results/thermal0-field.npz",
+  "thermal_evidence_level": "solver_result_unvalidated",
+  "material_statistics": {
+    "qt450_10_parent_material": {
+      "node_count": 90720,
+      "peak_temperature_c": 434.87971175197345,
+      "peak_temperature_p95_c": 254.26361338293285,
+      "maximum_cooling_rate_c_s": 115.33272637444725,
+      "t8_5_valid_node_count": 0,
+      "t8_5_median_s": null,
+      "t8_5_minimum_s": null
+    },
+    "q235b_parent_material": {
+      "node_count": 6480,
+      "peak_temperature_c": 525.8731320993082,
+      "peak_temperature_p95_c": 458.2375148813464,
+      "maximum_cooling_rate_c_s": 125.0000381950656,
+      "t8_5_valid_node_count": 0,
+      "t8_5_median_s": null,
+      "t8_5_minimum_s": null
+    },
+    "ernife_ci_weld_surrogate": {
+      "node_count": 15120,
+      "peak_temperature_c": 896.991325781074,
+      "peak_temperature_p95_c": 587.4410406589919,
+      "maximum_cooling_rate_c_s": 2647.102026853463,
+      "t8_5_valid_node_count": 144,
+      "t8_5_median_s": 3.237171029718219,
+      "t8_5_minimum_s": 0.38828022181863986
+    }
+  },
+  "region_semantics": {
+    "surrogate_weld_band_n_mm": [
+      -3.0,
+      3.0
+    ],
+    "qt450_10_parent_condition": "material_id == 2 (n < -3 mm)",
+    "q235b_parent_condition": "material_id == 1 (n > 3 mm)",
+    "parent_risk_mask_includes_weld_cells": 0,
+    "parent_haz_width_includes_weld": false,
+    "interfaces_are_surrogate_not_calibrated_fusion_lines": true
+  },
+  "haz_thresholds_c": {
+    "fusion": 1350.0,
+    "high_temperature": 900.0,
+    "medium_temperature": 600.0,
+    "low_temperature": 400.0
+  },
+  "risk_assessment": {
+    "qt450_10": {
+      "white_cast_iron_carbide_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "martensite_high_hardening_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "haz_embrittlement_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "cold_crack_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "thermal_exposure_width_tpeak_ge_400c_mm": 0.2788461538461533,
+      "hardness_trend": "母材未达到本风险映射的热激活门槛；不足以评价真实熔焊 HAZ 硬化风险。",
+      "risk_location": {
+        "angle_deg": 18.573029501921635,
+        "n_mm": -3.2788461538461533,
+        "z_mm": -0.3999999999999986,
+        "peak_temperature_c": 434.87971175197345
+      },
+      "thermal_activation_threshold_c": 900.0,
+      "thermal_activation_reached": false,
+      "risk_status": "unresolved_due_to_non_fusing_thermal_baseline"
+    },
+    "q235b": {
+      "high_temperature_grain_coarsening_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "hardening_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "haz_embrittlement_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "hardness_trend": "母材未达到本风险映射的热激活门槛；不足以评价真实熔焊 HAZ 硬化风险。",
+      "thermal_exposure_width_tpeak_ge_400c_mm": 1.6057692307692264,
+      "risk_location": {
+        "angle_deg": 18.573029501921635,
+        "n_mm": 3.0288461538461533,
+        "z_mm": -0.3999999999999986,
+        "peak_temperature_c": 525.8731320993082
+      },
+      "thermal_activation_threshold_c": 723.0,
+      "thermal_activation_reached": false,
+      "risk_status": "unresolved_due_to_non_fusing_thermal_baseline"
+    },
+    "ernife_ci_weld_surrogate": {
+      "peak_temperature_c": 896.991325781074,
+      "fusion_threshold_exceeded": false,
+      "risk_status": "not_scored_pending_high_temperature_properties_and_calibration",
+      "risk_location": {
+        "angle_deg": 20.058871862075364,
+        "n_mm": -0.125,
+        "z_mm": -0.3999999999999986,
+        "peak_temperature_c": 896.991325781074
+      }
+    }
+  },
+  "weld_dilution_and_composition": {
+    "dilution_method": "geometry_based_nominal",
+    "evidence_level": "design_assumption",
+    "nominal_cross_section_area_mm2": {
+      "weld_metal": 6.125,
+      "qt450_10_parent": 5.25,
+      "q235b_parent": 3.5,
+      "total": 14.875
+    },
+    "nominal_dilution_fraction": {
+      "weld_metal": 0.4117647058823529,
+      "qt450_10": 0.35294117647058826,
+      "q235b": 0.23529411764705882
+    },
+    "qt450_10_fraction": 0.35294117647058826,
+    "q235b_fraction": 0.23529411764705882,
+    "filler_fraction": 0.4117647058823529,
+    "thermal_fusion_validated": false,
+    "chemistry_validated": false,
+    "parent_fusion_depth_assumption_mm": {
+      "qt450_10": 1.5,
+      "q235b": 1.0
+    },
+    "parent_fusion_depth_sensitivity": "each parent fusion depth varied independently from 75% to 125%",
+    "composition_range_wt_pct": {
+      "Ni": {
+        "min_wt_pct": 19.743589743589745,
+        "max_wt_pct": 26.551724137931036
+      },
+      "C": {
+        "min_wt_pct": 1.259090909090909,
+        "max_wt_pct": 1.7934285714285714
+      }
+    },
+    "fe_content": "balance; not independently resolved from nominal compositions",
+    "limitation": "未进行宏观截面实测、化学成分分析或 CALPHAD 计算；只能报告区间和趋势。"
+  },
+  "evidence_boundary": [
+    "未被热激活不等于风险低；不熔合基线不能证明实际焊接安全。",
+    "组织输出为风险等级、区间、趋势和位置，不含伪精确相含量。",
+    "t8/5 作为热循环描述量，不单独等同于 QT450-10 的 CCT 相组成判据。",
+    "显微硬度只能支持组织变化和脆硬趋势，不能替代拉伸、韧性或疲劳试验。",
+    "当前没有金相、显微硬度和化学成分实测，G-METALLURGY 仍未完成物理验证。"
+  ]
+}

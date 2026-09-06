@@ -1,0 +1,86 @@
+{
+  "case_id": "process-03-preheat-130",
+  "activation": "pre_existing",
+  "evidence_level": "solver_result_unvalidated",
+  "wall_seconds": 22.182168699990143,
+  "process": {
+    "current_a": 65.0,
+    "voltage_v": 11.0,
+    "travel_speed_mm_s": 1.2,
+    "efficiency": 0.55,
+    "net_power_w": 393.25,
+    "net_line_energy_j_per_mm": 327.70833333333337,
+    "preheat_temperature_c": 130.0
+  },
+  "effective_scales": {},
+  "latent_heat_enabled": true,
+  "grid_shape": [
+    72,
+    52,
+    30
+  ],
+  "time_step_limit_s": 0.01,
+  "time": {
+    "weld_duration_s": 50.0,
+    "cooling_after_source_s": 20.0,
+    "steps": 7334,
+    "minimum_dt_s": 0.0012905103689604402
+  },
+  "peak_temperature_c": 685.6136001985752,
+  "material_statistics": {
+    "q235b": {
+      "peak_temperature_c": 443.57967774876994,
+      "t8_5_valid_count": 0,
+      "solidus_c": 1474.85,
+      "liquidus_c": 1519.85,
+      "solidus_exceeded_volume_mm3": 0.0,
+      "liquidus_exceeded_volume_mm3": 0.0,
+      "max_section_solidus_area_mm2": 0.0,
+      "maximum_liquid_fraction": 0.0
+    },
+    "qt450_10": {
+      "peak_temperature_c": 374.1048206536803,
+      "t8_5_valid_count": 0,
+      "solidus_c": 1100.0,
+      "liquidus_c": 1200.0,
+      "solidus_exceeded_volume_mm3": 0.0,
+      "liquidus_exceeded_volume_mm3": 0.0,
+      "max_section_solidus_area_mm2": 0.0,
+      "maximum_liquid_fraction": 0.0
+    },
+    "ernife_ci": {
+      "peak_temperature_c": 685.6136001985752,
+      "t8_5_valid_count": 0,
+      "solidus_c": 1380.0,
+      "liquidus_c": 1450.0,
+      "solidus_exceeded_volume_mm3": 0.0,
+      "liquidus_exceeded_volume_mm3": 0.0,
+      "max_section_solidus_area_mm2": 0.0,
+      "maximum_liquid_fraction": 0.0
+    }
+  },
+  "energy": {
+    "nominal_source_j": 19662.49999999801,
+    "absorbed_source_j": 19662.499999998006,
+    "unabsorbed_void_j": 3.637978807091713e-12,
+    "birth_enthalpy_j": 0.0,
+    "convection_j": 2004.0571661440365,
+    "radiation_j": 1429.617892403342,
+    "delta_internal_j": 16228.824941492705,
+    "residual_j": -4.207686288282275e-08,
+    "residual_pct": 2.1399548827884046e-10,
+    "minimum_active_source_fraction": 0.9999999999999852,
+    "domain_capture_fraction": 0.9999995183214953
+  },
+  "activated_mass_kg": 0.0,
+  "two_parent_solidus_exceeded": false,
+  "plausible_fusion_geometry": false,
+  "calibrated": false,
+  "not_shop_floor_qualified": true,
+  "limitations": [
+    "全高度焊缝带是质量不闭合的敏感性代理；即使超过固相线也不是合理熔合几何。",
+    "空域热源不重新归一化，未吸收能量单列；该源沉积模型还需宏观截面约束。",
+    "仅焊后20s，未完成的 t8/5 不计有效；不提供结构耦合热历史。",
+    "高温曲线和相变区间含未验证工程假设；液相率是焓模型变量，不是组织相含量。"
+  ]
+}

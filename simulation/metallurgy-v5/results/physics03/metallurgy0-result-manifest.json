@@ -1,0 +1,13 @@
+{
+  "stage": "METALLURGY-0",
+  "evidence_level": "literature_supported_plus_solver_result_unvalidated",
+  "input_file": "project/g-inputs-v5.2.yaml",
+  "input_sha256": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
+  "thermal_input": "simulation/thermal-v5/results/thermal0-field.npz",
+  "thermal_input_sha256": "f1106b96b665e1f6796b16b9b12f6f8ce116e87a81080bbd9779565f793221ad",
+  "files": {
+    "metallurgy0-summary.json": "5c07ff3813928b620f2ac5f7e9137138d060010b084d0cf2ea856086937283bd",
+    "metallurgy0-risk.csv": "c370e9e241248dbcb7fea160a8a20f05b1f664e3f003a9595055b620759811c6",
+    "metallurgy0-report.md": "bab0a2d42c37329fccea6adaa79f767de4b732e7900a3f77a7956614b0dc530f"
+  }
+}

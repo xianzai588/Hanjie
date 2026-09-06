@@ -1,0 +1,22 @@
+{
+  "status": "no_two_sided_fusion_in_sampled_surrogate_cases",
+  "evidence_level": "solver_result_unvalidated",
+  "sampled_process_count": 9,
+  "simulation_count": 18,
+  "sampled_line_energy_range_j_mm": [
+    241.3125,
+    412.5
+  ],
+  "sampled_peak_temperature_range_c": [
+    683.6808846942536,
+    923.8875404496741
+  ],
+  "property_sensitivity_peak_range_c": [
+    683.7770728449789,
+    1023.1422972060133
+  ],
+  "entire_process_domain_infeasible": false,
+  "real_TIG_route_rejected": false,
+  "next_action": "先核实实际几何、送丝和宏观熔合；不对这个失配代理继续校准。",
+  "sampling_limitation": "只扫描预登记的有限工况，未穷尽连续域、联合材料不确定性或热源尺寸；不能推导整个工艺域不可熔。"
+}

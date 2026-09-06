@@ -1,5 +1,6 @@
 # Hanjie 数字工程 MVP 运行依赖（Python 3.11+）
 numpy>=1.26
+numba>=0.63
 scipy>=1.11
 matplotlib>=3.8
 PyYAML>=6.0

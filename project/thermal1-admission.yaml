@@ -1,0 +1,40 @@
+# 0.3 完成后的准入补充；不改变已计算的热物性覆盖层和结果。
+version: THERMAL1-ADMISSION-v1
+status: blocked_by_physics
+evidence_level: design_assumption
+inputs: project/g-inputs-v5.2.yaml
+materials: project/materials.yaml
+physics_specification: project/thermal-physics-v5.3.yaml
+physics_gate: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+density:
+  reference_temperature_c: 20.0
+  spatial_density_model: "rho(T) = rho_ref / J(T); J(T) = exp(3 * integral(alpha_tangent(T) dT))"
+  alpha_interpretation: "仅作瞬时线膨胀系数的工程情景；原材料表未注明平均/瞬时定义，尚未确认。"
+  reference_frame_mass: "固定参考单元使用 rho_ref*V_ref；不能在体积不变时直接替换为 rho(T)*V_ref。"
+  solver_implementation: "THERMAL0.3 仍使用固定参考密度，没有实现体积变化/液体质量输运。"
+  source: https://doc.comsol.com/6.3/doc/com.comsol.help.metproc/metproc_ug_theory.4.11.html
+  evidence_level: design_assumption
+  alpha_scale_range: [0.8, 1.2]
+  range_basis: "工程敏感性范围，非测量不确定度或文献置信区间。"
+  sample_temperatures_c: [20, 150, 400, 800, 1000, 1200, 1400, 1500]
+  solid_only: true
+  missing_phase_or_temperature_data: "输出 null 和 missing_evidence，禁止把常温密度外推伪装成液相数据。"
+  ernife_ci_alpha: "只允许常温alpha常值的假设情景，不标为独立实测rho(T)。"
+goldak_matrix:
+  mode: full_factorial_analytical_preflight_only
+  efficiency: [0.45, 0.55, 0.65]
+  a_front_mm: [4.8, 6.0, 7.2]
+  a_rear_mm: [8.0, 10.0, 12.0]
+  b_radial_mm: [2.0, 2.5, 3.0]
+  c_axial_mm: [2.0, 2.5, 3.0]
+  source: "η及b/c范围继承audit_thermal0.py；a_front/a_rear为名义值±20%的新工程敏感性假设。"
+  evidence_level: design_assumption
+  frozen_parameters: [current_a, voltage_v, travel_speed_mm_s, preheat_temperature_c, front_fraction, rear_fraction]
+  constraints: [eta_UI_over_v_within_process_window, source_domain_capture, source_boundary_margin, grid_resolves_all_axes, physical_geometry_and_mass_consistency]
+  selection_policy: "参数矩阵在结果计算前登记；不按峰温删选，不把1350°C作为统一熔合目标。"
+  calibration_targets: [material_specific_fusion_geometry, thermal_cycles, parent_haz_exposure, valid_cooling_cycles]
+  calibration_status: "缺少实测目标和物理准入；当前仅输出解析可行性，不运行矩阵热场。"
+downstream:
+  candidates: [Continuous, 6P, 8P-FAIR_B]
+  next_after_thermal_admission: STRUCT-0_Continuous
+  frozen: [STRUCT-1, SERVICE_production, adaptive, inverse_precompensation, dashboard, vision_ai, large_monte_carlo]

@@ -1,0 +1,41 @@
+version: STRUCT-0-PREP-v1
+status: partial_preparation_formal_coupling_blocked
+evidence_level: design_assumption
+formal_thermal_coupling_allowed: false
+thermal_gate: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+geometry:
+  shell: {status: existing_valid_brep, source: simulation/structural-v4/common/shell-manifest.json}
+  seat: {status: existing_continuous_solid, source: simulation/structural-v4/models/continuous/geometry-manifest.json}
+  weld: {status: blocked_by_deposition_geometry, source: project/thermal-physics-v5.3.yaml}
+  unified_mesh: {status: pending, requires: [shell_seat_weld_conformal_interfaces, contact_gap_definition, material_region_sets]}
+constitutive:
+  temperature_dependent_parent_E_yield_alpha: {status: existing_assumed_curves, source: project/materials.yaml}
+  temperature_dependent_weld_E_yield_alpha: {status: missing_evidence}
+  elastoplastic_solver: {status: not_implemented, required_verification: [uniaxial_yield_unload, constrained_thermal_expansion, plastic_work_balance]}
+  progressive_weld_activation: {status: pending_mass_consistent_geometry_and_stress_free_birth_state}
+fixture:
+  source: project/g-inputs-v5.2.yaml
+  tapered_mandrel_contact: pending
+  axial_clamping_force_n: 500.0
+  release_logic: {status: unit_verified, function: hanjie.simulation.structural_prep.fixture_released, hold_from_arc_end_s: 120, interface_max_below_c: 200}
+  post_release_cooling: "必须继续计算至预登记测量温度；不能把释放时刻当最终位置度。"
+metrology:
+  implementation: hanjie.simulation.structural_prep.fit_position_diameter
+  status: least_squares_scenario_unit_verified
+  datum_a: "释放冷却后独立壳体端面，最小二乘平面"
+  datum_b: "独立壳体圆柱点，轴向受主基准A法向约束，拟合径向中心"
+  bore: "独立拟合 Ø40 孔圆柱轴线，评价全实测轴向跨度上的最大径向偏差乘2"
+  official_cmm_equivalence: "待图纸基准优先级、拟合准则、材料边界修饰及实物测量协议确认"
+  forbidden: "用孔轴自身建立B基准；用最大节点位移替代位置度；忽略轴线倾斜"
+stress:
+  volume_weighted_p95: {status: unit_verified, function: hanjie.simulation.structural_prep.volume_weighted_p95}
+  historical_static_p95: "旧结果仍为未加权P95，未覆盖写回或重新排名。正式STRUCT使用新指标。"
+service:
+  resultant_load_builder: {status: unit_verified, function: hanjie.simulation.structural_prep.service_loads}
+  required_cases: [axial_force, radial_force_angle_sweep, overturning_moment]
+  actual_load_envelope: missing
+  performance_results: not_computed
+acceptance:
+  struct_0_continuous_baseline_ready: false
+  requires: [mass_consistent_unified_mesh, verified_elastoplastic_solver, fixture_contact, release_and_complete_cooling, agreed_cmm_protocol, physical_thermal_gate]
+  working_tree_audit: "本轮开始工作区干净；审计贴文提及的5个未提交结构修改在本地不存在，未擅自恢复或合并。"

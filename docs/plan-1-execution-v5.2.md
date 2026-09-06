@@ -1,5 +1,7 @@
 # 计划一执行记录：G-INPUTS → THERMAL-0 → METALLURGY-0
 
+> 2026-09-06 封存：THERMAL0.2 为 numerically verified, physically uncalibrated baseline；当前推进 [计划二](plan-2-physics-v5.3.md)。本文件旧 Low/Medium/High 评分仅作历史记录，未热激活母材的当前结论为 unresolved；不进入 THERMAL-1 或正式 STRUCT-0。
+
 **项目**：QT450-10 / Q235B 异种材料焊接工艺设计  
 **路线版本**：V5.2-Roadmap-Freeze  
 **执行日期**：2026-09-05  

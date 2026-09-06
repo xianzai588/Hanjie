@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[2]
 INPUT_PATH = ROOT / "project" / "g-inputs-v5.2.yaml"
 MATERIAL_PATH = ROOT / "project" / "materials.yaml"
 THERMAL_DIR = ROOT / "simulation" / "thermal-v5" / "results"
-OUTPUT_DIR = ROOT / "simulation" / "metallurgy-v5" / "results"
+OUTPUT_DIR = ROOT / "simulation" / "metallurgy-v5" / "results" / "physics03"
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -56,6 +56,9 @@ def _material_stats(field: dict[str, np.ndarray], material_code: int) -> dict[st
     peak = field["temperature_peak"][mask]
     cooling = field["max_cooling_rate_c_s"][mask]
     t85 = field["t8_5_s"][mask]
+    # 上游错误必须显式暴露，不能把未达到 800°C 的节点解释成有效冷却周期。
+    if np.any(np.isfinite(t85) & ((peak <= 800.0) | (t85 <= 0.0))):
+        raise ValueError("t8/5 与母材峰温或冷却时间不一致")
     valid_t85 = t85[np.isfinite(t85)]
     return {
         "node_count": int(mask.sum()),
@@ -191,12 +194,27 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
             "risk_location": _risk_location(field, 3, float(config["geometry"]["interface_radius_mm"])),
         },
     }
+    # 两侧母材未热激活时，旧评分中的零分不具有真实熔焊风险含义。
+    activation_limits = {"qt450_10": 900.0, "q235b": 723.0}
+    for key, stats in (("qt450_10", qt), ("q235b", q235)):
+        activated = stats["peak_temperature_c"] >= activation_limits[key]
+        risk[key]["thermal_activation_threshold_c"] = activation_limits[key]
+        risk[key]["thermal_activation_reached"] = activated
+        risk[key]["risk_status"] = (
+            "unvalidated_heuristic_risk" if activated
+            else "unresolved_due_to_non_fusing_thermal_baseline"
+        )
+        if not activated:
+            for name in list(risk[key]):
+                if name.endswith("_risk"):
+                    risk[key][name] = "unresolved_due_to_non_fusing_thermal_baseline"
+            risk[key]["hardness_trend"] = "母材未达到本风险映射的热激活门槛；不足以评价真实熔焊 HAZ 硬化风险。"
     dilution = _dilution_estimate(config, materials)
     summary = {
         "run_timestamp_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "git_commit": _git_commit(),
         "python_version": platform.python_version(),
-        "solver_version": "METALLURGY-0.2-parent-material-risk-mapper-v5",
+        "solver_version": "METALLURGY-0.3-thermal-activation-guard-v5",
         "dependency_versions": {name: importlib.metadata.version(name) for name in ("numpy", "PyYAML")},
         "input_file": str(INPUT_PATH.relative_to(ROOT)).replace("\\", "/"),
         "input_sha256": _sha256(INPUT_PATH),
@@ -223,6 +241,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
         "risk_assessment": risk,
         "weld_dilution_and_composition": dilution,
         "evidence_boundary": [
+            "未被热激活不等于风险低；不熔合基线不能证明实际焊接安全。",
             "组织输出为风险等级、区间、趋势和位置，不含伪精确相含量。",
             "t8/5 作为热循环描述量，不单独等同于 QT450-10 的 CCT 相组成判据。",
             "显微硬度只能支持组织变化和脆硬趋势，不能替代拉伸、韧性或疲劳试验。",
@@ -271,7 +290,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
         "",
         "## Gate 边界",
         "",
-        "- G-METALLURGY：**未通过物理验证**；当前可作为 THERMAL-0 驱动的风险筛查。",
+        "- G-METALLURGY：**未通过物理验证**；未热激活的母材标记 unresolved，不能把 Low 或未激活解释为方案安全。",
         "- 下一步物理证据：宏观截面 → 金相（QT 母材—QT HAZ—熔合线—NiFe 焊缝—Q235B HAZ—母材）→ 显微硬度线扫。",
     ])
     (output_dir / "metallurgy0-report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

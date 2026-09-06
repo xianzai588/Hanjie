@@ -1,0 +1,251 @@
+{
+  "specification": {
+    "version": "THERMAL-0.3-PHYS",
+    "evidence_level": "solver_result_unvalidated",
+    "baseline_input": "project/g-inputs-v5.2.yaml",
+    "baseline_materials": "project/materials.yaml",
+    "sources": {
+      "q235_casting": {
+        "url": "https://www.mdpi.com/1996-1944/16/9/3361",
+        "scope": "表2：Q235 solidus=1748 K, liquidus=1793 K, L=264000 J/kg；不是本批 Q235B 实测。"
+      },
+      "ductile_laser": {
+        "url": "https://www.mdpi.com/1996-1944/13/5/1174",
+        "scope": "激光重熔球铁研究支持成分/凝固路径依赖；不能作为 QT450-10 的精确常数。"
+      },
+      "nife_supplier": {
+        "url": "https://nickelalloys.es/fundicion/fund-nife-cl-ernife-cl/",
+        "scope": "ERNiFe-CI 焊丝成分和用途；未提供高温 k/cp 或潜热。"
+      },
+      "goldak_identifiability": {
+        "url": "https://doi.org/10.1016/j.addma.2024.104379",
+        "scope": "LPBF 校准联合截面/纵向轮廓；只迁移方法，不迁移工艺参数。"
+      }
+    },
+    "materials": {
+      "q235b": {
+        "phase_change": {
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "latent_heat_j_kg": 264000.0,
+          "source": "q235_casting",
+          "evidence_level": "literature_analogue_not_batch_measurement",
+          "uncertainty": {
+            "solidus_c": [
+              1450.0,
+              1500.0
+            ],
+            "liquidus_c": [
+              1500.0,
+              1540.0
+            ],
+            "latent_heat_j_kg": [
+              240000.0,
+              290000.0
+            ]
+          },
+          "range_basis": "围绕文献值的工程敏感性范围，非文献置信区间。"
+        },
+        "high_temperature": {
+          "source": "project/materials.yaml；1400°C 以上常值外推",
+          "evidence_level": "design_assumption",
+          "k_scale_range": [
+            0.8,
+            1.2
+          ],
+          "cp_scale_range": [
+            0.85,
+            1.15
+          ]
+        }
+      },
+      "qt450_10": {
+        "phase_change": {
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "latent_heat_j_kg": 240000.0,
+          "source": "ductile_laser；本组数值为待测工程情景，非该论文逐值提取",
+          "evidence_level": "design_assumption",
+          "uncertainty": {
+            "solidus_c": [
+              1050.0,
+              1150.0
+            ],
+            "liquidus_c": [
+              1150.0,
+              1250.0
+            ],
+            "latent_heat_j_kg": [
+              180000.0,
+              300000.0
+            ]
+          },
+          "range_basis": "宽范围敏感性假设；需批次成分及 DSC/热分析约束。"
+        },
+        "high_temperature": {
+          "source": "project/materials.yaml；1200°C 以上常值外推",
+          "evidence_level": "design_assumption",
+          "k_scale_range": [
+            0.8,
+            1.2
+          ],
+          "cp_scale_range": [
+            0.85,
+            1.15
+          ]
+        }
+      },
+      "ernife_ci": {
+        "phase_change": {
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "latent_heat_j_kg": 260000.0,
+          "source": "nife_supplier 未提供本字段；工程敏感性假设，待供应商/DSC 数据",
+          "evidence_level": "design_assumption",
+          "uncertainty": {
+            "solidus_c": [
+              1300.0,
+              1420.0
+            ],
+            "liquidus_c": [
+              1430.0,
+              1500.0
+            ],
+            "latent_heat_j_kg": [
+              180000.0,
+              320000.0
+            ]
+          },
+          "range_basis": "不是 ERNiFe-CI 标准值，也不是文献实测区间。"
+        },
+        "high_temperature": {
+          "temperatures_c": [
+            20,
+            200,
+            400,
+            600,
+            800,
+            1000,
+            1200,
+            1500,
+            1800
+          ],
+          "thermal_conductivity_w_mk": [
+            22,
+            23,
+            25,
+            27,
+            29,
+            31,
+            33,
+            35,
+            35
+          ],
+          "specific_heat_j_kgk": [
+            480,
+            510,
+            550,
+            590,
+            630,
+            660,
+            690,
+            720,
+            720
+          ],
+          "source": "常温取 project/materials.yaml；高温为显式敏感性曲线，尚无本焊丝测量来源",
+          "evidence_level": "design_assumption",
+          "k_scale_range": [
+            0.6,
+            1.4
+          ],
+          "cp_scale_range": [
+            0.75,
+            1.25
+          ]
+        }
+      }
+    },
+    "simulation": {
+      "cooling_after_source_s": 20.0,
+      "time_step_s": 0.01,
+      "activation": [
+        "pre_existing",
+        "progressive"
+      ],
+      "deposition_temperature_c": 20.0,
+      "activation_lead_mm": 0.0,
+      "geometry_status": "legacy_full_height_band_sensitivity_only",
+      "source_on_void": "记为未吸收功率，禁止向剩余单元重新归一化",
+      "boundary_on_void": "新增空腔暴露面施加同一对流/辐射边界",
+      "evidence_boundary": "沿用代理焊缝带做双模型敏感性，不是实物填丝几何。质量审计失败时禁止升格为合理熔合。"
+    },
+    "scan": {
+      "source": "project/process.yaml",
+      "efficiency": 0.55,
+      "current_a": [
+        65.0,
+        75.0,
+        85.0
+      ],
+      "voltage_v": [
+        11.0,
+        12.0,
+        13.5
+      ],
+      "travel_speed_mm_s": [
+        1.2,
+        1.5,
+        2.0
+      ],
+      "preheat_c": [
+        130.0,
+        150.0,
+        180.0
+      ],
+      "line_energy_j_mm": [
+        240.0,
+        420.0
+      ],
+      "policy": "先按 eta*U*I/v 过滤；固定热源尺寸，不按熔化目标调 eta。有限采样不证明连续域不存在熔合。"
+    },
+    "gates": {
+      "thermal_1_allowed": false,
+      "formal_struct_0_allowed": false,
+      "requires": [
+        "material_specific_phase_change",
+        "enthalpy_verification",
+        "high_t_evidence",
+        "activation_sensitivity",
+        "deposition_mass_consistency",
+        "process_scan",
+        "plausible_two_sided_fusion",
+        "experimental_calibration",
+        "independent_validation"
+      ]
+    }
+  },
+  "selected_process_cases": [
+    [
+      "process-00-preheat-150",
+      {
+        "current_a": 75.0,
+        "voltage_v": 12.0,
+        "travel_speed_mm_s": 1.5,
+        "efficiency": 0.55,
+        "net_power_w": 495.0,
+        "net_line_energy_j_per_mm": 330.0,
+        "preheat_temperature_c": 150.0
+      }
+    ]
+  ],
+  "candidate_count": 19,
+  "hashes": {
+    "project/thermal-physics-v5.3.yaml": "a98a64fe120bd469c3c48322aed28949d264eb76f1d3b173a44ae3ad4bf2d565",
+    "project/g-inputs-v5.2.yaml": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
+    "project/materials.yaml": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+    "project/process.yaml": "6141587a65cd321cfdfed2963044a35ca6e137005482f40c8e1a74f1633e62eb",
+    "simulation/thermal-v5/run_physics03.py": "9183565a37f99ffb525e02e4a474b8f9f75e6ec9081741c0bcd73ebdf1d95bc8",
+    "simulation/thermal-v5/physics.py": "1b7f21d5ec2d3eb893ce892c9be7968d29a22186b28818205fb3852ea72d342d"
+  },
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+}

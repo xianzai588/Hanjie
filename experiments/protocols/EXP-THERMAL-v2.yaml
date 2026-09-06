@@ -1,0 +1,54 @@
+# 物理数据尚未采集；本文件只冻结执行与数据分流协议。
+version: EXP-THERMAL-v2
+status: awaiting_equipment_and_specimens
+evidence_level: design_assumption
+supersedes: experiments/protocols/EXP-THERMAL-v1.yaml
+shared_inputs: project/g-inputs-v5.2.yaml
+entry_condition: "先核实实际接头、送丝量与焊脚；不以当前不闭合代理几何指导设备参数。"
+priority: [actual_current_voltage_travel, macro_fusion_geometry_both_parents, wire_mass_balance, thermal_cycles]
+specimens:
+  CAL-01: {role: calibration, material_batch: pending, geometry_measurement: pending}
+  CAL-02: {role: calibration_repeat, material_batch: pending, geometry_measurement: pending}
+  VAL-01: {role: independent_validation, material_batch: pending, geometry_measurement: pending}
+  split_policy: "试件编号在实验前登记；VAL-01 全部数据禁止用于调参，包括测点及截面。"
+measurements:
+  coordinate_system: fixed_local_window_s_n_z_mm
+  registration: "s 沿焊道、n 接口法向、z 局部轴向；记录实测三维坐标和孔深，拟合前确认点处于母材实体。"
+  thermocouples:
+    - {sensor_id: QT-TC1, material: QT450-10, s_mm: 0, n_mm: -5, z_mm: 0}
+    - {sensor_id: QT-TC2, material: QT450-10, s_mm: 0, n_mm: -10, z_mm: 0}
+    - {sensor_id: Q235-TC1, material: Q235B, s_mm: 0, n_mm: 4, z_mm: 0}
+    - {sensor_id: Q235-TC2, material: Q235B, s_mm: 0, n_mm: 4, z_mm: 10}
+  sensor_boundary_note: "旧协议 n=+10 mm 超出 5 mm 壳壁与当前计算域，废止；Q235 远点沿 z 偏移10 mm，不能称法向10 mm测点。上述坐标均待实物可安装性复核。"
+  acquisition:
+    sampling_hz: pending_instrument_bandwidth
+    required: [instrument_id, calibration_record, range_c, uncertainty_c, timestamp_sync_error_s, attachment_method, measured_coordinates_mm]
+    rule: "传感器饱和、脱落、开路标记无效，禁止填补成测量值；记录电弧起止同步事件。"
+  process_log:
+    columns: [specimen_id, timestamp_s, current_a, voltage_v, travel_speed_mm_s, wire_feed_mm_s, preheat_c, interpass_c]
+    net_energy_rule: "按实测 I(t)U(t)积分及实际焊长计算 gross J/mm；eta 仍为待校准量，不标为实测净能量。"
+  mass_balance:
+    required: [wire_diameter_mm, wire_used_length_mm, wire_used_mass_g, specimen_mass_before_g, specimen_mass_after_g, retained_filler_mass_g, process_loss_mass_g]
+    purpose: "核实送丝进入量与角焊缝体积；区分填充金属和熔化母材的几何贡献。"
+  macro_cross_section:
+    required: true
+    sections: [start, middle, end]
+    columns: [specimen_id, section_id, s_mm, image_file, scale_mm_per_pixel, qt_fusion_depth_mm, q235b_fusion_depth_mm, fusion_width_mm, weld_leg_qt_mm, weld_leg_q235b_mm, pore_or_lack_of_fusion, measurement_uncertainty_mm]
+    contour_data: "保存 QT/焊缝/Q235B 边界点坐标；有条件追加纵向中心截面约束热源前后尺寸。"
+    no_fusion_policy: "未熔合如实记录；停止校准并复核路线，不修改 eta 强制拟合。"
+calibration:
+  status: not_started
+  prerequisite: G-PHYSICS_plausible_geometry_and_process_review
+  parameters: [efficiency, a_front_mm, a_rear_mm, b_radial_mm, c_axial_mm]
+  objective:
+    thermal_weight: 0.5
+    geometry_weight: 0.5
+    thermal: "各有效测点温度残差按预登记仪器不确定度标准化，先点内均方再测点等权平均。"
+    geometry: "两侧截面轮廓距离残差按预登记测量不确定度标准化，各截面等权；若有纵向轮廓则在拟合前登记对应权重。"
+    t85: "仅真实降温穿过800/500°C时作为独立描述量，不对缺失t8/5赋0；避免与整条热循环重复加权。"
+    freeze: "仪器不确定度、轮廓距离算法、参数边界、目标权重须在首次优化前冻结；改动后留新版本，验证集不参与。"
+  validation: "冻结参数后一次性评估 VAL-01；报告误差和失败，不将 VAL 重新并入 CAL。"
+delivery:
+  raw_directory: experiments/raw-data/EXP-THERMAL-v2/
+  required_files: [specimen_register.csv, thermocouples.csv, process_log.csv, macro_sections.csv, contour_points.csv, mass_balance.csv, instrument_calibration_records, scaled_original_macro_images]
+  forbid: [synthetic_data_as_measurements, reusing_validation_for_calibration, qualification_without_experiment]

@@ -1,6 +1,6 @@
 # Hanjie · 数字化异种材料焊接工艺设计 2026
 
-> **2026-09-05 V5.2 计划一已执行**：G-INPUTS 已冻结，THERMAL-0 与 METALLURGY-0 已生成未校准数字基线；设备尚未核实，不能把数字结果写成物理验证。正式执行记录见 [计划一执行记录](docs/plan-1-execution-v5.2.md)，总体路线见 [V4.2 路线](docs/V4.2-competition-roadmap.md)。
+> **2026-09-06 计划二：物理完整性与工艺可行域**：THERMAL0.2 数值基线封存；已加入独立材料相变焓、激活敏感性与 G-PHYSICS。代理焊缝体积与送丝量不闭合，未热激活母材风险为 unresolved。当前路线为 **G-THERMAL → G-PHYSICS → EXP-THERMAL → THERMAL-1**，正式 STRUCT-0 仍不放行。见 [计划二执行记录](docs/plan-2-physics-v5.3.md)；[计划一](docs/plan-1-execution-v5.2.md)保留为历史证据。
 第一届辽宁省大学生材料焊接与铸造工艺设计大赛
 “中铁山桥杯”焊接工艺设计赛——固定命题
 
