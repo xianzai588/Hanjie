@@ -1,6 +1,6 @@
 # Hanjie · 数字化异种材料焊接工艺设计 2026
 
-> **2026-09-06 Plan 2B：THERMAL-0.4-MASS-CLOSED**：已重构填丝体积与表面热源，单一名义工况的质量、源沉积、能量和相变实现检查通过；焊丝局部熔化，两侧母材尚未达到当前固相线。0.2/0.3结果封存，材料证据与新模型收敛仍待完成，THERMAL-1及正式STRUCT-0不放行。见 [计划二执行记录](docs/plan-2-physics-v5.3.md)与 [G-PHYSICS-R1](simulation/thermal-v5/results/mass-closed04/G-PHYSICS-R1.json)。
+> **2026-09-06 Plan 2C：THERMAL-0.4R**：完成10组热量账本、热源结构、物性端点和网格/时间步验证。名义NiFe直接吸热55.6%，并向母材净传导10.63 kJ；QT在细网格出现越固相线区域，Q235在已测情景中仍未越固相线。时间步比较通过、空间网格未收敛，高温物性仍含设计假设。0.2/0.3/0.4封存；工艺扫描、THERMAL-1及正式STRUCT-0不放行。见 [执行记录](docs/plan-2-physics-v5.3.md)与 [0.4R审计](simulation/thermal-v5/results/credibility04r/assessment.json)。
 第一届辽宁省大学生材料焊接与铸造工艺设计大赛
 “中铁山桥杯”焊接工艺设计赛——固定命题
 

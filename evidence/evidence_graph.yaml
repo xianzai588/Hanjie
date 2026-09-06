@@ -86,6 +86,11 @@ taxonomy:
       scope: 仅填丝连续出生的质量闭合角焊道与首个材料表面双高斯热流；名义工况质量/源沉积/能量闭合，焊丝局部熔化，母材两侧未熔合；尚无新网格收敛和实测高温物性
       status: unvalidated
       evidence_level: solver_result_unvalidated
+    SIM-CREDIBILITY04R-V5:
+      path: simulation/thermal-v5/results/credibility04r/assessment.json
+      scope: 材料直接源与净导热账本、固定工艺的三种源结构及物性端点、三档网格和时间步条件验证；不代表实测物性、熔合验证或工艺窗口放行
+      status: unvalidated
+      evidence_level: solver_result_unvalidated
     SIM-THERMAL0-AUDIT-V5:
       path: simulation/thermal-v5/results/g-thermal-audit/G-THERMAL-audit.json
       scope: 热源域捕获、功率/累计能量、同时间步网格、时间步、换热/效率/热源尺寸敏感性审计；参数与实验校准仍需复核

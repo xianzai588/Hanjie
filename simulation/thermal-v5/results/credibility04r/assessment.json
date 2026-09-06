@@ -1,0 +1,1804 @@
+{
+  "stage": "THERMAL-0.4R",
+  "evidence_level": "solver_result_unvalidated",
+  "audit_source_sha256": "b7295859cca47cbbf1fad15e7a11e8cb1b892d0e0e6ebd223788094cb7fded11",
+  "sources": {
+    "q235_casting": {
+      "url": "https://www.mdpi.com/1996-1944/16/9/3361",
+      "scope": "表2：Q235 solidus=1748 K, liquidus=1793 K, L=264000 J/kg；不是本批 Q235B 实测。"
+    },
+    "ductile_laser": {
+      "url": "https://www.mdpi.com/1996-1944/13/5/1174",
+      "scope": "激光重熔球铁研究支持成分/凝固路径依赖；不能作为 QT450-10 的精确常数。"
+    },
+    "nife_supplier": {
+      "url": "https://nickelalloys.es/fundicion/fund-nife-cl-ernife-cl/",
+      "scope": "ERNiFe-CI 焊丝成分和用途；未提供高温 k/cp 或潜热。"
+    },
+    "goldak_identifiability": {
+      "url": "https://doi.org/10.1016/j.addma.2024.104379",
+      "scope": "LPBF 校准联合截面/纵向轮廓；只迁移方法，不迁移工艺参数。"
+    }
+  },
+  "material_evidence": {
+    "q235b": {
+      "phase_evidence": "literature_analogue_not_batch_measurement",
+      "phase_nominal": {
+        "solidus_c": 1474.85,
+        "liquidus_c": 1519.85,
+        "latent_heat_j_kg": 264000.0
+      },
+      "phase_engineering_bounds": {
+        "solidus_c": [
+          1450.0,
+          1500.0
+        ],
+        "liquidus_c": [
+          1500.0,
+          1540.0
+        ],
+        "latent_heat_j_kg": [
+          240000.0,
+          290000.0
+        ]
+      },
+      "k_cp_evidence": "design_assumption",
+      "k_scale_bounds": [
+        0.8,
+        1.2
+      ],
+      "cp_scale_bounds": [
+        0.85,
+        1.15
+      ],
+      "density_evidence": "design_assumption_reference_density_from_materials_yaml_not_high_temperature_measurement",
+      "alpha_evidence": "design_assumption_not_used_in_reference_domain_thermal_equation",
+      "uncertainty_scope": "工程敏感性范围，不是实测范围或置信区间"
+    },
+    "qt450_10": {
+      "phase_evidence": "design_assumption",
+      "phase_nominal": {
+        "solidus_c": 1100.0,
+        "liquidus_c": 1200.0,
+        "latent_heat_j_kg": 240000.0
+      },
+      "phase_engineering_bounds": {
+        "solidus_c": [
+          1050.0,
+          1150.0
+        ],
+        "liquidus_c": [
+          1150.0,
+          1250.0
+        ],
+        "latent_heat_j_kg": [
+          180000.0,
+          300000.0
+        ]
+      },
+      "k_cp_evidence": "design_assumption",
+      "k_scale_bounds": [
+        0.8,
+        1.2
+      ],
+      "cp_scale_bounds": [
+        0.85,
+        1.15
+      ],
+      "density_evidence": "design_assumption_reference_density_from_materials_yaml_not_high_temperature_measurement",
+      "alpha_evidence": "design_assumption_not_used_in_reference_domain_thermal_equation",
+      "uncertainty_scope": "工程敏感性范围，不是实测范围或置信区间"
+    },
+    "ernife_ci": {
+      "phase_evidence": "design_assumption",
+      "phase_nominal": {
+        "solidus_c": 1380.0,
+        "liquidus_c": 1450.0,
+        "latent_heat_j_kg": 260000.0
+      },
+      "phase_engineering_bounds": {
+        "solidus_c": [
+          1300.0,
+          1420.0
+        ],
+        "liquidus_c": [
+          1430.0,
+          1500.0
+        ],
+        "latent_heat_j_kg": [
+          180000.0,
+          320000.0
+        ]
+      },
+      "k_cp_evidence": "design_assumption",
+      "k_scale_bounds": [
+        0.6,
+        1.4
+      ],
+      "cp_scale_bounds": [
+        0.75,
+        1.25
+      ],
+      "density_evidence": "design_assumption_reference_density_from_materials_yaml_not_high_temperature_measurement",
+      "alpha_evidence": "design_assumption_not_used_in_reference_domain_thermal_equation",
+      "uncertainty_scope": "工程敏感性范围，不是实测范围或置信区间"
+    }
+  },
+  "source_method_reference": {
+    "url": "https://journals.sagepub.com/doi/10.1243/09544054JEM1886",
+    "scope": "AA1050 GTAW比较表面/体积热源，只支持比较方法，不支持本项目10%/0.5mm/30°参数"
+  },
+  "source_review": {
+    "date": "2026-09-06",
+    "supplier": "复查生产商网页只有成分/用途/机械性能，没有高温k/cp/相变数据。",
+    "mdpi": "本轮原页面429；保留既有来源及证据分级，没有新增逐值核验声明。"
+  },
+  "baseline_peak_difference_c": {
+    "q235b": 0.0,
+    "qt450_10": -2.2737367544323206e-13,
+    "ernife_ci": 0.0
+  },
+  "comparisons": {
+    "coarse_to_medium": {
+      "materials": {
+        "q235b": {
+          "peak_temperature_c": {
+            "absolute_change": 47.16288803544364,
+            "relative_change": 0.04625038954834373,
+            "passed": false
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 7.36697907054355,
+            "relative_change": 0.08528076259843519,
+            "passed": false
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.08113488993664664,
+            "relative_change": 0.022722602377385836,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 19.612142131527435,
+            "relative_change": 0.004567345574888227,
+            "passed": true
+          }
+        },
+        "qt450_10": {
+          "peak_temperature_c": {
+            "absolute_change": 37.084973525368014,
+            "relative_change": 0.034080754195401006,
+            "passed": false
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 16.158430929440925,
+            "relative_change": 0.11079536553090173,
+            "passed": false
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.13126244043937918,
+            "relative_change": 0.044900011763422135,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 29.45949255737355,
+            "relative_change": 0.024361531475848394,
+            "passed": true
+          }
+        },
+        "ernife_ci": {
+          "peak_temperature_c": {
+            "absolute_change": 39.860975534238605,
+            "relative_change": 0.026248156769805894,
+            "passed": false
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "absolute_change": 9.508553764865109,
+            "relative_change": 0.26768867924528295,
+            "passed": false
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "absolute_change": 2.7331856086231205,
+            "relative_change": 0.2265625,
+            "passed": false
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "absolute_change": 0.10471975511965992,
+            "relative_change": 0.15625000000000017,
+            "passed": false
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 1.4210854715202004e-14,
+            "relative_change": 1.570644287142477e-16,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.007144417365871014,
+            "relative_change": 0.00305969773821633,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 1.4210854715202004e-14,
+            "relative_change": 1.570644287142477e-16,
+            "passed": true
+          }
+        }
+      },
+      "nonzero_metrics_pass": false,
+      "fusion_geometry_demonstrated": false
+    },
+    "medium_to_fine": {
+      "materials": {
+        "q235b": {
+          "peak_temperature_c": {
+            "absolute_change": 37.79081745294286,
+            "relative_change": 0.035735309976620236,
+            "passed": false
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 2.592175868261407,
+            "relative_change": 0.03176289021989947,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.0015292099238171097,
+            "relative_change": 0.00043803558447932115,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 2.1763734860105615,
+            "relative_change": 0.0005065848576850464,
+            "passed": true
+          }
+        },
+        "qt450_10": {
+          "peak_temperature_c": {
+            "absolute_change": 36.06011599152703,
+            "relative_change": 0.03207595687034263,
+            "passed": false
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "absolute_change": 9.956753262721765,
+            "relative_change": 1.0,
+            "passed": false
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "absolute_change": 0.34732860218796846,
+            "relative_change": 1.0,
+            "passed": false
+          },
+          "maximum_section_solidus_width_mm": {
+            "absolute_change": 0.8683215054699216,
+            "relative_change": 1.0,
+            "passed": false
+          },
+          "maximum_section_solidus_depth_mm": {
+            "absolute_change": 0.3999999999999999,
+            "relative_change": 1.0,
+            "passed": false
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 5.861066125943466,
+            "relative_change": 0.043241394323482694,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.03577189632613731,
+            "relative_change": 0.012649416461058736,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 0.7522926318276859,
+            "relative_change": 0.000622108496730771,
+            "passed": true
+          }
+        },
+        "ernife_ci": {
+          "peak_temperature_c": {
+            "absolute_change": 13.731271204145969,
+            "relative_change": 0.008960916184453507,
+            "passed": false
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "absolute_change": 9.005898940290752,
+            "relative_change": 0.34621578099838995,
+            "passed": false
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "absolute_change": 2.062979175857297,
+            "relative_change": 0.18106617647058817,
+            "passed": false
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "absolute_change": 0.14660765716752377,
+            "relative_change": 0.25925925925925936,
+            "passed": false
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 0.005788810036477798,
+            "relative_change": 6.398039805037613e-05,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.01227727866552275,
+            "relative_change": 0.005230417048770851,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 1.4210854715202004e-14,
+            "relative_change": 1.570644287142477e-16,
+            "passed": true
+          }
+        }
+      },
+      "nonzero_metrics_pass": false,
+      "fusion_geometry_demonstrated": false
+    },
+    "medium_to_dt-0.05": {
+      "materials": {
+        "q235b": {
+          "peak_temperature_c": {
+            "absolute_change": 2.085465241222778,
+            "relative_change": 0.0020409420973605077,
+            "passed": true
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 1.0854018818373987,
+            "relative_change": 0.013550005495718555,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.003448479815724159,
+            "relative_change": 0.0009872594015725633,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 7.2864503698820045,
+            "relative_change": 0.0016940199643707596,
+            "passed": true
+          }
+        },
+        "qt450_10": {
+          "peak_temperature_c": {
+            "absolute_change": 2.666163314878986,
+            "relative_change": 0.002444191187987054,
+            "passed": true
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 0.16892603688640406,
+            "relative_change": 0.0013009240195532,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.00979485721401474,
+            "relative_change": 0.0035079649870441184,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 2.8694772659039245,
+            "relative_change": 0.0023672972307144787,
+            "passed": true
+          }
+        },
+        "ernife_ci": {
+          "peak_temperature_c": {
+            "absolute_change": 2.354252396923357,
+            "relative_change": 0.0015478581645128056,
+            "passed": true
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "absolute_change": 0.5654866776461631,
+            "relative_change": 0.021276595744680854,
+            "passed": true
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "absolute_change": 0.28274333882308156,
+            "relative_change": 0.029411764705882363,
+            "passed": true
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.004111271333325561,
+            "relative_change": 0.0017607100699157227,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          }
+        }
+      },
+      "nonzero_metrics_pass": true,
+      "fusion_geometry_demonstrated": false
+    },
+    "dt-0.05_to_dt-0.025": {
+      "materials": {
+        "q235b": {
+          "peak_temperature_c": {
+            "absolute_change": 0.9895840116254249,
+            "relative_change": 0.0009675201215197755,
+            "passed": true
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 0.7236012545582611,
+            "relative_change": 0.008952466351635711,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.0026969318867466896,
+            "relative_change": 0.0007715043489818535,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 3.169945404466489,
+            "relative_change": 0.0007364348770223797,
+            "passed": true
+          }
+        },
+        "qt450_10": {
+          "peak_temperature_c": {
+            "absolute_change": 1.2009088915833672,
+            "relative_change": 0.0010997161993128906,
+            "passed": true
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "both_zero_no_geometry_claim",
+            "passed": null,
+            "absolute_change": 0.0
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 0.37213778805855213,
+            "relative_change": 0.002857697480660811,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.011439293223943992,
+            "relative_change": 0.004111331553370647,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 4.846645289153685,
+            "relative_change": 0.003982522126479145,
+            "passed": true
+          }
+        },
+        "ernife_ci": {
+          "peak_temperature_c": {
+            "absolute_change": 1.1901411563767397,
+            "relative_change": 0.0007818742642643617,
+            "passed": true
+          },
+          "ever_solidus_exceeded_volume_mm3": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          },
+          "ever_liquidus_exceeded_volume_mm3": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          },
+          "maximum_cross_section_solidus_area_mm2": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          },
+          "maximum_section_solidus_width_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "maximum_section_solidus_depth_mm": {
+            "status": "not_available",
+            "passed": null
+          },
+          "t8_5_valid_volume_mm3": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          },
+          "t8_5_volume_weighted_mean_s": {
+            "absolute_change": 0.0019206053637867981,
+            "relative_change": 0.0008239771837402661,
+            "passed": true
+          },
+          "exposure_above_400c_volume_mm3": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "passed": true
+          }
+        }
+      },
+      "nonzero_metrics_pass": true,
+      "fusion_geometry_demonstrated": false
+    }
+  },
+  "cases": {
+    "baseline": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1018.3401040960827,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 159,
+          "exposure_above_400c_volume_mm3": 4290.5782954450915,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 80.06685006561173,
+          "t8_5_volume_weighted_mean_s": 3.4924333498582842
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1087.261695826581,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 313,
+          "exposure_above_400c_volume_mm3": 1169.5413293553324,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 130.1782541843677,
+          "t8_5_volume_weighted_mean_s": 2.7808674037221865
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1517.2691438879956,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 25.258404934861947,
+          "ever_liquidus_exceeded_volume_mm3": 9.047786842338608,
+          "maximum_cross_section_solidus_area_mm2": 0.5654866776461629,
+          "solidus_region_n_extent_mm": [
+            -1.3024822582048818,
+            -0.4341607527349606
+          ],
+          "solidus_region_z_extent_mm": [
+            0.21708037636748032,
+            1.0854018818374016
+          ],
+          "t8_5_valid_count": 420,
+          "exposure_above_400c_volume_mm3": 90.47786842338604,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338604,
+          "t8_5_volume_weighted_mean_s": 2.3427595150728227
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2357.9888740279193,
+        "radiation_j": 2558.060576069603,
+        "internal_energy_change_j": 14883.950554103401,
+        "residual_j": -4.201070623821579e-06,
+        "residual_pct": 2.1217528403139442e-08,
+        "direct_source_by_material_j": {
+          "q235b": 4184.39389134324,
+          "qt450_10": 4603.336002711764,
+          "ernife_ci": 11012.27010594485
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.2113330248153167,
+          "qt450_10": 0.23249171730867665,
+          "ernife_ci": 0.5561752578760066
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4928.033216726888,
+          "qt450_10": 5697.867608991797,
+          "ernife_ci": -10625.90082571862
+        },
+        "material_source_partition_residual_j": 0.0
+      },
+      "mesh": {
+        "cell_count": 36260,
+        "grid_shape": [
+          70,
+          37,
+          23
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "baseline",
+        "source": "surface45",
+        "properties": "nominal",
+        "mesh": "baseline",
+        "dt": 0.1
+      }
+    },
+    "shallow45": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1019.3648328025483,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 165,
+          "exposure_above_400c_volume_mm3": 4347.269803552485,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 82.9612550838448,
+          "t8_5_volume_weighted_mean_s": 3.4940386534116072
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1087.5568944854358,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 312,
+          "exposure_above_400c_volume_mm3": 1160.2539309933472,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 129.6820704669563,
+          "t8_5_volume_weighted_mean_s": 2.7835453230860394
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1500.2915725844825,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 18.47256480310799,
+          "ever_liquidus_exceeded_volume_mm3": 8.670795723907833,
+          "maximum_cross_section_solidus_area_mm2": 0.37699111843077526,
+          "solidus_region_n_extent_mm": [
+            -0.8683215054699213,
+            -0.4341607527349606
+          ],
+          "solidus_region_z_extent_mm": [
+            0.6512411291024409,
+            1.0854018818374016
+          ],
+          "t8_5_valid_count": 420,
+          "exposure_above_400c_volume_mm3": 90.47786842338604,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338604,
+          "t8_5_volume_weighted_mean_s": 2.3538366168208453
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.99951849417,
+        "uncaptured_source_j": 0.0004815056854567956,
+        "minimum_active_source_fraction": 0.9999999571603903,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2358.5775438402957,
+        "radiation_j": 2553.450563409157,
+        "internal_energy_change_j": 14887.971417735767,
+        "residual_j": -6.491050953627564e-06,
+        "residual_pct": 3.278308562438188e-08,
+        "direct_source_by_material_j": {
+          "q235b": 4433.455691839296,
+          "qt450_10": 4682.982727681237,
+          "ernife_ci": 10683.561098973536
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.22391190907344485,
+          "qt450_10": 0.23651428492748824,
+          "ernife_ci": 0.5395738059990668
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4711.221381925951,
+          "qt450_10": 5593.12771873486,
+          "ernife_ci": -10304.34910066075
+        },
+        "material_source_partition_residual_j": -9.822542779147625e-11
+      },
+      "mesh": {
+        "cell_count": 36260,
+        "grid_shape": [
+          70,
+          37,
+          23
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "shallow45",
+        "source": "shallow45",
+        "properties": "nominal",
+        "mesh": "baseline",
+        "dt": 0.1
+      }
+    },
+    "surface30": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1044.15853216233,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 232,
+          "exposure_above_400c_volume_mm3": 5066.460992832477,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 120.9881792170842,
+          "t8_5_volume_weighted_mean_s": 3.922292787007358
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1087.9066890648749,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 238,
+          "exposure_above_400c_volume_mm3": 978.9647583368862,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 98.14421178612929,
+          "t8_5_volume_weighted_mean_s": 2.953888786849326
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1439.3016451915662,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 18.095573684677213,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.37699111843077526,
+          "solidus_region_n_extent_mm": [
+            -0.8683215054699213,
+            -0.4341607527349606
+          ],
+          "solidus_region_z_extent_mm": [
+            0.6512411291024409,
+            1.0854018818374016
+          ],
+          "t8_5_valid_count": 420,
+          "exposure_above_400c_volume_mm3": 90.47786842338604,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338604,
+          "t8_5_volume_weighted_mean_s": 2.4408091189072953
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2365.5609021853375,
+        "radiation_j": 2580.2614106130436,
+        "internal_energy_change_j": 14854.177692171128,
+        "residual_j": -4.969655492459424e-06,
+        "residual_pct": 2.5099270163936668e-08,
+        "direct_source_by_material_j": {
+          "q235b": 5426.6724499810425,
+          "qt450_10": 3888.4043429387953,
+          "ernife_ci": 10484.923207079924
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.27407436616066205,
+          "qt450_10": 0.19638405772418396,
+          "ernife_ci": 0.5295415761151541
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4168.368192462622,
+          "qt450_10": 5947.4953791384805,
+          "ernife_ci": -10115.863571601036
+        },
+        "material_source_partition_residual_j": -9.458744898438454e-11
+      },
+      "mesh": {
+        "cell_count": 36260,
+        "grid_shape": [
+          70,
+          37,
+          23
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "surface30",
+        "source": "surface30",
+        "properties": "nominal",
+        "mesh": "baseline",
+        "dt": 0.1
+      }
+    },
+    "properties-lower": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1186.239872684702,
+          "solidus_c": 1450.0,
+          "liquidus_c": 1500.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 326,
+          "exposure_above_400c_volume_mm3": 5786.896449993389,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 171.13375670725742,
+          "t8_5_volume_weighted_mean_s": 4.456369359368119
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1287.5873576876288,
+          "solidus_c": 1050.0,
+          "liquidus_c": 1150.0,
+          "ever_solidus_exceeded_volume_mm3": 95.19246585553321,
+          "ever_liquidus_exceeded_volume_mm3": 53.985923200966496,
+          "maximum_cross_section_solidus_area_mm2": 1.9005358424498695,
+          "solidus_region_n_extent_mm": [
+            -2.0085894266948556,
+            -0.11854018818374011
+          ],
+          "solidus_region_z_extent_mm": [
+            -0.8571428571428574,
+            -0.2857142857142858
+          ],
+          "t8_5_valid_count": 564,
+          "exposure_above_400c_volume_mm3": 1734.2009040074245,
+          "maximum_section_solidus_width_mm": 2.260535842449869,
+          "maximum_section_solidus_depth_mm": 1.1428571428571432,
+          "t8_5_valid_volume_mm3": 249.1496959699046,
+          "t8_5_volume_weighted_mean_s": 2.994603212402341
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1943.3291308449263,
+          "solidus_c": 1300.0,
+          "liquidus_c": 1430.0,
+          "ever_solidus_exceeded_volume_mm3": 81.88883450604924,
+          "ever_liquidus_exceeded_volume_mm3": 62.98210895020628,
+          "maximum_cross_section_solidus_area_mm2": 1.413716694115407,
+          "solidus_region_n_extent_mm": [
+            -1.3024822582048818,
+            -0.01
+          ],
+          "solidus_region_z_extent_mm": [
+            0.21708037636748032,
+            1.5195626345723623
+          ],
+          "t8_5_valid_count": 420,
+          "exposure_above_400c_volume_mm3": 90.47786842338604,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338604,
+          "t8_5_volume_weighted_mean_s": 2.664959711845866
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2444.295374746168,
+        "radiation_j": 3125.23282519812,
+        "internal_energy_change_j": 14230.471803605396,
+        "residual_j": -3.5498305805958807e-06,
+        "residual_pct": 1.7928437275736906e-08,
+        "direct_source_by_material_j": {
+          "q235b": 4184.39389134324,
+          "qt450_10": 4603.336002711764,
+          "ernife_ci": 11012.27010594485
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.2113330248153167,
+          "qt450_10": 0.23249171730867665,
+          "ernife_ci": 0.5561752578760066
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4997.534229938046,
+          "qt450_10": 5386.592426802752,
+          "ernife_ci": -10384.126656740767
+        },
+        "material_source_partition_residual_j": 0.0
+      },
+      "mesh": {
+        "cell_count": 36260,
+        "grid_shape": [
+          70,
+          37,
+          23
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "properties-lower",
+        "source": "surface45",
+        "properties": "lower",
+        "mesh": "baseline",
+        "dt": 0.1
+      }
+    },
+    "properties-upper": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 876.7308298154484,
+          "solidus_c": 1500.0,
+          "liquidus_c": 1540.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 65,
+          "exposure_above_400c_volume_mm3": 2730.067582013805,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 31.3560543641916,
+          "t8_5_volume_weighted_mean_s": 3.275986527468911
+        },
+        "qt450_10": {
+          "peak_temperature_c": 929.3681551210395,
+          "solidus_c": 1150.0,
+          "liquidus_c": 1250.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 139,
+          "exposure_above_400c_volume_mm3": 906.1088717023051,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 55.45161721034351,
+          "t8_5_volume_weighted_mean_s": 2.69740612886789
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1265.597410081462,
+          "solidus_c": 1420.0,
+          "liquidus_c": 1500.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 410,
+          "exposure_above_400c_volume_mm3": 90.47786842338604,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 89.84291602530229,
+          "t8_5_volume_weighted_mean_s": 2.3050323126536463
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2286.1682666777865,
+        "radiation_j": 2245.4431837200177,
+        "internal_energy_change_j": 15268.388576109122,
+        "residual_j": -2.6507070288062096e-05,
+        "residual_pct": 1.3387409236395096e-07,
+        "direct_source_by_material_j": {
+          "q235b": 4184.39389134324,
+          "qt450_10": 4603.336002711764,
+          "ernife_ci": 11012.27010594485
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.2113330248153167,
+          "qt450_10": 0.23249171730867665,
+          "ernife_ci": 0.5561752578760066
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4831.4108157818155,
+          "qt450_10": 5882.631747237028,
+          "ernife_ci": -10714.042563018798
+        },
+        "material_source_partition_residual_j": 0.0
+      },
+      "mesh": {
+        "cell_count": 36260,
+        "grid_shape": [
+          70,
+          37,
+          23
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "properties-upper",
+        "source": "surface45",
+        "properties": "upper",
+        "mesh": "baseline",
+        "dt": 0.1
+      }
+    },
+    "coarse": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 972.5666428076668,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 99,
+          "exposure_above_400c_volume_mm3": 4274.37915105136,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 86.38500461390957,
+          "t8_5_volume_weighted_mean_s": 3.5706689132312737
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1051.065051346218,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 196,
+          "exposure_above_400c_volume_mm3": 1179.8032578809225,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 145.84031427681157,
+          "t8_5_volume_weighted_mean_s": 2.9234388875219035
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1478.7590130545211,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 35.52094093658861,
+          "ever_liquidus_exceeded_volume_mm3": 12.063715789784808,
+          "maximum_cross_section_solidus_area_mm2": 0.6702064327658228,
+          "solidus_region_n_extent_mm": [
+            -1.1577620072932282,
+            -0.5788810036466141
+          ],
+          "solidus_region_z_extent_mm": [
+            0.2894405018233071,
+            0.8683215054699214
+          ],
+          "t8_5_valid_count": 270,
+          "exposure_above_400c_volume_mm3": 90.47786842338606,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338606,
+          "t8_5_volume_weighted_mean_s": 2.3278631478048952
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2357.855428821358,
+        "radiation_j": 2554.6992259934354,
+        "internal_energy_change_j": 14887.445347145927,
+        "residual_j": -1.9608651200542226e-06,
+        "residual_pct": 9.903359192193117e-09,
+        "direct_source_by_material_j": {
+          "q235b": 4184.393891343239,
+          "qt450_10": 4779.015551539353,
+          "ernife_ci": 10836.590557117202
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.2113330248153173,
+          "qt450_10": 0.2413644217949193,
+          "ernife_ci": 0.5473025533897633
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4968.506424186363,
+          "qt450_10": 5484.844091855741,
+          "ernife_ci": -10453.350516042063
+        },
+        "material_source_partition_residual_j": -5.820766091346741e-11
+      },
+      "mesh": {
+        "cell_count": 25690,
+        "grid_shape": [
+          70,
+          33,
+          19
+        ],
+        "bead_area_mm2": 1.507964473723101,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "coarse",
+        "source": "surface45",
+        "properties": "nominal",
+        "mesh": "coarse",
+        "dt": 0.1
+      }
+    },
+    "medium": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1019.7295308431104,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 209,
+          "exposure_above_400c_volume_mm3": 4293.991293182888,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 79.01802554336602,
+          "t8_5_volume_weighted_mean_s": 3.489534023294627
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1088.150024871586,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 416,
+          "exposure_above_400c_volume_mm3": 1209.262750438296,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 129.68188334737064,
+          "t8_5_volume_weighted_mean_s": 2.7921764470825243
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1518.6199885887597,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 26.0123871717235,
+          "ever_liquidus_exceeded_volume_mm3": 9.330530181161688,
+          "maximum_cross_section_solidus_area_mm2": 0.5654866776461629,
+          "solidus_region_n_extent_mm": [
+            -1.3024822582048818,
+            -0.4341607527349606
+          ],
+          "solidus_region_z_extent_mm": [
+            0.21708037636748032,
+            1.0854018818374016
+          ],
+          "t8_5_valid_count": 560,
+          "exposure_above_400c_volume_mm3": 90.47786842338607,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338607,
+          "t8_5_volume_weighted_mean_s": 2.3350075651707662
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2357.6930874044315,
+        "radiation_j": 2557.166500922425,
+        "internal_energy_change_j": 14885.140420768337,
+        "residual_j": -9.095338100451045e-06,
+        "residual_pct": 4.5936051012379355e-08,
+        "direct_source_by_material_j": {
+          "q235b": 4184.393891343239,
+          "qt450_10": 4603.336002711763,
+          "ernife_ci": 11012.27010594485
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.21133302481531668,
+          "qt450_10": 0.23249171730867663,
+          "ernife_ci": 0.5561752578760066
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4922.842326326091,
+          "qt450_10": 5702.614521161351,
+          "ernife_ci": -10625.456847487409
+        },
+        "material_source_partition_residual_j": 0.0
+      },
+      "mesh": {
+        "cell_count": 63262,
+        "grid_shape": [
+          94,
+          42,
+          27
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "medium",
+        "source": "surface45",
+        "properties": "nominal",
+        "mesh": "medium",
+        "dt": 0.1
+      }
+    },
+    "fine": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1057.5203482960533,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 697,
+          "exposure_above_400c_volume_mm3": 4296.167666668898,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 81.61020141162743,
+          "t8_5_volume_weighted_mean_s": 3.491063233218444
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1124.210140863113,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 9.956753262721765,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.34732860218796846,
+          "solidus_region_n_extent_mm": [
+            -1.4472025091165355,
+            -0.8683215054699212
+          ],
+          "solidus_region_z_extent_mm": [
+            -0.19999999999999996,
+            -0.19999999999999996
+          ],
+          "t8_5_valid_count": 1287,
+          "exposure_above_400c_volume_mm3": 1208.5104578064684,
+          "maximum_section_solidus_width_mm": 0.8683215054699216,
+          "maximum_section_solidus_depth_mm": 0.3999999999999999,
+          "t8_5_valid_volume_mm3": 135.5429494733141,
+          "t8_5_volume_weighted_mean_s": 2.8279483434086616
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1532.3512597929057,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 17.006488231432748,
+          "ever_liquidus_exceeded_volume_mm3": 11.393509357018985,
+          "maximum_cross_section_solidus_area_mm2": 0.4188790204786391,
+          "solidus_region_n_extent_mm": [
+            -1.1577620072932282,
+            -0.5788810036466141
+          ],
+          "solidus_region_z_extent_mm": [
+            0.4341607527349607,
+            1.013041756381575
+          ],
+          "t8_5_valid_count": 1619,
+          "exposure_above_400c_volume_mm3": 90.47786842338606,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47207961334959,
+          "t8_5_volume_weighted_mean_s": 2.347284843836289
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19799.999999999854,
+        "absorbed_source_j": 19799.999999999854,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999996,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2357.5978074580216,
+        "radiation_j": 2560.927570594325,
+        "internal_energy_change_j": 14881.4746561574,
+        "residual_j": -3.420989014557563e-05,
+        "residual_pct": 1.7277722295745393e-07,
+        "direct_source_by_material_j": {
+          "q235b": 4184.393891343239,
+          "qt450_10": 4436.686322454018,
+          "ernife_ci": 11178.919786202565
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.21133302481531702,
+          "qt450_10": 0.224075066790609,
+          "ernife_ci": 0.564591908394074
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4882.27204475304,
+          "qt450_10": 5904.72764219113,
+          "ernife_ci": -10786.999686944064
+        },
+        "material_source_partition_residual_j": -3.2741809263825417e-11
+      },
+      "mesh": {
+        "cell_count": 191380,
+        "grid_shape": [
+          140,
+          61,
+          38
+        ],
+        "bead_area_mm2": 1.5079644737231015,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "fine",
+        "source": "surface45",
+        "properties": "nominal",
+        "mesh": "fine",
+        "dt": 0.1
+      }
+    },
+    "dt-0.05": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1021.8149960843332,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 212,
+          "exposure_above_400c_volume_mm3": 4301.27774355277,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 80.10342742520342,
+          "t8_5_volume_weighted_mean_s": 3.492982503110351
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1090.816188186465,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 417,
+          "exposure_above_400c_volume_mm3": 1212.1322277042,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 129.85080938425705,
+          "t8_5_volume_weighted_mean_s": 2.7823815898685096
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1520.974240985683,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 26.577873849369663,
+          "ever_liquidus_exceeded_volume_mm3": 9.61327351998477,
+          "maximum_cross_section_solidus_area_mm2": 0.5654866776461629,
+          "solidus_region_n_extent_mm": [
+            -1.3024822582048818,
+            -0.4341607527349606
+          ],
+          "solidus_region_z_extent_mm": [
+            0.21708037636748032,
+            1.0854018818374016
+          ],
+          "t8_5_valid_count": 560,
+          "exposure_above_400c_volume_mm3": 90.47786842338607,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338607,
+          "t8_5_volume_weighted_mean_s": 2.3308962938374407
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19800.000000000065,
+        "absorbed_source_j": 19800.000000000065,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2357.922843977713,
+        "radiation_j": 2558.8259060920223,
+        "internal_energy_change_j": 14883.251275001421,
+        "residual_j": -2.5071092750295065e-05,
+        "residual_pct": 1.2662168055704538e-07,
+        "direct_source_by_material_j": {
+          "q235b": 4184.407999121673,
+          "qt450_10": 4603.3485656965195,
+          "ernife_ci": 11012.243435181996
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.2113337373293754,
+          "qt450_10": 0.2324923518028523,
+          "ernife_ci": 0.5561739108677722
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4921.2078436851125,
+          "qt450_10": 5704.152318565326,
+          "ernife_ci": -10625.360162250436
+        },
+        "material_source_partition_residual_j": 1.2369127944111824e-10
+      },
+      "mesh": {
+        "cell_count": 63262,
+        "grid_shape": [
+          94,
+          42,
+          27
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "dt-0.05",
+        "source": "surface45",
+        "properties": "nominal",
+        "mesh": "medium",
+        "dt": 0.05
+      }
+    },
+    "dt-0.025": {
+      "material_statistics": {
+        "q235b": {
+          "peak_temperature_c": 1022.8045800959586,
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 214,
+          "exposure_above_400c_volume_mm3": 4304.447688957236,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 80.82702867976168,
+          "t8_5_volume_weighted_mean_s": 3.495679434997098
+        },
+        "qt450_10": {
+          "peak_temperature_c": 1092.0170970780484,
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "ever_solidus_exceeded_volume_mm3": 0.0,
+          "ever_liquidus_exceeded_volume_mm3": 0.0,
+          "maximum_cross_section_solidus_area_mm2": 0.0,
+          "solidus_region_n_extent_mm": null,
+          "solidus_region_z_extent_mm": null,
+          "t8_5_valid_count": 418,
+          "exposure_above_400c_volume_mm3": 1216.9788729933537,
+          "maximum_section_solidus_width_mm": 0.0,
+          "maximum_section_solidus_depth_mm": 0.0,
+          "t8_5_valid_volume_mm3": 130.2229471723156,
+          "t8_5_volume_weighted_mean_s": 2.7709422966445656
+        },
+        "ernife_ci": {
+          "peak_temperature_c": 1522.1643821420598,
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "ever_solidus_exceeded_volume_mm3": 26.577873849369663,
+          "ever_liquidus_exceeded_volume_mm3": 9.61327351998477,
+          "maximum_cross_section_solidus_area_mm2": 0.5654866776461629,
+          "solidus_region_n_extent_mm": [
+            -1.3024822582048818,
+            -0.4341607527349606
+          ],
+          "solidus_region_z_extent_mm": [
+            0.21708037636748032,
+            1.0854018818374016
+          ],
+          "t8_5_valid_count": 560,
+          "exposure_above_400c_volume_mm3": 90.47786842338607,
+          "maximum_section_solidus_width_mm": null,
+          "maximum_section_solidus_depth_mm": null,
+          "t8_5_valid_volume_mm3": 90.47786842338607,
+          "t8_5_volume_weighted_mean_s": 2.328975688473654
+        }
+      },
+      "energy": {
+        "nominal_source_j": 19800.000000000593,
+        "absorbed_source_j": 19800.000000000593,
+        "uncaptured_source_j": 0.0,
+        "minimum_active_source_fraction": 0.9999999999999997,
+        "birth_enthalpy_j": 0.0,
+        "convection_j": 2358.033425809503,
+        "radiation_j": 2559.6285464777275,
+        "internal_energy_change_j": 14882.338034020606,
+        "residual_j": -6.307243893388659e-06,
+        "residual_pct": 3.185476713832561e-08,
+        "direct_source_by_material_j": {
+          "q235b": 4184.411525936032,
+          "qt450_10": 4603.351706326747,
+          "ernife_ci": 11012.236767737832
+        },
+        "direct_source_by_material_fraction": {
+          "q235b": 0.21133391545130825,
+          "qt450_10": 0.23249251042053562,
+          "ernife_ci": 0.5561735741281562
+        },
+        "net_conductive_by_material_j": {
+          "q235b": 4920.3845952405845,
+          "qt450_10": 5704.986341576867,
+          "ernife_ci": -10625.370936817426
+        },
+        "material_source_partition_residual_j": 1.8189894035458565e-11
+      },
+      "mesh": {
+        "cell_count": 63262,
+        "grid_shape": [
+          94,
+          42,
+          27
+        ],
+        "bead_area_mm2": 1.5079644737231006,
+        "deposited_equivalent_leg_mm": 1.7366430109398425,
+        "nominal_design_leg_mm": 3.5,
+        "parent_material_ids_preserved": true,
+        "gap_mm": 0.02
+      },
+      "case": {
+        "name": "dt-0.025",
+        "source": "surface45",
+        "properties": "nominal",
+        "mesh": "medium",
+        "dt": 0.025
+      }
+    }
+  },
+  "conditional_numerical_convergence": false,
+  "experimentally_validated": false,
+  "high_temperature_evidence_complete": false,
+  "process_scan_status": "not_run_prerequisites_unmet",
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "design_leg_review": {
+    "value_mm": 3.5,
+    "origin": "project/baseline.yaml geometry字段；official字段未列焊脚。docs/plan-1-execution-v5.2.md列为设计假设。尚未找到独立承载/疲劳证明，不自行改变冻结设计。",
+    "external_area_mm2": 6.125,
+    "wire_deposit_area_mm2": 1.5079644737231006,
+    "caveat": "母材熔化区域与外部新增截面积不同；没有母材迁移/自由表面模型，不能把熔化体积加到外部焊脚。"
+  }
+}
