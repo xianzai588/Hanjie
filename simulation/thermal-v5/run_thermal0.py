@@ -1,7 +1,7 @@
 """执行 V5.2 计划一的 THERMAL-0 三维瞬态热模型。
 
-模型在 R74.98 mm 接口附近使用周期展开坐标 (s, n, z)：s 为周向弧长，n 为
-接口法向距离，z 为局部轴向距离。热源沿 s 移动，采用离散 Goldak 双椭球，
+模型在 R74.98 mm 接口附近使用展开坐标 (s, n, z)：s 为周向弧长，n 为
+接口法向距离，z 为局部轴向距离。固定局部窗口内热源沿 s 移动，采用离散 Goldak 双椭球，
 热传导使用温度相关物性和显式有限体积更新。该实现用于建立可追溯的三维热
 历史，不替代商业焊接 FE，也不代表实验校准。
 """
@@ -102,9 +102,27 @@ def _goldak_source(
     front_fraction: float,
     rear_fraction: float,
     cell_volume_mm3: np.ndarray,
+    domain_bounds_mm: tuple[tuple[float, float], tuple[float, float], tuple[float, float]],
+    minimum_capture_fraction: float,
     periodic_s: bool = True,
-) -> np.ndarray:
-    """按当前离散网格归一化 Goldak 双椭球，使每个时间步输入功率可追溯。"""
+) -> tuple[np.ndarray, float]:
+    """先审计连续 Goldak 源的域内捕获率，再执行离散功率归一化。"""
+    capture_fraction = _goldak_domain_capture_fraction(
+        center_s,
+        domain_bounds_mm,
+        a_front,
+        a_rear,
+        b,
+        c,
+        front_fraction,
+        rear_fraction,
+        periodic_s,
+    )
+    if capture_fraction < minimum_capture_fraction:
+        raise ValueError(
+            f"Goldak source domain capture fraction {capture_fraction:.8f} is below "
+            f"the required {minimum_capture_fraction:.8f}"
+        )
     delta_s = (s - center_s + circumference_mm / 2.0) % circumference_mm - circumference_mm / 2.0 if periodic_s else s - center_s
     front = delta_s >= 0.0
     a = np.where(front, a_front, a_rear)
@@ -112,8 +130,49 @@ def _goldak_source(
     weights = fraction * np.exp(-3.0 * (delta_s / a) ** 2 - 3.0 * (n / b) ** 2 - 3.0 * (z / c) ** 2)
     weight_sum = float(weights.sum())
     if weight_sum <= 0.0:
-        return np.zeros_like(weights)
-    return weights * (power_w / weight_sum) / cell_volume_mm3
+        raise ValueError("Goldak source has no positive discrete weights inside the domain")
+    return weights * (power_w / weight_sum) / cell_volume_mm3, capture_fraction
+
+
+def _gaussian_integral(lower: float, upper: float, scale: float) -> float:
+    """解析积分 exp(-3(x/scale)^2)，避免把网格积分误差当成边界截断。"""
+    factor = scale * math.sqrt(math.pi) / (2.0 * math.sqrt(3.0))
+    return factor * (
+        math.erf(math.sqrt(3.0) * upper / scale)
+        - math.erf(math.sqrt(3.0) * lower / scale)
+    )
+
+
+def _goldak_domain_capture_fraction(
+    center_s: float,
+    domain_bounds_mm: tuple[tuple[float, float], tuple[float, float], tuple[float, float]],
+    a_front: float,
+    a_rear: float,
+    b: float,
+    c: float,
+    front_fraction: float,
+    rear_fraction: float,
+    periodic_s: bool,
+) -> float:
+    """计算归一化前连续双椭球落在有限计算域内的功率比例。"""
+    (s_min, s_max), (n_min, n_max), (z_min, z_max) = domain_bounds_mm
+    if periodic_s:
+        half_span = 0.5 * (s_max - s_min)
+        delta_min, delta_max = -half_span, half_span
+    else:
+        delta_min, delta_max = s_min - center_s, s_max - center_s
+
+    s_integral = 0.0
+    if delta_min < 0.0:
+        s_integral += rear_fraction * _gaussian_integral(delta_min, min(0.0, delta_max), a_rear)
+    if delta_max > 0.0:
+        s_integral += front_fraction * _gaussian_integral(max(0.0, delta_min), delta_max, a_front)
+    s_infinite = math.sqrt(math.pi) / (2.0 * math.sqrt(3.0)) * (
+        rear_fraction * a_rear + front_fraction * a_front
+    )
+    n_fraction = _gaussian_integral(n_min, n_max, b) / (b * math.sqrt(math.pi / 3.0))
+    z_fraction = _gaussian_integral(z_min, z_max, c) / (c * math.sqrt(math.pi / 3.0))
+    return max(0.0, min(1.0, s_integral / s_infinite * n_fraction * z_fraction))
 
 
 def _cell_centers(start: float, stop: float, count: int) -> tuple[np.ndarray, float]:
@@ -234,17 +293,32 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     geometry = config["geometry"]
     process = config["process"]
     heat_source = config["heat_source"]
+    heat_source_path = config["heat_source_path"]
     grid = config["thermal_grid"]
     circumference = 2.0 * math.pi * float(geometry["interface_radius_mm"])
-    local_mode = grid.get("coordinate_mode") == "local_moving_source"
-    if local_mode:
-        s, ds = _cell_centers(float(grid["arc_min_offset_mm"]), float(grid["arc_max_offset_mm"]), int(grid["arc_points"]))
-        source_path_length = float(grid["arc_max_offset_mm"]) - float(grid["arc_min_offset_mm"])
+    fixed_window_mode = grid.get("coordinate_mode") == "fixed_local_window_moving_source"
+    if fixed_window_mode:
+        arc_min = float(grid["arc_min_offset_mm"])
+        arc_max = float(grid["arc_max_offset_mm"])
+        source_start_s = float(heat_source_path["source_start_s_mm"])
+        source_end_s = float(heat_source_path["source_end_s_mm"])
+        if not arc_min < source_start_s < source_end_s < arc_max:
+            raise ValueError("固定窗口要求热源起止位置严格位于 s 域内部")
+        s, ds = _cell_centers(arc_min, arc_max, int(grid["arc_points"]))
+        source_path_length = source_end_s - source_start_s
     else:
+        arc_min = 0.0
+        arc_max = circumference
+        source_start_s = 0.0
+        source_end_s = circumference
         s, ds = _cell_centers(0.0, circumference, int(grid["arc_points"]))
         source_path_length = circumference
-    n, dn = _cell_centers(float(grid["radial_min_offset_mm"]), float(grid["radial_max_offset_mm"]), int(grid["radial_points"]))
-    z, dz = _cell_centers(float(grid["axial_min_offset_mm"]), float(grid["axial_max_offset_mm"]), int(grid["axial_points"]))
+    radial_min = float(grid["radial_min_offset_mm"])
+    radial_max = float(grid["radial_max_offset_mm"])
+    axial_min = float(grid["axial_min_offset_mm"])
+    axial_max = float(grid["axial_max_offset_mm"])
+    n, dn = _cell_centers(radial_min, radial_max, int(grid["radial_points"]))
+    z, dz = _cell_centers(axial_min, axial_max, int(grid["axial_points"]))
     ss, nn, zz = np.meshgrid(s, n, z, indexing="ij")
     cell_volume = ds * dn * dz
     source_resolution = {
@@ -265,8 +339,9 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         ),
     }
 
-    # n<0 为 QT 座体侧，n>0 为 Q235B 壳体侧，中间带作为 NiFe 焊缝。
-    material_id = np.where(nn < -3.0, 2, np.where(nn > 3.0, 1, 3)).astype(np.int8)
+    weld_half_width = float(config["metallurgy"]["surrogate_weld_half_width_mm"])
+    # 代理焊缝带必须与后续冶金母材掩码共享同一个边界定义。
+    material_id = np.where(nn < -weld_half_width, 2, np.where(nn > weld_half_width, 1, 3)).astype(np.int8)
     temperature = np.full(ss.shape, float(process["cooling_environment_c"]), dtype=float)
     temperature[(material_id == 3)] = float(process["preheat_temperature_c"])
     temperature[(material_id != 3)] = float(process["preheat_temperature_c"])
@@ -278,19 +353,16 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     history: list[dict[str, float]] = []
     sensor_coordinates = {
         "QT_HAZ": (0.0, -5.0, 0.0),
-        "fusion_line": (0.0, 0.0, 0.0),
-        "weld_center": (0.0, 1.0, 0.0),
+        "QT_SURROGATE_INTERFACE_REF": (0.0, -weld_half_width, 0.0),
+        "WELD_CENTER": (0.0, 0.0, 0.0),
+        "Q235B_SURROGATE_INTERFACE_REF": (0.0, weld_half_width, 0.0),
         "Q235B_HAZ": (0.0, 5.0, 0.0),
     }
     sensor_history: dict[str, list[dict[str, float]]] = {key: [] for key in sensor_coordinates}
 
     time_step = float(grid["time_step_s"])
     output_interval = float(grid["output_interval_s"])
-    weld_duration = (
-        float(grid.get("local_duration_s", 0.0))
-        if local_mode
-        else float(geometry["weld_length_mm"]) / float(process["travel_speed_mm_s"])
-    )
+    weld_duration = source_path_length / float(process["travel_speed_mm_s"])
     total_duration = weld_duration + float(process["cooling_hold_s"]) + float(process.get("post_release_cooling_s", 0.0))
     ui_net_power_w = float(process["efficiency"]) * float(process["current_a"]) * float(process["voltage_v"])
     ui_line_energy_j_per_mm = ui_net_power_w / float(process["travel_speed_mm_s"])
@@ -301,7 +373,9 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     source_power_min_w = math.inf
     source_power_max_w = -math.inf
     source_power_max_relative_error = 0.0
+    minimum_source_capture_fraction = math.inf
     source_active_steps = 0
+    source_center_outside_domain_steps = 0
     convection_energy_j = 0.0
     radiation_energy_j = 0.0
     advective_energy_export_j = 0.0
@@ -317,7 +391,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
             break
         conductivity, density, capacity = _material_fields(temperature, material_id, materials)
         # 面心谐均导热系数使内部导热通量守恒；局部窗口的两端为零通量边界。
-        if local_mode:
+        if fixed_window_mode:
             k_s_faces = 2.0 * conductivity[:-1, :, :] * conductivity[1:, :, :] / np.maximum(conductivity[:-1, :, :] + conductivity[1:, :, :], 1e-30)
             cond_s = np.zeros_like(temperature)
             cond_s[0, :, :] = k_s_faces[0, :, :] * (temperature[1, :, :] - temperature[0, :, :]) / ds**2
@@ -342,11 +416,13 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         if time_s < weld_duration - 1e-12:
             source_dt = min(step_dt, weld_duration - time_s)
             center_s = (
-                -float(grid["arc_max_offset_mm"]) / 2.0 + float(process["travel_speed_mm_s"]) * (time_s + source_dt / 2.0)
-                if local_mode
+                source_start_s + float(process["travel_speed_mm_s"]) * (time_s + source_dt / 2.0)
+                if fixed_window_mode
                 else (float(process["travel_speed_mm_s"]) * (time_s + source_dt / 2.0)) % circumference
             )
-            source = _goldak_source(
+            if center_s < arc_min or center_s > arc_max:
+                source_center_outside_domain_steps += 1
+            source, capture_fraction = _goldak_source(
                 ss,
                 nn,
                 zz,
@@ -360,8 +436,11 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
                 float(heat_source["front_fraction"]),
                 float(heat_source["rear_fraction"]),
                 cell_volume,
-                periodic_s=not local_mode,
+                ((arc_min, arc_max), (radial_min, radial_max), (axial_min, axial_max)),
+                float(grid["minimum_source_domain_capture_fraction"]),
+                periodic_s=not fixed_window_mode,
             )
+            minimum_source_capture_fraction = min(minimum_source_capture_fraction, capture_fraction)
             temperature += source_dt * source / (density * capacity)
             source_power_w = float(np.sum(source) * cell_volume)
             source_power_min_w = min(source_power_min_w, source_power_w)
@@ -400,8 +479,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         if sample_time + 1e-9 >= next_output:
             row = {"time_s": sample_time}
             for name, target in sensor_coordinates.items():
-                sensor_target = (target[0] - float(process["travel_speed_mm_s"]) * sample_time, target[1], target[2]) if local_mode else target
-                sensor_temperature = _trilinear_periodic(temperature, s, n, z, sensor_target, circumference, periodic_s=not local_mode)
+                sensor_temperature = _trilinear_periodic(temperature, s, n, z, target, circumference, periodic_s=not fixed_window_mode)
                 row[name + "_c"] = sensor_temperature
                 sensor_history[name].append({"time_s": sample_time, "temperature_c": sensor_temperature})
             history.append(row)
@@ -420,18 +498,34 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
     global_energy_residual_j = source_energy_j - convection_energy_j - radiation_energy_j - advective_energy_export_j - delta_internal_energy_j
     energy_balance_error_pct = abs(source_energy_j - continuous_expected_energy_j) / continuous_expected_energy_j * 100.0
     discrete_energy_balance_error_pct = abs(source_energy_j - discrete_expected_energy_j) / discrete_expected_energy_j * 100.0
+    source_s_boundary_margin = min(source_start_s - arc_min, arc_max - source_end_s) if fixed_window_mode else circumference / 2.0
+    required_source_margin = float(grid["minimum_source_s_boundary_margin_multiple"]) * max(
+        float(heat_source["a_front_mm"]), float(heat_source["a_rear_mm"])
+    )
+    peak_location = np.unravel_index(int(np.argmax(peak)), peak.shape)
+    peak_at_s_boundary = bool(peak_location[0] in (0, len(s) - 1)) if fixed_window_mode else False
     metadata = {
         **_traceability(),
         "stage": "THERMAL-0",
         "evidence_level": "solver_result_unvalidated",
-        "solver_version": "THERMAL-0.1-conservative-finite-volume-v5",
-        "model": "3d_local_source_window_goldak_conservative_finite_volume",
+        "solver_version": "THERMAL-0.2-fixed-window-conservative-finite-volume-v5",
+        "model": "3d_fixed_local_window_moving_goldak_conservative_finite_volume",
         "input_file": str(INPUT_PATH.relative_to(ROOT)).replace("\\", "/"),
         "input_sha256": _sha256(INPUT_PATH),
         "material_file": str(MATERIAL_PATH.relative_to(ROOT)).replace("\\", "/"),
         "material_sha256": _sha256(MATERIAL_PATH),
-        "grid": {"coordinate_mode": "local_moving_source" if local_mode else "periodic_full_path", "arc_points": len(s), "radial_points": len(n), "axial_points": len(z), "cell_count": int(temperature.size), "cell_volume_mm3": cell_volume, "source_resolution": source_resolution, "local_source_window_mm": [float(s[0]), float(s[-1])] if local_mode else None},
-        "time": {"time_step_s": time_step, "total_duration_s": total_duration, "steps": steps},
+        "grid": {"coordinate_mode": "fixed_local_window_moving_source" if fixed_window_mode else "periodic_full_path", "arc_points": len(s), "radial_points": len(n), "axial_points": len(z), "cell_count": int(temperature.size), "cell_volume_mm3": cell_volume, "source_resolution": source_resolution, "local_source_window_cell_centers_mm": [float(s[0]), float(s[-1])] if fixed_window_mode else None, "local_source_window_boundaries_mm": [arc_min, arc_max] if fixed_window_mode else None},
+        "source_path": {
+            "start_s_mm": source_start_s,
+            "end_s_mm": source_end_s,
+            "path_length_mm": source_path_length,
+            "duration_s": weld_duration,
+            "center_outside_domain_steps": source_center_outside_domain_steps,
+            "minimum_s_boundary_margin_mm": source_s_boundary_margin,
+            "required_s_boundary_margin_mm": required_source_margin,
+            "boundary_margin_status": "PASS" if source_s_boundary_margin >= required_source_margin else "FAIL",
+        },
+        "time": {"time_step_s": time_step, "weld_duration_s": weld_duration, "total_duration_s": total_duration, "steps": steps},
         "energy": {
             "nominal_net_power_w": float(process["net_power_w"]),
             "nominal_net_line_energy_j_per_mm": float(process["net_line_energy_j_per_mm"]),
@@ -446,6 +540,12 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
             "source_power_min_w": source_power_min_w,
             "source_power_max_w": source_power_max_w,
             "source_power_max_relative_error": source_power_max_relative_error,
+            "source_domain_capture": {
+                "minimum_fraction": minimum_source_capture_fraction,
+                "required_minimum_fraction": float(grid["minimum_source_domain_capture_fraction"]),
+                "status": "PASS" if minimum_source_capture_fraction >= float(grid["minimum_source_domain_capture_fraction"]) else "FAIL",
+                "description": "连续 Goldak 源在离散归一化前落入有限计算域的解析比例。",
+            },
             "energy_balance_error_pct": energy_balance_error_pct,
             "discrete_energy_balance_error_pct": discrete_energy_balance_error_pct,
             "source_energy_normalization": {
@@ -471,7 +571,7 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         },
         "assumptions": [
             "Goldak 尺寸、前后能量比例和效率均为 design_assumption，未用热电偶/宏观截面校准。",
-            "接口展开坐标用于局部三维热历史；未包含完整装配体的实体接触换热。",
+            "固定局部窗口坐标用于局部三维热历史；母材、边界和测点固定，仅热源沿 s 移动。",
             "未模拟熔池流动、相变、焊缝逐道激活或温度相关塑性。",
             "t8/5 只作为热循环描述量，不是 QT450-10 的独立相组成判据。",
             "焊缝金属采用焊前已存在的 pre-existing weld metal thermal surrogate；逐段激活留待 THERMAL-1。",
@@ -501,11 +601,12 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         writer.writerows(history)
     sensor_metadata = {
         "evidence_level": metadata["evidence_level"],
-        "sampling": {"method": "trilinear_interpolation", "coordinate_system": "local_moving_source_s_n_z_cell_centers" if local_mode else "periodic_s_n_z_cell_centers"},
+        "sampling": {"method": "trilinear_interpolation", "coordinate_system": "fixed_local_window_moving_source_s_n_z_cell_centers" if fixed_window_mode else "periodic_s_n_z_cell_centers", "maximum_coordinate_drift_mm": 0.0},
         "sensors": {
             name: {
                 "requested_coordinate_mm": [float(value) for value in target],
-                "material_region": "QT450-10" if target[1] < -3.0 else "Q235B" if target[1] > 3.0 else "ERNiFe-CI",
+                "sampled_coordinate_mm": [float(value) for value in target],
+                "material_region": "QT450-10" if target[1] < -weld_half_width else "Q235B" if target[1] > weld_half_width else "surrogate_parent_weld_interface" if abs(target[1]) == weld_half_width else "ERNiFe-CI",
                 "arc_position_mm": float(target[0]),
                 "arc_position_deg": float(target[0] / circumference * 360.0),
             }
@@ -540,6 +641,9 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
             )
 
     peak_by_n = np.max(peak, axis=(0, 2))
+    material_by_n = material_id[0, :, 0]
+    qt_parent_exposed = np.where((peak_by_n >= 400.0) & (material_by_n == 2))[0]
+    q235_parent_exposed = np.where((peak_by_n >= 400.0) & (material_by_n == 1))[0]
     figure, axis = plt.subplots(figsize=(8, 4.5))
     axis.plot(n, peak_by_n, color="#b23a48", linewidth=2.0)
     axis.axvline(0.0, color="#333333", linestyle="--", linewidth=1.0, label="interface n=0")
@@ -559,14 +663,19 @@ def run(config: dict[str, Any], materials: dict[str, Any], output_dir: Path) -> 
         **metadata,
         "peak_temperature_c": float(np.max(peak)),
         "peak_temperature_location": {
-            "s_mm": float(ss.flat[int(np.argmax(peak))]),
-            "n_mm": float(nn.flat[int(np.argmax(peak))]),
-            "z_mm": float(zz.flat[int(np.argmax(peak))]),
-            "angle_deg": float((ss.flat[int(np.argmax(peak))] / circumference) * 360.0),
+            "s_mm": float(s[peak_location[0]]),
+            "n_mm": float(n[peak_location[1]]),
+            "z_mm": float(z[peak_location[2]]),
+            "angle_deg": float((s[peak_location[0]] / circumference) * 360.0),
+        },
+        "peak_location_gate": {
+            "at_artificial_s_boundary_cell": peak_at_s_boundary,
+            "status": "PASS" if not peak_at_s_boundary else "FAIL",
         },
         "thermal_exposure_width_estimates_mm": {
-            "qt450_10_side_above_400c": float(max(0.0, -n[np.where((peak_by_n >= 400.0) & (n < 0.0))[0][0]])) if np.any((peak_by_n >= 400.0) & (n < 0.0)) else 0.0,
-            "q235b_side_above_400c": float(n[np.where((peak_by_n >= 400.0) & (n > 0.0))[0][-1]]) if np.any((peak_by_n >= 400.0) & (n > 0.0)) else 0.0,
+            "qt450_10_parent_above_400c": float(max(0.0, -weld_half_width - n[qt_parent_exposed[0]])) if qt_parent_exposed.size else 0.0,
+            "q235b_parent_above_400c": float(max(0.0, n[q235_parent_exposed[-1]] - weld_half_width)) if q235_parent_exposed.size else 0.0,
+            "includes_surrogate_weld_band": False,
         },
         "t8_5_statistics_s": {
             "valid_definition": "Tmax > 800°C and both descending crossings of 800°C and 500°C exist with t500_down >= t800_down",

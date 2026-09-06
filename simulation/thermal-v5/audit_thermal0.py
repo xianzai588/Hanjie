@@ -31,16 +31,18 @@ def _case(config: dict[str, Any], name: str, changes: dict[str, Any]) -> tuple[s
 def run_audit() -> dict[str, Any]:
     config = _load_yaml(INPUT_PATH)
     materials = _load_yaml(MATERIAL_PATH)["materials"]
-    # 敏感性覆盖焊源随动窗口；完整冷却/t8/5 由基准运行保存，避免重复计算冷却尾段。
+    # 敏感性覆盖固定局部窗口；完整冷却/t8/5 由基准运行保存，避免重复计算冷却尾段。
     audit_config = copy.deepcopy(config)
     audit_config["process"]["cooling_hold_s"] = 0.0
     audit_config["process"]["post_release_cooling_s"] = 0.0
     base_grid = audit_config["thermal_grid"]
     base_dt = float(base_grid["time_step_s"])
+    mesh_dt = 0.003
     cases: list[tuple[str, dict[str, Any]]] = [
         ("baseline", copy.deepcopy(audit_config)),
-        _case(audit_config, "mesh-coarse", {"thermal_grid.arc_points": 25, "thermal_grid.radial_points": 26, "thermal_grid.axial_points": 15}),
-        _case(audit_config, "mesh-fine", {"thermal_grid.arc_points": 55, "thermal_grid.radial_points": 62, "thermal_grid.axial_points": 36, "thermal_grid.time_step_s": 0.003}),
+        _case(audit_config, "mesh-coarse", {"thermal_grid.arc_points": 49, "thermal_grid.radial_points": 26, "thermal_grid.axial_points": 15, "thermal_grid.time_step_s": mesh_dt}),
+        _case(audit_config, "mesh-medium", {"thermal_grid.time_step_s": mesh_dt}),
+        _case(audit_config, "mesh-fine", {"thermal_grid.arc_points": 107, "thermal_grid.radial_points": 62, "thermal_grid.axial_points": 36, "thermal_grid.time_step_s": mesh_dt}),
         _case(audit_config, "dt-half", {"thermal_grid.time_step_s": base_dt / 2.0}),
         _case(audit_config, "dt-quarter", {"thermal_grid.time_step_s": base_dt / 4.0}),
         _case(audit_config, "convection-low", {"process.convection_coefficient_w_m2k": 6.0}),
@@ -63,6 +65,9 @@ def run_audit() -> dict[str, Any]:
                 "peak_temperature_c": summary["peak_temperature_c"],
                 "t8_5_statistics_s": summary["t8_5_statistics_s"],
                 "thermal_exposure_width_estimates_mm": summary["thermal_exposure_width_estimates_mm"],
+                "source_path": summary["source_path"],
+                "source_domain_capture": energy["source_domain_capture"],
+                "peak_location_gate": summary["peak_location_gate"],
                 "source_power_max_relative_error": energy["source_power_max_relative_error"],
                 "power_definition_relative_error": energy["power_definition_relative_error"],
                 "line_energy_definition_relative_error": energy["line_energy_definition_relative_error"],
@@ -81,11 +86,27 @@ def run_audit() -> dict[str, Any]:
         reference = float(base[key])
         return abs(value - reference) / max(abs(reference), 1e-12)
 
+    def relative_between(reference_case: str, case_name: str, key: str) -> float:
+        value = float(by_name[case_name][key])
+        reference = float(by_name[reference_case][key])
+        return abs(value - reference) / max(abs(reference), 1e-12)
+
+    exposure_keys = ("qt450_10_parent_above_400c", "q235b_parent_above_400c")
+    exposure_changes = {
+        key: abs(
+            float(by_name["mesh-fine"]["thermal_exposure_width_estimates_mm"][key])
+            - float(by_name["mesh-medium"]["thermal_exposure_width_estimates_mm"][key])
+        ) / max(abs(float(by_name["mesh-medium"]["thermal_exposure_width_estimates_mm"][key])), 1e-12)
+        for key in exposure_keys
+    }
+
     mesh_comparison = {
-        "tmax_medium_to_coarse_relative_change": relative("mesh-coarse", "peak_temperature_c"),
-        "tmax_medium_to_fine_relative_change": relative("mesh-fine", "peak_temperature_c"),
+        "common_time_step_s": mesh_dt,
+        "tmax_coarse_to_medium_relative_change": relative_between("mesh-coarse", "mesh-medium", "peak_temperature_c"),
+        "tmax_medium_to_fine_relative_change": relative_between("mesh-medium", "mesh-fine", "peak_temperature_c"),
         "t85_medium_to_fine_relative_change": None,
-        "note": "t8/5 分布的有效节点集合可能随网格变化，先报告有效样本和分位数，不强行用单一值代替。",
+        "parent_exposure_width_medium_to_fine_relative_change": exposure_changes,
+        "note": "三档网格统一 dt=0.003 s；审计工况不含冷却尾段，因此 t8/5 留给完整基准运行，不强行比较空样本。",
     }
     time_comparison = {
         "tmax_base_to_half_relative_change": relative("dt-half", "peak_temperature_c"),
@@ -96,7 +117,12 @@ def run_audit() -> dict[str, Any]:
         "local_radial_grid_mm": float(base["grid"]["source_resolution"]["dn_mm"]),
     }
     boundary_comparison = {name: {"peak_relative_change": relative(name, "peak_temperature_c"), "exposure_width": by_name[name]["thermal_exposure_width_estimates_mm"]} for name in ("convection-low", "convection-high", "efficiency-low", "efficiency-high", "source-narrow", "source-wide")}
-    energy_pass = all(row["source_power_max_relative_error"] < 0.01 and row["global_thermal_energy_balance"]["residual_percent_of_source"] < 2.0 for row in rows)
+    energy_pass = all(
+        row["source_power_max_relative_error"] < 0.01
+        and row["source_domain_capture"]["status"] == "PASS"
+        and row["global_thermal_energy_balance"]["residual_percent_of_source"] < 2.0
+        for row in rows
+    )
     audit = {
         "stage": "G-THERMAL",
         "evidence_level": "solver_result_unvalidated",
@@ -105,6 +131,8 @@ def run_audit() -> dict[str, Any]:
         "criteria": {
             "source_power_max_relative_error": 0.01,
             "source_energy_normalization": "PASS when source power integral is within 1%",
+            "minimum_source_domain_capture_fraction": float(base_grid["minimum_source_domain_capture_fraction"]),
+            "minimum_source_s_boundary_margin_multiple": float(base_grid["minimum_source_s_boundary_margin_multiple"]),
             "global_energy_residual_percent_of_source": 2.0,
             "time_step_travel_distance_must_be_less_than_radial_grid_mm": True,
             "mesh_and_time_thresholds": "拟定工程审计门槛；不替代实验校准",
@@ -112,8 +140,8 @@ def run_audit() -> dict[str, Any]:
         "energy_audit": {
             "source_energy_normalization_pass": all(row["source_power_max_relative_error"] < 0.01 and row["power_definition_relative_error"] < 0.01 and row["line_energy_definition_relative_error"] < 0.01 and row["energy_balance_error_pct"] < 1.0 for row in rows),
             "global_thermal_energy_balance_pass": all(row["global_thermal_energy_balance"]["residual_percent_of_source"] < 2.0 for row in rows),
-            "pass": all(row["source_power_max_relative_error"] < 0.01 and row["global_thermal_energy_balance"]["residual_percent_of_source"] < 2.0 for row in rows),
-            "cases": [{"case": row["case"], "source_power_max_relative_error": row["source_power_max_relative_error"], "power_definition_relative_error": row["power_definition_relative_error"], "line_energy_definition_relative_error": row["line_energy_definition_relative_error"], "energy_balance_error_pct": row["energy_balance_error_pct"], "discrete_energy_balance_error_pct": row["discrete_energy_balance_error_pct"], "global_thermal_energy_balance": row["global_thermal_energy_balance"]} for row in rows],
+            "pass": all(row["source_power_max_relative_error"] < 0.01 and row["source_domain_capture"]["status"] == "PASS" and row["global_thermal_energy_balance"]["residual_percent_of_source"] < 2.0 for row in rows),
+            "cases": [{"case": row["case"], "source_power_max_relative_error": row["source_power_max_relative_error"], "source_domain_capture": row["source_domain_capture"], "power_definition_relative_error": row["power_definition_relative_error"], "line_energy_definition_relative_error": row["line_energy_definition_relative_error"], "energy_balance_error_pct": row["energy_balance_error_pct"], "discrete_energy_balance_error_pct": row["discrete_energy_balance_error_pct"], "global_thermal_energy_balance": row["global_thermal_energy_balance"]} for row in rows],
         },
         "mesh_sensitivity": mesh_comparison,
         "time_step_sensitivity": time_comparison,
@@ -124,13 +152,18 @@ def run_audit() -> dict[str, Any]:
         "gate_checks": {
             "energy_pass": energy_pass,
             "source_resolution_pass": base["grid"]["source_resolution"]["target_met"],
+            "source_domain_capture_pass": all(row["source_domain_capture"]["status"] == "PASS" for row in rows),
+            "source_center_inside_domain_pass": all(row["source_path"]["center_outside_domain_steps"] == 0 for row in rows),
+            "source_s_boundary_margin_pass": all(row["source_path"]["boundary_margin_status"] == "PASS" for row in rows),
+            "peak_not_at_artificial_s_boundary_pass": all(not row["peak_location_gate"]["at_artificial_s_boundary_cell"] for row in rows),
             "mesh_pass": mesh_comparison["tmax_medium_to_fine_relative_change"] < 0.05,
+            "mesh_parent_exposure_width_pass": all(value < 0.10 for value in exposure_changes.values()),
             "time_step_pass": time_comparison["tmax_half_to_quarter_relative_change"] < 0.01 and all(value < time_comparison["local_radial_grid_mm"] for value in time_comparison["step_travel_distance_mm"].values()),
             "boundary_sensitivity_review_required": any(item["peak_relative_change"] > 0.05 for item in boundary_comparison.values()),
         },
         "limitations": [
             "热源尚未用热电偶、宏观熔合区或独立验证数据校准。",
-            "局部随动窗口的结果只描述焊源邻域热历史；完整圆周装配体仍需独立周期路径模型。",
+            "固定局部窗口的结果只描述焊源邻域热历史；完整圆周装配体仍需独立周期路径模型。",
             "局部展开坐标不是完整装配体三维热—结构模型。",
             "G-THERMAL 审计通过不等于 THERMAL-1 或物理焊接验证通过。",
         ],
@@ -146,8 +179,9 @@ def run_audit() -> dict[str, Any]:
         "",
         f"- 源能量归一化：**{'PASS' if audit['energy_audit']['source_energy_normalization_pass'] else 'REVIEW'}**；最大功率体积分误差 `{max(row['source_power_max_relative_error'] for row in rows):.3e}`，连续焊段累计能量误差 `{max(row['energy_balance_error_pct'] for row in rows):.4f}%`。",
         f"- 全局热能平衡：**{'PASS' if audit['energy_audit']['global_thermal_energy_balance_pass'] else 'REVIEW'}**；最大残差 `{max(row['global_thermal_energy_balance']['residual_percent_of_source'] for row in rows):.4f}%`。",
+        f"- 热源域捕获：**{'PASS' if audit['gate_checks']['source_domain_capture_pass'] else 'FAIL'}**；归一化前最小捕获率 `{min(row['source_domain_capture']['minimum_fraction'] for row in rows):.6%}`。",
         f"- 时间步审计：**{'PASS' if audit['gate_checks']['time_step_pass'] else 'REVIEW'}**；dt/2→dt/4 峰值变化 `{time_comparison['tmax_half_to_quarter_relative_change']:.3%}`。",
-        f"- 网格审计：**{'PASS' if audit['gate_checks']['mesh_pass'] else 'REVIEW'}**；medium→fine 峰值变化 `{mesh_comparison['tmax_medium_to_fine_relative_change']:.2%}`，超过拟定 5% 研究门槛。",
+        f"- 网格审计：**{'PASS' if audit['gate_checks']['mesh_pass'] else 'REVIEW'}**；medium/fine 均取 dt={mesh_dt:.3f} s，峰值变化 `{mesh_comparison['tmax_medium_to_fine_relative_change']:.2%}`。",
         f"- 参数边界审计：**{'REVIEW' if audit['gate_checks']['boundary_sensitivity_review_required'] else 'PASS'}**；效率和热源尺寸变化对峰值有明显影响。",
         f"- G-THERMAL 总状态：**{audit['gate_status']}**。",
         "",
@@ -162,7 +196,7 @@ def run_audit() -> dict[str, Any]:
         "",
         "## 结论与下一步",
         "",
-        "源能量归一化和全局热能账本已通过；源尺度目标已纳入网格记录。局部随动窗口只描述焊源邻域，网格/参数敏感性和实验校准仍需复核，当前不能进入 THERMAL-1，也不能把峰值写成已校准焊接热场。",
+        "源能量归一化、归一化前域捕获和全局热能账本已独立审计。固定局部窗口只描述焊源邻域，网格/参数敏感性和实验校准仍需复核，当前不能进入 THERMAL-1，也不能把峰值写成已校准焊接热场。",
     ])
     (AUDIT_DIR / "G-THERMAL-audit.md").write_text("\n".join(report_lines) + "\n", encoding="utf-8")
     return audit

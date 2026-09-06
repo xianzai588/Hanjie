@@ -65,6 +65,10 @@ heat_source:
   parameter_status: "design_assumption_not_calibrated"
   calibration_target: "多测点峰值、升降温曲线、t8/5、HAZ宽度、熔合区尺度"
 
+heat_source_path:
+  source_start_s_mm: -30.0
+  source_end_s_mm: 30.0
+
 fixture:
   source: "project/baseline.yaml"
   type: "tapered_mandrel"
@@ -77,27 +81,29 @@ fixture:
   release_temperature_c: 200.0
 
 thermal_grid:
-  # 焊源跟随局部子模型：使 Goldak 前/后半轴、b、c 均至少有约 3 个单元跨越。
-  coordinate_mode: local_moving_source
-  arc_points: 37
+  # 固定局部窗口内仅热源移动；测点和母材均使用固定空间坐标。
+  coordinate_mode: fixed_local_window_moving_source
+  arc_points: 72
   radial_points: 52
   axial_points: 30
   radial_min_offset_mm: -36.0
   radial_max_offset_mm: 5.0
   axial_min_offset_mm: -12.0
   axial_max_offset_mm: 12.0
-  arc_min_offset_mm: -36.0
-  arc_max_offset_mm: 36.0
-  local_duration_s: 40.0
+  arc_min_offset_mm: -70.0
+  arc_max_offset_mm: 70.0
   time_step_s: 0.01
   output_interval_s: 0.5
-  grid_status: "thermal0_1_local_source_scale_resolved_unvalidated"
+  minimum_source_domain_capture_fraction: 0.999
+  minimum_source_s_boundary_margin_multiple: 3.0
+  grid_status: "thermal0_2_fixed_window_source_scale_resolved_unvalidated"
   spatial_resolution_targets_mm:
     arc_over_a_front_max: 0.3333333333
     radial_over_b_max: 0.3333333333
     axial_over_c_max: 0.3333333333
 
 metallurgy:
+  surrogate_weld_half_width_mm: 3.0
   fusion_threshold_c: 1350.0
   high_temperature_haz_threshold_c: 900.0
   medium_temperature_haz_threshold_c: 600.0
