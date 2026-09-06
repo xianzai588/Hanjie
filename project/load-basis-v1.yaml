@@ -1,0 +1,25 @@
+version: LOAD-BASIS-0.1
+evidence_level: design_assumption_reference_envelope
+scope: 条件性焊缝组筛查；题面未给真实整机载荷或载荷谱
+reference_envelope:
+  radial_force_n: [0.0, 5000.0]
+  axial_force_n: [0.0, 5000.0]
+  overturning_moment_n_mm: [0.0, 250000.0]
+  basis: 为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷
+allowable_stress_sensitivity_mpa: [60.0, 90.0, 120.0]
+allowable_basis: 纯参数敏感性；未用作材料或疲劳许用值
+layouts:
+  Continuous: simulation/structural-v4/models/continuous/geometry-manifest.json
+  6P-FAIR_B: simulation/structural-v4/models/6p-fair-b/geometry-manifest.json
+  8P-FAIR_B: simulation/structural-v4/models/8p-fair-b/geometry-manifest.json
+weld_legs_mm: [1.73664301094, 2.0, 2.5, 3.0, 3.5]
+effective_throat_factor: 0.7071067811865476
+model:
+  force: 焊缝组有效喉面积上均匀剪流，等效应力sqrt(3)*F/A
+  moment: 圆周焊缝线群关于最弱主轴的弹性弯曲影响系数
+  combination: 径向/轴向合力剪切与最不利倾覆正应力平方组合
+  excluded: [母材局部柔度, 焊趾缺口, 根部未熔合, 残余应力, 温度软化, 接触分担, 实际疲劳谱]
+fatigue_boundary:
+  hotspots: [焊趾, 焊根, 离散焊段端部, 翼根圆角]
+  status: risk_locations_only_no_life_claim
+decision_rule: 仅当真实载荷包络和有依据的许用/疲劳数据确认后，才能冻结焊脚；当前只比较条件裕量与热量/节拍代价

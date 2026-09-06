@@ -6,12 +6,23 @@
     "authority": "当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”",
     "stages": {
       "G-INPUTS": {
-        "execution_status": "controlled_inputs_and_volume_closed_candidate_defined",
+        "execution_status": "controlled_inputs_volume_candidate_and_conditional_load_basis_defined",
         "acceptance_result": "not_closed",
         "evidence_level": "design_assumption",
-        "allowed_use": "受控设计输入；接头承载依据和成形关系仍待闭合",
+        "allowed_use": "条件性数值筛查；真实载荷、许用与成形关系仍待闭合",
         "upstream_dependencies": [],
-        "next_action": "为四道候选补承载依据、分层几何和宏观截面验证"
+        "next_action": "取得真实载荷/许用依据后裁决焊脚；四道候选继续等待分层几何和宏观截面验证"
+      },
+      "LOAD-BASIS-0": {
+        "execution_status": "conditional_weld_group_screening_completed",
+        "acceptance_result": "reference_envelope_only_actual_load_missing",
+        "evidence_level": "design_assumption_reference_envelope",
+        "allowed_use": "焊脚、焊长、单位载荷响应和热量/节拍敏感性比较",
+        "evidence": "simulation/structural-v4/results/joint-load-basis/joint-load-basis.json",
+        "upstream_dependencies": [
+          "G-INPUTS"
+        ],
+        "next_action": "取得实际径向/轴向/倾覆包络、许用与载荷谱；不得用参考包络认证服役安全"
       },
       "THERMAL-0.4R1": {
         "execution_status": "ten_case_run_and_audit_completed",
@@ -25,6 +36,17 @@
           "G-INPUTS"
         ],
         "next_action": "局部高梯度焊道/热源离散已定位；固定情景改进边界表示并复算网格序列"
+      },
+      "THERMAL-0.4R2-A": {
+        "execution_status": "fixed_six_strip_geometry_coarse_medium_fine_and_directional_controls_completed",
+        "acceptance_result": "fixed_geometry_reduced_but_did_not_close_spatial_error",
+        "evidence_level": "solver_result_unvalidated",
+        "allowed_use": "分离场网格与阶梯几何影响；禁止正式整件性能结论",
+        "evidence": "simulation/thermal-v5/results/spatial-fix-study/assessment.json",
+        "upstream_dependencies": [
+          "THERMAL-0.4R1"
+        ],
+        "next_action": "方向对照确认截面影响占主导；优先细化焊材/界面截面高梯度区，再决定 xfine 并复查时间步"
       },
       "METALLURGY-0": {
         "execution_status": "executor_and_historical_diagnostics_completed",
@@ -47,27 +69,47 @@
         ],
         "next_action": "条件具备时执行并保留独立验证试件"
       },
+      "THERMAL-NUMERICAL-GATE": {
+        "execution_status": "evaluated_after_0p4r2_a",
+        "acceptance_result": "not_passed",
+        "evidence_level": "solver_result_unvalidated",
+        "allowed_use": "通过后仅可标记 solver_verified 并进入无实物 Route B",
+        "upstream_dependencies": [
+          "THERMAL-0.4R2-A"
+        ],
+        "next_action": "完成分离误差来源的空间准入与新细网格时间步复查"
+      },
+      "THERMAL-PHYSICAL-CALIBRATION": {
+        "execution_status": "protocol_only",
+        "acceptance_result": "not_executed",
+        "evidence_level": "none",
+        "allowed_use": "通过后方可标记 calibrated/physical_validated 并进入 Route A",
+        "upstream_dependencies": [
+          "EXP-THERMAL"
+        ],
+        "next_action": "有实验条件时执行；不是 Route B 数值研究的绝对依赖"
+      },
       "THERMAL-1": {
         "execution_status": "blocked",
         "acceptance_result": "not_admitted",
         "evidence_level": "none",
         "allowed_use": "不允许正式结构耦合",
         "upstream_dependencies": [
-          "THERMAL-0.4R1",
-          "EXP-THERMAL"
+          "THERMAL-NUMERICAL-GATE"
         ],
-        "next_action": "满足登记的数值准入，物理校准另列证据等级"
+        "optional_physical_dependency": "THERMAL-PHYSICAL-CALIBRATION",
+        "next_action": "数值 Gate 通过后可进入 solver_verified Route B；物理校准通过才可使用 calibrated/validated 标签"
       },
       "STRUCT-0-PREP": {
-        "execution_status": "partial_with_1d_constitutive_baselines_verified",
+        "execution_status": "partial_with_3d_j2_and_affine_small_mesh_verified",
         "acceptance_result": "not_ready",
         "evidence_level": "component_unit_verification",
         "allowed_use": "独立组件验证；不得冒充实际焊接残余位置度",
-        "evidence": "project/struct-0-prep.yaml",
+        "evidence": "simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json",
         "upstream_dependencies": [
           "G-INPUTS"
         ],
-        "next_action": "推进三维 J2、温变插值、统一网格、夹具接触及释放后冷却状态流"
+        "next_action": "推进任意边界非线性全局求解、统一网格、夹具接触及释放后冷却状态流"
       },
       "STRUCT-0": {
         "execution_status": "not_executed",
@@ -91,10 +133,10 @@
         "next_action": "在统一可信热场下比较至多两个候选"
       },
       "SERVICE": {
-        "execution_status": "load_builder_unit_verified_results_not_computed",
+        "execution_status": "load_builder_and_conditional_weld_group_screening_completed",
         "acceptance_result": "not_executed",
         "evidence_level": "component_unit_verification",
-        "allowed_use": "载荷构造验证；无整件性能结论",
+        "allowed_use": "单位载荷与参考包络敏感性；无整件性能或寿命结论",
         "upstream_dependencies": [
           "STRUCT-1"
         ],
@@ -379,6 +421,55 @@
       },
       "interpretation": "仅量化离散修正影响；不是相对实测真值误差，旧结果保留且不得与新结果混用"
     }
+  },
+  "thermal_spatial_fix": {
+    "stage": "THERMAL-0.4R2-A-FIXED-GEOMETRY",
+    "a_control_completed": true,
+    "spatial_gate_pass": false,
+    "diagnosis": "固定六条带后 medium→fine 的焊材热区 P95 差降至约16.7°C，说明旧混合序列的74.554°C含显著几何变化贡献；但仍高于10°C且QT固相线翻转仍存在，场离散也尚未收敛。",
+    "direction_diagnosis": "截面细化的剩余影响更大",
+    "medium_to_fine_weld_p95_c": 16.682343655746536,
+    "medium_to_fine_qt_flip_volume_mm3": 14.637419663635821
+  },
+  "joint_load_basis": {
+    "evidence_level": "design_assumption_reference_envelope",
+    "reference_envelope": {
+      "radial_force_n": [
+        0.0,
+        5000.0
+      ],
+      "axial_force_n": [
+        0.0,
+        5000.0
+      ],
+      "overturning_moment_n_mm": [
+        0.0,
+        250000.0
+      ],
+      "basis": "为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷"
+    },
+    "decision": {
+      "three_point_five_mm_necessary": null,
+      "reason": "参考包络下3.5 mm可降低条件应力并增加裕量，但题面载荷、真实焊缝许用和疲劳谱缺失，不能证明它是唯一必要尺寸。",
+      "current_1p737_limitation": "容量与焊脚近似成正比；在同一焊长下，其力/力矩容量约为3.5 mm情景的49.6%。",
+      "four_pass_disposition": "保留为待真实载荷与成形验证的上界候选，不升级为推荐工艺。"
+    }
+  },
+  "structural_3d_components": {
+    "evidence_level": "algorithm_and_small_mesh_verification",
+    "checks": {
+      "hydrostatic_no_plastic": true,
+      "free_expansion_zero_stress": true,
+      "global_force_balance": true,
+      "global_moment_balance": true,
+      "plastic_dissipation_nonnegative": true,
+      "released_state_zero_stress": true
+    },
+    "limitations": [
+      "仿射位移控制小网格，不是任意边界非线性全局 Newton 求解器",
+      "未包含焊材本构、接触或焊道激活",
+      "算法通过不代表 QT450-10/ERNiFe-CI 裂纹或疲劳性能已验证"
+    ]
   },
   "precompensation": {
     "evidence_level": "synthetic_demo",

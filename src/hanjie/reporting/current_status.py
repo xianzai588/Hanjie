@@ -20,6 +20,9 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
     stages = yaml.safe_load((root/"project/stage-status.yaml").read_text(encoding="utf-8"))
     structural = _json(root/"simulation/structural-v4/results/static-screening/static-screening-analysis.json")
     thermal = _json(root/"simulation/thermal-v5/results/credibility04r1/assessment.json")
+    thermal_fix = _json(root/"simulation/thermal-v5/results/spatial-fix-study/assessment.json")
+    joint_load = _json(root/"simulation/structural-v4/results/joint-load-basis/joint-load-basis.json")
+    structural_3d = _json(root/"simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json")
     precomp = _json(root/"studies/PRECOMPENSATION/results/precompensation_summary.json")
     return {
         "generated_from":"当前权威配置与已执行结果；非实测证据仍保留原等级",
@@ -53,6 +56,20 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
                 and thermal["comparisons"]["dt-0.05_to_dt-0.025"]["nonzero_metrics_pass"]
             ),
             "discretization_change":thermal["discretization_change"],
+        },
+        "thermal_spatial_fix":{
+            "stage":thermal_fix["stage"],"a_control_completed":thermal_fix["a_control_completed"],
+            "spatial_gate_pass":thermal_fix["spatial_gate_pass"],"diagnosis":thermal_fix["diagnosis"],
+            "direction_diagnosis":thermal_fix["direction_diagnosis"],
+            "medium_to_fine_weld_p95_c":thermal_fix["pairs"]["A-field-medium-fixed6_to_A-field-fine-fixed6"]["common_control_volume_peak_field"]["ernife_ci"]["volume_weighted_p95_abs_peak_difference_c"],
+            "medium_to_fine_qt_flip_volume_mm3":thermal_fix["pairs"]["A-field-medium-fixed6_to_A-field-fine-fixed6"]["common_control_volume_peak_field"]["qt450_10"]["solidus_threshold_flip_volume_mm3"],
+        },
+        "joint_load_basis":{
+            "evidence_level":joint_load["evidence_level"],"reference_envelope":joint_load["reference_envelope"],
+            "decision":joint_load["decision"],
+        },
+        "structural_3d_components":{
+            "evidence_level":structural_3d["evidence_level"],"checks":structural_3d["checks"],"limitations":structural_3d["limitations"],
         },
         "precompensation":precomp,
     }
@@ -88,6 +105,12 @@ def render_markdown(status: Dict[str, Any]) -> str:
                    f"QT450-10 {thermal['discretization_change']['baseline_peak_difference_c']['qt450_10']:+.2f} °C、"
                    f"ERNiFe-CI {thermal['discretization_change']['baseline_peak_difference_c']['ernife_ci']:+.2f} °C。"
                    "该差值只表示离散修正影响。")]
+    fix=status["thermal_spatial_fix"]
+    lines += ["","## Plan 3 新增工程证据","",
+              f"固定六条带几何的场网格 A 对照已执行；medium→fine 焊材热区 P95 差为 {fix['medium_to_fine_weld_p95_c']:.3f} °C，QT 固相线翻转体积为 {fix['medium_to_fine_qt_flip_volume_mm3']:.3f} mm³，空间 Gate 仍为未通过。",
+              f"方向控制结论：{fix['direction_diagnosis']}。",
+              f"条件性接头承载证据等级：`{status['joint_load_basis']['evidence_level']}`；3.5 mm 是否唯一必要：尚不能确定。",
+              f"三维 J2 与六四面体小网格登记检查：{'全部通过' if all(status['structural_3d_components']['checks'].values()) else '存在失败'}；任意边界全局求解、接触与整件网格仍未完成。"]
     return "\n".join(lines)+"\n"
 
 

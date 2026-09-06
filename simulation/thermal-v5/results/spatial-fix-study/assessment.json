@@ -1,0 +1,1490 @@
+{
+  "stage": "THERMAL-0.4R2-A-FIXED-GEOMETRY",
+  "evidence_level": "solver_result_unvalidated",
+  "experiment": "A_fixed_geometry_field_refinement",
+  "fixed_inputs": "固定单道1.737mm、surface45、名义物性、dt=0.1s和六条带阶梯边界，只改变场网格尺寸",
+  "mesh_inputs": {
+    "A-field-coarse-fixed6": {
+      "arc_spacing_mm": 2.0,
+      "near_spacing_mm": 0.8,
+      "far_spacing_mm": 2.0,
+      "bead_strips": 6,
+      "status": "controlled_spatial_discretization_study",
+      "bead_geometry_strips": 6
+    },
+    "A-field-medium-fixed6": {
+      "arc_spacing_mm": 1.5,
+      "near_spacing_mm": 0.6,
+      "far_spacing_mm": 1.5,
+      "bead_strips": 6,
+      "status": "controlled_spatial_discretization_study",
+      "bead_geometry_strips": 6
+    },
+    "A-field-fine-fixed6": {
+      "arc_spacing_mm": 1.0,
+      "near_spacing_mm": 0.4,
+      "far_spacing_mm": 1.0,
+      "bead_strips": 6,
+      "status": "controlled_spatial_discretization_study",
+      "bead_geometry_strips": 6
+    }
+  },
+  "fixed_six_strip_geometry_verified": true,
+  "fine_reference_reproduction": {
+    "cell_count_equal": true,
+    "maximum_peak_field_difference_c": 0.0,
+    "maximum_final_field_difference_c": 0.0
+  },
+  "pairs": {
+    "A-field-coarse-fixed6_to_A-field-medium-fixed6": {
+      "registered_metrics": {
+        "materials": {
+          "q235b": {
+            "peak_temperature_c": {
+              "absolute_change": 38.15282993557014,
+              "relative_change": 0.037665990261588955,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 9.434411226424317,
+              "relative_change": 0.11026914753976443,
+              "passed": false
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.09239309358303505,
+              "relative_change": 0.0258667659132497,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 42.441692125426016,
+              "relative_change": 0.00994261976393595,
+              "passed": true
+            }
+          },
+          "qt450_10": {
+            "peak_temperature_c": {
+              "absolute_change": 46.01497401862866,
+              "relative_change": 0.042317821372679955,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 8.130492754419123,
+              "relative_change": 0.05945068688830092,
+              "passed": false
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.07411312639266843,
+              "relative_change": 0.025858665301877283,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 32.26571332716503,
+              "relative_change": 0.026658556972717126,
+              "passed": true
+            }
+          },
+          "ernife_ci": {
+            "peak_temperature_c": {
+              "absolute_change": 11.75123205886348,
+              "relative_change": 0.007568545999582961,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 1.2147491593880595,
+              "relative_change": 0.058000000000000274,
+              "passed": false
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "absolute_change": 0.6283185307179622,
+              "relative_change": 0.050000000000000266,
+              "passed": false
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 5.551115123125783e-17,
+              "relative_change": 1.3252311172764652e-16,
+              "passed": true
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 1.4210854715202004e-14,
+              "relative_change": 1.570644287142477e-16,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.008112716390763719,
+              "relative_change": 0.0034816108563309298,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 1.4210854715202004e-14,
+              "relative_change": 1.570644287142477e-16,
+              "passed": true
+            }
+          }
+        },
+        "nonzero_metrics_pass": false,
+        "fusion_geometry_demonstrated": false
+      },
+      "common_control_volume_peak_field": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 2.0624915906110974,
+          "volume_weighted_p95_abs_peak_difference_c": 8.614383164218054,
+          "maximum_abs_peak_difference_c": 44.00795565968076,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 38.15282993557014
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.9112193729623176,
+          "volume_weighted_p95_abs_peak_difference_c": 4.287899935265841,
+          "maximum_abs_peak_difference_c": 62.67436035473315,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 46.01497401862866
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 13.071018235821388,
+          "volume_weighted_p95_abs_peak_difference_c": 25.086719218888902,
+          "maximum_abs_peak_difference_c": 47.44214968936012,
+          "solidus_threshold_flip_volume_mm3": 1.5079644737231013,
+          "local_p95_pass": false,
+          "registered_peak_difference_c": 11.75123205886348
+        }
+      },
+      "fixed_coordinate_containing_cell_histories": {
+        "weld_center": {
+          "maximum_same_time_abs_difference_c": 40.6827648710198,
+          "rms_same_time_difference_c": 10.115771011730656,
+          "peak_temperature_difference_c": 10.704341926886855,
+          "lower_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              1.0,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              2.0,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          }
+        },
+        "qt_near_interface": {
+          "maximum_same_time_abs_difference_c": 61.39831150969519,
+          "rms_same_time_difference_c": 13.287392044634581,
+          "peak_temperature_difference_c": 20.55624352164284,
+          "lower_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              1.0,
+              -0.28944050182330705,
+              -0.3999999999999999
+            ],
+            "represented_cell_dimensions_mm": [
+              2.0,
+              0.2894405018233073,
+              0.7999999999999998
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.28944050182330705,
+              -0.2857142857142858
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          }
+        },
+        "qt_far": {
+          "maximum_same_time_abs_difference_c": 104.06968557273285,
+          "rms_same_time_difference_c": 25.04289025767697,
+          "peak_temperature_difference_c": 85.07211662879354,
+          "lower_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              1.0,
+              -0.8683215054699212,
+              -1.1999999999999997
+            ],
+            "represented_cell_dimensions_mm": [
+              2.0,
+              0.2894405018233073,
+              0.7999999999999998
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.8683215054699212,
+              -0.8571428571428574
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          }
+        },
+        "q235_near_interface": {
+          "maximum_same_time_abs_difference_c": 51.69868850000796,
+          "rms_same_time_difference_c": 10.319432477656246,
+          "peak_temperature_difference_c": 24.19492284782575,
+          "lower_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              1.0,
+              0.35714285714285715,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              2.0,
+              0.7142857142857143,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.2777777777777778,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          }
+        },
+        "q235_far": {
+          "maximum_same_time_abs_difference_c": 54.50392937529091,
+          "rms_same_time_difference_c": 13.26737786254095,
+          "peak_temperature_difference_c": 39.58806912489683,
+          "lower_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              1.0,
+              1.0714285714285714,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              2.0,
+              0.7142857142857143,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.8333333333333334,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          }
+        }
+      },
+      "direct_source_by_material_difference_j": {
+        "q235b": -9.094947017729282e-13,
+        "qt450_10": -9.094947017729282e-13,
+        "ernife_ci": -1.8189894035458565e-12
+      },
+      "net_conductive_by_material_difference_j": {
+        "q235b": -7.960040190193467,
+        "qt450_10": 15.248998478772592,
+        "ernife_ci": -7.288958288372669
+      }
+    },
+    "A-field-medium-fixed6_to_A-field-fine-fixed6": {
+      "registered_metrics": {
+        "materials": {
+          "q235b": {
+            "peak_temperature_c": {
+              "absolute_change": 43.1267403144966,
+              "relative_change": 0.04083770837158266,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 5.118847360152188,
+              "relative_change": 0.06300703921722359,
+              "passed": false
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.01493441515334748,
+              "relative_change": 0.004273782593838873,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 21.205832492039917,
+              "relative_change": 0.004943235751318047,
+              "passed": true
+            }
+          },
+          "qt450_10": {
+            "peak_temperature_c": {
+              "absolute_change": 37.311595977457046,
+              "relative_change": 0.033175360869816935,
+              "passed": false
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 10.188305664180408,
+              "relative_change": 1.0,
+              "passed": false
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "status": "both_zero_no_geometry_claim",
+              "passed": null,
+              "absolute_change": 0.0
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 0.34732860218796846,
+              "relative_change": 1.0,
+              "passed": false
+            },
+            "maximum_section_solidus_width_mm": {
+              "absolute_change": 0.8683215054699216,
+              "relative_change": 1.0,
+              "passed": false
+            },
+            "maximum_section_solidus_depth_mm": {
+              "absolute_change": 0.3999999999999999,
+              "relative_change": 1.0,
+              "passed": false
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 7.0788236796967965,
+              "relative_change": 0.05216193344561095,
+              "passed": false
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.032287858117141965,
+              "relative_change": 0.011432327048900563,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 0.3932441779884357,
+              "relative_change": 0.0003249059525446148,
+              "passed": true
+            }
+          },
+          "ernife_ci": {
+            "peak_temperature_c": {
+              "absolute_change": 5.974919668328539,
+              "relative_change": 0.0038775785341894037,
+              "passed": true
+            },
+            "ever_solidus_exceeded_volume_mm3": {
+              "absolute_change": 1.8011797880581462,
+              "relative_change": 0.09129511677282368,
+              "passed": false
+            },
+            "ever_liquidus_exceeded_volume_mm3": {
+              "absolute_change": 0.37699111843077304,
+              "relative_change": 0.03157894736842087,
+              "passed": true
+            },
+            "maximum_cross_section_solidus_area_mm2": {
+              "absolute_change": 5.551115123125783e-17,
+              "relative_change": 1.3252311172764652e-16,
+              "passed": true
+            },
+            "maximum_section_solidus_width_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "maximum_section_solidus_depth_mm": {
+              "status": "not_available",
+              "passed": null
+            },
+            "t8_5_valid_volume_mm3": {
+              "absolute_change": 0.005788810036477798,
+              "relative_change": 6.398039805037613e-05,
+              "passed": true
+            },
+            "t8_5_volume_weighted_mean_s": {
+              "absolute_change": 0.008329589108501345,
+              "relative_change": 0.00356194997411892,
+              "passed": true
+            },
+            "exposure_above_400c_volume_mm3": {
+              "absolute_change": 1.4210854715202004e-14,
+              "relative_change": 1.570644287142477e-16,
+              "passed": true
+            }
+          }
+        },
+        "nonzero_metrics_pass": false,
+        "fusion_geometry_demonstrated": false
+      },
+      "common_control_volume_peak_field": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 1.6908190817366935,
+          "volume_weighted_p95_abs_peak_difference_c": 6.968056629560124,
+          "maximum_abs_peak_difference_c": 66.99087287983798,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 43.1267403144966
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.715086047132778,
+          "volume_weighted_p95_abs_peak_difference_c": 3.273151555843441,
+          "maximum_abs_peak_difference_c": 67.25955225438145,
+          "solidus_threshold_flip_volume_mm3": 14.637419663635821,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 37.311595977457046
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 9.53250058612358,
+          "volume_weighted_p95_abs_peak_difference_c": 16.682343655746536,
+          "maximum_abs_peak_difference_c": 25.167007464091512,
+          "solidus_threshold_flip_volume_mm3": 1.6336281798666932,
+          "local_p95_pass": false,
+          "registered_peak_difference_c": 5.974919668328539
+        }
+      },
+      "fixed_coordinate_containing_cell_histories": {
+        "weld_center": {
+          "maximum_same_time_abs_difference_c": 39.80901485620461,
+          "rms_same_time_difference_c": 9.536401287876442,
+          "peak_temperature_difference_c": 8.500850023693602,
+          "lower_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          }
+        },
+        "qt_near_interface": {
+          "maximum_same_time_abs_difference_c": 56.371942683737416,
+          "rms_same_time_difference_c": 12.113809049714895,
+          "peak_temperature_difference_c": 12.625137386828442,
+          "lower_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.28944050182330705,
+              -0.2857142857142858
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.28944050182330705,
+              -0.19999999999999996
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.3999999999999999
+            ]
+          }
+        },
+        "qt_far": {
+          "maximum_same_time_abs_difference_c": 47.239600840311255,
+          "rms_same_time_difference_c": 12.292450389169163,
+          "peak_temperature_difference_c": 41.69180620524128,
+          "lower_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.8683215054699212,
+              -0.8571428571428574
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.8683215054699212,
+              -0.9999999999999998
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.3999999999999999
+            ]
+          }
+        },
+        "q235_near_interface": {
+          "maximum_same_time_abs_difference_c": 59.00241568299043,
+          "rms_same_time_difference_c": 11.860053038306601,
+          "peak_temperature_difference_c": 30.98587616571581,
+          "lower_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.2777777777777778,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.19230769230769232,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.38461538461538464,
+              0.2894405018233071
+            ]
+          }
+        },
+        "q235_far": {
+          "maximum_same_time_abs_difference_c": 23.448995088562583,
+          "rms_same_time_difference_c": 6.09652857298805,
+          "peak_temperature_difference_c": 21.408344861403634,
+          "lower_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.8333333333333334,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.9615384615384617,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.3846153846153847,
+              0.2894405018233071
+            ]
+          }
+        }
+      },
+      "direct_source_by_material_difference_j": {
+        "q235b": 0.0,
+        "qt450_10": 0.0,
+        "ernife_ci": 1.8189894035458565e-12
+      },
+      "net_conductive_by_material_difference_j": {
+        "q235b": -2.0131371815368766,
+        "qt450_10": 7.746321609356528,
+        "ernife_ci": -5.7331844285236
+      }
+    }
+  },
+  "directional_controls": {
+    "A-arc-fine-cross-medium-fixed6": {
+      "mesh": {
+        "arc_spacing_mm": 1.0,
+        "near_spacing_mm": 0.6,
+        "far_spacing_mm": 1.5,
+        "bead_strips": 6,
+        "status": "controlled_spatial_discretization_study",
+        "bead_geometry_strips": 6
+      },
+      "change_from_medium": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.8453037099921638,
+          "volume_weighted_p95_abs_peak_difference_c": 3.1843384457607726,
+          "maximum_abs_peak_difference_c": 34.260091410936184,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 1.7284336629725203
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.28183723915499276,
+          "volume_weighted_p95_abs_peak_difference_c": 1.0003945713840494,
+          "maximum_abs_peak_difference_c": 36.944675434391456,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 2.032021996727053
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 2.7674754174713816,
+          "volume_weighted_p95_abs_peak_difference_c": 4.179940813995017,
+          "maximum_abs_peak_difference_c": 32.82998891072043,
+          "solidus_threshold_flip_volume_mm3": 0.2513274122871835,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 4.265102512611747
+        }
+      },
+      "remaining_difference_to_fine": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 1.2163693968890268,
+          "volume_weighted_p95_abs_peak_difference_c": 5.186604855383621,
+          "maximum_abs_peak_difference_c": 52.990223907507584,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 41.39830665152408
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.5730495004055869,
+          "volume_weighted_p95_abs_peak_difference_c": 2.828425681936494,
+          "maximum_abs_peak_difference_c": 51.23350292395969,
+          "solidus_threshold_flip_volume_mm3": 14.55472237740059,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 35.27957398072999
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 11.004456626233308,
+          "volume_weighted_p95_abs_peak_difference_c": 18.714393151615923,
+          "maximum_abs_peak_difference_c": 19.55456237722842,
+          "solidus_threshold_flip_volume_mm3": 2.0106192982974678,
+          "local_p95_pass": false,
+          "registered_peak_difference_c": 10.240022180940286
+        }
+      },
+      "history_change_from_medium": {
+        "weld_center": {
+          "maximum_same_time_abs_difference_c": 35.28085961369857,
+          "rms_same_time_difference_c": 8.97235471837263,
+          "peak_temperature_difference_c": 1.815466798412217,
+          "lower_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          }
+        },
+        "qt_near_interface": {
+          "maximum_same_time_abs_difference_c": 34.28270064225376,
+          "rms_same_time_difference_c": 9.273444117579217,
+          "peak_temperature_difference_c": 2.098095429848968,
+          "lower_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.28944050182330705,
+              -0.2857142857142858
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.28944050182330705,
+              -0.2857142857142858
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          }
+        },
+        "qt_far": {
+          "maximum_same_time_abs_difference_c": 29.240944585192665,
+          "rms_same_time_difference_c": 7.540405981821189,
+          "peak_temperature_difference_c": 1.2242227779283894,
+          "lower_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.8683215054699212,
+              -0.8571428571428574
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              -0.8683215054699212,
+              -0.8571428571428574
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          }
+        },
+        "q235_near_interface": {
+          "maximum_same_time_abs_difference_c": 32.73612095859369,
+          "rms_same_time_difference_c": 6.955232359808165,
+          "peak_temperature_difference_c": 1.1581526079160085,
+          "lower_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.2777777777777778,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.2777777777777778,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          }
+        },
+        "q235_far": {
+          "maximum_same_time_abs_difference_c": 21.364637563112524,
+          "rms_same_time_difference_c": 5.117556174131545,
+          "peak_temperature_difference_c": 0.0801553004729385,
+          "lower_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.8333333333333334,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.5,
+              0.8333333333333334,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.0,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          }
+        }
+      }
+    },
+    "A-cross-fine-arc-medium-fixed6": {
+      "mesh": {
+        "arc_spacing_mm": 1.5,
+        "near_spacing_mm": 0.4,
+        "far_spacing_mm": 1.0,
+        "bead_strips": 6,
+        "status": "controlled_spatial_discretization_study",
+        "bead_geometry_strips": 6
+      },
+      "change_from_medium": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 1.2183129529278014,
+          "volume_weighted_p95_abs_peak_difference_c": 5.190145889656264,
+          "maximum_abs_peak_difference_c": 51.7701631728404,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 41.03153343735107
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.5723488464226064,
+          "volume_weighted_p95_abs_peak_difference_c": 2.826602704788172,
+          "maximum_abs_peak_difference_c": 50.89550841378991,
+          "solidus_threshold_flip_volume_mm3": 13.396960370107362,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 34.81537680355132
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 10.87840489984674,
+          "volume_weighted_p95_abs_peak_difference_c": 18.90625300619581,
+          "maximum_abs_peak_difference_c": 19.476753117577346,
+          "solidus_threshold_flip_volume_mm3": 2.1362830044410606,
+          "local_p95_pass": false,
+          "registered_peak_difference_c": 9.06910699154355
+        }
+      },
+      "remaining_difference_to_fine": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.8480986744807767,
+          "volume_weighted_p95_abs_peak_difference_c": 3.1985900672023035,
+          "maximum_abs_peak_difference_c": 36.211636255043686,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 2.095206877145529
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.28107939938596277,
+          "volume_weighted_p95_abs_peak_difference_c": 0.9982913975125598,
+          "maximum_abs_peak_difference_c": 38.83120874520648,
+          "solidus_threshold_flip_volume_mm3": 0.8683215054699212,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 2.496219173905729
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 2.625540392743776,
+          "volume_weighted_p95_abs_peak_difference_c": 3.834396993245946,
+          "maximum_abs_peak_difference_c": 31.867478843468234,
+          "solidus_threshold_flip_volume_mm3": 0.502654824574367,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 3.09418732321501
+        }
+      },
+      "history_change_from_medium": {
+        "weld_center": {
+          "maximum_same_time_abs_difference_c": 11.827602551861219,
+          "rms_same_time_difference_c": 2.6144459367888295,
+          "peak_temperature_difference_c": 9.807253315452954,
+          "lower_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "weld_center",
+            "material_id": 3,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.5,
+              0.5
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.5788810036466141,
+              0.4341607527349607
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.28944050182330683,
+              0.2894405018233071
+            ]
+          }
+        },
+        "qt_near_interface": {
+          "maximum_same_time_abs_difference_c": 22.004305691449417,
+          "rms_same_time_difference_c": 4.477662248011876,
+          "peak_temperature_difference_c": 10.300844281635932,
+          "lower_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.28944050182330705,
+              -0.2857142857142858
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_near_interface",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -0.2,
+              -0.2
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.28944050182330705,
+              -0.19999999999999996
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.3999999999999999
+            ]
+          }
+        },
+        "qt_far": {
+          "maximum_same_time_abs_difference_c": 45.18765105892942,
+          "rms_same_time_difference_c": 11.538759642938722,
+          "peak_temperature_difference_c": 42.55208675821689,
+          "lower_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.8683215054699212,
+              -0.8571428571428574
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.5714285714285716
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "qt_far",
+            "material_id": 2,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              -0.8683215054699212,
+              -0.9999999999999998
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.2894405018233073,
+              0.3999999999999999
+            ]
+          }
+        },
+        "q235_near_interface": {
+          "maximum_same_time_abs_difference_c": 31.474534161008933,
+          "rms_same_time_difference_c": 7.57687722854666,
+          "peak_temperature_difference_c": 29.51695843860648,
+          "lower_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.2777777777777778,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_near_interface",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              0.2,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.19230769230769232,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.38461538461538464,
+              0.2894405018233071
+            ]
+          }
+        },
+        "q235_far": {
+          "maximum_same_time_abs_difference_c": 23.15462015219009,
+          "rms_same_time_difference_c": 5.694310881493294,
+          "peak_temperature_difference_c": 21.252580024803024,
+          "lower_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.8333333333333334,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.5555555555555556,
+              0.2894405018233071
+            ]
+          },
+          "upper_represented_cell": {
+            "name": "q235_far",
+            "material_id": 1,
+            "requested_coordinate_s_n_z_mm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "represented_cell_center_s_n_z_mm": [
+              0.75,
+              0.9615384615384617,
+              0.14472025091165355
+            ],
+            "represented_cell_dimensions_mm": [
+              1.5,
+              0.3846153846153847,
+              0.2894405018233071
+            ]
+          }
+        }
+      }
+    }
+  },
+  "direction_diagnosis": "截面细化的剩余影响更大",
+  "supporting_geometry_effect": {
+    "legacy_3_strips_to_fixed_6_at_coarse_spacing": {
+      "comparison_scope": "名义场间距相同，但新增解析边界锚点会改变局部背景分区；作为几何影响证据，不冒充严格纯几何极限",
+      "common_control_volume_peak_field": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.3566336984441094,
+          "volume_weighted_p95_abs_peak_difference_c": 0.733246130482371,
+          "maximum_abs_peak_difference_c": 11.41720157863756,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 5.1003919663428405
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.19610050789432532,
+          "volume_weighted_p95_abs_peak_difference_c": 0.31270319202150176,
+          "maximum_abs_peak_difference_c": 30.981531828368247,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 9.945519972115562
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 26.21039234969781,
+          "volume_weighted_p95_abs_peak_difference_c": 54.166019769669674,
+          "maximum_abs_peak_difference_c": 61.298195375374235,
+          "solidus_threshold_flip_volume_mm3": 3.3510321638291147,
+          "local_p95_pass": false,
+          "registered_peak_difference_c": 67.32523945860589
+        }
+      }
+    },
+    "legacy_4_strips_to_fixed_6_at_medium_spacing": {
+      "comparison_scope": "名义场间距相同，但新增解析边界锚点会改变局部背景分区；作为几何影响证据，不冒充严格纯几何极限",
+      "common_control_volume_peak_field": {
+        "q235b": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.2425416382007227,
+          "volume_weighted_p95_abs_peak_difference_c": 0.36105890934140916,
+          "maximum_abs_peak_difference_c": 24.15264165133101,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 4.440816204880548
+        },
+        "qt450_10": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 0.08701310954898078,
+          "volume_weighted_p95_abs_peak_difference_c": 0.15422037576203707,
+          "maximum_abs_peak_difference_c": 12.624254703788779,
+          "solidus_threshold_flip_volume_mm3": 0.0,
+          "local_p95_pass": true,
+          "registered_peak_difference_c": 2.0747504130488323
+        },
+        "ernife_ci": {
+          "matched_volume_fraction": 1.0,
+          "volume_weighted_mean_abs_peak_difference_c": 37.0872783353461,
+          "volume_weighted_p95_abs_peak_difference_c": 59.7084781248177,
+          "maximum_abs_peak_difference_c": 63.023889735291505,
+          "solidus_threshold_flip_volume_mm3": 9.61327351998477,
+          "local_p95_pass": false,
+          "registered_peak_difference_c": 18.1133184702378
+        }
+      }
+    }
+  },
+  "a_control_completed": true,
+  "spatial_gate_pass": false,
+  "thermal_1_allowed": false,
+  "diagnosis": "固定六条带后 medium→fine 的焊材热区 P95 差降至约16.7°C，说明旧混合序列的74.554°C含显著几何变化贡献；但仍高于10°C且QT固相线翻转仍存在，场离散也尚未收敛。",
+  "gate_note": "A 对照完成不自动构成完整空间准入；保留原逐指标判据，并在结果基础上决定 B 几何对照和是否需要 xfine。"
+}

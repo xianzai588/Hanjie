@@ -28,7 +28,8 @@ def build_geometry(config, process_input, spec):
     gap = config["geometry"]["interface_gap_nominal_mm"]
     if not 0<=gap<leg:
         raise ValueError("接口间隙必须非负且小于推导填丝焊脚")
-    strips = int(mesh["bead_strips"])
+    # 场网格细化时可冻结同一阶梯焊道边界，避免把几何变化混入纯 h 收敛。
+    strips = int(mesh.get("bead_geometry_strips",mesh["bead_strips"]))
     if strips<2:
         raise ValueError("填丝截面至少需要两层")
     bead_z = np.linspace(0.,leg,strips+1)
@@ -76,7 +77,7 @@ def build_geometry(config, process_input, spec):
         edges_distance.extend((dims[i,axis]+dims[j,axis])/2)
     return dict(s_edges=s,n_edges=n,z_edges=z,ids2=ids2,ids=cell_ids,lattice=lattice,index=index,
                 dims=dims,volumes=volumes,s_left=left,bead_area_mm2=bead_area,wire_area_per_length_mm2=float(area),
-                deposited_leg_mm=leg,gap_mm=gap,
+                deposited_leg_mm=leg,gap_mm=gap,bead_geometry_strips=strips,bead_z=bead_z,bead_widths=widths,
                 edge_i=np.asarray(edges_i,int),edge_j=np.asarray(edges_j,int),edge_axis=np.asarray(edges_axis,int),
                 edge_area=np.asarray(edges_area,float),edge_distance=np.asarray(edges_distance,float))
 

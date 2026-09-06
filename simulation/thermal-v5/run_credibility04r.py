@@ -41,12 +41,15 @@ def material_scenario(materials, physics, scenario):
     return materials,physics
 
 
-def run_case(plan, case, out):
+def run_case(plan, case, out, specification_path=SPEC):
     if out.exists():
         raise FileExistsError(f"结果目录已存在，避免覆盖证据：{out}")
     core = isolated_core()
     spec = load(ROOT/plan["baseline"])
-    if case["mesh"]!="baseline":
+    if "mesh_overrides" in case:
+        spec["mesh"].update(case["mesh_overrides"])
+        spec["mesh"]["status"] = "controlled_spatial_discretization_study"
+    elif case["mesh"]!="baseline":
         spec["mesh"].update(plan["meshes"][case["mesh"]])
         spec["mesh"]["status"] = "conditional_convergence_study_not_yet_accepted"
     spec["solver"]["time_step_s"] = case["dt"]
@@ -73,6 +76,22 @@ def run_case(plan, case, out):
     total = duration+spec["solver"]["cooling_after_source_s"]
     source_fn,step_fn = core.source_power,core.enthalpy_step
     ledger = dict(time=0.,q=np.zeros(len(ids)),source=np.zeros(3),conductive=np.zeros(3),rows=[])
+    observation_cells = []
+    for point in plan.get("observation_points",[]):
+        requested = np.asarray(point["coordinate_s_n_z_mm"],float)
+        axes = (g["s_edges"],g["n_edges"],g["z_edges"])
+        grid_index = tuple(int(np.searchsorted(edge,value,side="right")-1) for edge,value in zip(axes,requested))
+        if any(index<0 or index>=len(edge)-1 for index,edge in zip(grid_index,axes)):
+            raise ValueError(f"固定观测点超出计算域：{point['name']}")
+        cell = int(g["lattice"][grid_index])
+        if cell<0 or int(ids[cell])!=int(point["material_id"]):
+            raise ValueError(f"固定观测点未落入预期材料：{point['name']}")
+        actual = [float(g["s_left"][cell]+g["dims"][cell,0]/2),
+                  float((g["n_edges"][grid_index[1]]+g["n_edges"][grid_index[1]+1])/2),
+                  float((g["z_edges"][grid_index[2]]+g["z_edges"][grid_index[2]+1])/2)]
+        observation_cells.append(dict(name=point["name"],material_id=int(ids[cell]),requested_coordinate_s_n_z_mm=requested.tolist(),
+                                      represented_cell_center_s_n_z_mm=actual,represented_cell_dimensions_mm=g["dims"][cell].tolist(),cell=cell))
+    observation_rows = []
     def partition(vector):
         return np.bincount(ids,weights=vector,minlength=4)[1:4]
     def observe_source(*args):
@@ -89,20 +108,22 @@ def run_case(plan, case, out):
         ledger["source"] += direct
         ledger["conductive"] += conductive
         ledger["time"] += dt
+        if observation_cells:
+            observation_rows.append({"time_s":ledger["time"],**{item["name"]:float(result[0][item["cell"]]) for item in observation_cells}})
         ledger["rows"].append(dict(time_s=ledger["time"],source_step_j=direct.tolist(),
             cumulative_source_j=ledger["source"].tolist(),net_conductive_step_j=conductive.tolist(),
             cumulative_net_conductive_j=ledger["conductive"].tolist()))
         ledger["q"] = np.zeros(len(ids))
         return result
     core.source_power,core.enthalpy_step = observe_source,observe_step
-    sources = [SPEC,ROOT/plan["baseline"],Path(__file__),Path(__file__).with_name("credibility_source.py")]
+    sources = [specification_path,ROOT/plan["baseline"],Path(__file__),Path(__file__).with_name("credibility_source.py")]
     sources += [Path(__file__).with_name(n) for n in ("run_mass_closed04.py","mass_closed_geometry.py","physics.py","run_physics03.py")]
     sources += [ROOT/spec[k] for k in ("inputs","process_input","material_input","thermal_properties")]
     write_json(out/"run-inputs.json",dict(case=case,specification=spec,materials=mat,physics=phy,
         hashes={p.relative_to(ROOT).as_posix():digest(p) for p in sources}))
     with threadpool_limits(limits=1):
         summary = core.run(spec,out)
-    summary["stage"] = "THERMAL-0.4R1"
+    summary["stage"] = plan.get("version","THERMAL-0.4R1")
     summary["case"] = case
     summary["energy"]["direct_source_by_material_j"] = dict(zip(NAMES,ledger["source"].tolist()))
     summary["energy"]["direct_source_by_material_fraction"] = dict(zip(NAMES,(ledger["source"]/ledger["source"].sum()).tolist()))
@@ -130,6 +151,11 @@ def run_case(plan, case, out):
         stat["t8_5_valid_volume_mm3"] = float((g["volumes"]*field["filled_fraction"])[valid].sum())
         stat["t8_5_volume_weighted_mean_s"] = float(np.average(field["t8_5_s"][valid],weights=g["volumes"][valid]*field["filled_fraction"][valid])) if valid.any() else None
     field.close()
+    if observation_cells:
+        write_json(out/"fixed-point-history.json",dict(
+            definition="有限体积中包含固定物理坐标的控制体温度；记录控制体中心和尺寸，不冒充点值插值",
+            points=[{key:value for key,value in item.items() if key!="cell"} for item in observation_cells],rows=observation_rows))
+        summary["fixed_point_history"] = "fixed-point-history.json"
     write_json(out/"summary.json",summary)
     write_json(out/"material-energy-history.json",dict(material_order=NAMES,definition="直接源输入与净导热分别记账；净导热正值为该材料从其余材料吸热，不含源/散热/出生焓。",steps=ledger["rows"]))
     write_json(out/"manifest.json",dict(files={p.name:digest(p) for p in out.iterdir() if p.is_file() and p.name!="manifest.json"},evidence_level="solver_result_unvalidated"))

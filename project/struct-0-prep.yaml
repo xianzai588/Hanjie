@@ -2,10 +2,10 @@ version: STRUCT-0-PREP-v1
 status: partial_preparation_formal_coupling_blocked
 evidence_level: design_assumption
 formal_thermal_coupling_allowed: false
-thermal_gate: simulation/thermal-v5/results/credibility04r1/assessment.json
-thermal_gate_field: thermal_1_allowed
+thermal_gate: simulation/thermal-v5/results/spatial-fix-study/assessment.json
+thermal_gate_field: spatial_gate_pass
 thermal_gate_value: false
-historical_thermal_gate: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+historical_thermal_gates: [simulation/thermal-v5/results/physics03/G-PHYSICS.json, simulation/thermal-v5/results/credibility04r1/assessment.json]
 stage_status: project/stage-status.yaml
 geometry:
   shell: {status: existing_valid_brep, source: simulation/structural-v4/common/shell-manifest.json}
@@ -16,7 +16,10 @@ constitutive:
   temperature_dependent_parent_E_yield_alpha: {status: existing_assumed_curves, source: project/materials.yaml}
   temperature_dependent_weld_E_yield_alpha: {status: missing_evidence}
   material_point_baselines: {status: unit_verified, source: simulation/structural-v4/results/struct0-prep/constitutive-baselines.json, scope: ideal_elastoplastic_1d}
-  elastoplastic_solver: {status: not_implemented, completed_component_checks: [uniaxial_yield_unload, constrained_thermal_expansion, plastic_work_nonnegative], remaining_verification: [three_dimensional_j2_return_mapping, temperature_dependent_interpolation, global_equilibrium_and_energy_balance]}
+  three_dimensional_j2: {status: algorithm_verified, source: simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json, completed_paths: [uniaxial, pure_shear, hydrostatic, unload, combined, rotation_covariance]}
+  temperature_dependent_material_point: {status: algorithm_verified, alpha_interpretation: instantaneous_piecewise_linear_integrated, out_of_range: error}
+  affine_tetrahedral_small_mesh: {status: equilibrium_verified, element_count: 6, completed_cases: [free_thermal_expansion, fully_constrained_heating, deviatoric_loading, support_release_to_plastic_shape]}
+  elastoplastic_solver: {status: not_implemented, completed_component_checks: [three_dimensional_j2_return_mapping, temperature_dependent_interpolation, affine_mesh_force_moment_balance, plastic_work_nonnegative], remaining_verification: [arbitrary_boundary_global_newton, consistent_tangent, non_affine_mesh_benchmark, global_incremental_energy_balance]}
   progressive_weld_activation: {status: pending_mass_consistent_geometry_and_stress_free_birth_state}
 fixture:
   source: project/g-inputs-v5.2.yaml
@@ -38,6 +41,7 @@ stress:
 service:
   resultant_load_builder: {status: unit_verified, function: hanjie.simulation.structural_prep.service_loads}
   required_cases: [axial_force, radial_force_angle_sweep, overturning_moment]
+  conditional_reference_envelope: {status: completed, source: project/load-basis-v1.yaml, evidence_level: design_assumption_reference_envelope}
   actual_load_envelope: missing
   performance_results: not_computed
 acceptance:

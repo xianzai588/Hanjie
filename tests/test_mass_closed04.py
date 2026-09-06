@@ -58,6 +58,23 @@ def test_bead_area_matches_wire_efficiency_without_inflating_feed(setup):
     assert other["bead_area_mm2"]==pytest.approx(expected,rel=1e-12)
 
 
+def test_fixed_bead_geometry_is_independent_of_field_spacing(setup):
+    import copy
+    spec,config,process,_ = setup
+    profiles = []
+    for spacing in (0.8,0.6,0.4):
+        modified = copy.deepcopy(spec)
+        modified["mesh"].update(near_spacing_mm=spacing,far_spacing_mm=2*spacing,arc_spacing_mm=2*spacing,
+                                bead_strips=3,bead_geometry_strips=6)
+        geometry = build_geometry(config,process,modified)
+        profiles.append((geometry["bead_z"],geometry["bead_widths"],geometry["bead_area_mm2"]))
+        assert geometry["bead_geometry_strips"] == 6
+    for bead_z,widths,area in profiles[1:]:
+        np.testing.assert_allclose(bead_z,profiles[0][0])
+        np.testing.assert_allclose(widths,profiles[0][1])
+        assert area == pytest.approx(profiles[0][2],rel=1e-12)
+
+
 def test_surface_flux_hits_first_material_and_never_unborn_bead(setup):
     _,config,_,g = setup
     bare = surface_weights(g,False,2.5)

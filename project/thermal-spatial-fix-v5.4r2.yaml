@@ -1,0 +1,52 @@
+version: THERMAL-0.4R2-A-FIXED-GEOMETRY
+evidence_level: solver_result_unvalidated
+baseline: project/thermal-mass-closed-v5.4r1.yaml
+policy: 固定单道1.737mm、surface45、名义物性、dt=0.1s和六条带阶梯边界，只改变场网格尺寸
+sources:
+  surface45: {angle_deg: 45.0, penetration_fraction: 0.0}
+source_basis: 与0.4R1相同的未校准解析表面投影源；本轮禁止调整热效率、尺度或固相线
+observation_points:
+  - {name: weld_center, material_id: 3, coordinate_s_n_z_mm: [0.0, -0.50, 0.50]}
+  - {name: qt_near_interface, material_id: 2, coordinate_s_n_z_mm: [0.0, -0.20, -0.20]}
+  - {name: qt_far, material_id: 2, coordinate_s_n_z_mm: [0.0, -1.00, -1.00]}
+  - {name: q235_near_interface, material_id: 1, coordinate_s_n_z_mm: [0.0, 0.20, 0.00]}
+  - {name: q235_far, material_id: 1, coordinate_s_n_z_mm: [0.0, 1.00, 0.00]}
+cases:
+  - name: A-field-coarse-fixed6
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 2.0, near_spacing_mm: 0.8, far_spacing_mm: 2.0, bead_strips: 6, bead_geometry_strips: 6}
+  - name: A-field-medium-fixed6
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.5, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6}
+  - name: A-arc-fine-cross-medium-fixed6
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6}
+  - name: A-cross-fine-arc-medium-fixed6
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.5, near_spacing_mm: 0.4, far_spacing_mm: 1.0, bead_strips: 6, bead_geometry_strips: 6}
+  - name: A-field-fine-fixed6
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.4, far_spacing_mm: 1.0, bead_strips: 6, bead_geometry_strips: 6}
+reference_fine:
+  result: simulation/thermal-v5/results/credibility04r1/fine
+  mesh: {arc_spacing_mm: 1.0, near_spacing_mm: 0.4, far_spacing_mm: 1.0, bead_strips: 6, bead_geometry_strips: 6}
+acceptance:
+  relative_limit: 0.05
+  peak_absolute_limit_c: 10.0
+  fusion_dimension_absolute_limit_mm: 0.1
+  rule: 新指标补充而不替换0.4R1原失败指标；不因结果调整门槛

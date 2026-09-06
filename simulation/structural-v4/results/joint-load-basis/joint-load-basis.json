@@ -1,0 +1,281 @@
+{
+  "stage": "LOAD-BASIS-0 / JOINT-BASIS-0",
+  "evidence_level": "design_assumption_reference_envelope",
+  "reference_envelope": {
+    "radial_force_n": [
+      0.0,
+      5000.0
+    ],
+    "axial_force_n": [
+      0.0,
+      5000.0
+    ],
+    "overturning_moment_n_mm": [
+      0.0,
+      250000.0
+    ],
+    "basis": "为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷"
+  },
+  "allowable_stress_sensitivity_mpa": [
+    60.0,
+    90.0,
+    120.0
+  ],
+  "model": {
+    "force": "焊缝组有效喉面积上均匀剪流，等效应力sqrt(3)*F/A",
+    "moment": "圆周焊缝线群关于最弱主轴的弹性弯曲影响系数",
+    "combination": "径向/轴向合力剪切与最不利倾覆正应力平方组合",
+    "excluded": [
+      "母材局部柔度",
+      "焊趾缺口",
+      "根部未熔合",
+      "残余应力",
+      "温度软化",
+      "接触分担",
+      "实际疲劳谱"
+    ]
+  },
+  "layouts": {
+    "Continuous": {
+      "model_id": "Continuous",
+      "effective_weld_length_mm": 471.1132343323254,
+      "cad_effective_weld_length_mm": 471.1132343323254,
+      "line_group_principal_second_moments_mm3": [
+        1324299.3959308139,
+        1324299.3959308139
+      ],
+      "line_group_isotropy_ratio": 1.0,
+      "rows": [
+        {
+          "fillet_leg_mm": 1.73664301094,
+          "effective_throat_mm": 1.2279920495358978,
+          "effective_throat_area_mm2": 578.523306191238,
+          "von_mises_per_resultant_force_mpa_per_n": 0.0029939170799738297,
+          "worst_overturning_stress_mpa_per_n_mm": 4.610666396517229e-05,
+          "reference_envelope_corner_required_allowable_mpa": 24.104792116149508,
+          "force_capacity_n_per_allowable_mpa": 334.0105865619836,
+          "moment_capacity_n_mm_per_allowable_mpa": 21688.838749109513
+        },
+        {
+          "fillet_leg_mm": 2.0,
+          "effective_throat_mm": 1.4142135623730951,
+          "effective_throat_area_mm2": 666.2547254062287,
+          "von_mises_per_resultant_force_mpa_per_n": 0.0025996825861352227,
+          "worst_overturning_stress_mpa_per_n_mm": 4.00354078664378e-05,
+          "reference_envelope_corner_required_allowable_mpa": 20.93070937933633,
+          "force_capacity_n_per_allowable_mpa": 384.66234506214636,
+          "moment_capacity_n_mm_per_allowable_mpa": 24977.889655479517
+        },
+        {
+          "fillet_leg_mm": 2.5,
+          "effective_throat_mm": 1.7677669529663689,
+          "effective_throat_area_mm2": 832.8184067577859,
+          "von_mises_per_resultant_force_mpa_per_n": 0.002079746068908178,
+          "worst_overturning_stress_mpa_per_n_mm": 3.202832629315024e-05,
+          "reference_envelope_corner_required_allowable_mpa": 16.744567503469064,
+          "force_capacity_n_per_allowable_mpa": 480.8279313276829,
+          "moment_capacity_n_mm_per_allowable_mpa": 31222.362069349398
+        },
+        {
+          "fillet_leg_mm": 3.0,
+          "effective_throat_mm": 2.121320343559643,
+          "effective_throat_area_mm2": 999.382088109343,
+          "von_mises_per_resultant_force_mpa_per_n": 0.0017331217240901483,
+          "worst_overturning_stress_mpa_per_n_mm": 2.6690271910958532e-05,
+          "reference_envelope_corner_required_allowable_mpa": 13.953806252890885,
+          "force_capacity_n_per_allowable_mpa": 576.9935175932195,
+          "moment_capacity_n_mm_per_allowable_mpa": 37466.834483219274
+        },
+        {
+          "fillet_leg_mm": 3.5,
+          "effective_throat_mm": 2.4748737341529163,
+          "effective_throat_area_mm2": 1165.9457694609,
+          "von_mises_per_resultant_force_mpa_per_n": 0.0014855329063629846,
+          "worst_overturning_stress_mpa_per_n_mm": 2.2877375923678743e-05,
+          "reference_envelope_corner_required_allowable_mpa": 11.960405359620761,
+          "force_capacity_n_per_allowable_mpa": 673.159103858756,
+          "moment_capacity_n_mm_per_allowable_mpa": 43711.306897089155
+        }
+      ]
+    },
+    "6P-FAIR_B": {
+      "model_id": "6P-FAIR_B",
+      "effective_weld_length_mm": 107.99999999999989,
+      "cad_effective_weld_length_mm": 107.99999999999984,
+      "line_group_principal_second_moments_mm3": [
+        303588.02159999945,
+        303588.0215999999
+      ],
+      "line_group_isotropy_ratio": 0.9999999999999984,
+      "rows": [
+        {
+          "fillet_leg_mm": 1.73664301094,
+          "effective_throat_mm": 1.2279920495358978,
+          "effective_throat_area_mm2": 132.62314134987682,
+          "von_mises_per_resultant_force_mpa_per_n": 0.013059944063604296,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00020112462578616703,
+          "reference_envelope_corner_required_allowable_mpa": 105.14894978469952,
+          "force_capacity_n_per_allowable_mpa": 76.57000635912517,
+          "moment_capacity_n_mm_per_allowable_mpa": 4972.041569206877
+        },
+        {
+          "fillet_leg_mm": 2.0,
+          "effective_throat_mm": 1.4142135623730951,
+          "effective_throat_area_mm2": 152.7350647362941,
+          "von_mises_per_resultant_force_mpa_per_n": 0.011340230290662872,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00017464083784973495,
+          "reference_envelope_corner_required_allowable_mpa": 91.30309437563972,
+          "force_capacity_n_per_allowable_mpa": 88.18163074019434,
+          "moment_capacity_n_mm_per_allowable_mpa": 5726.037576963661
+        },
+        {
+          "fillet_leg_mm": 2.5,
+          "effective_throat_mm": 1.7677669529663689,
+          "effective_throat_area_mm2": 190.91883092036764,
+          "von_mises_per_resultant_force_mpa_per_n": 0.009072184232530298,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00013971267027978795,
+          "reference_envelope_corner_required_allowable_mpa": 73.04247550051178,
+          "force_capacity_n_per_allowable_mpa": 110.22703842524291,
+          "moment_capacity_n_mm_per_allowable_mpa": 7157.546971204577
+        },
+        {
+          "fillet_leg_mm": 3.0,
+          "effective_throat_mm": 2.121320343559643,
+          "effective_throat_area_mm2": 229.10259710444117,
+          "von_mises_per_resultant_force_mpa_per_n": 0.007560153527108582,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00011642722523315663,
+          "reference_envelope_corner_required_allowable_mpa": 60.868729583759816,
+          "force_capacity_n_per_allowable_mpa": 132.2724461102915,
+          "moment_capacity_n_mm_per_allowable_mpa": 8589.056365445493
+        },
+        {
+          "fillet_leg_mm": 3.5,
+          "effective_throat_mm": 2.4748737341529163,
+          "effective_throat_area_mm2": 267.2863632885147,
+          "von_mises_per_resultant_force_mpa_per_n": 0.006480131594664499,
+          "worst_overturning_stress_mpa_per_n_mm": 9.979476448556283e-05,
+          "reference_envelope_corner_required_allowable_mpa": 52.17319678607985,
+          "force_capacity_n_per_allowable_mpa": 154.31785379534006,
+          "moment_capacity_n_mm_per_allowable_mpa": 10020.565759686408
+        }
+      ]
+    },
+    "8P-FAIR_B": {
+      "model_id": "8P-FAIR_B",
+      "effective_weld_length_mm": 144.00000000000006,
+      "cad_effective_weld_length_mm": 143.9999999999999,
+      "line_group_principal_second_moments_mm3": [
+        404784.02880000003,
+        404784.0288000003
+      ],
+      "line_group_isotropy_ratio": 0.9999999999999993,
+      "rows": [
+        {
+          "fillet_leg_mm": 1.73664301094,
+          "effective_throat_mm": 1.2279920495358978,
+          "effective_throat_area_mm2": 176.83085513316936,
+          "von_mises_per_resultant_force_mpa_per_n": 0.009794958047703207,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00015084346933962498,
+          "reference_envelope_corner_required_allowable_mpa": 78.86171233852453,
+          "force_capacity_n_per_allowable_mpa": 102.09334181216705,
+          "moment_capacity_n_mm_per_allowable_mpa": 6629.388758942517
+        },
+        {
+          "fillet_leg_mm": 2.0,
+          "effective_throat_mm": 1.4142135623730951,
+          "effective_throat_area_mm2": 203.64675298172577,
+          "von_mises_per_resultant_force_mpa_per_n": 0.008505172717997143,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00013098062838730098,
+          "reference_envelope_corner_required_allowable_mpa": 68.47732078172969,
+          "force_capacity_n_per_allowable_mpa": 117.5755076535926,
+          "moment_capacity_n_mm_per_allowable_mpa": 7634.716769284895
+        },
+        {
+          "fillet_leg_mm": 2.5,
+          "effective_throat_mm": 1.7677669529663689,
+          "effective_throat_area_mm2": 254.55844122715723,
+          "von_mises_per_resultant_force_mpa_per_n": 0.006804138174397714,
+          "worst_overturning_stress_mpa_per_n_mm": 0.00010478450270984077,
+          "reference_envelope_corner_required_allowable_mpa": 54.78185662538375,
+          "force_capacity_n_per_allowable_mpa": 146.96938456699075,
+          "moment_capacity_n_mm_per_allowable_mpa": 9543.39596160612
+        },
+        {
+          "fillet_leg_mm": 3.0,
+          "effective_throat_mm": 2.121320343559643,
+          "effective_throat_area_mm2": 305.47012947258867,
+          "von_mises_per_resultant_force_mpa_per_n": 0.005670115145331428,
+          "worst_overturning_stress_mpa_per_n_mm": 8.73204189248673e-05,
+          "reference_envelope_corner_required_allowable_mpa": 45.651547187819794,
+          "force_capacity_n_per_allowable_mpa": 176.3632614803889,
+          "moment_capacity_n_mm_per_allowable_mpa": 11452.075153927346
+        },
+        {
+          "fillet_leg_mm": 3.5,
+          "effective_throat_mm": 2.4748737341529163,
+          "effective_throat_area_mm2": 356.3818177180201,
+          "von_mises_per_resultant_force_mpa_per_n": 0.004860098695998367,
+          "worst_overturning_stress_mpa_per_n_mm": 7.484607336417198e-05,
+          "reference_envelope_corner_required_allowable_mpa": 39.12989758955982,
+          "force_capacity_n_per_allowable_mpa": 205.75713839378707,
+          "moment_capacity_n_mm_per_allowable_mpa": 13360.754346248568
+        }
+      ]
+    }
+  },
+  "process_costs": {
+    "Continuous": {
+      "single_pass_arc_time_s": 314.07548955488363,
+      "four_pass_arc_time_s": 1256.3019582195345,
+      "single_pass_net_heat_input_j": 155467.36732966738,
+      "four_pass_net_heat_input_j": 621869.4693186695
+    },
+    "6P-FAIR_B": {
+      "single_pass_arc_time_s": 71.99999999999993,
+      "four_pass_arc_time_s": 287.9999999999997,
+      "single_pass_net_heat_input_j": 35639.99999999996,
+      "four_pass_net_heat_input_j": 142559.99999999985
+    },
+    "8P-FAIR_B": {
+      "single_pass_arc_time_s": 96.00000000000004,
+      "four_pass_arc_time_s": 384.00000000000017,
+      "single_pass_net_heat_input_j": 47520.00000000002,
+      "four_pass_net_heat_input_j": 190080.0000000001
+    }
+  },
+  "existing_radial_static_screening": {
+    "Continuous": {
+      "compliance_mm_per_n": 1.5372614574587255e-07,
+      "reference_envelope_radial_displacement_mm": 0.0007686307287293627,
+      "source_evidence_level": "solver_result_unvalidated",
+      "limitation": "既有座体径向静力筛查未显式建模焊缝，不能证明焊脚承载能力"
+    },
+    "8P-FAIR_B": {
+      "compliance_mm_per_n": 2.8659432335230894e-07,
+      "reference_envelope_radial_displacement_mm": 0.0014329716167615447,
+      "source_evidence_level": "solver_result_unvalidated",
+      "limitation": "既有座体径向静力筛查未显式建模焊缝，不能证明焊脚承载能力"
+    },
+    "6P-FAIR_B": {
+      "compliance_mm_per_n": 3.7636588471349066e-07,
+      "reference_envelope_radial_displacement_mm": 0.0018818294235674533,
+      "source_evidence_level": "solver_result_unvalidated",
+      "limitation": "既有座体径向静力筛查未显式建模焊缝，不能证明焊脚承载能力"
+    }
+  },
+  "fatigue_boundary": {
+    "hotspots": [
+      "焊趾",
+      "焊根",
+      "离散焊段端部",
+      "翼根圆角"
+    ],
+    "status": "risk_locations_only_no_life_claim"
+  },
+  "decision": {
+    "three_point_five_mm_necessary": null,
+    "reason": "参考包络下3.5 mm可降低条件应力并增加裕量，但题面载荷、真实焊缝许用和疲劳谱缺失，不能证明它是唯一必要尺寸。",
+    "current_1p737_limitation": "容量与焊脚近似成正比；在同一焊长下，其力/力矩容量约为3.5 mm情景的49.6%。",
+    "four_pass_disposition": "保留为待真实载荷与成形验证的上界候选，不升级为推荐工艺。"
+  }
+}

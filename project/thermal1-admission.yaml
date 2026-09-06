@@ -1,14 +1,25 @@
-# 0.3 完成后的准入补充；不改变已计算的热物性覆盖层和结果。
+# 当前数值/物理分路线准入；历史结果只保留为证据，不自动开放下游。
 version: THERMAL1-ADMISSION-v1
-status: blocked_by_physics
+status: blocked_by_numerical_convergence
 evidence_level: design_assumption
 inputs: project/g-inputs-v5.2.yaml
 materials: project/materials.yaml
 physics_specification: project/thermal-physics-v5.3.yaml
-physics_gate: simulation/thermal-v5/results/credibility04r1/assessment.json
-physics_gate_field: thermal_1_allowed
+physics_gate: simulation/thermal-v5/results/spatial-fix-study/assessment.json
+physics_gate_field: spatial_gate_pass
 physics_gate_value: false
-historical_physics_gate: simulation/thermal-v5/results/physics03/G-PHYSICS.json
+historical_physics_gates: [simulation/thermal-v5/results/physics03/G-PHYSICS.json, simulation/thermal-v5/results/credibility04r1/assessment.json]
+numerical_route_b:
+  gate: simulation/thermal-v5/results/spatial-fix-study/assessment.json
+  field: spatial_gate_pass
+  current_value: false
+  evidence_label_after_pass: solver_verified
+  allows: conditional_numerical_STRUCT-0
+physical_route_a:
+  gate: EXP-THERMAL
+  current_value: false
+  evidence_label_after_pass: calibrated_or_physical_validated
+  relation_to_route_b: optional_upgrade_not_absolute_dependency
 density:
   reference_temperature_c: 20.0
   spatial_density_model: "rho(T) = rho_ref / J(T); J(T) = exp(3 * integral(alpha_tangent(T) dT))"

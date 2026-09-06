@@ -142,6 +142,10 @@ def test_generated_report_status_uses_current_authorities() -> None:
     assert status["joint"]["nominal_wire_deposition"]["equivalent_ideal_fillet_leg_mm"]==pytest.approx(1.7366430137)
     assert status["structural"]["ranking"][0]["model_id"]=="Continuous"
     assert status["thermal"]["stage"]=="THERMAL-0.4R1"
+    assert status["thermal_spatial_fix"]["stage"]=="THERMAL-0.4R2-A-FIXED-GEOMETRY"
+    assert status["thermal_spatial_fix"]["spatial_gate_pass"] is False
+    assert status["joint_load_basis"]["decision"]["three_point_five_mm_necessary"] is None
+    assert all(status["structural_3d_components"]["checks"].values())
     assert "自动生成的当前证据摘要" in render_markdown(status)
     assert "未校准局部热诊断；禁止正式整件性能结论" in render_markdown(status)
 
@@ -149,10 +153,25 @@ def test_generated_report_status_uses_current_authorities() -> None:
 def test_active_structural_gate_points_to_current_failed_assessment() -> None:
     prep = yaml.safe_load((ROOT/"project/struct-0-prep.yaml").read_text(encoding="utf-8"))
     gate = json.loads((ROOT/prep["thermal_gate"]).read_text(encoding="utf-8"))
-    assert gate["stage"] == "THERMAL-0.4R1"
-    assert prep["thermal_gate_field"] == "thermal_1_allowed"
+    assert gate["stage"] == "THERMAL-0.4R2-A-FIXED-GEOMETRY"
+    assert prep["thermal_gate_field"] == "spatial_gate_pass"
     assert gate[prep["thermal_gate_field"]] is False
     assert prep["formal_thermal_coupling_allowed"] is False
+
+
+def test_numerical_and_physical_thermal_routes_are_not_conflated() -> None:
+    stages = yaml.safe_load((ROOT/"project/stage-status.yaml").read_text(encoding="utf-8"))["stages"]
+    assert stages["THERMAL-1"]["upstream_dependencies"] == ["THERMAL-NUMERICAL-GATE"]
+    assert stages["THERMAL-1"]["optional_physical_dependency"] == "THERMAL-PHYSICAL-CALIBRATION"
+    assert stages["THERMAL-NUMERICAL-GATE"]["acceptance_result"] == "not_passed"
+    assert stages["THERMAL-PHYSICAL-CALIBRATION"]["acceptance_result"] == "not_executed"
+
+
+def test_struct_prep_records_3d_components_without_claiming_global_solver() -> None:
+    prep = yaml.safe_load((ROOT/"project/struct-0-prep.yaml").read_text(encoding="utf-8"))
+    assert prep["constitutive"]["three_dimensional_j2"]["status"] == "algorithm_verified"
+    assert prep["constitutive"]["affine_tetrahedral_small_mesh"]["status"] == "equilibrium_verified"
+    assert prep["constitutive"]["elastoplastic_solver"]["status"] == "not_implemented"
 
 
 def test_current_report_has_no_known_v42_stale_claims() -> None:

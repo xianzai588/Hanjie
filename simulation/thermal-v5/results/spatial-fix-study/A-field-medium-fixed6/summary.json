@@ -1,0 +1,190 @@
+{
+  "stage": "THERMAL-0.4R2-A-FIXED-GEOMETRY",
+  "evidence_level": "solver_result_unvalidated",
+  "geometry": {
+    "cell_count": 68620,
+    "grid_shape": [
+      94,
+      44,
+      29
+    ],
+    "bead_area_mm2": 1.5079644737231015,
+    "deposited_equivalent_leg_mm": 1.7366430109398425,
+    "nominal_design_leg_mm": 3.5,
+    "parent_material_ids_preserved": true,
+    "gap_mm": 0.02
+  },
+  "process": {
+    "source": "project/process.yaml",
+    "method": "automatic_TIG",
+    "filler": "ERNiFe-CI",
+    "tungsten": "W-La20, 2.0 mm",
+    "polarity": "DCEN",
+    "shielding_gas": "99.999% Ar",
+    "gas_flow_l_min": 10.0,
+    "current_a": 75.0,
+    "voltage_v": 12.0,
+    "travel_speed_mm_s": 1.5,
+    "efficiency": 0.55,
+    "efficiency_status": "design_assumption_not_calibrated",
+    "net_power_w": 495.0,
+    "gross_line_energy_j_per_mm": 600.0,
+    "net_line_energy_j_per_mm": 330.0,
+    "preheat_temperature_c": 150.0,
+    "interpass_limit_c": 200.0,
+    "cooling_environment_c": 20.0,
+    "convection_coefficient_w_m2k": 12.0,
+    "emissivity": 0.75,
+    "cooling_hold_s": 120.0,
+    "post_release_cooling_s": 360.0
+  },
+  "source_model": {
+    "model": "surface45",
+    "direction_n_z": [
+      0.7071067811865476,
+      -0.7071067811865476
+    ],
+    "cross_coordinate": "u=n*cos(angle_deg)+z*sin(angle_deg)",
+    "parameters": "a_front/a_rear/b及前后权重继承0.2；c不用于表面模型，未收缩热源尺度。",
+    "normalization": "与0.4R1相同的未校准解析表面投影源；本轮禁止调整热效率、尺度或固相线；无限投影平面归一化，有限材料透射单独记账。",
+    "minimum_active_source_fraction": 0.95,
+    "gate_basis": "预先冻结的工程数值门槛，不是文献物理标准",
+    "evidence_level": "design_assumption_not_calibrated",
+    "angle_deg": 45.0,
+    "penetration_fraction": 0.0
+  },
+  "material_statistics": {
+    "q235b": {
+      "peak_temperature_c": 1012.9251792027794,
+      "solidus_c": 1474.85,
+      "liquidus_c": 1519.85,
+      "ever_solidus_exceeded_volume_mm3": 0.0,
+      "ever_liquidus_exceeded_volume_mm3": 0.0,
+      "maximum_cross_section_solidus_area_mm2": 0.0,
+      "solidus_region_n_extent_mm": null,
+      "solidus_region_z_extent_mm": null,
+      "t8_5_valid_count": 286,
+      "exposure_above_400c_volume_mm3": 4268.662901036534,
+      "maximum_section_solidus_width_mm": 0.0,
+      "maximum_section_solidus_depth_mm": 0.0,
+      "t8_5_valid_volume_mm3": 76.12362052513294,
+      "t8_5_volume_weighted_mean_s": 3.4794911494219494
+    },
+    "qt450_10": {
+      "peak_temperature_c": 1087.3663276138209,
+      "solidus_c": 1100.0,
+      "liquidus_c": 1200.0,
+      "ever_solidus_exceeded_volume_mm3": 0.0,
+      "ever_liquidus_exceeded_volume_mm3": 0.0,
+      "maximum_cross_section_solidus_area_mm2": 0.0,
+      "solidus_region_n_extent_mm": null,
+      "solidus_region_z_extent_mm": null,
+      "t8_5_valid_count": 563,
+      "exposure_above_400c_volume_mm3": 1210.332328197148,
+      "maximum_section_solidus_width_mm": 0.0,
+      "maximum_section_solidus_depth_mm": 0.0,
+      "t8_5_valid_volume_mm3": 128.6297900947113,
+      "t8_5_volume_weighted_mean_s": 2.7919716280779334
+    },
+    "ernife_ci": {
+      "peak_temperature_c": 1540.889401889981,
+      "solidus_c": 1380.0,
+      "liquidus_c": 1450.0,
+      "ever_solidus_exceeded_volume_mm3": 19.729201864543903,
+      "ever_liquidus_exceeded_volume_mm3": 11.938052083641214,
+      "maximum_cross_section_solidus_area_mm2": 0.4188790204786392,
+      "solidus_region_n_extent_mm": [
+        -1.1577620072932282,
+        -0.5788810036466141
+      ],
+      "solidus_region_z_extent_mm": [
+        0.4341607527349607,
+        1.013041756381575
+      ],
+      "t8_5_valid_count": 1080,
+      "exposure_above_400c_volume_mm3": 90.47786842338607,
+      "maximum_section_solidus_width_mm": null,
+      "maximum_section_solidus_depth_mm": null,
+      "t8_5_valid_volume_mm3": 90.47786842338607,
+      "t8_5_volume_weighted_mean_s": 2.330161734190261
+    }
+  },
+  "mass": {
+    "final_deposit_volume_mm3": 90.47786842338606,
+    "expected_deposit_volume_mm3": 90.47786842338606,
+    "final_deposit_mass_kg": 0.0007419185210717656,
+    "parent_mass_kg": 0.5670940800000001,
+    "maximum_relative_deposit_error": 9.57111362477447e-15,
+    "maximum_relative_parent_mass_error": 0.0
+  },
+  "energy": {
+    "nominal_source_j": 19799.999999999854,
+    "absorbed_source_j": 19799.999999999854,
+    "uncaptured_source_j": 0.0,
+    "minimum_active_source_fraction": 0.9999999999999997,
+    "birth_enthalpy_j": 0.0,
+    "convection_j": 2357.3728049345646,
+    "radiation_j": 2563.9038243496475,
+    "internal_energy_change_j": 14878.723377461225,
+    "residual_j": -6.745583959855139e-06,
+    "residual_pct": 3.406860585785449e-08,
+    "direct_source_by_material_j": {
+      "q235b": 4184.393891343239,
+      "qt450_10": 4436.686322454018,
+      "ernife_ci": 11178.919786202563
+    },
+    "direct_source_by_material_fraction": {
+      "q235b": 0.21133302481531707,
+      "qt450_10": 0.22407506679060904,
+      "ernife_ci": 0.564591908394074
+    },
+    "net_conductive_by_material_j": {
+      "q235b": 4865.769041460675,
+      "qt450_10": 5913.704141998628,
+      "ernife_ci": -10779.473183459106
+    },
+    "material_source_partition_residual_j": -3.637978807091713e-11
+  },
+  "solver": {
+    "steps": 600,
+    "time_step_s": 0.1,
+    "maximum_newton_iterations": 5,
+    "maximum_nonlinear_residual_j": 7.876641561210818e-09,
+    "wall_seconds": 99.7600581000006
+  },
+  "checks": {
+    "weld_mass_consistency": true,
+    "parents_always_present": true,
+    "source_deposition_on_active_material": true,
+    "energy_conservation": true,
+    "material_specific_enthalpy_implemented": true,
+    "phase_change_triggered": true,
+    "two_parent_solidus_exceeded": false,
+    "plausible_two_sided_fusion": false,
+    "evidence_supported_high_temperature_properties": false,
+    "progressive_mesh_convergence": false
+  },
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "evidence_boundary": [
+    "阶梯三角截面只闭合名义送丝量，尚非实测焊道形状或设计3.5mm焊脚。",
+    "表面双高斯为显式新热源假设，未做峰温拟合；不再使用体积Goldak的c参数。",
+    "超过固相线的母材体积是热学熔化暴露量，不等于实测混合/稀释率。",
+    "物性沿用0.3情景；网格、时间步及熔合几何仍需新模型验证。"
+  ],
+  "case": {
+    "name": "A-field-medium-fixed6",
+    "source": "surface45",
+    "properties": "nominal",
+    "mesh": "controlled",
+    "dt": 0.1,
+    "mesh_overrides": {
+      "arc_spacing_mm": 1.5,
+      "near_spacing_mm": 0.6,
+      "far_spacing_mm": 1.5,
+      "bead_strips": 6,
+      "bead_geometry_strips": 6
+    }
+  },
+  "fixed_point_history": "fixed-point-history.json"
+}
