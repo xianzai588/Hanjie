@@ -1,0 +1,15 @@
+{
+  "files": {
+    "field.npz": "8aa66c8f03fc77c59935eda9504646e3666e654e01413d7251dcfa73ff68354e",
+    "fixed-point-history.json": "c58852c42353bd4837884939c1890cde7c0f6ad7cbb1b139a25238c05a297d0e",
+    "fixed-point-reconstructed-history.json": "3bfb33ab9b58a78f0fef227125fbd472e4303e7fb3582abf76a73d858d9a200c",
+    "G-PHYSICS-R1.json": "584d82dde6dbdb37a71a8ae0112013d12f323ca78ec9b63b60d3491c5e67ff8b",
+    "history.json": "1b62ec310382675f91bf90096dba7faf000f273969280398348ae111186b5245",
+    "interface-flux-ledger.json": "6d935fd103cdb8ca3c6fee80576d8f38b1cfdb1a8c6e35c99dfd539359252aca",
+    "material-energy-history.json": "7798113f7fdfa8f7c230bc480543da4817ad02bfbc89c14f98eaffc2342a8af4",
+    "run-inputs.json": "ca3fe03378c50da99a519e78abdb3d1f15094affc8b936859e66f157769608ea",
+    "source-density-ledger.json": "e35d01a2da515fc52186afef623d0e9a98f936ea37cf6afa6a3ede90c94ee557",
+    "summary.json": "26d0957a9b06ddde498c86dc8da21ffa0d0cd6dd6ac22429e77cfe3f83c3001d"
+  },
+  "evidence_level": "solver_result_unvalidated"
+}

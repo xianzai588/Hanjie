@@ -1,0 +1,57 @@
+version: THERMAL-0.6-NESTED
+evidence_level: solver_result_unvalidated
+baseline: project/thermal-mass-closed-v5.4r1.yaml
+policy: 固定六条带焊道、沿焊道1.0mm、背景近区0.6mm/远区1.5mm、物理输入和dt=0.1s；局部粗控制体按1→2→4严格整数细分
+detailed_ledgers: true
+sources:
+  surface45: {angle_deg: 45.0, penetration_fraction: 0.0}
+source_basis: 与0.4R2-A相同的未校准surface45解析投影源；禁止按结果调整热效率、尺度或相变温度
+observation_points:
+  - {name: weld_center, material_id: 3, coordinate_s_n_z_mm: [0.0, -0.50, 0.50], stencil_neighbours: 8}
+  - {name: qt_near_interface, material_id: 2, coordinate_s_n_z_mm: [0.0, -0.20, -0.20], stencil_neighbours: 8}
+  - {name: qt_far, material_id: 2, coordinate_s_n_z_mm: [0.0, -1.00, -1.00], stencil_neighbours: 8}
+  - {name: q235_near_interface, material_id: 1, coordinate_s_n_z_mm: [0.0, 0.20, 0.00], stencil_neighbours: 8}
+  - {name: q235_far, material_id: 1, coordinate_s_n_z_mm: [0.0, 1.00, 0.00], stencil_neighbours: 8}
+frozen_mesh:
+  arc_spacing_mm: 1.0
+  near_spacing_mm: 0.6
+  far_spacing_mm: 1.5
+  bead_strips: 6
+  bead_geometry_strips: 6
+  cross_local_base_spacing_mm: 0.6
+  radial_local_zone_mm: [-3.0, 1.5]
+  axial_local_zone_mm: [-2.0, 2.0]
+cases:
+  - name: NEST-M
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6, cross_local_base_spacing_mm: 0.6, cross_local_subdivision_factor: 1, radial_local_zone_mm: [-3.0, 1.5], axial_local_zone_mm: [-2.0, 2.0]}
+  - name: NEST-F
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6, cross_local_base_spacing_mm: 0.6, cross_local_subdivision_factor: 2, radial_local_zone_mm: [-3.0, 1.5], axial_local_zone_mm: [-2.0, 2.0]}
+  - name: NEST-VF
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6, cross_local_base_spacing_mm: 0.6, cross_local_subdivision_factor: 4, radial_local_zone_mm: [-3.0, 1.5], axial_local_zone_mm: [-2.0, 2.0]}
+acceptance:
+  field_volume_weighted_mae_limit_c: 5.0
+  field_volume_weighted_p95_limit_c: 10.0
+  field_maximum_limit_c: 50.0
+  fixed_point_rms_limit_c: 5.0
+  fixed_point_peak_limit_c: 10.0
+  threshold_flip_volume_limit_mm3: 1.0
+  interface_cumulative_heat_relative_limit: 0.05
+  interface_face_energy_l1_relative_limit: 0.10
+  common_patch_source_l1_relative_limit: 0.05
+  source_centroid_distance_limit_mm: 0.05
+  source_second_moment_relative_limit: 0.05
+  asymptotic_reduction_ratio_max: 0.5
+  rule: 门槛在运行前冻结；F到VF须显著小于M到F，且阈值翻转、共同物理界面通量和共同控制体源积分同步稳定，才允许NEST-XF与最终网格时间步复查
+fallback: 若严格嵌套后仍非单调，则停止xfine和时间步复查，按逐面通量与共同控制体源积分把根因收敛到空间离散公式、界面控制体或表面源分配

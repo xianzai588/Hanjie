@@ -88,6 +88,18 @@ def build_results():
     constrained_cold=affine_mesh_response(np.zeros((3,3)),0.,base_material,birth_state)
     free_cold=affine_mesh_response(-np.eye(3)*hot_thermal,0.,base_material,birth_state)
 
+    activation_hot_displacement=.01*nodes
+    activation_hot_dofs={3*node+axis:float(activation_hot_displacement[node,axis]) for node in range(len(nodes)) for axis in range(3)}
+    activation_cold_dofs={dof:0. for dof in activation_hot_dofs}
+    substrate_mask=np.zeros(len(elements),dtype=bool); substrate_mask[0]=True
+    activation_steps=[
+        {"name":"hot_substrate","prescribed_dofs":activation_hot_dofs,"thermal_strain":.01,"active_elements":substrate_mask,"stress_free_on_activation":True},
+        {"name":"activate_weld_hot","prescribed_dofs":activation_hot_dofs,"thermal_strain":.01,"active_elements":np.ones(len(elements),bool),"stress_free_on_activation":True},
+        {"name":"fixed_geometry_cooling","prescribed_dofs":activation_hot_dofs,"thermal_strain":0.,"active_elements":np.ones(len(elements),bool)},
+        {"name":"release_and_contract","prescribed_dofs":activation_cold_dofs,"thermal_strain":0.,"active_elements":np.ones(len(elements),bool)},
+    ]
+    activation=solve_incremental_tetra(nodes,elements,{**base_material,"elastic_modulus_mpa":1000.,"yield_strength_mpa":1e9},activation_steps)
+
     def mesh_stress(response):
         return float(max(np.abs(state["stress_mpa"]).max() for state in response["element_states"]))
     tangent=tangent_audit(base_material)
@@ -102,6 +114,8 @@ def build_results():
         "released_cold_force_free":np.linalg.norm(thermal_final["reaction_force_n"])<1e-8,
         "stress_free_birth":mesh_stress(born)<1e-9,
         "stress_free_birth_cooling_response":mesh_stress(constrained_cold)>0 and mesh_stress(free_cold)<1e-9,
+        "global_activation_stress_free_birth":activation["steps"][1]["maximum_abs_stress_mpa"]<1e-10 and activation["steps"][1]["newly_activated_element_count"]==len(elements)-1,
+        "global_activation_cooling_response":activation["steps"][2]["maximum_abs_stress_mpa"]>1. and activation["steps"][3]["maximum_abs_stress_mpa"]<1e-10,
     }.items()}
     return {
         "stage":"STRUCT-0-PREP-GLOBAL-NEWTON","evidence_level":"algorithm_and_small_mesh_verification",
@@ -113,8 +127,9 @@ def build_results():
                              "born_max_abs_stress_mpa":mesh_stress(born),"fixed_geometry_cold_max_abs_stress_mpa":mesh_stress(constrained_cold),
                              "free_contraction_cold_max_abs_stress_mpa":mesh_stress(free_cold),
                              "rule":"元素激活时赋予当前总应变减热应变的参考构形；零机械应力出生，随后才参与热收缩和平衡。"},
+        "global_activation_small_mesh":{"steps":activation["steps"],"status":"passed_small_mesh_not_continuous_part"},
         "checks":checks,"struct_prep_gate_pass":False,
-        "limitations":["仅六四面体小型基准，尚非 Continuous 整件网格","未包含接触、摩擦或热场映射","温变材料曲线为设计假设，非本批材料标定"],
+        "limitations":["仅六四面体小型基准，尚非 Continuous 整件网格","接触与热映射由独立基准核对，尚未耦合到整件","温变材料曲线为设计假设，非本批材料标定"],
     }
 
 

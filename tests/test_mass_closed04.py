@@ -107,6 +107,31 @@ def test_local_cross_section_refinement_preserves_background_and_geometry(setup)
     assert medium["bead_area_mm2"] == pytest.approx(very_fine["bead_area_mm2"])
 
 
+def test_nested_local_refinement_is_exact_integer_subdivision(setup):
+    import copy
+    spec,config,process,_=setup
+    geometries=[]
+    for factor in (1,2,4):
+        nested=copy.deepcopy(spec)
+        nested["mesh"].update(
+            arc_spacing_mm=1.0,near_spacing_mm=0.6,far_spacing_mm=1.5,
+            bead_strips=6,bead_geometry_strips=6,
+            cross_local_base_spacing_mm=0.6,cross_local_subdivision_factor=factor,
+            radial_local_zone_mm=[-3.0,1.5],axial_local_zone_mm=[-2.0,2.0],
+        )
+        geometries.append(build_geometry(config,process,nested))
+    assert len(geometries[0]["n_edges"])<len(geometries[1]["n_edges"])<len(geometries[2]["n_edges"])
+    assert len(geometries[0]["z_edges"])<len(geometries[1]["z_edges"])<len(geometries[2]["z_edges"])
+    for coarse,fine in zip(geometries[:-1],geometries[1:]):
+        for key in ("s_edges","n_edges","z_edges"):
+            assert all(np.any(np.isclose(edge,fine[key],atol=1e-12)) for edge in coarse[key])
+        for key in ("n_edges","z_edges"):
+            counts=np.searchsorted(fine[key],coarse[key][1:])-np.searchsorted(fine[key],coarse[key][:-1])
+            assert set(counts).issubset({1,2})
+    np.testing.assert_allclose(geometries[0]["bead_z"],geometries[-1]["bead_z"])
+    np.testing.assert_allclose(geometries[0]["bead_widths"],geometries[-1]["bead_widths"])
+
+
 def test_surface_flux_hits_first_material_and_never_unborn_bead(setup):
     _,config,_,g = setup
     bare = surface_weights(g,False,2.5)

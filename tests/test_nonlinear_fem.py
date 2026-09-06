@@ -69,3 +69,22 @@ def test_constrained_heat_release_and_cooling_leave_residual_shape_without_force
     assert np.mean(final_displacement[nodes[:,0]==1,0])<0
     assert np.linalg.norm(result["steps"][-1]["force_balance_n"])<1e-8
     assert np.linalg.norm(result["steps"][-1]["moment_balance_n_mm"])<1e-8
+
+
+def test_element_activation_is_stress_free_at_birth_in_global_mesh():
+    nodes,elements=tetrahedral_cube()
+    hot_displacement=.01*nodes
+    hot_dofs={3*node+axis:float(hot_displacement[node,axis]) for node in range(len(nodes)) for axis in range(3)}
+    cold_dofs={dof:0. for dof in hot_dofs}
+    initial=np.zeros(len(elements),dtype=bool); initial[0]=True
+    material=dict(elastic_modulus_mpa=1000.,poisson_ratio=.25,yield_strength_mpa=1e9,hardening_modulus_mpa=1000.)
+    result=solve_incremental_tetra(nodes,elements,material,[
+        {"name":"hot_substrate","prescribed_dofs":hot_dofs,"thermal_strain":.01,"active_elements":initial,"stress_free_on_activation":True},
+        {"name":"activate_weld_hot","prescribed_dofs":hot_dofs,"thermal_strain":.01,"active_elements":np.ones(len(elements),bool),"stress_free_on_activation":True},
+        {"name":"fixed_geometry_cooling","prescribed_dofs":hot_dofs,"thermal_strain":0.,"active_elements":np.ones(len(elements),bool)},
+        {"name":"release_and_contract","prescribed_dofs":cold_dofs,"thermal_strain":0.,"active_elements":np.ones(len(elements),bool)},
+    ])
+    assert result["steps"][1]["maximum_abs_stress_mpa"]<1e-10
+    assert result["steps"][2]["maximum_abs_stress_mpa"]>1.
+    assert result["steps"][3]["maximum_abs_stress_mpa"]<1e-10
+    assert result["steps"][1]["newly_activated_element_count"]==len(elements)-1

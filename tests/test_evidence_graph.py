@@ -157,7 +157,7 @@ def test_generated_report_status_uses_current_authorities() -> None:
 def test_active_structural_gate_points_to_current_failed_assessment() -> None:
     prep = yaml.safe_load((ROOT/"project/struct-0-prep.yaml").read_text(encoding="utf-8"))
     gate = json.loads((ROOT/prep["thermal_gate"]).read_text(encoding="utf-8"))
-    assert gate["stage"] == "THERMAL-0.5-XSEC"
+    assert gate["stage"] == "THERMAL-0.6-NESTED"
     assert prep["thermal_gate_field"] == "spatial_gate_pass"
     assert gate[prep["thermal_gate_field"]] is False
     assert prep["formal_thermal_coupling_allowed"] is False
@@ -176,8 +176,8 @@ def test_struct_prep_records_global_solver_without_claiming_full_part_solution()
     assert prep["constitutive"]["three_dimensional_j2"]["status"] == "algorithm_verified"
     assert prep["constitutive"]["affine_tetrahedral_small_mesh"]["status"] == "equilibrium_verified"
     assert prep["constitutive"]["elastoplastic_solver"]["status"] == "small_mesh_global_newton_verified"
-    assert prep["geometry"]["unified_mesh"]["status"] == "generated_with_quality_debt"
-    assert prep["geometry"]["heat_to_structure_mapping"]["status"] == "not_executed"
+    assert prep["geometry"]["unified_mesh"]["status"] == "plan5_local_refinement_and_algorithm_trials_rejected_quality_debt_open"
+    assert prep["geometry"]["heat_to_structure_mapping"]["status"] == "local_benchmark_passed_formal_load_blocked"
     assert prep["acceptance"]["struct_0_continuous_baseline_ready"] is False
 
 

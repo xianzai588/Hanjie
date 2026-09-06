@@ -1,0 +1,72 @@
+{
+  "stage": "STRUCT-0-PREP-PLAN5",
+  "evidence_level": "executed_engineering_preparation_benchmarks",
+  "mesh_quality_trials": {
+    "plan4_hxt_0p8": {
+      "mesh_file": "simulation/structural-v4/results/struct0-prep/continuous-unified-prep.msh",
+      "nodes": 52210,
+      "tetrahedra": 176524,
+      "minimum_min_sicn": 0.04972501640893284,
+      "p01_min_sicn": 0.17884181386588555,
+      "weld_tetrahedra": 28470,
+      "weld_below_0p1_count": 1381,
+      "weld_below_0p1_fraction": 0.04850720056199508,
+      "accepted": false
+    },
+    "hxt_0p5": {
+      "mesh_file": "simulation/structural-v4/results/struct0-prep/continuous-unified-plan5.msh",
+      "nodes": 84105,
+      "tetrahedra": 289183,
+      "minimum_min_sicn": 0.07759795563313288,
+      "p01_min_sicn": 0.1133758142024045,
+      "weld_tetrahedra": 57946,
+      "weld_below_0p1_count": 2575,
+      "weld_below_0p1_fraction": 0.04443792496462223,
+      "accepted": false
+    },
+    "delaunay_0p8_relocate": {
+      "mesh_file": "simulation/structural-v4/results/struct0-prep/continuous-unified-plan5-delaunay.msh",
+      "nodes": 57644,
+      "tetrahedra": 213069,
+      "minimum_min_sicn": 0.050049621509969194,
+      "p01_min_sicn": 0.21688821575344847,
+      "weld_tetrahedra": 28232,
+      "weld_below_0p1_count": 1393,
+      "weld_below_0p1_fraction": 0.049341173136865965,
+      "accepted": false
+    }
+  },
+  "mesh_binary_retention": "两份被拒绝的Plan 5试验msh仅本地保留且不入Git；参数、质量统计、逐低质量单元诊断和生成脚本入库。",
+  "mesh_localization": {
+    "plan4": "1381个低质量单元全部位于ERNiFe-CI焊缝，分别邻近焊缝—壳体和焊缝—座体界面。",
+    "plan5_0p5": "2575个低质量单元全部最近焊缝—座体界面；局部减尺寸提高最小值但增加绝对差单元数。",
+    "mechanism": "系统性环形焊缝界面表面三角化/四面体拓扑质量债；不是母材远场尺寸不足。",
+    "next_action": "停止纯尺寸细化，改用环向分段/扫掠焊缝拓扑，并在共形接口上重新核对minSICN。"
+  },
+  "contact": {
+    "source": "contact-benchmarks.json",
+    "passed": true,
+    "scope": "frictionless normal contact + separation + release; small mesh"
+  },
+  "thermal_mapping": {
+    "source": "thermal-mapping-benchmark.json",
+    "passed": true,
+    "scope": "仅用局部嵌套热场验证映射算法边界，不是Continuous整圈正式STRUCT-0热载荷。"
+  },
+  "activation": {
+    "source": "global-newton-benchmarks.json",
+    "passed": true,
+    "scope": "global six-tetrahedron small mesh"
+  },
+  "checks": {
+    "continuous_weld_mesh_quality_closed": false,
+    "global_j2_newton_retained": true,
+    "frictionless_normal_contact_benchmarks": true,
+    "local_thermal_mapping_benchmark": true,
+    "global_small_mesh_activation_stress_free_birth": true,
+    "fixture_release_state_flow": true
+  },
+  "struct_0_prep_ready_pending_admitted_thermal_history": false,
+  "formal_struct_0_allowed": false,
+  "decision": "STRUCT-0-PREP 尚未 ready：接触、局部热映射、全局小模型激活/释放已通过，但 Continuous 焊缝网格质量未闭合；不得把局部热场送入正式 STRUCT-0。"
+}

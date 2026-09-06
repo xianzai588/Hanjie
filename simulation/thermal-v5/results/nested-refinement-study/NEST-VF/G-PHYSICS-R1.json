@@ -1,0 +1,19 @@
+{
+  "stage": "G-PHYSICS-R1",
+  "gate_status": "REVIEW",
+  "checks": {
+    "weld_mass_consistency": true,
+    "parents_always_present": true,
+    "source_deposition_on_active_material": true,
+    "energy_conservation": true,
+    "material_specific_enthalpy_implemented": true,
+    "phase_change_triggered": true,
+    "two_parent_solidus_exceeded": false,
+    "plausible_two_sided_fusion": false,
+    "evidence_supported_high_temperature_properties": false,
+    "progressive_mesh_convergence": false
+  },
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "next_action": "补充高温物性证据并验证新网格与熔合几何；禁止按单个峰温调参"
+}

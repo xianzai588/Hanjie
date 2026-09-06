@@ -171,6 +171,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 6,
+        "maximum_abs_stress_mpa": 100.00000000000001,
         "force_balance_n": [
           7.105427357601002e-15,
           1.9721522630525295e-31,
@@ -331,6 +335,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 250.00000000000017,
         "force_balance_n": [
           0.0,
           7.888609052210118e-31,
@@ -511,6 +519,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 299.9999999999993,
         "force_balance_n": [
           2.842170943040401e-14,
           1.0097419586828951e-28,
@@ -677,6 +689,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 6,
+        "maximum_abs_stress_mpa": 0.0,
         "force_balance_n": [
           0.0,
           0.0,
@@ -837,6 +853,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 211.14918367346945,
         "force_balance_n": [
           1.4210854715202004e-14,
           -1.5777218104420236e-30,
@@ -992,6 +1012,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 163.87879518072305,
         "force_balance_n": [
           -7.105427357601002e-15,
           3.1554436208840472e-30,
@@ -1147,6 +1171,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 66.88511627906993,
         "force_balance_n": [
           0.0,
           3.1554436208840472e-30,
@@ -1312,6 +1340,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 1.4451694173648262e-13,
         "force_balance_n": [
           -9.466330862652142e-30,
           -3.1554436208840472e-30,
@@ -1467,6 +1499,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 2.744386749103933e-13,
         "force_balance_n": [
           0.0,
           -1.262177448353619e-29,
@@ -1622,6 +1658,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 3.9040518568902754e-13,
         "force_balance_n": [
           1.262177448353619e-29,
           9.466330862652142e-30,
@@ -1777,6 +1817,10 @@
             0.0
           ]
         ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 5.562696373604605e-13,
         "force_balance_n": [
           -2.524354896707238e-29,
           0.0,
@@ -1801,6 +1845,627 @@
     "free_contraction_cold_max_abs_stress_mpa": 0.0,
     "rule": "元素激活时赋予当前总应变减热应变的参考构形；零机械应力出生，随后才参与热收缩和平衡。"
   },
+  "global_activation_small_mesh": {
+    "steps": [
+      {
+        "name": "hot_substrate",
+        "converged": true,
+        "newton_iterations": 0,
+        "newton_history": [
+          {
+            "iteration": 0,
+            "residual_norm_n": 0.0
+          }
+        ],
+        "residual_norm_n": 0.0,
+        "displacement_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.01,
+            0.0,
+            0.0
+          ],
+          [
+            0.01,
+            0.01,
+            0.0
+          ],
+          [
+            0.0,
+            0.01,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.01
+          ],
+          [
+            0.01,
+            0.0,
+            0.01
+          ],
+          [
+            0.01,
+            0.01,
+            0.01
+          ],
+          [
+            0.0,
+            0.01,
+            0.01
+          ]
+        ],
+        "reaction_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "external_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "contact": null,
+        "active_element_count": 1,
+        "newly_activated_element_count": 1,
+        "maximum_abs_stress_mpa": 0.0,
+        "force_balance_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "moment_balance_n_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "elastic_energy_mj": 0.0,
+        "plastic_dissipation_mj": 0.0
+      },
+      {
+        "name": "activate_weld_hot",
+        "converged": true,
+        "newton_iterations": 0,
+        "newton_history": [
+          {
+            "iteration": 0,
+            "residual_norm_n": 0.0
+          }
+        ],
+        "residual_norm_n": 0.0,
+        "displacement_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.01,
+            0.0,
+            0.0
+          ],
+          [
+            0.01,
+            0.01,
+            0.0
+          ],
+          [
+            0.0,
+            0.01,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.01
+          ],
+          [
+            0.01,
+            0.0,
+            0.01
+          ],
+          [
+            0.01,
+            0.01,
+            0.01
+          ],
+          [
+            0.0,
+            0.01,
+            0.01
+          ]
+        ],
+        "reaction_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "external_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 5,
+        "maximum_abs_stress_mpa": 0.0,
+        "force_balance_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "moment_balance_n_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "elastic_energy_mj": 0.0,
+        "plastic_dissipation_mj": 0.0
+      },
+      {
+        "name": "fixed_geometry_cooling",
+        "converged": true,
+        "newton_iterations": 0,
+        "newton_history": [
+          {
+            "iteration": 0,
+            "residual_norm_n": 0.0
+          }
+        ],
+        "residual_norm_n": 0.0,
+        "displacement_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.01,
+            0.0,
+            0.0
+          ],
+          [
+            0.01,
+            0.01,
+            0.0
+          ],
+          [
+            0.0,
+            0.01,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.01
+          ],
+          [
+            0.01,
+            0.0,
+            0.01
+          ],
+          [
+            0.01,
+            0.01,
+            0.01
+          ],
+          [
+            0.0,
+            0.01,
+            0.01
+          ]
+        ],
+        "reaction_force_n": [
+          [
+            -7.575757575757575,
+            -7.575757575757575,
+            -7.575757575757575
+          ],
+          [
+            7.575757575757575,
+            -3.7878787878787876,
+            -3.7878787878787876
+          ],
+          [
+            3.7878787878787876,
+            3.7878787878787876,
+            -7.575757575757575
+          ],
+          [
+            -3.7878787878787876,
+            7.575757575757575,
+            -3.7878787878787876
+          ],
+          [
+            -3.7878787878787876,
+            -3.7878787878787876,
+            7.575757575757575
+          ],
+          [
+            3.7878787878787876,
+            -7.575757575757575,
+            3.7878787878787876
+          ],
+          [
+            7.575757575757575,
+            7.575757575757575,
+            7.575757575757575
+          ],
+          [
+            -7.575757575757575,
+            3.7878787878787876,
+            3.7878787878787876
+          ]
+        ],
+        "external_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 22.727272727272727,
+        "force_balance_n": [
+          0.0,
+          -4.440892098500626e-16,
+          -2.220446049250313e-15
+        ],
+        "moment_balance_n_mm": [
+          -8.881784197001252e-16,
+          8.881784197001252e-16,
+          0.0
+        ],
+        "elastic_energy_mj": 0.3409090909090909,
+        "plastic_dissipation_mj": 0.0
+      },
+      {
+        "name": "release_and_contract",
+        "converged": true,
+        "newton_iterations": 0,
+        "newton_history": [
+          {
+            "iteration": 0,
+            "residual_norm_n": 0.0
+          }
+        ],
+        "residual_norm_n": 0.0,
+        "displacement_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "reaction_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "external_force_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "contact": null,
+        "active_element_count": 6,
+        "newly_activated_element_count": 0,
+        "maximum_abs_stress_mpa": 0.0,
+        "force_balance_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "moment_balance_n_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "elastic_energy_mj": 0.0,
+        "plastic_dissipation_mj": 0.0
+      }
+    ],
+    "status": "passed_small_mesh_not_continuous_part"
+  },
   "checks": {
     "consistent_tangent_relative_error": true,
     "tensile_analytic_strain": true,
@@ -1810,12 +2475,14 @@
     "plastic_dissipation_nonnegative": true,
     "released_cold_force_free": true,
     "stress_free_birth": true,
-    "stress_free_birth_cooling_response": true
+    "stress_free_birth_cooling_response": true,
+    "global_activation_stress_free_birth": true,
+    "global_activation_cooling_response": true
   },
   "struct_prep_gate_pass": false,
   "limitations": [
     "仅六四面体小型基准，尚非 Continuous 整件网格",
-    "未包含接触、摩擦或热场映射",
+    "接触与热映射由独立基准核对，尚未耦合到整件",
     "温变材料曲线为设计假设，非本批材料标定"
   ]
 }

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from pathlib import Path
@@ -34,17 +35,26 @@ def _radial_surface(surface,radius,tolerance=.05):
 
 
 def main() -> int:
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--weld-size",type=float,default=.8)
+    parser.add_argument("--algorithm-3d",type=int,default=10)
+    parser.add_argument("--relocate-iterations",type=int,default=0)
+    parser.add_argument("--output-stem",default="continuous-unified-prep")
+    parser.add_argument("--report-name",default="continuous-unified-mesh.json")
+    args=parser.parse_args()
+    if args.weld_size<=0:
+        parser.error("焊缝局部尺寸必须为正")
     OUTPUT.mkdir(parents=True,exist_ok=True)
-    mesh_path=OUTPUT/"continuous-unified-prep.msh"
+    mesh_path=OUTPUT/f"{args.output_stem}.msh"
     gmsh.initialize()
     try:
         gmsh.option.setNumber("General.Terminal",1)
         gmsh.option.setNumber("Mesh.Binary",1)
-        gmsh.option.setNumber("Mesh.CharacteristicLengthMin",.8)
+        gmsh.option.setNumber("Mesh.CharacteristicLengthMin",min(.8,args.weld_size))
         gmsh.option.setNumber("Mesh.CharacteristicLengthMax",5.)
-        gmsh.option.setNumber("Mesh.Algorithm3D",10)
+        gmsh.option.setNumber("Mesh.Algorithm3D",args.algorithm_3d)
         gmsh.option.setNumber("Mesh.Optimize",1)
-        gmsh.model.add("continuous-unified-prep")
+        gmsh.model.add(args.output_stem)
         shell=gmsh.model.occ.importShapes(str(ROOT/"simulation/structural-v4/common/shell.step"))
         seat=gmsh.model.occ.importShapes(str(ROOT/"simulation/structural-v4/models/continuous/Continuous.step"))
         weld=_weld_volume()
@@ -75,9 +85,11 @@ def main() -> int:
 
         # 焊缝及其接口点局部细化，母材远场保持适中尺寸。
         weld_points=sorted({tag for surface in weld_surfaces for dim,tag in gmsh.model.getBoundary([(2,surface)],recursive=True) if dim==0})
-        gmsh.model.mesh.setSize([(0,tag) for tag in weld_points],.8)
+        gmsh.model.mesh.setSize([(0,tag) for tag in weld_points],args.weld_size)
         gmsh.model.mesh.generate(3)
         gmsh.model.mesh.optimize("Netgen")
+        if args.relocate_iterations>0:
+            gmsh.model.mesh.optimize("Relocate3D",force=True,niter=args.relocate_iterations)
         gmsh.write(str(mesh_path))
 
         tetra_tags,_=gmsh.model.mesh.getElementsByType(4)
@@ -92,7 +104,8 @@ def main() -> int:
             "stage":"STRUCT-0-PREP-CONTINUOUS-UNIFIED-MESH","evidence_level":"geometry_and_mesh_preparation",
             "mesh_file":mesh_path.relative_to(ROOT).as_posix(),"mesh_format":"Gmsh MSH 4.1 binary",
             "geometry":{"shell":"simulation/structural-v4/common/shell.step","seat":"simulation/structural-v4/models/continuous/Continuous.step",
-                        "weld_leg_mm":LEG_MM,"weld_rule":"单道质量闭合焊脚的环形等面积直角三角形，根点跨越0.02mm装配间隙"},
+                        "weld_leg_mm":LEG_MM,"weld_rule":"单道质量闭合焊脚的环形等面积直角三角形，根点跨越0.02mm装配间隙","weld_local_size_mm":args.weld_size,
+                        "mesh_algorithm_3d":args.algorithm_3d,"relocate_iterations":args.relocate_iterations},
             "regions":{"physical_volume_ids":{"Q235B_SHELL":1,"QT450_10_SEAT":2,"ERNIFE_CI_WELD":3},"tetrahedron_counts":region_counts,"quality_by_region":region_quality},
             "interfaces":{"physical_surface_ids":{name:101+index for index,name in enumerate(surfaces)},"surface_tags":surfaces,"surface_node_counts":surface_node_counts,
                           "seat_shell_relation":"未焊圆柱面保持0.02mm间隙；不做节点绑定，留作法向接触/释放面"},
@@ -111,7 +124,7 @@ def main() -> int:
             "contact":{"status":"surfaces_registered_solver_not_implemented","first_model":"normal_contact_releasable_mu_0_then_engineering_mu_sensitivity"},
             "struct_prep_gate_pass":False,
         }
-        (OUTPUT/"continuous-unified-mesh.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
+        (OUTPUT/args.report_name).write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
         print(json.dumps({"mesh":str(mesh_path),"counts":result["counts"],"quality":result["quality"],"checks":result["checks"]},ensure_ascii=False))
     finally:
         gmsh.finalize()

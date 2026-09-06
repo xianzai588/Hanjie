@@ -8,7 +8,12 @@ import sys
 import numpy as np
 from threadpoolctl import threadpool_limits
 
+PROJECT_ROOT=Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT/"src") not in sys.path:
+    sys.path.insert(0,str(PROJECT_ROOT/"src"))
+
 from credibility_source import projected_weights
+from hanjie.simulation.thermal_ledgers import DetailedThermalLedger, build_material_point_stencil
 from run_physics03 import ROOT, load, digest, write_json
 
 SPEC = ROOT/"project/thermal-credibility-v5.4r1.yaml"
@@ -74,8 +79,9 @@ def run_case(plan, case, out, specification_path=SPEC):
     config = load(ROOT/spec["inputs"])
     duration = (config["heat_source_path"]["source_end_s_mm"]-config["heat_source_path"]["source_start_s_mm"])/config["process"]["travel_speed_mm_s"]
     total = duration+spec["solver"]["cooling_after_source_s"]
-    source_fn,step_fn = core.source_power,core.enthalpy_step
+    source_fn,step_fn,matrix_fn = core.source_power,core.enthalpy_step,core._conductance_matrix
     ledger = dict(time=0.,q=np.zeros(len(ids)),source=np.zeros(3),conductive=np.zeros(3),rows=[])
+    detailed = DetailedThermalLedger(g) if plan.get("detailed_ledgers",False) else None
     observation_cells = []
     for point in plan.get("observation_points",[]):
         requested = np.asarray(point["coordinate_s_n_z_mm"],float)
@@ -92,12 +98,26 @@ def run_case(plan, case, out, specification_path=SPEC):
         observation_cells.append(dict(name=point["name"],material_id=int(ids[cell]),requested_coordinate_s_n_z_mm=requested.tolist(),
                                       represented_cell_center_s_n_z_mm=actual,represented_cell_dimensions_mm=g["dims"][cell].tolist(),cell=cell))
     observation_rows = []
+    reconstructed_stencils = [
+        {"name":point["name"],**build_material_point_stencil(
+            g,point["coordinate_s_n_z_mm"],point["material_id"],point.get("stencil_neighbours",8)
+        )}
+        for point in plan.get("observation_points",[])
+    ] if detailed is not None else []
+    reconstructed_rows = []
     def partition(vector):
         return np.bincount(ids,weights=vector,minlength=4)[1:4]
     def observe_source(*args):
         q = source_fn(*args)
         ledger["q"] = q
         return q
+    def observe_matrix(*args):
+        matrix,exposed = matrix_fn(*args)
+        if detailed is not None:
+            fraction,dt = args[1],args[3]
+            face_area = core.face_geometry(g,fraction)[0]
+            detailed.prepare_step(fraction,matrix,dt,face_area)
+        return matrix,exposed
     def observe_step(*args):
         result = step_fn(*args)
         dt = min(case["dt"],total-ledger["time"])
@@ -108,6 +128,15 @@ def run_case(plan, case, out, specification_path=SPEC):
         ledger["source"] += direct
         ledger["conductive"] += conductive
         ledger["time"] += dt
+        if detailed is not None:
+            detailed.record_step(result[0],ledger["q"])
+            reconstructed_rows.append({
+                "time_s":ledger["time"],
+                **{
+                    item["name"]:float(np.dot(result[0][item["cell_indices"]],item["weights"]))
+                    for item in reconstructed_stencils
+                },
+            })
         if observation_cells:
             observation_rows.append({"time_s":ledger["time"],**{item["name"]:float(result[0][item["cell"]]) for item in observation_cells}})
         ledger["rows"].append(dict(time_s=ledger["time"],source_step_j=direct.tolist(),
@@ -115,9 +144,11 @@ def run_case(plan, case, out, specification_path=SPEC):
             cumulative_net_conductive_j=ledger["conductive"].tolist()))
         ledger["q"] = np.zeros(len(ids))
         return result
-    core.source_power,core.enthalpy_step = observe_source,observe_step
+    core.source_power,core.enthalpy_step,core._conductance_matrix = observe_source,observe_step,observe_matrix
     sources = [specification_path,ROOT/plan["baseline"],Path(__file__),Path(__file__).with_name("credibility_source.py")]
     sources += [Path(__file__).with_name(n) for n in ("run_mass_closed04.py","mass_closed_geometry.py","physics.py","run_physics03.py")]
+    if detailed is not None:
+        sources.append(ROOT/"src/hanjie/simulation/thermal_ledgers.py")
     sources += [ROOT/spec[k] for k in ("inputs","process_input","material_input","thermal_properties")]
     write_json(out/"run-inputs.json",dict(case=case,specification=spec,materials=mat,physics=phy,
         hashes={p.relative_to(ROOT).as_posix():digest(p) for p in sources}))
@@ -156,6 +187,19 @@ def run_case(plan, case, out, specification_path=SPEC):
             definition="有限体积中包含固定物理坐标的控制体温度；记录控制体中心和尺寸，不冒充点值插值",
             points=[{key:value for key,value in item.items() if key!="cell"} for item in observation_cells],rows=observation_rows))
         summary["fixed_point_history"] = "fixed-point-history.json"
+    if detailed is not None:
+        interface_ledger,source_ledger = detailed.finish()
+        write_json(out/"interface-flux-ledger.json",interface_ledger)
+        write_json(out/"source-density-ledger.json",source_ledger)
+        write_json(out/"fixed-point-reconstructed-history.json",dict(
+            definition="固定物理坐标的同材料逆距离平方重构；模板随网格生成但坐标固定，禁止跨材料和域外静默外推。",
+            points=[{key:value for key,value in item.items() if key!="cell_indices"} for item in reconstructed_stencils],
+            stencils=reconstructed_stencils,rows=reconstructed_rows))
+        summary["detailed_thermal_ledgers"] = {
+            "interface_flux":"interface-flux-ledger.json",
+            "source_density":"source-density-ledger.json",
+            "fixed_point_reconstructed":"fixed-point-reconstructed-history.json",
+        }
     write_json(out/"summary.json",summary)
     write_json(out/"material-energy-history.json",dict(material_order=NAMES,definition="直接源输入与净导热分别记账；净导热正值为该材料从其余材料吸热，不含源/散热/出生焓。",steps=ledger["rows"]))
     write_json(out/"manifest.json",dict(files={p.name:digest(p) for p in out.iterdir() if p.is_file() and p.name!="manifest.json"},evidence_level="solver_result_unvalidated"))

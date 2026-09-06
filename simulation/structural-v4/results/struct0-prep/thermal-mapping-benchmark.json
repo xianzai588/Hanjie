@@ -1,0 +1,179 @@
+{
+  "stage": "STRUCT-0-PREP-THERMAL-MAPPING",
+  "evidence_level": "local_thermal_field_mapping_benchmark",
+  "source": "simulation/thermal-v5/results/nested-refinement-study/NEST-F/field.npz",
+  "target": "simulation/thermal-v5/results/nested-refinement-study/NEST-M/field.npz",
+  "scope": "仅用局部嵌套热场验证映射算法边界，不是Continuous整圈正式STRUCT-0热载荷。",
+  "conservative_control_volume_projection": {
+    "temperature_final": {
+      "matched_volume_fraction": 1.0,
+      "source_volume_temperature_integral_c_mm3": 15451291.088915862,
+      "target_volume_temperature_integral_c_mm3": 15451291.088915862,
+      "absolute_integral_residual_c_mm3": 0.0,
+      "material_integral_residuals_c_mm3": {
+        "1": 9.313225746154785e-10,
+        "2": -1.862645149230957e-09,
+        "3": 0.0
+      }
+    },
+    "temperature_peak": {
+      "matched_volume_fraction": 1.0,
+      "source_volume_temperature_integral_c_mm3": 17511159.554567907,
+      "target_volume_temperature_integral_c_mm3": 17511159.55456791,
+      "absolute_integral_residual_c_mm3": 3.725290298461914e-09,
+      "material_integral_residuals_c_mm3": {
+        "1": 0.0,
+        "2": -1.862645149230957e-09,
+        "3": -1.4551915228366852e-11
+      }
+    }
+  },
+  "same_material_peak_point_mapping": [
+    {
+      "material": "q235b",
+      "material_id": 1,
+      "source_cell": 138878,
+      "coordinate_s_n_z_mm": [
+        27.5,
+        0.125,
+        1.230122132749055
+      ],
+      "source_peak_temperature_c": 1092.3607029662248,
+      "mapped_peak_temperature_c": 1092.3607029662248,
+      "difference_c": 0.0
+    },
+    {
+      "material": "qt450_10",
+      "material_id": 2,
+      "source_cell": 138585,
+      "coordinate_s_n_z_mm": [
+        27.5,
+        -1.230122132749055,
+        -0.125
+      ],
+      "source_peak_temperature_c": 1156.3969896574542,
+      "mapped_peak_temperature_c": 1156.3969896574542,
+      "difference_c": 0.0
+    },
+    {
+      "material": "ernife_ci",
+      "material_id": 3,
+      "source_cell": 138635,
+      "coordinate_s_n_z_mm": [
+        27.5,
+        -0.940681630925748,
+        0.7959613800140946
+      ],
+      "source_peak_temperature_c": 1588.7700366128238,
+      "mapped_peak_temperature_c": 1588.7700366128238,
+      "difference_c": 0.0
+    }
+  ],
+  "fixed_point_final_mapping": [
+    {
+      "name": "weld_center",
+      "coordinate_s_n_z_mm": [
+        0.0,
+        -0.5,
+        0.5
+      ],
+      "source_history_final_c": 288.5266769079958,
+      "mapped_field_final_c": 288.5266769079958,
+      "difference_c": 0.0
+    },
+    {
+      "name": "qt_near_interface",
+      "coordinate_s_n_z_mm": [
+        0.0,
+        -0.2,
+        -0.2
+      ],
+      "source_history_final_c": 281.5593903529763,
+      "mapped_field_final_c": 281.5593903529763,
+      "difference_c": 0.0
+    },
+    {
+      "name": "qt_far",
+      "coordinate_s_n_z_mm": [
+        0.0,
+        -1.0,
+        -1.0
+      ],
+      "source_history_final_c": 267.5384352014742,
+      "mapped_field_final_c": 267.5384352014742,
+      "difference_c": 0.0
+    },
+    {
+      "name": "q235_near_interface",
+      "coordinate_s_n_z_mm": [
+        0.0,
+        0.2,
+        0.0
+      ],
+      "source_history_final_c": 298.7943356764407,
+      "mapped_field_final_c": 298.7943356764407,
+      "difference_c": 0.0
+    },
+    {
+      "name": "q235_far",
+      "coordinate_s_n_z_mm": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source_history_final_c": 306.41202867139907,
+      "mapped_field_final_c": 306.41202867139907,
+      "difference_c": 0.0
+    }
+  ],
+  "unsupported_position_probe": {
+    "coordinate_s_n_z_mm": [
+      -71.0,
+      0.0,
+      0.0
+    ],
+    "method": "same_material_containing_control_volume",
+    "values": [
+      null
+    ],
+    "status": [
+      "outside_source_domain"
+    ],
+    "source_cell_indices": [
+      null
+    ],
+    "no_extrapolation": true,
+    "no_cross_material_interpolation": true
+  },
+  "cross_material_probe": {
+    "coordinate_s_n_z_mm": [
+      0.0,
+      -0.5,
+      0.5
+    ],
+    "requested_material": "q235b",
+    "method": "same_material_containing_control_volume",
+    "values": [
+      null
+    ],
+    "status": [
+      "material_mismatch_or_void"
+    ],
+    "source_cell_indices": [
+      null
+    ],
+    "no_extrapolation": true,
+    "no_cross_material_interpolation": true
+  },
+  "checks": {
+    "full_common_volume_matched": true,
+    "global_integral_conserved": true,
+    "each_material_integral_conserved": true,
+    "source_peaks_not_smoothed": true,
+    "fixed_points_consistent": true,
+    "outside_domain_explicitly_unavailable": true,
+    "cross_material_explicitly_unavailable": true
+  },
+  "thermal_mapping_benchmark_pass": true,
+  "formal_struct_0_thermal_load_allowed": false
+}

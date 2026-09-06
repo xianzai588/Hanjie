@@ -14,11 +14,15 @@ def _edges(anchors, near, far, zone, refinements=()):
     result = [anchors[0]]
     for lo,hi in zip(anchors[:-1],anchors[1:]):
         step = near if lo>=zone[0] and hi<=zone[1] else far
+        subdivisions=max(1,math.ceil((hi-lo)/step))
         midpoint = (lo+hi)/2
-        for bounds,local_step in refinements:
+        for refinement in refinements:
+            bounds,local_step=refinement[:2]
             if bounds[0]<=midpoint<=bounds[1]:
-                step = min(step,local_step)
-        result.extend(np.linspace(lo,hi,max(1,math.ceil((hi-lo)/step))+1)[1:])
+                base_subdivisions=max(1,math.ceil((hi-lo)/min(step,local_step)))
+                multiplier=int(refinement[2]) if len(refinement)==3 else 1
+                subdivisions=max(subdivisions,base_subdivisions*multiplier)
+        result.extend(np.linspace(lo,hi,subdivisions+1)[1:])
     return np.asarray(result)
 
 
@@ -41,8 +45,18 @@ def build_geometry(config, process_input, spec):
     bead_z = np.linspace(0.,leg,strips+1)
     widths = leg-(bead_z[:-1]+bead_z[1:])/2
     local_spacing = mesh.get("cross_local_spacing_mm")
-    n_refinements = [] if local_spacing is None else [(mesh["radial_local_zone_mm"],float(local_spacing))]
-    z_refinements = [] if local_spacing is None else [(mesh["axial_local_zone_mm"],float(local_spacing))]
+    nested_spacing=mesh.get("cross_local_base_spacing_mm")
+    nested_factor=int(mesh.get("cross_local_subdivision_factor",1))
+    if nested_factor<1:
+        raise ValueError("嵌套局部细分倍数必须为正整数")
+    if local_spacing is not None and nested_spacing is not None:
+        raise ValueError("普通局部步长与严格嵌套细分不能同时启用")
+    if nested_spacing is not None:
+        n_refinements=[(mesh["radial_local_zone_mm"],float(nested_spacing),nested_factor)]
+        z_refinements=[(mesh["axial_local_zone_mm"],float(nested_spacing),nested_factor)]
+    else:
+        n_refinements=[] if local_spacing is None else [(mesh["radial_local_zone_mm"],float(local_spacing))]
+        z_refinements=[] if local_spacing is None else [(mesh["axial_local_zone_mm"],float(local_spacing))]
     n = _edges([grid["radial_min_offset_mm"],-5.,-leg,*(-widths),-gap,0.,grid["radial_max_offset_mm"]],mesh["near_spacing_mm"],mesh["far_spacing_mm"],(-5.,5.),n_refinements)
     z = _edges([grid["axial_min_offset_mm"],-4.,*bead_z,4.,grid["axial_max_offset_mm"]],mesh["near_spacing_mm"],mesh["far_spacing_mm"],(-4.,4.),z_refinements)
     path = config["heat_source_path"]

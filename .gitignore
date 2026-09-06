@@ -28,6 +28,13 @@ simulation/cases/baseline-compliant/
 simulation/cases/flex-rigid/
 simulation/cases/flex-compliant/
 
+# Plan 5 首次 NEST-M 仅在严格 JSON 序列化阶段失败；保留本地排障，不作为证据提交。
+simulation/thermal-v5/results/nested-refinement-study/NEST-M_failed_serialization/
+
+# 被质量门拒绝的可重复生成网格；版本库保留参数、统计和逐单元诊断。
+simulation/structural-v4/results/struct0-prep/continuous-unified-plan5.msh
+simulation/structural-v4/results/struct0-prep/continuous-unified-plan5-delaunay.msh
+
 # IDE
 .vscode/
 .idea/

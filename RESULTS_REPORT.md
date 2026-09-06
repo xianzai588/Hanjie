@@ -14,6 +14,9 @@
 | 条件性接头承载 | 参考包络下 6P 的 1.737/2.0/2.5/3.0/3.5 mm 所需许用为 105.149/91.303/73.042/60.869/52.173 MPa，并分列径向、轴向与倾覆贡献 | design_assumption_reference_envelope；不能证明实际服役安全或 3.5 mm 唯一必要 | `simulation/structural-v4/results/joint-load-basis/joint-load-basis.json` |
 | STRUCT-0 全局求解准备 | 一致切线有限差分核对、硬化拉杆解析对照、约束升温—释放—冷却及高温应力自由出生全部通过；拉杆最终 300 MPa 步最多 6 次 Newton，释放步 3 次 | algorithm_and_small_mesh_verification；尚非整件焊接求解 | `simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json` |
 | Continuous 统一预备网格 | Q235B/QT450-10/ERNiFe-CI 三材料共形网格 52,210 节点、176,524 四面体，焊接/间隙/夹具/基准/孔集合完整且无倒置单元 | 仍有 1,381 个 minSICN<0.1 单元；热映射和接触未执行，STRUCT-PREP Gate 不通过 | `simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json` |
+| 严格嵌套热离散 | NEST-M/F/VF 为 111,440/199,080/458,360 控制体；F→VF 焊材 P95 10.923 °C、缩减比 0.406，QT/NiFe solidus flip 0.905/0.754 mm³；共同源积分 L1 约 4.2e-16，两侧接口累计热差 0.10%/0.17% | 已出现渐近趋势但温度场和固定点历史仍超门；禁止 xfine、dt/2 和正式结构输入 | `simulation/thermal-v5/results/nested-refinement-study/assessment.json` |
+| STRUCT-0 Plan 5 准备 | 法向接触—分离—撤夹、局部材料安全保守映射、全局六四面体激活/应力自由出生均通过；压紧 penetration 6.99e-6 mm | 小模型/局部算法验证；不代表 Continuous 正式求解 | `simulation/structural-v4/results/struct0-prep/struct0-prep-plan5-assessment.json` |
+| Continuous 网格质量定位 | 1,381 个差单元全部在焊缝并邻近两焊接界面；0.5 mm 局部细化变为 2,575 个，Delaunay+重定位仍 1,393 个 | 两次试验均拒绝；根因收敛到系统性环形接口三角化/四面体拓扑，STRUCT-0-PREP 不通过 | `simulation/structural-v4/results/struct0-prep/continuous-mesh-quality-diagnosis.json` |
 | 逐件预偏置 | 逆补偿合成代理均值 0.00647 mm、P95 0.01585 mm、总体通过率 100% | synthetic_demo；未做实物标定 | `studies/PRECOMPENSATION/results/precompensation_summary.json` |
 | 误差预算 | 最坏径向 0.035 mm，对应 Ø0.070 mm | 未满足 Ø0.05 mm 目标 | `project/tolerance.yaml` |
 
