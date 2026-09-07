@@ -146,10 +146,13 @@ def test_generated_report_status_uses_current_authorities() -> None:
     assert status["thermal_spatial_fix"]["spatial_gate_pass"] is False
     assert status["thermal_xsec"]["stage"]=="THERMAL-0.5-XSEC"
     assert status["thermal_xsec"]["time_step_recheck_allowed"] is False
+    assert status["thermal_boundary_neumann"]["formal_struct_0_allowed"] is False
     assert status["joint_load_basis"]["decision"]["three_point_five_mm_necessary"] is None
     assert all(status["structural_3d_components"]["checks"].values())
     assert all(status["structural_global_newton"]["checks"].values())
     assert status["continuous_unified_mesh"]["struct_prep_gate_pass"] is False
+    assert status["continuous_swept_mesh"]["mesh_acceptance_pass"] is True
+    assert status["struct0_dress_rehearsal"]["struct0_prep_status"] == "ready_pending_admitted_thermal_history"
     assert "自动生成的当前证据摘要" in render_markdown(status)
     assert "未校准局部热诊断；禁止正式整件性能结论" in render_markdown(status)
 
@@ -157,7 +160,7 @@ def test_generated_report_status_uses_current_authorities() -> None:
 def test_active_structural_gate_points_to_current_failed_assessment() -> None:
     prep = yaml.safe_load((ROOT/"project/struct-0-prep.yaml").read_text(encoding="utf-8"))
     gate = json.loads((ROOT/prep["thermal_gate"]).read_text(encoding="utf-8"))
-    assert gate["stage"] == "THERMAL-0.6-NESTED"
+    assert gate["stage"] == "THERMAL-0.7-BOUNDARY-NEUMANN"
     assert prep["thermal_gate_field"] == "spatial_gate_pass"
     assert gate[prep["thermal_gate_field"]] is False
     assert prep["formal_thermal_coupling_allowed"] is False
@@ -175,10 +178,10 @@ def test_struct_prep_records_global_solver_without_claiming_full_part_solution()
     prep = yaml.safe_load((ROOT/"project/struct-0-prep.yaml").read_text(encoding="utf-8"))
     assert prep["constitutive"]["three_dimensional_j2"]["status"] == "algorithm_verified"
     assert prep["constitutive"]["affine_tetrahedral_small_mesh"]["status"] == "equilibrium_verified"
-    assert prep["constitutive"]["elastoplastic_solver"]["status"] == "small_mesh_global_newton_verified"
-    assert prep["geometry"]["unified_mesh"]["status"] == "plan5_local_refinement_and_algorithm_trials_rejected_quality_debt_open"
+    assert prep["constitutive"]["elastoplastic_solver"]["status"] == "sparse_global_newton_sector_rehearsal_verified"
+    assert prep["geometry"]["unified_mesh"]["status"] == "swept_topology_quality_admitted"
     assert prep["geometry"]["heat_to_structure_mapping"]["status"] == "local_benchmark_passed_formal_load_blocked"
-    assert prep["acceptance"]["struct_0_continuous_baseline_ready"] is False
+    assert prep["acceptance"]["struct_0_continuous_baseline_ready"] == "ready_pending_admitted_thermal_history"
 
 
 def test_current_report_has_no_known_v42_stale_claims() -> None:

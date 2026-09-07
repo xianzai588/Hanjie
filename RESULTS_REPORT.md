@@ -1,6 +1,6 @@
 # V4.3 关键结果索引
 
-更新时间：2026-09-06
+更新时间：2026-09-07
 
 本文件只登记已实际运行且当前有效的结果；完整边界见各结果文件。
 
@@ -17,6 +17,8 @@
 | 严格嵌套热离散 | NEST-M/F/VF 为 111,440/199,080/458,360 控制体；F→VF 焊材 P95 10.923 °C、缩减比 0.406，QT/NiFe solidus flip 0.905/0.754 mm³；共同源积分 L1 约 4.2e-16，两侧接口累计热差 0.10%/0.17% | 已出现渐近趋势但温度场和固定点历史仍超门；禁止 xfine、dt/2 和正式结构输入 | `simulation/thermal-v5/results/nested-refinement-study/assessment.json` |
 | STRUCT-0 Plan 5 准备 | 法向接触—分离—撤夹、局部材料安全保守映射、全局六四面体激活/应力自由出生均通过；压紧 penetration 6.99e-6 mm | 小模型/局部算法验证；不代表 Continuous 正式求解 | `simulation/structural-v4/results/struct0-prep/struct0-prep-plan5-assessment.json` |
 | Continuous 网格质量定位 | 1,381 个差单元全部在焊缝并邻近两焊接界面；0.5 mm 局部细化变为 2,575 个，Delaunay+重定位仍 1,393 个 | 两次试验均拒绝；根因收敛到系统性环形接口三角化/四面体拓扑，STRUCT-0-PREP 不通过 | `simulation/structural-v4/results/struct0-prep/continuous-mesh-quality-diagnosis.json` |
+| 显式边界 Neumann F/VF | 四项解析验证与仿射精确同材料 WLS patch tests 通过；F→VF NiFe P95/MAE 仍为 10.923/8.066 °C；最差固定点 RMS 2.785 °C，QT 近界面峰值差 10.232 °C | 面源与固定点 RMS 已闭环，但连续场和一个峰值门仍失败；按预登记规则不跑新 M/XF/dt，转成熟 FE/FVM 独立参考 | `simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json` |
+| Continuous 扫掠网格与彩排 | 84,420 节点、360,990 四面体，整网格及焊缝区 minSICN<0.1 均为 0，最小 0.1681；合成热循环彩排最大 10 次 Newton，合力/合矩误差 1.85e-13 N/4.39e-11 N·mm | `STRUCT-0-PREP=ready_pending_admitted_thermal_history`；合成 PFEP_FE 无工程意义，正式 STRUCT-0 仍关闭 | `simulation/structural-v4/results/struct0-prep/struct0-prep-plan6-assessment.json` |
 | 逐件预偏置 | 逆补偿合成代理均值 0.00647 mm、P95 0.01585 mm、总体通过率 100% | synthetic_demo；未做实物标定 | `studies/PRECOMPENSATION/results/precompensation_summary.json` |
 | 误差预算 | 最坏径向 0.035 mm，对应 Ø0.070 mm | 未满足 Ø0.05 mm 目标 | `project/tolerance.yaml` |
 

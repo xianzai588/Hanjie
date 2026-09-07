@@ -57,13 +57,65 @@ def test_detailed_ledger_preserves_signed_interface_energy_and_source_moments():
 
 def test_point_stencil_never_crosses_material_or_silently_extrapolates():
     geometry = _line_geometry()
-    stencil = build_material_point_stencil(geometry, [0.5, 1.45, 0.5], material_id=3, neighbours=3)
-    assert stencil["cell_indices"] == [1]
-    assert stencil["weights"] == pytest.approx([1.0])
+    with pytest.raises(ValueError, match="insufficient_stencil"):
+        build_material_point_stencil(geometry, [0.5, 1.45, 0.5], material_id=3, neighbours=3)
     with pytest.raises(ValueError, match="计算域"):
         build_material_point_stencil(geometry, [0.5, 3.1, 0.5], material_id=1)
     with pytest.raises(ValueError, match="预期材料"):
         build_material_point_stencil(geometry, [0.5, 1.45, 0.5], material_id=2)
+
+
+def _cloud_geometry(centres, material_ids):
+    centres = np.asarray(centres, dtype=float)
+    count = len(centres)
+    # WLS 只依赖真实中心；规则边界用于点的域内与材料归属检查。
+    return {
+        "ids": np.asarray(material_ids, dtype=int),
+        "index": np.column_stack((np.arange(count), np.zeros(count, int), np.zeros(count, int))),
+        "dims": np.ones((count, 3)),
+        "volumes": np.ones(count),
+        "s_left": centres[:, 0] - 0.5,
+        "s_edges": np.arange(count + 1, dtype=float),
+        "n_edges": np.array([-2.0, 2.0]),
+        "z_edges": np.array([-2.0, 2.0]),
+        "cell_centres_override": centres,
+        "lattice": np.arange(count, dtype=int)[:, None, None],
+    }
+
+
+def test_wls_reconstruction_is_affine_exact_on_random_nonuniform_cloud():
+    rng = np.random.default_rng(7456)
+    centres = rng.uniform(-1.0, 1.0, size=(24, 3))
+    # 让目标点明确落入第一个控制体，中心云本身保持非规则。
+    centres[:, 0] = np.linspace(0.2, 23.8, len(centres))
+    geometry = _cloud_geometry(centres, np.ones(len(centres), int))
+    point = np.array([0.4, 0.1, -0.2])
+    stencil = build_material_point_stencil(geometry, point, 1, neighbours=12)
+    values = 7.0 + centres @ np.array([1.5, -2.0, 0.75])
+    assert stencil["method"] == "same_material_weighted_least_squares_affine_exact"
+    assert np.dot(values[stencil["cell_indices"]], stencil["weights"]) == pytest.approx(
+        7.0 + point @ np.array([1.5, -2.0, 0.75]), abs=2e-12
+    )
+
+
+def test_wls_piecewise_affine_trace_uses_only_requested_material():
+    rng = np.random.default_rng(12)
+    left = rng.uniform([-0.9, -1.0, -1.0], [-0.05, 1.0, 1.0], size=(16, 3))
+    right = rng.uniform([0.05, -1.0, -1.0], [0.9, 1.0, 1.0], size=(16, 3))
+    centres = np.vstack((left, right))
+    geometry = _cloud_geometry(centres, np.r_[np.full(16, 2), np.full(16, 3)])
+    geometry["s_edges"] = np.linspace(-1.0, 1.0, 33)
+    geometry["s_left"] = centres[:, 0] - 0.01
+    geometry["index"] = np.column_stack((np.arange(32), np.zeros(32, int), np.zeros(32, int)))
+    geometry["lattice"] = np.arange(32, dtype=int)[:, None, None]
+    # 两侧温度连续，法向梯度按 k_left*g_left=k_right*g_right 构造。
+    target = np.array([-0.02, 0.15, -0.1])
+    stencil = build_material_point_stencil(geometry, target, 2, neighbours=12, containing_cell=0)
+    assert set(np.asarray(geometry["ids"])[stencil["cell_indices"]]) == {2}
+    left_values = 100.0 + centres @ np.array([2.0, 0.5, -0.25])
+    assert np.dot(left_values[stencil["cell_indices"]], stencil["weights"]) == pytest.approx(
+        100.0 + target @ np.array([2.0, 0.5, -0.25]), abs=2e-11
+    )
 
 
 def test_nested_ledgers_aggregate_on_common_physical_controls():

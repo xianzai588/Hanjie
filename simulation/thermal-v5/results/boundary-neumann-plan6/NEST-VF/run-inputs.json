@@ -1,0 +1,564 @@
+{
+  "case": {
+    "name": "NEST-VF",
+    "source": "surface45",
+    "properties": "nominal",
+    "mesh": "controlled",
+    "dt": 0.1,
+    "mesh_overrides": {
+      "arc_spacing_mm": 1.0,
+      "near_spacing_mm": 0.6,
+      "far_spacing_mm": 1.5,
+      "bead_strips": 6,
+      "bead_geometry_strips": 6,
+      "cross_local_base_spacing_mm": 0.6,
+      "cross_local_subdivision_factor": 4,
+      "radial_local_zone_mm": [
+        -3.0,
+        1.5
+      ],
+      "axial_local_zone_mm": [
+        -2.0,
+        2.0
+      ]
+    }
+  },
+  "specification": {
+    "version": "THERMAL-0.4R1-SERIES-RESISTANCE",
+    "evidence_level": "solver_result_unvalidated",
+    "inputs": "project/g-inputs-v5.2.yaml",
+    "process_input": "project/process.yaml",
+    "material_input": "project/materials.yaml",
+    "thermal_properties": "project/thermal-physics-v5.3.yaml",
+    "geometry": {
+      "coordinate_system": "s沿焊道；n=0为壳体内壁；z=0为座体上表面",
+      "parent_regions": "QT: n<=-gap且-12<=z<=0；Q235: 0<=n<=5",
+      "deposited_bead": "0<z<leg，-width(z)<n<0；由面积精确的阶梯三角截面离散，仅填丝出生",
+      "leg_rule": "leg=sqrt(2*wire_area*wire_feed/travel_speed*deposition_efficiency)",
+      "nominal_design_leg_mm": 3.5,
+      "note": "推导出的填丝角焊道不是已实现3.5mm焊脚；母材熔入仍保持原材料编号。",
+      "gap_model": "保留输入0.02mm间隙；间隙无固体导热，未计间隙气体导热/相互辐射，焊丝出生后建立两侧接触。"
+    },
+    "deposition": {
+      "efficiency": 1.0,
+      "efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "evidence_level": "design_assumption",
+      "temperature_c": 20.0,
+      "progress": "按已走焊长在s单元内连续增加填丝占据体积；每步质量对应积分送丝量，不把母材当作新增填丝。"
+    },
+    "mesh": {
+      "arc_spacing_mm": 1.0,
+      "near_spacing_mm": 0.6,
+      "far_spacing_mm": 1.5,
+      "bead_strips": 6,
+      "status": "controlled_spatial_discretization_study",
+      "bead_geometry_strips": 6,
+      "cross_local_base_spacing_mm": 0.6,
+      "cross_local_subdivision_factor": 4,
+      "radial_local_zone_mm": [
+        -3.0,
+        1.5
+      ],
+      "axial_local_zone_mm": [
+        -2.0,
+        2.0
+      ]
+    },
+    "source": {
+      "model": "surface45",
+      "direction_n_z": [
+        0.7071067811865476,
+        -0.7071067811865476
+      ],
+      "cross_coordinate": "u=n*cos(angle_deg)+z*sin(angle_deg)",
+      "parameters": "a_front/a_rear/b及前后权重继承0.2；c不用于表面模型，未收缩热源尺度。",
+      "normalization": "与Plan 5相同的未校准surface45解析投影源；Q_face以W直接进入唯一相邻控制体RHS，不按控制体体积重新定义；无限投影平面归一化，有限材料透射单独记账。",
+      "minimum_active_source_fraction": 0.95,
+      "gate_basis": "预先冻结的工程数值门槛，不是文献物理标准",
+      "evidence_level": "design_assumption_not_calibrated",
+      "angle_deg": 45.0,
+      "penetration_fraction": 0.0
+    },
+    "solver": {
+      "time_step_s": 0.1,
+      "cooling_after_source_s": 20.0,
+      "energy_residual_pct_limit": 0.02,
+      "nonlinear_residual_j": 1e-08,
+      "maximum_newton_iterations": 30,
+      "mass_relative_tolerance": 1e-10,
+      "method": "守恒FV；非均匀/异材公共面按两侧中心至界面的串联热阻；旧温度导热系数；隐式相变焓；出生焓计入总能量。",
+      "scope": "局部展开角接头、参考质量固定，未模拟熔池流动、蒸发、自由表面运动或成分混合。"
+    },
+    "convergence_requirements": {
+      "deferred_until": "nominal_mass_source_energy_checks_pass_and_properties_frozen",
+      "metrics": [
+        "peak_temperature",
+        "qt_fusion_geometry",
+        "q235b_fusion_geometry",
+        "parent_thermal_exposure",
+        "energy_residual"
+      ],
+      "inherited_thermal02_mesh_pass": false
+    },
+    "thermal_1_allowed": false,
+    "formal_struct_0_allowed": false
+  },
+  "materials": {
+    "materials": {
+      "q235b": {
+        "name": "碳素结构钢 Q235B",
+        "standard": "GB/T 700-2006",
+        "composition_nominal_wt_pct": {
+          "C": 0.17,
+          "Mn": 0.45,
+          "Si": 0.2,
+          "S": 0.035,
+          "P": 0.035
+        },
+        "nominal_properties_20c": {
+          "density_kg_m3": 7850.0,
+          "specific_heat_j_kgk": 470.0,
+          "thermal_conductivity_w_mk": 45.0,
+          "elastic_modulus_gpa": 210.0,
+          "poisson_ratio": 0.28,
+          "alpha_per_k": 1.2e-05,
+          "yield_strength_mpa": 235.0,
+          "tensile_strength_mpa": 420.0
+        },
+        "temperature_dependent": {
+          "temperatures_c": [
+            20,
+            200,
+            400,
+            600,
+            800,
+            1000,
+            1400
+          ],
+          "thermal_conductivity_w_mk": [
+            45.0,
+            43.0,
+            38.0,
+            31.0,
+            26.0,
+            28.0,
+            32.0
+          ],
+          "specific_heat_j_kgk": [
+            470.0,
+            520.0,
+            610.0,
+            760.0,
+            800.0,
+            650.0,
+            700.0
+          ],
+          "elastic_modulus_gpa": [
+            210.0,
+            195.0,
+            165.0,
+            85.0,
+            25.0,
+            10.0,
+            2.0
+          ],
+          "yield_strength_mpa": [
+            235.0,
+            210.0,
+            160.0,
+            60.0,
+            20.0,
+            8.0,
+            2.0
+          ],
+          "alpha_per_k": [
+            1.2e-05,
+            1.28e-05,
+            1.36e-05,
+            1.44e-05,
+            1.48e-05,
+            1.5e-05,
+            1.52e-05
+          ]
+        }
+      },
+      "qt450_10": {
+        "name": "球墨铸铁 QT450-10",
+        "standard": "GB/T 1348-2019",
+        "composition_nominal_wt_pct": {
+          "C": 3.65,
+          "Si": 2.6,
+          "Mn": 0.3,
+          "Mg": 0.045,
+          "P": 0.04,
+          "S": 0.015
+        },
+        "nominal_properties_20c": {
+          "density_kg_m3": 7200.0,
+          "specific_heat_j_kgk": 460.0,
+          "thermal_conductivity_w_mk": 35.0,
+          "elastic_modulus_gpa": 170.0,
+          "poisson_ratio": 0.27,
+          "alpha_per_k": 1.05e-05,
+          "yield_strength_mpa": 310.0,
+          "tensile_strength_mpa": 450.0,
+          "elongation_pct": 10.0
+        },
+        "temperature_dependent": {
+          "temperatures_c": [
+            20,
+            200,
+            400,
+            600,
+            750,
+            900,
+            1200
+          ],
+          "thermal_conductivity_w_mk": [
+            35.0,
+            34.0,
+            32.0,
+            28.0,
+            24.0,
+            25.0,
+            28.0
+          ],
+          "specific_heat_j_kgk": [
+            460.0,
+            510.0,
+            580.0,
+            710.0,
+            850.0,
+            720.0,
+            750.0
+          ],
+          "elastic_modulus_gpa": [
+            170.0,
+            158.0,
+            135.0,
+            70.0,
+            20.0,
+            8.0,
+            1.5
+          ],
+          "yield_strength_mpa": [
+            310.0,
+            280.0,
+            210.0,
+            50.0,
+            15.0,
+            5.0,
+            1.0
+          ],
+          "alpha_per_k": [
+            1.05e-05,
+            1.12e-05,
+            1.2e-05,
+            1.3e-05,
+            1.35e-05,
+            1.38e-05,
+            1.4e-05
+          ]
+        }
+      },
+      "ernife_ci": {
+        "name": "镍铁铸铁焊丝 ERNiFe-CI",
+        "standard": "AWS A5.15 / GB/T 10044",
+        "composition_nominal_wt_pct": {
+          "Ni": 55.0,
+          "Fe": "Balance",
+          "C": 0.5,
+          "Mn": 1.0,
+          "Si": 0.5
+        },
+        "nominal_properties_20c": {
+          "density_kg_m3": 8200.0,
+          "specific_heat_j_kgk": 480.0,
+          "thermal_conductivity_w_mk": 22.0,
+          "elastic_modulus_gpa": 160.0,
+          "poisson_ratio": 0.3,
+          "alpha_per_k": 1.1e-05,
+          "yield_strength_mpa": 290.0,
+          "tensile_strength_mpa": 480.0
+        }
+      }
+    }
+  },
+  "physics": {
+    "version": "THERMAL-0.3-PHYS",
+    "evidence_level": "solver_result_unvalidated",
+    "baseline_input": "project/g-inputs-v5.2.yaml",
+    "baseline_materials": "project/materials.yaml",
+    "sources": {
+      "q235_casting": {
+        "url": "https://www.mdpi.com/1996-1944/16/9/3361",
+        "scope": "表2：Q235 solidus=1748 K, liquidus=1793 K, L=264000 J/kg；不是本批 Q235B 实测。"
+      },
+      "ductile_laser": {
+        "url": "https://www.mdpi.com/1996-1944/13/5/1174",
+        "scope": "激光重熔球铁研究支持成分/凝固路径依赖；不能作为 QT450-10 的精确常数。"
+      },
+      "nife_supplier": {
+        "url": "https://nickelalloys.es/fundicion/fund-nife-cl-ernife-cl/",
+        "scope": "ERNiFe-CI 焊丝成分和用途；未提供高温 k/cp 或潜热。"
+      },
+      "goldak_identifiability": {
+        "url": "https://doi.org/10.1016/j.addma.2024.104379",
+        "scope": "LPBF 校准联合截面/纵向轮廓；只迁移方法，不迁移工艺参数。"
+      }
+    },
+    "materials": {
+      "q235b": {
+        "phase_change": {
+          "solidus_c": 1474.85,
+          "liquidus_c": 1519.85,
+          "latent_heat_j_kg": 264000.0,
+          "source": "q235_casting",
+          "evidence_level": "literature_analogue_not_batch_measurement",
+          "uncertainty": {
+            "solidus_c": [
+              1450.0,
+              1500.0
+            ],
+            "liquidus_c": [
+              1500.0,
+              1540.0
+            ],
+            "latent_heat_j_kg": [
+              240000.0,
+              290000.0
+            ]
+          },
+          "range_basis": "围绕文献值的工程敏感性范围，非文献置信区间。"
+        },
+        "high_temperature": {
+          "source": "project/materials.yaml；1400°C 以上常值外推",
+          "evidence_level": "design_assumption",
+          "k_scale_range": [
+            0.8,
+            1.2
+          ],
+          "cp_scale_range": [
+            0.85,
+            1.15
+          ]
+        }
+      },
+      "qt450_10": {
+        "phase_change": {
+          "solidus_c": 1100.0,
+          "liquidus_c": 1200.0,
+          "latent_heat_j_kg": 240000.0,
+          "source": "ductile_laser；本组数值为待测工程情景，非该论文逐值提取",
+          "evidence_level": "design_assumption",
+          "uncertainty": {
+            "solidus_c": [
+              1050.0,
+              1150.0
+            ],
+            "liquidus_c": [
+              1150.0,
+              1250.0
+            ],
+            "latent_heat_j_kg": [
+              180000.0,
+              300000.0
+            ]
+          },
+          "range_basis": "宽范围敏感性假设；需批次成分及 DSC/热分析约束。"
+        },
+        "high_temperature": {
+          "source": "project/materials.yaml；1200°C 以上常值外推",
+          "evidence_level": "design_assumption",
+          "k_scale_range": [
+            0.8,
+            1.2
+          ],
+          "cp_scale_range": [
+            0.85,
+            1.15
+          ]
+        }
+      },
+      "ernife_ci": {
+        "phase_change": {
+          "solidus_c": 1380.0,
+          "liquidus_c": 1450.0,
+          "latent_heat_j_kg": 260000.0,
+          "source": "nife_supplier 未提供本字段；工程敏感性假设，待供应商/DSC 数据",
+          "evidence_level": "design_assumption",
+          "uncertainty": {
+            "solidus_c": [
+              1300.0,
+              1420.0
+            ],
+            "liquidus_c": [
+              1430.0,
+              1500.0
+            ],
+            "latent_heat_j_kg": [
+              180000.0,
+              320000.0
+            ]
+          },
+          "range_basis": "不是 ERNiFe-CI 标准值，也不是文献实测区间。"
+        },
+        "high_temperature": {
+          "temperatures_c": [
+            20,
+            200,
+            400,
+            600,
+            800,
+            1000,
+            1200,
+            1500,
+            1800
+          ],
+          "thermal_conductivity_w_mk": [
+            22,
+            23,
+            25,
+            27,
+            29,
+            31,
+            33,
+            35,
+            35
+          ],
+          "specific_heat_j_kgk": [
+            480,
+            510,
+            550,
+            590,
+            630,
+            660,
+            690,
+            720,
+            720
+          ],
+          "source": "常温取 project/materials.yaml；高温为显式敏感性曲线，尚无本焊丝测量来源",
+          "evidence_level": "design_assumption",
+          "k_scale_range": [
+            0.6,
+            1.4
+          ],
+          "cp_scale_range": [
+            0.75,
+            1.25
+          ]
+        }
+      }
+    },
+    "simulation": {
+      "cooling_after_source_s": 20.0,
+      "time_step_s": 0.01,
+      "activation": [
+        "pre_existing",
+        "progressive"
+      ],
+      "deposition_temperature_c": 20.0,
+      "activation_lead_mm": 0.0,
+      "geometry_status": "legacy_full_height_band_sensitivity_only",
+      "source_on_void": "记为未吸收功率，禁止向剩余单元重新归一化",
+      "boundary_on_void": "新增空腔暴露面施加同一对流/辐射边界",
+      "evidence_boundary": "沿用代理焊缝带做双模型敏感性，不是实物填丝几何。质量审计失败时禁止升格为合理熔合。"
+    },
+    "scan": {
+      "source": "project/process.yaml",
+      "efficiency": 0.55,
+      "current_a": [
+        65.0,
+        75.0,
+        85.0
+      ],
+      "voltage_v": [
+        11.0,
+        12.0,
+        13.5
+      ],
+      "travel_speed_mm_s": [
+        1.2,
+        1.5,
+        2.0
+      ],
+      "preheat_c": [
+        130.0,
+        150.0,
+        180.0
+      ],
+      "line_energy_j_mm": [
+        240.0,
+        420.0
+      ],
+      "policy": "先按 eta*U*I/v 过滤；固定热源尺寸，不按熔化目标调 eta。有限采样不证明连续域不存在熔合。"
+    },
+    "gates": {
+      "thermal_1_allowed": false,
+      "formal_struct_0_allowed": false,
+      "requires": [
+        "material_specific_phase_change",
+        "enthalpy_verification",
+        "high_t_evidence",
+        "activation_sensitivity",
+        "deposition_mass_consistency",
+        "process_scan",
+        "plausible_two_sided_fusion",
+        "experimental_calibration",
+        "independent_validation"
+      ]
+    }
+  },
+  "hashes": {
+    "project/thermal-boundary-neumann-v5.7.yaml": "afb622e56c552582e6afa3651a109462288f69ed9b269a7199a350f602bfa627",
+    "project/thermal-mass-closed-v5.4r1.yaml": "0cc43ffd469ffe9dae9807105f01e4a7d66252c7562c2723627c38f4670a5e32",
+    "simulation/thermal-v5/run_credibility04r.py": "6dfd75febdce0b7798fc1a6807c9c56ca367d1469217f6a2f0981b19fabb9300",
+    "simulation/thermal-v5/credibility_source.py": "2ebe3f8c76a7a826bc9f222ffd58a6f5f736601425985a5cc6b16c0244b4038a",
+    "simulation/thermal-v5/run_mass_closed04.py": "d5c606c6184cbfe94c6bf30df58c88af28e064803d77ce2f8171fedbcc2872b3",
+    "simulation/thermal-v5/mass_closed_geometry.py": "a387eaa833dfc5ccf90393d0d3f73fc2adb0c59ffd18f55f46b14de3556b9daf",
+    "simulation/thermal-v5/physics.py": "840b1ab772880dafc19dcd8077797956de2007621718ba86163628bb686a7c70",
+    "simulation/thermal-v5/run_physics03.py": "9183565a37f99ffb525e02e4a474b8f9f75e6ec9081741c0bcd73ebdf1d95bc8",
+    "src/hanjie/simulation/thermal_ledgers.py": "9f49b137c1882dd9fb8c96bd883972f00b13a48927081bf3ca391abd11011029",
+    "project/g-inputs-v5.2.yaml": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
+    "project/process.yaml": "65c1a48681c872d27c413410f3a697519b7df8ce7ccf4183575761d5dd8b8779",
+    "project/materials.yaml": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+    "project/thermal-physics-v5.3.yaml": "a98a64fe120bd469c3c48322aed28949d264eb76f1d3b173a44ae3ad4bf2d565",
+    "src/hanjie/simulation/neumann_source.py": "1c6949598b49233c66fee1c7c5ac386e4f88a6cba821d103940b3857297480b8"
+  },
+  "executed_hashes": {
+    "project/thermal-boundary-neumann-v5.7.yaml": "afb622e56c552582e6afa3651a109462288f69ed9b269a7199a350f602bfa627",
+    "project/thermal-mass-closed-v5.4r1.yaml": "0cc43ffd469ffe9dae9807105f01e4a7d66252c7562c2723627c38f4670a5e32",
+    "simulation/thermal-v5/run_credibility04r.py": "6dfd75febdce0b7798fc1a6807c9c56ca367d1469217f6a2f0981b19fabb9300",
+    "simulation/thermal-v5/credibility_source.py": "2ebe3f8c76a7a826bc9f222ffd58a6f5f736601425985a5cc6b16c0244b4038a",
+    "simulation/thermal-v5/run_mass_closed04.py": "d5c606c6184cbfe94c6bf30df58c88af28e064803d77ce2f8171fedbcc2872b3",
+    "simulation/thermal-v5/mass_closed_geometry.py": "a387eaa833dfc5ccf90393d0d3f73fc2adb0c59ffd18f55f46b14de3556b9daf",
+    "simulation/thermal-v5/physics.py": "840b1ab772880dafc19dcd8077797956de2007621718ba86163628bb686a7c70",
+    "simulation/thermal-v5/run_physics03.py": "9183565a37f99ffb525e02e4a474b8f9f75e6ec9081741c0bcd73ebdf1d95bc8",
+    "src/hanjie/simulation/thermal_ledgers.py": "9f49b137c1882dd9fb8c96bd883972f00b13a48927081bf3ca391abd11011029",
+    "project/g-inputs-v5.2.yaml": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
+    "project/process.yaml": "65c1a48681c872d27c413410f3a697519b7df8ce7ccf4183575761d5dd8b8779",
+    "project/materials.yaml": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+    "project/thermal-physics-v5.3.yaml": "a98a64fe120bd469c3c48322aed28949d264eb76f1d3b173a44ae3ad4bf2d565",
+    "src/hanjie/simulation/neumann_source.py": "1c6949598b49233c66fee1c7c5ac386e4f88a6cba821d103940b3857297480b8"
+  },
+  "reproduction_hashes": {
+    "project/thermal-boundary-neumann-v5.7.yaml": "afb622e56c552582e6afa3651a109462288f69ed9b269a7199a350f602bfa627",
+    "project/thermal-mass-closed-v5.4r1.yaml": "0cc43ffd469ffe9dae9807105f01e4a7d66252c7562c2723627c38f4670a5e32",
+    "simulation/thermal-v5/run_credibility04r.py": "259550d37c329edf02d75ea2c0e244a41a50d75eb9163963b97df60004006699",
+    "simulation/thermal-v5/credibility_source.py": "2ebe3f8c76a7a826bc9f222ffd58a6f5f736601425985a5cc6b16c0244b4038a",
+    "simulation/thermal-v5/run_mass_closed04.py": "d5c606c6184cbfe94c6bf30df58c88af28e064803d77ce2f8171fedbcc2872b3",
+    "simulation/thermal-v5/mass_closed_geometry.py": "a387eaa833dfc5ccf90393d0d3f73fc2adb0c59ffd18f55f46b14de3556b9daf",
+    "simulation/thermal-v5/physics.py": "840b1ab772880dafc19dcd8077797956de2007621718ba86163628bb686a7c70",
+    "simulation/thermal-v5/run_physics03.py": "9183565a37f99ffb525e02e4a474b8f9f75e6ec9081741c0bcd73ebdf1d95bc8",
+    "src/hanjie/simulation/thermal_ledgers.py": "9f49b137c1882dd9fb8c96bd883972f00b13a48927081bf3ca391abd11011029",
+    "project/g-inputs-v5.2.yaml": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
+    "project/process.yaml": "65c1a48681c872d27c413410f3a697519b7df8ce7ccf4183575761d5dd8b8779",
+    "project/materials.yaml": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+    "project/thermal-physics-v5.3.yaml": "a98a64fe120bd469c3c48322aed28949d264eb76f1d3b173a44ae3ad4bf2d565",
+    "src/hanjie/simulation/neumann_source.py": "1c6949598b49233c66fee1c7c5ac386e4f88a6cba821d103940b3857297480b8"
+  },
+  "post_run_observer_note": "温度场由启动时源码生成；随后只修复冷却步面快照清空和补充源码哈希。这两项不进入求解器RHS；executed_hashes保留启动快照，reproduction_hashes记录当前可复跑版本。"
+}

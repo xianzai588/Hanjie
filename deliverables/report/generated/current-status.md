@@ -11,13 +11,15 @@
 | THERMAL-0.4R1 | ten_case_run_and_audit_completed | failed_spatial_convergence | 未校准局部热诊断；禁止正式整件性能结论 |
 | THERMAL-0.4R2-A | fixed_six_strip_geometry_coarse_medium_fine_and_directional_controls_completed | fixed_geometry_reduced_but_did_not_close_spatial_error | 分离场网格与阶梯几何影响；禁止正式整件性能结论 |
 | THERMAL-0.5-XSEC | local_xsec_m_f_vf_run_and_second_layer_diagnosis_completed | nonmonotonic_not_in_asymptotic_region | 局部离散根因诊断；禁止给最终空间/时间准入或正式整件性能结论 |
+| THERMAL-0.6-NESTED | strict_nested_m_f_vf_and_detailed_ledgers_completed | asymptotic_trend_but_local_field_and_fixed_history_failed | 边界源承载层、逐面峰值与固定点重构的数值机制诊断；禁止正式结构热载荷 |
+| THERMAL-0.7-BOUNDARY-NEUMANN | analytic_verification_and_conditional_f_vf_completed | explicit_face_and_reconstruction_verified_but_field_gate_failed | 证明面功率施加与点重构实现正确，并排除边界层体积源单位误用；禁止正式结构热载荷 |
 | METALLURGY-0 | executor_and_historical_diagnostics_completed | current_joint_not_physically_validated | 风险识别；禁止宣称当前接头组织或连接质量已验证 |
 | EXP-THERMAL | protocol_completed_experiment_not_run | not_executed | 试验准备 |
-| THERMAL-NUMERICAL-GATE | evaluated_after_0p5_xsec | not_passed | 通过后仅可标记 solver_verified 并进入无实物 Route B |
+| THERMAL-NUMERICAL-GATE | evaluated_after_0p7_boundary_neumann | not_passed | 通过后仅可标记 solver_verified 并进入无实物 Route B |
 | THERMAL-PHYSICAL-CALIBRATION | protocol_only | not_executed | 通过后方可标记 calibrated/physical_validated 并进入 Route A |
 | THERMAL-1 | blocked | not_admitted | 不允许正式结构耦合 |
-| STRUCT-0-PREP | partial_with_consistent_tangent_global_newton_and_continuous_mesh | not_ready | 独立组件验证；不得冒充实际焊接残余位置度 |
-| STRUCT-0 | not_executed | blocked_by_thermal_and_prep | 无 |
+| STRUCT-0-PREP | swept_mesh_and_synthetic_sector_dress_rehearsal_completed | ready_pending_admitted_thermal_history | 结构执行链工程准备；合成PFEP_FE无工程意义，不得冒充实际焊接残余位置度 |
+| STRUCT-0 | not_executed | blocked_by_thermal_only | 无 |
 | STRUCT-1 | static_screening_only | formal_comparison_not_executed | 当前载荷和支承下的静力筛查 |
 | SERVICE | load_builder_and_conditional_weld_group_screening_completed | not_executed | 单位载荷与参考包络敏感性；无整件性能或寿命结论 |
 | PROCESS-CONTROL | surrogate_prototypes_completed | formal_study_not_executed | 算法演示和拒绝逻辑验证 |
@@ -76,3 +78,9 @@
 一致切线与全局 Newton 小网格登记检查：全部通过；仍不等于整件求解。
 Continuous 预备网格含 52210 节点、176524 四面体，无倒置单元；但 minSICN<0.1 仍有 1381 个，热场映射和接触求解尚未完成。
 THERMAL 数值 Gate 与 STRUCT-PREP Gate 均保持关闭。
+
+## Plan 6 边界一致热离散与 Continuous 拓扑
+
+显式边界 Neumann 的 F→VF 焊材 P95/MAE 为 10.923/8.066 °C；新 M 运行许可：否。
+扫掠网格 84420 节点、360990 四面体，minSICN<0.1 为 0；彩排最大 Newton 迭代 10。
+STRUCT-0-PREP=`ready_pending_admitted_thermal_history`；正式 STRUCT-0 仍不允许。

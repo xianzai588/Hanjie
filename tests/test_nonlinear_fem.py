@@ -30,6 +30,7 @@ def test_global_newton_reproduces_hardening_uniaxial_bar():
         steps.append({"name":f"traction_{stress:g}","external_force_n":force,"prescribed_dofs":prescribed,"thermal_strain":0.})
     result=solve_incremental_tetra(nodes,elements,material,steps,relative_tolerance=1e-9,absolute_tolerance_n=1e-8,max_iterations=20)
 
+    assert result["linear_solver"] == "scipy_sparse_direct"
     assert all(step["converged"] for step in result["steps"])
     final=result["steps"][-1]
     expected_strain=300./210000.+(300.-235.)/2000.

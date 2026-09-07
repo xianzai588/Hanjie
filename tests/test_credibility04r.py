@@ -9,7 +9,7 @@ from scipy.special import erf
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"simulation/thermal-v5"))
-from credibility_source import projected_weights
+from credibility_source import boundary_face_source_power, projected_boundary_faces, projected_weights
 from mass_closed_geometry import build_geometry, surface_weights, source_power, filled_fraction
 from run_credibility04r import material_scenario, load
 from audit_credibility04r import compare
@@ -26,6 +26,21 @@ def test_nominal_source_preserves_frozen_surface(geometry):
     g,_ = geometry
     for bead in (False,True):
         np.testing.assert_allclose(projected_weights(g,bead,2.5),surface_weights(g,bead,2.5),atol=1e-14)
+
+
+def test_explicit_neumann_faces_scatter_to_legacy_integrated_cell_power(geometry):
+    g,config = geometry
+    legacy = [projected_weights(g, bead, 2.5) for bead in (False, True)]
+    faces = [projected_boundary_faces(g, bead, 2.5) for bead in (False, True)]
+    for center in (-29.75, 0.0, 29.75):
+        old = source_power(g, *legacy, -30.0, 30.0, center, config["heat_source"], 495.0)
+        new, face_data = boundary_face_source_power(
+            g, *faces, -30.0, 30.0, center, config["heat_source"], 495.0, return_face_data=True
+        )
+        np.testing.assert_allclose(new, old, rtol=2e-14, atol=2e-13)
+        assert face_data["power_w"].sum() == pytest.approx(new.sum(), rel=2e-14)
+        assert np.all(face_data["area_mm2"] > 0)
+        assert np.all(face_data["adjacent_cell"] >= 0)
 
 
 @pytest.mark.parametrize("angle",[30.,60.])

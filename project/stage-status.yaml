@@ -51,6 +51,14 @@ stages:
     evidence: simulation/thermal-v5/results/nested-refinement-study/assessment.json
     upstream_dependencies: [THERMAL-0.5-XSEC]
     next_action: 停止NEST-XF和时间步复查；改为显式边界面Neumann通量并建立仿射精确同材料点重构，再重复NEST-F/VF
+  THERMAL-0.7-BOUNDARY-NEUMANN:
+    execution_status: analytic_verification_and_conditional_f_vf_completed
+    acceptance_result: explicit_face_and_reconstruction_verified_but_field_gate_failed
+    evidence_level: solver_result_unvalidated
+    allowed_use: 证明面功率施加与点重构实现正确，并排除边界层体积源单位误用；禁止正式结构热载荷
+    evidence: simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json
+    upstream_dependencies: [THERMAL-0.6-NESTED]
+    next_action: 不运行新M、XF或时间步复查；转用成熟FE/FVM对同一局部工况做独立参考
   METALLURGY-0:
     execution_status: executor_and_historical_diagnostics_completed
     acceptance_result: current_joint_not_physically_validated
@@ -66,12 +74,12 @@ stages:
     upstream_dependencies: [G-INPUTS]
     next_action: 条件具备时执行并保留独立验证试件
   THERMAL-NUMERICAL-GATE:
-    execution_status: evaluated_after_0p6_nested
+    execution_status: evaluated_after_0p7_boundary_neumann
     acceptance_result: not_passed
     evidence_level: solver_result_unvalidated
     allowed_use: 通过后仅可标记 solver_verified 并进入无实物 Route B
-    upstream_dependencies: [THERMAL-0.6-NESTED]
-    next_action: 先关闭局部边界源/点值h敏感性；空间门通过后才能在最终网格复查时间步
+    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN]
+    next_action: 当前自研局部模型停止继续细化；以成熟FE/FVM独立参考判别离散实现与模型结构
   THERMAL-PHYSICAL-CALIBRATION:
     execution_status: protocol_only
     acceptance_result: not_executed
@@ -88,17 +96,17 @@ stages:
     optional_physical_dependency: THERMAL-PHYSICAL-CALIBRATION
     next_action: 数值 Gate 通过后可进入 solver_verified Route B；物理校准通过才可使用 calibrated/validated 标签
   STRUCT-0-PREP:
-    execution_status: plan5_contact_mapping_activation_passed_weld_mesh_topology_open
-    acceptance_result: not_ready
-    evidence_level: executed_component_and_small_mesh_verification
-    allowed_use: 独立组件验证；不得冒充实际焊接残余位置度
-    evidence: simulation/structural-v4/results/struct0-prep/struct0-prep-plan5-assessment.json
-    mesh_evidence: simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json
+    execution_status: swept_mesh_and_synthetic_sector_dress_rehearsal_completed
+    acceptance_result: ready_pending_admitted_thermal_history
+    evidence_level: executed_swept_mesh_and_synthetic_sector_rehearsal
+    allowed_use: 结构执行链工程准备；合成PFEP_FE无工程意义，不得冒充实际焊接残余位置度
+    evidence: simulation/structural-v4/results/struct0-prep/struct0-prep-plan6-assessment.json
+    mesh_evidence: simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json
     upstream_dependencies: [G-INPUTS]
-    next_action: 停止机械减尺寸或仅切换四面体算法，改用环向分段/扫掠焊缝拓扑闭合界面minSICN；不得接入未准入热场
+    next_action: 等待获准整圈热历史；不得接入当前未准入局部热场
   STRUCT-0:
     execution_status: not_executed
-    acceptance_result: blocked_by_thermal_and_prep
+    acceptance_result: blocked_by_thermal_only
     evidence_level: none
     allowed_use: 无
     upstream_dependencies: [THERMAL-1, STRUCT-0-PREP]

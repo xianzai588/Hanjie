@@ -12,7 +12,7 @@ PROJECT_ROOT=Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT/"src") not in sys.path:
     sys.path.insert(0,str(PROJECT_ROOT/"src"))
 
-from credibility_source import projected_weights
+from credibility_source import boundary_face_source_power, projected_boundary_faces, projected_weights
 from hanjie.simulation.thermal_ledgers import DetailedThermalLedger, build_material_point_stencil
 from run_physics03 import ROOT, load, digest, write_json
 
@@ -73,7 +73,12 @@ def run_case(plan, case, out, specification_path=SPEC):
             return phy
         return old_load(path)
     core.load = scenario_load
-    core.surface_weights = lambda g,b,w: projected_weights(g,b,w,**source)
+    explicit_neumann = plan.get("source_discretization") == "explicit_boundary_face_neumann"
+    if explicit_neumann:
+        core.surface_weights = lambda g,b,w: projected_boundary_faces(g,b,w,**source)
+        core.source_power = boundary_face_source_power
+    else:
+        core.surface_weights = lambda g,b,w: projected_weights(g,b,w,**source)
     g = core.build_geometry(load(ROOT/spec["inputs"]),load(ROOT/spec["process_input"]),spec)
     ids = g["ids"]
     config = load(ROOT/spec["inputs"])
@@ -81,6 +86,7 @@ def run_case(plan, case, out, specification_path=SPEC):
     total = duration+spec["solver"]["cooling_after_source_s"]
     source_fn,step_fn,matrix_fn = core.source_power,core.enthalpy_step,core._conductance_matrix
     ledger = dict(time=0.,q=np.zeros(len(ids)),source=np.zeros(3),conductive=np.zeros(3),rows=[])
+    latest_boundary_faces = None
     detailed = DetailedThermalLedger(g) if plan.get("detailed_ledgers",False) else None
     observation_cells = []
     for point in plan.get("observation_points",[]):
@@ -108,7 +114,12 @@ def run_case(plan, case, out, specification_path=SPEC):
     def partition(vector):
         return np.bincount(ids,weights=vector,minlength=4)[1:4]
     def observe_source(*args):
-        q = source_fn(*args)
+        nonlocal latest_boundary_faces
+        if explicit_neumann:
+            q,latest_boundary_faces = source_fn(*args,return_face_data=True)
+        else:
+            q = source_fn(*args)
+            latest_boundary_faces = None
         ledger["q"] = q
         return q
     def observe_matrix(*args):
@@ -119,6 +130,7 @@ def run_case(plan, case, out, specification_path=SPEC):
             detailed.prepare_step(fraction,matrix,dt,face_area)
         return matrix,exposed
     def observe_step(*args):
+        nonlocal latest_boundary_faces
         result = step_fn(*args)
         dt = min(case["dt"],total-ledger["time"])
         if ledger["time"]<duration:
@@ -129,7 +141,7 @@ def run_case(plan, case, out, specification_path=SPEC):
         ledger["conductive"] += conductive
         ledger["time"] += dt
         if detailed is not None:
-            detailed.record_step(result[0],ledger["q"])
+            detailed.record_step(result[0],ledger["q"],latest_boundary_faces)
             reconstructed_rows.append({
                 "time_s":ledger["time"],
                 **{
@@ -143,12 +155,15 @@ def run_case(plan, case, out, specification_path=SPEC):
             cumulative_source_j=ledger["source"].tolist(),net_conductive_step_j=conductive.tolist(),
             cumulative_net_conductive_j=ledger["conductive"].tolist()))
         ledger["q"] = np.zeros(len(ids))
+        latest_boundary_faces = None
         return result
     core.source_power,core.enthalpy_step,core._conductance_matrix = observe_source,observe_step,observe_matrix
     sources = [specification_path,ROOT/plan["baseline"],Path(__file__),Path(__file__).with_name("credibility_source.py")]
     sources += [Path(__file__).with_name(n) for n in ("run_mass_closed04.py","mass_closed_geometry.py","physics.py","run_physics03.py")]
     if detailed is not None:
         sources.append(ROOT/"src/hanjie/simulation/thermal_ledgers.py")
+    if explicit_neumann:
+        sources.append(ROOT/"src/hanjie/simulation/neumann_source.py")
     sources += [ROOT/spec[k] for k in ("inputs","process_input","material_input","thermal_properties")]
     write_json(out/"run-inputs.json",dict(case=case,specification=spec,materials=mat,physics=phy,
         hashes={p.relative_to(ROOT).as_posix():digest(p) for p in sources}))
@@ -191,8 +206,10 @@ def run_case(plan, case, out, specification_path=SPEC):
         interface_ledger,source_ledger = detailed.finish()
         write_json(out/"interface-flux-ledger.json",interface_ledger)
         write_json(out/"source-density-ledger.json",source_ledger)
+        if explicit_neumann:
+            write_json(out/"boundary-neumann-ledger.json",detailed.finish_boundary_source())
         write_json(out/"fixed-point-reconstructed-history.json",dict(
-            definition="固定物理坐标的同材料逆距离平方重构；模板随网格生成但坐标固定，禁止跨材料和域外静默外推。",
+            definition="固定物理坐标的同材料加权最小二乘仿射精确重构；接口使用预冻结材料侧偏置点，禁止混合平均、跨材料和域外静默外推。",
             points=[{key:value for key,value in item.items() if key!="cell_indices"} for item in reconstructed_stencils],
             stencils=reconstructed_stencils,rows=reconstructed_rows))
         summary["detailed_thermal_ledgers"] = {
@@ -200,6 +217,8 @@ def run_case(plan, case, out, specification_path=SPEC):
             "source_density":"source-density-ledger.json",
             "fixed_point_reconstructed":"fixed-point-reconstructed-history.json",
         }
+        if explicit_neumann:
+            summary["detailed_thermal_ledgers"]["boundary_neumann"] = "boundary-neumann-ledger.json"
     write_json(out/"summary.json",summary)
     write_json(out/"material-energy-history.json",dict(material_order=NAMES,definition="直接源输入与净导热分别记账；净导热正值为该材料从其余材料吸热，不含源/散热/出生焓。",steps=ledger["rows"]))
     write_json(out/"manifest.json",dict(files={p.name:digest(p) for p in out.iterdir() if p.is_file() and p.name!="manifest.json"},evidence_level="solver_result_unvalidated"))

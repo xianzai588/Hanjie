@@ -1,0 +1,87 @@
+{
+  "stage": "STRUCT-0-PREP-CONTINUOUS-SWEPT-MESH",
+  "evidence_level": "geometry_and_mesh_preparation",
+  "mesh_file": "simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.msh",
+  "topology": {
+    "method": "axisymmetric_cross_section_circumferential_sweep",
+    "prism_to_tet_rule": "global_cross_section_node_order_fixed_three_tet_split",
+    "cross_section_node_count": 268,
+    "circumferential_layers": 315,
+    "arc_size_at_r75_mm": 1.4959965017094252
+  },
+  "regions": {
+    "tetrahedron_counts": {
+      "Q235B_SHELL": 219240,
+      "QT450_10_SEAT": 136080,
+      "ERNIFE_CI_WELD": 5670
+    },
+    "quality_by_region": {
+      "Q235B_SHELL": {
+        "minimum": 0.44799451512975175,
+        "p01": 0.46826426787822134,
+        "below_0p1_count": 0
+      },
+      "QT450_10_SEAT": {
+        "minimum": 0.16806097407605897,
+        "p01": 0.18587601081196453,
+        "below_0p1_count": 0
+      },
+      "ERNIFE_CI_WELD": {
+        "minimum": 0.42500148819860567,
+        "p01": 0.42500148819862293,
+        "below_0p1_count": 0
+      }
+    }
+  },
+  "interfaces": {
+    "surface_triangle_counts": {
+      "WELD_SHELL_INTERFACE": 1260,
+      "WELD_SEAT_INTERFACE": 1260,
+      "SEAT_GAP_FACE": 3150,
+      "SHELL_GAP_FACE": 3150,
+      "FIXTURE_BORE": 1890,
+      "DATUM_B_SHELL_OUTER": 25200,
+      "DATUM_A_SHELL_Z0": 630
+    },
+    "conforming_by_construction": true
+  },
+  "geometry": {
+    "analytic_volume_mm3": {
+      "Q235B_SHELL": 486946.86130641797,
+      "QT450_10_SEAT": 196864.7771241956,
+      "ERNIFE_CI_WELD": 705.1267234373155
+    },
+    "discrete_volume_mm3": {
+      "Q235B_SHELL": 486914.57188151294,
+      "QT450_10_SEAT": 196858.31967049572,
+      "ERNIFE_CI_WELD": 705.0799665153717
+    },
+    "relative_volume_error": {
+      "Q235B_SHELL": 6.630995591264532e-05,
+      "QT450_10_SEAT": 3.28014680645284e-05,
+      "ERNIFE_CI_WELD": 6.630995591245839e-05
+    },
+    "weld_root_gap_closure_mm": 0.02,
+    "rule": "0.02 mm装配间隙保留在未焊接触面，在焊根共享节点处闭合；焊缝三角面积与路径不变"
+  },
+  "counts": {
+    "nodes": 84420,
+    "tetrahedra": 360990
+  },
+  "quality": {
+    "metric": "Gmsh minSICN",
+    "minimum": 0.16806097407605897,
+    "p01": 0.20211876567416096,
+    "nonpositive_count": 0,
+    "below_0p1_count": 0
+  },
+  "checks": {
+    "three_material_regions": true,
+    "interfaces_conforming": true,
+    "no_inverted_tetrahedra": true,
+    "weld_minSICN_below_0p1_zero": true,
+    "sets_intact": true,
+    "volume_unchanged_within_0p1_percent": true
+  },
+  "mesh_acceptance_pass": true
+}

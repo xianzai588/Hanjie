@@ -1,0 +1,40 @@
+{
+  "stage": "STRUCT-0-PREP-PLAN6",
+  "evidence_level": "executed_swept_mesh_and_synthetic_sector_rehearsal",
+  "mesh_quality": {
+    "nodes": 84420,
+    "tetrahedra": 360990,
+    "minimum_sicn": 0.16806097407605897,
+    "below_0p1_count": 0,
+    "weld_below_0p1_count": 0
+  },
+  "dress_rehearsal": {
+    "maximum_newton_iterations": 10,
+    "maximum_force_balance_error_n": 1.846230160495899e-13,
+    "maximum_moment_balance_error_n_mm": 4.387592497440531e-11,
+    "maximum_penetration_mm": 2.6426212684782513e-07,
+    "release_displacement_mm": 0.7895304457022035,
+    "synthetic_pfep_fe_mm": 0.18109214525583206,
+    "engineering_meaning": "none"
+  },
+  "checks": {
+    "swept_mesh_quality": true,
+    "synthetic_state_flow": true,
+    "formal_thermal_history_absent": true
+  },
+  "struct0_prep_status": "ready_pending_admitted_thermal_history",
+  "formal_struct_0_allowed": false,
+  "hashes": {
+    "simulation/structural-v4/assess_struct0_prep_plan6.py": "2b724e38e565c93ce3b3b071e8c2029b583d0249b40257988f027e3d4f54449a",
+    "simulation/structural-v4/build_continuous_swept_mesh.py": "e67027c9201c8756e7a42bd2f2ee8b35e10452d29301cc7e825471f17ab6f5a4",
+    "simulation/structural-v4/run_struct0_prep_dress_rehearsal.py": "b63ea62295ce9a3dfe9794f35b8ff4920027b46ead14cbaed1b34eef329efe02",
+    "src/hanjie/simulation/nonlinear_fem.py": "0a36845fff661ff4c5443755cc28e6248f29b961e274d5cc3644cb2e8533cad1",
+    "simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json": "794711a3197cb020f8fd72ac28c56025c6d941440e43f7e95e75410dda5fc2bb",
+    "simulation/structural-v4/results/struct0-prep/struct0-prep-dress-rehearsal-plan6.json": "eb3b5d05bdf79b78f5b71c8154c5e2b47e46352810c98869c21d5d630e4c9795"
+  },
+  "limitations": [
+    "完整径向-轴向截面的单环向周期扇区，不是整圈非对称正式求解",
+    "稀疏全局 Newton 已在该扇区执行，整圈规模与非对称载荷仍待正式热历史准入后求解",
+    "合成温度与PFEP_FE只验证状态流，不具有工程意义"
+  ]
+}

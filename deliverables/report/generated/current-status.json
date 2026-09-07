@@ -59,6 +59,28 @@
         ],
         "next_action": "停止xfine和新网格时间步；补逐面界面通量、局部源密度及接口/阶梯边界对齐的嵌套网格诊断"
       },
+      "THERMAL-0.6-NESTED": {
+        "execution_status": "strict_nested_m_f_vf_and_detailed_ledgers_completed",
+        "acceptance_result": "asymptotic_trend_but_local_field_and_fixed_history_failed",
+        "evidence_level": "solver_result_unvalidated",
+        "allowed_use": "边界源承载层、逐面峰值与固定点重构的数值机制诊断；禁止正式结构热载荷",
+        "evidence": "simulation/thermal-v5/results/nested-refinement-study/assessment.json",
+        "upstream_dependencies": [
+          "THERMAL-0.5-XSEC"
+        ],
+        "next_action": "停止NEST-XF和时间步复查；改为显式边界面Neumann通量并建立仿射精确同材料点重构，再重复NEST-F/VF"
+      },
+      "THERMAL-0.7-BOUNDARY-NEUMANN": {
+        "execution_status": "analytic_verification_and_conditional_f_vf_completed",
+        "acceptance_result": "explicit_face_and_reconstruction_verified_but_field_gate_failed",
+        "evidence_level": "solver_result_unvalidated",
+        "allowed_use": "证明面功率施加与点重构实现正确，并排除边界层体积源单位误用；禁止正式结构热载荷",
+        "evidence": "simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json",
+        "upstream_dependencies": [
+          "THERMAL-0.6-NESTED"
+        ],
+        "next_action": "不运行新M、XF或时间步复查；转用成熟FE/FVM对同一局部工况做独立参考"
+      },
       "METALLURGY-0": {
         "execution_status": "executor_and_historical_diagnostics_completed",
         "acceptance_result": "current_joint_not_physically_validated",
@@ -81,14 +103,14 @@
         "next_action": "条件具备时执行并保留独立验证试件"
       },
       "THERMAL-NUMERICAL-GATE": {
-        "execution_status": "evaluated_after_0p5_xsec",
+        "execution_status": "evaluated_after_0p7_boundary_neumann",
         "acceptance_result": "not_passed",
         "evidence_level": "solver_result_unvalidated",
         "allowed_use": "通过后仅可标记 solver_verified 并进入无实物 Route B",
         "upstream_dependencies": [
-          "THERMAL-0.5-XSEC"
+          "THERMAL-0.7-BOUNDARY-NEUMANN"
         ],
-        "next_action": "先关闭局部非单调根因；空间门通过后才能在最终网格复查时间步"
+        "next_action": "当前自研局部模型停止继续细化；以成熟FE/FVM独立参考判别离散实现与模型结构"
       },
       "THERMAL-PHYSICAL-CALIBRATION": {
         "execution_status": "protocol_only",
@@ -112,20 +134,20 @@
         "next_action": "数值 Gate 通过后可进入 solver_verified Route B；物理校准通过才可使用 calibrated/validated 标签"
       },
       "STRUCT-0-PREP": {
-        "execution_status": "partial_with_consistent_tangent_global_newton_and_continuous_mesh",
-        "acceptance_result": "not_ready",
-        "evidence_level": "component_unit_verification",
-        "allowed_use": "独立组件验证；不得冒充实际焊接残余位置度",
-        "evidence": "simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json",
-        "mesh_evidence": "simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json",
+        "execution_status": "swept_mesh_and_synthetic_sector_dress_rehearsal_completed",
+        "acceptance_result": "ready_pending_admitted_thermal_history",
+        "evidence_level": "executed_swept_mesh_and_synthetic_sector_rehearsal",
+        "allowed_use": "结构执行链工程准备；合成PFEP_FE无工程意义，不得冒充实际焊接残余位置度",
+        "evidence": "simulation/structural-v4/results/struct0-prep/struct0-prep-plan6-assessment.json",
+        "mesh_evidence": "simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json",
         "upstream_dependencies": [
           "G-INPUTS"
         ],
-        "next_action": "修整低质量四面体，完成局部热场映射边界定义与法向接触/释放；不得接入未准入热场"
+        "next_action": "等待获准整圈热历史；不得接入当前未准入局部热场"
       },
       "STRUCT-0": {
         "execution_status": "not_executed",
-        "acceptance_result": "blocked_by_thermal_and_prep",
+        "acceptance_result": "blocked_by_thermal_only",
         "evidence_level": "none",
         "allowed_use": "无",
         "upstream_dependencies": [
@@ -610,6 +632,14 @@
       ]
     }
   },
+  "thermal_boundary_neumann": {
+    "stage": "THERMAL-0.7-BOUNDARY-NEUMANN",
+    "formal_struct_0_allowed": false,
+    "new_nest_m_allowed": false,
+    "weld_p95_c": 10.923366972013127,
+    "weld_mae_c": 8.06644948777948,
+    "worst_fixed_point_rms_c": 2.7851239183230034
+  },
   "joint_load_basis": {
     "evidence_level": "design_assumption_reference_envelope",
     "reference_envelope": {
@@ -661,7 +691,9 @@
       "plastic_dissipation_nonnegative": true,
       "released_cold_force_free": true,
       "stress_free_birth": true,
-      "stress_free_birth_cooling_response": true
+      "stress_free_birth_cooling_response": true,
+      "global_activation_stress_free_birth": true,
+      "global_activation_cooling_response": true
     },
     "struct_prep_gate_pass": false
   },
@@ -686,6 +718,100 @@
       "no_inverted_tetrahedra": true
     },
     "struct_prep_gate_pass": false
+  },
+  "continuous_swept_mesh": {
+    "stage": "STRUCT-0-PREP-CONTINUOUS-SWEPT-MESH",
+    "evidence_level": "geometry_and_mesh_preparation",
+    "mesh_file": "simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.msh",
+    "topology": {
+      "method": "axisymmetric_cross_section_circumferential_sweep",
+      "prism_to_tet_rule": "global_cross_section_node_order_fixed_three_tet_split",
+      "cross_section_node_count": 268,
+      "circumferential_layers": 315,
+      "arc_size_at_r75_mm": 1.4959965017094252
+    },
+    "regions": {
+      "tetrahedron_counts": {
+        "Q235B_SHELL": 219240,
+        "QT450_10_SEAT": 136080,
+        "ERNIFE_CI_WELD": 5670
+      },
+      "quality_by_region": {
+        "Q235B_SHELL": {
+          "minimum": 0.44799451512975175,
+          "p01": 0.46826426787822134,
+          "below_0p1_count": 0
+        },
+        "QT450_10_SEAT": {
+          "minimum": 0.16806097407605897,
+          "p01": 0.18587601081196453,
+          "below_0p1_count": 0
+        },
+        "ERNIFE_CI_WELD": {
+          "minimum": 0.42500148819860567,
+          "p01": 0.42500148819862293,
+          "below_0p1_count": 0
+        }
+      }
+    },
+    "interfaces": {
+      "surface_triangle_counts": {
+        "WELD_SHELL_INTERFACE": 1260,
+        "WELD_SEAT_INTERFACE": 1260,
+        "SEAT_GAP_FACE": 3150,
+        "SHELL_GAP_FACE": 3150,
+        "FIXTURE_BORE": 1890,
+        "DATUM_B_SHELL_OUTER": 25200,
+        "DATUM_A_SHELL_Z0": 630
+      },
+      "conforming_by_construction": true
+    },
+    "geometry": {
+      "analytic_volume_mm3": {
+        "Q235B_SHELL": 486946.86130641797,
+        "QT450_10_SEAT": 196864.7771241956,
+        "ERNIFE_CI_WELD": 705.1267234373155
+      },
+      "discrete_volume_mm3": {
+        "Q235B_SHELL": 486914.57188151294,
+        "QT450_10_SEAT": 196858.31967049572,
+        "ERNIFE_CI_WELD": 705.0799665153717
+      },
+      "relative_volume_error": {
+        "Q235B_SHELL": 6.630995591264532e-05,
+        "QT450_10_SEAT": 3.28014680645284e-05,
+        "ERNIFE_CI_WELD": 6.630995591245839e-05
+      },
+      "weld_root_gap_closure_mm": 0.02,
+      "rule": "0.02 mm装配间隙保留在未焊接触面，在焊根共享节点处闭合；焊缝三角面积与路径不变"
+    },
+    "counts": {
+      "nodes": 84420,
+      "tetrahedra": 360990
+    },
+    "quality": {
+      "metric": "Gmsh minSICN",
+      "minimum": 0.16806097407605897,
+      "p01": 0.20211876567416096,
+      "nonpositive_count": 0,
+      "below_0p1_count": 0
+    },
+    "checks": {
+      "three_material_regions": true,
+      "interfaces_conforming": true,
+      "no_inverted_tetrahedra": true,
+      "weld_minSICN_below_0p1_zero": true,
+      "sets_intact": true,
+      "volume_unchanged_within_0p1_percent": true
+    },
+    "mesh_acceptance_pass": true
+  },
+  "struct0_dress_rehearsal": {
+    "struct0_prep_status": "ready_pending_admitted_thermal_history",
+    "formal_struct_0_allowed": false,
+    "maximum_newton_iterations": 10,
+    "maximum_force_balance_error_n": 1.846230160495899e-13,
+    "maximum_moment_balance_error_n_mm": 4.387592497440531e-11
   },
   "precompensation": {
     "evidence_level": "synthetic_demo",

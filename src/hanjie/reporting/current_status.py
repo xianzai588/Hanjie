@@ -22,10 +22,13 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
     thermal = _json(root/"simulation/thermal-v5/results/credibility04r1/assessment.json")
     thermal_fix = _json(root/"simulation/thermal-v5/results/spatial-fix-study/assessment.json")
     thermal_xsec = _json(root/"simulation/thermal-v5/results/xsec-refinement-study/assessment.json")
+    thermal_boundary = _json(root/"simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json")
     joint_load = _json(root/"simulation/structural-v4/results/joint-load-basis/joint-load-basis.json")
     structural_3d = _json(root/"simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json")
     structural_newton = _json(root/"simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json")
     continuous_mesh = _json(root/"simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json")
+    swept_mesh = _json(root/"simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json")
+    dress_rehearsal = _json(root/"simulation/structural-v4/results/struct0-prep/struct0-prep-dress-rehearsal-plan6.json")
     precomp = _json(root/"studies/PRECOMPENSATION/results/precompensation_summary.json")
     return {
         "generated_from":"当前权威配置与已执行结果；非实测证据仍保留原等级",
@@ -75,6 +78,13 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
             "f_to_vf_weld_p95_c":thermal_xsec["pairs"]["XSEC-F_to_XSEC-VF"]["continuous_peak_field"]["ernife_ci"]["volume_weighted_p95_abs_peak_difference_c"],
             "second_layer_diagnosis":thermal_xsec["second_layer_diagnosis"],
         },
+        "thermal_boundary_neumann": {
+            "stage": thermal_boundary["stage"], "formal_struct_0_allowed": thermal_boundary["formal_struct_0_allowed"],
+            "new_nest_m_allowed": thermal_boundary["new_nest_m_allowed"],
+            "weld_p95_c": thermal_boundary["continuous_peak_field"]["ernife_ci"]["volume_weighted_p95_abs_peak_difference_c"],
+            "weld_mae_c": thermal_boundary["continuous_peak_field"]["ernife_ci"]["volume_weighted_mean_abs_peak_difference_c"],
+            "worst_fixed_point_rms_c": max(row["rms_same_time_difference_c"] for row in thermal_boundary["fixed_physical_point_histories"].values()),
+        },
         "joint_load_basis":{
             "evidence_level":joint_load["evidence_level"],"reference_envelope":joint_load["reference_envelope"],
             "decision":joint_load["decision"],
@@ -86,6 +96,13 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
                                     "struct_prep_gate_pass":structural_newton["struct_prep_gate_pass"]},
         "continuous_unified_mesh":{"counts":continuous_mesh["counts"],"quality":continuous_mesh["quality"],
                                    "checks":continuous_mesh["checks"],"struct_prep_gate_pass":continuous_mesh["struct_prep_gate_pass"]},
+        "continuous_swept_mesh": swept_mesh,
+        "struct0_dress_rehearsal": {
+            "struct0_prep_status": dress_rehearsal["struct0_prep_status"], "formal_struct_0_allowed": dress_rehearsal["formal_struct_0_allowed"],
+            "maximum_newton_iterations": dress_rehearsal["maximum_newton_iterations"],
+            "maximum_force_balance_error_n": dress_rehearsal["maximum_force_balance_error_n"],
+            "maximum_moment_balance_error_n_mm": dress_rehearsal["maximum_moment_balance_error_n_mm"],
+        },
         "precompensation":precomp,
     }
 
@@ -132,6 +149,11 @@ def render_markdown(status: Dict[str, Any]) -> str:
               f"一致切线与全局 Newton 小网格登记检查：{'全部通过' if all(newton['checks'].values()) else '存在失败'}；仍不等于整件求解。",
               f"Continuous 预备网格含 {mesh['counts']['nodes']} 节点、{mesh['counts']['tetrahedra']} 四面体，无倒置单元；但 minSICN<0.1 仍有 {mesh['quality']['below_0p1_count']} 个，热场映射和接触求解尚未完成。",
               "THERMAL 数值 Gate 与 STRUCT-PREP Gate 均保持关闭。"]
+    boundary=status["thermal_boundary_neumann"]; swept=status["continuous_swept_mesh"]; rehearsal=status["struct0_dress_rehearsal"]
+    lines += ["","## Plan 6 边界一致热离散与 Continuous 拓扑","",
+              f"显式边界 Neumann 的 F→VF 焊材 P95/MAE 为 {boundary['weld_p95_c']:.3f}/{boundary['weld_mae_c']:.3f} °C；新 M 运行许可：{'是' if boundary['new_nest_m_allowed'] else '否'}。",
+              f"扫掠网格 {swept['counts']['nodes']} 节点、{swept['counts']['tetrahedra']} 四面体，minSICN<0.1 为 {swept['quality']['below_0p1_count']}；彩排最大 Newton 迭代 {rehearsal['maximum_newton_iterations']}。",
+              f"STRUCT-0-PREP=`{rehearsal['struct0_prep_status']}`；正式 STRUCT-0 仍不允许。"]
     return "\n".join(lines)+"\n"
 
 

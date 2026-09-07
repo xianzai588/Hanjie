@@ -1,0 +1,1086 @@
+{
+  "stage": "THERMAL-0.7-BOUNDARY-NEUMANN",
+  "evidence_level": "solver_result_unvalidated",
+  "comparison": "NEST-F_to_NEST-VF",
+  "mesh_nesting": {
+    "s": {
+      "all_lower_edges_present": true,
+      "subdivisions_per_lower_interval": [
+        1
+      ],
+      "integer_subdivision_only": true
+    },
+    "n": {
+      "all_lower_edges_present": true,
+      "subdivisions_per_lower_interval": [
+        1,
+        2
+      ],
+      "integer_subdivision_only": true
+    },
+    "z": {
+      "all_lower_edges_present": true,
+      "subdivisions_per_lower_interval": [
+        1,
+        2
+      ],
+      "integer_subdivision_only": true
+    },
+    "strict_nested": true
+  },
+  "continuous_peak_field": {
+    "q235b": {
+      "matched_volume_fraction": 1.0,
+      "volume_weighted_mean_abs_peak_difference_c": 0.21537713618489474,
+      "volume_weighted_p95_abs_peak_difference_c": 0.6102050271261419,
+      "maximum_abs_peak_difference_c": 7.993338562990857,
+      "threshold_flip_volume_mm3": {
+        "solidus": 0.0,
+        "liquidus": 0.0
+      },
+      "registered_peak_difference_c": 32.375139160464414,
+      "checks": {
+        "mae": true,
+        "p95": true,
+        "maximum": true,
+        "threshold_flips": true
+      }
+    },
+    "qt450_10": {
+      "matched_volume_fraction": 1.0,
+      "volume_weighted_mean_abs_peak_difference_c": 0.09241892784931853,
+      "volume_weighted_p95_abs_peak_difference_c": 0.3771918157941059,
+      "maximum_abs_peak_difference_c": 17.474547226324034,
+      "threshold_flip_volume_mm3": {
+        "solidus": 0.9045015681978341,
+        "liquidus": 0.0
+      },
+      "registered_peak_difference_c": 30.056529848038736,
+      "checks": {
+        "mae": true,
+        "p95": true,
+        "maximum": true,
+        "threshold_flips": true
+      }
+    },
+    "ernife_ci": {
+      "matched_volume_fraction": 1.0,
+      "volume_weighted_mean_abs_peak_difference_c": 8.06644948777948,
+      "volume_weighted_p95_abs_peak_difference_c": 10.923366972013127,
+      "maximum_abs_peak_difference_c": 14.59922615299638,
+      "threshold_flip_volume_mm3": {
+        "solidus": 0.7539822368615505,
+        "liquidus": 0.8796459430051414
+      },
+      "registered_peak_difference_c": 27.76243179756011,
+      "checks": {
+        "mae": false,
+        "p95": false,
+        "maximum": true,
+        "threshold_flips": true
+      }
+    }
+  },
+  "fixed_physical_point_histories": {
+    "weld_center": {
+      "maximum_same_time_abs_difference_c": 8.97057960119264,
+      "rms_same_time_difference_c": 2.122490261459875,
+      "peak_temperature_difference_c": 8.400337918190871,
+      "checks": {
+        "rms": true,
+        "peak": true
+      },
+      "lower_represented_cell": {
+        "name": "weld_center",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 3,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          -0.5,
+          0.5
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            -0.5,
+            -0.5065208781907874,
+            0.5065208781907875
+          ],
+          [
+            0.5,
+            -0.5065208781907874,
+            0.5065208781907875
+          ],
+          [
+            -0.5,
+            -0.36180062727913387,
+            0.5065208781907875
+          ],
+          [
+            -0.5,
+            -0.5065208781907874,
+            0.36180062727913387
+          ],
+          [
+            0.5,
+            -0.5065208781907874,
+            0.36180062727913387
+          ],
+          [
+            0.5,
+            -0.36180062727913387,
+            0.5065208781907875
+          ],
+          [
+            -0.5,
+            -0.5065208781907874,
+            0.6512411291024409
+          ],
+          [
+            -0.5,
+            -0.6512411291024408,
+            0.5065208781907875
+          ],
+          [
+            0.5,
+            -0.6512411291024408,
+            0.5065208781907875
+          ],
+          [
+            0.5,
+            -0.5065208781907874,
+            0.6512411291024409
+          ],
+          [
+            0.5,
+            -0.36180062727913387,
+            0.36180062727913387
+          ],
+          [
+            -0.5,
+            -0.36180062727913387,
+            0.36180062727913387
+          ]
+        ],
+        "weights": [
+          0.09538530159019902,
+          0.09538530159019902,
+          0.0726821912615633,
+          0.07268219126156343,
+          0.07268219126156343,
+          0.0726821912615633,
+          0.10313441816830485,
+          0.10313441816830501,
+          0.10313441816830501,
+          0.10313441816830485,
+          0.052981479550064346,
+          0.052981479550064346
+        ],
+        "maximum_stencil_radius_mm": 0.5368408826094393,
+        "affine_exact": true
+      },
+      "upper_represented_cell": {
+        "name": "weld_center",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 3,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          -0.5,
+          0.5
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            -0.5,
+            -0.47034081546287404,
+            0.4703408154628741
+          ],
+          [
+            0.5,
+            -0.47034081546287404,
+            0.4703408154628741
+          ],
+          [
+            -0.5,
+            -0.47034081546287404,
+            0.5427009409187009
+          ],
+          [
+            -0.5,
+            -0.5427009409187007,
+            0.4703408154628741
+          ],
+          [
+            0.5,
+            -0.47034081546287404,
+            0.5427009409187009
+          ],
+          [
+            0.5,
+            -0.5427009409187007,
+            0.4703408154628741
+          ],
+          [
+            0.5,
+            -0.5427009409187007,
+            0.5427009409187009
+          ],
+          [
+            -0.5,
+            -0.5427009409187007,
+            0.5427009409187009
+          ],
+          [
+            0.5,
+            -0.47034081546287404,
+            0.3979806900070473
+          ],
+          [
+            0.5,
+            -0.3979806900070473,
+            0.4703408154628741
+          ],
+          [
+            -0.5,
+            -0.47034081546287404,
+            0.3979806900070473
+          ],
+          [
+            -0.5,
+            -0.3979806900070473,
+            0.4703408154628741
+          ]
+        ],
+        "weights": [
+          0.07314659537295419,
+          0.07314659537295419,
+          0.10569026605618101,
+          0.10569026605618144,
+          0.10569026605618101,
+          0.10569026605618144,
+          0.13799177660967657,
+          0.13799177660967657,
+          0.03874054795250366,
+          0.038740547952503195,
+          0.03874054795250366,
+          0.038740547952503195
+        ],
+        "maximum_stencil_radius_mm": 0.511162994394983,
+        "affine_exact": true
+      }
+    },
+    "qt_near_interface": {
+      "maximum_same_time_abs_difference_c": 11.680882806585146,
+      "rms_same_time_difference_c": 2.7851239183230034,
+      "peak_temperature_difference_c": 10.232361361396102,
+      "checks": {
+        "rms": true,
+        "peak": false
+      },
+      "lower_represented_cell": {
+        "name": "qt_near_interface",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 2,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          -0.2,
+          -0.2
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            0.5,
+            -0.21708037636748023,
+            -0.125
+          ],
+          [
+            -0.5,
+            -0.21708037636748023,
+            -0.125
+          ],
+          [
+            -0.5,
+            -0.11354018818374007,
+            -0.125
+          ],
+          [
+            0.5,
+            -0.11354018818374007,
+            -0.125
+          ],
+          [
+            -0.5,
+            -0.05118006272791336,
+            -0.125
+          ],
+          [
+            0.5,
+            -0.05118006272791336,
+            -0.125
+          ],
+          [
+            -0.5,
+            -0.21708037636748023,
+            -0.375
+          ],
+          [
+            0.5,
+            -0.21708037636748023,
+            -0.375
+          ],
+          [
+            -0.5,
+            -0.36180062727913387,
+            -0.125
+          ],
+          [
+            0.5,
+            -0.36180062727913387,
+            -0.125
+          ],
+          [
+            0.5,
+            -0.11354018818374007,
+            -0.375
+          ],
+          [
+            -0.5,
+            -0.11354018818374007,
+            -0.375
+          ]
+        ],
+        "weights": [
+          0.0980333111276382,
+          0.0980333111276382,
+          0.07660718708074023,
+          0.07660718708074023,
+          0.0618648078635271,
+          0.0618648078635271,
+          0.0846161592852806,
+          0.0846161592852806,
+          0.1134946939280944,
+          0.1134946939280944,
+          0.06538384071471942,
+          0.06538384071471942
+        ],
+        "maximum_stencil_radius_mm": 0.536749754596407,
+        "affine_exact": true
+      },
+      "upper_represented_cell": {
+        "name": "qt_near_interface",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 2,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          -0.2,
+          -0.2
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            -0.5,
+            -0.18090031363956682,
+            -0.1875
+          ],
+          [
+            0.5,
+            -0.18090031363956682,
+            -0.1875
+          ],
+          [
+            0.5,
+            -0.25326043909539364,
+            -0.1875
+          ],
+          [
+            -0.5,
+            -0.25326043909539364,
+            -0.1875
+          ],
+          [
+            0.5,
+            -0.12913021954769674,
+            -0.1875
+          ],
+          [
+            -0.5,
+            -0.12913021954769674,
+            -0.1875
+          ],
+          [
+            -0.5,
+            -0.09795015681978339,
+            -0.1875
+          ],
+          [
+            0.5,
+            -0.09795015681978339,
+            -0.1875
+          ],
+          [
+            0.5,
+            -0.18090031363956682,
+            -0.3125
+          ],
+          [
+            -0.5,
+            -0.18090031363956682,
+            -0.3125
+          ],
+          [
+            -0.5,
+            -0.25326043909539364,
+            -0.3125
+          ],
+          [
+            0.5,
+            -0.25326043909539364,
+            -0.3125
+          ]
+        ],
+        "weights": [
+          0.1279453528123964,
+          0.1279453528123964,
+          0.1914636949502771,
+          0.1914636949502771,
+          0.07966831037795584,
+          0.07966831037795584,
+          0.05092264185937061,
+          0.05092264185937061,
+          -0.005886902077949424,
+          -0.005886902077949424,
+          0.055886902077949455,
+          0.055886902077949455
+        ],
+        "maximum_stencil_radius_mm": 0.5152600550912463,
+        "affine_exact": true
+      }
+    },
+    "qt_far": {
+      "maximum_same_time_abs_difference_c": 4.359639904108235,
+      "rms_same_time_difference_c": 1.1697845640526026,
+      "peak_temperature_difference_c": 4.134176427366697,
+      "checks": {
+        "rms": true,
+        "peak": true
+      },
+      "lower_represented_cell": {
+        "name": "qt_far",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 2,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            -0.5,
+            -0.940681630925748,
+            -0.875
+          ],
+          [
+            -0.5,
+            -0.940681630925748,
+            -1.125
+          ],
+          [
+            0.5,
+            -0.940681630925748,
+            -0.875
+          ],
+          [
+            0.5,
+            -0.940681630925748,
+            -1.125
+          ],
+          [
+            0.5,
+            -1.0854018818374014,
+            -0.875
+          ],
+          [
+            -0.5,
+            -1.0854018818374014,
+            -0.875
+          ],
+          [
+            -0.5,
+            -1.0854018818374014,
+            -1.125
+          ],
+          [
+            0.5,
+            -1.0854018818374014,
+            -1.125
+          ],
+          [
+            0.5,
+            -0.7959613800140943,
+            -0.875
+          ],
+          [
+            0.5,
+            -0.7959613800140943,
+            -1.125
+          ],
+          [
+            -0.5,
+            -0.7959613800140943,
+            -0.875
+          ],
+          [
+            -0.5,
+            -0.7959613800140943,
+            -1.125
+          ]
+        ],
+        "weights": [
+          0.0854233579447373,
+          0.0854233579447373,
+          0.0854233579447373,
+          0.0854233579447373,
+          0.13352369470597011,
+          0.13352369470597011,
+          0.13352369470597011,
+          0.13352369470597011,
+          0.031052947349292627,
+          0.031052947349292627,
+          0.031052947349292627,
+          0.031052947349292627
+        ],
+        "maximum_stencil_radius_mm": 0.5543074584071126,
+        "affine_exact": true
+      },
+      "upper_represented_cell": {
+        "name": "qt_far",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 2,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            0.5,
+            -0.9768616936536614,
+            -1.0625
+          ],
+          [
+            0.5,
+            -0.9768616936536614,
+            -0.9375
+          ],
+          [
+            -0.5,
+            -0.9768616936536614,
+            -0.9375
+          ],
+          [
+            -0.5,
+            -0.9768616936536614,
+            -1.0625
+          ],
+          [
+            0.5,
+            -1.0492218191094882,
+            -0.9375
+          ],
+          [
+            -0.5,
+            -1.0492218191094882,
+            -0.9375
+          ],
+          [
+            -0.5,
+            -1.0492218191094882,
+            -1.0625
+          ],
+          [
+            0.5,
+            -1.0492218191094882,
+            -1.0625
+          ],
+          [
+            0.5,
+            -0.9045015681978346,
+            -0.9375
+          ],
+          [
+            0.5,
+            -0.9045015681978346,
+            -1.0625
+          ],
+          [
+            -0.5,
+            -0.9045015681978346,
+            -0.9375
+          ],
+          [
+            -0.5,
+            -0.9045015681978346,
+            -1.0625
+          ]
+        ],
+        "weights": [
+          0.08412048504809756,
+          0.08412048504809756,
+          0.08412048504809756,
+          0.08412048504809756,
+          0.12291050483262853,
+          0.12291050483262853,
+          0.12291050483262853,
+          0.12291050483262853,
+          0.04296901011927392,
+          0.04296901011927392,
+          0.04296901011927392,
+          0.04296901011927392
+        ],
+        "maximum_stencil_radius_mm": 0.512860800292509,
+        "affine_exact": true
+      }
+    },
+    "q235_near_interface": {
+      "maximum_same_time_abs_difference_c": 6.9921547289203545,
+      "rms_same_time_difference_c": 1.7688850166989383,
+      "peak_temperature_difference_c": 6.77255985522379,
+      "checks": {
+        "rms": true,
+        "peak": true
+      },
+      "lower_represented_cell": {
+        "name": "q235_near_interface",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 1,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          0.2,
+          0.0
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            0.5,
+            0.125,
+            0.07236012545582678
+          ],
+          [
+            -0.5,
+            0.125,
+            0.07236012545582678
+          ],
+          [
+            -0.5,
+            0.125,
+            -0.125
+          ],
+          [
+            0.5,
+            0.125,
+            -0.125
+          ],
+          [
+            0.5,
+            0.375,
+            0.07236012545582678
+          ],
+          [
+            -0.5,
+            0.375,
+            0.07236012545582678
+          ],
+          [
+            -0.5,
+            0.375,
+            -0.125
+          ],
+          [
+            0.5,
+            0.375,
+            -0.125
+          ],
+          [
+            0.5,
+            0.125,
+            0.21708037636748034
+          ],
+          [
+            -0.5,
+            0.125,
+            0.21708037636748034
+          ],
+          [
+            -0.5,
+            0.375,
+            0.21708037636748034
+          ],
+          [
+            0.5,
+            0.375,
+            0.21708037636748034
+          ]
+        ],
+        "weights": [
+          0.11846812854940239,
+          0.11846812854940239,
+          0.1591888048783575,
+          0.1591888048783575,
+          0.047945378755410384,
+          0.047945378755410384,
+          0.0877028307902479,
+          0.0877028307902479,
+          0.07234306657224007,
+          0.07234306657224007,
+          0.014351790454341713,
+          0.014351790454341713
+        ],
+        "maximum_stencil_radius_mm": 0.5724935718450006,
+        "affine_exact": true
+      },
+      "upper_represented_cell": {
+        "name": "q235_near_interface",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 1,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          0.2,
+          0.0
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            -0.5,
+            0.1875,
+            0.03618006272791339
+          ],
+          [
+            0.5,
+            0.1875,
+            0.03618006272791339
+          ],
+          [
+            -0.5,
+            0.1875,
+            -0.0625
+          ],
+          [
+            0.5,
+            0.1875,
+            -0.0625
+          ],
+          [
+            0.5,
+            0.1875,
+            0.10854018818374017
+          ],
+          [
+            -0.5,
+            0.1875,
+            0.10854018818374017
+          ],
+          [
+            0.5,
+            0.3125,
+            0.03618006272791339
+          ],
+          [
+            -0.5,
+            0.3125,
+            0.03618006272791339
+          ],
+          [
+            -0.5,
+            0.3125,
+            -0.0625
+          ],
+          [
+            0.5,
+            0.3125,
+            -0.0625
+          ],
+          [
+            0.5,
+            0.0625,
+            0.03618006272791339
+          ],
+          [
+            -0.5,
+            0.0625,
+            0.03618006272791339
+          ]
+        ],
+        "weights": [
+          0.08142526682976459,
+          0.08142526682976459,
+          0.12361607805102613,
+          0.12361607805102613,
+          0.047570346596944466,
+          0.047570346596944466,
+          0.05410782124297722,
+          0.05410782124297722,
+          0.09458633301815518,
+          0.09458633301815518,
+          0.09869415426113234,
+          0.09869415426113234
+        ],
+        "maximum_stencil_radius_mm": 0.5198223224708571,
+        "affine_exact": true
+      }
+    },
+    "q235_far": {
+      "maximum_same_time_abs_difference_c": 1.0874908341095306,
+      "rms_same_time_difference_c": 0.38259202418072336,
+      "peak_temperature_difference_c": 0.923905229542811,
+      "checks": {
+        "rms": true,
+        "peak": true
+      },
+      "lower_represented_cell": {
+        "name": "q235_far",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 1,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            0.5,
+            0.875,
+            0.07236012545582678
+          ],
+          [
+            -0.5,
+            1.125,
+            0.07236012545582678
+          ],
+          [
+            -0.5,
+            0.875,
+            0.07236012545582678
+          ],
+          [
+            0.5,
+            1.125,
+            0.07236012545582678
+          ],
+          [
+            0.5,
+            1.125,
+            -0.125
+          ],
+          [
+            0.5,
+            0.875,
+            -0.125
+          ],
+          [
+            -0.5,
+            1.125,
+            -0.125
+          ],
+          [
+            -0.5,
+            0.875,
+            -0.125
+          ],
+          [
+            -0.5,
+            1.125,
+            0.21708037636748034
+          ],
+          [
+            0.5,
+            1.125,
+            0.21708037636748034
+          ],
+          [
+            0.5,
+            0.875,
+            0.21708037636748034
+          ],
+          [
+            -0.5,
+            0.875,
+            0.21708037636748034
+          ]
+        ],
+        "weights": [
+          0.08314160515745692,
+          0.08314160515745692,
+          0.08314160515745692,
+          0.08314160515745692,
+          0.12347337950456198,
+          0.12347337950456198,
+          0.12347337950456198,
+          0.12347337950456198,
+          0.04338501533798114,
+          0.04338501533798114,
+          0.04338501533798114,
+          0.04338501533798114
+        ],
+        "maximum_stencil_radius_mm": 0.5592395638756676,
+        "affine_exact": true
+      },
+      "upper_represented_cell": {
+        "name": "q235_far",
+        "method": "same_material_weighted_least_squares_affine_exact",
+        "material_id": 1,
+        "requested_coordinate_s_n_z_mm": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "cell_centres_s_n_z_mm": [
+          [
+            -0.5,
+            1.0625,
+            0.03618006272791339
+          ],
+          [
+            0.5,
+            0.9375,
+            0.03618006272791339
+          ],
+          [
+            -0.5,
+            0.9375,
+            0.03618006272791339
+          ],
+          [
+            0.5,
+            1.0625,
+            0.03618006272791339
+          ],
+          [
+            -0.5,
+            0.9375,
+            -0.0625
+          ],
+          [
+            -0.5,
+            1.0625,
+            -0.0625
+          ],
+          [
+            0.5,
+            1.0625,
+            -0.0625
+          ],
+          [
+            0.5,
+            0.9375,
+            -0.0625
+          ],
+          [
+            0.5,
+            0.9375,
+            0.10854018818374017
+          ],
+          [
+            0.5,
+            1.0625,
+            0.10854018818374017
+          ],
+          [
+            -0.5,
+            1.0625,
+            0.10854018818374017
+          ],
+          [
+            -0.5,
+            0.9375,
+            0.10854018818374017
+          ]
+        ],
+        "weights": [
+          0.08031585610194776,
+          0.08031585610194776,
+          0.08031585610194776,
+          0.08031585610194776,
+          0.12466883864392908,
+          0.12466883864392908,
+          0.12466883864392908,
+          0.12466883864392908,
+          0.04501530525412316,
+          0.04501530525412316,
+          0.04501530525412316,
+          0.04501530525412316
+        ],
+        "maximum_stencil_radius_mm": 0.51544856431167,
+        "affine_exact": true
+      }
+    }
+  },
+  "interface_flux": {
+    "qt450_10_to_ernife_ci": {
+      "lower_face_count": 1680,
+      "upper_face_count": 3360,
+      "lower_cumulative_signed_heat_j": -5933.319798967958,
+      "upper_cumulative_signed_heat_j": -5939.240573035027,
+      "cumulative_heat_relative_difference": 0.0009968907630969125,
+      "common_face_energy_l1_relative_difference": 0.02705631291944928,
+      "lower_peak_abs_interface_power_w": 160.18135259744753,
+      "upper_peak_abs_interface_power_w": 160.4918450723261,
+      "lower_peak_abs_heat_flux_w_per_mm2": 54.16244443407243,
+      "upper_peak_abs_heat_flux_w_per_mm2": 98.31852310033794,
+      "checks": {
+        "cumulative_heat": true,
+        "common_face_energy": true
+      }
+    },
+    "ernife_ci_to_q235b": {
+      "lower_face_count": 1680,
+      "upper_face_count": 3360,
+      "lower_cumulative_signed_heat_j": 4845.52558088929,
+      "upper_cumulative_signed_heat_j": 4837.347016423634,
+      "cumulative_heat_relative_difference": 0.0016878591040591841,
+      "common_face_energy_l1_relative_difference": 0.024345214379642283,
+      "lower_peak_abs_interface_power_w": 178.13139424392193,
+      "upper_peak_abs_interface_power_w": 178.82392333032186,
+      "lower_peak_abs_heat_flux_w_per_mm2": 87.55381273542451,
+      "upper_peak_abs_heat_flux_w_per_mm2": 164.54899255573443,
+      "checks": {
+        "cumulative_heat": true,
+        "common_face_energy": true
+      }
+    }
+  },
+  "boundary_neumann": {
+    "lower_total_face_energy_j": 19799.99999999963,
+    "upper_total_face_energy_j": 19799.999999999593,
+    "lower_fixed_physical_patch_energy_j": 3249.4643881959055,
+    "upper_fixed_physical_patch_energy_j": 3249.4643881959055,
+    "fixed_physical_patch_energy_relative_difference": 0.0,
+    "centroid_distance_mm": 0.0002381378016059793,
+    "second_moment_relative_difference": 1.9983620086355187e-06,
+    "theoretical_gaussian_peak_face_normal_flux_w_mm2": 21.269972969211626,
+    "lower_peak_face_average_flux_w_mm2": 21.04307164531217,
+    "upper_peak_face_average_flux_w_mm2": 21.04307164531217,
+    "lower_relative_error_to_theoretical_peak": 0.010667682757655395,
+    "upper_relative_error_to_theoretical_peak": 0.010667682757655395,
+    "peak_face_average_moves_toward_theory": false,
+    "legacy_cell_volume_density_gate": false
+  },
+  "legacy_rhs_equivalence": {
+    "comparison": "Plan 5按控制体聚合的面功率与Plan 6显式面对象散射到控制体RHS",
+    "levels": {
+      "NEST-F": {
+        "maximum_abs_peak_field_difference_c": 1.318767317570746e-11,
+        "maximum_abs_final_field_difference_c": 2.2737367544323206e-12
+      },
+      "NEST-VF": {
+        "maximum_abs_peak_field_difference_c": 2.864908310584724e-11,
+        "maximum_abs_final_field_difference_c": 6.650680006714538e-12
+      }
+    },
+    "machine_precision_equivalent": true
+  },
+  "gate_components": {
+    "continuous_field": false,
+    "fixed_histories": false,
+    "interface_flux": true
+  },
+  "spatial_gate_pass": false,
+  "new_nest_m_allowed": false,
+  "nest_xf_allowed": false,
+  "time_step_recheck_allowed": false,
+  "formal_struct_0_allowed": false,
+  "decision": "F/VF仍未满足预登记门槛；停止自研求解器继续细化，准备成熟FE/FVM独立参考解。"
+}

@@ -1,0 +1,42 @@
+version: THERMAL-0.7-BOUNDARY-NEUMANN
+evidence_level: solver_result_unvalidated
+baseline: project/thermal-mass-closed-v5.4r1.yaml
+policy: 固定六条带焊道、沿焊道1.0mm、背景近区0.6mm/远区1.5mm、物理输入和dt=0.1s；只把热源显式表示为边界面Neumann功率，并把固定点改为同材料仿射精确WLS
+detailed_ledgers: true
+source_discretization: explicit_boundary_face_neumann
+sources:
+  surface45: {angle_deg: 45.0, penetration_fraction: 0.0}
+source_basis: 与Plan 5相同的未校准surface45解析投影源；Q_face以W直接进入唯一相邻控制体RHS，不按控制体体积重新定义
+observation_points:
+  - {name: weld_center, material_id: 3, coordinate_s_n_z_mm: [0.0, -0.50, 0.50], stencil_neighbours: 12}
+  - {name: qt_near_interface, material_id: 2, coordinate_s_n_z_mm: [0.0, -0.20, -0.20], stencil_neighbours: 12}
+  - {name: qt_far, material_id: 2, coordinate_s_n_z_mm: [0.0, -1.00, -1.00], stencil_neighbours: 12}
+  - {name: q235_near_interface, material_id: 1, coordinate_s_n_z_mm: [0.0, 0.20, 0.00], stencil_neighbours: 12}
+  - {name: q235_far, material_id: 1, coordinate_s_n_z_mm: [0.0, 1.00, 0.00], stencil_neighbours: 12}
+cases:
+  - name: NEST-F
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6, cross_local_base_spacing_mm: 0.6, cross_local_subdivision_factor: 2, radial_local_zone_mm: [-3.0, 1.5], axial_local_zone_mm: [-2.0, 2.0]}
+  - name: NEST-VF
+    source: surface45
+    properties: nominal
+    mesh: controlled
+    dt: 0.1
+    mesh_overrides: {arc_spacing_mm: 1.0, near_spacing_mm: 0.6, far_spacing_mm: 1.5, bead_strips: 6, bead_geometry_strips: 6, cross_local_base_spacing_mm: 0.6, cross_local_subdivision_factor: 4, radial_local_zone_mm: [-3.0, 1.5], axial_local_zone_mm: [-2.0, 2.0]}
+acceptance:
+  field_volume_weighted_mae_limit_c: 5.0
+  field_volume_weighted_p95_limit_c: 10.0
+  field_maximum_limit_c: 50.0
+  fixed_point_rms_limit_c: 5.0
+  fixed_point_peak_limit_c: 10.0
+  threshold_flip_volume_limit_mm3: 1.0
+  interface_cumulative_heat_relative_limit: 0.05
+  interface_face_energy_l1_relative_limit: 0.10
+  common_patch_source_l1_relative_limit: 0.05
+  source_centroid_distance_limit_mm: 0.05
+  source_second_moment_relative_limit: 0.05
+  conditional_rule: 仅当F到VF的P95<10、MAE<5且固定点RMS/峰值通过或有实质收敛，才新增并运行同算法NEST-M；否则停止继续细化
+fallback: 若F到VF仍失败，停止自研求解器网格加密并准备成熟FE或FVM独立参考解

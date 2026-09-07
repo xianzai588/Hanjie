@@ -1,0 +1,16 @@
+{
+  "files": {
+    "boundary-neumann-ledger.json": "92778376b62a16603fdb96b04ee4ca8eb2aac26729f85799e01e86e1f1166df5",
+    "field.npz": "3abf26fbdaffdd8c32cfa4afea0c442bbf0dda826bbeec843529cc2631709756",
+    "fixed-point-history.json": "263d95f591915f1c5429b1801422e61ac9d803fb8f75e67d86c09ebfb375c82d",
+    "fixed-point-reconstructed-history.json": "096743ab1828d42333aa33b97e08ebe1ac0691653a668fd70f8a73932cd5934d",
+    "G-PHYSICS-R1.json": "584d82dde6dbdb37a71a8ae0112013d12f323ca78ec9b63b60d3491c5e67ff8b",
+    "history.json": "42b40a0c795b1953c451ea82f6a074e84753ba4ec78c743c147d4fc7b5a5351d",
+    "interface-flux-ledger.json": "8e4a9731a26dbc5697b0ea23cda255357a57a065623d6e08f41eecb0d4637002",
+    "material-energy-history.json": "cc2144bfcd0bf5d3330d7f99bf42297f91dfac7b3206a2be79f2d3337090d26f",
+    "run-inputs.json": "1fd3324bf765b72c1e8b74167e6c63f6c19885cef11ce370bac5e0b6b4e24cd8",
+    "source-density-ledger.json": "01f9ad23772ea68b69eef0ea253e9ac3a5fcb131d2f8ada01319c15834311079",
+    "summary.json": "fc959225c49a97ddc9e406921566d2067a7b0d4098cf9189e3354c14a28ec614"
+  },
+  "evidence_level": "solver_result_unvalidated"
+}

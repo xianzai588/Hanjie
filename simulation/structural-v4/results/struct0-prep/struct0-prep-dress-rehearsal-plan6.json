@@ -1,0 +1,454 @@
+{
+  "stage": "STRUCT-0-PREP-DRESS-REHEARSAL",
+  "evidence_level": "synthetic_cyclic_sector_workflow_rehearsal",
+  "mesh": "simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.msh",
+  "sector": {
+    "nodes": 536,
+    "tetrahedra": 1146,
+    "contains_full_cross_section": true,
+    "circumferential_layers": 1
+  },
+  "synthetic_temperature": {
+    "maximum_c": 814.751523863347,
+    "formal_thermal_history": false
+  },
+  "steps": [
+    {
+      "name": "initial_assembly",
+      "converged": true,
+      "newton_iterations": 0,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 0.0
+        }
+      ],
+      "residual_norm_n": 0.0,
+      "contact": null,
+      "active_element_count": 1128,
+      "newly_activated_element_count": 1128,
+      "maximum_abs_stress_mpa": 0.0,
+      "force_balance_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "moment_balance_n_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "elastic_energy_mj": 0.0,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "normal_contact_initialized",
+      "converged": true,
+      "newton_iterations": 0,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 0.0
+        }
+      ],
+      "residual_norm_n": 0.0,
+      "contact": {
+        "formulation": "frictionless_normal_penalty_rigid_plane",
+        "active_node_count": 0,
+        "maximum_penetration_mm": 0.0,
+        "minimum_clearance_mm": 0.01999999999999602,
+        "normal_reaction_n": 0.0,
+        "resultant_force_n": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "active_element_count": 1128,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 0.0,
+      "force_balance_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "moment_balance_n_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "elastic_energy_mj": 0.0,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "prescribed_global_thermal_cycle",
+      "converged": true,
+      "newton_iterations": 1,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 34.01516567343424,
+          "accepted_step_factor": 1.0
+        },
+        {
+          "iteration": 1,
+          "residual_norm_n": 4.963718263192727e-12
+        }
+      ],
+      "residual_norm_n": 4.963718263192727e-12,
+      "contact": {
+        "formulation": "frictionless_normal_penalty_rigid_plane",
+        "active_node_count": 0,
+        "maximum_penetration_mm": 0.0,
+        "minimum_clearance_mm": 0.014924299257543794,
+        "normal_reaction_n": 0.0,
+        "resultant_force_n": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "active_element_count": 1128,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 2.7010966728811487,
+      "force_balance_n": [
+        3.516201753150134e-16,
+        5.215272658176673e-14,
+        -1.4059960848740105e-16
+      ],
+      "moment_balance_n_mm": [
+        -6.643574579356937e-13,
+        3.1546692078424605e-15,
+        -2.936317855528614e-12
+      ],
+      "elastic_energy_mj": 0.10522229179495371,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "local_heat_before_birth",
+      "converged": true,
+      "newton_iterations": 10,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 117.16334843071797,
+          "accepted_step_factor": 0.5
+        },
+        {
+          "iteration": 1,
+          "residual_norm_n": 58.58167421535901,
+          "accepted_step_factor": 0.5
+        },
+        {
+          "iteration": 2,
+          "residual_norm_n": 29.2908371076795,
+          "accepted_step_factor": 0.25
+        },
+        {
+          "iteration": 3,
+          "residual_norm_n": 21.968127830759634,
+          "accepted_step_factor": 0.125
+        },
+        {
+          "iteration": 4,
+          "residual_norm_n": 19.222111851914676,
+          "accepted_step_factor": 0.0625
+        },
+        {
+          "iteration": 5,
+          "residual_norm_n": 18.02072986117002,
+          "accepted_step_factor": 0.03125
+        },
+        {
+          "iteration": 6,
+          "residual_norm_n": 17.457582053008462,
+          "accepted_step_factor": 0.015625
+        },
+        {
+          "iteration": 7,
+          "residual_norm_n": 17.184807333430214,
+          "accepted_step_factor": 0.001953125
+        },
+        {
+          "iteration": 8,
+          "residual_norm_n": 17.151243256607103,
+          "accepted_step_factor": 0.0009765625
+        },
+        {
+          "iteration": 9,
+          "residual_norm_n": 17.082961297466138,
+          "accepted_step_factor": 1.0
+        },
+        {
+          "iteration": 10,
+          "residual_norm_n": 3.3331035496866105e-09
+        }
+      ],
+      "residual_norm_n": 3.3331035496866105e-09,
+      "contact": {
+        "formulation": "frictionless_normal_penalty_rigid_plane",
+        "active_node_count": 1,
+        "maximum_penetration_mm": 2.6426212684782513e-07,
+        "minimum_clearance_mm": 0.0,
+        "normal_reaction_n": 0.5285242536956503,
+        "resultant_force_n": [
+          -0.5285242536956503,
+          0.0,
+          0.0
+        ]
+      },
+      "active_element_count": 1128,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 11.966938458967,
+      "force_balance_n": [
+        2.5497863127822633e-16,
+        -1.846023334195479e-13,
+        -2.751642637187561e-15
+      ],
+      "moment_balance_n_mm": [
+        2.6563196087181495e-12,
+        3.160901710421694e-13,
+        -4.3794301518573775e-11
+      ],
+      "elastic_energy_mj": 2.079141112847694,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "stress_free_weld_activation",
+      "converged": true,
+      "newton_iterations": 0,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 3.333103549686611e-09
+        }
+      ],
+      "residual_norm_n": 3.333103549686611e-09,
+      "contact": {
+        "formulation": "frictionless_normal_penalty_rigid_plane",
+        "active_node_count": 1,
+        "maximum_penetration_mm": 2.6426212684782513e-07,
+        "minimum_clearance_mm": 0.0,
+        "normal_reaction_n": 0.5285242536956503,
+        "resultant_force_n": [
+          -0.5285242536956503,
+          0.0,
+          0.0
+        ]
+      },
+      "active_element_count": 1146,
+      "newly_activated_element_count": 18,
+      "maximum_abs_stress_mpa": 11.966938458967,
+      "force_balance_n": [
+        2.5497863127822633e-16,
+        -1.846023334195479e-13,
+        -2.751642637187561e-15
+      ],
+      "moment_balance_n_mm": [
+        2.6563196087181495e-12,
+        3.160901710421694e-13,
+        -4.3794301518573775e-11
+      ],
+      "elastic_energy_mj": 2.079141112847694,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "cool_under_fixture",
+      "converged": true,
+      "newton_iterations": 2,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 145.04721322172733,
+          "accepted_step_factor": 1.0
+        },
+        {
+          "iteration": 1,
+          "residual_norm_n": 3.4746691851544482,
+          "accepted_step_factor": 1.0
+        },
+        {
+          "iteration": 2,
+          "residual_norm_n": 2.199430610685089e-12
+        }
+      ],
+      "residual_norm_n": 2.199430610685089e-12,
+      "contact": {
+        "formulation": "frictionless_normal_penalty_rigid_plane",
+        "active_node_count": 0,
+        "maximum_penetration_mm": 0.0,
+        "minimum_clearance_mm": 0.016304207498421874,
+        "normal_reaction_n": 0.0,
+        "resultant_force_n": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "active_element_count": 1146,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 11.473727351338704,
+      "force_balance_n": [
+        2.439935376035459e-16,
+        -2.220446049250313e-15,
+        2.746266442300632e-16
+      ],
+      "moment_balance_n_mm": [
+        1.4210854715202004e-14,
+        -1.3617692063756756e-14,
+        -2.5579538487363607e-13
+      ],
+      "elastic_energy_mj": 0.1423464873730091,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "release_criterion_evaluation",
+      "converged": true,
+      "newton_iterations": 0,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 2.199430610685089e-12
+        }
+      ],
+      "residual_norm_n": 2.199430610685089e-12,
+      "contact": {
+        "formulation": "frictionless_normal_penalty_rigid_plane",
+        "active_node_count": 0,
+        "maximum_penetration_mm": 0.0,
+        "minimum_clearance_mm": 0.016304207498421874,
+        "normal_reaction_n": 0.0,
+        "resultant_force_n": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "active_element_count": 1146,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 11.473727351338704,
+      "force_balance_n": [
+        2.439935376035459e-16,
+        -2.220446049250313e-15,
+        2.746266442300632e-16
+      ],
+      "moment_balance_n_mm": [
+        1.4210854715202004e-14,
+        -1.3617692063756756e-14,
+        -2.5579538487363607e-13
+      ],
+      "elastic_energy_mj": 0.1423464873730091,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "fixture_release",
+      "converged": true,
+      "newton_iterations": 1,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 0.18436445198170434,
+          "accepted_step_factor": 1.0
+        },
+        {
+          "iteration": 1,
+          "residual_norm_n": 1.439990914669023e-11
+        }
+      ],
+      "residual_norm_n": 1.439990914669023e-11,
+      "contact": null,
+      "active_element_count": 1146,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 11.154886398773964,
+      "force_balance_n": [
+        -9.882936823549662e-17,
+        -1.7763568394002505e-15,
+        -9.418648447246889e-17
+      ],
+      "moment_balance_n_mm": [
+        9.947598300641403e-14,
+        -1.8179111939888585e-14,
+        -1.1368683772161603e-13
+      ],
+      "elastic_energy_mj": 0.11000990043103144,
+      "plastic_dissipation_mj": 0.0
+    },
+    {
+      "name": "continue_cooling",
+      "converged": true,
+      "newton_iterations": 1,
+      "newton_history": [
+        {
+          "iteration": 0,
+          "residual_norm_n": 6.636147010163149,
+          "accepted_step_factor": 1.0
+        },
+        {
+          "iteration": 1,
+          "residual_norm_n": 5.649684106688908e-12
+        }
+      ],
+      "residual_norm_n": 5.649684106688908e-12,
+      "contact": null,
+      "active_element_count": 1146,
+      "newly_activated_element_count": 0,
+      "maximum_abs_stress_mpa": 11.646348592270138,
+      "force_balance_n": [
+        -1.363126428888161e-16,
+        4.440892098500626e-16,
+        -4.776275367951763e-16
+      ],
+      "moment_balance_n_mm": [
+        1.9895196601282805e-13,
+        1.9587487445296304e-14,
+        4.547473508864641e-13
+      ],
+      "elastic_energy_mj": 0.11593151539006649,
+      "plastic_dissipation_mj": 0.0
+    }
+  ],
+  "maximum_newton_iterations": 10,
+  "maximum_force_balance_error_n": 1.846230160495899e-13,
+  "maximum_moment_balance_error_n_mm": 4.387592497440531e-11,
+  "release_displacement_mm": 0.7895304457022035,
+  "datum_reconstruction": {
+    "datum_a": "reconstructed",
+    "datum_b": "reconstructed"
+  },
+  "bore_axis_fit": {
+    "centre_mm": [
+      -5.412337245047638e-16,
+      4.779163176316104e-16,
+      6.0
+    ],
+    "direction": [
+      0.0,
+      -9.757382340770359e-17,
+      1.0
+    ],
+    "fitted_diameter_mm": 40.18109214525583,
+    "pfep_fe_mm": 0.18109214525583206,
+    "engineering_meaning": "none_synthetic_rehearsal_only"
+  },
+  "checks": {
+    "admitted_swept_mesh": true,
+    "sparse_global_newton_path": true,
+    "all_newton_steps_converged": true,
+    "force_balance_below_1e_minus_5_n": true,
+    "moment_balance_below_1e_minus_3_n_mm": true,
+    "plastic_dissipation_nonnegative": true,
+    "penetration_below_0p001_mm": true,
+    "thermal_contact_activated_then_separated": true,
+    "activation_count_matches_weld_sector": true,
+    "fixture_release_displacement_finite": true,
+    "axis_fit_completed": true
+  },
+  "dress_rehearsal_pass": true,
+  "struct0_prep_status": "ready_pending_admitted_thermal_history",
+  "formal_struct_0_allowed": false,
+  "limitations": [
+    "完整径向-轴向截面的单环向周期扇区，不是整圈非对称正式求解",
+    "稀疏全局 Newton 已在该扇区执行，整圈规模与非对称载荷仍待正式热历史准入后求解",
+    "合成温度与PFEP_FE只验证状态流，不具有工程意义"
+  ]
+}

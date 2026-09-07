@@ -1,17 +1,17 @@
 version: STRUCT-0-PREP-v1
-status: plan5_components_passed_continuous_weld_mesh_quality_open
-evidence_level: design_assumption
+status: ready_pending_admitted_thermal_history
+evidence_level: executed_preparation_rehearsal_with_synthetic_temperature
 formal_thermal_coupling_allowed: false
-thermal_gate: simulation/thermal-v5/results/nested-refinement-study/assessment.json
+thermal_gate: simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json
 thermal_gate_field: spatial_gate_pass
 thermal_gate_value: false
-historical_thermal_gates: [simulation/thermal-v5/results/physics03/G-PHYSICS.json, simulation/thermal-v5/results/credibility04r1/assessment.json, simulation/thermal-v5/results/spatial-fix-study/assessment.json]
+historical_thermal_gates: [simulation/thermal-v5/results/physics03/G-PHYSICS.json, simulation/thermal-v5/results/credibility04r1/assessment.json, simulation/thermal-v5/results/spatial-fix-study/assessment.json, simulation/thermal-v5/results/nested-refinement-study/assessment.json]
 stage_status: project/stage-status.yaml
 geometry:
   shell: {status: existing_valid_brep, source: simulation/structural-v4/common/shell-manifest.json}
   seat: {status: existing_continuous_solid, source: simulation/structural-v4/models/continuous/geometry-manifest.json}
-  weld: {status: single_pass_mass_closed_ring_prep_geometry, leg_mm: 1.73664301094, source: simulation/structural-v4/results/struct0-prep/continuous-unified-mesh.json}
-  unified_mesh: {status: plan5_local_refinement_and_algorithm_trials_rejected_quality_debt_open, source: simulation/structural-v4/results/struct0-prep/struct0-prep-plan5-assessment.json, baseline_nodes: 52210, baseline_tetrahedra: 176524, baseline_min_sicn_below_0p1: 1381, best_trial_min_sicn_below_0p1: 1393}
+  weld: {status: single_pass_mass_closed_ring_prep_geometry, leg_mm: 1.73664301094, source: simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json}
+  unified_mesh: {status: swept_topology_quality_admitted, source: simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json, nodes: 84420, tetrahedra: 360990, min_sicn_below_0p1: 0, minimum_sicn: 0.16806097407605897}
   material_regions: {status: complete, regions: [Q235B_SHELL, QT450_10_SEAT, ERNIFE_CI_WELD]}
   interfaces: {status: registered, sets: [WELD_SHELL_INTERFACE, WELD_SEAT_INTERFACE, SEAT_GAP_FACE, SHELL_GAP_FACE]}
   heat_to_structure_mapping: {status: local_benchmark_passed_formal_load_blocked, source: simulation/structural-v4/results/struct0-prep/thermal-mapping-benchmark.json, reason: current_thermal_field_is_local_60mm_diagnostic_not_continuous_ring}
@@ -22,11 +22,11 @@ constitutive:
   three_dimensional_j2: {status: algorithm_verified, source: simulation/structural-v4/results/struct0-prep/constitutive-3d-small-mesh.json, completed_paths: [uniaxial, pure_shear, hydrostatic, unload, combined, rotation_covariance]}
   temperature_dependent_material_point: {status: algorithm_verified, alpha_interpretation: instantaneous_piecewise_linear_integrated, out_of_range: error}
   affine_tetrahedral_small_mesh: {status: equilibrium_verified, element_count: 6, completed_cases: [free_thermal_expansion, fully_constrained_heating, deviatoric_loading, support_release_to_plastic_shape]}
-  elastoplastic_solver: {status: small_mesh_global_newton_verified, source: simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json, completed_component_checks: [three_dimensional_j2_return_mapping, analytical_consistent_tangent_vs_finite_difference, arbitrary_nodal_boundary_global_newton, hardening_tensile_analytic_reference, constrained_thermal_release_cooling, force_moment_balance, plastic_work_nonnegative, element_activation], remaining_verification: [continuous_mesh_sparse_global_solve, global_incremental_energy_balance]}
-  progressive_weld_activation: {status: global_small_mesh_stress_free_birth_verified, source: simulation/structural-v4/results/struct0-prep/global-newton-benchmarks.json, remaining: [continuous_mesh_activation_solve]}
+  elastoplastic_solver: {status: sparse_global_newton_sector_rehearsal_verified, source: simulation/structural-v4/results/struct0-prep/struct0-prep-dress-rehearsal-plan6.json, completed_component_checks: [three_dimensional_j2_return_mapping, analytical_consistent_tangent_vs_finite_difference, sparse_global_newton, force_moment_balance, plastic_work_nonnegative, element_activation], remaining_verification: [full_ring_nonaxisymmetric_solve, global_incremental_energy_balance]}
+  progressive_weld_activation: {status: swept_mesh_sector_stress_free_birth_rehearsed, source: simulation/structural-v4/results/struct0-prep/struct0-prep-dress-rehearsal-plan6.json, remaining: [formal_continuous_full_ring_activation_solve]}
 fixture:
   source: project/g-inputs-v5.2.yaml
-  tapered_mandrel_contact: {status: frictionless_normal_plane_benchmarks_passed_geometry_integration_pending, source: simulation/structural-v4/results/struct0-prep/contact-benchmarks.json}
+  tapered_mandrel_contact: {status: frictionless_normal_contact_release_rehearsed_on_swept_sector, source: simulation/structural-v4/results/struct0-prep/struct0-prep-dress-rehearsal-plan6.json}
   registered_contact_surfaces: [FIXTURE_BORE, SEAT_GAP_FACE, SHELL_GAP_FACE]
   axial_clamping_force_n: 500.0
   release_logic: {status: unit_verified, function: hanjie.simulation.structural_prep.fixture_released, hold_from_arc_end_s: 120, interface_max_below_c: 200}
@@ -49,6 +49,6 @@ service:
   actual_load_envelope: missing
   performance_results: not_computed
 acceptance:
-  struct_0_continuous_baseline_ready: false
+  struct_0_continuous_baseline_ready: ready_pending_admitted_thermal_history
   requires: [unified_mesh_quality_closure, continuous_mesh_global_solver, conservative_thermal_mapping, fixture_contact, release_and_complete_cooling, agreed_cmm_protocol, admitted_thermal_model]
   working_tree_audit: "本轮开始工作区干净；审计贴文提及的5个未提交结构修改在本地不存在，未擅自恢复或合并。"
