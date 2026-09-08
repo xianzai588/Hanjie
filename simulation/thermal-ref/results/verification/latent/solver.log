@@ -1,0 +1,169 @@
+ELMER SOLVER (v 9.0) STARTED AT: 2026/09/08 08:58:09
+ParCommInit: Initialize #PEs: 1
+MAIN: 
+MAIN: =============================================================
+MAIN: ElmerSolver finite element software, Welcome!
+MAIN: This program is free software licensed under (L)GPL
+MAIN: Copyright 1st April 1995 - , CSC - IT Center for Science Ltd.
+MAIN: Webpage http://www.csc.fi/elmer, Email elmeradm@csc.fi
+MAIN: Version: 9.0 (Rev: Release, Compiled: 2026-01-20)
+MAIN:  Running one task without MPI parallelization.
+MAIN:  Running with just one thread per task.
+MAIN:  Lua interpreter linked in.
+MAIN: =============================================================
+MAIN: 
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Reading Model: case.sif
+LoadInputFile: Scanning input file: case.sif
+LoadInputFile: Scanning only size info
+LoadInputFile: First time visiting
+LoadInputFile: Reading base load of sif file
+LoadInputFile: Loading input file: case.sif
+LoadInputFile: Reading base load of sif file
+Loading user function library: [ReferenceCallbacks]...[DormantCondition]
+Loading user function library: [ReferenceCallbacks]...[SurfaceFlux]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+LoadInputFile: Number of BCs: 1
+LoadInputFile: Number of Body Forces: 1
+LoadInputFile: Number of Initial Conditions: 1
+LoadInputFile: Number of Materials: 3
+LoadInputFile: Number of Equations: 1
+LoadInputFile: Number of Solvers: 3
+LoadInputFile: Number of Bodies: 3
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 1/3:   1.000E+00
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  120.00000      2.0000000     ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  103.33333     0.14925373     ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  116.15385     0.11682243     ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  105.61644     0.95029934E-01 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  113.84384     0.74978537E-01 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  107.14445     0.60631204E-01 ) :: heat equation
+ComputeChange: NS (ITER=7) (NRM,RELC): (  112.42281     0.48079644E-01 ) :: heat equation
+ComputeChange: NS (ITER=8) (NRM,RELC): (  108.15133     0.38730523E-01 ) :: heat equation
+ComputeChange: NS (ITER=9) (NRM,RELC): (  111.53571     0.30810937E-01 ) :: heat equation
+ComputeChange: NS (ITER=10) (NRM,RELC): (  108.80804     0.24758367E-01 ) :: heat equation
+ComputeChange: NS (ITER=11) (NRM,RELC): (  110.97686     0.19735823E-01 ) :: heat equation
+ComputeChange: NS (ITER=12) (NRM,RELC): (  109.23349     0.15833647E-01 ) :: heat equation
+ComputeChange: NS (ITER=13) (NRM,RELC): (  110.62275     0.12637937E-01 ) :: heat equation
+ComputeChange: NS (ITER=14) (NRM,RELC): (  109.50792     0.10128800E-01 ) :: heat equation
+ComputeChange: NS (ITER=15) (NRM,RELC): (  110.39757     0.80911824E-02 ) :: heat equation
+ComputeChange: NS (ITER=16) (NRM,RELC): (  109.68445     0.64805096E-02 ) :: heat equation
+ComputeChange: NS (ITER=17) (NRM,RELC): (  110.25404     0.51795540E-02 ) :: heat equation
+ComputeChange: NS (ITER=18) (NRM,RELC): (  109.79779     0.41467430E-02 ) :: heat equation
+ComputeChange: NS (ITER=19) (NRM,RELC): (  110.16242     0.33154071E-02 ) :: heat equation
+ComputeChange: NS (ITER=20) (NRM,RELC): (  109.87048     0.26535958E-02 ) :: heat equation
+ComputeChange: NS (ITER=21) (NRM,RELC): (  110.10388     0.21220629E-02 ) :: heat equation
+ComputeChange: NS (ITER=22) (NRM,RELC): (  109.91707     0.16981707E-02 ) :: heat equation
+ComputeChange: NS (ITER=23) (NRM,RELC): (  110.06646     0.13582033E-02 ) :: heat equation
+ComputeChange: NS (ITER=24) (NRM,RELC): (  109.94690     0.10867758E-02 ) :: heat equation
+ComputeChange: NS (ITER=25) (NRM,RELC): (  110.04252     0.86928414E-03 ) :: heat equation
+ComputeChange: NS (ITER=26) (NRM,RELC): (  109.96601     0.69551463E-03 ) :: heat equation
+ComputeChange: NS (ITER=27) (NRM,RELC): (  110.02721     0.55635580E-03 ) :: heat equation
+ComputeChange: NS (ITER=28) (NRM,RELC): (  109.97824     0.44512041E-03 ) :: heat equation
+ComputeChange: NS (ITER=29) (NRM,RELC): (  110.01741     0.35607343E-03 ) :: heat equation
+ComputeChange: NS (ITER=30) (NRM,RELC): (  109.98608     0.28487340E-03 ) :: heat equation
+ComputeChange: NS (ITER=31) (NRM,RELC): (  110.01114     0.22788934E-03 ) :: heat equation
+ComputeChange: NS (ITER=32) (NRM,RELC): (  109.99109     0.18231747E-03 ) :: heat equation
+ComputeChange: NS (ITER=33) (NRM,RELC): (  110.00713     0.14585014E-03 ) :: heat equation
+ComputeChange: NS (ITER=34) (NRM,RELC): (  109.99430     0.11668257E-03 ) :: heat equation
+ComputeChange: NS (ITER=35) (NRM,RELC): (  110.00456     0.93344481E-04 ) :: heat equation
+ComputeChange: NS (ITER=36) (NRM,RELC): (  109.99635     0.74676592E-04 ) :: heat equation
+ComputeChange: NS (ITER=37) (NRM,RELC): (  110.00292     0.59740629E-04 ) :: heat equation
+ComputeChange: NS (ITER=38) (NRM,RELC): (  109.99766     0.47792916E-04 ) :: heat equation
+ComputeChange: NS (ITER=39) (NRM,RELC): (  110.00187     0.38234069E-04 ) :: heat equation
+ComputeChange: NS (ITER=40) (NRM,RELC): (  109.99850     0.30587424E-04 ) :: heat equation
+ComputeChange: NS (ITER=41) (NRM,RELC): (  110.00120     0.24469831E-04 ) :: heat equation
+ComputeChange: NS (ITER=42) (NRM,RELC): (  109.99904     0.19575934E-04 ) :: heat equation
+ComputeChange: NS (ITER=43) (NRM,RELC): (  110.00077     0.15660703E-04 ) :: heat equation
+ComputeChange: NS (ITER=44) (NRM,RELC): (  109.99939     0.12528591E-04 ) :: heat equation
+ComputeChange: NS (ITER=45) (NRM,RELC): (  110.00049     0.10022854E-04 ) :: heat equation
+ComputeChange: NS (ITER=46) (NRM,RELC): (  109.99961     0.80182951E-05 ) :: heat equation
+ComputeChange: NS (ITER=47) (NRM,RELC): (  110.00031     0.64146287E-05 ) :: heat equation
+ComputeChange: NS (ITER=48) (NRM,RELC): (  109.99975     0.51317077E-05 ) :: heat equation
+ComputeChange: NS (ITER=49) (NRM,RELC): (  110.00020     0.41053631E-05 ) :: heat equation
+ComputeChange: NS (ITER=50) (NRM,RELC): (  109.99984     0.32842924E-05 ) :: heat equation
+ComputeChange: NS (ITER=51) (NRM,RELC): (  110.00013     0.26274327E-05 ) :: heat equation
+ComputeChange: NS (ITER=52) (NRM,RELC): (  109.99990     0.21019470E-05 ) :: heat equation
+ComputeChange: NS (ITER=53) (NRM,RELC): (  110.00008     0.16815571E-05 ) :: heat equation
+ComputeChange: NS (ITER=54) (NRM,RELC): (  109.99993     0.13452460E-05 ) :: heat equation
+ComputeChange: NS (ITER=55) (NRM,RELC): (  110.00005     0.10761966E-05 ) :: heat equation
+ComputeChange: NS (ITER=56) (NRM,RELC): (  109.99996     0.86095739E-06 ) :: heat equation
+ComputeChange: NS (ITER=57) (NRM,RELC): (  110.00003     0.68876582E-06 ) :: heat equation
+ComputeChange: NS (ITER=58) (NRM,RELC): (  109.99997     0.55101271E-06 ) :: heat equation
+ComputeChange: NS (ITER=59) (NRM,RELC): (  110.00002     0.44081014E-06 ) :: heat equation
+ComputeChange: NS (ITER=60) (NRM,RELC): (  109.99998     0.35264813E-06 ) :: heat equation
+ComputeChange: NS (ITER=61) (NRM,RELC): (  110.00001     0.28211849E-06 ) :: heat equation
+ComputeChange: NS (ITER=62) (NRM,RELC): (  109.99999     0.22569480E-06 ) :: heat equation
+ComputeChange: NS (ITER=63) (NRM,RELC): (  110.00001     0.18055584E-06 ) :: heat equation
+ComputeChange: NS (ITER=64) (NRM,RELC): (  109.99999     0.14444467E-06 ) :: heat equation
+ComputeChange: NS (ITER=65) (NRM,RELC): (  110.00001     0.11555574E-06 ) :: heat equation
+ComputeChange: NS (ITER=66) (NRM,RELC): (  110.00000     0.92444592E-07 ) :: heat equation
+ComputeChange: NS (ITER=67) (NRM,RELC): (  110.00000     0.73955672E-07 ) :: heat equation
+ComputeChange: NS (ITER=68) (NRM,RELC): (  110.00000     0.59164538E-07 ) :: heat equation
+ComputeChange: NS (ITER=69) (NRM,RELC): (  110.00000     0.47331629E-07 ) :: heat equation
+ComputeChange: NS (ITER=70) (NRM,RELC): (  110.00000     0.37865304E-07 ) :: heat equation
+ComputeChange: NS (ITER=71) (NRM,RELC): (  110.00000     0.30292244E-07 ) :: heat equation
+ComputeChange: NS (ITER=72) (NRM,RELC): (  110.00000     0.24233796E-07 ) :: heat equation
+ComputeChange: NS (ITER=73) (NRM,RELC): (  110.00000     0.19387037E-07 ) :: heat equation
+ComputeChange: NS (ITER=74) (NRM,RELC): (  110.00000     0.15509630E-07 ) :: heat equation
+ComputeChange: NS (ITER=75) (NRM,RELC): (  110.00000     0.12407703E-07 ) :: heat equation
+ComputeChange: NS (ITER=76) (NRM,RELC): (  110.00000     0.99261617E-08 ) :: heat equation
+ComputeChange: NS (ITER=77) (NRM,RELC): (  110.00000     0.79409289E-08 ) :: heat equation
+ComputeChange: NS (ITER=78) (NRM,RELC): (  110.00000     0.63527439E-08 ) :: heat equation
+ComputeChange: NS (ITER=79) (NRM,RELC): (  110.00000     0.50821970E-08 ) :: heat equation
+ComputeChange: NS (ITER=80) (NRM,RELC): (  110.00000     0.40657586E-08 ) :: heat equation
+REF time=   1.000 max=   110.000 energy residual= -1.0000E+02
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 2/3:   2.000E+00
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  160.00000     0.37037037     ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  160.00000      0.0000000     ) :: heat equation
+REF time=   2.000 max=   160.000 energy residual= -2.0000E+02
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 3/3:   3.000E+00
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  210.00000     0.27027027     ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  215.55556     0.26109660E-01 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  218.13953     0.11916110E-01 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  219.24171     0.50398653E-02 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  219.69436     0.20625267E-02 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  219.87737     0.83265723E-03 ) :: heat equation
+ComputeChange: NS (ITER=7) (NRM,RELC): (  219.95089     0.33429907E-03 ) :: heat equation
+ComputeChange: NS (ITER=8) (NRM,RELC): (  219.98035     0.13391824E-03 ) :: heat equation
+ComputeChange: NS (ITER=9) (NRM,RELC): (  219.99214     0.53599127E-04 ) :: heat equation
+ComputeChange: NS (ITER=10) (NRM,RELC): (  219.99685     0.21444747E-04 ) :: heat equation
+ComputeChange: NS (ITER=11) (NRM,RELC): (  219.99874     0.85787145E-05 ) :: heat equation
+ComputeChange: NS (ITER=12) (NRM,RELC): (  219.99950     0.34316163E-05 ) :: heat equation
+ComputeChange: NS (ITER=13) (NRM,RELC): (  219.99980     0.13726674E-05 ) :: heat equation
+ComputeChange: NS (ITER=14) (NRM,RELC): (  219.99992     0.54907031E-06 ) :: heat equation
+ComputeChange: NS (ITER=15) (NRM,RELC): (  219.99997     0.21962866E-06 ) :: heat equation
+ComputeChange: NS (ITER=16) (NRM,RELC): (  219.99999     0.87851551E-07 ) :: heat equation
+ComputeChange: NS (ITER=17) (NRM,RELC): (  219.99999     0.35140634E-07 ) :: heat equation
+ComputeChange: NS (ITER=18) (NRM,RELC): (  220.00000     0.14056256E-07 ) :: heat equation
+ComputeChange: NS (ITER=19) (NRM,RELC): (  220.00000     0.56225022E-08 ) :: heat equation
+ComputeChange: NS (ITER=20) (NRM,RELC): (  220.00000     0.22490017E-08 ) :: heat equation
+ComputeChange: NS (ITER=21) (NRM,RELC): (  220.00000     0.89960046E-09 ) :: heat equation
+ComputeChange: NS (ITER=22) (NRM,RELC): (  220.00000     0.35983964E-09 ) :: heat equation
+ComputeChange: NS (ITER=23) (NRM,RELC): (  220.00000     0.14393632E-09 ) :: heat equation
+ComputeChange: NS (ITER=24) (NRM,RELC): (  220.00000     0.57574632E-10 ) :: heat equation
+REF time=   3.000 max=   220.000 energy residual= -3.0000E+02
+MAIN: *** Elmer Solver: ALL DONE ***
+MAIN: The end
+SOLVER TOTAL TIME(CPU,REAL):         0.14        0.14
+ELMER SOLVER FINISHED AT: 2026/09/08 08:58:10

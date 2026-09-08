@@ -35,6 +35,17 @@ simulation/thermal-v5/results/nested-refinement-study/NEST-M_failed_serializatio
 simulation/structural-v4/results/struct0-prep/continuous-unified-plan5.msh
 simulation/structural-v4/results/struct0-prep/continuous-unified-plan5-delaunay.msh
 
+# 可重复生成的 Elmer 网格、插件二进制与排障输出。
+output/thermal-ref-dev/
+simulation/thermal-ref/results/**/mesh/
+simulation/thermal-ref/results/**/mesh-data.npz
+simulation/thermal-ref/results/**/reference.dat
+simulation/thermal-ref/results/**/ReferenceCallbacks.dll
+simulation/thermal-ref/results/**/compile.log
+simulation/thermal-ref/results/**/*.mod
+simulation/thermal-ref/results/**/field-*.dat
+simulation/thermal-ref/results/**/temperature.vtu
+
 # IDE
 .vscode/
 .idea/

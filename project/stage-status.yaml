@@ -1,5 +1,5 @@
 version: STAGE-STATUS-1.0
-updated: "2026-09-06"
+updated: "2026-09-08"
 authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
 stages:
   G-INPUTS:
@@ -58,7 +58,16 @@ stages:
     allowed_use: 证明面功率施加与点重构实现正确，并排除边界层体积源单位误用；禁止正式结构热载荷
     evidence: simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json
     upstream_dependencies: [THERMAL-0.6-NESTED]
-    next_action: 不运行新M、XF或时间步复查；转用成熟FE/FVM对同一局部工况做独立参考
+    next_action: 自研FVM停止继续细化；已完成首轮Elmer参考，后续按THERMAL-REF处理能量与出生离散问题
+  THERMAL-REF:
+    execution_status: elmer_native_heat_solver_component_checks_and_60s_ref_c_completed
+    acceptance_result: not_admitted_energy_audit_failed_and_reference_convergence_unverified
+    evidence_level: solver_result_unvalidated
+    allowed_use: 与THERMAL-0.7同物理输入的独立粗网格诊断；不得据此裁决求解器优劣或提供正式结构热载荷
+    evidence: simulation/thermal-ref/results/REF-C/assessment.json
+    verification_evidence: simulation/thermal-ref/results/verification/assessment.json
+    upstream_dependencies: [G-INPUTS, THERMAL-0.7-BOUNDARY-NEUMANN]
+    next_action: 先处理Elmer变热容积分的能量缺陷及部分出生单元的接触表示，再验证参考网格与出生敏感性；不回到自研FVM盲目加密
   METALLURGY-0:
     execution_status: executor_and_historical_diagnostics_completed
     acceptance_result: current_joint_not_physically_validated
@@ -74,12 +83,12 @@ stages:
     upstream_dependencies: [G-INPUTS]
     next_action: 条件具备时执行并保留独立验证试件
   THERMAL-NUMERICAL-GATE:
-    execution_status: evaluated_after_0p7_boundary_neumann
+    execution_status: evaluated_after_elmer_ref_c_independent_diagnostic
     acceptance_result: not_passed
     evidence_level: solver_result_unvalidated
     allowed_use: 通过后仅可标记 solver_verified 并进入无实物 Route B
-    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN]
-    next_action: 当前自研局部模型停止继续细化；以成熟FE/FVM独立参考判别离散实现与模型结构
+    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN, THERMAL-REF]
+    next_action: Elmer REF-C已执行但能量审计未通过、参考网格与出生离散未验证；保持禁止正式结构热载荷
   THERMAL-PHYSICAL-CALIBRATION:
     execution_status: protocol_only
     acceptance_result: not_executed

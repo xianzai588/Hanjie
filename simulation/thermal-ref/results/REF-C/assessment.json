@@ -1,0 +1,269 @@
+{
+  "stage": "THERMAL-REF",
+  "case": "REF-C",
+  "evidence_level": "solver_result_unvalidated",
+  "execution_status": "full_history_executed",
+  "acceptance_result": "not_admitted",
+  "checks": {
+    "full_history": true,
+    "solver_exit_success": true,
+    "nonlinear_convergence": true,
+    "declared_temperature_domain": true,
+    "component_verification": true,
+    "source_integral": true,
+    "continuous_deposition_mass": true,
+    "final_enthalpy_balance": false,
+    "transient_enthalpy_balance": false,
+    "reference_spatial_convergence": false,
+    "activation_discretization_checked": false,
+    "physical_calibration": false
+  },
+  "energy": {
+    "source_j": 19800.0,
+    "loss_j": 4909.395930662419,
+    "birth_j": 0.0,
+    "internal_energy_change_j": 14886.3747381302,
+    "residual_j": 4.229331207377982,
+    "final_residual_pct": 0.02136025862312112,
+    "worst_transient_residual_pct": 0.3543471542750558,
+    "definition": "Nodal enthalpy quadrature audited independently from native HeatSolver mass assembly.",
+    "source_relative_error": 7.571043657213295e-15
+  },
+  "mass": {
+    "final_volume_mm3": 90.47786842338584,
+    "maximum_relative_error": 1.1106698887650323e-14
+  },
+  "comparisons": {
+    "NEST-F": {
+      "points": {
+        "weld_center": {
+          "rms_c": 19.39361982630132,
+          "maximum_same_time_difference_c": 96.21273588508006,
+          "peak_difference_c": 59.667934859629895,
+          "elmer_peak_c": 1181.021268400539,
+          "fvm_peak_c": 1240.6892032601688,
+          "elmer_peak_time_s": 21.80000000000004,
+          "fvm_peak_time_s": 21.50000000000004,
+          "comparison_start_s": 20.10000000000002,
+          "elmer_cooling": {
+            "t8_5_s": 2.8796776201142187,
+            "status": "complete"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 2.811127927223918,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "qt_near_interface": {
+          "rms_c": 25.436652768157114,
+          "maximum_same_time_difference_c": 105.75951647560532,
+          "peak_difference_c": 81.66945079679635,
+          "elmer_peak_c": 923.9130098289478,
+          "fvm_peak_c": 1005.5824606257441,
+          "elmer_peak_time_s": 22.00000000000004,
+          "fvm_peak_time_s": 21.80000000000004,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": 3.3879503694362185,
+            "status": "complete"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 3.0976620150757093,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "qt_far": {
+          "rms_c": 14.16152143529186,
+          "maximum_same_time_difference_c": 62.48467803015001,
+          "peak_difference_c": 51.01809509378711,
+          "elmer_peak_c": 779.0384507786288,
+          "fvm_peak_c": 830.0565458724159,
+          "elmer_peak_time_s": 22.20000000000005,
+          "fvm_peak_time_s": 22.10000000000004,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": null,
+            "status": "not_reached_800c"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 3.8014808105200437,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "q235_near_interface": {
+          "rms_c": 5.170511664162377,
+          "maximum_same_time_difference_c": 25.375272114750715,
+          "peak_difference_c": 11.460637278791069,
+          "elmer_peak_c": 832.2709811075001,
+          "fvm_peak_c": 820.810343828709,
+          "elmer_peak_time_s": 22.10000000000004,
+          "fvm_peak_time_s": 22.10000000000004,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": 4.2621847820179894,
+            "status": "complete"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 4.5295816623971525,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "q235_far": {
+          "rms_c": 2.070130969451083,
+          "maximum_same_time_difference_c": 9.137075805769825,
+          "peak_difference_c": 2.729512971095005,
+          "elmer_peak_c": 674.8641703130121,
+          "fvm_peak_c": 672.1346573419171,
+          "elmer_peak_time_s": 22.50000000000005,
+          "fvm_peak_time_s": 22.50000000000005,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": null,
+            "status": "not_reached_800c"
+          },
+          "fvm_cooling": {
+            "t8_5_s": null,
+            "status": "not_reached_800c"
+          },
+          "diagnostic_threshold_pass": true
+        }
+      },
+      "absorbed_source_difference_j": 1.4551915228366852e-10,
+      "evidence_use": "Diagnostic only: mesh and activation schemes differ; no solver superiority inference.",
+      "history_sha256": "096743ab1828d42333aa33b97e08ebe1ac0691653a668fd70f8a73932cd5934d"
+    },
+    "NEST-VF": {
+      "points": {
+        "weld_center": {
+          "rms_c": 16.9557417699873,
+          "maximum_same_time_difference_c": 87.54481964239835,
+          "peak_difference_c": 51.267596941439024,
+          "elmer_peak_c": 1181.021268400539,
+          "fvm_peak_c": 1232.288865341978,
+          "elmer_peak_time_s": 21.80000000000004,
+          "fvm_peak_time_s": 21.50000000000004,
+          "comparison_start_s": 20.10000000000002,
+          "elmer_cooling": {
+            "t8_5_s": 2.8796776201142187,
+            "status": "complete"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 2.8237226744852464,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "qt_near_interface": {
+          "rms_c": 22.774271918037055,
+          "maximum_same_time_difference_c": 96.27052214946718,
+          "peak_difference_c": 71.43708943540025,
+          "elmer_peak_c": 923.9130098289478,
+          "fvm_peak_c": 995.350099264348,
+          "elmer_peak_time_s": 22.00000000000004,
+          "fvm_peak_time_s": 21.80000000000004,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": 3.3879503694362185,
+            "status": "complete"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 3.1327618067072436,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "qt_far": {
+          "rms_c": 13.027461698773486,
+          "maximum_same_time_difference_c": 58.161282302702375,
+          "peak_difference_c": 46.88391866642041,
+          "elmer_peak_c": 779.0384507786288,
+          "fvm_peak_c": 825.9223694450492,
+          "elmer_peak_time_s": 22.20000000000005,
+          "fvm_peak_time_s": 22.10000000000004,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": null,
+            "status": "not_reached_800c"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 3.849642360036949,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": false
+        },
+        "q235_near_interface": {
+          "rms_c": 3.981019174751597,
+          "maximum_same_time_difference_c": 23.772439969233346,
+          "peak_difference_c": 4.688077423567279,
+          "elmer_peak_c": 832.2709811075001,
+          "fvm_peak_c": 827.5829036839328,
+          "elmer_peak_time_s": 22.10000000000004,
+          "fvm_peak_time_s": 22.10000000000004,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": 4.2621847820179894,
+            "status": "complete"
+          },
+          "fvm_cooling": {
+            "t8_5_s": 4.421810218568979,
+            "status": "complete"
+          },
+          "diagnostic_threshold_pass": true
+        },
+        "q235_far": {
+          "rms_c": 1.7728310838193182,
+          "maximum_same_time_difference_c": 8.368428314970515,
+          "peak_difference_c": 1.805607741552194,
+          "elmer_peak_c": 674.8641703130121,
+          "fvm_peak_c": 673.0585625714599,
+          "elmer_peak_time_s": 22.50000000000005,
+          "fvm_peak_time_s": 22.50000000000005,
+          "comparison_start_s": 0.1,
+          "elmer_cooling": {
+            "t8_5_s": null,
+            "status": "not_reached_800c"
+          },
+          "fvm_cooling": {
+            "t8_5_s": null,
+            "status": "not_reached_800c"
+          },
+          "diagnostic_threshold_pass": true
+        }
+      },
+      "absorbed_source_difference_j": 1.4551915228366852e-10,
+      "evidence_use": "Diagnostic only: mesh and activation schemes differ; no solver superiority inference.",
+      "history_sha256": "adbb34b21b176ec5bc427d9fdfc7bddbd3293b2dcc558fbc25ea63925c850db6"
+    }
+  },
+  "geometry_proxies": {
+    "q235b": {
+      "solidus_c": 1474.85,
+      "nodal_peak_envelope_solidus_proxy_mm3": 0.0,
+      "nodal_peak_envelope_400c_proxy_mm3": 4498.830365113542
+    },
+    "qt450_10": {
+      "solidus_c": 1100.0,
+      "nodal_peak_envelope_solidus_proxy_mm3": 0.0,
+      "nodal_peak_envelope_400c_proxy_mm3": 1070.4029311859774
+    },
+    "ernife_ci": {
+      "solidus_c": 1380.0,
+      "nodal_peak_envelope_solidus_proxy_mm3": 6.702064327658228,
+      "nodal_peak_envelope_400c_proxy_mm3": 90.47786842338606
+    }
+  },
+  "geometry_proxy_boundary": "Interpolated nodal peak envelope, not simultaneous melt volume, fusion, HAZ validation or measured weld profile.",
+  "discretization_differences": [
+    "Hex8 Galerkin with Elmer native lumped mass and secant heat capacity.",
+    "Birth source reconstruction matches nodal cold mass addition; this adapter requires component verification.",
+    "Continuous fill is homogenized in density and isotropic conductivity; partial-cell contact is not geometrically remeshed.",
+    "Pure dormant nodes are held at birth temperature; inactive mass and conductivity use a recorded epsilon."
+  ],
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "next_action": "Resolve native enthalpy/activation discretization audit, then perform reference mesh and activation sensitivity before judging FVM agreement."
+}

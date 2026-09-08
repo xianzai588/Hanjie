@@ -1,0 +1,37 @@
+version: THERMAL-REF-ELMER-1
+baseline: project/thermal-boundary-neumann-v5.7.yaml
+inputs: project/g-inputs-v5.2.yaml
+process_input: project/process.yaml
+material_input: project/materials.yaml
+thermal_properties: project/thermal-physics-v5.3.yaml
+solver:
+  time_step_s: 0.1
+  duration_s: 60.0
+  inactive_fraction: 1.0e-8
+  nonlinear_tolerance: 1.0e-8
+  nonlinear_iterations: 30
+  linear_tolerance: 1.0e-10
+  output_interval_steps: 50
+mesh:
+  arc_spacing_mm: 1.0
+  near_spacing_mm: 0.6
+  far_spacing_mm: 1.5
+  bead_geometry_strips: 6
+  radial_local_zone_mm: [-3.0, 1.5]
+  axial_local_zone_mm: [-2.0, 2.0]
+cases:
+  REF-C: {cross_local_subdivision_factor: 1, arc_spacing_mm: 2.0, near_spacing_mm: 1.2, far_spacing_mm: 3.0}
+  REF-M: {cross_local_subdivision_factor: 1}
+  REF-F: {cross_local_subdivision_factor: 2}
+  REF-VF: {cross_local_subdivision_factor: 4}
+acceptance:
+  energy_residual_pct_limit: 0.02
+  source_relative_error_limit: 1.0e-8
+  deposited_volume_relative_error_limit: 1.0e-10
+  fixed_point_rms_limit_c: 5.0
+  fixed_point_peak_limit_c: 10.0
+  requires_reference_spatial_convergence: true
+  requires_activation_discretization_check: true
+evidence_level: solver_result_unvalidated
+thermal_1_allowed: false
+formal_struct_0_allowed: false
