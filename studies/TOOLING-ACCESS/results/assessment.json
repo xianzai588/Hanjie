@@ -1,0 +1,501 @@
+{
+  "stage": "TOOLING-ACCESS",
+  "evidence_level": "design_assumption_with_occ_geometry_checks",
+  "input_config": "studies/TOOLING-ACCESS/config.yaml",
+  "config": {
+    "version": "TOOLING-ACCESS-1.0",
+    "evidence_level": "design_assumption",
+    "sources": {
+      "geometry": "cad/parametric/geometry.json",
+      "process": "project/process.yaml",
+      "load_basis": "project/load-basis-v1.yaml",
+      "shell_brep": "simulation/structural-v4/common/shell.brep"
+    },
+    "assembly": {
+      "seat_bottom_z_mm": 100.0,
+      "seat_height_basis": "题面未指定轴承座轴向高度；取壳体中部作为明确的装配情景，不修改既有座体实体",
+      "bottom_access_open": true,
+      "bottom_access_basis": "仅适用于底盖封闭及内部易损部件装入之前；不是已核实的生产顺序"
+    },
+    "shield": {
+      "outer_radius_mm": 74.0,
+      "floor_thickness_mm": 1.0,
+      "rim_height_mm": 3.0,
+      "rim_thickness_mm": 1.0,
+      "top_to_seat_bottom_gap_mm": 6.0,
+      "extraction_below_shell_mm": 5.0,
+      "dimensional_status": "新增刚性截留盘包络设计假设，未指定材料和热变形能力"
+    },
+    "torch": {
+      "tilt_from_vertical_deg": [
+        15.0,
+        30.0,
+        45.0
+      ],
+      "export_tilt_deg": 30.0,
+      "exposed_tungsten_length_mm": 8.0,
+      "tungsten_radius_mm": 1.0,
+      "nozzle_length_mm": 25.0,
+      "body_radius_mm": 8.0,
+      "body_top_z_mm": 220.0,
+      "radial_clearance_requirement_mm": 0.2,
+      "envelope_basis": "比较直线延长枪体与弯头后竖直枪体；喷嘴直径和弧间距取现有工艺值，其余是空间包络假设，不对应已购设备"
+    },
+    "mandrel": {
+      "friction_coefficients": [
+        0.0,
+        0.05,
+        0.1,
+        0.2
+      ],
+      "friction_basis": "库仑摩擦确定性情景，未测量；轴向500 N全部用于压入锥面只是载荷分配上界情景",
+      "upper_obstruction_top_z_mm": 220.0
+    },
+    "checks": {
+      "boolean_volume_tolerance_mm3": 1e-06,
+      "pose_lifts_mm": [
+        0.0,
+        40.0,
+        120.0
+      ]
+    },
+    "limitations": [
+      "不含六支承的完整实体、机器人腕部、送丝机构、管线、装卸夹爪及热变形",
+      "可达性只覆盖列明的刚性包络；不构成完整工装制造放行",
+      "截留盘有径向间隙，不能据无干涉宣称截获全部飞溅",
+      "心轴摩擦和接触带未知，不能由力平衡算式推断孔扩张、压痕或定位重复性"
+    ]
+  },
+  "assembly": {
+    "seat_bottom_z_mm": 100.0,
+    "seat_top_z_mm": 112.0,
+    "shell_inner_radius_mm": 75.0,
+    "shield_floor_z_mm": 91.0,
+    "shield_top_z_mm": 94.0,
+    "weld_target_rz_mm": [
+      73.25,
+      113.75
+    ]
+  },
+  "shape_validity": {
+    "shell": true,
+    "shield": true,
+    "Continuous": true,
+    "6P-FAIR_B": true,
+    "8P-FAIR_B": true,
+    "upper_mandrel_envelope": true,
+    "weld_keepout": true,
+    "torch_envelope": true
+  },
+  "shield": {
+    "cases": [
+      {
+        "layout": "Continuous",
+        "route": "bottom",
+        "seat_intersection_volume_mm3": 0.0,
+        "shell_intersection_volume_mm3": 0.0,
+        "swept_body_geometry_clear": true,
+        "process_route_admissible": true,
+        "coverage": "所列壳体和座体；未包含支承、机器人及管线"
+      },
+      {
+        "layout": "Continuous",
+        "route": "top",
+        "seat_intersection_volume_mm3": 191360.6917154615,
+        "shell_intersection_volume_mm3": 0.0,
+        "swept_body_geometry_clear": false,
+        "process_route_admissible": false,
+        "coverage": "所列壳体和座体；未包含支承、机器人及管线"
+      },
+      {
+        "layout": "6P-FAIR_B",
+        "route": "bottom",
+        "seat_intersection_volume_mm3": 0.0,
+        "shell_intersection_volume_mm3": 0.0,
+        "swept_body_geometry_clear": true,
+        "process_route_admissible": true,
+        "coverage": "所列壳体和座体；未包含支承、机器人及管线"
+      },
+      {
+        "layout": "6P-FAIR_B",
+        "route": "top",
+        "seat_intersection_volume_mm3": 93756.02496802715,
+        "shell_intersection_volume_mm3": 0.0,
+        "swept_body_geometry_clear": false,
+        "process_route_admissible": false,
+        "coverage": "所列壳体和座体；未包含支承、机器人及管线"
+      },
+      {
+        "layout": "8P-FAIR_B",
+        "route": "bottom",
+        "seat_intersection_volume_mm3": 0.0,
+        "shell_intersection_volume_mm3": 0.0,
+        "swept_body_geometry_clear": true,
+        "process_route_admissible": true,
+        "coverage": "所列壳体和座体；未包含支承、机器人及管线"
+      },
+      {
+        "layout": "8P-FAIR_B",
+        "route": "top",
+        "seat_intersection_volume_mm3": 108910.51253370791,
+        "shell_intersection_volume_mm3": 0.0,
+        "swept_body_geometry_clear": false,
+        "process_route_admissible": false,
+        "coverage": "所列壳体和座体；未包含支承、机器人及管线"
+      }
+    ],
+    "nominal_shell_clearance_mm": 1.0,
+    "vertical_drop_at_interface_radius_mm": 74.98,
+    "capture_outer_radius_mm": 74.0,
+    "vertical_drop_at_interface_captured": false,
+    "uncaptured_radial_band_to_shell_mm": 1.0,
+    "cleanliness_validated": false,
+    "decision": "整块刚性盘只保留底口退出情景；上撤穿过已焊座体被排除。周边间隙仍漏接垂直落物，需另设计可收拢挡边或源头封挡，不能宣称洁净达标"
+  },
+  "torch": {
+    "cases": [
+      {
+        "tilt_deg": 15.0,
+        "body_style": "straight",
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "intersections_mm3": {
+              "shell": 0.5558034523576857,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 40.0,
+            "intersections_mm3": {
+              "shell": 0.5558034522649193,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 120.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          }
+        ],
+        "vertical_path_certificate": null,
+        "nominal_shell_clearance_mm": 0.0,
+        "nominal_mandrel_clearance_mm": 17.00299169388067,
+        "sampled_poses_clear": false
+      },
+      {
+        "tilt_deg": 15.0,
+        "body_style": "bent_vertical",
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "intersections_mm3": {
+              "shell": 0.5558027596712589,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 40.0,
+            "intersections_mm3": {
+              "shell": 0.5558027595782717,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 120.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          }
+        ],
+        "vertical_path_certificate": {
+          "radial_upper_bound_mm": 75.53240002642353,
+          "radial_lower_bound_mm": 56.06192389886051,
+          "z_lower_bound_mm": 115.16481456572266,
+          "min_z_minus_radial_upper_mm": 41.56186217847896,
+          "shell_gap_lower_bound_mm": -0.5324000264235309,
+          "mandrel_gap_lower_bound_mm": 36.011923898860516,
+          "weld_halfplane_margin_mm": 1.061862178478961,
+          "seat_z_gap_lower_bound_mm": 3.164814565722665,
+          "continuous_vertical_lift_clear": false,
+          "applies_to_all_circumferential_angles": true,
+          "scope": "竖直提升/下降与列明轴对称包络；不包括机器人运动学或管线"
+        },
+        "nominal_shell_clearance_mm": 0.0,
+        "nominal_mandrel_clearance_mm": 36.011923898860516,
+        "sampled_poses_clear": false
+      },
+      {
+        "tilt_deg": 30.0,
+        "body_style": "straight",
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 2918.958109803155,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 40.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          },
+          {
+            "lift_mm": 120.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          }
+        ],
+        "vertical_path_certificate": null,
+        "nominal_shell_clearance_mm": 2.133974596215566,
+        "nominal_mandrel_clearance_mm": 0.0,
+        "sampled_poses_clear": false
+      },
+      {
+        "tilt_deg": 30.0,
+        "body_style": "bent_vertical",
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          },
+          {
+            "lift_mm": 40.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          },
+          {
+            "lift_mm": 120.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          }
+        ],
+        "vertical_path_certificate": {
+          "radial_upper_bound_mm": 73.0,
+          "radial_lower_bound_mm": 47.5,
+          "z_lower_bound_mm": 114.91506350946109,
+          "min_z_minus_radial_upper_mm": 41.91506350946109,
+          "shell_gap_lower_bound_mm": 2.0,
+          "mandrel_gap_lower_bound_mm": 27.45,
+          "weld_halfplane_margin_mm": 1.415063509461092,
+          "seat_z_gap_lower_bound_mm": 2.915063509461092,
+          "continuous_vertical_lift_clear": true,
+          "applies_to_all_circumferential_angles": true,
+          "scope": "竖直提升/下降与列明轴对称包络；不包括机器人运动学或管线"
+        },
+        "nominal_shell_clearance_mm": 2.133974596215566,
+        "nominal_mandrel_clearance_mm": 27.45,
+        "sampled_poses_clear": true
+      },
+      {
+        "tilt_deg": 45.0,
+        "body_style": "straight",
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 11170.419239661634,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 40.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 3594.86299269749,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": false
+          },
+          {
+            "lift_mm": 120.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          }
+        ],
+        "vertical_path_certificate": null,
+        "nominal_shell_clearance_mm": 2.8106601717798156,
+        "nominal_mandrel_clearance_mm": 0.0,
+        "sampled_poses_clear": false
+      },
+      {
+        "tilt_deg": 45.0,
+        "body_style": "bent_vertical",
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          },
+          {
+            "lift_mm": 40.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          },
+          {
+            "lift_mm": 120.0,
+            "intersections_mm3": {
+              "shell": 0.0,
+              "upper_mandrel": 0.0,
+              "weld_keepout": 0.0,
+              "continuous_seat": 0.0
+            },
+            "geometry_clear": true
+          }
+        ],
+        "vertical_path_certificate": {
+          "radial_upper_bound_mm": 72.48223304703363,
+          "radial_lower_bound_mm": 40.14770926787756,
+          "z_lower_bound_mm": 114.51776695296637,
+          "min_z_minus_radial_upper_mm": 42.03553390593274,
+          "shell_gap_lower_bound_mm": 2.517766952966369,
+          "mandrel_gap_lower_bound_mm": 20.09770926787756,
+          "weld_halfplane_margin_mm": 1.5355339059327378,
+          "seat_z_gap_lower_bound_mm": 2.517766952966369,
+          "continuous_vertical_lift_clear": true,
+          "applies_to_all_circumferential_angles": true,
+          "scope": "竖直提升/下降与列明轴对称包络；不包括机器人运动学或管线"
+        },
+        "nominal_shell_clearance_mm": 2.8106601717798156,
+        "nominal_mandrel_clearance_mm": 20.09770926787756,
+        "sampled_poses_clear": true
+      }
+    ],
+    "full_system_access_validated": false
+  },
+  "mandrel": {
+    "naive_full_length_insertion_overlap_mm3": 15.721053237338197,
+    "rigid_seating_shift_mm": 5.0,
+    "seated_cone_overlap_mm3": 0.0,
+    "nominal_contact_z_mm": 112.0,
+    "nominal_contact_type": "圆柱孔上缘圆周线接触；不是全长锥面贴合",
+    "force_scenarios": [
+      {
+        "friction_coefficient": 0.0,
+        "half_angle_deg": 0.572938697683494,
+        "self_lock_threshold_mu": 0.010000000000000142,
+        "normal_force_scalar_sum_n": 50002.49993750241,
+        "radial_compression_scalar_sum_n": 49999.99999999929,
+        "self_lock_possible": false,
+        "net_radial_vector_for_axisymmetry_n": 0.0,
+        "axial_force_balance_n": 500.0,
+        "contact_pressure_mpa": null
+      },
+      {
+        "friction_coefficient": 0.05,
+        "half_angle_deg": 0.572938697683494,
+        "self_lock_threshold_mu": 0.010000000000000142,
+        "normal_force_scalar_sum_n": 8333.749989583834,
+        "radial_compression_scalar_sum_n": 8329.166666666646,
+        "self_lock_possible": true,
+        "net_radial_vector_for_axisymmetry_n": 0.0,
+        "axial_force_balance_n": 500.00000000000006,
+        "contact_pressure_mpa": null
+      },
+      {
+        "friction_coefficient": 0.1,
+        "half_angle_deg": 0.572938697683494,
+        "self_lock_threshold_mu": 0.010000000000000142,
+        "normal_force_scalar_sum_n": 4545.681812500278,
+        "radial_compression_scalar_sum_n": 4540.909090909085,
+        "self_lock_possible": true,
+        "net_radial_vector_for_axisymmetry_n": 0.0,
+        "axial_force_balance_n": 500.00000000000006,
+        "contact_pressure_mpa": null
+      },
+      {
+        "friction_coefficient": 0.2,
+        "half_angle_deg": 0.572938697683494,
+        "self_lock_threshold_mu": 0.010000000000000142,
+        "normal_force_scalar_sum_n": 2381.071425595385,
+        "radial_compression_scalar_sum_n": 2376.1904761904743,
+        "self_lock_possible": true,
+        "net_radial_vector_for_axisymmetry_n": 0.0,
+        "axial_force_balance_n": 500.0,
+        "contact_pressure_mpa": null
+      }
+    ],
+    "repeatability_validated": false,
+    "decision": "保留为待设计定位元件；需独立轴向/倾斜约束和主动退锥机构，不能默认全孔固定边界或自动松脱"
+  },
+  "release": {
+    "product_position_acceptance_claim_allowed": false,
+    "cleanliness_validated": false,
+    "fixture_manufacturing_released": false,
+    "formal_struct_0_allowed": false
+  },
+  "cad_outputs": [
+    "cad/generated/tooling-access/nominal-envelope.step",
+    "cad/generated/tooling-access/section.svg"
+  ]
+}

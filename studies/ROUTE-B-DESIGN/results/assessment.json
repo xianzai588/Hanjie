@@ -1,0 +1,824 @@
+{
+  "stage": "ROUTE-B-DESIGN",
+  "evidence_level": "design_assumption",
+  "input_config": "studies/ROUTE-B-DESIGN/config.yaml",
+  "input_sources": {
+    "process": "project/process.yaml",
+    "materials": "project/materials.yaml",
+    "geometry": "cad/parametric/geometry.json",
+    "load_basis": "project/load-basis-v1.yaml",
+    "tolerance": "project/tolerance.yaml",
+    "structural_uncertainty": "simulation/structural-v4/results/struct-uncertainty/assessment.json"
+  },
+  "reference_envelope": {
+    "radial_force_n": [
+      0.0,
+      5000.0
+    ],
+    "axial_force_n": [
+      0.0,
+      5000.0
+    ],
+    "overturning_moment_n_mm": [
+      0.0,
+      250000.0
+    ],
+    "basis": "为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷"
+  },
+  "load_scale_basis": "同比例缩放径向力、轴向力和倾覆力矩的确定性敏感性；不是整机载荷或概率",
+  "allowable_basis": "纯参数敏感性；未用作材料或疲劳许用值",
+  "feed_setting_policy": "按现有名义沉积效率设定固定送丝，再在原配置沉积效率两端核算实际面积；不假定逐件已知效率并调参",
+  "selection_policy": {
+    "objective": "nominal_net_heat_input_j",
+    "constraint": "参考焊缝组模型在声明沉积效率范围内的最大应力不超过假设许用应力",
+    "interpretation": "仅在六个候选内给出条件承载筛查后的低热输入研究优先项，不代表完整工艺可行或全局最优"
+  },
+  "candidate_count": 6,
+  "case_count": 108,
+  "candidates": [
+    {
+      "candidate_id": "Continuous/1pass",
+      "layout": "Continuous",
+      "scenario_id": "current_single_pass_diagnostic",
+      "geometry_source": "simulation/structural-v4/models/continuous/geometry-manifest.json",
+      "pass_count": 1,
+      "weld_length_mm": 471.1132343323254,
+      "fixed_feed_mm_s": 2.0,
+      "wire_diameter_mm": 1.2,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "nominal_deposited_area_mm2": 1.5079644737231008,
+      "nominal_equivalent_leg_mm": 1.7366430109398425,
+      "equivalent_leg_range_mm": [
+        1.6011057445806856,
+        1.7366430109398425
+      ],
+      "nominal_total_deposited_volume_mm3": 710.422020473933,
+      "nominal_retained_filler_mass_g": 5.825460567886251,
+      "purchased_wire_mass_g": 5.825460567886251,
+      "arc_on_time_s": 314.07548955488363,
+      "nominal_net_heat_input_j": 155467.3673296674,
+      "gross_arc_energy_j": 282667.94059939525,
+      "total_cycle_time_s": null,
+      "worst_required_allowable_mpa": 26.145317946901603,
+      "cad_target_section_matches_nominal": false,
+      "volume_accounting_closed": true,
+      "deposited_weld_solid_generated": false,
+      "thermal_history_solved_for_this_candidate": false,
+      "physical_forming_validated": false
+    },
+    {
+      "candidate_id": "Continuous/4pass",
+      "layout": "Continuous",
+      "scenario_id": "target_3p5_four_pass_candidate",
+      "geometry_source": "simulation/structural-v4/models/continuous/geometry-manifest.json",
+      "pass_count": 4,
+      "weld_length_mm": 471.1132343323254,
+      "fixed_feed_mm_s": 2.030883388412206,
+      "wire_diameter_mm": 1.2,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "nominal_deposited_area_mm2": 6.125,
+      "nominal_equivalent_leg_mm": 3.5,
+      "equivalent_leg_range_mm": [
+        3.2268405600525103,
+        3.5
+      ],
+      "nominal_total_deposited_volume_mm3": 2885.5685602854933,
+      "nominal_retained_filler_mass_g": 23.661662194341044,
+      "purchased_wire_mass_g": 23.661662194341044,
+      "arc_on_time_s": 1256.3019582195345,
+      "nominal_net_heat_input_j": 621869.4693186696,
+      "gross_arc_energy_j": 1130671.762397581,
+      "total_cycle_time_s": null,
+      "worst_required_allowable_mpa": 12.972881051796202,
+      "cad_target_section_matches_nominal": true,
+      "volume_accounting_closed": true,
+      "deposited_weld_solid_generated": false,
+      "thermal_history_solved_for_this_candidate": false,
+      "physical_forming_validated": false
+    },
+    {
+      "candidate_id": "6P-FAIR_B/1pass",
+      "layout": "6P-FAIR_B",
+      "scenario_id": "current_single_pass_diagnostic",
+      "geometry_source": "simulation/structural-v4/models/6p-fair-b/geometry-manifest.json",
+      "pass_count": 1,
+      "weld_length_mm": 107.99999999999989,
+      "fixed_feed_mm_s": 2.0,
+      "wire_diameter_mm": 1.2,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "nominal_deposited_area_mm2": 1.5079644737231008,
+      "nominal_equivalent_leg_mm": 1.7366430109398425,
+      "equivalent_leg_range_mm": [
+        1.6011057445806856,
+        1.7366430109398425
+      ],
+      "nominal_total_deposited_volume_mm3": 162.86016316209472,
+      "nominal_retained_filler_mass_g": 1.3354533379291766,
+      "purchased_wire_mass_g": 1.3354533379291766,
+      "arc_on_time_s": 71.99999999999993,
+      "nominal_net_heat_input_j": 35639.99999999997,
+      "gross_arc_energy_j": 64799.999999999935,
+      "total_cycle_time_s": null,
+      "worst_required_allowable_mpa": 114.05004907973913,
+      "cad_target_section_matches_nominal": false,
+      "volume_accounting_closed": true,
+      "deposited_weld_solid_generated": false,
+      "thermal_history_solved_for_this_candidate": false,
+      "physical_forming_validated": false
+    },
+    {
+      "candidate_id": "6P-FAIR_B/4pass",
+      "layout": "6P-FAIR_B",
+      "scenario_id": "target_3p5_four_pass_candidate",
+      "geometry_source": "simulation/structural-v4/models/6p-fair-b/geometry-manifest.json",
+      "pass_count": 4,
+      "weld_length_mm": 107.99999999999989,
+      "fixed_feed_mm_s": 2.030883388412206,
+      "wire_diameter_mm": 1.2,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "nominal_deposited_area_mm2": 6.125,
+      "nominal_equivalent_leg_mm": 3.5,
+      "equivalent_leg_range_mm": [
+        3.2268405600525103,
+        3.5
+      ],
+      "nominal_total_deposited_volume_mm3": 661.4999999999993,
+      "nominal_retained_filler_mass_g": 5.424299999999994,
+      "purchased_wire_mass_g": 5.424299999999994,
+      "arc_on_time_s": 287.9999999999997,
+      "nominal_net_heat_input_j": 142559.99999999988,
+      "gross_arc_energy_j": 259199.99999999974,
+      "total_cycle_time_s": null,
+      "worst_required_allowable_mpa": 56.58977732333571,
+      "cad_target_section_matches_nominal": true,
+      "volume_accounting_closed": true,
+      "deposited_weld_solid_generated": false,
+      "thermal_history_solved_for_this_candidate": false,
+      "physical_forming_validated": false
+    },
+    {
+      "candidate_id": "8P-FAIR_B/1pass",
+      "layout": "8P-FAIR_B",
+      "scenario_id": "current_single_pass_diagnostic",
+      "geometry_source": "simulation/structural-v4/models/8p-fair-b/geometry-manifest.json",
+      "pass_count": 1,
+      "weld_length_mm": 144.00000000000006,
+      "fixed_feed_mm_s": 2.0,
+      "wire_diameter_mm": 1.2,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "nominal_deposited_area_mm2": 1.5079644737231008,
+      "nominal_equivalent_leg_mm": 1.7366430109398425,
+      "equivalent_leg_range_mm": [
+        1.6011057445806856,
+        1.7366430109398425
+      ],
+      "nominal_total_deposited_volume_mm3": 217.1468842161266,
+      "nominal_retained_filler_mass_g": 1.780604450572238,
+      "purchased_wire_mass_g": 1.780604450572238,
+      "arc_on_time_s": 96.00000000000004,
+      "nominal_net_heat_input_j": 47520.00000000003,
+      "gross_arc_energy_j": 86400.00000000004,
+      "total_cycle_time_s": null,
+      "worst_required_allowable_mpa": 85.53753680980422,
+      "cad_target_section_matches_nominal": false,
+      "volume_accounting_closed": true,
+      "deposited_weld_solid_generated": false,
+      "thermal_history_solved_for_this_candidate": false,
+      "physical_forming_validated": false
+    },
+    {
+      "candidate_id": "8P-FAIR_B/4pass",
+      "layout": "8P-FAIR_B",
+      "scenario_id": "target_3p5_four_pass_candidate",
+      "geometry_source": "simulation/structural-v4/models/8p-fair-b/geometry-manifest.json",
+      "pass_count": 4,
+      "weld_length_mm": 144.00000000000006,
+      "fixed_feed_mm_s": 2.030883388412206,
+      "wire_diameter_mm": 1.2,
+      "travel_speed_mm_s": 1.5,
+      "deposition_efficiency_range": [
+        0.85,
+        1.0
+      ],
+      "nominal_deposited_area_mm2": 6.125,
+      "nominal_equivalent_leg_mm": 3.5,
+      "equivalent_leg_range_mm": [
+        3.2268405600525103,
+        3.5
+      ],
+      "nominal_total_deposited_volume_mm3": 882.0000000000003,
+      "nominal_retained_filler_mass_g": 7.232400000000003,
+      "purchased_wire_mass_g": 7.232400000000003,
+      "arc_on_time_s": 384.00000000000017,
+      "nominal_net_heat_input_j": 190080.00000000012,
+      "gross_arc_energy_j": 345600.0000000002,
+      "total_cycle_time_s": null,
+      "worst_required_allowable_mpa": 42.44233299250171,
+      "cad_target_section_matches_nominal": true,
+      "volume_accounting_closed": true,
+      "deposited_weld_solid_generated": false,
+      "thermal_history_solved_for_this_candidate": false,
+      "physical_forming_validated": false
+    }
+  ],
+  "decisions": [
+    {
+      "load_scale": 0.5,
+      "assumed_allowable_mpa": 60.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/1pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 13.072658973450801,
+          "conditional_margin": 4.5897319070170575,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 6.486440525898101,
+          "conditional_margin": 9.250065542178467,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 57.02502453986956,
+          "conditional_margin": 1.0521696480472438,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 28.294888661667855,
+          "conditional_margin": 2.120524336301215,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 42.76876840490211,
+          "conditional_margin": 1.4028928640629938,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 21.221166496250856,
+          "conditional_margin": 2.827365781734958,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 0.5,
+      "assumed_allowable_mpa": 90.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/1pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 13.072658973450801,
+          "conditional_margin": 6.884597860525587,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 6.486440525898101,
+          "conditional_margin": 13.875098313267701,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 57.02502453986956,
+          "conditional_margin": 1.5782544720708658,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 28.294888661667855,
+          "conditional_margin": 3.1807865044518224,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 42.76876840490211,
+          "conditional_margin": 2.1043392960944907,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 21.221166496250856,
+          "conditional_margin": 4.241048672602437,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 0.5,
+      "assumed_allowable_mpa": 120.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/1pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 13.072658973450801,
+          "conditional_margin": 9.179463814034115,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 6.486440525898101,
+          "conditional_margin": 18.500131084356934,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 57.02502453986956,
+          "conditional_margin": 2.1043392960944876,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 28.294888661667855,
+          "conditional_margin": 4.24104867260243,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 42.76876840490211,
+          "conditional_margin": 2.8057857281259877,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 21.221166496250856,
+          "conditional_margin": 5.654731563469916,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 1.0,
+      "assumed_allowable_mpa": 60.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/4pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 26.145317946901603,
+          "conditional_margin": 2.2948659535085287,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 12.972881051796202,
+          "conditional_margin": 4.625032771089233,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 114.05004907973913,
+          "conditional_margin": 0.5260848240236219,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 56.58977732333571,
+          "conditional_margin": 1.0602621681506075,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 85.53753680980422,
+          "conditional_margin": 0.7014464320314969,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 42.44233299250171,
+          "conditional_margin": 1.413682890867479,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 1.0,
+      "assumed_allowable_mpa": 90.0,
+      "selected_for_further_study": [
+        "8P-FAIR_B/1pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 26.145317946901603,
+          "conditional_margin": 3.4422989302627935,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 12.972881051796202,
+          "conditional_margin": 6.9375491566338505,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 114.05004907973913,
+          "conditional_margin": 0.7891272360354329,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 56.58977732333571,
+          "conditional_margin": 1.5903932522259112,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 85.53753680980422,
+          "conditional_margin": 1.0521696480472453,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 42.44233299250171,
+          "conditional_margin": 2.1205243363012185,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 1.0,
+      "assumed_allowable_mpa": 120.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/1pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 26.145317946901603,
+          "conditional_margin": 4.5897319070170575,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 12.972881051796202,
+          "conditional_margin": 9.250065542178467,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 114.05004907973913,
+          "conditional_margin": 1.0521696480472438,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 56.58977732333571,
+          "conditional_margin": 2.120524336301215,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 85.53753680980422,
+          "conditional_margin": 1.4028928640629938,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 42.44233299250171,
+          "conditional_margin": 2.827365781734958,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 1.5,
+      "assumed_allowable_mpa": 60.0,
+      "selected_for_further_study": [
+        "Continuous/1pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 39.217976920352406,
+          "conditional_margin": 1.5299106356723526,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 19.459321577694304,
+          "conditional_margin": 3.0833551807261554,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 171.0750736196087,
+          "conditional_margin": 0.3507232160157479,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 84.88466598500356,
+          "conditional_margin": 0.7068414454337383,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 128.30630521470633,
+          "conditional_margin": 0.46763095468766464,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 63.663499488752564,
+          "conditional_margin": 0.9424552605783194,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 1.5,
+      "assumed_allowable_mpa": 90.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/4pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 39.217976920352406,
+          "conditional_margin": 2.2948659535085287,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 19.459321577694304,
+          "conditional_margin": 4.625032771089233,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 171.0750736196087,
+          "conditional_margin": 0.5260848240236219,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 84.88466598500356,
+          "conditional_margin": 1.0602621681506075,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 128.30630521470633,
+          "conditional_margin": 0.7014464320314969,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 63.663499488752564,
+          "conditional_margin": 1.413682890867479,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    },
+    {
+      "load_scale": 1.5,
+      "assumed_allowable_mpa": 120.0,
+      "selected_for_further_study": [
+        "6P-FAIR_B/4pass"
+      ],
+      "status": "conditional_capacity_only",
+      "assessed_candidates": [
+        {
+          "candidate_id": "Continuous/1pass",
+          "required_allowable_mpa": 39.217976920352406,
+          "conditional_margin": 3.0598212713447053,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 155467.3673296674
+        },
+        {
+          "candidate_id": "Continuous/4pass",
+          "required_allowable_mpa": 19.459321577694304,
+          "conditional_margin": 6.166710361452311,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 621869.4693186696
+        },
+        {
+          "candidate_id": "6P-FAIR_B/1pass",
+          "required_allowable_mpa": 171.0750736196087,
+          "conditional_margin": 0.7014464320314958,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 35639.99999999997
+        },
+        {
+          "candidate_id": "6P-FAIR_B/4pass",
+          "required_allowable_mpa": 84.88466598500356,
+          "conditional_margin": 1.4136828908674766,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 142559.99999999988
+        },
+        {
+          "candidate_id": "8P-FAIR_B/1pass",
+          "required_allowable_mpa": 128.30630521470633,
+          "conditional_margin": 0.9352619093753293,
+          "conditional_capacity_screen_pass": false,
+          "nominal_net_heat_input_j": 47520.00000000003
+        },
+        {
+          "candidate_id": "8P-FAIR_B/4pass",
+          "required_allowable_mpa": 63.663499488752564,
+          "conditional_margin": 1.8849105211566388,
+          "conditional_capacity_screen_pass": true,
+          "nominal_net_heat_input_j": 190080.00000000012
+        }
+      ],
+      "engineering_recommendation_released": false
+    }
+  ],
+  "precision": {
+    "evidence_level": "design_requirement_not_achieved_capability",
+    "radial_limit_mm": 0.025,
+    "current_total_radial_mm": 0.035,
+    "radial_deficit_mm": 0.010000000000000002,
+    "fixed_other_contributions_mm": 0.010000000000000002,
+    "current_fixture_and_assembly_mm": 0.013000000000000001,
+    "thermal_budget_if_other_items_unchanged_mm": 0.0019999999999999983,
+    "budget_status": "not_closed",
+    "rows": [
+      {
+        "thermal_radial_allocation_mm": 0.002,
+        "fixture_and_assembly_budget_max_mm": 0.013,
+        "required_reduction_from_current_mm": 1.734723475976807e-18,
+        "nonnegative_budget_possible": true
+      },
+      {
+        "thermal_radial_allocation_mm": 0.005,
+        "fixture_and_assembly_budget_max_mm": 0.009999999999999998,
+        "required_reduction_from_current_mm": 0.0030000000000000027,
+        "nonnegative_budget_possible": true
+      },
+      {
+        "thermal_radial_allocation_mm": 0.008,
+        "fixture_and_assembly_budget_max_mm": 0.006999999999999999,
+        "required_reduction_from_current_mm": 0.006000000000000002,
+        "nonnegative_budget_possible": true
+      },
+      {
+        "thermal_radial_allocation_mm": 0.011,
+        "fixture_and_assembly_budget_max_mm": 0.004,
+        "required_reduction_from_current_mm": 0.009000000000000001,
+        "nonnegative_budget_possible": true
+      },
+      {
+        "thermal_radial_allocation_mm": 0.012,
+        "fixture_and_assembly_budget_max_mm": 0.002999999999999999,
+        "required_reduction_from_current_mm": 0.010000000000000002,
+        "nonnegative_budget_possible": true
+      }
+    ],
+    "measurement_uncertainty_separate": true,
+    "product_position_acceptance_claim_allowed": false
+  },
+  "structural_evidence": {
+    "cases_executed": 432,
+    "robust_candidate_ranking_established": false,
+    "pairs": [
+      {
+        "a": "Continuous",
+        "b": "6P-FAIR_B",
+        "a_lower": 16,
+        "b_lower": 0,
+        "unresolved": 56,
+        "signed_a_minus_b_min_mm": -0.0017858557916192999,
+        "signed_a_minus_b_max_mm": 0.0010336115183882007,
+        "all_scenarios_resolved_same_direction": false
+      },
+      {
+        "a": "Continuous",
+        "b": "8P-FAIR_B",
+        "a_lower": 11,
+        "b_lower": 0,
+        "unresolved": 61,
+        "signed_a_minus_b_min_mm": -0.001738832281118101,
+        "signed_a_minus_b_max_mm": 0.0006848164580474988,
+        "all_scenarios_resolved_same_direction": false
+      },
+      {
+        "a": "6P-FAIR_B",
+        "b": "8P-FAIR_B",
+        "a_lower": 0,
+        "b_lower": 0,
+        "unresolved": 72,
+        "signed_a_minus_b_min_mm": -0.0006879148152223995,
+        "signed_a_minus_b_max_mm": 0.00046030906291420065,
+        "all_scenarios_resolved_same_direction": false
+      }
+    ],
+    "limitations": [
+      "非正式固有应变响应，不是三材料整件瞬态热塑性求解",
+      "局部热循环沿候选实体铺展，未证明整件热量保守、焊序累积或端部热效应",
+      "壳体和焊缝的力学作用简化为按实际接口面积分布的弹性基础，未求解其塑性与接触释放",
+      "固有应变来自材料点约束情景，未用整件位移反校准，不能称最终焊接残余位置度",
+      "网格C/M比较只报告误差跨度，未达到三网格GCI验证"
+    ]
+  },
+  "release": {
+    "product_position_acceptance_claim_allowed": false,
+    "welding_procedure_qualified": false,
+    "fatigue_life_claim_allowed": false,
+    "cleanliness_validated": false
+  },
+  "limitations": [
+    "沉积截面为等脚三角形体积等效，不含母材稀释、成形与缺陷",
+    "沿用简化焊缝线群模型，不含根部未熔合、局部应力集中、疲劳和服役载荷验证",
+    "净热输入按共同的未校准电弧效率核算；弧燃时间不含装夹、引收弧、转位、层间等待和冷却",
+    "沉积效率区间为原设计假设，固定送丝下只核算体积变化，没有求解熔池热响应",
+    "当前三维图与实体不含本研究全部沉积焊缝；体积闭合不等于三材料几何或完整热结构闭合",
+    "没有把简化结构敏感性位置度作为合格筛选条件；最终工程推荐仍需精度、可焊性和洁净要求共同成立"
+  ]
+}

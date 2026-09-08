@@ -40,6 +40,21 @@ taxonomy:
       status: unvalidated
       verification_status: citation_pending_verification
   designs:
+    DES-COMPETITION-R1:
+      path: studies/COMPETITION-DESIGN/results/assessment.json
+      parameters: 四道固定送丝、连续薄裙安装包络、圆柱胀套与独立轴向夹紧、精度目标分配及失败闭锁
+      status: design_checks_completed_physical_performance_unverified
+      evidence_level: design_assumption
+    DES-TOOLING-ACCESS:
+      path: studies/TOOLING-ACCESS/results/assessment.json
+      parameters: 三候选退出扫掠检查、六种焊枪包络及四个摩擦情景；底口开放是设计假设，洁净与重复性未验证
+      status: limited_geometry_screening_completed
+      evidence_level: design_assumption
+    DES-ROUTE-B-SELECTION:
+      path: studies/ROUTE-B-DESIGN/results/assessment.json
+      parameters: 六候选108组合；固定送丝下的沉积效率端点、参考载荷与假设许用应力；公差反算未修改原预算
+      status: conditional_screening_completed
+      evidence_level: design_assumption
     DES-CAD-BASELINE:
       path: project/baseline.yaml
       parameters: Shell Ø160x5 mm, Wing R74.98 mm with explicit Ø149.94~149.98/Ø150.00~150.02 limit fit, Taper 1/50 mandrel

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="850" viewBox="0 0 1250 850">
+<rect width="1250" height="850" fill="#ffffff"/>
+<style>text{font-family:"Microsoft YaHei",sans-serif;fill:#172b3a;font-size:16px} .title{font-size:25px;font-weight:700} .small{font-size:14px}</style>
+<text x="45" y="48" class="title">刚性工装包络与退出路径检查</text>
+<text x="45" y="78" class="">名义情景：座体底面 z=100 mm；底口未封闭；仅检查列明实体，未作制造放行</text>
+<rect x="106.0" y="270.00000000000006" width="11.5" height="459.99999999999994" fill="#cbd5e1" stroke="#334155"/>
+<rect x="117.54599999999999" y="472.40000000000003" width="126.454" height="27.599999999999998" fill="#edc777" stroke="#334155"/>
+<rect x="462.5" y="270.00000000000006" width="11.5" height="459.99999999999994" fill="#cbd5e1" stroke="#334155"/>
+<rect x="336.0" y="472.40000000000003" width="126.454" height="27.599999999999998" fill="#edc777" stroke="#334155"/>
+<rect x="119.80000000000001" y="518.4" width="340.4" height="2.3" fill="#7db8d5" stroke="#334155"/>
+<rect x="119.80000000000001" y="513.8" width="2.3" height="6.8999999999999995" fill="#7db8d5" stroke="#334155"/>
+<rect x="457.9" y="513.8" width="2.3" height="6.8999999999999995" fill="#7db8d5" stroke="#334155"/>
+<rect x="243.885" y="224.00000000000006" width="92.22999999999999" height="248.39999999999998" fill="#a4bfa5" stroke="#334155"/>
+<polygon points="457.59,462.25 448.39,446.31 444.41,448.61 453.61,464.55" fill="#475569" stroke="#334155"/>
+<polygon points="456.36,441.71 427.61,391.91 407.69,403.41 436.44,453.21" fill="#d2a0a0" stroke="#334155"/>
+<circle cx="417.65" cy="397.6640257810006" r="18.4" fill="#d2a0a0" stroke="#334155"/>
+<rect x="399.25" y="224.00000000000006" width="36.8" height="173.66402578100056" fill="#d2a0a0" stroke="#334155"/>
+<polygon points="125.55,472.40 117.50,472.40 117.50,464.35" fill="#d97657" stroke="#334155"/>
+<polygon points="454.45,472.40 462.50,472.40 462.50,464.35" fill="#d97657" stroke="#334155"/>
+<line x1="290" y1="515.7" x2="290" y2="780.6" stroke="#167897" stroke-width="3"/>
+<polygon points="283.10,769.10 290.00,780.60 296.90,769.10" fill="#167897" stroke="#334155"/>
+<text x="170" y="795" class="small">底口退出（需开放底口及下方操作空间）</text>
+<text x="70" y="225" class="small">壳体 Ø160 × 200 × 5</text>
+<text x="135" y="450" class="small">座体 Ø40 孔</text>
+<text x="135" y="555" class="small">截留盘 Ø148</text>
+<text x="340" y="555" class="small">壁隙 1 mm</text>
+<text x="590" y="160" class="title">检查范围与关键结论</text>
+<text x="590" y="207" class="">蓝色盘：底板1 mm、总高3 mm，位于座体下方6 mm。</text>
+<text x="590" y="246" class="">整盘向下退出：扫掠圆柱与壳体/三种座体均不相交。</text>
+<text x="590" y="285" class="">整盘向上退出：与已焊座体相交，不能穿过Ø40孔。</text>
+<text x="590" y="324" class="">30°弯头后竖直枪体：保留为几何可达性候选。</text>
+<text x="590" y="363" class="">直线延长枪体与中心定位包络可能冲突，需比较。</text>
+<text x="590" y="402" class="">绿色仅为上方定位机构占位包络，不是完整夹具。</text>
+<text x="590" y="441" class="">1:50锥度与圆柱孔是边缘接触，不是全孔贴合。</text>
+<text x="590" y="480" class="">锥面存在自锁情景；定位重复性及主动退锥待设计。</text>
+<text x="590" y="519" class="">截留盘外缘未覆盖R74.98接口的垂直落物路径。</text>
+<text x="590" y="558" class="">仍需可收拢挡边/源头封挡；不得宣称内腔洁净达标。</text>
+<text x="590" y="597" class="">未包含：支承、腕部、送丝机构、管线与热变形。</text>
+<text x="45" y="825" class="small">来源：既有CAD实体＋TOOLING-ACCESS/config.yaml工装假设；比例用于剖面表达，非加工图。</text>
+</svg>

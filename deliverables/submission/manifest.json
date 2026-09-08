@@ -1,0 +1,16 @@
+{
+  "version": "COMPETITION-R1",
+  "files": {
+    "01-工艺设计说明书.pdf": "output/pdf/technical-report-v4.pdf",
+    "02-设计图集.pdf": "cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf",
+    "03-名义装配包络.step": "cad/generated/competition-design/competition-assembly.step",
+    "04-设计计算.json": "studies/COMPETITION-DESIGN/results/assessment.json",
+    "05-设计指标.csv": "studies/COMPETITION-DESIGN/results/result.csv",
+    "06-工艺提案.md": "deliverables/process/joint-process-card.md",
+    "07-设计参数.yaml": "project/competition-design.yaml"
+  },
+  "report_pages": 8,
+  "drawing_pages": 4,
+  "submission_scope": "technical_design_only",
+  "physical_performance_verified": false
+}

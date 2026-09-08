@@ -29,7 +29,7 @@ fixture:
   tapered_mandrel_contact: {status: frictionless_normal_contact_release_rehearsed_on_swept_sector, source: simulation/structural-v4/results/struct0-prep/struct0-prep-dress-rehearsal-plan6.json}
   registered_contact_surfaces: [FIXTURE_BORE, SEAT_GAP_FACE, SHELL_GAP_FACE]
   axial_clamping_force_n: 500.0
-  release_logic: {status: unit_verified, function: hanjie.simulation.structural_prep.fixture_released, hold_from_arc_end_s: 120, interface_max_below_c: 200}
+  release_logic: {status: unit_verified, function: hanjie.simulation.structural_prep.fixture_released, hold_from_arc_end_s: 120, interface_max_below_c: 55, interpretation: "50±5 C 的上限闭锁；继续冷却至测量温度，不追改历史演练"}
   post_release_cooling: "必须继续计算至预登记测量温度；不能把释放时刻当最终位置度。"
 metrology:
   implementation: hanjie.simulation.structural_prep.fit_position_diameter

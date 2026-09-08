@@ -1,39 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<rect width="1200" height="800" fill="#ffffff"/>
-<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
-<rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
-<text x="50.0" y="65.0" class="title" text-anchor="start">内腔防护焊接工序总装</text>
-<text x="50.0" y="90.0" class="subtitle" text-anchor="start">PROCESS ASSEMBLY / ACCESS + SHIELD + CONTROLLED WITHDRAWAL</text>
-<text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-008</text>
-<text x="80.0" y="145.0" class="section" text-anchor="start">SECTION THROUGH WELD STATION</text>
-<rect x="150.0" y="190.0" width="45.0" height="420.0" class="edge" fill="#e2e8f0" rx="0.0"/>
-<text x="115.0" y="630.0" class="small" text-anchor="start">Q235B SHELL</text>
-<rect x="195.0" y="390.0" width="300.0" height="55.0" class="edge" fill="#fbbf24" rx="0.0"/>
-<text x="280.0" y="465.0" class="small" text-anchor="start">QT450-10 SEAT WING</text>
-<polygon points="195.0,390.0 240.0,390.0 195.0,345.0" class="weld" fill="#fecaca"/>
-<polygon points="335.0,120.0 365.0,120.0 255.0,320.0 225.0,320.0" class="edge" fill="#94a3b8"/>
-<text x="390.0" y="125.0" class="note" text-anchor="start">TIG TORCH</text>
-<line x1="430.0" y1="130.0" x2="245.0" y2="340.0" class="weld"/>
-<text x="455.0" y="105.0" class="note" text-anchor="start">FILLER WIRE</text>
-<polygon points="215.0,470.0 475.0,470.0 455.0,540.0 235.0,540.0" class="edge" fill="#bfdbfe"/>
-<text x="285.0" y="520.0" class="small" text-anchor="start">REMOVABLE INTERNAL SHIELD / CAPTURE TRAY</text>
-<line x1="455.0" y1="540.0" x2="570.0" y2="575.0" class="dimline"/>
-<text x="335.0" y="580.0" class="dim" text-anchor="start">WITHDRAWAL PATH →</text>
-<text x="690.0" y="165.0" class="section" text-anchor="start">CONTROLLED PROCESS</text>
-<text x="690.0" y="205.0" class="note" text-anchor="start">1  Insert clean, low-shedding shield before seat locking</text>
-<text x="690.0" y="240.0" class="note" text-anchor="start">2  Verify torch/wire/gas clearance with dry run</text>
-<text x="690.0" y="275.0" class="note" text-anchor="start">3  Weld with shield retained below the joint</text>
-<text x="690.0" y="310.0" class="note" text-anchor="start">4  Cool and unlock fixture; keep capture face upward</text>
-<text x="690.0" y="345.0" class="note" text-anchor="start">5  Withdraw shield along shown path without inversion</text>
-<text x="690.0" y="380.0" class="note" text-anchor="start">6  Inspect shield inventory and borescope internal cavity</text>
-<text x="690.0" y="430.0" class="section" text-anchor="start">OPEN DESIGN ITEMS</text>
-<text x="690.0" y="470.0" class="note" text-anchor="start">Shield material, coating, gas-flow influence and clearances TBD</text>
-<text x="690.0" y="505.0" class="note" text-anchor="start">No cleanliness release without real spatter/debris trial</text>
-<text x="690.0" y="540.0" class="note" text-anchor="start">Protect machined bore and datum surfaces during insertion</text>
-<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
-<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: Process tooling concept; material and dimensions pending access trial</text>
-<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
-<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">连续防护、承力组件与退出路径</text>
+<text x="50" y="99" class="small">底口在焊接与回收工序均保持开放；内机件在本工序以后安装；底部预留120 mm操作空间</text>
+<text x="1020" y="65" class="section">HJ-R1-004</text>
+<rect x="110.0" y="220.0" width="11.25" height="450.0" fill="#cbd5e1" stroke="#334155"/>
+<rect x="121.29499999999999" y="418.0" width="123.70500000000001" height="27.0" fill="#efd18b" stroke="#334155"/>
+<rect x="213.5" y="445.0" width="18.0" height="22.5" fill="#9baeb7" stroke="#334155"/>
+<polygon points="128.00,466.38 121.25,458.50 121.25,458.84 128.00,466.71" fill="#4f9ea3" stroke="#334155"/>
+<rect x="458.75" y="220.0" width="11.25" height="450.0" fill="#cbd5e1" stroke="#334155"/>
+<rect x="335.0" y="418.0" width="123.70500000000001" height="27.0" fill="#efd18b" stroke="#334155"/>
+<rect x="348.5" y="445.0" width="18.0" height="22.5" fill="#9baeb7" stroke="#334155"/>
+<polygon points="452.00,466.38 458.75,458.50 458.75,458.84 452.00,466.71" fill="#4f9ea3" stroke="#334155"/>
+<rect x="123.5" y="465.25" width="333.0" height="2.25" fill="#4f9ea3" stroke="#334155"/>
+<rect x="209.0" y="467.5" width="162.0" height="9.0" fill="#9baeb7" stroke="#334155"/>
+<rect x="267.5" y="476.5" width="45.0" height="238.5" fill="#9baeb7" stroke="#334155"/>
+<rect x="222.5" y="175.0" width="135.0" height="243.0" fill="#8cb6ae" stroke="#334155"/>
+<line x1="380.0" y1="481.0" x2="380.0" y2="692.5" stroke="#176b7b" stroke-width="3"/>
+<polygon points="373.25,683.50 386.75,683.50 380.00,697.00" fill="#176b7b" stroke="#334155"/>
+<text x="65" y="155" class="small">同轴工序剖面，翼片方向简化投影</text>
+<text x="65" y="698" class="small">盘面保持朝上，下撤全程贴壁，不折叠脏面</text>
+<text x="640" y="167" class="note">刚性盘Ø148；底板1；底面z90</text>
+<text x="640" y="205" class="note">连续薄裙：安装外缘Ø150，z94；t0.15</text>
+<text x="640" y="243" class="note">盘体—薄裙、穿盘支承均连续密封连接</text>
+<text x="640" y="281" class="note">薄裙径向顺应能力要求≥0.35</text>
+<text x="640" y="319" class="note">贴壁后覆盖R74.98落物路径；不留1 mm缝</text>
+<text x="640" y="357" class="note">名义接触不等于热态密封；磨损需验证</text>
+<text x="640" y="395" class="note">下撤不经过Ø40孔，不依赖收折倒渣</text>
+<text x="640" y="433" class="note">焊枪30°弯头＋竖直枪体；喷嘴Ø10</text>
+<text x="640" y="471" class="note">送丝管与焊枪周向错开，出口偏置y=-4</text>
+<text x="640" y="509" class="note">所建模焊枪／送丝最小间距 2.28</text>
+<text x="640" y="547" class="note">执行互锁：防护在位、底口开放、轨迹确认</text>
+<text x="640" y="585" class="note">冷却松夹→胀套顶回确认→组件下撤→封盖</text>
+<text x="640" y="623" class="note">内窥镜＋全表面颗粒检查，不以低飞溅免责</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
 </svg>

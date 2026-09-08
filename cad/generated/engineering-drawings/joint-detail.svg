@@ -1,46 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<rect width="1200" height="800" fill="#ffffff"/>
-<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
-<rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
-<text x="50.0" y="65.0" class="title" text-anchor="start">接头与焊缝细节图</text>
-<text x="50.0" y="90.0" class="subtitle" text-anchor="start">JOINT DETAIL / SECTION A-A / FILLET WELD</text>
-<text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-003</text>
-<text x="90.0" y="155.0" class="section" text-anchor="start">SECTION A-A</text>
-<rect x="120.0" y="210.0" width="430.0" height="70.0" class="edge" fill="#e2e8f0" rx="0.0"/>
-<rect x="120.0" y="280.0" width="430.0" height="45.0" class="edge" fill="#fbbf24" rx="0.0"/>
-<line x1="120.0" y1="350.0" x2="550.0" y2="350.0" class="center" stroke-dasharray="9 7"/>
-<polygon points="310.0,280.0 345.0,280.0 310.0,245.0" class="weld" fill="#fecaca"/>
-<line x1="330.0" y1="245.0" x2="330.0" y2="195.0" class="weld"/>
-<line x1="330.0" y1="195.0" x2="490.0" y2="195.0" class="weld"/>
-<text x="495.0" y="190.0" class="note" text-anchor="start">TIG + Ni filler</text>
-<text x="495.0" y="220.0" class="note" text-anchor="start">FILLET SYMBOL</text>
-<text x="145.0" y="390.0" class="dim" text-anchor="start">WING OD Ø149.96; LIMIT 149.94~149.98</text>
-<text x="145.0" y="425.0" class="dim" text-anchor="start">SHELL ID Ø150.00; LIMIT 150.00~150.02</text>
-<text x="145.0" y="460.0" class="dim" text-anchor="start">RADIAL CLEARANCE 0.01~0.04</text>
-<text x="145.0" y="495.0" class="dim" text-anchor="start">DESIGN LEG TARGET 3.5 (UNVERIFIED)</text>
-<text x="700.0" y="180.0" class="section" text-anchor="start">PROCESS NOTE</text>
-<text x="700.0" y="220.0" class="note" text-anchor="start">Controlled limit fit; radial clearance 0.01~0.04</text>
-<text x="700.0" y="255.0" class="note" text-anchor="start">Fillet weld symbol per GB/T 324; TIG + Ni filler</text>
-<text x="700.0" y="290.0" class="note" text-anchor="start">Automatic TIG, short segments, S3 sequence</text>
-<text x="700.0" y="325.0" class="note" text-anchor="start">Current feed equivalent ideal leg 1.74 mm</text>
-<text x="700.0" y="355.0" class="note" text-anchor="start">Design/deposition geometry NOT CLOSED; macrosection required</text>
-<text x="700.0" y="390.0" class="note" text-anchor="start">A: shell seating plane</text>
-<text x="700.0" y="420.0" class="note" text-anchor="start">B: shell theoretical axis</text>
-<text x="700.0" y="450.0" class="note" text-anchor="start">C: independent clocking feature</text>
-<text x="700.0" y="480.0" class="note" text-anchor="start">Controlled Ø40 bore axis: position Ø0.05 | A | B</text>
-<polygon points="180.0,325.0 170.0,305.0 190.0,305.0" class="datumbox" fill="#fff"/>
-<text x="180.0" y="319.0" class="datum" text-anchor="middle">A</text>
-<line x1="180.0" y1="305.0" x2="180.0" y2="280.0" class="thin"/>
-<polygon points="540.0,280.0 560.0,270.0 560.0,290.0" class="datumbox" fill="#fff"/>
-<text x="548.0" y="285.0" class="datum" text-anchor="middle">B</text>
-<line x1="560.0" y1="280.0" x2="595.0" y2="280.0" class="thin"/>
-<polygon points="410.0,210.0 400.0,190.0 420.0,190.0" class="datumbox" fill="#fff"/>
-<text x="410.0" y="204.0" class="datum" text-anchor="middle">C</text>
-<line x1="410.0" y1="190.0" x2="410.0" y2="165.0" class="thin"/>
-<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
-<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: QT450-10 + Q235B + Ni filler (weld metal grade to be verified)</text>
-<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
-<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">四道焊接截面与工艺设计卡</text>
+<text x="50" y="99" class="small">角焊缝：6×18；单段逐道焊；相邻段不同时起弧；本卡为工艺提案，不是评定合格WPS</text>
+<text x="1020" y="65" class="section">HJ-R1-002</text>
+<rect x="435" y="185" width="50" height="360" fill="#cbd5e1" stroke="#334155"/>
+<rect x="115" y="485" width="320" height="60" fill="#efd18b" stroke="#334155"/>
+<polygon points="435.00,485.00 235.00,485.00 435.00,285.00" fill="#e2a18b" stroke="#334155"/>
+<text x="145" y="580" class="note">QT450-10，t12</text>
+<text x="410" y="165" class="note">Q235B，t5</text>
+<text x="140" y="230" class="section">等效焊脚 z=3.50～3.80</text>
+<line x1="140" y1="242" x2="325" y2="368" stroke="#176b7b" stroke-width="1.5"/>
+<text x="95" y="630" class="note">图示为最终包络；四道面积不等于实际熔池形状</text>
+<text x="95" y="663" class="small">每道沉积目标1.531～1.801 mm²；总面积6.125～7.206 mm²</text>
+<text x="640" y="167" class="note">方法：自动TIG；直流正接（电极负极）</text>
+<text x="640" y="205" class="note">焊材：NiFe 55类TIG实心棒，Ø1.6</text>
+<text x="640" y="243" class="note">电流75 A；电压12 V；焊速1.5 mm/s</text>
+<text x="640" y="281" class="note">固定送丝 1.344 mm/s；共4道</text>
+<text x="640" y="319" class="note">沉积效率假设0.85～1.00，固定送丝计算</text>
+<text x="640" y="357" class="note">纯氩99.999%；名义10 L/min</text>
+<text x="640" y="395" class="note">预热名义150℃；起弧前各监测点≥130℃</text>
+<text x="640" y="433" class="note">层间最高温度&lt;200℃；超温等待</text>
+<text x="640" y="471" class="note">每道顺序 1→4→3→6→2→5</text>
+<text x="640" y="509" class="note">每道净热输入330 J/mm；四道1320 J/mm</text>
+<text x="640" y="547" class="note">本件净热输入142.56 kJ；弧燃时间288 s</text>
+<text x="640" y="585" class="note">停弧后≥120 s且最高温度&lt;55℃才松夹</text>
+<text x="640" y="623" class="note">冷却至20±1℃后独立测量并判定</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
 </svg>

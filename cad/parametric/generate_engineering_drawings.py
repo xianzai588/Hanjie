@@ -303,32 +303,9 @@ def protected_process_assembly_drawing(geometry: dict) -> list[str]:
 
 
 def main() -> None:
-    validate_parameter_consistency()
-    geometry = json.loads(GEOMETRY.read_text(encoding="utf-8"))
-    joint = joint_design_metrics()
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    drawings = {
-        "bearing-seat.svg": seat_drawing(geometry),
-        "shell.svg": shell_drawing(geometry),
-        "joint-detail.svg": joint_drawing(geometry,joint),
-        "weld-layout.svg": weld_layout_drawing(geometry),
-        "fixture-assembly.svg": fixture_assembly_drawing(geometry),
-        "fixture-part.svg": fixture_part_drawing(geometry),
-        "weld-assembly.svg": weld_assembly_drawing(geometry),
-        "protected-process-assembly.svg": protected_process_assembly_drawing(geometry),
-    }
-    for filename, lines in drawings.items():
-        (OUTPUT / filename).write_text("\n".join(lines), encoding="utf-8")
-    manifest = {
-        "generated_at": "2026-09-06",
-        "source": "cad/parametric/geometry.json",
-        "status": "design-review; not manufacturing release",
-        "drawing_count": len(drawings),
-        "drawings": sorted(drawings),
-        "included_controls": ["A/B/C datums", "Ø40 bore axis position tolerance Ø0.05 | A | B", "weld symbols", "design/deposition non-closure", "slot width", "fixture DOF mapping", "internal shield installation and withdrawal", "materials", "unspecified tolerances"],
-    }
-    (OUTPUT / "drawing-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"已生成 {len(drawings)} 张工程表达图: {OUTPUT}")
+    # 当前参赛入口使用修订工装；本文件旧绘图函数仅保留历史复查用途。
+    from competition_drawings import main as generate_current
+    generate_current()
 
 
 if __name__ == "__main__":

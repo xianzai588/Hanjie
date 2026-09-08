@@ -1,60 +1,50 @@
-"""生成接头—送丝—耗材一致性卡；不把设计假设升级为 WPS/PQR。"""
-
-from __future__ import annotations
-
-import json
+"""生成当前参赛工艺提案；不改写历史单道诊断输入。"""
 from pathlib import Path
 import sys
-
+import json
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+from hanjie.domain.competition_design import current_assessment
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/"src"))
-
-from hanjie.domain.joint import joint_design_metrics
 
 
-def main() -> int:
-    metrics = joint_design_metrics()
-    output = ROOT/"deliverables/process"
-    output.mkdir(parents=True,exist_ok=True)
-    (output/"joint-process-card.json").write_text(json.dumps(metrics,ensure_ascii=False,indent=2),encoding="utf-8")
-    target = metrics["design_target"]
-    deposit = metrics["nominal_wire_deposition"]
-    layout = metrics["primary_6p_layout"]
-    diagnostic = metrics["diagnostic_only_feed_for_target"]
-    scenarios = metrics["design_scenarios"]
-    candidate = scenarios["target_3p5_four_pass_candidate"]
-    markdown = f"""# 接头—送丝—耗材一致性卡
+def main():
+    r = current_assessment(ROOT)
+    p = r["process"]
+    out = ROOT / "deliverables/process"
+    out.mkdir(parents=True, exist_ok=True)
+    card = f"""# COMPETITION-R1 焊接工艺提案
+状态：设计提案，不是经评定合格的WPS/PQR。详细依据见当前说明书。
+历史Ø1.2单道局部热诊断仍保留在project/process.yaml；本卡按project/competition-design.yaml显式修订。
 
-状态：`{metrics['closure_status']}`；证据等级：`{metrics['evidence_level']}`。本卡不是 WPS/PQR。
+| 项目 | 当前设计 |
+| --- | --- |
+| 母材 | QT450-10座体 / Q235B壳体 |
+| 接头 | 6P-FAIR_B，6×18 mm角焊缝 |
+| 方法 | 自动TIG，直流电极负极 |
+| 焊材 | NiFe 55类实心TIG棒，Ø1.6；牌号按批次证书核实 |
+| 电参数 | 75 A、12 V、焊速1.5 mm/s |
+| 道数 / 顺序 | 4道，每道1→4→3→6→2→5 |
+| 固定送丝 | {p['fixed_feed_mm_s']:.6f} mm/s |
+| 沉积效率假设 | 0.85～1.00 |
+| 等面积焊脚 | 3.500～3.796 mm；最大可达性包络3.8 |
+| 气体 | 99.999% Ar，10 L/min；设计监控区间8～12 |
+| 预热 / 层间 | 名义150℃；起弧前各点≥130℃且最高<200℃ |
+| 单道毛弧能 / 净热输入 | 600 / 330 J/mm |
+| 本件四道净热输入 | {p['total_net_heat_j']/1000:.2f} kJ |
+| 弧燃时间 | {p['arc_on_time_s']:.0f} s；不含等待、装卸与预热 |
+| 理想耗棒长度 | {p['wire_length_mm']:.2f} mm；不含夹持残段与损耗 |
+| 防护与夹紧 | 连续薄裙接料组件、圆柱胀套、独立500 N端面压环 |
+| 松夹 | 停弧后≥120 s且最高温度<55℃；确认主动回退 |
+| 回收 | 底口开放、盘面朝上贴壁下撤，离开底口后封盖 |
+| 测量 | 20±1℃；测得位置度直径＋同口径不确定度≤0.05 mm |
 
-| 项目 | 当前值 |
-| --- | ---: |
-| 设计等脚焊脚 | {target['fillet_leg_mm']:.3f} mm |
-| 设计理想三角截面积 | {target['ideal_triangular_area_mm2']:.3f} mm² |
-| 名义送丝新增截面积 | {deposit['area_per_weld_length_mm2']:.3f} mm² |
-| 名义送丝等效理想焊脚 | {deposit['equivalent_ideal_fillet_leg_mm']:.3f} mm |
-| 新增截面积/设计面积 | {deposit['target_area_fraction']:.1%} |
-| 6×18 mm 名义保留填丝质量 | {layout['nominal_retained_filler_mass_g']:.3f} g |
-| 3.5 mm 设计截面等效质量 | {layout['design_target_filler_equivalent_mass_g']:.3f} g |
-
-若仅按体积倒算，100%/最低声明沉积效率对应送丝速度分别为
-{diagnostic['at_100pct_efficiency_mm_s']:.3f}/{diagnostic['at_min_declared_efficiency_mm_s']:.3f} mm/s。
-这些数值只用于显示缺口，不能据此直接提高送丝量；必须由承载依据、宏观截面、
-耗丝/增重、单道或多道安排及热输入共同冻结最终接头。
-
-## 分离的设计情景
-
-| 情景 | 道数 | 总沉积面积 | 等效理想焊脚 | 送丝范围 | 总弧能/焊长 | 用途 |
-| --- | ---: | ---: | ---: | ---: | ---: | --- |
-| 当前单道诊断基线 | 1 | {scenarios['current_single_pass_diagnostic']['total_deposited_area_mm2']:.3f} mm² | {scenarios['current_single_pass_diagnostic']['equivalent_ideal_fillet_leg_mm']:.3f} mm | 2.000 mm/s | {scenarios['current_single_pass_diagnostic']['total_arc_energy_per_weld_length_j_mm']:.1f} J/mm | 局部热诊断 |
-| 3.5 mm 四道候选 | {candidate['pass_count']} | {candidate['total_deposited_area_mm2']:.3f} mm² | {candidate['equivalent_ideal_fillet_leg_mm']:.3f} mm | {candidate['wire_feed_range_mm_s'][0]:.3f}~{candidate['wire_feed_range_mm_s'][1]:.3f} mm/s | {candidate['total_arc_energy_per_weld_length_j_mm']:.1f} J/mm | 待承载、成形和热循环验证 |
-
-四道候选只完成体积核算自洽，不是 WPS/PQR。其分层几何、层间温度和累计热输入必须建立新版本验证，不能继承当前单道 0.4R1 的结论。
+薄裙热接触、胀套柔性、四道熔合与裂纹、完整热残余尚未验证；等面积守恒不等于实际成形。焊材规格依据：https://certilas.com/en/product/nife-55-tig ，该页典型强度不作本接头许用值。
 """
-    (output/"joint-process-card.md").write_text(markdown,encoding="utf-8")
-    print(output/"joint-process-card.json")
+    (out / "joint-process-card.md").write_text(card, encoding="utf-8")
+    (out / "joint-process-card.json").write_text(json.dumps({"version":r["version"], "process":p, "proposal":r["spec"]["process"], "release":r["release"]},ensure_ascii=False,indent=2),encoding="utf-8")
+    print("已更新当前参赛工艺卡")
     return 0
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     raise SystemExit(main())

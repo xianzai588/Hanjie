@@ -186,7 +186,7 @@ def test_struct_prep_records_global_solver_without_claiming_full_part_solution()
 
 def test_current_report_has_no_known_v42_stale_claims() -> None:
     report = (ROOT/"deliverables/report/technical-report-v4-unified.md").read_text(encoding="utf-8")
-    assert "V4.3-COMPETITION-DRAFT" in report
+    assert "COMPETITION-R1" in report
     assert "尚未完成 FAIR-A/B" not in report
     assert "GB/T 1182-2008" not in report
     assert "THERMAL-0.4R1" in report

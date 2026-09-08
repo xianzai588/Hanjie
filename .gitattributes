@@ -5,3 +5,7 @@
 *.sldasm filter=lfs diff=lfs merge=lfs -text
 *.dwg filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+# 导出物按二进制处理，防止ASCII起始的PDF被当作文本换行或空白检查。
+*.pdf binary
+*.png binary
+*.zip binary

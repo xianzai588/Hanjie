@@ -1,0 +1,30 @@
+version: ROUTE-B-DESIGN-1.0
+evidence_level: design_assumption
+objective: 在给定参考载荷与许用应力假设下，比较实际沉积截面对应的连接能力和名义净热输入
+sources:
+  process: project/process.yaml
+  materials: project/materials.yaml
+  geometry: cad/parametric/geometry.json
+  load_basis: project/load-basis-v1.yaml
+  tolerance: project/tolerance.yaml
+  structural_uncertainty: simulation/structural-v4/results/struct-uncertainty/assessment.json
+load_scales: [0.5, 1.0, 1.5]
+load_scale_basis: 同比例缩放径向力、轴向力和倾覆力矩的确定性敏感性；不是整机载荷或概率
+process_scenarios:
+  - current_single_pass_diagnostic
+  - target_3p5_four_pass_candidate
+feed_setting_policy: 按现有名义沉积效率设定固定送丝，再在原配置沉积效率两端核算实际面积；不假定逐件已知效率并调参
+selection:
+  objective: nominal_net_heat_input_j
+  constraint: 参考焊缝组模型在声明沉积效率范围内的最大应力不超过假设许用应力
+  interpretation: 仅在六个候选内给出条件承载筛查后的低热输入研究优先项，不代表完整工艺可行或全局最优
+precision:
+  # 扫描焊接径向预算，反算夹具与装配的总预算；不修改现有权威预算。
+  thermal_radial_allocations_mm: [0.002, 0.005, 0.008, 0.011, 0.012]
+  adjustable_contributions: [fixture_repeatability, initial_assembly]
+  interpretation: 反算要求，不是设备能力、计算变形或实测公差
+release:
+  product_position_acceptance_claim_allowed: false
+  welding_procedure_qualified: false
+  fatigue_life_claim_allowed: false
+  cleanliness_validated: false

@@ -1,0 +1,7 @@
+﻿layout,route,seat_intersection_volume_mm3,shell_intersection_volume_mm3,swept_body_geometry_clear,process_route_admissible,coverage
+Continuous,bottom,0.0,0.0,True,True,所列壳体和座体；未包含支承、机器人及管线
+Continuous,top,191360.6917154615,0.0,False,False,所列壳体和座体；未包含支承、机器人及管线
+6P-FAIR_B,bottom,0.0,0.0,True,True,所列壳体和座体；未包含支承、机器人及管线
+6P-FAIR_B,top,93756.02496802715,0.0,False,False,所列壳体和座体；未包含支承、机器人及管线
+8P-FAIR_B,bottom,0.0,0.0,True,True,所列壳体和座体；未包含支承、机器人及管线
+8P-FAIR_B,top,108910.51253370791,0.0,False,False,所列壳体和座体；未包含支承、机器人及管线

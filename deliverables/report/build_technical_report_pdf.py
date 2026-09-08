@@ -1,4 +1,4 @@
-"""从唯一 V4.3 Markdown 源和自动证据摘要构建工艺设计说明书 PDF。"""
+"""从当前参赛正文构建设计说明书；历史文件名保留以兼容已有入口。"""
 from __future__ import annotations
 
 from html import escape
@@ -10,7 +10,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "deliverables/report/technical-report-v4-unified.md"
@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from hanjie.domain.evidence import validate_evidence_graph
 from hanjie.reporting.fonts import register_project_fonts
 from hanjie.reporting.current_status import write_status_artifacts
+from hanjie.domain.competition_design import current_assessment
 import yaml
 
 REGULAR_FONT = "HanjieCN"
@@ -75,6 +76,17 @@ def build_story(source: Path = SOURCE) -> list:
                 table_rows.append(row)
             continue
         flush_table()
+        if line == "<!-- pagebreak -->":
+            story.append(PageBreak())
+            continue
+        illustration = re.fullmatch(r"!\[([^]]+)\]\(([^)]+)\)", line)
+        if illustration:
+            figure = Image(str(ROOT / illustration[2]))
+            ratio = min(170*mm/figure.imageWidth, 99*mm/figure.imageHeight)
+            figure.drawWidth = figure.imageWidth*ratio
+            figure.drawHeight = figure.imageHeight*ratio
+            story.extend([figure,Paragraph(inline(illustration[1]),cell),Spacer(1,5)])
+            continue
         if not line or line in {"---", "$$"} or line.startswith("```"):
             continue
         heading = re.match(r"^(#{1,6}) (.*)$", line)
@@ -93,7 +105,20 @@ def on_page(canvas, doc) -> None:
     canvas.drawRightString(A4[0] - 20 * mm, 12 * mm, str(doc.page))
 
 
+def validate_report_numbers(result, source=SOURCE):
+    """计算变更后禁止悄悄发布旧摘要；正文论证需要随数字共同修订。"""
+    body = source.read_text(encoding="utf-8")
+    p = result["process"]
+    required = [f"固定送丝{p['fixed_feed_mm_s']:.3f} mm/s",
+                f"每件名义净热输入{p['total_net_heat_j']/1000:.2f} kJ，弧燃时间{p['arc_on_time_s']:.0f} s",
+                f"合计{result['precision']['diameter_with_uncertainty_target_mm']:.4f}",
+                f"包络间距{result['geometry']['torch_feed_clearance_mm']:.2f} mm"]
+    if any(value not in body for value in required):
+        raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")
+
+
 def main() -> int:
+    validate_report_numbers(current_assessment(ROOT))
     graph = yaml.safe_load((ROOT / "evidence/evidence_graph.yaml").read_text(encoding="utf-8"))
     errors = validate_evidence_graph(graph, ROOT)
     if errors:
@@ -102,9 +127,12 @@ def main() -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm,
                             topMargin=18 * mm, bottomMargin=22 * mm,
-                            title="QT450-10/Q235B V4.3 Competition Design Report",author="")
+                            title="QT450-10/Q235B Competition R1 Design Report",author="")
     generated_status = write_status_artifacts(ROOT)
-    story = build_story()+[PageBreak()]+build_story(generated_status)
+    # 研究状态独立保留，正文只呈现比赛论证所需证据。
+    story = build_story()
+    if "--include-research-status" in sys.argv:
+        story += [PageBreak()]+build_story(generated_status)
     doc.build(story,onFirstPage=on_page,onLaterPages=on_page)
     print(f"工艺设计说明书已生成：{OUT}")
     return 0

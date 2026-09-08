@@ -3,19 +3,67 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 from typing import Any, Dict
 
 import yaml
+from hanjie.domain.competition_design import current_assessment
 
 
 def _json(path: Path) -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def collect_tooling_status(root: Path) -> Dict[str, Any]:
+    directory = root/"studies/TOOLING-ACCESS/results"
+    inputs = _json(directory/"run-inputs.json")
+    # BREP不能靠文件名判定版本；只校核本次几何证据实际依赖的实体。
+    for path, expected in inputs["structured_inputs"].items():
+        actual = yaml.safe_load((root/path).read_text(encoding="utf-8"))
+        if actual != expected:
+            raise ValueError("工装检查输入已变化，请重跑 studies/TOOLING-ACCESS/run.py")
+    for path, expected in inputs["geometry_sha256"].items():
+        if hashlib.sha256((root/path).read_bytes()).hexdigest() != expected:
+            raise ValueError("工装检查实体已变化，请重跑 studies/TOOLING-ACCESS/run.py")
+    return _json(directory/"assessment.json")
+
+
+def render_tooling_markdown(tooling: Dict[str, Any]) -> str:
+    shield, mandrel = tooling["shield"], tooling["mandrel"]
+    lines = ["## 工装空间与锥面约束检查", "",
+             "采用现有BREP和新增明确尺寸的刚性工装包络，名义座体底面z=100 mm。底口开放属于工序假设。未包含六支承、机器人腕部、送丝机构和管线。", "",
+             "| 座体 | 退出方向 | 与座体相交体积 mm³ | 所列实体扫掠检查 |",
+             "| --- | --- | ---: | --- |"]
+    for row in shield["cases"]:
+        lines.append(f"| {row['layout']} | {'底口' if row['route']=='bottom' else '上口'} | {row['seat_intersection_volume_mm3']:.2f} | {'无干涉' if row['swept_body_geometry_clear'] else '被阻挡'} |")
+    lines += ["", shield["decision"],
+              f"截留盘外半径 {shield['capture_outer_radius_mm']:.2f} mm，名义壁隙 {shield['nominal_shell_clearance_mm']:.2f} mm；R{shield['vertical_drop_at_interface_radius_mm']:.2f} mm接口的垂直落物路径不在盘面覆盖内。", "",
+              "| 焊枪倾角（距竖直） | 枪体形式 | 三个提升姿态 | 连续竖直路径包络 |",
+              "| ---: | --- | --- | --- |"]
+    for row in tooling["torch"]["cases"]:
+        certificate = row["vertical_path_certificate"]
+        path_status = "未建立" if certificate is None else ("所列障碍下通过" if certificate["continuous_vertical_lift_clear"] else "不通过")
+        lines.append(f"| {row['tilt_deg']:.0f}° | {'弯头后竖直' if row['body_style']=='bent_vertical' else '直线延长'} | {'无干涉' if row['sampled_poses_clear'] else '存在干涉'} | {path_status} |")
+    lines += ["", "本轮保留30°/45°弯头后竖直枪体作为空间设计候选。该结论限于假设工具尺寸与列明障碍，不代表实际机器人可达性、保护气或焊接质量已验证。", "",
+              f"原锥体整段插入圆柱孔的穿透体积为 {mandrel['naive_full_length_insertion_overlap_mm3']:.3f} mm³；沿轴向退让 {mandrel['rigid_seating_shift_mm']:.3f} mm后体积干涉为 {mandrel['seated_cone_overlap_mm3']:.3f} mm³，名义接触为孔上缘一圈。",
+              "压入载荷情景：假设原500 N全部经锥面传递，库仑摩擦系数只作确定性扫描。径向数值是周向压紧载荷标量和；轴对称时径向合力矢量为零，不可将两者混用。", "",
+              "| 假设摩擦系数 | 径向压紧标量和 N | 自锁可能 |", "| ---: | ---: | --- |"]
+    for row in mandrel["force_scenarios"]:
+        lines.append(f"| {row['friction_coefficient']:.2f} | {row['radial_compression_scalar_sum_n']:.1f} | {'是' if row['self_lock_possible'] else '否'} |")
+    lines += ["", "半锥角约0.573°，自锁临界摩擦系数约0.01；实际摩擦与接触带未知，不能推导接触压力、孔扩张或定位重复性。需要补独立倾斜约束和主动退锥设计。", ""]
+    return "\n".join(lines)
+
+
 def collect_current_status(root: Path) -> Dict[str, Any]:
     from hanjie.domain.joint import joint_design_metrics
+    from hanjie.domain.route_b_design import build_design_study
 
+    design = build_design_study(root)
+    design.pop("cases")
+    recorded_design = _json(root/"studies/ROUTE-B-DESIGN/results/assessment.json")
+    if design != recorded_design:
+        raise ValueError("条件选型结果已过期，请先运行 studies/ROUTE-B-DESIGN/run.py")
     tolerance = yaml.safe_load((root/"project/tolerance.yaml").read_text(encoding="utf-8"))
     stages = yaml.safe_load((root/"project/stage-status.yaml").read_text(encoding="utf-8"))
     structural = _json(root/"simulation/structural-v4/results/static-screening/static-screening-analysis.json")
@@ -104,15 +152,44 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
             "maximum_moment_balance_error_n_mm": dress_rehearsal["maximum_moment_balance_error_n_mm"],
         },
         "precompensation":precomp,
+        "route_b_design": design,
+        "tooling_access": collect_tooling_status(root),
+        "competition_design": current_assessment(root),
     }
 
 
 def render_markdown(status: Dict[str, Any]) -> str:
+    from hanjie.domain.route_b_design import render_design_markdown
+
     tol,joint,structural,thermal = (status[k] for k in ("tolerance","joint","structural","thermal"))
     lines = ["# 自动生成的当前证据摘要","",status["generated_from"],"",
-        "## 阶段状态","","| 阶段 | 执行状态 | 验收结果 | 允许用途 |","| --- | --- | --- | --- |"]
+        "## 当前参赛修订 COMPETITION-R1", "",
+        "当前说明书和四页图集采用圆柱胀套、连续薄裙和Ø1.6四道固定送丝。下列ROUTE-B-DESIGN与TOOLING-ACCESS是历史选型/失败情景，不覆盖新工装。",
+        f"修订直径预算（含目标测量不确定度）{status['competition_design']['precision']['diameter_with_uncertainty_target_mm']:.4f} mm；仅设计分配，实物与正式热—结构仍未放行。", "",
+        render_design_markdown(status["route_b_design"]),
+        render_tooling_markdown(status["tooling_access"]),
+        "## 当前关键阶段","","| 阶段 | 验收状态 | 允许用途 |","| --- | --- | --- |"]
+    visible_stages = {"G-INPUTS", "LOAD-BASIS-0", "THERMAL-0.4R1", "THERMAL-REF-PLAN8",
+                      "THERMAL-NUMERICAL-GATE", "STRUCT-0-PREP", "STRUCT-0",
+                      "STRUCT-UNCERTAINTY", "ROUTE-B-DESIGN", "TOOLING-ACCESS", "DECISION", "COMPETITION-R1"}
+    acceptance_labels = {
+        "design_checks_passed_physical_performance_unverified": "修订设计检查通过；实物性能未验证",
+        "not_closed": "设计输入尚未全部闭合",
+        "reference_envelope_only_actual_load_missing": "仅参考包络；无实际载荷",
+        "failed_spatial_convergence": "空间收敛未通过",
+        "diagnostic_checks_passed_local_field_disagreement_persists": "诊断执行完成；近场仍有差异",
+        "not_passed": "未通过",
+        "ready_pending_admitted_thermal_history": "结构准备就绪；等待可信热历史",
+        "blocked_by_thermal_only": "整件结构未执行；热载荷未准入",
+        "no_resolved_robust_winner": "没有可分辨的稳健优胜方案",
+        "conditional_selection_available_full_engineering_release_not_available": "条件选型完成；完整工程尚未放行",
+        "conditional_research_priorities_only": "仅条件性研究优先项",
+        "limited_geometry_routes_available_cleanliness_and_repeatability_open": "所列包络有可行路线；洁净与定位精度未闭合",
+    }
     for stage,row in status["stages"]["stages"].items():
-        lines.append(f"| {stage} | {row['execution_status']} | {row['acceptance_result']} | {row['allowed_use']} |")
+        if stage in visible_stages:
+            acceptance = acceptance_labels.get(row["acceptance_result"], row["acceptance_result"])
+            lines.append(f"| {stage} | {acceptance} | {row['allowed_use']} |")
     lines += ["",
         "## 公差与接头闭合状态","","| 项目 | 当前值 |","| --- | ---: |",
         f"| 产品几何链径向限值 | {tol['radial_limit_mm']:.3f} mm |",
@@ -126,7 +203,7 @@ def render_markdown(status: Dict[str, Any]) -> str:
     for index,row in enumerate(structural["ranking"],1):
         lines.append(f"| {index} | {row['model_id']} | {row['fine_average_displacement_diameter_mm']:.6f} | {row['fine_average_p95_stress_mpa']:.3f} |")
     lines += ["",f"静力筛查门：{'通过' if structural['static_screening_pass'] else '未通过'}；完整热—结构门：{'通过' if structural['full_thermal_structural_gate_pass'] else '未通过'}。","",
-              "## THERMAL-0.4R1 名义工况","","| 材料 | 峰温 (°C) | 越固相线体积 (mm³) | 越液相线体积 (mm³) |","| --- | ---: | ---: | ---: |"]
+              "## 历史局部热诊断：THERMAL-0.4R1 名义工况","","| 材料 | 峰温 (°C) | 越固相线体积 (mm³) | 越液相线体积 (mm³) |","| --- | ---: | ---: | ---: |"]
     for key,label in (("q235b","Q235B"),("qt450_10","QT450-10"),("ernife_ci","ERNiFe-CI")):
         row = thermal["baseline"][key]
         lines.append(f"| {label} | {row['peak_temperature_c']:.2f} | {row['ever_solidus_exceeded_volume_mm3']:.6f} | {row['ever_liquidus_exceeded_volume_mm3']:.6f} |")
@@ -148,7 +225,7 @@ def render_markdown(status: Dict[str, Any]) -> str:
               f"局部截面 M→F/F→VF 焊材 P95 差为 {xsec['m_to_f_weld_p95_c']:.3f}/{xsec['f_to_vf_weld_p95_c']:.3f} °C，缩减比 {xsec['asymptotic_diagnosis']['ernife_p95_reduction_ratio']:.3f}；未进入渐近区，停止 xfine 和时间步复查。",
               f"一致切线与全局 Newton 小网格登记检查：{'全部通过' if all(newton['checks'].values()) else '存在失败'}；仍不等于整件求解。",
               f"Continuous 预备网格含 {mesh['counts']['nodes']} 节点、{mesh['counts']['tetrahedra']} 四面体，无倒置单元；但 minSICN<0.1 仍有 {mesh['quality']['below_0p1_count']} 个，热场映射和接触求解尚未完成。",
-              "THERMAL 数值 Gate 与 STRUCT-PREP Gate 均保持关闭。"]
+              "以上为 Plan 4 历史状态；STRUCT-PREP 后续已完成扫掠网格彩排，见 Plan 6，正式结构热载荷仍未准入。"]
     boundary=status["thermal_boundary_neumann"]; swept=status["continuous_swept_mesh"]; rehearsal=status["struct0_dress_rehearsal"]
     lines += ["","## Plan 6 边界一致热离散与 Continuous 拓扑","",
               f"显式边界 Neumann 的 F→VF 焊材 P95/MAE 为 {boundary['weld_p95_c']:.3f}/{boundary['weld_mae_c']:.3f} °C；新 M 运行许可：{'是' if boundary['new_nest_m_allowed'] else '否'}。",

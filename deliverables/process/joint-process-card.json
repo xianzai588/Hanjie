@@ -1,74 +1,61 @@
 {
-  "evidence_level": "design_assumption",
-  "closure_status": "not_closed_pending_macrosection_and_load_basis",
-  "design_target": {
-    "fillet_leg_mm": 3.5,
-    "ideal_triangular_area_mm2": 6.125,
-    "basis": "结构设计目标；承载、疲劳和宏观截面尚未验证"
+  "version": "COMPETITION-R1",
+  "process": {
+    "fixed_feed_mm_s": 1.3439669482139598,
+    "minimum_area_mm2": 6.125,
+    "area_range_mm2": [
+      6.125,
+      7.205882352941177
+    ],
+    "equivalent_leg_range_mm": [
+      3.5,
+      3.7962830118264828
+    ],
+    "gross_energy_per_pass_j_mm": 600.0,
+    "net_energy_per_pass_j_mm": 330.00000000000006,
+    "weld_length_mm": 107.99999999999984,
+    "arc_on_time_s": 287.9999999999996,
+    "total_net_heat_j": 142559.99999999983,
+    "wire_length_mm": 387.0624810856198,
+    "deposited_volume_range_mm3": [
+      661.4999999999991,
+      778.2352941176459
+    ]
   },
-  "nominal_wire_deposition": {
-    "wire_diameter_mm": 1.2,
-    "wire_feed_mm_s": 2.0,
-    "travel_speed_mm_s": 1.5,
-    "deposition_efficiency": 1.0,
-    "area_per_weld_length_mm2": 1.5079644737231008,
-    "equivalent_ideal_fillet_leg_mm": 1.7366430109398425,
-    "target_area_fraction": 0.24619828142417974
+  "proposal": {
+    "pass_count": 4,
+    "sequence": [
+      1,
+      4,
+      3,
+      6,
+      2,
+      5
+    ],
+    "wire_diameter_mm": 1.6,
+    "deposition_efficiency_range": [
+      0.85,
+      1.0
+    ],
+    "minimum_leg_mm": 3.5,
+    "clearance_leg_mm": 3.8,
+    "feed_policy": "按效率下界反算固定送丝；不得逐件假定已知沉积效率",
+    "filler_candidate": "NiFe 55 TIG实心棒材；具体批次牌号按供方证书核对",
+    "filler_source": "https://certilas.com/en/product/nife-55-tig",
+    "wire_entry_offset_xyz_mm": [
+      -1.0,
+      -4.0,
+      -0.5
+    ],
+    "hold_after_arc_s": 120.0,
+    "release_below_c": 55.0,
+    "measurement_temperature_c": 20.0,
+    "measurement_temperature_band_c": 1.0
   },
-  "primary_6p_layout": {
-    "segment_count": 6,
-    "segment_length_mm": 18.0,
-    "total_weld_length_mm": 108.0,
-    "nominal_wire_length_mm": 144.0,
-    "nominal_retained_filler_volume_mm3": 162.8601631620949,
-    "nominal_retained_filler_mass_g": 1.335453337929178,
-    "design_target_external_volume_mm3": 661.5,
-    "design_target_filler_equivalent_mass_g": 5.4243
-  },
-  "diagnostic_only_feed_for_target": {
-    "at_100pct_efficiency_mm_s": 8.123533553648825,
-    "at_min_declared_efficiency_mm_s": 9.557098298410382,
-    "usage": "仅量化缺口，未经成形、热输入和承载验证，不得直接写入 WPS"
-  },
-  "design_scenarios": {
-    "current_single_pass_diagnostic": {
-      "pass_count": 1,
-      "identity": "当前 1.737 mm 等效焊脚局部热诊断基线",
-      "disposition": "diagnostic_only",
-      "area_per_pass_mm2": 1.5079644737231008,
-      "total_deposited_area_mm2": 1.5079644737231008,
-      "equivalent_ideal_fillet_leg_mm": 1.7366430109398425,
-      "wire_feed_range_mm_s": [
-        2.0,
-        2.0
-      ],
-      "total_arc_energy_per_weld_length_j_mm": 330.0,
-      "total_retained_filler_volume_mm3": 162.8601631620949,
-      "total_retained_filler_mass_g": 1.335453337929178,
-      "load_basis_status": "pending",
-      "macrosection_status": "pending",
-      "wps_status": "not_available"
-    },
-    "target_3p5_four_pass_candidate": {
-      "pass_count": 4,
-      "identity": "3.5 mm 理想三角截面的等面积四道设计候选",
-      "disposition": "candidate_pending_load_basis_macrosection_and_thermal_revalidation",
-      "feed_policy": "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值",
-      "thermal_policy": "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论",
-      "area_per_pass_mm2": 1.53125,
-      "total_deposited_area_mm2": 6.125,
-      "equivalent_ideal_fillet_leg_mm": 3.5,
-      "wire_feed_range_mm_s": [
-        2.030883388412206,
-        2.389274574602595
-      ],
-      "total_arc_energy_per_weld_length_j_mm": 1320.0,
-      "total_retained_filler_volume_mm3": 661.5,
-      "total_retained_filler_mass_g": 5.4243,
-      "load_basis_status": "pending",
-      "macrosection_status": "pending",
-      "wps_status": "not_available"
-    }
-  },
-  "release_boundary": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
+  "release": {
+    "physical_position_verified": false,
+    "physical_cleanliness_verified": false,
+    "formal_thermal_structural_allowed": false,
+    "manufacturing_released": false
+  }
 }

@@ -1,27 +1,13 @@
 {
-  "generated_at": "2026-09-06",
-  "source": "cad/parametric/geometry.json",
-  "status": "design-review; not manufacturing release",
-  "drawing_count": 8,
+  "version": "COMPETITION-R1",
+  "source": "project/competition-design.yaml",
+  "status": "competition design; not manufacturing release",
   "drawings": [
     "bearing-seat.svg",
-    "fixture-assembly.svg",
-    "fixture-part.svg",
     "joint-detail.svg",
-    "protected-process-assembly.svg",
-    "shell.svg",
-    "weld-assembly.svg",
-    "weld-layout.svg"
+    "fixture-assembly.svg",
+    "protected-process-assembly.svg"
   ],
-  "included_controls": [
-    "A/B/C datums",
-    "Ø40 bore axis position tolerance Ø0.05 | A | B",
-    "weld symbols",
-    "design/deposition non-closure",
-    "slot width",
-    "fixture DOF mapping",
-    "internal shield installation and withdrawal",
-    "materials",
-    "unspecified tolerances"
-  ]
+  "drawing_count": 4,
+  "excluded": "本目录其他SVG/PDF为历史版本，当前导出仅读取此清单"
 }

@@ -19,9 +19,11 @@ def test_volume_quantile_is_invariant_to_splitting_tiny_elements():
 
 
 def test_release_requires_both_conditions_and_stays_released():
-    assert not fixture_released(False,119.,150.)
-    assert not fixture_released(False,120.,200.)
-    assert fixture_released(False,120.,199.9)
+    assert not fixture_released(False,119.,20.)
+    assert not fixture_released(False,120.,55.)
+    assert not fixture_released(False,120.,199.9)
+    assert fixture_released(False,120.,54.9)
+    assert fixture_released(False,120.,20.)
     assert fixture_released(True,130.,250.)
 
 

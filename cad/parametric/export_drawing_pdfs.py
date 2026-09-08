@@ -146,7 +146,8 @@ def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float,
 
 def main() -> None:
     register_fonts()
-    svg_paths = sorted(SVG_DIR.glob("*.svg"))
+    manifest = json.loads((SVG_DIR / "drawing-manifest.json").read_text(encoding="utf-8"))
+    svg_paths = [SVG_DIR / name for name in manifest["drawings"]]
     if not svg_paths:
         raise FileNotFoundError(f"未找到 SVG 图纸: {SVG_DIR}")
     PDF_DIR.mkdir(parents=True, exist_ok=True)
@@ -169,6 +170,10 @@ def main() -> None:
         )
         canvas.showPage()
         canvas.save()
+        # 报告插图来自同一矢量图纸，避免再次手工绘制产生尺寸分叉。
+        import pymupdf
+        with pymupdf.open(pdf_path) as preview:
+            preview[0].get_pixmap(dpi=150).save(str(svg_path.with_suffix(".png")))
         sheets.append({"pdf": f"pdf/{pdf_path.name}", "title": title, "source": svg_path.name})
 
     combined = Canvas(str(PDF_DIR / COMBINED_NAME), pagesize=landscape(A4))

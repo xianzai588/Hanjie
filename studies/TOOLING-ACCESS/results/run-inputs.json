@@ -1,0 +1,644 @@
+{
+  "structured_inputs": {
+    "studies/TOOLING-ACCESS/config.yaml": {
+      "version": "TOOLING-ACCESS-1.0",
+      "evidence_level": "design_assumption",
+      "sources": {
+        "geometry": "cad/parametric/geometry.json",
+        "process": "project/process.yaml",
+        "load_basis": "project/load-basis-v1.yaml",
+        "shell_brep": "simulation/structural-v4/common/shell.brep"
+      },
+      "assembly": {
+        "seat_bottom_z_mm": 100.0,
+        "seat_height_basis": "题面未指定轴承座轴向高度；取壳体中部作为明确的装配情景，不修改既有座体实体",
+        "bottom_access_open": true,
+        "bottom_access_basis": "仅适用于底盖封闭及内部易损部件装入之前；不是已核实的生产顺序"
+      },
+      "shield": {
+        "outer_radius_mm": 74.0,
+        "floor_thickness_mm": 1.0,
+        "rim_height_mm": 3.0,
+        "rim_thickness_mm": 1.0,
+        "top_to_seat_bottom_gap_mm": 6.0,
+        "extraction_below_shell_mm": 5.0,
+        "dimensional_status": "新增刚性截留盘包络设计假设，未指定材料和热变形能力"
+      },
+      "torch": {
+        "tilt_from_vertical_deg": [
+          15.0,
+          30.0,
+          45.0
+        ],
+        "export_tilt_deg": 30.0,
+        "exposed_tungsten_length_mm": 8.0,
+        "tungsten_radius_mm": 1.0,
+        "nozzle_length_mm": 25.0,
+        "body_radius_mm": 8.0,
+        "body_top_z_mm": 220.0,
+        "radial_clearance_requirement_mm": 0.2,
+        "envelope_basis": "比较直线延长枪体与弯头后竖直枪体；喷嘴直径和弧间距取现有工艺值，其余是空间包络假设，不对应已购设备"
+      },
+      "mandrel": {
+        "friction_coefficients": [
+          0.0,
+          0.05,
+          0.1,
+          0.2
+        ],
+        "friction_basis": "库仑摩擦确定性情景，未测量；轴向500 N全部用于压入锥面只是载荷分配上界情景",
+        "upper_obstruction_top_z_mm": 220.0
+      },
+      "checks": {
+        "boolean_volume_tolerance_mm3": 1e-06,
+        "pose_lifts_mm": [
+          0.0,
+          40.0,
+          120.0
+        ]
+      },
+      "limitations": [
+        "不含六支承的完整实体、机器人腕部、送丝机构、管线、装卸夹爪及热变形",
+        "可达性只覆盖列明的刚性包络；不构成完整工装制造放行",
+        "截留盘有径向间隙，不能据无干涉宣称截获全部飞溅",
+        "心轴摩擦和接触带未知，不能由力平衡算式推断孔扩张、压痕或定位重复性"
+      ]
+    },
+    "cad/parametric/geometry.json": {
+      "units": "mm",
+      "official": {
+        "shell_outer_diameter": 160.0,
+        "shell_height": 200.0,
+        "shell_thickness": 5.0,
+        "bearing_bore_diameter": 40.0
+      },
+      "design_assumptions": {
+        "seat_core_outer_diameter": 82.0,
+        "seat_thickness": 12.0,
+        "wing_outer_radius": 74.98,
+        "wing_width": 18.0,
+        "slot_width": 4.0,
+        "weld_segment_length": 18.0,
+        "primary_layout_points": 6,
+        "assembly_fit": "controlled_limit_clearance_fit",
+        "shell_inner_diameter_limits": [
+          150.0,
+          150.02
+        ],
+        "wing_outer_diameter_limits": [
+          149.94,
+          149.98
+        ],
+        "radial_clearance_min": 0.01,
+        "radial_clearance_max": 0.04,
+        "joint_type": "fillet_weld",
+        "fillet_leg_length": 3.5,
+        "fixture_mandrel_type": "tapered",
+        "mandrel_taper_ratio": 0.02,
+        "mandrel_small_diameter": 39.9,
+        "mandrel_large_diameter": 40.1,
+        "mandrel_effective_length": 10.0,
+        "axial_clamping_force": 500,
+        "positioning_repeatability": 0.008,
+        "fixture_base_diameter": 190.0
+      }
+    },
+    "project/process.yaml": {
+      "version": "PROCESS-1.0",
+      "authority": "焊接工艺与填丝参数的唯一权威配置",
+      "process": {
+        "nominal": {
+          "method": "automatic_TIG",
+          "current_a": 75.0,
+          "voltage_v": 12.0,
+          "travel_speed_mm_s": 1.5,
+          "arc_efficiency": 0.55,
+          "heat_input_j_per_mm": 330.0,
+          "preheat_c": 150.0,
+          "interpass_limit_c": 200.0,
+          "filler_feed_rate_mm_s": 2.0,
+          "filler_diameter_mm": 1.2,
+          "shielding_gas": "99.999% Ar",
+          "gas_flow_rate_l_min": 10.0,
+          "tungsten_electrode": "W-La20 (Ø2.0 mm)",
+          "nozzle_diameter_mm": 10.0,
+          "standoff_distance_mm": 2.5
+        },
+        "joint_consistency": {
+          "design_fillet_leg_mm": 3.5,
+          "design_basis": "结构设计目标；承载、疲劳和宏观截面尚未验证",
+          "deposition_efficiency_nominal": 1.0,
+          "deposition_efficiency_range": [
+            0.85,
+            1.0
+          ],
+          "closure_status": "not_closed_pending_macrosection_and_load_basis",
+          "rule": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝",
+          "scenarios": {
+            "current_single_pass_diagnostic": {
+              "pass_count": 1,
+              "identity": "当前 1.737 mm 等效焊脚局部热诊断基线",
+              "disposition": "diagnostic_only"
+            },
+            "target_3p5_four_pass_candidate": {
+              "pass_count": 4,
+              "identity": "3.5 mm 理想三角截面的等面积四道设计候选",
+              "disposition": "candidate_pending_load_basis_macrosection_and_thermal_revalidation",
+              "feed_policy": "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值",
+              "thermal_policy": "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论"
+            }
+          }
+        },
+        "acceptable_window": {
+          "current_a": {
+            "min": 65.0,
+            "nominal": 75.0,
+            "max": 85.0
+          },
+          "voltage_v": {
+            "min": 11.0,
+            "nominal": 12.0,
+            "max": 13.5
+          },
+          "travel_speed_mm_s": {
+            "min": 1.2,
+            "nominal": 1.5,
+            "max": 2.0
+          },
+          "heat_input_j_per_mm": {
+            "min": 240.0,
+            "max": 420.0
+          },
+          "preheat_c": {
+            "min": 130.0,
+            "nominal": 150.0,
+            "max": 180.0
+          },
+          "interpass_limit_c": {
+            "max": 200.0
+          }
+        },
+        "sequence_strategies": [
+          {
+            "name": "S1",
+            "type": "continuous_sequential",
+            "description": "顺次焊接，热累积极高，非对称变形大"
+          },
+          {
+            "name": "S2",
+            "type": "fixed_diagonal",
+            "description": "固定对角跳焊，热对称性较好"
+          },
+          {
+            "name": "S3",
+            "type": "fixed_intermittent",
+            "description": "固定六点跳焊序列 1->4->3->6->2->5"
+          },
+          {
+            "name": "ADAPTIVE",
+            "type": "temperature_state_driven",
+            "description": "在线测温反馈 + 动态加权选段跳焊，受邻段道温门限与温差约束"
+          }
+        ]
+      }
+    },
+    "project/load-basis-v1.yaml": {
+      "version": "LOAD-BASIS-0.1",
+      "evidence_level": "design_assumption_reference_envelope",
+      "scope": "条件性焊缝组筛查；题面未给真实整机载荷或载荷谱",
+      "reference_envelope": {
+        "radial_force_n": [
+          0.0,
+          5000.0
+        ],
+        "axial_force_n": [
+          0.0,
+          5000.0
+        ],
+        "overturning_moment_n_mm": [
+          0.0,
+          250000.0
+        ],
+        "basis": "为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷"
+      },
+      "allowable_stress_sensitivity_mpa": [
+        60.0,
+        90.0,
+        120.0
+      ],
+      "allowable_basis": "纯参数敏感性；未用作材料或疲劳许用值",
+      "layouts": {
+        "Continuous": "simulation/structural-v4/models/continuous/geometry-manifest.json",
+        "6P-FAIR_B": "simulation/structural-v4/models/6p-fair-b/geometry-manifest.json",
+        "8P-FAIR_B": "simulation/structural-v4/models/8p-fair-b/geometry-manifest.json"
+      },
+      "weld_legs_mm": [
+        1.73664301094,
+        2.0,
+        2.5,
+        3.0,
+        3.5
+      ],
+      "effective_throat_factor": 0.7071067811865476,
+      "model": {
+        "force": "焊缝组有效喉面积上均匀剪流，等效应力sqrt(3)*F/A",
+        "moment": "圆周焊缝线群关于最弱主轴的弹性弯曲影响系数",
+        "combination": "径向/轴向合力剪切与最不利倾覆正应力平方组合",
+        "excluded": [
+          "母材局部柔度",
+          "焊趾缺口",
+          "根部未熔合",
+          "残余应力",
+          "温度软化",
+          "接触分担",
+          "实际疲劳谱"
+        ]
+      },
+      "fatigue_boundary": {
+        "hotspots": [
+          "焊趾",
+          "焊根",
+          "离散焊段端部",
+          "翼根圆角"
+        ],
+        "status": "risk_locations_only_no_life_claim"
+      },
+      "decision_rule": "仅当真实载荷包络和有依据的许用/疲劳数据确认后，才能冻结焊脚；当前只比较条件裕量与热量/节拍代价"
+    },
+    "simulation/structural-v4/models/continuous/geometry-manifest.json": {
+      "model_id": "Continuous",
+      "family": "Continuous",
+      "layout": "Continuous",
+      "N": 0,
+      "shell": {
+        "outer_diameter_mm": 160.0,
+        "height_mm": 200.0,
+        "thickness_mm": 5.0
+      },
+      "seat": {
+        "bore_nominal_diameter_mm": 40.0,
+        "thickness_mm": 12.0,
+        "outer_radius_mm": 74.98,
+        "core_diameter_mm": 82.0,
+        "slot_width_mm": null,
+        "slot_root_radius_mm": null,
+        "slot_root_profile": null,
+        "fair_target_width_each_mm": null,
+        "fair_target_total_width_mm": 471.1132343323254,
+        "effective_width_each_mm": 471.1132343323254,
+        "effective_total_width_mm": 471.1132343323254,
+        "connection_width_definition": "continuous R74.98 cylindrical outer circumference"
+      },
+      "geometry": {
+        "planform_area_mm2": 16405.398093682965,
+        "solid_volume_mm3": 196864.77712419556,
+        "calculated_mass_kg": 1.417426395294208,
+        "bounding_box_mm": {
+          "x": 149.9600002,
+          "y": 149.9600002,
+          "z": 12.000000199999999
+        },
+        "seat_min_remaining_wall_thickness_mm": 21.0,
+        "min_remaining_wall_thickness_mm": 5.0,
+        "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+        "bore_ligament_mm": 21.0,
+        "slot_root_min_radius_mm": null,
+        "slot_root_radius_applied_mm": null,
+        "solid_count": 1,
+        "brep_valid": true,
+        "solid_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "self_intersection_free": true,
+        "minimum_face_area_mm2": 1507.9644737231008,
+        "minimum_edge_length_mm": 12.0,
+        "zero_thickness_free": true,
+        "max_radial_envelope_mm": 74.98,
+        "shell_inner_radius_mm": 75.0,
+        "seat_shell_min_gap_mm": 0.019999999999988853,
+        "seat_shell_max_penetration_mm": 0.0,
+        "seat_shell_intersection_volume_mm3": 0.0,
+        "seat_outside_shell_inner_volume_mm3": 0.0,
+        "shell_interference_free": true
+      },
+      "manufacturing": {
+        "slot_count": 0,
+        "weld_segment_count": 1,
+        "weld_segments": [
+          {
+            "segment_id": 1,
+            "start_angle_deg": -180.0,
+            "end_angle_deg": 180.0,
+            "arc_angle_deg": 360.0,
+            "arc_length_mm": 471.1132343323254,
+            "interface_area_mm2": 5653.358811987905,
+            "face_count": 1
+          }
+        ],
+        "cad_measured_total_weld_length_mm": 471.1132343323254,
+        "cad_measured_weld_interface_area_mm2": 5653.358811987905,
+        "actual_total_weld_length_mm": 471.1132343323254,
+        "nominal_total_weld_length_mm": 471.1132343323254,
+        "effective_connection_width_mm": 471.1132343323254,
+        "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
+      },
+      "generation": {
+        "generator_version": "2.1-ocp-cylindrical-interface",
+        "timestamp_utc": "2026-09-05T12:28:37.751285Z",
+        "rule": "single_unified_parametric_cad_function",
+        "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
+        "step_file": "models/continuous/Continuous.step",
+        "brep_file": "models/continuous/Continuous.brep",
+        "manifest_file": "models/continuous/geometry-manifest.json"
+      }
+    },
+    "simulation/structural-v4/models/6p-fair-b/geometry-manifest.json": {
+      "model_id": "6P-FAIR_B",
+      "family": "FAIR_B",
+      "layout": "6P",
+      "N": 6,
+      "shell": {
+        "outer_diameter_mm": 160.0,
+        "height_mm": 200.0,
+        "thickness_mm": 5.0
+      },
+      "seat": {
+        "bore_nominal_diameter_mm": 40.0,
+        "thickness_mm": 12.0,
+        "outer_radius_mm": 74.98,
+        "core_diameter_mm": 82.0,
+        "slot_width_mm": 4.0,
+        "slot_root_radius_mm": 2.0,
+        "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
+        "fair_target_width_each_mm": 18.0,
+        "fair_target_total_width_mm": 108.0,
+        "effective_width_each_mm": 17.999999999999975,
+        "effective_total_width_mm": 107.99999999999984,
+        "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
+      },
+      "geometry": {
+        "planform_area_mm2": 7923.285558373642,
+        "solid_volume_mm3": 95079.4267004837,
+        "calculated_mass_kg": 0.6845718722434827,
+        "bounding_box_mm": {
+          "x": 149.9600002,
+          "y": 137.9131396002134,
+          "z": 12.000000199999999
+        },
+        "seat_min_remaining_wall_thickness_mm": 19.0,
+        "min_remaining_wall_thickness_mm": 5.0,
+        "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+        "bore_ligament_mm": 21.0,
+        "slot_root_min_radius_mm": 39.0,
+        "slot_root_radius_applied_mm": 2.0,
+        "solid_count": 1,
+        "brep_valid": true,
+        "solid_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "self_intersection_free": true,
+        "minimum_face_area_mm2": 19.648580783019433,
+        "minimum_edge_length_mm": 0.85735220056842,
+        "zero_thickness_free": true,
+        "max_radial_envelope_mm": 74.98,
+        "shell_inner_radius_mm": 75.0,
+        "seat_shell_min_gap_mm": 0.019999999999983305,
+        "seat_shell_max_penetration_mm": 0.0,
+        "seat_shell_intersection_volume_mm3": 0.0,
+        "seat_outside_shell_inner_volume_mm3": 0.0,
+        "shell_interference_free": true
+      },
+      "manufacturing": {
+        "slot_count": 6,
+        "weld_segment_count": 6,
+        "weld_segments": [
+          {
+            "segment_id": 1,
+            "start_angle_deg": -6.877327495568701,
+            "end_angle_deg": 6.877327495568701,
+            "arc_angle_deg": 13.754654991137402,
+            "arc_length_mm": 18.00000000000001,
+            "interface_area_mm2": 216.0000000000001,
+            "face_count": 2
+          },
+          {
+            "segment_id": 2,
+            "start_angle_deg": 53.12267250443131,
+            "end_angle_deg": 66.8773274955687,
+            "arc_angle_deg": 13.754654991137382,
+            "arc_length_mm": 17.999999999999986,
+            "interface_area_mm2": 215.99999999999983,
+            "face_count": 2
+          },
+          {
+            "segment_id": 3,
+            "start_angle_deg": 113.12267250443132,
+            "end_angle_deg": 126.87732749556868,
+            "arc_angle_deg": 13.754654991137356,
+            "arc_length_mm": 17.99999999999995,
+            "interface_area_mm2": 215.99999999999937,
+            "face_count": 2
+          },
+          {
+            "segment_id": 4,
+            "start_angle_deg": 173.1226725044313,
+            "end_angle_deg": 186.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999957,
+            "face_count": 2
+          },
+          {
+            "segment_id": 5,
+            "start_angle_deg": 233.1226725044313,
+            "end_angle_deg": 246.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999955,
+            "face_count": 2
+          },
+          {
+            "segment_id": 6,
+            "start_angle_deg": 293.1226725044313,
+            "end_angle_deg": 306.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999955,
+            "face_count": 2
+          }
+        ],
+        "cad_measured_total_weld_length_mm": 107.99999999999984,
+        "cad_measured_weld_interface_area_mm2": 1295.999999999998,
+        "actual_total_weld_length_mm": 107.99999999999984,
+        "nominal_total_weld_length_mm": 108.0,
+        "effective_connection_width_mm": 107.99999999999984,
+        "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
+      },
+      "generation": {
+        "generator_version": "2.1-ocp-cylindrical-interface",
+        "timestamp_utc": "2026-09-05T12:28:44.779604Z",
+        "rule": "single_unified_parametric_cad_function",
+        "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
+        "step_file": "models/6p-fair-b/6P-FAIR_B.step",
+        "brep_file": "models/6p-fair-b/6P-FAIR_B.brep",
+        "manifest_file": "models/6p-fair-b/geometry-manifest.json"
+      }
+    },
+    "simulation/structural-v4/models/8p-fair-b/geometry-manifest.json": {
+      "model_id": "8P-FAIR_B",
+      "family": "FAIR_B",
+      "layout": "8P",
+      "N": 8,
+      "shell": {
+        "outer_diameter_mm": 160.0,
+        "height_mm": 200.0,
+        "thickness_mm": 5.0
+      },
+      "seat": {
+        "bore_nominal_diameter_mm": 40.0,
+        "thickness_mm": 12.0,
+        "outer_radius_mm": 74.98,
+        "core_diameter_mm": 82.0,
+        "slot_width_mm": 4.0,
+        "slot_root_radius_mm": 2.0,
+        "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
+        "fair_target_width_each_mm": 18.0,
+        "fair_target_total_width_mm": 144.0,
+        "effective_width_each_mm": 17.999999999999986,
+        "effective_total_width_mm": 143.9999999999999,
+        "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
+      },
+      "geometry": {
+        "planform_area_mm2": 9222.920681415308,
+        "solid_volume_mm3": 110675.04817698369,
+        "calculated_mass_kg": 0.7968603468742826,
+        "bounding_box_mm": {
+          "x": 149.9600002,
+          "y": 149.9600002,
+          "z": 12.000000199999999
+        },
+        "seat_min_remaining_wall_thickness_mm": 19.0,
+        "min_remaining_wall_thickness_mm": 5.0,
+        "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
+        "bore_ligament_mm": 21.0,
+        "slot_root_min_radius_mm": 39.0,
+        "slot_root_radius_applied_mm": 2.0,
+        "solid_count": 1,
+        "brep_valid": true,
+        "solid_valid": true,
+        "single_solid": true,
+        "algorithmic_self_interference_free": true,
+        "self_intersection_free": true,
+        "minimum_face_area_mm2": 19.64858078301967,
+        "minimum_edge_length_mm": 0.8573522005682441,
+        "zero_thickness_free": true,
+        "max_radial_envelope_mm": 74.98,
+        "shell_inner_radius_mm": 75.0,
+        "seat_shell_min_gap_mm": 0.019999999999976804,
+        "seat_shell_max_penetration_mm": 0.0,
+        "seat_shell_intersection_volume_mm3": 0.0,
+        "seat_outside_shell_inner_volume_mm3": 0.0,
+        "shell_interference_free": true
+      },
+      "manufacturing": {
+        "slot_count": 8,
+        "weld_segment_count": 8,
+        "weld_segments": [
+          {
+            "segment_id": 1,
+            "start_angle_deg": -6.877327495568701,
+            "end_angle_deg": 6.877327495568701,
+            "arc_angle_deg": 13.754654991137402,
+            "arc_length_mm": 18.00000000000001,
+            "interface_area_mm2": 216.0000000000001,
+            "face_count": 2
+          },
+          {
+            "segment_id": 2,
+            "start_angle_deg": 38.12267250443131,
+            "end_angle_deg": 51.87732749556869,
+            "arc_angle_deg": 13.754654991137382,
+            "arc_length_mm": 17.999999999999986,
+            "interface_area_mm2": 215.99999999999983,
+            "face_count": 2
+          },
+          {
+            "segment_id": 3,
+            "start_angle_deg": 83.1226725044313,
+            "end_angle_deg": 96.8773274955687,
+            "arc_angle_deg": 13.754654991137388,
+            "arc_length_mm": 17.999999999999993,
+            "interface_area_mm2": 215.99999999999994,
+            "face_count": 2
+          },
+          {
+            "segment_id": 4,
+            "start_angle_deg": 128.1226725044313,
+            "end_angle_deg": 141.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999957,
+            "face_count": 2
+          },
+          {
+            "segment_id": 5,
+            "start_angle_deg": 173.1226725044313,
+            "end_angle_deg": 186.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999957,
+            "face_count": 2
+          },
+          {
+            "segment_id": 6,
+            "start_angle_deg": 218.1226725044313,
+            "end_angle_deg": 231.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999957,
+            "face_count": 2
+          },
+          {
+            "segment_id": 7,
+            "start_angle_deg": 263.1226725044313,
+            "end_angle_deg": 276.8773274955687,
+            "arc_angle_deg": 13.754654991137414,
+            "arc_length_mm": 18.00000000000003,
+            "interface_area_mm2": 216.00000000000034,
+            "face_count": 2
+          },
+          {
+            "segment_id": 8,
+            "start_angle_deg": 308.1226725044313,
+            "end_angle_deg": 321.8773274955687,
+            "arc_angle_deg": 13.754654991137366,
+            "arc_length_mm": 17.999999999999964,
+            "interface_area_mm2": 215.99999999999955,
+            "face_count": 2
+          }
+        ],
+        "cad_measured_total_weld_length_mm": 143.9999999999999,
+        "cad_measured_weld_interface_area_mm2": 1727.9999999999984,
+        "actual_total_weld_length_mm": 143.9999999999999,
+        "nominal_total_weld_length_mm": 144.0,
+        "effective_connection_width_mm": 143.9999999999999,
+        "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
+      },
+      "generation": {
+        "generator_version": "2.1-ocp-cylindrical-interface",
+        "timestamp_utc": "2026-09-05T12:28:49.527465Z",
+        "rule": "single_unified_parametric_cad_function",
+        "cad_kernel": "OpenCascade 7.9.3.1 (OCP)",
+        "step_file": "models/8p-fair-b/8P-FAIR_B.step",
+        "brep_file": "models/8p-fair-b/8P-FAIR_B.brep",
+        "manifest_file": "models/8p-fair-b/geometry-manifest.json"
+      }
+    }
+  },
+  "geometry_sha256": {
+    "simulation/structural-v4/common/shell.brep": "043357e59cc627120082d2f77e0dec95f87c88fafe3bcfc0dcbe9fca3cbf1dc0",
+    "simulation/structural-v4/models/continuous/Continuous.brep": "1d20d84958865e9636b9e9ffe21283d22bd6534d0b0bace980f44c518f8452df",
+    "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "25cbc01823f3921ee03a5a8c272c6da930f0acacd69c67c76c25c550e1271d8b",
+    "simulation/structural-v4/models/8p-fair-b/8P-FAIR_B.brep": "d71f6d36706f522c1cedd441113ddfd249cd0beb05f5685756e9c900224b876d"
+  }
+}

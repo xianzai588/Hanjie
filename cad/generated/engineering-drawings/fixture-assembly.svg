@@ -1,57 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<rect width="1200" height="800" fill="#ffffff"/>
-<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#111827}.title{font-size:25px;font-weight:700}.subtitle{font-size:14px;fill:#475569}.note{font-size:15px}.small{font-size:12px}.dim{font-size:16px;fill:#1d4ed8}.datum{font-size:15px;font-weight:700;fill:#b91c1c}.section{font-size:18px;font-weight:700;fill:#0f766e}.edge{stroke:#111827;stroke-width:2;fill:none}.center{stroke:#64748b;stroke-width:1;fill:none}.thin{stroke:#475569;stroke-width:1;fill:none}.weld{stroke:#dc2626;stroke-width:3;fill:none}.dimline{stroke:#1d4ed8;stroke-width:1.2;fill:none}.frame{stroke:#111827;stroke-width:1.5;fill:#fff}.datumbox{stroke:#b91c1c;stroke-width:1.5;fill:#fff}</style>
-<rect x="25.0" y="25.0" width="1150.0" height="750.0" class="thin" fill="none" rx="0.0"/>
-<text x="50.0" y="65.0" class="title" text-anchor="start">夹具总装图</text>
-<text x="50.0" y="90.0" class="subtitle" text-anchor="start">FIXTURE ASSEMBLY / TAPERED MANDREL + SIX SUPPORTS</text>
-<text x="1140.0" y="65.0" class="section" text-anchor="end">HJ-DRW-005</text>
-<circle cx="350.0" cy="350.0" r="199.5" class="edge" fill="#cbd5e1"/>
-<line x1="308.1" y1="330.0" x2="307.9" y2="370.0" class="edge"/>
-<line x1="391.9" y1="330.0" x2="392.1" y2="370.0" class="edge"/>
-<circle cx="350.0" cy="350.0" r="80.0" class="thin" fill="#fff"/>
-<circle cx="530.6" cy="350.0" r="11.0" class="edge" fill="#f59e0b"/>
-<line x1="390.0" y1="350.0" x2="530.6" y2="350.0" class="thin"/>
-<text x="530.6" y="380.0" class="small" text-anchor="middle">S1</text>
-<circle cx="440.3" cy="193.6" r="11.0" class="edge" fill="#f59e0b"/>
-<line x1="370.0" y1="315.4" x2="440.3" y2="193.6" class="thin"/>
-<text x="440.3" y="223.6" class="small" text-anchor="middle">S2</text>
-<circle cx="259.7" cy="193.6" r="11.0" class="edge" fill="#f59e0b"/>
-<line x1="330.0" y1="315.4" x2="259.7" y2="193.6" class="thin"/>
-<text x="259.7" y="223.6" class="small" text-anchor="middle">S3</text>
-<circle cx="169.4" cy="350.0" r="11.0" class="edge" fill="#f59e0b"/>
-<line x1="310.0" y1="350.0" x2="169.4" y2="350.0" class="thin"/>
-<text x="169.4" y="380.0" class="small" text-anchor="middle">S4</text>
-<circle cx="259.7" cy="506.4" r="11.0" class="edge" fill="#f59e0b"/>
-<line x1="330.0" y1="384.6" x2="259.7" y2="506.4" class="thin"/>
-<text x="259.7" y="536.4" class="small" text-anchor="middle">S5</text>
-<circle cx="440.3" cy="506.4" r="11.0" class="edge" fill="#f59e0b"/>
-<line x1="370.0" y1="384.6" x2="440.3" y2="506.4" class="thin"/>
-<text x="440.3" y="536.4" class="small" text-anchor="middle">S6</text>
-<text x="700.0" y="180.0" class="section" text-anchor="start">FIXTURE DEFINITION</text>
-<text x="700.0" y="220.0" class="note" text-anchor="start">BASE Ø190</text>
-<text x="700.0" y="250.0" class="note" text-anchor="start">DIAMETER TAPER (D-d)/L = 0.020 = 1:50</text>
-<text x="700.0" y="280.0" class="note" text-anchor="start">Ø39.90 ~ Ø40.10</text>
-<text x="700.0" y="310.0" class="note" text-anchor="start">Axial clamping force 500 N</text>
-<text x="700.0" y="340.0" class="note" text-anchor="start">Positioning repeatability 0.008 mm</text>
-<text x="700.0" y="370.0" class="note" text-anchor="start">6 radial compliant supports @ 1200 N/mm equiv</text>
-<text x="700.0" y="415.0" class="section" text-anchor="start">DOF CONTROL / ASSEMBLY MAPPING</text>
-<text x="700.0" y="450.0" class="note" text-anchor="start">A  base top plane → assembly A</text>
-<text x="700.0" y="480.0" class="note" text-anchor="start">B  mandrel axis → assembly B (self-centering)</text>
-<text x="700.0" y="510.0" class="note" text-anchor="start">C  independent clocking pin → assembly C</text>
-<text x="700.0" y="555.0" class="small" text-anchor="start">Tapered fit auto-centers bore axis to fixture axis</text>
-<polygon points="350.0,549.5 340.0,529.5 360.0,529.5" class="datumbox" fill="#fff"/>
-<text x="350.0" y="543.5" class="datum" text-anchor="middle">A</text>
-<line x1="350.0" y1="529.5" x2="350.0" y2="504.5" class="thin"/>
-<polygon points="549.5,350.0 569.5,340.0 569.5,360.0" class="datumbox" fill="#fff"/>
-<text x="557.5" y="355.0" class="datum" text-anchor="middle">B</text>
-<line x1="569.5" y1="350.0" x2="604.5" y2="350.0" class="thin"/>
-<polygon points="350.0,150.5 340.0,130.5 360.0,130.5" class="datumbox" fill="#fff"/>
-<text x="350.0" y="144.5" class="datum" text-anchor="middle">C</text>
-<line x1="350.0" y1="130.5" x2="350.0" y2="105.5" class="thin"/>
-<line x1="50.0" y1="700.0" x2="1150.0" y2="700.0" class="thin"/>
-<text x="55.0" y="722.0" class="small" text-anchor="start">MATERIAL: Fixture steel / material and heat treatment TBD</text>
-<text x="1140.0" y="722.0" class="small" text-anchor="end">STATUS: DESIGN-REVIEW</text>
-<text x="55.0" y="742.0" class="small" text-anchor="start">GENERAL TOLERANCE EXCLUDES FIT/CONTROLLED DIMS: ±0.10 mm (design assumption; verify before release)</text>
-<text x="55.0" y="762.0" class="small" text-anchor="start">Functional assembly datums: A=seat/support plane; B=shell theoretical axis; C=independent clocking; design-review only.</text>
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">胀套定位、端面夹紧与主动回退</text>
+<text x="50" y="99" class="small">内部锥只驱动圆柱胀套；轴向500 N通过独立压环—座体—底部三支点承受</text>
+<text x="1020" y="65" class="section">HJ-R1-003</text>
+<rect x="90" y="325" width="125" height="110" fill="#efd18b" stroke="#334155"/>
+<rect x="415" y="325" width="125" height="110" fill="#efd18b" stroke="#334155"/>
+<rect x="218" y="325" width="12" height="110" fill="#8cb6ae" stroke="#334155"/>
+<rect x="400" y="325" width="12" height="110" fill="#8cb6ae" stroke="#334155"/>
+<polygon points="230.00,422.00 400.00,422.00 370.00,295.00 260.00,295.00" fill="#b2c4cc" stroke="#334155"/>
+<rect x="302" y="160" width="26" height="150" fill="#b2c4cc" stroke="#334155"/>
+<rect x="155" y="295" width="320" height="30" fill="#8cb6ae" stroke="#334155"/>
+<rect x="150" y="435" width="42" height="90" fill="#9baeb7" stroke="#334155"/>
+<rect x="440" y="435" width="42" height="90" fill="#9baeb7" stroke="#334155"/>
+<rect x="140" y="525" width="355" height="30" fill="#9baeb7" stroke="#334155"/>
+<rect x="297" y="555" width="38" height="90" fill="#9baeb7" stroke="#334155"/>
+<text x="125" y="140" class="small">功能剖面：槽口及密封连接见技术要求</text>
+<text x="80" y="220" class="note">独立压环：500 N</text>
+<text x="350" y="220" class="note">内置拉杆／顶回肩</text>
+<text x="100" y="593" class="small">三支点位于R30，等间隔120°</text>
+<text x="100" y="627" class="small">支点端面极差≤0.003（制造要求）</text>
+<text x="100" y="661" class="small">承力柱Ø20；下托盘Ø72×4；支点Ø8</text>
+<text x="640" y="167" class="note">孔内接触件为开缝圆柱胀套，避免孔缘楔入</text>
+<text x="640" y="205" class="note">收拢外径39.94；最大撑开外径40.04</text>
+<text x="640" y="243" class="note">两接触带：z101～103、109～111</text>
+<text x="640" y="281" class="note">锥半角10°；锥不与工件孔直接接触</text>
+<text x="640" y="319" class="note">正向顶回肩＋拉杆；回退行程1.00</text>
+<text x="640" y="357" class="note">覆盖全径差所需理想行程 0.284</text>
+<text x="640" y="395" class="note">μ=0.20仍可能自锁，禁止仅靠弹簧回位</text>
+<text x="640" y="433" class="note">径向合力标量上限100 N（机构设计要求）</text>
+<text x="640" y="471" class="note">摩擦未知时驱动力上限17.63 N，再限行程</text>
+<text x="640" y="509" class="note">0.221 MPa仅名义平均带压，不是峰值</text>
+<text x="640" y="547" class="note">上部压环／执行器包络R30，z112～220</text>
+<text x="640" y="585" class="note">温度满足→压环卸载→顶回→确认收拢</text>
+<text x="640" y="623" class="note">下部支承与接料盘同一组件向下退出</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
 </svg>

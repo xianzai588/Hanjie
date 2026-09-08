@@ -1,50 +1,30 @@
 {
-  "generated_at": "2026-09-06",
+  "generated_at": "2026-09-08",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 8,
+  "sheet_count": 4,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
       "pdf": "pdf/bearing-seat.pdf",
-      "title": "轴承座零件图 · 六翼柔顺方案",
+      "title": "接头布局、座体尺寸与独立基准",
       "source": "bearing-seat.svg"
     },
     {
-      "pdf": "pdf/fixture-assembly.pdf",
-      "title": "夹具总装图",
-      "source": "fixture-assembly.svg"
-    },
-    {
-      "pdf": "pdf/fixture-part.pdf",
-      "title": "夹具锥形心轴与底板零件图",
-      "source": "fixture-part.svg"
-    },
-    {
       "pdf": "pdf/joint-detail.pdf",
-      "title": "接头与焊缝细节图",
+      "title": "四道焊接截面与工艺设计卡",
       "source": "joint-detail.svg"
     },
     {
+      "pdf": "pdf/fixture-assembly.pdf",
+      "title": "胀套定位、端面夹紧与主动回退",
+      "source": "fixture-assembly.svg"
+    },
+    {
       "pdf": "pdf/protected-process-assembly.pdf",
-      "title": "内腔防护焊接工序总装",
+      "title": "连续防护、承力组件与退出路径",
       "source": "protected-process-assembly.svg"
-    },
-    {
-      "pdf": "pdf/shell.pdf",
-      "title": "薄壁壳体零件图",
-      "source": "shell.svg"
-    },
-    {
-      "pdf": "pdf/weld-assembly.pdf",
-      "title": "焊接总装与定位基准图",
-      "source": "weld-assembly.svg"
-    },
-    {
-      "pdf": "pdf/weld-layout.pdf",
-      "title": "焊缝布置与顺序图",
-      "source": "weld-layout.svg"
     }
   ]
 }

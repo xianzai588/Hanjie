@@ -2,29 +2,122 @@
 
 当前权威配置与已执行结果；非实测证据仍保留原等级
 
-## 阶段状态
+## 当前参赛修订 COMPETITION-R1
 
-| 阶段 | 执行状态 | 验收结果 | 允许用途 |
-| --- | --- | --- | --- |
-| G-INPUTS | controlled_inputs_volume_candidate_and_conditional_load_basis_defined | not_closed | 条件性数值筛查；真实载荷、许用与成形关系仍待闭合 |
-| LOAD-BASIS-0 | conditional_weld_group_screening_and_component_leg_curves_completed | reference_envelope_only_actual_load_missing | 焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较 |
-| THERMAL-0.4R1 | ten_case_run_and_audit_completed | failed_spatial_convergence | 未校准局部热诊断；禁止正式整件性能结论 |
-| THERMAL-0.4R2-A | fixed_six_strip_geometry_coarse_medium_fine_and_directional_controls_completed | fixed_geometry_reduced_but_did_not_close_spatial_error | 分离场网格与阶梯几何影响；禁止正式整件性能结论 |
-| THERMAL-0.5-XSEC | local_xsec_m_f_vf_run_and_second_layer_diagnosis_completed | nonmonotonic_not_in_asymptotic_region | 局部离散根因诊断；禁止给最终空间/时间准入或正式整件性能结论 |
-| THERMAL-0.6-NESTED | strict_nested_m_f_vf_and_detailed_ledgers_completed | asymptotic_trend_but_local_field_and_fixed_history_failed | 边界源承载层、逐面峰值与固定点重构的数值机制诊断；禁止正式结构热载荷 |
-| THERMAL-0.7-BOUNDARY-NEUMANN | analytic_verification_and_conditional_f_vf_completed | explicit_face_and_reconstruction_verified_but_field_gate_failed | 证明面功率施加与点重构实现正确，并排除边界层体积源单位误用；禁止正式结构热载荷 |
-| METALLURGY-0 | executor_and_historical_diagnostics_completed | current_joint_not_physically_validated | 风险识别；禁止宣称当前接头组织或连接质量已验证 |
-| EXP-THERMAL | protocol_completed_experiment_not_run | not_executed | 试验准备 |
-| THERMAL-NUMERICAL-GATE | evaluated_after_0p7_boundary_neumann | not_passed | 通过后仅可标记 solver_verified 并进入无实物 Route B |
-| THERMAL-PHYSICAL-CALIBRATION | protocol_only | not_executed | 通过后方可标记 calibrated/physical_validated 并进入 Route A |
-| THERMAL-1 | blocked | not_admitted | 不允许正式结构耦合 |
-| STRUCT-0-PREP | swept_mesh_and_synthetic_sector_dress_rehearsal_completed | ready_pending_admitted_thermal_history | 结构执行链工程准备；合成PFEP_FE无工程意义，不得冒充实际焊接残余位置度 |
-| STRUCT-0 | not_executed | blocked_by_thermal_only | 无 |
-| STRUCT-1 | static_screening_only | formal_comparison_not_executed | 当前载荷和支承下的静力筛查 |
-| SERVICE | load_builder_and_conditional_weld_group_screening_completed | not_executed | 单位载荷与参考包络敏感性；无整件性能或寿命结论 |
-| PROCESS-CONTROL | surrogate_prototypes_completed | formal_study_not_executed | 算法演示和拒绝逻辑验证 |
-| EXP-FINAL | not_executed | not_executed | 无 |
-| DECISION | candidate_retention_decisions_only | final_decision_not_available | 阶段设计评审 |
+当前说明书和四页图集采用圆柱胀套、连续薄裙和Ø1.6四道固定送丝。下列ROUTE-B-DESIGN与TOOLING-ACCESS是历史选型/失败情景，不覆盖新工装。
+修订直径预算（含目标测量不确定度）0.0456 mm；仅设计分配，实物与正式热—结构仍未放行。
+
+## 无实物条件选型与精度反算
+
+以下为设计假设下的焊缝组核算，未增加实焊、整件热塑性或质量验收证据。
+共 6 个候选、108 个确定性组合；沉积效率使用原配置两端。
+参考包络：径向力 0–5000 N、轴向力 0–5000 N、倾覆力矩 0–250 N·m；缩放系数同时作用于三者。
+许用应力仅取原配置的敏感性假设，不能作为 QT450-10 异种焊缝的真实许用值。
+
+| 候选 | 等效焊脚范围 mm | 固定送丝 mm/s | 所需许用 MPa | 净热输入 kJ | 弧燃时间 s |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Continuous/1pass | 1.601–1.737 | 2.000 | 26.15 | 155.47 | 314.1 |
+| Continuous/4pass | 3.227–3.500 | 2.031 | 12.97 | 621.87 | 1256.3 |
+| 6P-FAIR_B/1pass | 1.601–1.737 | 2.000 | 114.05 | 35.64 | 72.0 |
+| 6P-FAIR_B/4pass | 3.227–3.500 | 2.031 | 56.59 | 142.56 | 288.0 |
+| 8P-FAIR_B/1pass | 1.601–1.737 | 2.000 | 85.54 | 47.52 | 96.0 |
+| 8P-FAIR_B/4pass | 3.227–3.500 | 2.031 | 42.44 | 190.08 | 384.0 |
+
+所需许用值对应 1.0 倍参考包络和沉积效率下限。单道为诊断候选，四道只在名义效率下对应 CAD 的 3.5 mm 目标截面。
+保持送丝不变时，效率下降会缩小焊脚并提高所需许用应力；不能一边沿用 3.5 mm 承载能力，一边采用单道耗材与热量。
+
+| 载荷系数 | 假设许用 MPa | 容量筛查后的低热输入研究优先项 |
+| ---: | ---: | --- |
+| 0.5 | 60 | 6P-FAIR_B/1pass |
+| 0.5 | 90 | 6P-FAIR_B/1pass |
+| 0.5 | 120 | 6P-FAIR_B/1pass |
+| 1.0 | 60 | 6P-FAIR_B/4pass |
+| 1.0 | 90 | 8P-FAIR_B/1pass |
+| 1.0 | 120 | 6P-FAIR_B/1pass |
+| 1.5 | 60 | Continuous/1pass |
+| 1.5 | 90 | 6P-FAIR_B/4pass |
+| 1.5 | 120 | 6P-FAIR_B/4pass |
+
+上表仅回答简化承载约束下的名义热输入取舍，不是已经满足位置度、熔合、疲劳和洁净度的推荐工艺。
+
+当前径向预算缺口 0.010 mm；其他项目不变时，留给热变形的预算仅 0.002 mm。
+固定保留基准与松夹等分配 0.010 mm，现有夹具与初始装配合计 0.013 mm，反算要求如下：
+
+| 热变形径向预算 mm | 夹具与装配合计上限 mm | 相对当前至少减少 mm |
+| ---: | ---: | ---: |
+| 0.002 | 0.013 | 0.000 |
+| 0.005 | 0.010 | 0.003 |
+| 0.008 | 0.007 | 0.006 |
+| 0.011 | 0.004 | 0.009 |
+| 0.012 | 0.003 | 0.010 |
+
+该表是设计要求反算；未调整权威预算、未证明夹具能力，也未将测量不确定度混入产品几何链。
+
+现有结构敏感性已执行 432 例。下表按既定分辨尺度比较：
+
+| 成对候选 | 前者更低 | 后者更低 | 无法分辨 |
+| --- | ---: | ---: | ---: |
+| Continuous / 6P-FAIR_B | 16 | 0 | 56 |
+| Continuous / 8P-FAIR_B | 11 | 0 | 61 |
+| 6P-FAIR_B / 8P-FAIR_B | 0 | 0 | 72 |
+
+没有稳健的残余变形优胜方案。该敏感性链未求解候选实际焊序、壳体/焊缝塑性和松夹接触；小响应值不能用于 Ø0.05 mm 验收。
+
+## 工装空间与锥面约束检查
+
+采用现有BREP和新增明确尺寸的刚性工装包络，名义座体底面z=100 mm。底口开放属于工序假设。未包含六支承、机器人腕部、送丝机构和管线。
+
+| 座体 | 退出方向 | 与座体相交体积 mm³ | 所列实体扫掠检查 |
+| --- | --- | ---: | --- |
+| Continuous | 底口 | 0.00 | 无干涉 |
+| Continuous | 上口 | 191360.69 | 被阻挡 |
+| 6P-FAIR_B | 底口 | 0.00 | 无干涉 |
+| 6P-FAIR_B | 上口 | 93756.02 | 被阻挡 |
+| 8P-FAIR_B | 底口 | 0.00 | 无干涉 |
+| 8P-FAIR_B | 上口 | 108910.51 | 被阻挡 |
+
+整块刚性盘只保留底口退出情景；上撤穿过已焊座体被排除。周边间隙仍漏接垂直落物，需另设计可收拢挡边或源头封挡，不能宣称洁净达标
+截留盘外半径 74.00 mm，名义壁隙 1.00 mm；R74.98 mm接口的垂直落物路径不在盘面覆盖内。
+
+| 焊枪倾角（距竖直） | 枪体形式 | 三个提升姿态 | 连续竖直路径包络 |
+| ---: | --- | --- | --- |
+| 15° | 直线延长 | 存在干涉 | 未建立 |
+| 15° | 弯头后竖直 | 存在干涉 | 不通过 |
+| 30° | 直线延长 | 存在干涉 | 未建立 |
+| 30° | 弯头后竖直 | 无干涉 | 所列障碍下通过 |
+| 45° | 直线延长 | 存在干涉 | 未建立 |
+| 45° | 弯头后竖直 | 无干涉 | 所列障碍下通过 |
+
+本轮保留30°/45°弯头后竖直枪体作为空间设计候选。该结论限于假设工具尺寸与列明障碍，不代表实际机器人可达性、保护气或焊接质量已验证。
+
+原锥体整段插入圆柱孔的穿透体积为 15.721 mm³；沿轴向退让 5.000 mm后体积干涉为 0.000 mm³，名义接触为孔上缘一圈。
+压入载荷情景：假设原500 N全部经锥面传递，库仑摩擦系数只作确定性扫描。径向数值是周向压紧载荷标量和；轴对称时径向合力矢量为零，不可将两者混用。
+
+| 假设摩擦系数 | 径向压紧标量和 N | 自锁可能 |
+| ---: | ---: | --- |
+| 0.00 | 50000.0 | 否 |
+| 0.05 | 8329.2 | 是 |
+| 0.10 | 4540.9 | 是 |
+| 0.20 | 2376.2 | 是 |
+
+半锥角约0.573°，自锁临界摩擦系数约0.01；实际摩擦与接触带未知，不能推导接触压力、孔扩张或定位重复性。需要补独立倾斜约束和主动退锥设计。
+
+## 当前关键阶段
+
+| 阶段 | 验收状态 | 允许用途 |
+| --- | --- | --- |
+| COMPETITION-R1 | 修订设计检查通过；实物性能未验证 | 四道沉积、修订胀套与连续薄裙、名义包络、设计预算及互锁；不放行实物性能或正式热结构 |
+| G-INPUTS | 设计输入尚未全部闭合 | 条件性数值筛查；真实载荷、许用与成形关系仍待闭合 |
+| LOAD-BASIS-0 | 仅参考包络；无实际载荷 | 焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较 |
+| THERMAL-0.4R1 | 空间收敛未通过 | 未校准局部热诊断；禁止正式整件性能结论 |
+| THERMAL-REF-PLAN8 | 诊断执行完成；近场仍有差异 | 分区反力热账和共同空间观测的机制排除；仅可输入明确标记的非正式敏感性链 |
+| THERMAL-NUMERICAL-GATE | 未通过 | 通过后可标记solver_verified并提供正式THERMAL-1热载荷；非正式Route B研究不授予该标签 |
+| STRUCT-0-PREP | 结构准备就绪；等待可信热历史 | 结构执行链工程准备；合成PFEP_FE无工程意义，不得冒充实际焊接残余位置度 |
+| STRUCT-0 | 整件结构未执行；热载荷未准入 | 无 |
+| STRUCT-UNCERTAINTY | 没有可分辨的稳健优胜方案 | 同一3D座体链下跨热历史、物性、约束、基础刚度及C/M网格的条件性位置度敏感性；不是整件焊后残余预测 |
+| ROUTE-B-DESIGN | 条件选型完成；完整工程尚未放行 | 原沉积效率范围内的承载—净热输入—弧燃时间条件选型及公差反算；禁止替代整件位置度与焊接质量验收 |
+| TOOLING-ACCESS | 所列包络有可行路线；洁净与定位精度未闭合 | 列明刚性实体的退出/焊枪包络和锥面载荷情景；不能替代完整工装、洁净和位置度验收 |
+| DECISION | 仅条件性研究优先项 | 阶段设计评审 |
 
 ## 公差与接头闭合状态
 
@@ -52,7 +145,7 @@
 
 静力筛查门：通过；完整热—结构门：未通过。
 
-## THERMAL-0.4R1 名义工况
+## 历史局部热诊断：THERMAL-0.4R1 名义工况
 
 | 材料 | 峰温 (°C) | 越固相线体积 (mm³) | 越液相线体积 (mm³) |
 | --- | ---: | ---: | ---: |
@@ -77,7 +170,7 @@
 局部截面 M→F/F→VF 焊材 P95 差为 9.597/18.260 °C，缩减比 1.903；未进入渐近区，停止 xfine 和时间步复查。
 一致切线与全局 Newton 小网格登记检查：全部通过；仍不等于整件求解。
 Continuous 预备网格含 52210 节点、176524 四面体，无倒置单元；但 minSICN<0.1 仍有 1381 个，热场映射和接触求解尚未完成。
-THERMAL 数值 Gate 与 STRUCT-PREP Gate 均保持关闭。
+以上为 Plan 4 历史状态；STRUCT-PREP 后续已完成扫掠网格彩排，见 Plan 6，正式结构热载荷仍未准入。
 
 ## Plan 6 边界一致热离散与 Continuous 拓扑
 

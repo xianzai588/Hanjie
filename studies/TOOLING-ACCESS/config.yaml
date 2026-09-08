@@ -1,0 +1,42 @@
+version: TOOLING-ACCESS-1.0
+evidence_level: design_assumption
+sources:
+  geometry: cad/parametric/geometry.json
+  process: project/process.yaml
+  load_basis: project/load-basis-v1.yaml
+  shell_brep: simulation/structural-v4/common/shell.brep
+assembly:
+  seat_bottom_z_mm: 100.0
+  seat_height_basis: 题面未指定轴承座轴向高度；取壳体中部作为明确的装配情景，不修改既有座体实体
+  bottom_access_open: true
+  bottom_access_basis: 仅适用于底盖封闭及内部易损部件装入之前；不是已核实的生产顺序
+shield:
+  outer_radius_mm: 74.0
+  floor_thickness_mm: 1.0
+  rim_height_mm: 3.0
+  rim_thickness_mm: 1.0
+  top_to_seat_bottom_gap_mm: 6.0
+  extraction_below_shell_mm: 5.0
+  dimensional_status: 新增刚性截留盘包络设计假设，未指定材料和热变形能力
+torch:
+  tilt_from_vertical_deg: [15.0, 30.0, 45.0]
+  export_tilt_deg: 30.0
+  exposed_tungsten_length_mm: 8.0
+  tungsten_radius_mm: 1.0
+  nozzle_length_mm: 25.0
+  body_radius_mm: 8.0
+  body_top_z_mm: 220.0
+  radial_clearance_requirement_mm: 0.2
+  envelope_basis: 比较直线延长枪体与弯头后竖直枪体；喷嘴直径和弧间距取现有工艺值，其余是空间包络假设，不对应已购设备
+mandrel:
+  friction_coefficients: [0.0, 0.05, 0.1, 0.2]
+  friction_basis: 库仑摩擦确定性情景，未测量；轴向500 N全部用于压入锥面只是载荷分配上界情景
+  upper_obstruction_top_z_mm: 220.0
+checks:
+  boolean_volume_tolerance_mm3: 0.000001
+  pose_lifts_mm: [0.0, 40.0, 120.0]
+limitations:
+  - 不含六支承的完整实体、机器人腕部、送丝机构、管线、装卸夹爪及热变形
+  - 可达性只覆盖列明的刚性包络；不构成完整工装制造放行
+  - 截留盘有径向间隙，不能据无干涉宣称截获全部飞溅
+  - 心轴摩擦和接触带未知，不能由力平衡算式推断孔扩张、压痕或定位重复性

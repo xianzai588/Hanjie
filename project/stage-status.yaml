@@ -5,18 +5,26 @@ route_b:
   selected: true
   experimental_data_required: false
   objective: 跨求解器与参数情景的条件性数字设计证据，不承诺实物位置度验收
-  current_research_stage: STRUCT-UNCERTAINTY
+  current_research_stage: COMPETITION-R1
   thermal_diagnostic_budget_exhausted: true
   frozen_work: [app_expansion, vision_network_expansion, uncalibrated_monte_carlo]
   supersedes: 历史Plan7以实物热电偶裁决的退出策略；物理验证协议保留但不作为当前计划依赖
 stages:
+  COMPETITION-R1:
+    execution_status: revised_design_geometry_process_budget_and_interlocks_completed
+    acceptance_result: design_checks_passed_physical_performance_unverified
+    evidence_level: design_assumption
+    evidence: studies/COMPETITION-DESIGN/results/assessment.json
+    allowed_use: 四道沉积、修订胀套与连续薄裙、名义包络、设计预算及互锁；不放行实物性能或正式热结构
+    upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS]
+    next_action: 按当前说明书和四页图集开展设计评审；完整热结构、柔性工装与洁净性能保持未验证
   G-INPUTS:
     execution_status: controlled_inputs_volume_candidate_and_conditional_load_basis_defined
     acceptance_result: not_closed
     evidence_level: design_assumption
     allowed_use: 条件性数值筛查；真实载荷、许用与成形关系仍待闭合
     upstream_dependencies: []
-    next_action: 取得真实载荷/许用依据后裁决焊脚；四道候选继续等待分层几何和宏观截面验证
+    next_action: 按ROUTE-B-DESIGN的固定送丝情景推进分层几何与候选尺度热历史；实际成形不作为当前核算依赖，保留未验证边界
   LOAD-BASIS-0:
     execution_status: conditional_weld_group_screening_and_component_leg_curves_completed
     acceptance_result: reference_envelope_only_actual_load_missing
@@ -24,7 +32,7 @@ stages:
     allowed_use: 焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较
     evidence: simulation/structural-v4/results/joint-load-basis/joint-load-basis.json
     upstream_dependencies: [G-INPUTS]
-    next_action: 取得实际径向/轴向/倾覆包络、许用与载荷谱；不得用参考包络认证服役安全
+    next_action: 已转为ROUTE-B-DESIGN条件选型；没有载荷来源时保留参数包络，不认证服役安全
   THERMAL-0.4R1:
     execution_status: ten_case_run_and_audit_completed
     acceptance_result: failed_spatial_convergence
@@ -188,11 +196,31 @@ stages:
     allowed_use: 无
     upstream_dependencies: [PROCESS-CONTROL]
     next_action: 无实物Route B不安排CMM、NDT或洁净度试验；仅保留验收流程和洁净度控制设计
+  ROUTE-B-DESIGN:
+    execution_status: six_candidates_108_capacity_process_cases_and_precision_inverse_budget_completed
+    acceptance_result: conditional_selection_available_full_engineering_release_not_available
+    evidence_level: design_assumption
+    allowed_use: 原沉积效率范围内的承载—净热输入—弧燃时间条件选型及公差反算；禁止替代整件位置度与焊接质量验收
+    evidence: studies/ROUTE-B-DESIGN/results/assessment.json
+    upstream_dependencies: [LOAD-BASIS-0, STRUCT-UNCERTAINTY]
+    formal: false
+    experimental_data_required: false
+    next_action: 用候选实际焊序和三材料几何补充约束/释放研究；夹具与防护可达性要基于有尺寸的实体，不能拿示意图当干涉验证
+  TOOLING-ACCESS:
+    execution_status: occ_swept_shield_torch_envelopes_and_cone_force_checks_completed
+    acceptance_result: limited_geometry_routes_available_cleanliness_and_repeatability_open
+    evidence_level: design_assumption_with_occ_geometry_checks
+    allowed_use: 列明刚性实体的退出/焊枪包络和锥面载荷情景；不能替代完整工装、洁净和位置度验收
+    evidence: studies/TOOLING-ACCESS/results/assessment.json
+    upstream_dependencies: [ROUTE-B-DESIGN]
+    formal: false
+    experimental_data_required: false
+    next_action: 设计覆盖周边落物路径的可收拢挡边，补独立倾斜约束、主动退锥和六支承实体；保留底口开放与工具包络假设
   DECISION:
-    execution_status: candidate_retention_decisions_only
-    acceptance_result: final_decision_not_available
+    execution_status: conditional_capacity_heat_input_selection_completed
+    acceptance_result: conditional_research_priorities_only
     evidence_level: mixed
     allowed_use: 阶段设计评审
-    upstream_dependencies: [STRUCT-UNCERTAINTY, SERVICE]
+    upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS, SERVICE]
     optional_physical_dependencies: [EXP-FINAL]
-    next_action: 只作有证据的条件性数字设计裁决；当前无稳健排序，不授予实物性能结论
+    next_action: 容量筛查后按热输入提出研究优先项；残余变形无稳健排序，服役、精度与洁净未闭合前不发布完整工程推荐

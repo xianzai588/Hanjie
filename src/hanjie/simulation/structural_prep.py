@@ -56,12 +56,12 @@ def volume_weighted_p95(stress_mpa, volume_mm3):
     return float(stress[order[index]])
 
 
-def fixture_released(already_released, time_since_weld_end_s, interface_max_c, hold_s=120., release_c=200.):
+def fixture_released(already_released, time_since_weld_end_s, interface_max_c, hold_s=120., release_c=55.):
     """释放为不可逆状态；保持时长从停弧计，温度条件与时长条件必须同时满足。"""
     if not np.isfinite(time_since_weld_end_s) or not np.isfinite(interface_max_c):
         raise ValueError("释放逻辑不得消费缺失温度或时间")
-    if hold_s < 0:
-        raise ValueError("保持时间不能为负")
+    if not np.isfinite(hold_s) or not np.isfinite(release_c) or hold_s < 0:
+        raise ValueError("释放阈值必须有限且保持时间不能为负")
     return bool(already_released or (time_since_weld_end_s>=hold_s and interface_max_c<release_c))
 
 
