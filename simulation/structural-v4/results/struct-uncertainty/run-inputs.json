@@ -1,0 +1,165 @@
+{
+  "specification": {
+    "version": "STRUCT-UNCERTAINTY-B1",
+    "stage": "STRUCT-UNCERTAINTY",
+    "formal": false,
+    "route": "B_no_physical_experiment",
+    "thermal_sources": [
+      "FVM_C_dynamic",
+      "Elmer_REF_C_dynamic"
+    ],
+    "candidates": [
+      "Continuous",
+      "6P-FAIR_B",
+      "8P-FAIR_B"
+    ],
+    "meshes": [
+      "coarse",
+      "medium"
+    ],
+    "method": "existing_3d_J2_material_point_inherent_strain_plus_existing_3d_seat_elastic_response",
+    "material": "qt450_10",
+    "material_input": "project/materials.yaml",
+    "hardening_modulus_mpa": 1000.0,
+    "material_scenarios": {
+      "nominal": {
+        "alpha_scale": 1.0,
+        "yield_scale": 1.0
+      },
+      "low_expansion_high_yield": {
+        "alpha_scale": 0.9,
+        "yield_scale": 1.15
+      },
+      "high_expansion_low_yield": {
+        "alpha_scale": 1.1,
+        "yield_scale": 0.85
+      }
+    },
+    "restraint_fractions": [
+      0.5,
+      1.0
+    ],
+    "restraint_patterns": [
+      "uniform_half",
+      "uniform_full",
+      "hemisphere_0",
+      "hemisphere_30",
+      "hemisphere_60",
+      "hemisphere_90"
+    ],
+    "foundation_stiffness_n_mm3": [
+      10000.0,
+      1000000.0
+    ],
+    "mapping": {
+      "local_coordinates": "n_equals_radius_minus_75_z_equals_height_minus_12",
+      "observation_plane_s_mm": 0.0,
+      "common_projection": "two_adjacent_s_boxes_P0_mean_then_piecewise_constant_n_z",
+      "circumferential_extension": "same_local_cycle_tiled_over_candidate_material_at_each_angle",
+      "far_field": "zero_inherent_strain_outside_thermal_QT_domain",
+      "cooldown": "monotone_quasistatic_extension_to_20C_without_claiming_physical_time",
+      "restraint_definition": "local_tangential_strain_equals_1_minus_restraint_times_thermal_strain_radial_and_axial_free",
+      "source_geometry_transfer": "unvalidated_local_reference_to_candidate_transfer"
+    },
+    "metrology": {
+      "datum": "ideal_rigid_shell_A_plane_and_B_cylinder",
+      "bore": "actual_deformed_candidate_mesh_cylinder_fit_with_axis_tilt",
+      "ranking_tie_tolerance_mm": 0.001,
+      "acceptance_target_mm": 0.05
+    },
+    "checks": {
+      "relative_linear_residual_limit": 1e-08,
+      "plastic_work_nonnegative": true,
+      "maximum_plastic_trace": 1e-10
+    },
+    "uncertainty_kind": "deterministic_sensitivity_envelope_not_probability_or_confidence_interval",
+    "limitations": [
+      "非正式固有应变响应，不是三材料整件瞬态热塑性求解",
+      "局部热循环沿候选实体铺展，未证明整件热量保守、焊序累积或端部热效应",
+      "壳体和焊缝的力学作用简化为按实际接口面积分布的弹性基础，未求解其塑性与接触释放",
+      "固有应变来自材料点约束情景，未用整件位移反校准，不能称最终焊接残余位置度",
+      "网格C/M比较只报告误差跨度，未达到三网格GCI验证"
+    ],
+    "experimental_data_required": false,
+    "thermal_1_allowed": false,
+    "formal_struct_0_allowed": false,
+    "physical_validation": false
+  },
+  "spec_sha256": "c5eae9b24a214d04e229fdfe2b56f4d71885577e7ec7f9103f031ab7248cb65a",
+  "meshes": [
+    {
+      "candidate": "Continuous",
+      "resolution": "coarse",
+      "mesh_sha256": "a9bd09921a7ab49daf76834aa636258f49f4e80e288ab4513958a493de69d61a",
+      "nodes": 3598,
+      "elements": 12915,
+      "interface_area_mm2": 5652.905708144275,
+      "total_volume_mm3": 196865.70192388436,
+      "mapped_volume_mm3": 154973.65704141406,
+      "zero_inherent_strain_outside_domain_mm3": 41892.044882470305
+    },
+    {
+      "candidate": "Continuous",
+      "resolution": "medium",
+      "mesh_sha256": "f4bf4f279d81514731d1256721844c89f72616116b61d0fae3d10504236676da",
+      "nodes": 6909,
+      "elements": 27589,
+      "interface_area_mm2": 5653.029134611905,
+      "total_volume_mm3": 196863.51467608823,
+      "mapped_volume_mm3": 154638.97219092533,
+      "zero_inherent_strain_outside_domain_mm3": 42224.54248516289
+    },
+    {
+      "candidate": "6P-FAIR_B",
+      "resolution": "coarse",
+      "mesh_sha256": "e2bec858d0afc4c8c2b16a257d21e8e730a085e8690456159bb100ac0fdef4a9",
+      "nodes": 3074,
+      "elements": 9177,
+      "interface_area_mm2": 1295.9401138026567,
+      "total_volume_mm3": 95266.87914443144,
+      "mapped_volume_mm3": 52631.03534508482,
+      "zero_inherent_strain_outside_domain_mm3": 42635.84379934662
+    },
+    {
+      "candidate": "6P-FAIR_B",
+      "resolution": "medium",
+      "mesh_sha256": "664b23add96df465fe1de6235b3c60f67a1ec911e684c0141c4b08cac663541c",
+      "nodes": 5343,
+      "elements": 18042,
+      "interface_area_mm2": 1295.9487187033797,
+      "total_volume_mm3": 95201.97413217684,
+      "mapped_volume_mm3": 52864.33957817125,
+      "zero_inherent_strain_outside_domain_mm3": 42337.634554005585
+    },
+    {
+      "candidate": "8P-FAIR_B",
+      "resolution": "coarse",
+      "mesh_sha256": "f2affb50c3e7e008ef32b55f65bc6be477010a45fb9d65248c6479634ea15fa6",
+      "nodes": 3537,
+      "elements": 10542,
+      "interface_area_mm2": 1727.920151736566,
+      "total_volume_mm3": 110917.31029203077,
+      "mapped_volume_mm3": 68354.9361788494,
+      "zero_inherent_strain_outside_domain_mm3": 42562.374113181366
+    },
+    {
+      "candidate": "8P-FAIR_B",
+      "resolution": "medium",
+      "mesh_sha256": "2eb06e87d8e71d871c72676f768c40e9bd8c6a942712a497a55763ccdd1ff2c0",
+      "nodes": 6042,
+      "elements": 20489,
+      "interface_area_mm2": 1727.931624937878,
+      "total_volume_mm3": 110825.9201557234,
+      "mapped_volume_mm3": 68471.10930425202,
+      "zero_inherent_strain_outside_domain_mm3": 42354.810851471375
+    }
+  ],
+  "thermal_driver_sha256": "781f622a001368c2043091fbe602d9b83793496f28aff547b29f00950029302b",
+  "material_input_sha256": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+  "source_code_hashes": {
+    "simulation/structural-v4/run_struct_uncertainty.py": "c1f2628656a34446dbd9e3293bf2d411978cad1c677b8da763ba724278f7eb31",
+    "simulation/structural-v4/run_static_screening.py": "744d2f115c73d1455b6b98269c98df7875d308ae64517385f0173c943762eb10",
+    "src/hanjie/simulation/constitutive3d.py": "e06c038bca440f998da232480e4a2da130e7ff56a50cfcaf15b17c0520e3963a",
+    "src/hanjie/simulation/structural_prep.py": "46d6db83b2d5953d8a7e690f7f2e4e207d186b1a3542d18388aa530bd97368ce"
+  }
+}

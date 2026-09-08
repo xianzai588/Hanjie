@@ -1,0 +1,287 @@
+{
+  "stage": "THERMAL-REF-PLAN8",
+  "route": "B_no_physical_experiment",
+  "diagnostic_iterations_used": 2,
+  "diagnostic_iterations_maximum": 2,
+  "diagnostic_execution_checks_passed": true,
+  "window_s": [
+    18.0,
+    26.0
+  ],
+  "partitions": {
+    "elmer-dynamic": {
+      "materials": {
+        "q235b": {
+          "initial_enthalpy_j": 12798.236117689,
+          "final_enthalpy_j": 14519.3167731004,
+          "enthalpy_change_j": 1721.0806554113988,
+          "source_j": 770.0045125125491,
+          "loss_j": 286.5568930578424,
+          "birth_j": 0.0,
+          "mix_j": -0.45978543756757007,
+          "physical_enthalpy_discrepancy_j": -0.4597857489641015,
+          "solver_discrete_residual_j": -3.11396531404301e-07
+        },
+        "qt450_10": {
+          "initial_enthalpy_j": 30255.595299935,
+          "final_enthalpy_j": 31806.3555704888,
+          "enthalpy_change_j": 1550.7602705537975,
+          "source_j": 825.872478850009,
+          "loss_j": 320.82771753106937,
+          "birth_j": 0.0,
+          "mix_j": 0.7448338131687292,
+          "physical_enthalpy_discrepancy_j": 0.7448315400297361,
+          "solver_discrete_residual_j": -2.273138993243032e-06
+        },
+        "ernife_ci": {
+          "initial_enthalpy_j": 99.7300417204025,
+          "final_enthalpy_j": 125.623560668884,
+          "enthalpy_change_j": 25.8935189484815,
+          "source_j": 2364.1230086374403,
+          "loss_j": 54.11898410758335,
+          "birth_j": 0.0,
+          "mix_j": 0.476274604851344,
+          "physical_enthalpy_discrepancy_j": 0.47691459875994013,
+          "solver_discrete_residual_j": 0.0006399939085961228
+        }
+      },
+      "weld_to_qt_j": 1046.4603407748875,
+      "weld_to_q235_j": 1237.1732502077277,
+      "maximum_material_physical_step_discrepancy_j": 0.03836866927071725,
+      "maximum_material_solver_discrete_step_residual_j": 1.0984939405496441e-05
+    },
+    "fvm-dynamic": {
+      "materials": {
+        "q235b": {
+          "initial_enthalpy_j": 12695.2713529946,
+          "final_enthalpy_j": 14413.5401368694,
+          "enthalpy_change_j": 1718.2687838748006,
+          "source_j": 770.0045125125486,
+          "loss_j": 280.44316113844735,
+          "birth_j": 0.0,
+          "mix_j": 0.0,
+          "physical_enthalpy_discrepancy_j": 3.090786293569181e-09,
+          "solver_discrete_residual_j": 3.090786293569181e-09
+        },
+        "qt450_10": {
+          "initial_enthalpy_j": 30337.7204506012,
+          "final_enthalpy_j": 31887.6709159819,
+          "enthalpy_change_j": 1549.9504653807016,
+          "source_j": 825.8724788500087,
+          "loss_j": 322.1399036557174,
+          "birth_j": 0.0,
+          "mix_j": 0.0,
+          "physical_enthalpy_discrepancy_j": -3.402895742965484e-10,
+          "solver_discrete_residual_j": -3.402895742965484e-10
+        },
+        "ernife_ci": {
+          "initial_enthalpy_j": 107.699311904342,
+          "final_enthalpy_j": 133.483216158871,
+          "enthalpy_change_j": 25.78390425452899,
+          "source_j": 2364.123008637441,
+          "loss_j": 63.41378171024368,
+          "birth_j": 0.0,
+          "mix_j": 0.0,
+          "physical_enthalpy_discrepancy_j": -1.719198294836133e-08,
+          "solver_discrete_residual_j": -1.719198294836133e-08
+        }
+      },
+      "weld_to_qt_j": 1046.2178901860698,
+      "weld_to_q235_j": 1228.7074325037904,
+      "maximum_material_physical_step_discrepancy_j": 8.70449667900175e-09,
+      "maximum_material_solver_discrete_step_residual_j": 8.70449667900175e-09
+    },
+    "elmer-constant": {
+      "materials": {
+        "q235b": {
+          "initial_enthalpy_j": 13132.7922978831,
+          "final_enthalpy_j": 14812.8247214571,
+          "enthalpy_change_j": 1680.0324235740009,
+          "source_j": 453.23400774349415,
+          "loss_j": 296.4367725124484,
+          "birth_j": 0.0,
+          "mix_j": -1.0521030168585001e-12,
+          "physical_enthalpy_discrepancy_j": 1.651828096527197e-06,
+          "solver_discrete_residual_j": 1.6518291486302136e-06
+        },
+        "qt450_10": {
+          "initial_enthalpy_j": 31254.5842118605,
+          "final_enthalpy_j": 32842.1914676745,
+          "enthalpy_change_j": 1587.6072558140004,
+          "source_j": 534.7256385397432,
+          "loss_j": 316.9370488486443,
+          "birth_j": 0.0,
+          "mix_j": -1.2726883037260897e-12,
+          "physical_enthalpy_discrepancy_j": 1.3922183228487484e-07,
+          "solver_discrete_residual_j": 1.3922310497317856e-07
+        },
+        "ernife_ci": {
+          "initial_enthalpy_j": 131.273196172616,
+          "final_enthalpy_j": 147.783560696432,
+          "enthalpy_change_j": 16.51036452381601,
+          "source_j": 2972.040353716761,
+          "loss_j": 62.476132581332024,
+          "birth_j": 0.0,
+          "mix_j": -2.2043890177227764e-15,
+          "physical_enthalpy_discrepancy_j": 3.5470681325477926e-07,
+          "solver_discrete_residual_j": 3.5470681545916827e-07
+        }
+      },
+      "weld_to_qt_j": 1369.818666262123,
+      "weld_to_q235_j": 1523.2351899947832,
+      "maximum_material_physical_step_discrepancy_j": 2.402305554483064e-08,
+      "maximum_material_solver_discrete_step_residual_j": 2.4023053470690183e-08
+    },
+    "fvm-constant": {
+      "materials": {
+        "q235b": {
+          "initial_enthalpy_j": 13051.2745705726,
+          "final_enthalpy_j": 14742.9546303902,
+          "enthalpy_change_j": 1691.6800598176014,
+          "source_j": 453.23400774349363,
+          "loss_j": 292.2894829264937,
+          "birth_j": 0.0,
+          "mix_j": 0.0,
+          "physical_enthalpy_discrepancy_j": 3.793972069843221e-08,
+          "solver_discrete_residual_j": 3.793972069843221e-08
+        },
+        "qt450_10": {
+          "initial_enthalpy_j": 31331.5873161034,
+          "final_enthalpy_j": 32908.8232596078,
+          "enthalpy_change_j": 1577.2359435044018,
+          "source_j": 534.725638539743,
+          "loss_j": 318.40979392640594,
+          "birth_j": 0.0,
+          "mix_j": 0.0,
+          "physical_enthalpy_discrepancy_j": 3.6901266042832503e-08,
+          "solver_discrete_residual_j": 3.6901266042832503e-08
+        },
+        "ernife_ci": {
+          "initial_enthalpy_j": 135.7222711256,
+          "final_enthalpy_j": 151.972407197826,
+          "enthalpy_change_j": 16.250136072225985,
+          "source_j": 2972.0403537167635,
+          "loss_j": 64.13458367047784,
+          "birth_j": 0.0,
+          "mix_j": 0.0,
+          "physical_enthalpy_discrepancy_j": 7.552593217496906e-09,
+          "solver_discrete_residual_j": 7.552593217496906e-09
+        }
+      },
+      "weld_to_qt_j": 1360.9200989279661,
+      "weld_to_q235_j": 1530.7355350385412,
+      "maximum_material_physical_step_discrepancy_j": 7.629630260908016e-10,
+      "maximum_material_solver_discrete_step_residual_j": 7.629630260908016e-10
+    }
+  },
+  "observations": {
+    "dynamic": {
+      "weld_center": {
+        "common_peak_gap_c": 133.52436871138116,
+        "common_rms_c": 100.90493862293448,
+        "native_peak_gap_c": 71.11402394304923,
+        "common_elmer_peak_c": 1118.610923632207,
+        "common_fvm_peak_c": 1252.1352923435882
+      },
+      "qt_near_interface": {
+        "common_peak_gap_c": 128.05967842270672,
+        "common_rms_c": 86.66540348703582,
+        "native_peak_gap_c": 113.51691063231817,
+        "common_elmer_peak_c": 909.3702420385592,
+        "common_fvm_peak_c": 1037.429920461266
+      },
+      "qt_far": {
+        "common_peak_gap_c": 65.57360437577961,
+        "common_rms_c": 43.16711709217968,
+        "native_peak_gap_c": 68.08397313834723,
+        "common_elmer_peak_c": 781.5488195411982,
+        "common_fvm_peak_c": 847.1224239169778
+      },
+      "q235_near_interface": {
+        "common_peak_gap_c": 13.255541187396716,
+        "common_rms_c": 9.666524379817632,
+        "native_peak_gap_c": 29.207829635959683,
+        "common_elmer_peak_c": 789.8076102841466,
+        "common_fvm_peak_c": 803.0631514715433
+      },
+      "q235_far": {
+        "common_peak_gap_c": 9.122347359142395,
+        "common_rms_c": 6.8703105347200015,
+        "native_peak_gap_c": 3.6379913628320537,
+        "common_elmer_peak_c": 662.1038315910395,
+        "common_fvm_peak_c": 671.2261789501819
+      }
+    },
+    "constant": {
+      "weld_center": {
+        "common_peak_gap_c": 123.70858585949645,
+        "common_rms_c": 69.97293023196178,
+        "native_peak_gap_c": 40.994137930577836,
+        "common_elmer_peak_c": 1053.5913424827993,
+        "common_fvm_peak_c": 1177.2999283422957
+      },
+      "qt_near_interface": {
+        "common_peak_gap_c": 101.04426030466425,
+        "common_rms_c": 64.05575869175644,
+        "native_peak_gap_c": 91.08747421074497,
+        "common_elmer_peak_c": 820.7866324095503,
+        "common_fvm_peak_c": 921.8308927142145
+      },
+      "qt_far": {
+        "common_peak_gap_c": 54.70830769854365,
+        "common_rms_c": 34.58716321255522,
+        "native_peak_gap_c": 54.99181161876163,
+        "common_elmer_peak_c": 728.7849171691715,
+        "common_fvm_peak_c": 783.4932248677152
+      },
+      "q235_near_interface": {
+        "common_peak_gap_c": 11.721202665921282,
+        "common_rms_c": 7.184867420856132,
+        "native_peak_gap_c": 17.874888574545594,
+        "common_elmer_peak_c": 718.4208617353984,
+        "common_fvm_peak_c": 730.1420644013197
+      },
+      "q235_far": {
+        "common_peak_gap_c": 8.28018396616801,
+        "common_rms_c": 6.311324143814155,
+        "native_peak_gap_c": 4.504880887678951,
+        "common_elmer_peak_c": 632.8576552038895,
+        "common_fvm_peak_c": 641.1378391700575
+      }
+    }
+  },
+  "elmer_checks": {
+    "dynamic": {
+      "complete": true,
+      "nonlinear_convergence": true,
+      "maximum_interface_pair_residual_j": 2.868851371888537e-06,
+      "maximum_interior_residual_j": 1.0790555981140552e-05,
+      "interface_definition": "Sum of independently assembled material nodal reactions on shared interface nodes; includes shared-node load/storage partition. Face-gradient estimates are reported separately and are not conservative numerical fluxes.",
+      "replay_temperature_difference_c": 4.0113690147336456e-11
+    },
+    "constant": {
+      "complete": true,
+      "nonlinear_convergence": true,
+      "maximum_interface_pair_residual_j": 2.2879125538051216e-09,
+      "maximum_interior_residual_j": 2.4030707354677902e-08,
+      "interface_definition": "Sum of independently assembled material nodal reactions on shared interface nodes; includes shared-node load/storage partition. Face-gradient estimates are reported separately and are not conservative numerical fluxes."
+    }
+  },
+  "source_partition_maximum_difference_j": 2.7284841053187847e-12,
+  "further_thermal_diagnostic_allowed": false,
+  "ref_m_allowed": false,
+  "ref_f_allowed": false,
+  "ref_vf_allowed": false,
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "evidence_level": "solver_disagreement_physical_unvalidated",
+  "next_route": "STRUCT-UNCERTAINTY_nonformal",
+  "experimental_data_required": false,
+  "energy_definitions": "Report solver-discrete residual and physical enthalpy discrepancy separately; retain original physical 0.02% gate.",
+  "limits": [
+    "FE interface reactions include shared-node load/storage partition; sided face-gradient fluxes are not interchangeable with conservative FVM face fluxes.",
+    "Common P0 projection uses nominal C boxes and records birth fraction; cannot remove spatial field error.",
+    "Constant properties at 150 C with zero latent heat are a diagnostic control, not a calibrated material set."
+  ],
+  "plan_sha256": "89cdb4768907b7782eba1edbbbabdf6aee128c8647f3fba8a2bee7007c181a4b"
+}

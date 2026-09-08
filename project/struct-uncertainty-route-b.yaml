@@ -1,0 +1,47 @@
+version: STRUCT-UNCERTAINTY-B1
+stage: STRUCT-UNCERTAINTY
+formal: false
+route: B_no_physical_experiment
+thermal_sources: [FVM_C_dynamic, Elmer_REF_C_dynamic]
+candidates: [Continuous, 6P-FAIR_B, 8P-FAIR_B]
+meshes: [coarse, medium]
+method: existing_3d_J2_material_point_inherent_strain_plus_existing_3d_seat_elastic_response
+material: qt450_10
+material_input: project/materials.yaml
+hardening_modulus_mpa: 1000.0
+material_scenarios:
+  nominal: {alpha_scale: 1.0, yield_scale: 1.0}
+  low_expansion_high_yield: {alpha_scale: 0.9, yield_scale: 1.15}
+  high_expansion_low_yield: {alpha_scale: 1.1, yield_scale: 0.85}
+restraint_fractions: [0.5, 1.0]
+restraint_patterns: [uniform_half, uniform_full, hemisphere_0, hemisphere_30, hemisphere_60, hemisphere_90]
+foundation_stiffness_n_mm3: [10000.0, 1000000.0]
+mapping:
+  local_coordinates: n_equals_radius_minus_75_z_equals_height_minus_12
+  observation_plane_s_mm: 0.0
+  common_projection: two_adjacent_s_boxes_P0_mean_then_piecewise_constant_n_z
+  circumferential_extension: same_local_cycle_tiled_over_candidate_material_at_each_angle
+  far_field: zero_inherent_strain_outside_thermal_QT_domain
+  cooldown: monotone_quasistatic_extension_to_20C_without_claiming_physical_time
+  restraint_definition: local_tangential_strain_equals_1_minus_restraint_times_thermal_strain_radial_and_axial_free
+  source_geometry_transfer: unvalidated_local_reference_to_candidate_transfer
+metrology:
+  datum: ideal_rigid_shell_A_plane_and_B_cylinder
+  bore: actual_deformed_candidate_mesh_cylinder_fit_with_axis_tilt
+  ranking_tie_tolerance_mm: 0.001
+  acceptance_target_mm: 0.05
+checks:
+  relative_linear_residual_limit: 1.0e-8
+  plastic_work_nonnegative: true
+  maximum_plastic_trace: 1.0e-10
+uncertainty_kind: deterministic_sensitivity_envelope_not_probability_or_confidence_interval
+limitations:
+  - 非正式固有应变响应，不是三材料整件瞬态热塑性求解
+  - 局部热循环沿候选实体铺展，未证明整件热量保守、焊序累积或端部热效应
+  - 壳体和焊缝的力学作用简化为按实际接口面积分布的弹性基础，未求解其塑性与接触释放
+  - 固有应变来自材料点约束情景，未用整件位移反校准，不能称最终焊接残余位置度
+  - 网格C/M比较只报告误差跨度，未达到三网格GCI验证
+experimental_data_required: false
+thermal_1_allowed: false
+formal_struct_0_allowed: false
+physical_validation: false

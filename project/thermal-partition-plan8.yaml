@@ -1,0 +1,32 @@
+version: THERMAL-REF-PLAN8
+route: B_no_physical_experiment
+diagnostic_iteration: 2
+diagnostic_iterations_maximum: 2
+window_s: [18.0, 26.0]
+elmer_restart_s: 15.0
+sample_times_s: [20.0, 21.0, 21.5, 22.0, 22.5, 23.0, 24.0]
+transect:
+  s_mm: 0.0
+  n_range_mm: [-1.5, 1.0]
+  n_step_mm: 0.1
+  z_rule: n_plus_1_mm
+common_observation: material_matched_P0_volume_projection_then_identical_affine_WLS
+constant_control:
+  preborn: true
+  reference_temperature_c: 150.0
+  cp_and_k: freeze_each_material_at_reference_temperature
+  latent_j_kg: 0.0
+  end_s: 26.0
+  scope: nonlinear_property_ablation_not_physical_calibration
+frozen: [efficiency, net_power_w, heat_source, convection, emissivity, density, geometry, time_step_s]
+checks:
+  replay_temperature_tolerance_c: 1.0e-4
+  interface_reaction_balance_j: 1.0e-4
+  source_relative_error: 1.0e-8
+  common_projection_affine_error_c: 1.0e-9
+original_energy_gate_pct: 0.02
+ref_f_allowed: false
+ref_vf_allowed: false
+exit_rule: 本轮后停止热机制诊断；剩余差异登记为model-form uncertainty，进入非正式STRUCT-UNCERTAINTY，不新增Plan9或依赖实测
+thermal_1_allowed: false
+formal_struct_0_allowed: false

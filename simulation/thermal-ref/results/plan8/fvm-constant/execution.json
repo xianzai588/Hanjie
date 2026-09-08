@@ -1,0 +1,12 @@
+{
+  "returncode": 0,
+  "wall_seconds": 7.219686500000535,
+  "maximum_nonlinear_residual_j": 7.205169794133326e-11,
+  "points": [
+    "weld_center",
+    "qt_near_interface",
+    "qt_far",
+    "q235_near_interface",
+    "q235_far"
+  ]
+}

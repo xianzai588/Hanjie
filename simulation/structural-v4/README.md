@@ -127,3 +127,25 @@ simulation/structural-v4/
 ---
 
 **当前状态**：七个真实 OCC 实体已生成，并通过 STEP/BREP 独立回读、壳体零穿透、接口弧长和局部退化审查。基于新 STEP 的 21 个 Gmsh 三维实体网格和 294 个线弹性静力方向/边界结果已完成，网格收敛与支承敏感性筛查通过；完整焊接热—结构 FE 仍需补充温度场、焊缝本构和显式壳体柔度后独立审查。
+
+## Route B：非正式 STRUCT-UNCERTAINTY
+
+计划 `project/struct-uncertainty-route-b.yaml`，结果 `results/struct-uncertainty/assessment.json`，图 `sensitivity-ranking.png`。当前无实物采集条件，不以热电偶、CMM、金相或实焊作为计划依赖；正式THERMAL-1/STRUCT-0门不变。
+
+已执行432例：Continuous、6P-FAIR_B（同一6P几何）和8P-FAIR_B，各自C/M实体网格；FVM/Elmer两套实际QT局部热历史；3组α/屈服物性情景；均匀半约束、均匀全约束及四种方位的半圈强弱约束；按真实接口面积施加10⁴/10⁶ N/mm³弹性基础。扰动是预设确定性设计假设，不是校准材料范围，也不是概率或置信区间。
+
+这是一条**固有应变敏感性链**。从s=0两侧相邻C单元提取共同P0截面热历史，15–26 s每0.1 s，其余每5 s；温度域覆盖现有QT机械物性曲线。材料点先从20°C升至150°C预热，经真实数值热历史，再作无物理时间含义的单调准静态冷却至20°C。既有3D J2在指定切向约束下生成残余塑性应变，将其铺展至候选实际座体并转成等效节点载荷，送入同一既有3D弹性链。未覆盖的内圈域显式置零固有应变，其体积记录在run-inputs中；不是温度外推。所有材料点塑性功非负、塑性应变迹小于10⁻¹⁰，432例线性平衡最大相对残差2.36×10⁻¹⁴。
+
+壳体A平面/B圆柱作为理想刚性基准，使用实际变形内孔的圆柱及轴倾斜拟合位置度。**没有求解三材料整件瞬态热塑性、焊缝/壳体塑性、松夹接触或候选实际焊序**；局部热循环铺展也未证明整圈能量与热积累保守。因此输出名为`position_sensitivity_diameter_mm`，不能冒充最终焊接残余位置度。
+
+跨全部情景的敏感性直径约为：Continuous 0.000023–0.009945 mm，6P 0.000013–0.009647 mm，8P 0.000013–0.009591 mm。这些小值受简化和对称性影响，**不表示产品满足Ø0.05 mm**。成对换热历史的最大变化为0.0000580 mm；C/M最大变化0.000168 mm，后者仅为观测跨度，未达到三网格GCI验证，不能当误差上界。
+
+排序预设分辨尺度为0.001 mm，再加两候选各自C/M变化。在72组成对情景中，6P/8P全部无法分辨；Continuous相对6P有16组更低、56组无法分辨，相对8P有11组更低、61组无法分辨；原始带符号差值也随情景换向。**没有稳健优胜候选，保留三方案**。不能用最大值排序或未经分辨的百分比改善宣布6P胜出，也不能把局部热差异对这条简化链影响小推广为整件模型结论。
+
+```powershell
+python simulation/structural-v4/run_struct_uncertainty.py
+python simulation/structural-v4/assess_struct_uncertainty.py
+python simulation/thermal-ref/plot_route_b.py
+```
+
+归档的`thermal-drivers.npz`及来源记录支持不依赖未入库Elmer中间场重算结构；输入变更或检查点摘要不符会拒绝复用。驱动温度有来源，冷却补段与约束假设单列。原始`cases.csv`、`paired-rankings.csv`和`sensitivity-envelopes.csv`可重建评估与图。下一数字研究应优先候选尺度热历史映射和结构支承假设，不重开Plan9式局部热调参；当前仍为`solver_disagreement / physical_unvalidated`。

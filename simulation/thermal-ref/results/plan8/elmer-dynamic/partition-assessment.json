@@ -1,0 +1,8 @@
+{
+  "complete": true,
+  "nonlinear_convergence": true,
+  "maximum_interface_pair_residual_j": 2.868851371888537e-06,
+  "maximum_interior_residual_j": 1.0790555981140552e-05,
+  "interface_definition": "Sum of independently assembled material nodal reactions on shared interface nodes; includes shared-node load/storage partition. Face-gradient estimates are reported separately and are not conservative numerical fluxes.",
+  "replay_temperature_difference_c": 4.0113690147336456e-11
+}

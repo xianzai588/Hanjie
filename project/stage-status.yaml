@@ -1,6 +1,14 @@
 version: STAGE-STATUS-1.0
 updated: "2026-09-08"
 authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
+route_b:
+  selected: true
+  experimental_data_required: false
+  objective: 跨求解器与参数情景的条件性数字设计证据，不承诺实物位置度验收
+  current_research_stage: STRUCT-UNCERTAINTY
+  thermal_diagnostic_budget_exhausted: true
+  frozen_work: [app_expansion, vision_network_expansion, uncalibrated_monte_carlo]
+  supersedes: 历史Plan7以实物热电偶裁决的退出策略；物理验证协议保留但不作为当前计划依赖
 stages:
   G-INPUTS:
     execution_status: controlled_inputs_volume_candidate_and_conditional_load_basis_defined
@@ -60,7 +68,7 @@ stages:
     upstream_dependencies: [THERMAL-0.6-NESTED]
     next_action: 自研FVM停止继续细化；已完成首轮Elmer参考，后续按THERMAL-REF处理能量与出生离散问题
   THERMAL-REF:
-    execution_status: elmer_ref_c_and_plan7_mechanism_isolation_completed
+    execution_status: elmer_ref_c_plan7_and_final_plan8_completed
     acceptance_result: not_admitted_energy_audit_failed_and_reference_convergence_unverified
     evidence_level: solver_result_unvalidated
     allowed_use: 与THERMAL-0.7同物理输入的独立粗网格诊断；不得据此裁决求解器优劣或提供正式结构热载荷
@@ -68,7 +76,7 @@ stages:
     verification_evidence: simulation/thermal-ref/results/verification/assessment.json
     mechanism_evidence: simulation/thermal-ref/results/plan7/assessment.json
     upstream_dependencies: [G-INPUTS, THERMAL-0.7-BOUNDARY-NEUMANN]
-    next_action: 按Plan7剩余一次诊断预算处理焓一致性及界面/空间插值疑点；不调η，不启动REF-M/F/VF
+    next_action: Plan8后停止局部热机制诊断；将剩余空间场差异登记为模型形式不确定性，不调η、不启动REF-M/F/VF
   THERMAL-REF-PLAN7:
     execution_status: birth_only_source_off_replay_and_paired_preborn_completed
     acceptance_result: mechanisms_partly_identified_birth_energy_gate_failed_ref_m_blocked
@@ -79,28 +87,38 @@ stages:
     upstream_dependencies: [THERMAL-REF]
     diagnostic_iterations_used: 1
     diagnostic_iterations_maximum: 2
-    next_action: 预出生未消除近场差异，至多再做一次针对性隔离/修正；仍冲突则由真实热电偶数据裁决，禁止无限加密
+    next_action: 已由Plan8完成最后一次诊断；历史实物裁决策略被无实物Route B替代
+  THERMAL-REF-PLAN8:
+    execution_status: partition_ledgers_common_probes_and_paired_constant_control_completed
+    acceptance_result: diagnostic_checks_passed_local_field_disagreement_persists
+    evidence_level: solver_disagreement_physical_unvalidated
+    allowed_use: 分区反力热账和共同空间观测的机制排除；仅可输入明确标记的非正式敏感性链
+    evidence: simulation/thermal-ref/results/plan8/assessment.json
+    upstream_dependencies: [THERMAL-REF-PLAN7]
+    diagnostic_iterations_used: 2
+    diagnostic_iterations_maximum: 2
+    next_action: 停止热求解器逐点对齐；转入STRUCT-UNCERTAINTY，不依赖实测，不运行REF-M/F/VF
   METALLURGY-0:
     execution_status: executor_and_historical_diagnostics_completed
     acceptance_result: current_joint_not_physically_validated
     evidence_level: literature_analogue_and_design_assumption
     allowed_use: 风险识别；禁止宣称当前接头组织或连接质量已验证
     upstream_dependencies: [G-INPUTS, THERMAL-0.4R1]
-    next_action: 待可信热场或实测热循环后复核组织风险
+    next_action: Route B只报告峰温、t8/5、冷却速率和阈值体积等热风险指标；不得声称真实组织比例
   EXP-THERMAL:
-    execution_status: protocol_completed_experiment_not_run
+    execution_status: protocol_only_deferred_outside_current_route
     acceptance_result: not_executed
     evidence_level: protocol_only
-    allowed_use: 试验准备
+    allowed_use: 未来可选试验准备；非当前Route B依赖
     upstream_dependencies: [G-INPUTS]
-    next_action: 条件具备时执行并保留独立验证试件
+    next_action: 当前无采集条件，保留协议，不生成模拟实测数据
   THERMAL-NUMERICAL-GATE:
-    execution_status: evaluated_after_plan7_mechanism_isolation
+    execution_status: evaluated_after_final_plan8
     acceptance_result: not_passed
-    evidence_level: solver_result_unvalidated
-    allowed_use: 通过后仅可标记 solver_verified 并进入无实物 Route B
-    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN, THERMAL-REF, THERMAL-REF-PLAN7]
-    next_action: Plan7已定位集中质量与节点焓积分差异，但出生能量门未过、预出生近场仍差68.5/108.8°C；REF-M和正式结构热载荷继续禁止
+    evidence_level: solver_disagreement_physical_unvalidated
+    allowed_use: 通过后可标记solver_verified并提供正式THERMAL-1热载荷；非正式Route B研究不授予该标签
+    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN, THERMAL-REF, THERMAL-REF-PLAN7, THERMAL-REF-PLAN8]
+    next_action: 常物性共同probe焊缝/QT近场仍差123.71/101.04°C；保留原能量与收敛门，非正式敏感性执行不升级solver_verified
   THERMAL-PHYSICAL-CALIBRATION:
     execution_status: protocol_only
     acceptance_result: not_executed
@@ -132,6 +150,16 @@ stages:
     allowed_use: 无
     upstream_dependencies: [THERMAL-1, STRUCT-0-PREP]
     next_action: 前置通过后执行 Continuous 整件基线
+  STRUCT-UNCERTAINTY:
+    execution_status: 432_paired_reduced_inherent_strain_sensitivity_cases_completed
+    acceptance_result: no_resolved_robust_winner
+    evidence_level: solver_disagreement_physical_unvalidated
+    allowed_use: 同一3D座体链下跨热历史、物性、约束、基础刚度及C/M网格的条件性位置度敏感性；不是整件焊后残余预测
+    evidence: simulation/structural-v4/results/struct-uncertainty/assessment.json
+    upstream_dependencies: [THERMAL-REF-PLAN8]
+    formal: false
+    experimental_data_required: false
+    next_action: 保留Continuous、6P、8P-FAIR_B；数字结构研究优先约束情景和候选尺度热历史映射，不能凭本轮小位置度值宣称Ø0.05验收
   STRUCT-1:
     execution_status: static_screening_only
     acceptance_result: formal_comparison_not_executed
@@ -152,18 +180,19 @@ stages:
     evidence_level: synthetic_demo
     allowed_use: 算法演示和拒绝逻辑验证
     upstream_dependencies: [STRUCT-1]
-    next_action: 在可信整件模型下公平比较工艺与控制策略
+    next_action: 冻结App、视觉网络和无意义Monte Carlo扩展；后续只按真实已有证据完善数字追溯
   EXP-FINAL:
-    execution_status: not_executed
+    execution_status: deferred_outside_current_route
     acceptance_result: not_executed
     evidence_level: none
     allowed_use: 无
     upstream_dependencies: [PROCESS-CONTROL]
-    next_action: 执行 CMM、NDT、洁净度等实物验证
+    next_action: 无实物Route B不安排CMM、NDT或洁净度试验；仅保留验收流程和洁净度控制设计
   DECISION:
     execution_status: candidate_retention_decisions_only
     acceptance_result: final_decision_not_available
     evidence_level: mixed
     allowed_use: 阶段设计评审
-    upstream_dependencies: [STRUCT-1, SERVICE, EXP-FINAL]
-    next_action: 硬约束淘汰后裁决结构、工艺和焊序
+    upstream_dependencies: [STRUCT-UNCERTAINTY, SERVICE]
+    optional_physical_dependencies: [EXP-FINAL]
+    next_action: 只作有证据的条件性数字设计裁决；当前无稳健排序，不授予实物性能结论

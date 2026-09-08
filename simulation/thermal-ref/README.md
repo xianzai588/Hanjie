@@ -90,4 +90,40 @@ python simulation/thermal-ref/assess_plan7.py
 
 四组焊接历史均积分 19,800 J，最终焊材质量约 0.741919 g；预出生组新增质量为零。Elmer 预出生终值焓缺陷仍为 6.2606 J（0.03162%），最大瞬态相对缺陷 0.35381%；能量问题没有随出生消失。两个 FVM C 组终值缺陷绝对值均小于 3×10⁻⁶ J，但守恒本身不证明近场温度正确。
 
-本轮为第 1 次机制隔离，`REF-M` 前置未通过，未运行 M/F/VF；`THERMAL-NUMERICAL-GATE / THERMAL-1 / STRUCT-0` 保持关闭。最多剩一次针对性的焓一致性修正或界面/插值隔离；若仍有数十度冲突，转由真实热电偶数据裁决。图见 `results/plan7/mechanism-diagnostics.png`。
+本轮为第 1 次机制隔离，`REF-M` 前置未通过，未运行 M/F/VF；`THERMAL-NUMERICAL-GATE / THERMAL-1 / STRUCT-0` 保持关闭。历史计划至多再做一次诊断并由实物裁决；用户后续明确无实物，当前退出策略由下面的 Plan 8 / Route B 替代。图见 `results/plan7/mechanism-diagnostics.png`。
+
+## Plan 8：最后一次机制诊断与 Route B
+
+冻结计划 `project/thermal-partition-plan8.yaml`，实际结果 `results/plan8/assessment.json`，图 `results/plan8/partition-diagnostics.png`。动态 Elmer 从原 REF-C 15 s 检查点重放到26 s，全部110步收敛，五点重放误差4.01×10⁻¹¹°C；成对常物性控制从0跑到26 s，双方均预出生、150°C初温、各材料cp/k固定为150°C值、潜热为零。495 W、η、热源、散热、密度、C网格和dt=0.1 s均未调整。常物性只是机制控制，不是新物理模型。
+
+18–26 s 三材料账本包含独立物理焓、源、损失、出生焓及两条交换量。Elmer离线重装配原生Hex8集中质量、导热和边界载荷，从共享节点的分材料反力求交换；该定义含共节点载荷/储能分摊，**不等于纯Fourier面通量**。`interface-audit.csv`另列两侧原始梯度通量，不将非守恒梯度估计与FVM保守公共面通量混用。动态反力配对最大余量2.87×10⁻⁶ J，常物性为2.29×10⁻⁹ J；原物理焓缺陷仍单独报告，不通过扣除cp混合项制造能量PASS。
+
+| 18–26 s 累计量 | Elmer / J | FVM / J |
+| --- | ---: | ---: |
+| 源总积分 | 3960.000 | 3960.000 |
+| 焊缝→QT 交换账 | 1046.460 | 1046.218 |
+| 焊缝→Q235 交换账 | 1237.173 | 1228.707 |
+| QT 焓增量 | 1550.760 | 1549.950 |
+| Q235 焓增量 | 1721.081 | 1718.269 |
+| 焊材焓增量 | 25.894 | 25.784 |
+
+三材料源分配一致，QT交换总量仅差约0.023%，Q235约0.689%；在上述离散账本定义下，不支持“大量热从QT转分配给Q235”解释，局部场分布差异仍存在。
+
+公共观测先把双方投影到材料一致的名义C级P0盒：FE取八节点体积均值，FVM取单元值，再使用独立编写、双方完全相同的同材料仿射WLS。固定s=0、z=n+1 mm，从n=-1.5到1.0 mm每0.1 mm取点，输出20、21、21.5、22、22.5、23、24 s剖面；五点输出18–26 s全部时间层。活动比例单列，未出生点为NaN，界面不跨材料平滑。
+
+共同观测焊缝/QT近场峰值差动态为133.52/128.06°C，常物性为123.71/101.04°C。共同投影未消除差异，温变物性和潜热也不是唯一来源；这支持将剩余空间离散/场表示差异保留为不确定性，不能据此判定哪个求解器正确。这里的窗口、C/C配对和观测方式与历史C/VF的51/71°C不同，不能直接比较数值大小来判断算法退步。
+
+重建时给运行器指定新输出目录；审计器从同名批次读取原始场，原始场和网格可重新生成，不入Git。动态重放缺少原始15 s场时可用归档的 `restart-state.npz`。默认目录保存已执行结果，不要覆盖为未完成运行：
+
+```powershell
+python simulation/thermal-ref/run_plan8.py dynamic --output-dir <batch>/elmer-dynamic
+python simulation/thermal-ref/run_plan8.py constant --output-dir <batch>/elmer-constant
+python simulation/thermal-ref/run_plan8_fvm.py dynamic --output-dir <batch>/fvm-dynamic
+python simulation/thermal-ref/run_plan8_fvm.py constant --output-dir <batch>/fvm-constant
+python simulation/thermal-ref/audit_plan8_elmer.py dynamic --output-dir <batch>/elmer-dynamic
+python simulation/thermal-ref/audit_plan8_elmer.py constant --output-dir <batch>/elmer-constant
+python simulation/thermal-ref/assess_plan8.py --output-dir <batch>
+python simulation/thermal-ref/plot_route_b.py
+```
+
+本轮用尽2/2诊断预算。REF-M/F/VF及正式THERMAL-1/STRUCT-0继续关闭，维持原0.02%物理能量门；当前标签是`solver_disagreement / physical_unvalidated`，不能升级为`solver_verified`。后续进入[非正式STRUCT-UNCERTAINTY](../structural-v4/README.md)，实物热电偶、CMM、金相和实焊不再作为当前计划依赖。

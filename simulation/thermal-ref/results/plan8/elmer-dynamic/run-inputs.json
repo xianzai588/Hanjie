@@ -1,0 +1,380 @@
+{
+  "stage": "THERMAL-REF-PLAN8",
+  "case": "REF-C",
+  "smoke": false,
+  "solver": "Elmer native HeatSolve/HeatSolver",
+  "mesh": {
+    "arc_spacing_mm": 2.0,
+    "near_spacing_mm": 1.2,
+    "far_spacing_mm": 3.0,
+    "bead_geometry_strips": 6,
+    "radial_local_zone_mm": [
+      -3.0,
+      1.5
+    ],
+    "axial_local_zone_mm": [
+      -2.0,
+      2.0
+    ],
+    "cross_local_subdivision_factor": 1
+  },
+  "nodes": 22421,
+  "elements": 18240,
+  "boundaries": 10318,
+  "bead_area_mm2": 1.5079644737231008,
+  "leg_mm": 1.7366430109398425,
+  "sensor_stencils": [
+    {
+      "name": "weld_center",
+      "coordinate": [
+        0.0,
+        -0.5,
+        0.5
+      ],
+      "element": 9268,
+      "nodes": [
+        11212,
+        11543,
+        11555,
+        11224,
+        11213,
+        11544,
+        11556,
+        11225
+      ],
+      "weights": [
+        0.06199243277533336,
+        0.0,
+        0.0,
+        0.21053681986798947,
+        0.1654783145813439,
+        0.0,
+        0.0,
+        0.5619924327753333
+      ]
+    },
+    {
+      "name": "qt_near_interface",
+      "coordinate": [
+        0.0,
+        -0.2,
+        -0.2
+      ],
+      "element": 9277,
+      "nodes": [
+        11222,
+        11553,
+        11566,
+        11235,
+        11223,
+        11554,
+        11567,
+        11236
+      ],
+      "weights": [
+        0.03819765978853423,
+        0.0,
+        0.0,
+        0.16180234021146572,
+        0.152790639154137,
+        0.0,
+        0.0,
+        0.6472093608458631
+      ]
+    },
+    {
+      "name": "qt_far",
+      "coordinate": [
+        0.0,
+        -1.0,
+        -1.0
+      ],
+      "element": 9256,
+      "nodes": [
+        11199,
+        11530,
+        11541,
+        11210,
+        11200,
+        11531,
+        11542,
+        11211
+      ],
+      "weights": [
+        0.9549414947133547,
+        0.0,
+        0.0,
+        0.045058505286645394,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "q235_near_interface",
+      "coordinate": [
+        0.0,
+        0.2,
+        0.0
+      ],
+      "element": 9309,
+      "nodes": [
+        11264,
+        11595,
+        11615,
+        11284,
+        11265,
+        11596,
+        11616,
+        11285
+      ],
+      "weights": [
+        0.7333333333333334,
+        0.0,
+        0.0,
+        0.26666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "q235_far",
+      "coordinate": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "element": 9328,
+      "nodes": [
+        11284,
+        11615,
+        11635,
+        11304,
+        11285,
+        11616,
+        11636,
+        11305
+      ],
+      "weights": [
+        0.6666666666666667,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "specification": {
+    "version": "THERMAL-REF-ELMER-1",
+    "baseline": "project/thermal-boundary-neumann-v5.7.yaml",
+    "inputs": "project/g-inputs-v5.2.yaml",
+    "process_input": "project/process.yaml",
+    "material_input": "project/materials.yaml",
+    "thermal_properties": "project/thermal-physics-v5.3.yaml",
+    "solver": {
+      "time_step_s": 0.1,
+      "duration_s": 60.0,
+      "inactive_fraction": 1e-08,
+      "nonlinear_tolerance": 1e-08,
+      "nonlinear_iterations": 30,
+      "linear_tolerance": 1e-10,
+      "output_interval_steps": 1
+    },
+    "mesh": {
+      "arc_spacing_mm": 1.0,
+      "near_spacing_mm": 0.6,
+      "far_spacing_mm": 1.5,
+      "bead_geometry_strips": 6,
+      "radial_local_zone_mm": [
+        -3.0,
+        1.5
+      ],
+      "axial_local_zone_mm": [
+        -2.0,
+        2.0
+      ]
+    },
+    "cases": {
+      "REF-C": {
+        "cross_local_subdivision_factor": 1,
+        "arc_spacing_mm": 2.0,
+        "near_spacing_mm": 1.2,
+        "far_spacing_mm": 3.0
+      },
+      "REF-M": {
+        "cross_local_subdivision_factor": 1
+      },
+      "REF-F": {
+        "cross_local_subdivision_factor": 2
+      },
+      "REF-VF": {
+        "cross_local_subdivision_factor": 4
+      }
+    },
+    "acceptance": {
+      "energy_residual_pct_limit": 0.02,
+      "source_relative_error_limit": 1e-08,
+      "deposited_volume_relative_error_limit": 1e-10,
+      "fixed_point_rms_limit_c": 5.0,
+      "fixed_point_peak_limit_c": 10.0,
+      "requires_reference_spatial_convergence": true,
+      "requires_activation_discretization_check": true
+    },
+    "evidence_level": "solver_result_unvalidated",
+    "thermal_1_allowed": false,
+    "formal_struct_0_allowed": false
+  },
+  "config": {
+    "version": "V5.2-plan-1",
+    "freeze_date": "2026-09-05",
+    "evidence_level": "design_assumption",
+    "status": "frozen_for_digital_baseline",
+    "official": {
+      "shell_material": "Q235B",
+      "shell_outer_diameter_mm": 160.0,
+      "shell_height_mm": 200.0,
+      "shell_thickness_mm": 5.0,
+      "bearing_bore_diameter_mm": 40.0,
+      "seat_material": "QT450-10",
+      "position_tolerance_diameter_mm": 0.05,
+      "cleanliness_requirement": "内腔不得出现可能落入压缩机内部的焊渣、飞溅物或金属颗粒"
+    },
+    "geometry": {
+      "source": "cad/parametric/geometry.json",
+      "axis_definition": "壳体理论中心轴为 z 轴；局部热模型沿 R74.98 mm 接口展开",
+      "seat_core_diameter_mm": 82.0,
+      "seat_thickness_mm": 12.0,
+      "interface_radius_mm": 74.98,
+      "shell_inner_radius_mm": 75.0,
+      "joint_type": "fillet_weld",
+      "fillet_leg_length_mm": 3.5,
+      "weld_path": "Continuous circular interface",
+      "weld_length_mm": 471.1132343323254,
+      "weld_segment_count": 1,
+      "interface_gap_nominal_mm": 0.02,
+      "interface_gap_note": "R74.98/R75.00 为 CAD 接口假设，实际定心由 A/B 基准和锥形心轴控制"
+    },
+    "process": {
+      "source": "project/process.yaml",
+      "method": "automatic_TIG",
+      "filler": "ERNiFe-CI",
+      "tungsten": "W-La20, 2.0 mm",
+      "polarity": "DCEN",
+      "shielding_gas": "99.999% Ar",
+      "gas_flow_l_min": 10.0,
+      "current_a": 75.0,
+      "voltage_v": 12.0,
+      "travel_speed_mm_s": 1.5,
+      "efficiency": 0.55,
+      "efficiency_status": "design_assumption_not_calibrated",
+      "net_power_w": 495.0,
+      "gross_line_energy_j_per_mm": 600.0,
+      "net_line_energy_j_per_mm": 330.0,
+      "preheat_temperature_c": 150.0,
+      "interpass_limit_c": 200.0,
+      "cooling_environment_c": 20.0,
+      "convection_coefficient_w_m2k": 12.0,
+      "emissivity": 0.75,
+      "cooling_hold_s": 120.0,
+      "post_release_cooling_s": 360.0
+    },
+    "heat_source": {
+      "model": "Goldak_double_ellipsoid_discrete_3d",
+      "a_front_mm": 6.0,
+      "a_rear_mm": 10.0,
+      "b_radial_mm": 2.5,
+      "c_axial_mm": 2.5,
+      "front_fraction": 0.6,
+      "rear_fraction": 1.4,
+      "parameter_status": "design_assumption_not_calibrated",
+      "calibration_target": "多测点峰值、升降温曲线、t8/5、HAZ宽度、熔合区尺度"
+    },
+    "heat_source_path": {
+      "source_start_s_mm": -30.0,
+      "source_end_s_mm": 30.0
+    },
+    "fixture": {
+      "source": "project/baseline.yaml",
+      "type": "tapered_mandrel",
+      "taper": "1/50",
+      "small_diameter_mm": 39.9,
+      "large_diameter_mm": 40.1,
+      "effective_length_mm": 10.0,
+      "axial_clamping_force_n": 500.0,
+      "release_condition": "冷却后界面最高温度进入 50±5 C 再解除夹具；当前为数字假设，待完整工件测温确认",
+      "release_temperature_c": 50.0,
+      "release_temperature_band_c": 5.0
+    },
+    "thermal_grid": {
+      "coordinate_mode": "fixed_local_window_moving_source",
+      "arc_points": 72,
+      "radial_points": 52,
+      "axial_points": 30,
+      "radial_min_offset_mm": -36.0,
+      "radial_max_offset_mm": 5.0,
+      "axial_min_offset_mm": -12.0,
+      "axial_max_offset_mm": 12.0,
+      "arc_min_offset_mm": -70.0,
+      "arc_max_offset_mm": 70.0,
+      "time_step_s": 0.01,
+      "output_interval_s": 0.5,
+      "minimum_source_domain_capture_fraction": 0.999,
+      "minimum_source_s_boundary_margin_multiple": 3.0,
+      "grid_status": "thermal0_2_fixed_window_source_scale_resolved_unvalidated",
+      "spatial_resolution_targets_mm": {
+        "arc_over_a_front_max": 0.3333333333,
+        "radial_over_b_max": 0.3333333333,
+        "axial_over_c_max": 0.3333333333
+      }
+    },
+    "metallurgy": {
+      "surrogate_weld_half_width_mm": 3.0,
+      "fusion_threshold_c": 1350.0,
+      "high_temperature_haz_threshold_c": 900.0,
+      "medium_temperature_haz_threshold_c": 600.0,
+      "low_temperature_haz_threshold_c": 400.0,
+      "qt_white_cast_iron_rule": "risk only; do not infer phase fraction",
+      "qt_cct_rule": "t8/5 is descriptive only, not a standalone QT450-10 phase criterion",
+      "dilution_status": "geometric_estimate_not_measured"
+    },
+    "gates": {
+      "g_inputs": "passed_for_digital_baseline",
+      "thermal_0": "solver_result_unvalidated",
+      "metallurgy_0": "literature_supported_plus_solver_result_unvalidated",
+      "thermal_1": "not_started",
+      "experiment": "not_available"
+    }
+  },
+  "input_hashes": {
+    "project/thermal-reference-elmer.yaml": "aedfe690f6b34e64d305cd179ad323db9a5c14ab2f36a3f393e73bb402beab51",
+    "project/thermal-boundary-neumann-v5.7.yaml": "afb622e56c552582e6afa3651a109462288f69ed9b269a7199a350f602bfa627",
+    "project/g-inputs-v5.2.yaml": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
+    "project/process.yaml": "65c1a48681c872d27c413410f3a697519b7df8ce7ccf4183575761d5dd8b8779",
+    "project/materials.yaml": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+    "project/thermal-physics-v5.3.yaml": "a98a64fe120bd469c3c48322aed28949d264eb76f1d3b173a44ae3ad4bf2d565",
+    "simulation/thermal-ref/elmer_reference.py": "c13d321472a8c626c157f7499504809e7dfe313421741403f33ee29655012d38",
+    "simulation/thermal-ref/ReferenceCallbacks.F90": "11dbccd64745943084db60b9357b8e4244726d94a4275fa464bcaa59277eb6c0"
+  },
+  "independence": "No imports from FVM geometry, source, property, assembly, time integration or reconstruction code.",
+  "discretization_differences": [
+    "Hex8 Galerkin temperature interpolation versus cell-centred finite volumes.",
+    "Continuous deposition uses volume fraction in density and isotropic conductivity on a fixed mesh; partial-cell contact is homogenized, not geometrically remeshed.",
+    "Inactive weld conductivity and mass use a recorded epsilon; pure dormant nodes are held at birth temperature and sensitivity is required before admission.",
+    "Native lumped FE mass with temporal secant heat capacity; birth load is reconstructed to match nodal mass addition; independently integrated enthalpy balance is audited."
+  ],
+  "restart_sha256": "10eda97032605f77e51c43af17ade14ec4795f34a16ef4392ffbdb4b36e20331",
+  "preborn": false,
+  "constant_properties": false,
+  "restart_time_s": 15.0,
+  "end_time_s": 26.0,
+  "local_steps": 110,
+  "plan_sha256": "89cdb4768907b7782eba1edbbbabdf6aee128c8647f3fba8a2bee7007c181a4b",
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false
+}

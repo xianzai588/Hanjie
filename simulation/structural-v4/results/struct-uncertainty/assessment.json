@@ -1,0 +1,107 @@
+{
+  "stage": "STRUCT-UNCERTAINTY",
+  "route": "B_no_physical_experiment",
+  "cases_executed": 432,
+  "paired_scenarios": 72,
+  "method": "existing_3d_J2_material_point_inherent_strain_plus_existing_3d_seat_elastic_response",
+  "evidence_level": "solver_disagreement_physical_unvalidated",
+  "formal": false,
+  "execution_checks_passed": true,
+  "maximum_linear_residual": 2.3541282455078612e-14,
+  "maximum_c_m_span_mm": 0.00016795273518449994,
+  "maximum_paired_thermal_source_change_mm": 5.803237373750011e-05,
+  "pairs": [
+    {
+      "a": "Continuous",
+      "b": "6P-FAIR_B",
+      "a_lower": 16,
+      "b_lower": 0,
+      "unresolved": 56,
+      "signed_a_minus_b_min_mm": -0.0017858557916192999,
+      "signed_a_minus_b_max_mm": 0.0010336115183882007,
+      "all_scenarios_resolved_same_direction": false
+    },
+    {
+      "a": "Continuous",
+      "b": "8P-FAIR_B",
+      "a_lower": 11,
+      "b_lower": 0,
+      "unresolved": 61,
+      "signed_a_minus_b_min_mm": -0.001738832281118101,
+      "signed_a_minus_b_max_mm": 0.0006848164580474988,
+      "all_scenarios_resolved_same_direction": false
+    },
+    {
+      "a": "6P-FAIR_B",
+      "b": "8P-FAIR_B",
+      "a_lower": 0,
+      "b_lower": 0,
+      "unresolved": 72,
+      "signed_a_minus_b_min_mm": -0.0006879148152223995,
+      "signed_a_minus_b_max_mm": 0.00046030906291420065,
+      "all_scenarios_resolved_same_direction": false
+    }
+  ],
+  "envelopes": [
+    {
+      "candidate": "Continuous",
+      "source": "fvm",
+      "minimum_mm": 2.292806029654803e-05,
+      "maximum_mm": 0.0099450407431608,
+      "maximum_c_m_span_mm": 0.0001133087944685
+    },
+    {
+      "candidate": "Continuous",
+      "source": "elmer",
+      "minimum_mm": 2.3577908250034797e-05,
+      "maximum_mm": 0.009936062399123,
+      "maximum_c_m_span_mm": 0.00010520355664499909
+    },
+    {
+      "candidate": "6P-FAIR_B",
+      "source": "fvm",
+      "minimum_mm": 1.9005643509888305e-05,
+      "maximum_mm": 0.0096467070353191,
+      "maximum_c_m_span_mm": 0.00011761297443880006
+    },
+    {
+      "candidate": "6P-FAIR_B",
+      "source": "elmer",
+      "minimum_mm": 1.3238297281554495e-05,
+      "maximum_mm": 0.0096293464981157,
+      "maximum_c_m_span_mm": 0.0001285887396417001
+    },
+    {
+      "candidate": "8P-FAIR_B",
+      "source": "fvm",
+      "minimum_mm": 1.4317694541572586e-05,
+      "maximum_mm": 0.0095908489505759,
+      "maximum_c_m_span_mm": 0.00015972541568590008
+    },
+    {
+      "candidate": "8P-FAIR_B",
+      "source": "elmer",
+      "minimum_mm": 1.2540423839183665e-05,
+      "maximum_mm": 0.0095834185072158,
+      "maximum_c_m_span_mm": 0.00016795273518449994
+    }
+  ],
+  "robust_winners": [],
+  "robust_candidate_ranking_established": false,
+  "acceptance_result": "no_resolved_robust_winner",
+  "interval_kind": "deterministic_sensitivity_envelope_not_probability_or_confidence_interval",
+  "rank_resolution": "0.001 mm plus each candidate's observed C/M change; not a rigorous error bound",
+  "limitations": [
+    "非正式固有应变响应，不是三材料整件瞬态热塑性求解",
+    "局部热循环沿候选实体铺展，未证明整件热量保守、焊序累积或端部热效应",
+    "壳体和焊缝的力学作用简化为按实际接口面积分布的弹性基础，未求解其塑性与接触释放",
+    "固有应变来自材料点约束情景，未用整件位移反校准，不能称最终焊接残余位置度",
+    "网格C/M比较只报告误差跨度，未达到三网格GCI验证"
+  ],
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "physical_validation": false,
+  "experimental_data_required": false,
+  "product_position_acceptance_claim_allowed": false,
+  "next_action": "Retain all three candidates. Quantify candidate-scale thermal transfer and fixture assumptions within digital structural research; do not reopen local thermal tuning or infer product acceptance."
+}

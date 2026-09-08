@@ -1,0 +1,44 @@
+{
+  "stage": "THERMAL-REF-PLAN8",
+  "mesh": {
+    "arc_spacing_mm": 2.0,
+    "near_spacing_mm": 1.2,
+    "far_spacing_mm": 3.0,
+    "bead_strips": 6,
+    "status": "nominal_model_check_not_convergence",
+    "bead_geometry_strips": 6,
+    "radial_local_zone_mm": [
+      -3.0,
+      1.5
+    ],
+    "axial_local_zone_mm": [
+      -2.0,
+      2.0
+    ],
+    "cross_local_subdivision_factor": 1,
+    "cross_local_base_spacing_mm": 1.2
+  },
+  "preborn": false,
+  "constant_properties": false,
+  "initial_temperature_c": 150.0,
+  "cell_count": 19320,
+  "initial_enthalpy_j": 35414.76581066665,
+  "source": "surface45 explicit boundary face Neumann",
+  "time_step_s": 0.1,
+  "duration_s": 26.0,
+  "input_hashes": {
+    "simulation/thermal-ref/run_plan7_fvm.py": "5c0c188c5c3ae1af3f2801c1a11d2af8f020a5c5a89cc83512c2c631781621df",
+    "simulation/thermal-v5/run_mass_closed04.py": "d5c606c6184cbfe94c6bf30df58c88af28e064803d77ce2f8171fedbcc2872b3",
+    "simulation/thermal-v5/mass_closed_geometry.py": "a387eaa833dfc5ccf90393d0d3f73fc2adb0c59ffd18f55f46b14de3556b9daf",
+    "simulation/thermal-v5/physics.py": "840b1ab772880dafc19dcd8077797956de2007621718ba86163628bb686a7c70",
+    "simulation/thermal-v5/credibility_source.py": "2ebe3f8c76a7a826bc9f222ffd58a6f5f736601425985a5cc6b16c0244b4038a",
+    "src/hanjie/simulation/thermal_ledgers.py": "9f49b137c1882dd9fb8c96bd883972f00b13a48927081bf3ca391abd11011029",
+    "project/g-inputs-v5.2.yaml": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
+    "project/process.yaml": "65c1a48681c872d27c413410f3a697519b7df8ce7ccf4183575761d5dd8b8779",
+    "project/materials.yaml": "992750321d402fc5fd4984af45e1df288ffeb3653272e141a07b9f65b533dd1f",
+    "project/thermal-physics-v5.3.yaml": "a98a64fe120bd469c3c48322aed28949d264eb76f1d3b173a44ae3ad4bf2d565",
+    "project/thermal-boundary-neumann-v5.7.yaml": "afb622e56c552582e6afa3651a109462288f69ed9b269a7199a350f602bfa627",
+    "project/thermal-reference-elmer.yaml": "aedfe690f6b34e64d305cd179ad323db9a5c14ab2f36a3f393e73bb402beab51"
+  },
+  "thermal_1_allowed": false
+}

@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "profile": "fvm__nominal__0.5",
+      "plastic_work_sum_mj_mm3": 11.448842832006983,
+      "maximum_plastic_trace": 1.0842021724855044e-18,
+      "active_points": 50
+    },
+    {
+      "profile": "fvm__nominal__1.0",
+      "plastic_work_sum_mj_mm3": 60.71452159497363,
+      "maximum_plastic_trace": 6.5052130349130266e-18,
+      "active_points": 105
+    },
+    {
+      "profile": "fvm__low_expansion_high_yield__0.5",
+      "plastic_work_sum_mj_mm3": 6.938450217399755,
+      "maximum_plastic_trace": 6.505213034913027e-19,
+      "active_points": 41
+    },
+    {
+      "profile": "fvm__low_expansion_high_yield__1.0",
+      "plastic_work_sum_mj_mm3": 46.98412225101036,
+      "maximum_plastic_trace": 3.0357660829594124e-18,
+      "active_points": 88
+    },
+    {
+      "profile": "fvm__high_expansion_low_yield__0.5",
+      "plastic_work_sum_mj_mm3": 16.30248650990039,
+      "maximum_plastic_trace": 2.168404344971009e-18,
+      "active_points": 68
+    },
+    {
+      "profile": "fvm__high_expansion_low_yield__1.0",
+      "plastic_work_sum_mj_mm3": 74.26485692771361,
+      "maximum_plastic_trace": 5.637851296924623e-18,
+      "active_points": 154
+    },
+    {
+      "profile": "elmer__nominal__0.5",
+      "plastic_work_sum_mj_mm3": 9.861368548091798,
+      "maximum_plastic_trace": 1.3010426069826053e-18,
+      "active_points": 46
+    },
+    {
+      "profile": "elmer__nominal__1.0",
+      "plastic_work_sum_mj_mm3": 55.89474031395107,
+      "maximum_plastic_trace": 3.469446951953614e-18,
+      "active_points": 105
+    },
+    {
+      "profile": "elmer__low_expansion_high_yield__0.5",
+      "plastic_work_sum_mj_mm3": 5.618911437051229,
+      "maximum_plastic_trace": 1.0842021724855044e-18,
+      "active_points": 38
+    },
+    {
+      "profile": "elmer__low_expansion_high_yield__1.0",
+      "plastic_work_sum_mj_mm3": 42.478893107559045,
+      "maximum_plastic_trace": 2.168404344971009e-18,
+      "active_points": 88
+    },
+    {
+      "profile": "elmer__high_expansion_low_yield__0.5",
+      "plastic_work_sum_mj_mm3": 14.398974883730144,
+      "maximum_plastic_trace": 1.734723475976807e-18,
+      "active_points": 66
+    },
+    {
+      "profile": "elmer__high_expansion_low_yield__1.0",
+      "plastic_work_sum_mj_mm3": 70.05390601569515,
+      "maximum_plastic_trace": 3.903127820947816e-18,
+      "active_points": 154
+    }
+  ],
+  "passed": true,
+  "model": "Existing 3D J2 update under prescribed tangential restraint; not a coupled structural solution"
+}

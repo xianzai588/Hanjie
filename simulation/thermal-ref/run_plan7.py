@@ -42,6 +42,11 @@ def require_refinement(case, evidence=RESULTS):
         return
     if case!="REF-M":
         raise ValueError("Plan 7 禁止 REF-F/VF；只允许前置通过后的 C→M")
+    final_diagnostic=evidence.parent/"plan8/assessment.json"
+    if final_diagnostic.exists():
+        last=json.loads(final_diagnostic.read_text(encoding="utf-8"))
+        if last.get("ref_m_allowed") is not True:
+            raise ValueError("REF-M 前置未通过：Plan 8诊断预算已用尽，保留分歧并转入非正式结构不确定性路线")
     try:
         birth_result=json.loads((evidence/"birth/assessment.json").read_text(encoding="utf-8"))
         switch=json.loads((evidence/"source-off/assessment.json").read_text(encoding="utf-8"))

@@ -33,7 +33,7 @@ def preborn_power(g,bare,bead,start,end,center,source,power):
     return q
 
 
-def run(out,preborn):
+def run(out,preborn,*,end_time_s=None,constant_properties=False,observer_factory=None):
     out.mkdir(parents=True,exist_ok=False)
     plan=core.load(ROOT/"project/thermal-boundary-neumann-v5.7.yaml")
     spec=core.load(ROOT/plan["baseline"])
@@ -44,11 +44,20 @@ def run(out,preborn):
     process=core.load(ROOT/spec["process_input"])
     g=core.build_geometry(config,process,spec)
     tables,lengths,rho=core.material_tables(core.load(ROOT/spec["material_input"])["materials"],core.load(ROOT/spec["thermal_properties"])["materials"])
+    if constant_properties:
+        # 最后一个控制组冻结每种材料150°C的k/cp，保持密度和异材身份。
+        for m,count in enumerate(lengths):
+            cp=float(np.interp(150.,tables[m,0,:count],tables[m,1,:count]))
+            k=float(np.interp(150.,tables[m,0,:count],tables[m,4,:count]))
+            tables[m,1,:count]=cp; tables[m,2,:count]=0.
+            tables[m,3,:count]=cp*(tables[m,0,:count]-20.); tables[m,4,:count]=k
     ids=g["ids"]; reference_mass=rho[ids-1]*g["volumes"]
     p,source,path=config["process"],config["heat_source"],config["heat_source_path"]
     start,end=path["source_start_s_mm"],path["source_end_s_mm"]
     duration=(end-start)/p["travel_speed_mm_s"]
     dt=refspec["solver"]["time_step_s"]; total=refspec["solver"]["duration_s"]
+    if end_time_s is not None:
+        total=float(end_time_s)
     if not np.isclose(p["net_power_w"],p["efficiency"]*p["voltage_v"]*p["current_a"]):
         raise ValueError("冻结功率不一致")
     bare,bead=[projected_boundary_faces(g,b,source["b_radial_mm"],**plan["sources"]["surface45"]) for b in (False,True)]
@@ -61,10 +70,11 @@ def run(out,preborn):
     names=[point["name"] for point in plan["observation_points"]]
     rows=[]; history=[]; qsum=csum=rsum=bsum=0.; max_residual=0.
     files=[Path(__file__),ROOT/"simulation/thermal-v5/run_mass_closed04.py",ROOT/"simulation/thermal-v5/mass_closed_geometry.py",ROOT/"simulation/thermal-v5/physics.py",ROOT/"simulation/thermal-v5/credibility_source.py",ROOT/"src/hanjie/simulation/thermal_ledgers.py",*[ROOT/spec[k] for k in ("inputs","process_input","material_input","thermal_properties")],ROOT/"project/thermal-boundary-neumann-v5.7.yaml",ROOT/"project/thermal-reference-elmer.yaml"]
-    core.write_json(out/"run-inputs.json",dict(stage="THERMAL-REF-PLAN7",mesh=spec["mesh"],preborn=preborn,initial_temperature_c=150.,
+    core.write_json(out/"run-inputs.json",dict(stage="THERMAL-REF-PLAN8" if observer_factory else "THERMAL-REF-PLAN7",mesh=spec["mesh"],preborn=preborn,constant_properties=constant_properties,initial_temperature_c=150.,
                     cell_count=len(ids),initial_enthalpy_j=initial,source="surface45 explicit boundary face Neumann",time_step_s=dt,duration_s=total,
                     input_hashes={str(f.relative_to(ROOT)).replace('\\','/'):core.digest(f) for f in files},thermal_1_allowed=False))
     np.savez_compressed(out/"grid-axes.npz",s_edges=g["s_edges"],n_edges=g["n_edges"],z_edges=g["z_edges"])
+    observer=observer_factory(out,g,tables,lengths,rho,dt) if observer_factory else None
     clock=time.perf_counter()
     for step in range(1,round(total/dt)+1):
         finish=step*dt
@@ -89,11 +99,15 @@ def run(out,preborn):
         max_residual=max(max_residual,residual)
         rows.append([finish,*[float(np.dot(temperature[s["cell_indices"]],s["weights"])) for s in stencils]])
         history.append([finish,qsum,csum+rsum,bsum,energy,balance,float(np.sum(g["volumes"][ids==3]*fraction[ids==3])),float(temperature[fraction>0].min()),float(temperature.max())])
+        if observer is not None:
+            observer.record(finish,temperature,fraction,mass,q,qc+qr,born,matrix)
         if step%100==0:
             print(out.name,finish,round(time.perf_counter()-clock,1),balance,flush=True)
     np.savetxt(out/"sensors.dat",rows,fmt="%.15g")
     np.savetxt(out/"history.csv",history,delimiter=",",comments="",header="time_s,source_j,loss_j,birth_j,energy_change_j,residual_j,deposit_volume_mm3,min_c,max_c",fmt="%.15g")
     core.write_json(out/"execution.json",dict(returncode=0,wall_seconds=time.perf_counter()-clock,maximum_nonlinear_residual_j=max_residual,points=names))
+    if observer is not None:
+        observer.finish()
 
 
 def main():
