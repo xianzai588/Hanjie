@@ -1,0 +1,38 @@
+version: THERMAL-REF-PLAN7
+baseline: project/thermal-reference-elmer.yaml
+maximum_diagnostic_iterations: 2
+physical_parameters_frozen: [net_power_w, efficiency, travel_speed_mm_s, heat_source, convection, emissivity]
+scope: [source_off_40s, birth_only, paired_preborn, conditional_ref_c_to_m]
+source_off:
+  restart_time_s: 35.0
+  end_time_s: 45.0
+  replay_temperature_tolerance_c: 1.0e-4
+  unexplained_step_energy_limit_j: 1.0e-5
+birth_only:
+  duration_s: 4.2
+  time_step_s: 0.1
+  birth_end_s: 4.0
+  hot_parent_temperatures_c: [150.0, 1500.0]
+  source_w: 0.0
+  conductivity_w_mk: 0.0
+  convection_w_m2k: 0.0
+  emissivity: 0.0
+  cold_deposit_c: 20.0
+  gauge_shift_j_kg: 12345.0
+  step_absolute_energy_limit_j: 1.0e-7
+  cumulative_relative_energy_limit: 1.0e-8
+  physical_mass_relative_limit: 1.0e-10
+preborn:
+  mesh: REF-C
+  initial_temperature_c: 150.0
+  initial_state: 所有母材与路径内焊材已存在并均匀预热150°C；双方独立实现同一反事实，不与动态FVM直接配对
+  comparisons: [Elmer_C_dynamic_vs_FVM_C_dynamic, Elmer_C_preborn_vs_FVM_C_preborn]
+  note: 预出生改变初始热库存，C/C消融用于识别机制，不能把历史C/VF的51/71°C全归因于单一因素
+conditional_ref_m:
+  requires: [birth_only_all_passed, source_off_explained]
+  allowed_sequence: [REF-C, REF-M]
+  ref_f_allowed: false
+  ref_vf_allowed: false
+  stop_rule: 前置不通过时停止加密；至多再做一次有针对性的修正，仍冲突则以热电偶数据裁决
+thermal_1_allowed: false
+formal_struct_0_allowed: false

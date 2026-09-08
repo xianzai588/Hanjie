@@ -44,8 +44,9 @@ def small_case(out, mode, home):
         np.savetxt(f,np.column_stack([metadata,faces]),fmt=["%d"]*4+["%.16g"]*4+["%d"]*4)
         f.write(" ".join(map(str,[1,*connections[0],*([.125]*8)]))+"\n")
     settings=ref.load(ref.SPEC)["solver"].copy()
+    # 均匀相变固定点迭代收敛较慢；保持严格容限与失败中止，只增加解析测试预算。
     settings.update(time_step_s=1.e10 if mode=="interface" else 1.,output_interval_steps=1,
-                    nonlinear_tolerance=1.e-10,nonlinear_iterations=80)
+                    nonlinear_tolerance=1.e-10,nonlinear_iterations=160 if mode=="latent" else 80)
     sif=ref.sif(settings,1 if mode=="interface" else 3)
     if mode=="interface":
         sif+='''Boundary Condition 2

@@ -20,7 +20,7 @@ python simulation/thermal-ref/assess_reference.py output/elmer-ref-c --verificat
 
 `--elmer-home` 指向包含 `bin`、`share`、`stripped_gfortran` 的安装根目录，也可设置 `ELMER_HOME`。默认使用本次提供的 `E:/OpenSource/ElmerFEM-26.1/ElmerFEM-gui-nompi-Windows-AMD64`。输出目录已存在时拒绝覆盖。`--prepare-only` 只生成模型；`--smoke` 仅运行三步，不能成为完整热历史。
 
-`REF-C` 是首轮粗网格诊断，`REF-M/F/VF` 提供后续细化入口。存在未解决的能量或出生离散问题时，应先诊断，不能靠连续加密获得准入。
+`REF-C` 是首轮粗网格诊断。Plan 7 已把 `REF-M` 改为条件入口：生成网格前检查当前插件的 birth-only 与 40 s 严格审计证据，缺失、失败或失效均拒绝；`REF-F/VF` 在本计划内禁止。
 
 ## 相同物理输入与独立实现
 
@@ -49,3 +49,45 @@ python simulation/thermal-ref/assess_reference.py output/elmer-ref-c --verificat
 比较五个固定测点的同时间 RMS、峰温、峰值时刻与 t8/5。焊丝测点出生前不参与比较；60 秒内未完成 800→500°C 冷却时报告截尾，不外推冷却时间。节点历史峰值的空间插值仅为**峰值上包络几何代理**，不等于同一时刻熔池、真实熔合区或 HAZ。
 
 原生热方程与材料接口依据：[Elmer 官方 HeatSolve 源码](https://github.com/ElmerCSC/elmerfem/blob/devel/fem/src/modules/HeatSolve.F90)、[官方 Models Manual](https://www.nic.funet.fi/pub/sci/physics/elmer/doc/ElmerModelsManual.pdf)。接口细节以本机实际运行的解析对照为准，不能把上游开发分支等同于本机二进制。
+
+## Plan 7：机制隔离
+
+计划冻结在 `project/thermal-mechanism-plan7.yaml`，结果见 `results/plan7/assessment.json`。只做出生守恒、35–45 s 重放、C/C 动态与预出生对照、条件化 C→M；495 W、η、源参数和散热参数保持不变。最多两轮有针对性的诊断，不能用持续加密代替准入。
+
+```powershell
+python simulation/thermal-ref/run_plan7.py birth
+python simulation/thermal-ref/run_plan7.py source-off
+python simulation/thermal-ref/run_plan7.py preborn-elmer
+python simulation/thermal-ref/run_plan7_fvm.py dynamic
+python simulation/thermal-ref/run_plan7_fvm.py preborn
+python simulation/thermal-ref/verify_elmer.py --output-dir simulation/thermal-ref/results/plan7/components
+python simulation/thermal-ref/assess_plan7.py
+```
+
+默认路径已经保存本轮证据，重跑时各命令需指定新的 `--output-dir`；评估器指向含同名子目录的新批次。重放优先取原 REF-C 的 35 s 场，否则读取版本库中的 `restart-state.npz`，并核对网格。额外诊断开关只由 `mechanism.dat` 启用；FVM 对照执行器独立调用既有 FVM 内核，不被 Elmer 生成器或回调导入。
+
+**40 s 定位。** 最后一个有源、有出生步是 39.9→40.0 s，积分 49.5 J；40.0→40.1 s 两者均为零。重放五点温度与原历史最大差约 1.65×10⁻¹²°C。40.1 s 的实测单步缺陷为 0.397794724 J，独立八点 Gauss 质量积分预测 0.397795327 J。原生集中质量先取一致质量的对角，再按总质量缩放，导致节点割线热容发生空间混合，与逐节点 Δh 不完全一致。推导参照[官方 SolverBasics 的集中质量实现](https://github.com/ElmerCSC/elmerfem/blob/devel/fem/src/SolverBasics.F90)，以本机重放和独立积分吻合为实际证据。
+
+这已定位跃迁的主机制，但没有修复能量账：35–45 s 最大未解释余量在 36.0 s，为 1.0883×10⁻⁵ J，仍略超冻结的 10⁻⁵ J 限值。因此 `source_off_mechanism_identified=true`，严格的 `source_off_explained=false`；不通过扣除预测缺陷制造 PASS。
+
+**birth-only。** 两个共享界面节点的 Hex8，一块已知温度母材与一块连续加入的 20°C 焊材；k、热源、对流和辐射全部为零。共享 FE 节点仍共享温度，这个极简试验审计全局焓守恒，不声称模拟物理混合过程。`birth-audit.csv` 逐步输出真实/有效出生质量、理论出生焓、独立场积分 ΔH、期望变化、单步及累计缺陷。有效质量另扣初始虚质量，防止混淆 epsilon 与真实送丝量。
+
+常 cp 对照最大单步误差 2.22×10⁻¹⁶ J；冻结温变物性、150°C 母材时为 6.7271×10⁻⁶ J，累计相对缺陷 0.04958%，未通过。1500°C 压力测试仅完成前 10 步，第 11 步非线性不收敛，失败前最大单步缺陷 0.008310 J。把焓零点平移 12,345 J/kg 后，出生焓非零，缺陷仍一致；这排除了仅因 h(20)=0 导致的空洞测试。三项原解析对照也在新插件下重新通过；相变对照保留 10⁻¹⁰ 容限及失败中止，仅把迭代预算从 80 增至 160，弥补旧结果仅核对温度误差而未严格中止的验证缺口。
+
+**预出生定义。** 双方都使用相同 C 级网格边界，路径内焊材从 t=0 全部存在，与母材一同初始化为 150°C；所有源参数、材料和散热条件保留。该反事实改变初始焊材热库存和可见表面，不能把它与原动态 FVM 直接配对，也不能将消融变化单独解释成接触几何贡献。五点 RMS、共同有效时间窗口 RMS、峰温、峰值时刻、t8/5、输入热量、焊材质量及终值/瞬态焓缺陷统一保存在批次评估中。
+
+双方完整 600 步执行结束，结果如下；RMS 使用相同有效窗口（焊缝中心 20–60 s，其余 0.1–60 s）：
+
+| 测点 | 动态 C/C 峰值差 °C | 预出生 C/C 峰值差 °C | 动态/预出生 RMS °C |
+| --- | ---: | ---: | ---: |
+| weld center | 71.11 | 68.53 | 26.16 / 23.53 |
+| QT near | 113.52 | 108.76 | 33.69 / 32.59 |
+| QT far | 68.08 | 65.22 | 20.59 / 19.52 |
+| Q235B near | 29.21 | 26.49 | 8.88 / 7.72 |
+| Q235B far | 3.64 | 2.10 | 2.03 / 2.56 |
+
+焊缝/QT 近场峰值差仅减少约 3.6%/4.2%，不支持“出生是当前 C 级近场温差的主要来源”。它也不能单独区分异材界面、源的空间承载、FE 插值及粗网格误差。历史 C/VF 的 51/71°C 包含网格分辨率差异，不与此表混用。
+
+四组焊接历史均积分 19,800 J，最终焊材质量约 0.741919 g；预出生组新增质量为零。Elmer 预出生终值焓缺陷仍为 6.2606 J（0.03162%），最大瞬态相对缺陷 0.35381%；能量问题没有随出生消失。两个 FVM C 组终值缺陷绝对值均小于 3×10⁻⁶ J，但守恒本身不证明近场温度正确。
+
+本轮为第 1 次机制隔离，`REF-M` 前置未通过，未运行 M/F/VF；`THERMAL-NUMERICAL-GATE / THERMAL-1 / STRUCT-0` 保持关闭。最多剩一次针对性的焓一致性修正或界面/插值隔离；若仍有数十度冲突，转由真实热电偶数据裁决。图见 `results/plan7/mechanism-diagnostics.png`。

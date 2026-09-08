@@ -1,0 +1,100 @@
+{
+  "complete": true,
+  "nonlinear_convergence": true,
+  "replay_sensor_maximum_difference_c": 1.6484591469634324e-12,
+  "source_step_maximum_error_j": 7.105427357601002e-14,
+  "birth_step_maximum_mass_error_kg": 2.635824078367099e-19,
+  "source_center_maximum_error_mm": 1.7763568394002505e-14,
+  "maximum_unexplained_step_j": 1.088295614168604e-05,
+  "maximum_unexplained_time_s": 36.0,
+  "unexplained_step_energy_limit_j": 1e-05,
+  "gauss_cross_checks": [
+    {
+      "time_s": 39.9,
+      "measured_step_defect_j": 0.01561321227507051,
+      "gaussian_mass_prediction_j": 0.015611893445033963,
+      "by_material_j": {
+        "q235b": -0.005252638573569134,
+        "qt450_10": 0.013671926054607436,
+        "ernife_ci": 0.00719260596399566
+      },
+      "unexplained_j": 1.3188300365465921e-06,
+      "gaussian_vs_callback_j": -1.190974402431877e-13
+    },
+    {
+      "time_s": 40.0,
+      "measured_step_defect_j": 0.007130546011396177,
+      "gaussian_mass_prediction_j": 0.007130296076512881,
+      "by_material_j": {
+        "q235b": -0.003983336884857746,
+        "qt450_10": 0.0005611160341742807,
+        "ernife_ci": 0.010552516927196345
+      },
+      "unexplained_j": 2.499348832965542e-07,
+      "gaussian_vs_callback_j": 3.346802002202054e-14
+    },
+    {
+      "time_s": 40.1,
+      "measured_step_defect_j": 0.3977947237384392,
+      "gaussian_mass_prediction_j": 0.3977953272733069,
+      "by_material_j": {
+        "q235b": 0.088188906522675,
+        "qt450_10": 0.21731782382479065,
+        "ernife_ci": 0.09228859692584127
+      },
+      "unexplained_j": -6.035348676936003e-07,
+      "gaussian_vs_callback_j": -4.385380947269368e-15
+    },
+    {
+      "time_s": 40.2,
+      "measured_step_defect_j": 0.3501342947895125,
+      "gaussian_mass_prediction_j": 0.35013491256118373,
+      "by_material_j": {
+        "q235b": 0.16907645313209327,
+        "qt450_10": 0.17158072759474602,
+        "ernife_ci": 0.009477731834344454
+      },
+      "unexplained_j": -6.177716712074677e-07,
+      "gaussian_vs_callback_j": 2.6256774532384952e-14
+    },
+    {
+      "time_s": 40.3,
+      "measured_step_defect_j": 0.3409031641121665,
+      "gaussian_mass_prediction_j": 0.34090373985493083,
+      "by_material_j": {
+        "q235b": 0.16593079746753603,
+        "qt450_10": 0.16952661392602225,
+        "ernife_ci": 0.005446328461372575
+      },
+      "unexplained_j": -5.757427643526825e-07,
+      "gaussian_vs_callback_j": 3.68594044175552e-14
+    },
+    {
+      "time_s": 40.4,
+      "measured_step_defect_j": 0.2811869725207856,
+      "gaussian_mass_prediction_j": 0.28118779799322613,
+      "by_material_j": {
+        "q235b": 0.14440037326814573,
+        "qt450_10": 0.13326404494484903,
+        "ernife_ci": 0.0035233797802313826
+      },
+      "unexplained_j": -8.254724405132308e-07,
+      "gaussian_vs_callback_j": -1.230682222796986e-13
+    },
+    {
+      "time_s": 40.5,
+      "measured_step_defect_j": 0.2300926508111143,
+      "gaussian_mass_prediction_j": 0.23009303477583648,
+      "by_material_j": {
+        "q235b": 0.12464787240307297,
+        "qt450_10": 0.10304274806095227,
+        "ernife_ci": 0.0024024143118112472
+      },
+      "unexplained_j": -3.8396472218371613e-07,
+      "gaussian_vs_callback_j": -1.3128387266192476e-14
+    }
+  ],
+  "source_off_mechanism_identified": true,
+  "source_off_explained": false,
+  "finding": "The 40.1 s jump is quantitatively accounted for by spatial mixing of temporal secant heat capacity in native diagonal-scaled lumped Hex8 mass. No missing/double source or birth step is observed. This diagnoses the defect; it does not remove it."
+}

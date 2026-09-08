@@ -1,0 +1,115 @@
+Header
+  CHECK KEYWORDS Warn
+  Mesh DB "." "mesh"
+End
+Simulation
+  Max Output Level = 3
+  Coordinate System = Cartesian 3D
+  Simulation Type = Transient
+  Timestepping Method = BDF
+  BDF Order = 1
+  Timestep Sizes = 10000000000.0
+  Timestep Intervals = 1
+  Output Intervals = 1
+End
+Equation 1
+  Active Solvers(3) = 1 2 3
+  Convection = None
+End
+Solver 1
+  Exec Solver = Before Timestep
+  Equation = ReferencePrepare
+  Procedure = "ReferenceCallbacks" "ReferencePrepare"
+End
+Solver 2
+  Equation = Heat Equation
+  Procedure = "HeatSolve" "HeatSolver"
+  Variable = Temperature
+  Variable DOFs = 1
+  Linear System Solver = Iterative
+  Linear System Iterative Method = BiCGStab
+  Linear System Preconditioning = ILU0
+  Linear System Max Iterations = 1500
+  Linear System Convergence Tolerance = 1e-10
+  Linear System Abort Not Converged = True
+  Nonlinear System Max Iterations = 80
+  Nonlinear System Convergence Tolerance = 1e-10
+  Nonlinear System Abort Not Converged = True
+  Nonlinear System Relaxation Factor = 1.0
+  Nonlinear System Newton After Iterations = 1000
+  Steady State Convergence Tolerance = 1.0e-12
+  Stabilize = False
+  Bubbles = False
+  Optimize Bandwidth = True
+  Lumped Mass Matrix = True
+End
+Solver 3
+  Exec Solver = After Timestep
+  Equation = ReferenceObserve
+  Procedure = "ReferenceCallbacks" "ReferenceObserve"
+End
+Body Force 1
+  Temperature = Real 20.0
+  Temperature Condition = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "DormantCondition"
+  Volumetric Heat Source = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "BirthSource"
+End
+Initial Condition 1
+  Temperature = Real 150.0
+End
+Boundary Condition 1
+  Target Boundaries(1) = 1
+  Heat Flux = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "SurfaceFlux"
+End
+Body 1
+  Equation = 1
+  Material = 1
+  Body Force = 1
+  Initial Condition = 1
+End
+Material 1
+  Density = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "ReferenceDensity"
+  Heat Capacity = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "SecantCapacity"
+  Heat Conductivity = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "ReferenceConductivity"
+End
+Body 2
+  Equation = 1
+  Material = 2
+  Body Force = 1
+  Initial Condition = 1
+End
+Material 2
+  Density = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "ReferenceDensity"
+  Heat Capacity = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "SecantCapacity"
+  Heat Conductivity = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "ReferenceConductivity"
+End
+Body 3
+  Equation = 1
+  Material = 3
+  Body Force = 1
+  Initial Condition = 1
+End
+Material 3
+  Density = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "ReferenceDensity"
+  Heat Capacity = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "SecantCapacity"
+  Heat Conductivity = Variable Temperature
+    Real Procedure "ReferenceCallbacks" "ReferenceConductivity"
+End
+Boundary Condition 2
+  Target Boundaries(1) = 2
+  Temperature = 20.0
+End
+Boundary Condition 3
+  Target Boundaries(1) = 3
+  Temperature = 120.0
+End

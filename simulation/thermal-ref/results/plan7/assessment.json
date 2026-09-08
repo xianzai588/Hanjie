@@ -1,0 +1,255 @@
+{
+  "stage": "THERMAL-REF-PLAN7",
+  "diagnostic_iteration": 1,
+  "maximum_diagnostic_iterations": 2,
+  "physical_parameters_retuned": false,
+  "birth_only_all_passed": false,
+  "source_off_explained": false,
+  "source_off_mechanism_identified": true,
+  "native_component_checks_passed": true,
+  "same_grid_axes": {
+    "dynamic": true,
+    "preborn": true
+  },
+  "comparisons": {
+    "dynamic": {
+      "weld_center": {
+        "rms_c": 26.16437924276332,
+        "peak_difference_c": 71.11402394305105,
+        "elmer_peak_c": 1181.021268400539,
+        "fvm_peak_c": 1252.13529234359,
+        "elmer_peak_time_s": 21.80000000000004,
+        "fvm_peak_time_s": 21.60000000000004,
+        "elmer_cooling": {
+          "t8_5_s": 2.8796776201142187,
+          "status": "complete"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 2.8155561457074754,
+          "status": "complete"
+        },
+        "common_window_rms_c": 26.16437924276332
+      },
+      "qt_near_interface": {
+        "rms_c": 33.69344811375906,
+        "peak_difference_c": 113.51691063232226,
+        "elmer_peak_c": 923.9130098289478,
+        "fvm_peak_c": 1037.42992046127,
+        "elmer_peak_time_s": 22.00000000000004,
+        "fvm_peak_time_s": 21.90000000000004,
+        "elmer_cooling": {
+          "t8_5_s": 3.3879503694362185,
+          "status": "complete"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 3.0070490328745656,
+          "status": "complete"
+        },
+        "common_window_rms_c": 33.69344811375906
+      },
+      "qt_far": {
+        "rms_c": 20.592419622993173,
+        "peak_difference_c": 68.08397313834928,
+        "elmer_peak_c": 779.0384507786288,
+        "fvm_peak_c": 847.122423916978,
+        "elmer_peak_time_s": 22.20000000000005,
+        "fvm_peak_time_s": 22.00000000000004,
+        "elmer_cooling": {
+          "t8_5_s": null,
+          "status": "not_reached_800c"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 3.676577963298122,
+          "status": "complete"
+        },
+        "common_window_rms_c": 20.592419622993173
+      },
+      "q235_near_interface": {
+        "rms_c": 8.876555303926684,
+        "peak_difference_c": 29.20782963595616,
+        "elmer_peak_c": 832.2709811075001,
+        "fvm_peak_c": 803.063151471544,
+        "elmer_peak_time_s": 22.10000000000004,
+        "fvm_peak_time_s": 22.10000000000004,
+        "elmer_cooling": {
+          "t8_5_s": 4.2621847820179894,
+          "status": "complete"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 5.080687835594567,
+          "status": "complete"
+        },
+        "common_window_rms_c": 8.876555303926684
+      },
+      "q235_far": {
+        "rms_c": 2.0336651252152493,
+        "peak_difference_c": 3.637991362830121,
+        "elmer_peak_c": 674.8641703130121,
+        "fvm_peak_c": 671.226178950182,
+        "elmer_peak_time_s": 22.50000000000005,
+        "fvm_peak_time_s": 22.50000000000005,
+        "elmer_cooling": {
+          "t8_5_s": null,
+          "status": "not_reached_800c"
+        },
+        "fvm_cooling": {
+          "t8_5_s": null,
+          "status": "not_reached_800c"
+        },
+        "common_window_rms_c": 2.0336651252152493
+      }
+    },
+    "preborn": {
+      "weld_center": {
+        "rms_c": 22.45218850878219,
+        "peak_difference_c": 68.53127447204315,
+        "elmer_peak_c": 1186.234623435687,
+        "fvm_peak_c": 1254.76589790773,
+        "elmer_peak_time_s": 21.70000000000004,
+        "fvm_peak_time_s": 21.60000000000004,
+        "elmer_cooling": {
+          "t8_5_s": 2.88864898207871,
+          "status": "complete"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 2.8294290468210512,
+          "status": "complete"
+        },
+        "common_window_rms_c": 23.528276434433938
+      },
+      "qt_near_interface": {
+        "rms_c": 32.59063501634433,
+        "peak_difference_c": 108.76231673023517,
+        "elmer_peak_c": 923.5241034821449,
+        "fvm_peak_c": 1032.28642021238,
+        "elmer_peak_time_s": 22.00000000000004,
+        "fvm_peak_time_s": 21.90000000000004,
+        "elmer_cooling": {
+          "t8_5_s": 3.396067021621338,
+          "status": "complete"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 3.016365821868252,
+          "status": "complete"
+        },
+        "common_window_rms_c": 32.59063501634433
+      },
+      "qt_far": {
+        "rms_c": 19.524300592406156,
+        "peak_difference_c": 65.21799612779864,
+        "elmer_peak_c": 776.2019231171683,
+        "fvm_peak_c": 841.419919244967,
+        "elmer_peak_time_s": 22.30000000000005,
+        "fvm_peak_time_s": 22.00000000000004,
+        "elmer_cooling": {
+          "t8_5_s": null,
+          "status": "not_reached_800c"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 3.7113869991442208,
+          "status": "complete"
+        },
+        "common_window_rms_c": 19.524300592406156
+      },
+      "q235_near_interface": {
+        "rms_c": 7.7217863812017775,
+        "peak_difference_c": 26.48551968228776,
+        "elmer_peak_c": 832.9051728051658,
+        "fvm_peak_c": 806.419653122878,
+        "elmer_peak_time_s": 22.10000000000004,
+        "fvm_peak_time_s": 22.10000000000004,
+        "elmer_cooling": {
+          "t8_5_s": 4.258326924885573,
+          "status": "complete"
+        },
+        "fvm_cooling": {
+          "t8_5_s": 5.01010263932492,
+          "status": "complete"
+        },
+        "common_window_rms_c": 7.7217863812017775
+      },
+      "q235_far": {
+        "rms_c": 2.558423339706951,
+        "peak_difference_c": 2.101037787310588,
+        "elmer_peak_c": 676.9981063723596,
+        "fvm_peak_c": 674.897068585049,
+        "elmer_peak_time_s": 22.60000000000005,
+        "fvm_peak_time_s": 22.50000000000005,
+        "elmer_cooling": {
+          "t8_5_s": null,
+          "status": "not_reached_800c"
+        },
+        "fvm_cooling": {
+          "t8_5_s": null,
+          "status": "not_reached_800c"
+        },
+        "common_window_rms_c": 2.558423339706951
+      }
+    }
+  },
+  "welding_audits": {
+    "elmer_dynamic": {
+      "complete": true,
+      "source_total_j": 19800.0,
+      "source_relative_error": 7.571043657213351e-15,
+      "final_weld_mass_kg": 0.0007419185210717639,
+      "mass_relative_error": 1.1218887765303356e-14,
+      "added_weld_mass_kg": 0.0007419185210717639,
+      "final_enthalpy_defect_j": 4.229331207377982,
+      "final_enthalpy_defect_pct": 0.02136025862312112,
+      "maximum_transient_defect_pct": 0.3543471542750559,
+      "nonlinear_convergence": true
+    },
+    "elmer_preborn": {
+      "complete": true,
+      "source_total_j": 19800.0,
+      "source_relative_error": 7.571043657213351e-15,
+      "final_weld_mass_kg": 0.0007419185210717639,
+      "mass_relative_error": 2.3559664307137157e-15,
+      "added_weld_mass_kg": 0.0,
+      "final_enthalpy_defect_j": 6.260614533281114,
+      "final_enthalpy_defect_pct": 0.03161926531960159,
+      "maximum_transient_defect_pct": 0.3538142389148384,
+      "nonlinear_convergence": true
+    },
+    "fvm_dynamic": {
+      "complete": true,
+      "source_total_j": 19800.0,
+      "source_relative_error": 1.1412192757047848e-16,
+      "final_weld_mass_kg": 0.000741918521071766,
+      "mass_relative_error": 9.448407039841464e-15,
+      "added_weld_mass_kg": 0.000741918521071766,
+      "final_enthalpy_defect_j": -1.93533196579665e-06,
+      "final_enthalpy_defect_pct": 9.774403867659847e-09,
+      "maximum_transient_defect_pct": 9.774413054475e-09
+    },
+    "fvm_preborn": {
+      "complete": true,
+      "source_total_j": 19800.0,
+      "source_relative_error": 1.1412192757047848e-16,
+      "final_weld_mass_kg": 0.000741918521071766,
+      "mass_relative_error": 4.711932861427432e-16,
+      "added_weld_mass_kg": 0.0,
+      "final_enthalpy_defect_j": -2.72322540695313e-06,
+      "final_enthalpy_defect_pct": 1.3753663671480453e-08,
+      "maximum_transient_defect_pct": 1.3753663671480453e-08
+    }
+  },
+  "preborn_peak_gap_reduction_pct": {
+    "weld_center": 3.6318426771577372,
+    "qt_near_interface": 4.188445470901758
+  },
+  "ref_m_allowed": false,
+  "ref_m_executed": false,
+  "ref_f_allowed": false,
+  "ref_vf_allowed": false,
+  "thermal_1_allowed": false,
+  "formal_struct_0_allowed": false,
+  "evidence_limits": [
+    "Matched C/C ablation changes both activation and initial weld enthalpy inventory; it does not alone isolate contact geometry.",
+    "Historical C/VF errors include spatial-resolution differences; no verdict assigning solver correctness.",
+    "Diagnosed enthalpy defect is retained, not subtracted to manufacture an energy pass."
+  ],
+  "next_action": "At most one further targeted enthalpy-consistency or interface/interpolation diagnostic; if near-field disagreement persists, use thermocouple data to arbitrate. No eta retuning or unrestricted refinement.",
+  "plan_sha256": "285a7eadb57bd1c87beb2c04ca9e92e00f1e5e2d940432dd7c7a491a58aae083"
+}

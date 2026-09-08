@@ -60,14 +60,26 @@ stages:
     upstream_dependencies: [THERMAL-0.6-NESTED]
     next_action: 自研FVM停止继续细化；已完成首轮Elmer参考，后续按THERMAL-REF处理能量与出生离散问题
   THERMAL-REF:
-    execution_status: elmer_native_heat_solver_component_checks_and_60s_ref_c_completed
+    execution_status: elmer_ref_c_and_plan7_mechanism_isolation_completed
     acceptance_result: not_admitted_energy_audit_failed_and_reference_convergence_unverified
     evidence_level: solver_result_unvalidated
     allowed_use: 与THERMAL-0.7同物理输入的独立粗网格诊断；不得据此裁决求解器优劣或提供正式结构热载荷
     evidence: simulation/thermal-ref/results/REF-C/assessment.json
     verification_evidence: simulation/thermal-ref/results/verification/assessment.json
+    mechanism_evidence: simulation/thermal-ref/results/plan7/assessment.json
     upstream_dependencies: [G-INPUTS, THERMAL-0.7-BOUNDARY-NEUMANN]
-    next_action: 先处理Elmer变热容积分的能量缺陷及部分出生单元的接触表示，再验证参考网格与出生敏感性；不回到自研FVM盲目加密
+    next_action: 按Plan7剩余一次诊断预算处理焓一致性及界面/空间插值疑点；不调η，不启动REF-M/F/VF
+  THERMAL-REF-PLAN7:
+    execution_status: birth_only_source_off_replay_and_paired_preborn_completed
+    acceptance_result: mechanisms_partly_identified_birth_energy_gate_failed_ref_m_blocked
+    evidence_level: solver_result_unvalidated
+    allowed_use: 40s焓缺陷定量归因及同C网格预出生消融；不能裁决求解器正确性或提供正式结构热载荷
+    evidence: simulation/thermal-ref/results/plan7/assessment.json
+    verification_evidence: simulation/thermal-ref/results/plan7/components/assessment.json
+    upstream_dependencies: [THERMAL-REF]
+    diagnostic_iterations_used: 1
+    diagnostic_iterations_maximum: 2
+    next_action: 预出生未消除近场差异，至多再做一次针对性隔离/修正；仍冲突则由真实热电偶数据裁决，禁止无限加密
   METALLURGY-0:
     execution_status: executor_and_historical_diagnostics_completed
     acceptance_result: current_joint_not_physically_validated
@@ -83,12 +95,12 @@ stages:
     upstream_dependencies: [G-INPUTS]
     next_action: 条件具备时执行并保留独立验证试件
   THERMAL-NUMERICAL-GATE:
-    execution_status: evaluated_after_elmer_ref_c_independent_diagnostic
+    execution_status: evaluated_after_plan7_mechanism_isolation
     acceptance_result: not_passed
     evidence_level: solver_result_unvalidated
     allowed_use: 通过后仅可标记 solver_verified 并进入无实物 Route B
-    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN, THERMAL-REF]
-    next_action: Elmer REF-C已执行但能量审计未通过、参考网格与出生离散未验证；保持禁止正式结构热载荷
+    upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN, THERMAL-REF, THERMAL-REF-PLAN7]
+    next_action: Plan7已定位集中质量与节点焓积分差异，但出生能量门未过、预出生近场仍差68.5/108.8°C；REF-M和正式结构热载荷继续禁止
   THERMAL-PHYSICAL-CALIBRATION:
     execution_status: protocol_only
     acceptance_result: not_executed

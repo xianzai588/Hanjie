@@ -45,6 +45,7 @@ simulation/thermal-ref/results/**/compile.log
 simulation/thermal-ref/results/**/*.mod
 simulation/thermal-ref/results/**/field-*.dat
 simulation/thermal-ref/results/**/temperature.vtu
+simulation/thermal-ref/results/**/initial-temperature.dat
 
 # IDE
 .vscode/

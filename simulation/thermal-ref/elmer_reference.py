@@ -331,7 +331,10 @@ def main():
     parser.add_argument("--output-dir",type=Path)
     parser.add_argument("--prepare-only",action="store_true")
     parser.add_argument("--smoke",action="store_true")
+    parser.add_argument("--mechanism-evidence",type=Path,default=HERE/"results/plan7")
     args = parser.parse_args()
+    from run_plan7 import require_refinement
+    require_refinement(args.case,args.mechanism_evidence)
     out = (args.output_dir or HERE/"results"/args.case).resolve()
     record = prepare(out,args.case,load(SPEC),args.smoke)
     print(json.dumps({k:record[k] for k in ('case','nodes','elements','boundaries')},ensure_ascii=False),flush=True)

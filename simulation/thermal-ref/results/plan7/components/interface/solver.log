@@ -1,0 +1,54 @@
+ELMER SOLVER (v 9.0) STARTED AT: 2026/09/08 09:46:15
+ParCommInit: Initialize #PEs: 1
+MAIN: 
+MAIN: =============================================================
+MAIN: ElmerSolver finite element software, Welcome!
+MAIN: This program is free software licensed under (L)GPL
+MAIN: Copyright 1st April 1995 - , CSC - IT Center for Science Ltd.
+MAIN: Webpage http://www.csc.fi/elmer, Email elmeradm@csc.fi
+MAIN: Version: 9.0 (Rev: Release, Compiled: 2026-01-20)
+MAIN:  Running one task without MPI parallelization.
+MAIN:  Running with just one thread per task.
+MAIN:  Lua interpreter linked in.
+MAIN: =============================================================
+MAIN: 
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Reading Model: case.sif
+LoadInputFile: Scanning input file: case.sif
+LoadInputFile: Scanning only size info
+LoadInputFile: First time visiting
+LoadInputFile: Reading base load of sif file
+LoadInputFile: Loading input file: case.sif
+LoadInputFile: Reading base load of sif file
+Loading user function library: [ReferenceCallbacks]...[DormantCondition]
+Loading user function library: [ReferenceCallbacks]...[BirthSource]
+Loading user function library: [ReferenceCallbacks]...[SurfaceFlux]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+LoadInputFile: Number of BCs: 3
+LoadInputFile: Number of Body Forces: 1
+LoadInputFile: Number of Initial Conditions: 1
+LoadInputFile: Number of Materials: 3
+LoadInputFile: Number of Equations: 1
+LoadInputFile: Number of Solvers: 3
+LoadInputFile: Number of Bodies: 3
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 1/1:   1.000E+10
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  81.034972      2.0000000     ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  81.034972     0.17536694E-15 ) :: heat equation
+REF time=******** max=   120.000 energy residual= -2.5000E+02
+MAIN: *** Elmer Solver: ALL DONE ***
+MAIN: The end
+SOLVER TOTAL TIME(CPU,REAL):         0.16        0.16
+ELMER SOLVER FINISHED AT: 2026/09/08 09:46:15
