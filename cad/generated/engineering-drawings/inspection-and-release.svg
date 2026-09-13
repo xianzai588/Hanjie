@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">焊接顺序、测量基准与放行卡</text>
+<text x="50" y="99" class="small">数字样机执行卡：顺序用于避免相邻段同时起弧；尺寸放行以A、B独立基准和冷态复测为准</text>
+<text x="1020" y="65" class="section">HJ-R1-005</text>
+<text x="70" y="160" class="section">一、焊接顺序与温度门控</text>
+<circle cx="85" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="78" y="242" class="section">1</text>
+<line x1="113" y1="235" x2="140" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="140.00,235.00 132.00,230.00 132.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="167" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="160" y="242" class="section">4</text>
+<line x1="195" y1="235" x2="222" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="222.00,235.00 214.00,230.00 214.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="249" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="242" y="242" class="section">3</text>
+<line x1="277" y1="235" x2="304" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="304.00,235.00 296.00,230.00 296.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="331" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="324" y="242" class="section">6</text>
+<line x1="359" y1="235" x2="386" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="386.00,235.00 378.00,230.00 378.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="413" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="406" y="242" class="section">2</text>
+<line x1="441" y1="235" x2="468" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="468.00,235.00 460.00,230.00 460.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="495" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="488" y="242" class="section">5</text>
+<text x="72" y="295" class="small">起弧前：监测点≥130℃</text>
+<text x="72" y="323" class="small">层间最高温度&lt;200℃；超温等待</text>
+<text x="72" y="351" class="small">停弧后≥120 s且最高温度&lt;55℃才松夹</text>
+<text x="72" y="379" class="small">冷却至20±1℃后进入独立测量</text>
+<text x="70" y="445" class="section">二、基准与测量闭环</text>
+<rect x="75" y="500" width="205" height="70" fill="#eaf4f5" stroke="#334155"/>
+<rect x="365" y="500" width="205" height="70" fill="#eaf4f5" stroke="#334155"/>
+<rect x="655" y="500" width="205" height="70" fill="#eaf4f5" stroke="#334155"/>
+<rect x="945" y="500" width="150" height="70" fill="#eaf4f5" stroke="#334155"/>
+<text x="95" y="540" class="small">A：壳体下端安装面</text>
+<text x="385" y="540" class="small">B：内壁双测量带轴线</text>
+<text x="675" y="540" class="small">C：只识别周向焊段</text>
+<text x="965" y="540" class="small">冷态复测</text>
+<line x1="280" y1="535" x2="350" y2="535" stroke="#176b7b" stroke-width="2"/>
+<polygon points="350.00,535.00 342.00,530.00 342.00,540.00" fill="#176b7b" stroke="#334155"/>
+<line x1="570" y1="535" x2="640" y2="535" stroke="#176b7b" stroke-width="2"/>
+<polygon points="640.00,535.00 632.00,530.00 632.00,540.00" fill="#176b7b" stroke="#334155"/>
+<line x1="860" y1="535" x2="930" y2="535" stroke="#176b7b" stroke-width="2"/>
+<polygon points="930.00,535.00 922.00,530.00 922.00,540.00" fill="#176b7b" stroke="#334155"/>
+<text x="70" y="625" class="section">三、数字放行条件（设计目标，不代表实测合格）</text>
+<text x="90" y="660" class="small">Ø40孔轴：位置度 Ø0.05，相对A、B；测量长度12 mm</text>
+<text x="90" y="686" class="small">焊脚等效 z=3.50～3.80；单段长度18；六段总长108 mm</text>
+<text x="630" y="660" class="small">外缘 Ø149.94～149.98；壳体内径 Ø150.00～150.02</text>
+<text x="630" y="686" class="small">检查记录需绑定图号、批次、温度曲线和复测结果</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
+</svg>

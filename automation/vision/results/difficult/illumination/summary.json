@@ -18,8 +18,9 @@
   "engineering_gate_pass": false,
   "gate_limits": {
     "radial_p95_mm": 0.01,
-    "theta_p95_deg": 0.007763655760580261,
-    "pose_lever_arm_mm": 73.8
+    "theta_p95_deg": 0.007641474995076329,
+    "pose_lever_arm_mm": 74.98,
+    "source": "project/tolerance.yaml automation_path_chain"
   },
   "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
 }

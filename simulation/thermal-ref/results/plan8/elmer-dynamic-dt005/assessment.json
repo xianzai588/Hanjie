@@ -1,0 +1,10 @@
+{
+  "case": "THERMAL-REF-PLAN8-dt005",
+  "time_step_s": 0.05,
+  "final_time_s": 26.0,
+  "final_energy_residual_j": 0.84152,
+  "final_energy_residual_pct": null,
+  "maximum_energy_residual_j": 0.87097,
+  "comparison_to_dt01": "worse_or_not_improved; time discretization is not the dominant defect",
+  "evidence_level": "solver_result_unvalidated"
+}

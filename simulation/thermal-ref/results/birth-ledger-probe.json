@@ -1,0 +1,34 @@
+{
+  "version": "BIRTH-LEDGER-PROBE-1",
+  "cases": [
+    {
+      "case": "same_material_partial_birth",
+      "energy_before_j": 259000.0,
+      "energy_after_j": 518000.0,
+      "birth_source_j": -259000.0,
+      "expected_net_change_j": 259000.0,
+      "actual_net_change_j": 259000.0,
+      "closure_error_j": 0.0
+    },
+    {
+      "case": "shared_node_material_transition",
+      "energy_before_j": 259000.0,
+      "energy_after_j": 259000.0,
+      "birth_source_j": -259000.0,
+      "expected_net_change_j": 0.0,
+      "actual_net_change_j": 0.0,
+      "closure_error_j": -259000.0
+    },
+    {
+      "case": "full_activation",
+      "energy_before_j": 0.0,
+      "energy_after_j": 1036000.0,
+      "birth_source_j": -1036000.0,
+      "expected_net_change_j": 1036000.0,
+      "actual_net_change_j": 1036000.0,
+      "closure_error_j": 0.0
+    }
+  ],
+  "element_formula_closes": false,
+  "interpretation": "若元素账闭合而 Elmer 仍有缺陷，根因位于共享节点质量/容量装配或回调调用时序。"
+}

@@ -19,8 +19,9 @@
     "engineering_gate_pass": true,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -44,8 +45,9 @@
     "engineering_gate_pass": false,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -69,8 +71,9 @@
     "engineering_gate_pass": true,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -94,8 +97,9 @@
     "engineering_gate_pass": false,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -108,19 +112,20 @@
     "quality_accept_count": 0,
     "quality_accept_rate": 0.0,
     "quality_rejected_count": 100,
-    "x_mae_mm": 9.043418248809187,
-    "y_mae_mm": 0.531543229305694,
-    "radial_mae_mm": 9.068920790092518,
-    "radial_p95_mm": 10.690228862067055,
-    "theta_mae_deg": 0.8417787748790164,
-    "theta_p95_deg": 1.833195804508154,
+    "x_mae_mm": 9.043182754831323,
+    "y_mae_mm": 0.5313370847084338,
+    "radial_mae_mm": 9.068661512299638,
+    "radial_p95_mm": 10.68962159223635,
+    "theta_mae_deg": 0.841051572521966,
+    "theta_p95_deg": 1.837080216543691,
     "difficulty": "perspective",
     "engineering_gate": "FAIL",
     "engineering_gate_pass": false,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -144,8 +149,9 @@
     "engineering_gate_pass": false,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -169,8 +175,9 @@
     "engineering_gate_pass": false,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -194,8 +201,9 @@
     "engineering_gate_pass": true,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -208,19 +216,20 @@
     "quality_accept_count": 100,
     "quality_accept_rate": 1.0,
     "quality_rejected_count": 0,
-    "x_mae_mm": 0.0010373981793721518,
-    "y_mae_mm": 0.0011090587576230281,
-    "radial_mae_mm": 0.0016994195012536523,
-    "radial_p95_mm": 0.0035723947430790722,
-    "theta_mae_deg": 0.002053722042924927,
-    "theta_p95_deg": 0.004455798088729195,
+    "x_mae_mm": 0.0011785872777303101,
+    "y_mae_mm": 0.0011637317140897165,
+    "radial_mae_mm": 0.0018332874347866514,
+    "radial_p95_mm": 0.0034737209706870585,
+    "theta_mae_deg": 0.002116426079690604,
+    "theta_p95_deg": 0.004804098937404055,
     "difficulty": "distortion",
     "engineering_gate": "PASS",
     "engineering_gate_pass": true,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   },
@@ -244,8 +253,9 @@
     "engineering_gate_pass": true,
     "gate_limits": {
       "radial_p95_mm": 0.01,
-      "theta_p95_deg": 0.007763655760580261,
-      "pose_lever_arm_mm": 73.8
+      "theta_p95_deg": 0.007641474995076329,
+      "pose_lever_arm_mm": 74.98,
+      "source": "project/tolerance.yaml automation_path_chain"
     },
     "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
   }

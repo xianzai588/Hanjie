@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f7f8fa"/>
+  <style>text{font-family:'Microsoft YaHei',Arial,sans-serif;fill:#17202a} .title{font-size:34px;font-weight:700}.h{font-size:22px;font-weight:700}.b{font-size:18px}.s{font-size:16px}.box{fill:white;stroke:#263746;stroke-width:2}.good{fill:#e8f5e9;stroke:#2e7d32}.warn{fill:#fff8e1;stroke:#a66b00}</style>
+  <text x="60" y="60" class="title">COMPETITION-R1：守恒修订与三项放行闭环</text>
+  <text x="60" y="95" class="s">数字设计证据图｜推荐路线为条件性设计推荐，未替代实物验证</text>
+  <text x="60" y="150" class="h">一、3.5 mm 设计目标的守恒修订</text>
+  <rect x="60" y="180" width="360" height="180" rx="12" class="box warn"/>
+  <text x="85" y="220" class="h">旧单道基线</text><text x="85" y="255" class="b">Ø1.2 mm，送丝 2.0 mm/s</text><text x="85" y="285" class="b">等效焊脚约 1.737 mm</text><text x="85" y="325" class="s">无法同时支撑 3.5 mm 目标截面</text>
+  <path d="M440 270 H540" stroke="#546e7a" stroke-width="5" marker-end="url(#a)"/>
+  <rect x="560" y="180" width="360" height="180" rx="12" class="box"/>
+  <text x="585" y="220" class="h">守恒重算</text><text x="585" y="255" class="b">四道沉积，η=0.85 下界</text><text x="585" y="285" class="b">A = 6.125 mm²</text><text x="585" y="325" class="s">固定送丝反算：1.343967 mm/s</text>
+  <path d="M940 270 H1040" stroke="#546e7a" stroke-width="5" marker-end="url(#a)"/>
+  <rect x="1060" y="180" width="280" height="180" rx="12" class="box good"/>
+  <text x="1085" y="220" class="h">当前路线</text><text x="1085" y="255" class="b">Ø1.6 mm + 四道 TIG</text><text x="1085" y="285" class="b">等效焊脚 3.50–3.80 mm</text><text x="1085" y="325" class="s">成形/熔合仍需放行</text>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#546e7a"/></marker></defs>
+  <text x="60" y="430" class="h">二、三项放行闭环</text>
+  <rect x="60" y="460" width="1280" height="330" rx="10" class="box"/>
+  <line x1="60" y1="520" x2="1340" y2="520" stroke="#263746" stroke-width="2"/><line x1="360" y1="460" x2="360" y2="790" stroke="#263746" stroke-width="2"/><line x1="760" y1="460" x2="760" y2="790" stroke="#263746" stroke-width="2"/><line x1="1080" y1="460" x2="1080" y2="790" stroke="#263746" stroke-width="2"/>
+  <text x="85" y="500" class="h">目标</text><text x="385" y="500" class="h">当前数字证据</text><text x="785" y="500" class="h">必须补齐的放行证据</text><text x="1105" y="500" class="h">当前状态</text>
+  <text x="85" y="565" class="b">焊得住</text><text x="385" y="565" class="s">材料风险、热输入窗口、条件承载筛查</text><text x="785" y="565" class="s">宏观截面、硬度、裂纹/NDT、WPS/PQR</text><text x="1105" y="565" class="b">待验证</text>
+  <text x="85" y="655" class="b">位置度</text><text x="385" y="655" class="s">A/B 基准、公差分配、CMM 判定规则</text><text x="785" y="655" class="s">松夹后 CMM、测量不确定度、重复装夹</text><text x="1105" y="655" class="b">待验证</text>
+  <text x="85" y="745" class="b">洁净度</text><text x="385" y="745" class="s">连续薄裙、朝上回收、几何退出与互锁</text><text x="785" y="745" class="s">热态贴壁、颗粒清点、内窥与盲区检查</text><text x="1105" y="745" class="b">待验证</text>
+  <text x="60" y="850" class="s">结论：6P-FAIR_B 四道 TIG 是当前数字设计推荐路线；三项放行均保留独立验证门。</text>
+</svg>

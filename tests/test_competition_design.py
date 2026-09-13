@@ -114,7 +114,8 @@ def test_current_drawing_manifest_excludes_legacy_fixture():
     import json
     manifest = json.loads((ROOT/"cad/generated/engineering-drawings/drawing-manifest.json").read_text(encoding="utf-8"))
     assert manifest["version"] == "COMPETITION-R1"
-    assert len(manifest["drawings"]) == 4
+    assert len(manifest["drawings"]) == 5
+    assert "inspection-and-release.svg" in manifest["drawings"]
     assert "fixture-part.svg" not in manifest["drawings"]
     assert "weld-assembly.svg" not in manifest["drawings"]
 

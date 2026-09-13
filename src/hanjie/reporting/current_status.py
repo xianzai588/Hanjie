@@ -155,6 +155,7 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
         "route_b_design": design,
         "tooling_access": collect_tooling_status(root),
         "competition_design": current_assessment(root),
+        "competition_thermal_diagnostic": _json(root/"simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json"),
     }
 
 
@@ -166,10 +167,11 @@ def render_markdown(status: Dict[str, Any]) -> str:
         "## 当前参赛修订 COMPETITION-R1", "",
         "当前说明书和四页图集采用圆柱胀套、连续薄裙和Ø1.6四道固定送丝。下列ROUTE-B-DESIGN与TOOLING-ACCESS是历史选型/失败情景，不覆盖新工装。",
         f"修订直径预算（含目标测量不确定度）{status['competition_design']['precision']['diameter_with_uncertainty_target_mm']:.4f} mm；仅设计分配，实物与正式热—结构仍未放行。", "",
+        f"已实际运行R1单段FV热诊断：60 s、最高温度{status['competition_thermal_diagnostic']['maximum_temperature_c']:.1f}°C、最大能量残差{status['competition_thermal_diagnostic']['maximum_absolute_energy_residual_j']:.3g} J；不代表四道整件热历史。", "",
         render_design_markdown(status["route_b_design"]),
         render_tooling_markdown(status["tooling_access"]),
         "## 当前关键阶段","","| 阶段 | 验收状态 | 允许用途 |","| --- | --- | --- |"]
-    visible_stages = {"G-INPUTS", "LOAD-BASIS-0", "THERMAL-0.4R1", "THERMAL-REF-PLAN8",
+    visible_stages = {"G-INPUTS", "LOAD-BASIS-0", "COMPETITION-R1", "THERMAL-R1-SINGLEPASS-DIAGNOSTIC", "THERMAL-0.4R1", "THERMAL-REF-PLAN8",
                       "THERMAL-NUMERICAL-GATE", "STRUCT-0-PREP", "STRUCT-0",
                       "STRUCT-UNCERTAINTY", "ROUTE-B-DESIGN", "TOOLING-ACCESS", "DECISION", "COMPETITION-R1"}
     acceptance_labels = {

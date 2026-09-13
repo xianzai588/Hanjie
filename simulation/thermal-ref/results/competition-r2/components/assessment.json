@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "test": "interface",
+      "maximum_temperature_error_c": 4.999932912141958e-09,
+      "limit_c": 1e-06,
+      "passed": true,
+      "definition": "Two materials: L1=1, k1=1; L2=3, k2=3; boundary 20/120 C; interface=70 C. Large-dt steady limit."
+    },
+    {
+      "test": "latent",
+      "maximum_temperature_error_c": 4.475992909647175e-09,
+      "limit_c": 1e-05,
+      "passed": true,
+      "definition": "Adiabatic uniform source: rho=cp=1, L=100, phase interval 100..200 C, T0=20; expected 110,160,220 C at 1,2,3 s."
+    },
+    {
+      "test": "birth",
+      "maximum_energy_relative_error": 5.816938869135579e-16,
+      "volume_error_mm3": 0.0,
+      "minimum_temperature_c": 20.19466235533976,
+      "passed": true,
+      "definition": "Continuously growing cold mass, constant cp and low conductivity producing nonuniform temperature; independent boundary input must equal enthalpy increase without undershoot."
+    }
+  ],
+  "passed": true,
+  "scope": "Component verification only; does not admit the welding thermal history.",
+  "callback_sha256": "11dbccd64745943084db60b9357b8e4244726d94a4275fa464bcaa59277eb6c0"
+}

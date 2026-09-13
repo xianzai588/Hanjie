@@ -121,6 +121,11 @@ taxonomy:
       scope: 热源域捕获、功率/累计能量、同时间步网格、时间步、换热/效率/热源尺寸敏感性审计；参数与实验校准仍需复核
       status: unvalidated
       evidence_level: solver_result_unvalidated
+    SIM-THERMAL-R1-SINGLEPASS:
+      path: simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json
+      scope: 实际有限体积求解器对COMPETITION-R1的Ø1.6棒材、效率下界等面积3.5 mm单段局部热诊断；源窗仍为历史60 mm
+      status: solver_run_completed_not_admitted
+      evidence_level: solver_result_unvalidated
   control_experiments:
     CTRL-ADAPT-SEQ:
       path: studies/ADAPTIVE-SEQUENCE/results/adaptive_sequence_study.json

@@ -18,6 +18,14 @@ stages:
     allowed_use: 四道沉积、修订胀套与连续薄裙、名义包络、设计预算及互锁；不放行实物性能或正式热结构
     upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS]
     next_action: 按当前说明书和四页图集开展设计评审；完整热结构、柔性工装与洁净性能保持未验证
+  THERMAL-R1-SINGLEPASS-DIAGNOSTIC:
+    execution_status: actual_fvm_solver_run_completed_60_s
+    acceptance_result: solver_converged_energy_residual_within_diagnostic_limit
+    evidence_level: solver_result_unvalidated
+    evidence: simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json
+    allowed_use: 新Ø1.6棒径和3.5 mm等面积截面接入既有FV求解链的单段热诊断；禁止代表四道整件热历史
+    upstream_dependencies: [COMPETITION-R1, THERMAL-NUMERICAL-GATE]
+    next_action: 若要给正式热载荷，需建立四道108 mm路径和通过空间/能量准入；当前结果仅用于数值回归
   G-INPUTS:
     execution_status: controlled_inputs_volume_candidate_and_conditional_load_basis_defined
     acceptance_result: not_closed
@@ -126,7 +134,7 @@ stages:
     evidence_level: solver_disagreement_physical_unvalidated
     allowed_use: 通过后可标记solver_verified并提供正式THERMAL-1热载荷；非正式Route B研究不授予该标签
     upstream_dependencies: [THERMAL-0.7-BOUNDARY-NEUMANN, THERMAL-REF, THERMAL-REF-PLAN7, THERMAL-REF-PLAN8]
-    next_action: 常物性共同probe焊缝/QT近场仍差123.71/101.04°C；保留原能量与收敛门，非正式敏感性执行不升级solver_verified
+    next_action: 已完成dt=0.05 s复核和最小元素焓账探针；同材元素账闭合，跨材料共享节点在热演化同时发生时出现非闭合，下一步分离出生步与导热步的节点装配审计，保留原能量与收敛门
   THERMAL-PHYSICAL-CALIBRATION:
     execution_status: protocol_only
     acceptance_result: not_executed
@@ -198,14 +206,14 @@ stages:
     next_action: 无实物Route B不安排CMM、NDT或洁净度试验；仅保留验收流程和洁净度控制设计
   ROUTE-B-DESIGN:
     execution_status: six_candidates_108_capacity_process_cases_and_precision_inverse_budget_completed
-    acceptance_result: conditional_selection_available_full_engineering_release_not_available
-    evidence_level: design_assumption
+    acceptance_result: digital_recommendation_frozen_physical_release_not_available
+    evidence_level: design_assumption_reference_envelope
     allowed_use: 原沉积效率范围内的承载—净热输入—弧燃时间条件选型及公差反算；禁止替代整件位置度与焊接质量验收
-    evidence: studies/ROUTE-B-DESIGN/results/assessment.json
+    evidence: [studies/ROUTE-B-DESIGN/results/assessment.json, studies/COMPETITION-DESIGN/results/robust-selection.json]
     upstream_dependencies: [LOAD-BASIS-0, STRUCT-UNCERTAINTY]
     formal: false
     experimental_data_required: false
-    next_action: 用候选实际焊序和三材料几何补充约束/释放研究；夹具与防护可达性要基于有尺寸的实体，不能拿示意图当干涉验证
+    next_action: 6P-FAIR_B四道冻结为数字推荐；若进入工程放行，补实际载荷、焊序热结构、焊缝成形和物理质量验证
   TOOLING-ACCESS:
     execution_status: occ_swept_shield_torch_envelopes_and_cone_force_checks_completed
     acceptance_result: limited_geometry_routes_available_cleanliness_and_repeatability_open
@@ -218,9 +226,11 @@ stages:
     next_action: 设计覆盖周边落物路径的可收拢挡边，补独立倾斜约束、主动退锥和六支承实体；保留底口开放与工具包络假设
   DECISION:
     execution_status: conditional_capacity_heat_input_selection_completed
-    acceptance_result: conditional_research_priorities_only
-    evidence_level: mixed
-    allowed_use: 阶段设计评审
+    acceptance_result: digital_design_recommendation_released_physical_release_pending
+    evidence_level: design_assumption_reference_envelope
+    allowed_use: 竞赛数字设计推荐和阶段设计评审；不等同产品工程放行
     upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS, SERVICE]
     optional_physical_dependencies: [EXP-FINAL]
-    next_action: 容量筛查后按热输入提出研究优先项；残余变形无稳健排序，服役、精度与洁净未闭合前不发布完整工程推荐
+    next_action: 竞赛提交采用6P-FAIR_B；工程放行仍需热结构、焊缝成形、夹具重复性、洁净度和独立位置度证据
+
+

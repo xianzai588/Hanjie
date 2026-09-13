@@ -1,0 +1,41 @@
+{
+  "version": "COMPETITION-R1-DIGITAL-SELECTION-1",
+  "evidence_level": "design_assumption_reference_envelope",
+  "input": "studies/ROUTE-B-DESIGN/results/result.csv",
+  "frozen_scenario": {
+    "pass_count": 4,
+    "deposition_efficiency": 0.85,
+    "load_scale": 1.0,
+    "assumed_allowable_mpa": 60.0
+  },
+  "ranking": [
+    {
+      "candidate_id": "6P-FAIR_B/4pass",
+      "required_allowable_mpa": 56.58977732333571,
+      "capacity_margin": 1.0602621681506075,
+      "net_heat_input_kj": 142.5599999999999,
+      "weld_length_mm": 108.0,
+      "score": 0.33633205568278557
+    },
+    {
+      "candidate_id": "8P-FAIR_B/4pass",
+      "required_allowable_mpa": 42.44233299250171,
+      "capacity_margin": 1.413682890867479,
+      "net_heat_input_kj": 190.0800000000001,
+      "weld_length_mm": 144.0,
+      "score": 0.36591598231384953
+    },
+    {
+      "candidate_id": "Continuous/4pass",
+      "required_allowable_mpa": 12.972881051796202,
+      "capacity_margin": 4.625032771089233,
+      "net_heat_input_kj": 621.8694693186696,
+      "weld_length_mm": 471.1132343323254,
+      "score": 0.8824322026294905
+    }
+  ],
+  "recommended": "6P-FAIR_B/4pass",
+  "backup": "8P-FAIR_B/4pass",
+  "rejected_high_heat_reference": "Continuous/4pass",
+  "interpretation": "统一条件筛查下的工程排序；不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。"
+}

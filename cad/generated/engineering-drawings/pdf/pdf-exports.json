@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-08",
+  "generated_at": "2026-09-13",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 4,
+  "sheet_count": 5,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -25,6 +25,11 @@
       "pdf": "pdf/protected-process-assembly.pdf",
       "title": "连续防护、承力组件与退出路径",
       "source": "protected-process-assembly.svg"
+    },
+    {
+      "pdf": "pdf/inspection-and-release.pdf",
+      "title": "焊接顺序、测量基准与放行卡",
+      "source": "inspection-and-release.svg"
     }
   ]
 }

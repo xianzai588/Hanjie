@@ -1,0 +1,1265 @@
+ELMER SOLVER (v 9.0) STARTED AT: 2026/09/11 07:27:59
+ParCommInit: Initialize #PEs: 1
+MAIN: 
+MAIN: =============================================================
+MAIN: ElmerSolver finite element software, Welcome!
+MAIN: This program is free software licensed under (L)GPL
+MAIN: Copyright 1st April 1995 - , CSC - IT Center for Science Ltd.
+MAIN: Webpage http://www.csc.fi/elmer, Email elmeradm@csc.fi
+MAIN: Version: 9.0 (Rev: Release, Compiled: 2026-01-20)
+MAIN:  Running one task without MPI parallelization.
+MAIN:  Running with just one thread per task.
+MAIN:  Lua interpreter linked in.
+MAIN: =============================================================
+MAIN: 
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Reading Model: case.sif
+LoadInputFile: Scanning input file: case.sif
+LoadInputFile: Scanning only size info
+LoadInputFile: First time visiting
+LoadInputFile: Reading base load of sif file
+LoadInputFile: Loading input file: case.sif
+LoadInputFile: Reading base load of sif file
+Loading user function library: [ReferenceCallbacks]...[DormantCondition]
+Loading user function library: [ReferenceCallbacks]...[BirthSource]
+Loading user function library: [ReferenceCallbacks]...[SurfaceFlux]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceDensity]
+Loading user function library: [ReferenceCallbacks]...[SecantCapacity]
+Loading user function library: [ReferenceCallbacks]...[ReferenceConductivity]
+LoadInputFile: Number of BCs: 1
+LoadInputFile: Number of Body Forces: 1
+LoadInputFile: Number of Initial Conditions: 1
+LoadInputFile: Number of Materials: 3
+LoadInputFile: Number of Equations: 1
+LoadInputFile: Number of Solvers: 3
+LoadInputFile: Number of Bodies: 3
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 1/600:   1.000E-01
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  152.43137      2.0000000     ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  152.36579     0.43029976E-03 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  152.36767     0.12323508E-04 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  152.36761     0.41715381E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  152.36761     0.15532282E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  152.36761     0.46741081E-09 ) :: heat equation
+REF time=   0.100 max=   570.966 energy residual= -1.5661E-01
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 2/600:   2.000E-01
+MAIN: Estimated time left: 21.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  154.51937     0.14023168E-01 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  154.48289     0.23613984E-03 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  154.48370     0.52451991E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  154.48368     0.14219081E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  154.48368     0.42048322E-08 ) :: heat equation
+REF time=   0.200 max=   739.150 energy residual= -3.5028E-01
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 3/600:   3.000E-01
+MAIN: Estimated time left: 16.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  156.35176     0.12019755E-01 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  156.33098     0.13294577E-03 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  156.33121     0.15111854E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  156.33121     0.21005467E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  156.33121     0.17982805E-09 ) :: heat equation
+REF time=   0.300 max=   852.847 energy residual= -5.1587E-01
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 4/600:   4.000E-01
+MAIN: Estimated time left: 16.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  158.00684     0.10661327E-01 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  157.99479     0.76268214E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  157.99491     0.78152139E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  157.99491     0.68123093E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 5/600:   5.000E-01
+MAIN: Estimated time left: 13.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  159.53075     0.96738026E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  159.52083     0.62214840E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  159.52091     0.52363459E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  159.52091     0.45818207E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 6/600:   6.000E-01
+MAIN: Estimated time left: 13.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  160.95070     0.89230543E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  160.94232     0.52084792E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  160.94238     0.38270696E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  160.94238     0.30234493E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 7/600:   7.000E-01
+MAIN: Estimated time left: 12.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  162.29023     0.83398304E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  162.28334     0.42498609E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  162.28338     0.27308192E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  162.28338     0.16897340E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 8/600:   8.000E-01
+MAIN: Estimated time left: 12.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  163.56557     0.78698704E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  163.55991     0.34654805E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  163.55993     0.17411867E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  163.55993     0.83832312E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 9/600:   9.000E-01
+MAIN: Estimated time left: 12.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  164.78774     0.74786821E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  164.78328     0.27072351E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  164.78330     0.12525744E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  164.78330     0.52062483E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 10/600:   1.000E+00
+MAIN: Estimated time left: 12.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  165.96447     0.71424388E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  165.96060     0.23340823E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  165.96061     0.10320193E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  165.96061     0.39898599E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 11/600:   1.100E+00
+MAIN: Estimated time left: 13.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  167.10171     0.68521356E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  167.09815     0.21318535E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  167.09816     0.93888663E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  167.09816     0.35345957E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 12/600:   1.200E+00
+MAIN: Estimated time left: 13.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  168.20399     0.65960175E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  168.19331     0.63509317E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  168.19388     0.34199890E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  168.19384     0.27341009E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  168.19384     0.21999418E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  168.19384     0.15865402E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 13/600:   1.300E+00
+MAIN: Estimated time left: 19.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  169.26140     0.63270991E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  169.25602     0.31760916E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  169.25646     0.25612625E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  169.25638     0.45701809E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  169.25639     0.83192926E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  169.25639     0.15110440E-07 ) :: heat equation
+ComputeChange: NS (ITER=7) (NRM,RELC): (  169.25639     0.25272570E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 14/600:   1.400E+00
+MAIN: Estimated time left: 23.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  170.27941     0.60260193E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  170.27833     0.63816549E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  170.27886     0.31180797E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  170.27886     0.20333335E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  170.27886     0.66272681E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 15/600:   1.500E+00
+MAIN: Estimated time left: 15.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  171.21695     0.54940479E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  171.21419     0.16143762E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  171.21420     0.55143247E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  171.21420     0.17920161E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 16/600:   1.600E+00
+MAIN: Estimated time left: 12.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  172.10109     0.51666379E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  172.09854     0.14826814E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  172.09855     0.48831166E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  172.09855     0.15470921E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 17/600:   1.700E+00
+MAIN: Estimated time left: 11.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  172.94900     0.49294969E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  172.94655     0.14209327E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  172.94655     0.46608748E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  172.94655     0.14721654E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 18/600:   1.800E+00
+MAIN: Estimated time left: 12.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  173.76904     0.47444228E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  173.76668     0.13563115E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  173.76669     0.44271379E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  173.76669     0.13702643E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 19/600:   1.900E+00
+MAIN: Estimated time left: 12.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  174.56586     0.45885702E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  174.56359     0.13023743E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  174.56360     0.43011802E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  174.56360     0.13508321E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 20/600:   2.000E+00
+MAIN: Estimated time left: 11.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  175.34300     0.44549472E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  175.34071     0.13085886E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  175.34072     0.42768901E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  175.34072     0.13677961E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 21/600:   2.100E+00
+MAIN: Estimated time left: 11.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  176.10275     0.43366035E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  176.10066     0.11892645E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  176.10062     0.22035767E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  176.10062     0.14636027E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 22/600:   2.200E+00
+MAIN: Estimated time left: 13.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  176.84468     0.42163169E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  176.84242     0.12828352E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  176.84242     0.43428990E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  176.84242     0.14878410E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 23/600:   2.300E+00
+MAIN: Estimated time left: 13.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  177.57288     0.41220521E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  177.57066     0.12528842E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  177.57067     0.42275751E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  177.57067     0.14350437E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 24/600:   2.400E+00
+MAIN: Estimated time left: 12.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  178.28762     0.40294344E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  178.28178     0.32732486E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  178.28199     0.11423724E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  178.28198     0.63312995E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  178.28198     0.35326427E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 25/600:   2.500E+00
+MAIN: Estimated time left: 14.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  178.98261     0.39221880E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  178.97924     0.18793047E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  178.97910     0.78586161E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  178.97909     0.85386986E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  178.97908     0.87178232E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 26/600:   2.600E+00
+MAIN: Estimated time left: 15.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  179.66618     0.38316269E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  179.66204     0.23059297E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  179.66229     0.13752482E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  179.66226     0.16098396E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  179.66226     0.19053851E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  179.66226     0.22360520E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 27/600:   2.700E+00
+MAIN: Estimated time left: 17.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  180.33656     0.37461294E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  180.33414     0.13417745E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  180.33428     0.75758000E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  180.33425     0.15430144E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  180.33426     0.32169662E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  180.33426     0.66640836E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 28/600:   2.800E+00
+MAIN: Estimated time left: 18.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  180.97836     0.35653851E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  180.97679     0.86735010E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  180.97684     0.23429186E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  180.97684     0.34793199E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  180.97684     0.57123387E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 29/600:   2.900E+00
+MAIN: Estimated time left: 15.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  181.59608     0.34158014E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  181.59473     0.74249716E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  181.59471     0.11462945E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  181.59472     0.91702535E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 30/600:   3.000E+00
+MAIN: Estimated time left: 13.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  182.19483     0.32992407E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  182.19213     0.14823336E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  182.19208     0.25215927E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  182.19208     0.15635598E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  182.19208     0.86983384E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 31/600:   3.100E+00
+MAIN: Estimated time left: 18.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  182.77540     0.31965427E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  182.77342     0.10819600E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  182.77343     0.30765658E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  182.77343     0.97133652E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 32/600:   3.200E+00
+MAIN: Estimated time left: 12.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  183.34468     0.31206273E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  183.34122     0.18877203E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  183.34109     0.73279470E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  183.34108     0.66389938E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  183.34108     0.56768404E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 33/600:   3.300E+00
+MAIN: Estimated time left: 14.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  183.89902     0.30385908E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  183.89693     0.11389232E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  183.89693     0.31131651E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  183.89693     0.12042784E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 34/600:   3.400E+00
+MAIN: Estimated time left: 11.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  184.44679     0.29855507E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  184.44461     0.11807095E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  184.44462     0.32564490E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  184.44462     0.13099917E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 35/600:   3.500E+00
+MAIN: Estimated time left: 12.1 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  184.98758     0.29394423E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  184.97722     0.56007228E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  184.97725     0.19842569E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  184.97724     0.69660190E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  184.97724     0.11023018E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 36/600:   3.600E+00
+MAIN: Estimated time left: 15.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  185.50772     0.28636958E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  185.50557     0.11590112E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  185.50558     0.30414477E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  185.50558     0.11838045E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 37/600:   3.700E+00
+MAIN: Estimated time left: 11.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  186.03348     0.28416984E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  186.02672     0.36347157E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  186.02680     0.43553139E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  186.02679     0.72341777E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 38/600:   3.800E+00
+MAIN: Estimated time left: 12.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  186.54862     0.28012007E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  186.54575     0.15382926E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  186.54613     0.20178243E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  186.54612     0.39705594E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  186.54613     0.34834365E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  186.54613     0.17669925E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 39/600:   3.900E+00
+MAIN: Estimated time left: 18.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  187.06708     0.27886966E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  187.06514     0.10339759E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  187.06515     0.19734480E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  187.06515     0.56157693E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 40/600:   4.000E+00
+MAIN: Estimated time left: 11.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  187.58268     0.27627576E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  187.58085     0.97393923E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  187.58085     0.17725726E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  187.58085     0.49117757E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 41/600:   4.100E+00
+MAIN: Estimated time left: 11.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  188.08157     0.26657641E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  188.08100     0.29933195E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  188.08115     0.75277627E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  188.08116     0.75617333E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  188.08116     0.76602117E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 42/600:   4.200E+00
+MAIN: Estimated time left: 15.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  188.55670     0.25251519E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  188.55472     0.10453681E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  188.55473     0.19320734E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  188.55473     0.39610172E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 43/600:   4.300E+00
+MAIN: Estimated time left: 11.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  189.01432     0.24345040E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  189.01309     0.65104090E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  189.01306     0.19745883E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  189.01306     0.13561331E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  189.01306     0.72208529E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 44/600:   4.400E+00
+MAIN: Estimated time left: 14.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  189.46335     0.23795115E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  189.46132     0.10737624E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  189.46132     0.23145222E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  189.46132     0.90744067E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 45/600:   4.500E+00
+MAIN: Estimated time left: 13.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  189.90470     0.23374745E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  189.90260     0.11058344E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  189.90261     0.25022666E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  189.90261     0.10116343E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 46/600:   4.600E+00
+MAIN: Estimated time left: 12.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  190.34164     0.23091888E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  190.34004     0.83790972E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  190.33993     0.55567639E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  190.33996     0.10983554E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  190.33995     0.20507054E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  190.33995     0.37981944E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 47/600:   4.700E+00
+MAIN: Estimated time left: 20.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  190.77886     0.23032742E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  190.77240     0.33900242E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  190.77260     0.10483664E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  190.77254     0.27638035E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  190.77255     0.26801736E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  190.77255     0.41857152E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 48/600:   4.800E+00
+MAIN: Estimated time left: 19.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  191.20263     0.22518911E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  191.19988     0.14384478E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  191.19980     0.43596159E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  191.19978     0.75555272E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  191.19978     0.12125743E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  191.19978     0.21033005E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 49/600:   4.900E+00
+MAIN: Estimated time left: 20.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  191.62753     0.22346708E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  191.62200     0.28826037E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  191.62230     0.15299168E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  191.62227     0.14221846E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  191.62227     0.13134367E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  191.62227     0.97720205E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 50/600:   5.000E+00
+MAIN: Estimated time left: 20.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  192.04899     0.22243804E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  192.04569     0.17164474E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  192.04587     0.93421466E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  192.04583     0.19352760E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  192.04584     0.30972265E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  192.04584     0.64981050E-08 ) :: heat equation
+REF time=   5.000 max=  1447.995 energy residual= -2.4224E+00
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 51/600:   5.100E+00
+MAIN: Estimated time left: 18.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  192.46809     0.21962804E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  192.47037     0.11864636E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  192.47047     0.50060546E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  192.47047     0.89487212E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 52/600:   5.200E+00
+MAIN: Estimated time left: 11.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  192.90194     0.22392600E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  192.90003     0.98963428E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  192.90004     0.16685757E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  192.90004     0.32863093E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 53/600:   5.300E+00
+MAIN: Estimated time left: 11.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  193.33359     0.22450093E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  193.33493     0.69265571E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  193.33513     0.10372876E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  193.33514     0.57063321E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  193.33514     0.31569731E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 54/600:   5.400E+00
+MAIN: Estimated time left: 16.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  193.76860     0.22395027E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  193.76681     0.92102120E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  193.76682     0.13884103E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  193.76682     0.24978864E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 55/600:   5.500E+00
+MAIN: Estimated time left: 11.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  194.17241     0.20910462E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  194.17040     0.10367269E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  194.17040     0.15775544E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  194.17040     0.24252010E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 56/600:   5.600E+00
+MAIN: Estimated time left: 11.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  194.56240     0.20168000E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  194.56037     0.10452383E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  194.56037     0.18374109E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  194.56037     0.33914911E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 57/600:   5.700E+00
+MAIN: Estimated time left: 11.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  194.94485     0.19742016E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  194.94278     0.10642555E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  194.94278     0.20949442E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  194.94278     0.86710636E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 58/600:   5.800E+00
+MAIN: Estimated time left: 11.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  195.32367     0.19519241E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  195.32239     0.65374510E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  195.32227     0.62804198E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  195.32229     0.10015936E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  195.32229     0.15038002E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  195.32229     0.21134045E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 59/600:   5.900E+00
+MAIN: Estimated time left: 17.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  195.70407     0.19527316E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  195.70180     0.11596280E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  195.70181     0.27148569E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  195.70181     0.11399280E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 60/600:   6.000E+00
+MAIN: Estimated time left: 11.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  196.08346     0.19483002E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  196.07614     0.37374224E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  196.07629     0.80133556E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  196.07629     0.25279718E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  196.07629     0.70918813E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 61/600:   6.100E+00
+MAIN: Estimated time left: 14.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  196.45518     0.19305125E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  196.45418     0.51221854E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  196.45418     0.21933852E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  196.45416     0.10692783E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  196.45416     0.26164464E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  196.45416     0.62818737E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 62/600:   6.200E+00
+MAIN: Estimated time left: 17.1 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  196.83139     0.19183416E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  196.82917     0.11276594E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  196.82918     0.25953830E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  196.82918     0.10744370E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 63/600:   6.300E+00
+MAIN: Estimated time left: 11.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  197.21252     0.19456791E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  197.20696     0.28190895E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  197.20712     0.82152479E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  197.20711     0.20204933E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  197.20712     0.70090937E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 64/600:   6.400E+00
+MAIN: Estimated time left: 14.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  197.59281     0.19538527E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  197.59070     0.10668376E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  197.59070     0.18888087E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  197.59070     0.32740444E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 65/600:   6.500E+00
+MAIN: Estimated time left: 11.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  197.98061     0.19713817E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  197.97695     0.18502438E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  197.97703     0.42568096E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  197.97705     0.10400210E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  197.97706     0.13246088E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  197.97706     0.16495216E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 66/600:   6.600E+00
+MAIN: Estimated time left: 18.1 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  198.37049     0.19852987E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  198.36861     0.94724370E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  198.36862     0.13799149E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  198.36862     0.14788218E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 67/600:   6.700E+00
+MAIN: Estimated time left: 11.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  198.76388     0.19905756E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  198.76421     0.16735211E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  198.76440     0.94997264E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  198.76441     0.76228066E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  198.76441     0.61635404E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 68/600:   6.800E+00
+MAIN: Estimated time left: 14.1 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  199.13802     0.18778792E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  199.13613     0.94926844E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  199.13613     0.15215716E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  199.13613     0.18529276E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 69/600:   6.900E+00
+MAIN: Estimated time left: 11.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  199.49294     0.17901657E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  199.49098     0.98313762E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  199.49098     0.17042161E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  199.49098     0.26440793E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 70/600:   7.000E+00
+MAIN: Estimated time left: 11.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  199.83985     0.17472485E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  199.83775     0.10480953E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  199.83776     0.19335484E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  199.83776     0.27008323E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 71/600:   7.100E+00
+MAIN: Estimated time left: 12.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  200.18283     0.17252880E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  200.18225     0.29079494E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  200.18225     0.11336706E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  200.18225     0.90513993E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 72/600:   7.200E+00
+MAIN: Estimated time left: 11.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  200.52771     0.17242433E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  200.52499     0.13547404E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  200.52510     0.55598863E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  200.52508     0.11894502E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  200.52508     0.26452832E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  200.52508     0.58334851E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 73/600:   7.300E+00
+MAIN: Estimated time left: 16.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  200.86584     0.16978838E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  200.86575     0.43623699E-06 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  200.86563     0.62784753E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  200.86564     0.45938485E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  200.86563     0.31712955E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 74/600:   7.400E+00
+MAIN: Estimated time left: 14.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  201.21350     0.17303273E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  201.20878     0.23435200E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  201.20909     0.15421136E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  201.20905     0.19589656E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  201.20906     0.25032951E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  201.20906     0.31761169E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 75/600:   7.500E+00
+MAIN: Estimated time left: 16.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  201.55668     0.17261719E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  201.55556     0.55539832E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  201.55540     0.78870566E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  201.55543     0.12866083E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  201.55542     0.20176845E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  201.55542     0.31402315E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 76/600:   7.600E+00
+MAIN: Estimated time left: 16.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  201.91188     0.17669797E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  201.90731     0.22630050E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  201.90740     0.41818938E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  201.90740     0.43488219E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 77/600:   7.700E+00
+MAIN: Estimated time left: 11.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  202.26639     0.17763949E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  202.26332     0.15134703E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  202.26318     0.71026689E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  202.26316     0.99103515E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  202.26316     0.13288227E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  202.26316     0.19444288E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 78/600:   7.800E+00
+MAIN: Estimated time left: 16.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  202.62204     0.17727572E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  202.62431     0.11213844E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  202.62447     0.79766350E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  202.62448     0.26684497E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  202.62448     0.81180312E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 79/600:   7.900E+00
+MAIN: Estimated time left: 13.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  202.99122     0.18083378E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  202.98643     0.23617619E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  202.98626     0.83444556E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  202.98626     0.21838065E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  202.98626     0.41509268E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 80/600:   8.000E+00
+MAIN: Estimated time left: 13.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  203.35616     0.18206375E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  203.35434     0.89237457E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  203.35435     0.13646440E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  203.35435     0.14436969E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 81/600:   8.100E+00
+MAIN: Estimated time left: 10.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  203.71062     0.17504648E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  203.70885     0.87228003E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  203.70885     0.13308497E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  203.70885     0.16392489E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 82/600:   8.200E+00
+MAIN: Estimated time left: 10.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  204.04389     0.16433366E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  204.04203     0.91051680E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  204.04203     0.16246810E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  204.04203     0.22768343E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 83/600:   8.300E+00
+MAIN: Estimated time left: 10.9 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  204.36780     0.15953222E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  204.36576     0.99797682E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  204.36577     0.18864017E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  204.36577     0.24282937E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 84/600:   8.400E+00
+MAIN: Estimated time left: 11.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  204.68661     0.15686913E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  204.68439     0.10852129E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  204.68439     0.21231158E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  204.68439     0.93888079E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 85/600:   8.500E+00
+MAIN: Estimated time left: 10.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  205.00355     0.15580600E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  205.00136     0.10666694E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  205.00147     0.50874565E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  205.00143     0.15585521E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  205.00144     0.38701054E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  205.00144     0.86780245E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 86/600:   8.600E+00
+MAIN: Estimated time left: 16.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  205.31810     0.15434813E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  205.31587     0.10878246E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  205.31587     0.23724799E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  205.31587     0.10495023E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 87/600:   8.700E+00
+MAIN: Estimated time left: 11.0 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  205.63708     0.15632454E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  205.63271     0.21257911E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  205.63276     0.25733466E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  205.63277     0.45104113E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  205.63277     0.12131298E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  205.63277     0.21841479E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 88/600:   8.800E+00
+MAIN: Estimated time left: 16.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  205.95743     0.15775844E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  205.95451     0.14194380E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  205.95465     0.69497135E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  205.95462     0.12996715E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  205.95463     0.24957579E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  205.95463     0.47714820E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 89/600:   8.900E+00
+MAIN: Estimated time left: 16.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  206.28070     0.15819517E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  206.28456     0.18738488E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  206.28467     0.51746408E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  206.28466     0.62071564E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  206.28466     0.10192011E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  206.28466     0.15731365E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 90/600:   9.000E+00
+MAIN: Estimated time left: 17.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  206.62368     0.16421116E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  206.62018     0.16906360E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  206.62008     0.49721701E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  206.62008     0.19196835E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  206.62008     0.22784529E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 91/600:   9.100E+00
+MAIN: Estimated time left: 13.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  206.96464     0.16662168E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  206.96175     0.13962507E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  206.96161     0.69625761E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  206.96158     0.10368373E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  206.96158     0.14869774E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  206.96158     0.23229736E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 92/600:   9.200E+00
+MAIN: Estimated time left: 16.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  207.30415     0.16538797E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  207.30368     0.22596113E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  207.30386     0.85983631E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  207.30389     0.10640338E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  207.30389     0.13257890E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  207.30389     0.17749677E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 93/600:   9.300E+00
+MAIN: Estimated time left: 17.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  207.65454     0.16900456E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  207.64933     0.25058744E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  207.64913     0.99433802E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  207.64912     0.54892579E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  207.64912     0.29577276E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 94/600:   9.400E+00
+MAIN: Estimated time left: 14.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  207.99282     0.16538660E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  207.98346     0.45004806E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  207.98433     0.41876394E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  207.98422     0.56643028E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  207.98423     0.80304747E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  207.98423     0.11829188E-07 ) :: heat equation
+ComputeChange: NS (ITER=7) (NRM,RELC): (  207.98423     0.15771095E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 95/600:   9.500E+00
+MAIN: Estimated time left: 19.5 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  208.29961     0.15152234E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  208.29783     0.85766328E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  208.29783     0.14442678E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  208.29783     0.12710217E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 96/600:   9.600E+00
+MAIN: Estimated time left: 10.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  208.60684     0.14824082E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  208.60491     0.92768480E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  208.60491     0.17766132E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  208.60491     0.16602466E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 97/600:   9.700E+00
+MAIN: Estimated time left: 10.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  208.91072     0.14649000E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  208.90859     0.10177378E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  208.90859     0.73032294E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 98/600:   9.800E+00
+MAIN: Estimated time left:  7.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  209.20855     0.14347802E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  209.20568     0.13682032E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  209.20583     0.70663595E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  209.20580     0.14983241E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  209.20581     0.32569795E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  209.20581     0.70194029E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 99/600:   9.900E+00
+MAIN: Estimated time left: 15.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  209.50175     0.14136203E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  209.50019     0.74456995E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  209.50009     0.49783248E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  209.50011     0.85305542E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  209.50010     0.13742184E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  209.50010     0.21281105E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 100/600:   1.000E+01
+MAIN: Estimated time left: 15.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  209.80318     0.14456370E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  209.79683     0.30274145E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  209.79706     0.10699511E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  209.79703     0.14193947E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  209.79703     0.24459510E-08 ) :: heat equation
+REF time=  10.000 max=  1498.589 energy residual= -2.9896E+00
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 101/600:   1.010E+01
+MAIN: Estimated time left: 13.1 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  210.09851     0.14359795E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  210.09659     0.91275595E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  210.09658     0.54206843E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  210.09658     0.12459652E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  210.09658     0.55192323E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 102/600:   1.020E+01
+MAIN: Estimated time left: 13.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  210.40871     0.14845478E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  210.40648     0.10591027E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  210.40648     0.23452471E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  210.40648     0.10067351E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 103/600:   1.030E+01
+MAIN: Estimated time left: 10.3 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  210.72244     0.15005098E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  210.72294     0.23792803E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  210.72289     0.25293111E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  210.72294     0.23409689E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  210.72294     0.31592433E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 104/600:   1.040E+01
+MAIN: Estimated time left: 12.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  211.05138     0.15574186E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  211.04743     0.18686566E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  211.04728     0.73439044E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  211.04727     0.53242733E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  211.04726     0.37438257E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 105/600:   1.050E+01
+MAIN: Estimated time left: 12.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  211.37458     0.15497282E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  211.37320     0.65489471E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  211.37322     0.84779343E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  211.37322     0.11889874E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  211.37321     0.35053214E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 106/600:   1.060E+01
+MAIN: Estimated time left: 12.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  211.70345     0.15611369E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  211.70139     0.97321298E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  211.70149     0.43807220E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  211.70146     0.12716874E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  211.70147     0.37892176E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  211.70147     0.11193349E-07 ) :: heat equation
+ComputeChange: NS (ITER=7) (NRM,RELC): (  211.70147     0.32174131E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 107/600:   1.070E+01
+MAIN: Estimated time left: 18.2 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  212.02587     0.15311757E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  212.01409     0.55539663E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  212.01469     0.28436420E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  212.01454     0.73087625E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  212.01458     0.17351302E-06 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  212.01457     0.44492000E-07 ) :: heat equation
+ComputeChange: NS (ITER=7) (NRM,RELC): (  212.01457     0.11550464E-07 ) :: heat equation
+ComputeChange: NS (ITER=8) (NRM,RELC): (  212.01457     0.29678862E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 108/600:   1.080E+01
+MAIN: Estimated time left: 19.8 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  212.31423     0.14124123E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  212.31254     0.79930632E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  212.31254     0.12805198E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  212.31254     0.86800906E-11 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 109/600:   1.090E+01
+MAIN: Estimated time left:  8.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  212.60864     0.13936893E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  212.60678     0.87458087E-05 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  212.60679     0.16252021E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  212.60679     0.10767687E-10 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 110/600:   1.100E+01
+MAIN: Estimated time left:  8.7 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  212.90052     0.13806331E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  212.89822     0.10804586E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  212.89819     0.14007589E-06 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  212.89819     0.17988877E-07 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  212.89819     0.19678658E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 111/600:   1.110E+01
+MAIN: Estimated time left: 10.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  213.19024     0.13708380E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  213.18529     0.23188125E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  213.18529     0.28224014E-07 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  213.18529     0.18015848E-09 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 112/600:   1.120E+01
+MAIN: Estimated time left:  8.4 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  213.47562     0.13609673E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  213.46503     0.49621595E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  213.46480     0.10818309E-05 ) :: heat equation
+ComputeChange: NS (ITER=4) (NRM,RELC): (  213.46476     0.17308098E-06 ) :: heat equation
+ComputeChange: NS (ITER=5) (NRM,RELC): (  213.46476     0.19388830E-07 ) :: heat equation
+ComputeChange: NS (ITER=6) (NRM,RELC): (  213.46476     0.22079852E-08 ) :: heat equation
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Time: 113/600:   1.130E+01
+MAIN: Estimated time left: 12.6 minutes
+MAIN: -------------------------------------
+MAIN: 
+ComputeChange: NS (ITER=1) (NRM,RELC): (  213.74781     0.13250983E-02 ) :: heat equation
+ComputeChange: NS (ITER=2) (NRM,RELC): (  213.74285     0.23175236E-04 ) :: heat equation
+ComputeChange: NS (ITER=3) (NRM,RELC): (  213.74304     0.89868112E-06 ) :: heat equation

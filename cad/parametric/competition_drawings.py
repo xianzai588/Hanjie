@@ -1,4 +1,4 @@
-"""从参赛配置及真实座体BREP生成四张设计图；尺寸要求与能力验证分开。"""
+"""从参赛配置及真实座体BREP生成五张设计图；尺寸要求与能力验证分开。"""
 import json
 import math
 from pathlib import Path
@@ -183,6 +183,41 @@ def shield_sheet(spec,result):
     return finish(parts)
 
 
+def inspection_sheet(spec, result):
+    """把焊接顺序、测量基准和放行条件放在一张可执行的检查图中。"""
+    parts=sheet("焊接顺序、测量基准与放行卡","HJ-R1-005",
+                "数字样机执行卡：顺序用于避免相邻段同时起弧；尺寸放行以A、B独立基准和冷态复测为准")
+    parts += [text(70,160,"一、焊接顺序与温度门控","section")]
+    sequence=["1","4","3","6","2","5"]
+    for i, item in enumerate(sequence):
+        x=85+i*82
+        parts.append(circle(x,235,25,fill="#d7eef0",stroke="#176b7b"))
+        parts.append(text(x-7,242,item,"section"))
+        if i < len(sequence)-1:
+            parts.append(line(x+28,235,x+55,235,"#176b7b",2))
+            parts.append(polygon([(x+55,235),(x+47,230),(x+47,240)],"#176b7b"))
+    parts += [text(72,295,"起弧前：监测点≥130℃", "small"),
+              text(72,323,"层间最高温度<200℃；超温等待", "small"),
+              text(72,351,"停弧后≥120 s且最高温度<55℃才松夹", "small"),
+              text(72,379,"冷却至20±1℃后进入独立测量", "small")]
+    parts += [text(70,445,"二、基准与测量闭环","section"),
+              box(75,500,205,70,"#eaf4f5"), box(365,500,205,70,"#eaf4f5"),
+              box(655,500,205,70,"#eaf4f5"), box(945,500,150,70,"#eaf4f5"),
+              text(95,540,"A：壳体下端安装面","small"),
+              text(385,540,"B：内壁双测量带轴线","small"),
+              text(675,540,"C：只识别周向焊段","small"),
+              text(965,540,"冷态复测","small")]
+    for x in (280,570,860):
+        parts.append(line(x,535,x+70,535,"#176b7b",2))
+        parts.append(polygon([(x+70,535),(x+62,530),(x+62,540)],"#176b7b"))
+    parts += [text(70,625,"三、数字放行条件（设计目标，不代表实测合格）","section"),
+              text(90,660,"Ø40孔轴：位置度 Ø0.05，相对A、B；测量长度12 mm", "small"),
+              text(90,686,"焊脚等效 z=3.50～3.80；单段长度18；六段总长108 mm", "small"),
+              text(630,660,"外缘 Ø149.94～149.98；壳体内径 Ø150.00～150.02", "small"),
+              text(630,686,"检查记录需绑定图号、批次、温度曲线和复测结果", "small")]
+    return finish(parts)
+
+
 def main():
     spec=read_spec(ROOT)
     result=current_assessment(ROOT)
@@ -191,13 +226,14 @@ def main():
     out=ROOT/"cad/generated/engineering-drawings"
     out.mkdir(parents=True,exist_ok=True)
     drawings={"bearing-seat.svg":seat_sheet(spec),"joint-detail.svg":joint_sheet(spec,result),
-              "fixture-assembly.svg":fixture_sheet(spec,result),"protected-process-assembly.svg":shield_sheet(spec,result)}
+              "fixture-assembly.svg":fixture_sheet(spec,result),"protected-process-assembly.svg":shield_sheet(spec,result),
+              "inspection-and-release.svg":inspection_sheet(spec,result)}
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
     (out/"drawing-manifest.json").write_text(json.dumps({"version":"COMPETITION-R1","source":"project/competition-design.yaml",
         "status":"competition design; not manufacturing release","drawings":list(drawings),"drawing_count":len(drawings),
         "excluded":"本目录其他SVG/PDF为历史版本，当前导出仅读取此清单"},ensure_ascii=False,indent=2),encoding="utf-8")
-    print("已同步四张参赛设计图")
+    print("已同步五张参赛设计图")
 
 
 if __name__ == "__main__":

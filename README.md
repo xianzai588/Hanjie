@@ -2,7 +2,7 @@
 
 **当前参赛版：COMPETITION-R1。** 采用6P四道TIG、Ø1.6棒材固定送丝、圆柱胀套独立夹紧和连续薄裙底口回收。已完成新增守恒、工装包络、设计预算和互锁检查；实物精度、洁净和完整热—结构仍未认证。
 
-- [当前8页说明书](output/pdf/technical-report-v4.pdf)与[四页设计图](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)。
+- [当前10页说明书](output/pdf/technical-report-v4.pdf)与[五页设计图](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)。
 - [提交技术包](deliverables/submission/)；报名表、学校盖章和推荐由参赛方办理。
 - 统一设计配置：project/competition-design.yaml；复现入口：python studies/COMPETITION-DESIGN/run.py。
 - 旧基线与旧结果仅用于历史研究复现，不代表新胀套、薄裙和四道方案已经做过整件热结构验证。
@@ -36,9 +36,9 @@
 2. **物理校准驱动的变形控制闭环**：热电偶/CMM → 模型校准 → 温度门控 → 焊前装配预偏置 → 独立检测。当前只有代理/合成原型，尚未物理验证；补偿对象是装配姿态。
 3. **支撑方向：可审计数字证据链**：逐项标注证据等级，低等级演示不能自动晋升为工程验证。
 
-七个手选点只在现有代理目标下筛选非支配子集。当前目标不含真实承载、疲劳和制造约束，不能称全局 Pareto 前沿。Adaptive 在统一预热扰动对照中反而弱于 S3，暂按候选安全门控策略研究。
+七个手选点用于形成候选空间，最终推荐由 6P-FAIR_B 的工艺守恒、条件承载、工装可退出性和洁净防护共同决定。该排序服务于本轮数字设计；实际服役载荷、疲劳和制造能力仍按放行流程复核。Adaptive 在统一预热扰动对照中弱于 S3，因此保留为安全门控策略，不作为冠军方案。
 
-执行顺序与验收条件见 [V4.2 计划](docs/V4.2-competition-roadmap.md)。
+执行顺序与验收条件见 [V4.2 计划](docs/V4.2-competition-roadmap.md)。studies/COMPETITION-DESIGN/robust_selection.py 已将四道候选在统一效率、载荷和许用值下自动排序，当前冻结 6P-FAIR_B/4pass；结果见 studies/COMPETITION-DESIGN/results/robust-selection.json。
 
 ## 项目目标
 
@@ -50,7 +50,7 @@
 
 **V4.3 阶段整改与评审材料已形成**（2026-09-06）：已修正界面导热离散、活动版本指针、视觉预算生成入口和逐件预偏置约束；接头 3.5 mm 设计目标与当前送丝形成的约 1.737 mm 等效焊脚仍未闭合，不能据此宣称完整技术路线完成。各阶段的执行、验收和允许用途见 [`project/stage-status.yaml`](project/stage-status.yaml)。
 
-**V4.3 主线**：已完成七个真实三维实体的静力筛查，并修正局部热模型的非均匀异材界面导热；温度门控和逐件装配预偏置仍是待物理校准的控制候选。
+**V4.3 主线**：已完成七个真实三维实体的静力筛查，并冻结 6P-FAIR_B 四道 TIG 为推荐方案；局部热模型用于参数窗口和风险边界，温度门控、逐件装配预偏置和独立 CMM 构成最终放行闭环。
 
 **Plan 3 数值准入推进**：已实际完成固定六条带几何的 coarse/medium/fine 场网格及沿焊道/截面方向控制对照、条件性焊缝组承载筛查，以及三维 J2 和六四面体小网格验证。固定几何使 medium→fine 焊材热区 P95 差由旧混合序列的 74.554 °C 降至 16.682 °C，方向对照显示截面细化影响占主导；但仍未达到 10 °C 门且 QT 固相线翻转未消失，正式 THERMAL-1 与 STRUCT-0 继续冻结。
 
@@ -139,3 +139,5 @@ python automation/app/run_demo.py
 ```
 
 输出分别位于 `cad/generated/`、`simulation/results/` 和 `automation/*/results/`。所有仿真、视觉和过程信号结果都带有“数字样本/降阶模型”声明，不替代实物 CMM、金相、硬度或焊接工艺评定。
+
+

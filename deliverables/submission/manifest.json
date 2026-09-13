@@ -7,10 +7,13 @@
     "04-设计计算.json": "studies/COMPETITION-DESIGN/results/assessment.json",
     "05-设计指标.csv": "studies/COMPETITION-DESIGN/results/result.csv",
     "06-工艺提案.md": "deliverables/process/joint-process-card.md",
-    "07-设计参数.yaml": "project/competition-design.yaml"
+    "07-设计参数.yaml": "project/competition-design.yaml",
+    "08-R1单段热诊断.json": "simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
+    "09-守恒修订与放行闭环.svg": "deliverables/submission/09-守恒修订与放行闭环.svg",
+    "10-复现与版本冻结记录.md": "deliverables/submission/10-复现与版本冻结记录.md"
   },
-  "report_pages": 8,
-  "drawing_pages": 4,
+  "report_pages": 14,
+  "drawing_pages": 5,
   "submission_scope": "technical_design_only",
   "physical_performance_verified": false
 }

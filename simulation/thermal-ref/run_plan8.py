@@ -14,8 +14,11 @@ PLAN=ref.ROOT/"project/thermal-partition-plan8.yaml"
 RESULTS=ref.HERE/"results/plan8"
 
 
-def prepare(out,constant=False):
+def prepare(out,constant=False,time_step=None):
     cfg=ref.load(PLAN); spec=ref.load(ref.SPEC)
+    if time_step is not None:
+        # 仅用于时间离散敏感性复核；正式输入仍由 project/thermal-reference-elmer.yaml 冻结。
+        spec["solver"]["time_step_s"] = float(time_step)
     spec["solver"]["output_interval_steps"]=1
     record=ref.prepare(out,"REF-C",spec)
     offset=0. if constant else cfg["elmer_restart_s"]
@@ -68,9 +71,10 @@ def main():
     parser.add_argument("mode",choices=["dynamic","constant"])
     parser.add_argument("--output-dir",type=Path)
     parser.add_argument("--elmer-home",type=Path,default=ref.DEFAULT_HOME)
+    parser.add_argument("--time-step",type=float,help="时间步敏感性复核步长（秒）")
     args=parser.parse_args()
     out=(args.output_dir or RESULTS/f"elmer-{args.mode}").resolve()
-    prepare(out,args.mode=="constant"); ref.run(out,args.elmer_home)
+    prepare(out,args.mode=="constant",args.time_step); ref.run(out,args.elmer_home)
     return 0
 
 

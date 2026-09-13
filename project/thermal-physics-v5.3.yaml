@@ -13,6 +13,9 @@ sources:
   nife_supplier:
     url: https://nickelalloys.es/fundicion/fund-nife-cl-ernife-cl/
     scope: "ERNiFe-CI 焊丝成分和用途；未提供高温 k/cp 或潜热。"
+  kobelco_cast_iron_welding:
+    url: https://www.kobelco.co.jp/english/products/welding/pdf/2015_KOBELCO_Specific.pdf
+    scope: "ENiFe-CI铸铁焊接预热参考150~350°C；用于工艺窗口，不是本批次实测。"
   goldak_identifiability:
     url: https://doi.org/10.1016/j.addma.2024.104379
     scope: "LPBF 校准联合截面/纵向轮廓；只迁移方法，不迁移工艺参数。"
@@ -94,3 +97,5 @@ gates:
   thermal_1_allowed: false
   formal_struct_0_allowed: false
   requires: [material_specific_phase_change, enthalpy_verification, high_t_evidence, activation_sensitivity, deposition_mass_consistency, process_scan, plausible_two_sided_fusion, experimental_calibration, independent_validation]
+
+

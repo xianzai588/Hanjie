@@ -1,0 +1,2 @@
+step,time_s,birth_mass_kg,effective_birth_mass_kg,birth_enthalpy_j,FE_enthalpy_change_j,expected_change_j,step_defect_j,cumulative_defect_j
+1,0.1,2.05e-07,2.04999918e-07,0,3.56584893167478e-05,0,-3.56584893167478e-05,-3.56584893167478e-05

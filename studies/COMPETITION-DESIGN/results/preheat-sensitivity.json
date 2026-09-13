@@ -1,0 +1,36 @@
+{
+  "version": "COMPETITION-R1-PREHEAT-SENSITIVITY-1",
+  "preheat_range_c": [
+    150,
+    350
+  ],
+  "case_count": 30,
+  "best_by_preheat": [
+    {
+      "preheat_c": 150.0,
+      "case_id": "BASELINE-RIGID-8P-S2",
+      "p_sim_mm": 0.015708
+    },
+    {
+      "preheat_c": 200.0,
+      "case_id": "BASELINE-RIGID-8P-S2",
+      "p_sim_mm": 0.015708
+    },
+    {
+      "preheat_c": 250.0,
+      "case_id": "BASELINE-RIGID-8P-S2",
+      "p_sim_mm": 0.015708
+    },
+    {
+      "preheat_c": 300.0,
+      "case_id": "BASELINE-RIGID-8P-S2",
+      "p_sim_mm": 0.015708
+    },
+    {
+      "preheat_c": 350.0,
+      "case_id": "BASELINE-RIGID-8P-S2",
+      "p_sim_mm": 0.015708
+    }
+  ],
+  "interpretation": "降阶热结构代理仿真；用于预热窗口和焊序相对比较，不替代实物热循环或CMM。"
+}
