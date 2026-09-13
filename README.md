@@ -2,7 +2,7 @@
 
 **当前参赛版：COMPETITION-R1。** 采用6P四道TIG、Ø1.6棒材固定送丝、圆柱胀套独立夹紧和连续薄裙底口回收。已完成新增守恒、工装包络、设计预算和互锁检查；实物精度、洁净和完整热—结构仍未认证。
 
-- [当前10页说明书](output/pdf/technical-report-v4.pdf)与[五页设计图](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)。
+- [当前说明书（页数以提交包 manifest 为准）](output/pdf/technical-report-v4.pdf)与[五页设计图](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)。
 - [提交技术包](deliverables/submission/)；报名表、学校盖章和推荐由参赛方办理。
 - 统一设计配置：project/competition-design.yaml；复现入口：python studies/COMPETITION-DESIGN/run.py。
 - 旧基线与旧结果仅用于历史研究复现，不代表新胀套、薄裙和四道方案已经做过整件热结构验证。

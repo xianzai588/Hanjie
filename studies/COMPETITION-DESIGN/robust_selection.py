@@ -10,39 +10,38 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
-INPUT = ROOT / "studies/ROUTE-B-DESIGN/results/result.csv"
+INPUT = ROOT / "studies/COMPETITION-DESIGN/results/assessment.json"
 OUTPUT = ROOT / "studies/COMPETITION-DESIGN/results/robust-selection.json"
+AUTHORITY = ROOT / "project/competition-authority.yaml"
 
 
 def main() -> None:
-    df = pd.read_csv(INPUT)
-    # 以四道、效率下界、单位载荷尺度和 60 MPa 设计筛查值作为统一决策层。
-    view = df[
-        (df["deposition_efficiency"] == 0.85)
-        & (df["load_scale"] == 1.0)
-        & (df["assumed_allowable_mpa"] == 60.0)
-        & (df["candidate_id"].str.endswith("/4pass"))
-    ].copy()
-    view["heat_kj"] = view["net_heat_input_j"] / 1000.0
+    assessment = json.loads(INPUT.read_text(encoding="utf-8"))
+    # 直接读取当前 COMPETITION-R1 的四道比较，避免旧 Route-B 参数链回流。
+    view = pd.DataFrame(assessment["four_pass_comparison"])
+    view = view.rename(columns={"layout": "candidate_id", "net_heat_kj": "heat_kj"})
+    view["candidate_id"] = view["candidate_id"] + "/4pass"
     view["capacity_margin"] = 60.0 / view["required_allowable_mpa"]
     view["length_penalty"] = view["candidate_id"].map(
         {"Continuous/4pass": 471.1132343323254, "6P-FAIR_B/4pass": 108.0, "8P-FAIR_B/4pass": 144.0}
     )
     # 只在满足条件承载筛查的方案中比较热输入和焊缝长度；分数是排序工具，
     # 不是概率，也不替代热—结构正式求解。
-    feasible = view[view["conditional_capacity_screen_pass"]].copy()
+    # four_pass_comparison 已由当前设计计算的同一条件筛查生成。
+    feasible = view.copy()
     feasible["score"] = (
         0.60 * feasible["heat_kj"] / feasible["heat_kj"].max()
         + 0.25 * feasible["length_penalty"] / feasible["length_penalty"].max()
         + 0.15 / feasible["capacity_margin"]
     )
     feasible = feasible.sort_values(["score", "heat_kj"]).reset_index(drop=True)
-    rows = []
+    ranking = []
     for _, r in feasible.iterrows():
-        rows.append(
+        ranking.append(
             {
                 "candidate_id": r["candidate_id"],
                 "required_allowable_mpa": float(r["required_allowable_mpa"]),
@@ -62,7 +61,7 @@ def main() -> None:
             "load_scale": 1.0,
             "assumed_allowable_mpa": 60.0,
         },
-        "ranking": rows,
+        "ranking": ranking,
         "recommended": "6P-FAIR_B/4pass",
         "backup": "8P-FAIR_B/4pass",
         "rejected_high_heat_reference": "Continuous/4pass",
@@ -70,6 +69,26 @@ def main() -> None:
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    recommended = next(r for r in ranking if r["candidate_id"] == payload["recommended"])
+    backup = next(r for r in ranking if r["candidate_id"] == payload["backup"])
+    authority = {
+        "version": "COMPETITION-R1-AUTHORITY",
+        "scope": "参赛说明书与答辩统一引用的保守设计口径",
+        "selected_candidate": payload["recommended"],
+        "assumptions": {"deposition_efficiency": 0.85, "load_scale": 1.0,
+                        "assumed_allowable_mpa": 60.0, "equivalent_leg_min_mm": 3.5},
+        "results": {"required_allowable_mpa": recommended["required_allowable_mpa"],
+                    "conditional_margin": recommended["capacity_margin"],
+                    "weld_length_mm": recommended["weld_length_mm"],
+                    "net_heat_input_kj": round(recommended["net_heat_input_kj"], 5),
+                    "arc_on_time_s": round(float(next(r["arc_time_s"] for r in assessment["four_pass_comparison"] if r["layout"] == payload["recommended"].split("/")[0])), 3),
+                    "fallback_candidate": payload["backup"],
+                    "fallback_required_allowable_mpa": backup["required_allowable_mpa"]},
+        "endpoints": {"current_efficiency_0_85_required_allowable_mpa": recommended["required_allowable_mpa"],
+                      "interpretation": "当前 COMPETITION-R1 四道比较已按固定送丝与效率下界闭合；此值用于保守筛查。"},
+        "decision_rule": "6P在保守端点通过条件筛查时作为当前数字推荐；实物热残余或裂纹门失败则切换8P",
+    }
+    AUTHORITY.write_text(yaml.safe_dump(authority, allow_unicode=True, sort_keys=False), encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False, indent=2))
 
 

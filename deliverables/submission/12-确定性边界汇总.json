@@ -1,0 +1,72 @@
+{
+  "version": "COMPETITION-R1-DETERMINISTIC-BOUNDARY-1",
+  "strength": {
+    "basis": "required_allowable_mpa scales linearly with load multiplier",
+    "thresholds": {
+      "6P-FAIR_B": 52.17319678607985,
+      "8P-FAIR_B": 39.12989758955982
+    },
+    "reference_point": {
+      "load_multiplier": 1.0,
+      "allowable_mpa": 60.0,
+      "region": "6P_and_8P"
+    },
+    "grid_csv": "studies/ROBUST-BOUNDARY/results/strength-boundary.csv",
+    "plot_svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg"
+  },
+  "position": {
+    "limit_diameter_mm": 0.05,
+    "limit_radial_mm": 0.025,
+    "tilt_radial_allowance_mm": 0.0008,
+    "other_radial_error_baseline_mm": 0.013800000000000002,
+    "formula": "thermal_max = 0.025 - other_radial_error - measurement_uncertainty_diameter/2",
+    "rows": [
+      {
+        "scenario": "当前目标",
+        "other_radial_error_mm": 0.0138,
+        "measurement_uncertainty_diameter_mm": 0.002,
+        "thermal_residual_radial_mm": 0.008,
+        "thermal_max_allowed_radial_mm": 0.0102,
+        "total_diameter_with_uncertainty_mm": 0.0456,
+        "closes": true
+      },
+      {
+        "scenario": "工装差0.002",
+        "other_radial_error_mm": 0.0158,
+        "measurement_uncertainty_diameter_mm": 0.002,
+        "thermal_residual_radial_mm": 0.008,
+        "thermal_max_allowed_radial_mm": 0.0082,
+        "total_diameter_with_uncertainty_mm": 0.0496,
+        "closes": true
+      },
+      {
+        "scenario": "测量不确定度恶化",
+        "other_radial_error_mm": 0.0138,
+        "measurement_uncertainty_diameter_mm": 0.004,
+        "thermal_residual_radial_mm": 0.008,
+        "thermal_max_allowed_radial_mm": 0.0092,
+        "total_diameter_with_uncertainty_mm": 0.0476,
+        "closes": true
+      },
+      {
+        "scenario": "工装差+测量恶化",
+        "other_radial_error_mm": 0.0158,
+        "measurement_uncertainty_diameter_mm": 0.004,
+        "thermal_residual_radial_mm": 0.008,
+        "thermal_max_allowed_radial_mm": 0.0072,
+        "total_diameter_with_uncertainty_mm": 0.0516,
+        "closes": false
+      },
+      {
+        "scenario": "热残余失效边界",
+        "other_radial_error_mm": 0.0138,
+        "measurement_uncertainty_diameter_mm": 0.002,
+        "thermal_residual_radial_mm": 0.0102,
+        "thermal_max_allowed_radial_mm": 0.0102,
+        "total_diameter_with_uncertainty_mm": 0.05,
+        "closes": true
+      }
+    ],
+    "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"
+  }
+}

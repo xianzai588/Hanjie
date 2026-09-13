@@ -1,0 +1,6 @@
+﻿scenario,other_radial_error_mm,measurement_uncertainty_diameter_mm,thermal_residual_radial_mm,thermal_max_allowed_radial_mm,total_diameter_with_uncertainty_mm,closes
+当前目标,0.0138,0.002,0.008,0.0102,0.0456,True
+工装差0.002,0.0158,0.002,0.008,0.0082,0.0496,True
+测量不确定度恶化,0.0138,0.004,0.008,0.0092,0.0476,True
+工装差+测量恶化,0.0158,0.004,0.008,0.0072,0.0516,False
+热残余失效边界,0.0138,0.002,0.0102,0.0102,0.05,True

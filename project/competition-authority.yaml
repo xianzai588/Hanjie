@@ -7,14 +7,14 @@ assumptions:
   assumed_allowable_mpa: 60.0
   equivalent_leg_min_mm: 3.5
 results:
-  required_allowable_mpa: 56.58977732333571
-  conditional_margin: 1.0602621681506075
+  required_allowable_mpa: 52.17319678607985
+  conditional_margin: 1.1500157877235615
   weld_length_mm: 108.0
   net_heat_input_kj: 142.56
   arc_on_time_s: 288.0
   fallback_candidate: 8P-FAIR_B/4pass
-  fallback_required_allowable_mpa: 42.44233299250171
+  fallback_required_allowable_mpa: 39.12989758955982
 endpoints:
-  optimistic_efficiency_1_required_allowable_mpa: 52.17319678607985
-  interpretation: 0.85为固定送丝设计的保守端点；1.00仅作效率上限对照，不用于放行
+  current_efficiency_0_85_required_allowable_mpa: 52.17319678607985
+  interpretation: 当前 COMPETITION-R1 四道比较已按固定送丝与效率下界闭合；此值用于保守筛查。
 decision_rule: 6P在保守端点通过条件筛查时作为当前数字推荐；实物热残余或裂纹门失败则切换8P

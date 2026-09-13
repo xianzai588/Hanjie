@@ -10,7 +10,15 @@
     "07-设计参数.yaml": "project/competition-design.yaml",
     "08-R1单段热诊断.json": "simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
     "09-守恒修订与放行闭环.svg": "deliverables/submission/09-守恒修订与放行闭环.svg",
-    "10-复现与版本冻结记录.md": "deliverables/submission/10-复现与版本冻结记录.md"
+    "10-复现与版本冻结记录.md": "deliverables/submission/10-复现与版本冻结记录.md",
+    "11-候选选择.json": "studies/COMPETITION-DESIGN/results/robust-selection.json",
+    "12-确定性边界汇总.json": "studies/ROBUST-BOUNDARY/results/boundary-summary.json",
+    "13-6P-8P切换边界.csv": "studies/ROBUST-BOUNDARY/results/strength-boundary.csv",
+    "14-位置度失效边界.csv": "studies/ROBUST-BOUNDARY/results/position-boundary.csv",
+    "15-确定性边界图.svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg",
+    "16-位置度边界图.svg": "studies/ROBUST-BOUNDARY/results/position-boundary.svg",
+    "17-参数来源与证据等级.md": "deliverables/submission/17-参数来源与证据等级.md",
+    "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg"
   },
   "report_pages": 14,
   "drawing_pages": 5,

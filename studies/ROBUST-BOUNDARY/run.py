@@ -1,0 +1,115 @@
+"""生成 COMPETITION-R1 的确定性鲁棒边界，不进行随机抽样或实物性能推断。"""
+from __future__ import annotations
+
+import csv
+import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import yaml
+
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "studies/ROBUST-BOUNDARY/results"
+
+
+def load_inputs():
+    authority = yaml.safe_load((ROOT / "project/competition-authority.yaml").read_text(encoding="utf-8"))
+    assessment = json.loads((ROOT / "studies/COMPETITION-DESIGN/results/assessment.json").read_text(encoding="utf-8"))
+    return authority, assessment
+
+
+def strength_boundary(authority, assessment):
+    rows = {r["layout"]: r for r in assessment["four_pass_comparison"]}
+    six = rows["6P-FAIR_B"]["required_allowable_mpa"]
+    eight = rows["8P-FAIR_B"]["required_allowable_mpa"]
+    load_multipliers = [round(0.50 + i * 0.05, 2) for i in range(31)]
+    allowables = list(range(20, 121, 5))
+    grid = []
+    for load in load_multipliers:
+        for allowable in allowables:
+            six_ok = allowable >= load * six
+            eight_ok = allowable >= load * eight
+            region = "6P_and_8P" if six_ok else "8P_only" if eight_ok else "neither"
+            grid.append({"load_multiplier": load, "allowable_mpa": allowable,
+                         "six_p_ok": six_ok, "eight_p_ok": eight_ok, "region": region})
+    # 给图使用连续阈值：许用应力低于曲线即不满足条件筛查。
+    OUT.mkdir(parents=True, exist_ok=True)
+    with (OUT / "strength-boundary.csv").open("w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=list(grid[0]))
+        writer.writeheader(); writer.writerows(grid)
+    fig, ax = plt.subplots(figsize=(8.4, 5.2), dpi=160)
+    ax.fill_between(load_multipliers, [m * eight for m in load_multipliers],
+                    [m * six for m in load_multipliers], color="#f2c94c", alpha=.45,
+                    label="6P失败、8P通过")
+    ax.fill_between(load_multipliers, 0, [m * eight for m in load_multipliers],
+                    color="#e76f51", alpha=.28, label="两者均不通过")
+    ax.plot(load_multipliers, [m * six for m in load_multipliers], color="#1b4965", lw=2.2, label="6P阈值")
+    ax.plot(load_multipliers, [m * eight for m in load_multipliers], color="#2a9d8f", lw=2.2, label="8P阈值")
+    ax.axvline(authority["assumptions"]["load_scale"], color="#555", ls="--", lw=1)
+    ax.axhline(authority["assumptions"]["assumed_allowable_mpa"], color="#555", ls=":", lw=1)
+    ax.set(xlabel="载荷倍率（相对参考包络）", ylabel="假设许用应力 / MPa",
+           title="COMPETITION-R1 确定性 6P → 8P 切换边界")
+    ax.set_xlim(.5, 2.0); ax.set_ylim(0, 125); ax.grid(alpha=.2); ax.legend(loc="upper left", frameon=True)
+    fig.tight_layout(); fig.savefig(OUT / "strength-boundary.svg", format="svg"); plt.close(fig)
+    return {"basis": "required_allowable_mpa scales linearly with load multiplier",
+            "thresholds": {"6P-FAIR_B": six, "8P-FAIR_B": eight},
+            "reference_point": {"load_multiplier": authority["assumptions"]["load_scale"],
+                                "allowable_mpa": authority["assumptions"]["assumed_allowable_mpa"],
+                                "region": "6P_and_8P" if authority["assumptions"]["assumed_allowable_mpa"] >= six else "8P_only"},
+            "grid_csv": "studies/ROBUST-BOUNDARY/results/strength-boundary.csv",
+            "plot_svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg"}
+
+
+def position_boundary():
+    spec = yaml.safe_load((ROOT / "project/competition-design.yaml").read_text(encoding="utf-8"))
+    p, f = spec["precision"], spec["fixture"]
+    tilt = 2 * p["support_height_spread_limit_mm"] / (3 * f["support_radius_mm"])
+    tilt_radial = p["bore_length_mm"] * tilt
+    allocations = p["radial_allocations_mm"]
+    other = sum(v for k, v in allocations.items() if k != "thermal_residual_target") + tilt_radial
+    limit_radial = p["limit_diameter_mm"] / 2
+    scenarios = [
+        ("当前目标", allocations["thermal_residual_target"], p["measurement_expanded_uncertainty_diameter_target_mm"], 0.0),
+        ("工装差0.002", allocations["thermal_residual_target"], p["measurement_expanded_uncertainty_diameter_target_mm"], 0.002),
+        ("测量不确定度恶化", allocations["thermal_residual_target"], 0.004, 0.0),
+        ("工装差+测量恶化", allocations["thermal_residual_target"], 0.004, 0.002),
+        ("热残余失效边界", limit_radial - other - p["measurement_expanded_uncertainty_diameter_target_mm"] / 2, p["measurement_expanded_uncertainty_diameter_target_mm"], 0.0),
+    ]
+    rows = []
+    for name, thermal, uncertainty_dia, fixture_extra in scenarios:
+        allowed = limit_radial - (other + fixture_extra) - uncertainty_dia / 2
+        total_dia = 2 * (other + fixture_extra + thermal) + uncertainty_dia
+        rows.append({"scenario": name, "other_radial_error_mm": round(other + fixture_extra, 6),
+                     "measurement_uncertainty_diameter_mm": uncertainty_dia,
+                     "thermal_residual_radial_mm": round(thermal, 6),
+                     "thermal_max_allowed_radial_mm": round(allowed, 6),
+                     "total_diameter_with_uncertainty_mm": round(total_dia, 6),
+                     "closes": total_dia <= p["limit_diameter_mm"] + 1e-12})
+    payload = {"limit_diameter_mm": p["limit_diameter_mm"], "limit_radial_mm": limit_radial,
+               "tilt_radial_allowance_mm": tilt_radial, "other_radial_error_baseline_mm": other,
+               "formula": "thermal_max = 0.025 - other_radial_error - measurement_uncertainty_diameter/2",
+               "rows": rows, "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"}
+    (OUT / "position-boundary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with (OUT / "position-boundary.csv").open("w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
+    fig, ax = plt.subplots(figsize=(8.4, 4.8), dpi=160)
+    names = [r["scenario"] for r in rows]; vals = [r["thermal_max_allowed_radial_mm"] for r in rows]
+    bars = ax.bar(names, vals, color=["#2a9d8f", "#f2c94c", "#f4a261", "#e76f51", "#1b4965"])
+    ax.axhline(allocations["thermal_residual_target"], color="#333", ls="--", label="当前热残余目标 0.008 mm")
+    ax.set_ylabel("热残余最大允许径向量 / mm"); ax.set_title("Ø0.05 位置度预算：热残余确定性边界")
+    ax.grid(axis="y", alpha=.2); ax.legend(loc="upper right")
+    for bar, val in zip(bars, vals): ax.text(bar.get_x()+bar.get_width()/2, val+.0001, f"{val:.4f}", ha="center", fontsize=8)
+    fig.tight_layout(); fig.savefig(OUT / "position-boundary.svg", format="svg"); plt.close(fig)
+    return payload
+
+
+def main():
+    authority, assessment = load_inputs()
+    payload = {"version": "COMPETITION-R1-DETERMINISTIC-BOUNDARY-1",
+               "strength": strength_boundary(authority, assessment), "position": position_boundary()}
+    (OUT / "boundary-summary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()
