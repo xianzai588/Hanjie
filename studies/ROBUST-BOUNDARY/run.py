@@ -85,10 +85,19 @@ def position_boundary():
                      "thermal_max_allowed_radial_mm": round(allowed, 6),
                      "total_diameter_with_uncertainty_mm": round(total_dia, 6),
                      "closes": total_dia <= p["limit_diameter_mm"] + 1e-12})
+    # 连续浅波纹薄裙的梁近似：把半波长视为简支弯曲长度，给出数量级应变检查。
+    t, wave_pitch, compression = 0.15, 24.0, 0.35
+    half_span = wave_pitch / 2
+    bending_strain = 6 * compression * t / half_span**2
+    skirt = {"configuration": "连续浅波纹金属薄裙＋刚性接料盘", "thickness_mm": t,
+             "wave_pitch_mm": wave_pitch, "radial_compliance_required_mm": compression,
+             "beam_approx_bending_strain": round(bending_strain, 7),
+             "interpretation": "数量级筛查；候选弹簧不锈钢需以材料证书屈服应变和热态循环试验复核"}
     payload = {"limit_diameter_mm": p["limit_diameter_mm"], "limit_radial_mm": limit_radial,
                "tilt_radial_allowance_mm": tilt_radial, "other_radial_error_baseline_mm": other,
                "formula": "thermal_max = 0.025 - other_radial_error - measurement_uncertainty_diameter/2",
-               "rows": rows, "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"}
+               "rows": rows, "continuous_skirt_check": skirt,
+               "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"}
     (OUT / "position-boundary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     with (OUT / "position-boundary.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)

@@ -3,7 +3,7 @@
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 5,
+  "sheet_count": 6,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -30,6 +30,11 @@
       "pdf": "pdf/inspection-and-release.pdf",
       "title": "焊接顺序、测量基准与放行卡",
       "source": "inspection-and-release.svg"
+    },
+    {
+      "pdf": "pdf/sleeve-detail.pdf",
+      "title": "胀套—锥芯—拉杆—压环局部剖视详图",
+      "source": "sleeve-detail.svg"
     }
   ]
 }

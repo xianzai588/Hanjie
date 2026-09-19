@@ -1,6 +1,7 @@
 {
   "version": "COMPETITION-R1",
   "files": {
+    "00-评审导航.txt": "deliverables/submission/00-评审导航.txt",
     "01-工艺设计说明书.pdf": "output/pdf/technical-report-v4.pdf",
     "02-设计图集.pdf": "cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf",
     "03-名义装配包络.step": "cad/generated/competition-design/competition-assembly.step",
@@ -21,7 +22,7 @@
     "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg"
   },
   "report_pages": 14,
-  "drawing_pages": 5,
+  "drawing_pages": 6,
   "submission_scope": "technical_design_only",
   "physical_performance_verified": false
 }

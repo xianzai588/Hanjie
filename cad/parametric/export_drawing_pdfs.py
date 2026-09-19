@@ -147,7 +147,7 @@ def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float,
 def main() -> None:
     register_fonts()
     manifest = json.loads((SVG_DIR / "drawing-manifest.json").read_text(encoding="utf-8"))
-    svg_paths = [SVG_DIR / name for name in manifest["drawings"]]
+    svg_paths = [SVG_DIR / name for name in manifest["drawings"] + manifest.get("supplemental_drawings", [])]
     if not svg_paths:
         raise FileNotFoundError(f"未找到 SVG 图纸: {SVG_DIR}")
     PDF_DIR.mkdir(parents=True, exist_ok=True)

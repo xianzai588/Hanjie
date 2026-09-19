@@ -19,6 +19,7 @@ def main():
     out = ROOT/"deliverables/submission"
     out.mkdir(parents=True, exist_ok=True)
     files = {
+        "00-评审导航.txt":"deliverables/submission/00-评审导航.txt",
         "01-工艺设计说明书.pdf":"output/pdf/technical-report-v4.pdf",
         "02-设计图集.pdf":"cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf",
         "03-名义装配包络.step":"cad/generated/competition-design/competition-assembly.step",

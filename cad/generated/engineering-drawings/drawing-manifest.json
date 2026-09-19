@@ -10,5 +10,8 @@
     "inspection-and-release.svg"
   ],
   "drawing_count": 5,
-  "excluded": "本目录其他SVG/PDF为历史版本，当前导出仅读取此清单"
+  "supplemental_drawings": [
+    "sleeve-detail.svg"
+  ],
+  "excluded": "本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"
 }

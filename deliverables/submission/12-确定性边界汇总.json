@@ -67,6 +67,14 @@
         "closes": true
       }
     ],
+    "continuous_skirt_check": {
+      "configuration": "连续浅波纹金属薄裙＋刚性接料盘",
+      "thickness_mm": 0.15,
+      "wave_pitch_mm": 24.0,
+      "radial_compliance_required_mm": 0.35,
+      "beam_approx_bending_strain": 0.0021875,
+      "interpretation": "数量级筛查；候选弹簧不锈钢需以材料证书屈服应变和热态循环试验复核"
+    },
     "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"
   }
 }

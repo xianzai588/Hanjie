@@ -218,6 +218,44 @@ def inspection_sheet(spec, result):
     return finish(parts)
 
 
+def sleeve_detail_sheet(spec, result):
+    """胀套局部详图：冻结可制造接口，但明确仍属设计评审图。"""
+    f = spec["fixture"]
+    parts = sheet("胀套—锥芯—拉杆—压环局部剖视详图", "HJ-R1-006",
+                  "局部制造定义 / SECTION B-B / 尺寸为设计冻结值，未作制造签审")
+    # 左侧为轴向剖面，右侧为胀套端视图；所有槽均为盲底圆角，避免贯穿泄漏路径。
+    parts += [text(70, 155, "轴向剖面 B-B", "section"),
+              box(90, 260, 300, 86, "#dbe7ee"), box(90, 346, 300, 38, "#94a3b8"),
+              polygon([(155, 260), (325, 260), (300, 220), (180, 220)], "#f2c94c"),
+              polygon([(205, 220), (275, 220), (260, 155), (220, 155)], "#64748b"),
+              box(130, 384, 220, 26, "#475569"), box(178, 410, 124, 55, "#cbd5e1"),
+              line(240, 145, 240, 470, "#64748b", 1),
+              text(104, 245, "胀套 OD 39.94 收拢 / 40.04 最大", "small"),
+              text(300, 210, "10°", "dim"), text(308, 178, "锥芯", "note"),
+              text(102, 435, "回退肩", "note"), text(307, 435, "拉杆 M12×1.5", "note"),
+              text(70, 520, "端视图：6 槽等分60°", "section"), circle(240, 625, 105, "#dbe7ee"),
+              circle(240, 625, 76, "#f8fafc"), circle(240, 625, 28, "#64748b")]
+    for i in range(6):
+        a = i * math.pi / 3
+        x1, y1 = 240 + 76 * math.cos(a), 625 - 76 * math.sin(a)
+        x2, y2 = 240 + 105 * math.cos(a), 625 - 105 * math.sin(a)
+        parts.append(line(x1, y1, x2, y2, "#dc2626", 3))
+    notes(parts, [
+        "胀套：17-4PH 或同等强度耐蚀钢；有效壁厚2.0",
+        "槽数6；槽宽0.80；槽底R1.00；槽深贯穿至内孔但不延伸出接触带",
+        "接触带 z101～103、109～111；覆盖率90%",
+        "锥芯半角10°；有效驱动长度8；锥面Ra1.6",
+        "拉杆接口 M12×1.5；压环端面承担500 N轴向力",
+        "回退肩＋机械止挡：正向行程1.00，收拢确认后才允许下撤",
+        "防转：拉杆端键宽4×4，胀套外圆导向键槽；不靠摩擦传扭",
+        "径向合力标量≤100 N；驱动力上限由可更换限力垫片设定",
+        "配合：锥芯/拉杆 H7/g6；胀套外圆与孔为功能接触，不作过盈配合",
+        "关键表面：接触带Ra0.8，槽口去毛刺R0.2，边缘不得划伤孔壁",
+        "详图用于工程评审；材料批次、热处理和弹性回程仍需验证",
+    ], x=620, y=170, step=36)
+    return finish(parts)
+
+
 def main():
     spec=read_spec(ROOT)
     result=current_assessment(ROOT)
@@ -227,13 +265,16 @@ def main():
     out.mkdir(parents=True,exist_ok=True)
     drawings={"bearing-seat.svg":seat_sheet(spec),"joint-detail.svg":joint_sheet(spec,result),
               "fixture-assembly.svg":fixture_sheet(spec,result),"protected-process-assembly.svg":shield_sheet(spec,result),
-              "inspection-and-release.svg":inspection_sheet(spec,result)}
+              "inspection-and-release.svg":inspection_sheet(spec,result),
+              "sleeve-detail.svg":sleeve_detail_sheet(spec,result)}
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
+    core = [name for name in drawings if name != "sleeve-detail.svg"]
     (out/"drawing-manifest.json").write_text(json.dumps({"version":"COMPETITION-R1","source":"project/competition-design.yaml",
-        "status":"competition design; not manufacturing release","drawings":list(drawings),"drawing_count":len(drawings),
-        "excluded":"本目录其他SVG/PDF为历史版本，当前导出仅读取此清单"},ensure_ascii=False,indent=2),encoding="utf-8")
-    print("已同步五张参赛设计图")
+        "status":"competition design; not manufacturing release","drawings":core,"drawing_count":len(core),
+        "supplemental_drawings":["sleeve-detail.svg"],
+        "excluded":"本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"},ensure_ascii=False,indent=2),encoding="utf-8")
+    print(f"已同步{len(drawings)}张参赛设计图")
 
 
 if __name__ == "__main__":
