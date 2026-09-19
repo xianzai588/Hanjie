@@ -52,6 +52,9 @@ simulation/thermal-ref/results/**/window-fields.npz
 .vscode/
 .idea/
 
+# Agent 工作区本地数据（会话记忆/临时状态）；交付物与证据仍按正常路径入库
+.workbuddy/
+
 # OS
 .DS_Store
 Thumbs.db
