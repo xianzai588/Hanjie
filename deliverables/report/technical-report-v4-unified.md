@@ -237,7 +237,7 @@ Continuous 0.000304 mm是既定静载与约束下的平均孔轴位置度直径�
 
 该节拍把数字方案转化为可执行的制造检查点。当前版本只冻结输入、判据和拒绝逻辑，实际设备能力与质量结果仍由后续工艺评定和独立测量决定。
 
-详细设计以COMPETITION-R1为准，交付说明书、五页图纸、名义装配STEP、计算CSV与结构化记录。旧局部仿真输入保留以供复现，不能将新工装或Ø1.6四道工艺代入旧结果并声称已重算。TOOLING-ACCESS的漏接与裸锥失败情景是整改依据，不是新方案现状。
+详细设计以COMPETITION-R1为准，交付说明书、六页设计图集、名义装配STEP、计算CSV与结构化记录。旧局部仿真输入保留以供复现，不能将新工装或Ø1.6四道工艺代入旧结果并声称已重算。TOOLING-ACCESS的漏接与裸锥失败情景是整改依据，不是新方案现状。
 
 在项目目录依次执行：python studies/COMPETITION-DESIGN/run.py；python cad/parametric/generate_engineering_drawings.py；python cad/parametric/export_drawing_pdfs.py；python deliverables/report/build_technical_report_pdf.py。分别产生计算/STEP、图纸、图集和说明书。默认图集仅读取当前清单，避免混入历史文件。
 

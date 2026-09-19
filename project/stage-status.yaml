@@ -17,7 +17,7 @@ stages:
     evidence: studies/COMPETITION-DESIGN/results/assessment.json
     allowed_use: 四道沉积、修订胀套与连续薄裙、名义包络、设计预算及互锁；不放行实物性能或正式热结构
     upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS]
-    next_action: 按当前说明书和四页图集开展设计评审；完整热结构、柔性工装与洁净性能保持未验证
+    next_action: 按当前说明书与设计图集开展设计评审；完整热结构、柔性工装与洁净性能保持未验证
   THERMAL-R1-SINGLEPASS-DIAGNOSTIC:
     execution_status: actual_fvm_solver_run_completed_60_s
     acceptance_result: solver_converged_energy_residual_within_diagnostic_limit

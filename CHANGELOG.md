@@ -1,5 +1,13 @@
 # Changelog
 
+## COMPETITION-R1-RC2 - 2026-09-19
+
+- 修正交付文档页数口径漂移：以包内 manifest 实际计数（14页说明书、6页设计图集）为准，统一 `10-复现与版本冻结记录.md`、`submission-checklist.md`、`registration-description.md`、`technical-report-v4-unified.md` 中的过期表述，并移除 `stage-status.yaml`、`current_status.py` 里硬编码的图集页数。
+- `scripts/competition_submission_lint.py` 增加页数声明门禁 `check_page_claims`：扫描交付文档与说明书 PDF 中“N页说明书/N页设计图/N页图集/N页图纸”声明，与 manifest 实际计数比对后不通过即失败。
+- 新增 `tests/test_submission_page_claims.py`，覆盖阿拉伯数字与中文数字解析、过期页数识别与当前仓库一致性。
+- 重新构建技术包：说明书页数仍为14页，PDF 文本差异仅“五页图纸→六页设计图集”一处；计算记录（assessment/robust-selection/boundary-summary/CSV）与工艺卡逐字节未变，STEP 体积不变。
+- 重新封版为 RC2，更新 `deliverables/COMPETITION-R1-RC2-SHA256.txt`；RC1 哈希记录保留为历史。
+
 ## V4.3.0 - 2026-09-06
 
 - 修正非均匀异材网格公共面的串联热阻离散，并新增解析、左右交换、部分出生和守恒测试；旧热结果保留，新建 0.4R1 证据目录重跑。
