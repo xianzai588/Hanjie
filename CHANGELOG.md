@@ -1,5 +1,12 @@
 # Changelog
 
+## 仓库维护 - 2026-09-19
+
+- 修复 Git LFS 服务端缺对象：全新克隆会报 `[404] Object does not exist on the server`，涉及 9 个 `.step`（共 2.0 MB，`cad/generated/tooling-access/` 与 `simulation/structural-v4/` 下全部模型，含 4P/6P/8P/Continuous 与壳体外壳）。本地缓存与工作树内容完好且 sha256 与指针一致，用 `git lfs push --object-id origin <oid>` 逐对象补传完成。
+- 根因：`git lfs push` 只扫描本次新提交涉及的对象，历史提交里的 LFS 对象从未被校验上传；`git lfs push --dry-run` 在无新提交时无输出，不能作为"服务端齐备"的依据。判断服务端真实状态需在干净目录 `git lfs fetch` 实测。
+- CONTRIBUTING.md 增加"克隆后必做的 LFS 校验"与本次事故记录，说明指针/真内容的判别方式与补传命令。
+- 已用全新目录克隆并检出验证：11 个 `.step` 全部还原为真实 STEP，0 个残留指针。
+
 ## COMPETITION-R1-RC2 - 2026-09-19
 
 - 修正交付文档页数口径漂移：以包内 manifest 实际计数（14页说明书、6页设计图集）为准，统一 `10-复现与版本冻结记录.md`、`submission-checklist.md`、`registration-description.md`、`technical-report-v4-unified.md` 中的过期表述，并移除 `stage-status.yaml`、`current_status.py` 里硬编码的图集页数。

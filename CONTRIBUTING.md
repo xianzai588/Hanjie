@@ -29,3 +29,26 @@ main
 
 - 仿真大文件（`*.odb` `*.rst` `*.rth` `*.cas` 等）禁止入库，见 `.gitignore`。
 - CAD 源文件与视频走 Git LFS（见 `.gitattributes`）：`*.step` `*.stp` `*.sldprt` `*.sldasm` `*.dwg` `*.mp4`。
+
+### 克隆后必做的 LFS 校验
+
+```powershell
+git lfs install
+git clone git@github.com:xianzai588/Hanjie.git   # 或先 clone 再 git lfs pull
+cd Hanjie
+git lfs pull
+git lfs fsck                                      # 期望：Git LFS fsck OK
+Select-String -Path (git ls-files '*.step') -Pattern '^version https://git-lfs' -List
+# 上一行无输出 = 所有 .step 都是真实内容；有输出说明仍是未取回的指针
+```
+
+判断指针与真内容：文件首行是 `version https://git-lfs.github.com/spec/v1` 即为未取回的指针；真实 STEP 首行为 `ISO-10303-21;`。
+
+**2026-09-19 事故与修复记录**：服务端曾缺失 9 个 LFS 对象（2.0 MB，`cad/generated/tooling-access/`、`simulation/structural-v4/` 下的全部 `.step`），新克隆会报 `[404] Object does not exist on the server`。原因是这些指针来自历史提交，而 `git lfs push` 只扫描**本次新提交**涉及的对象，历史对象从未被校验上传。修复方式为按对象补传：
+
+```powershell
+git lfs ls-files --long                 # 取完整 oid
+git lfs push --object-id origin <oid>   # 对每个服务端缺失的 oid 执行
+```
+
+已从全新目录克隆检出验证：11 个 `.step` 全部还原为真实 STEP（0 个指针）。**改动 `.step` 后请补跑一次 `git lfs push origin main`；若历史对象疑似缺失，用上面的 `--object-id` 方式补传。**
