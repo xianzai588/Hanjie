@@ -16,6 +16,11 @@
 - 测试锚点收敛：`test_report_contains_single_decision_rule` 改为锚定标题文本并断言全篇仅一处决策表，避免章节号漂移导致假失败。
 - 验证：`python -m pytest -q` → 217 passed；`scripts/competition_submission_lint.py` → PASS（19 文件、22/6 页）。
 - LFS 校验：本轮改动了 `cad/generated/competition-design/competition-assembly.step`，已随提交推送；按 `CONTRIBUTING.md` 的规程在全新目录克隆复核，11 个 `.step` 全部还原为真实 STEP、0 个指针，`git lfs push --dry-run` 无残留待传对象。
+- 重新封版为 RC3，新增 `deliverables/COMPETITION-R1-RC3-SHA256.txt`（技术包 ZIP、manifest、说明书/图集 PDF、STEP、计算记录与指标 CSV）；RC1、RC2 哈希记录保留为历史。
+- 修正 `10-复现与版本冻结记录.md` 中残留的上一轮验证口径：原写 `py -3.11 -m pytest -q` → 214 passed，更正为本轮实测 `python -m pytest -q` → 217 passed（Python 3.12.10）。
+- 构建确定性（SVG）：`studies/ROBUST-BOUNDARY/run.py` 固定 `svg.hashsalt` 并为 `savefig` 传入 `metadata={"Date": None}`。此前 matplotlib 每次重建都会改写元素 ID 与 `<dc:date>`，导致两张随包交付的边界图产生纯噪声差异；现连续多次重建逐字节一致。
+- 构建确定性（STEP）：`studies/COMPETITION-DESIGN/run.py` 新增 `normalize_step_timestamp()`，把 OCC 写入 `FILE_NAME` 的导出时刻归一化为固定值。此前每次重建都生成仅差一行时间戳的新内容，等于每次都向 LFS 写入一个新的 427 KB 对象（几何零变化）；现几何不变时产物逐字节稳定。改动按字节替换，除该字段外零改动，并已用 OCC 回读校验（7 root、8 solid、非空）。
+- 确定性验证：连续三次 `python deliverables/build_submission.py`，`competition-assembly.step`、`03-名义装配包络.step` 与两张边界 SVG 的 sha256 完全不变。
 
 ## 仓库维护 - 2026-09-19
 

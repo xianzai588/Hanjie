@@ -1,0 +1,12 @@
+COMPETITION-R1-RC3 SHA256
+# 2026-09-20 封版：说明书重组为22页（新增界面/反变形/变形测量/疲劳/局限五节），技术包随包重建
+# 03 为 Git LFS 内容的 sha256（非指针）；其头部时间戳已归一化，几何不变时逐字节稳定
+# 04/05 与 RC1 完全相同，说明本轮只改叙事与图表，未改动任何计算结果
+# ZIP 与两份 PDF 仍含生成时间戳，本表对这两项为快照校验值
+14a204f77e9acd4171fede8465d1895f6022fa29aaac7199d989394a841f7b56  deliverables/COMPETITION-R1-技术包.zip
+9d46a4718d42e45cde87c4ff90bbe9cbc9a18e911493dd4409be9c0cd5ee704c  deliverables/submission/manifest.json
+2384596714f13481f1024f3d5595bdb15f9f5924d25f71a849552e43ef94c5a1  deliverables/submission/01-工艺设计说明书.pdf
+a1d72c7d9856d0a0d082246329bf26c8f1a1e38b909f3a84f75c5cda766e418f  deliverables/submission/02-设计图集.pdf
+b84e035d2a7c861e56926a077a719d1585a1174949dbe2691d5720ff59c677a9  deliverables/submission/03-名义装配包络.step
+ed0ebbd01d5858321bee02265873f00428089baad97c2a4e0cbb64758616ed40  deliverables/submission/04-设计计算.json
+7e4bf7a2fddf54c6ae5e881378854642fbb441b2a9723b7cd493f8f70057d626  deliverables/submission/05-设计指标.csv
