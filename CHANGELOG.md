@@ -15,6 +15,7 @@
 - 新增 `docs/review/competition-r1-gap-analysis.md` 记录本轮诊断依据。
 - 测试锚点收敛：`test_report_contains_single_decision_rule` 改为锚定标题文本并断言全篇仅一处决策表，避免章节号漂移导致假失败。
 - 验证：`python -m pytest -q` → 217 passed；`scripts/competition_submission_lint.py` → PASS（19 文件、22/6 页）。
+- LFS 校验：本轮改动了 `cad/generated/competition-design/competition-assembly.step`，已随提交推送；按 `CONTRIBUTING.md` 的规程在全新目录克隆复核，11 个 `.step` 全部还原为真实 STEP、0 个指针，`git lfs push --dry-run` 无残留待传对象。
 
 ## 仓库维护 - 2026-09-19
 
