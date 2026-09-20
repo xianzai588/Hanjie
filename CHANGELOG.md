@@ -21,6 +21,9 @@
 - 构建确定性（SVG）：`studies/ROBUST-BOUNDARY/run.py` 固定 `svg.hashsalt` 并为 `savefig` 传入 `metadata={"Date": None}`。此前 matplotlib 每次重建都会改写元素 ID 与 `<dc:date>`，导致两张随包交付的边界图产生纯噪声差异；现连续多次重建逐字节一致。
 - 构建确定性（STEP）：`studies/COMPETITION-DESIGN/run.py` 新增 `normalize_step_timestamp()`，把 OCC 写入 `FILE_NAME` 的导出时刻归一化为固定值。此前每次重建都生成仅差一行时间戳的新内容，等于每次都向 LFS 写入一个新的 427 KB 对象（几何零变化）；现几何不变时产物逐字节稳定。改动按字节替换，除该字段外零改动，并已用 OCC 回读校验（7 root、8 solid、非空）。
 - 确定性验证：连续三次 `python deliverables/build_submission.py`，`competition-assembly.step`、`03-名义装配包络.step` 与两张边界 SVG 的 sha256 完全不变。
+- 哈希记录可用化：`RC1/RC2/RC3` 记录的首行由裸标题改为 `#` 注释行，使文件可被标准校验工具消费；新增 `scripts/verify_release_hashes.py`，逐项校验记录值与实际产物并打印差异（退出码 0/1），Windows 下不依赖 coreutils。
+- `CONTRIBUTING.md` 新增「封版哈希校验」与「构建确定性」两节，说明校验命令、历史记录为何只能对当时提交复验，以及哪些产物已逐字节稳定。
+- 全新克隆复验（commit 1d50059）：11 个 `.step` 全部为真实内容、0 指针，`git lfs fsck OK`；克隆内 7 项产物 sha256 与 RC3 记录逐项一致；说明书 22 页且新增五节与关键数字齐备。
 
 ## 仓库维护 - 2026-09-19
 
