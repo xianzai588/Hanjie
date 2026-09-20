@@ -1,5 +1,21 @@
 # Changelog
 
+## COMPETITION-R1-RC3 - 2026-09-20
+
+按官方命题五个维度与考核要点逐条复核后，完成说明书内容补齐与叙事重组；本轮不新增未运行的数值声明，全部新增内容基于已有计算结果、真实几何与文献。
+
+- 说明书新增五节：§2.1 异种材料界面设计与表面预处理（对应维度②的界面/过渡层/预处理/强韧匹配）、§3.2 应力释放与反变形与隔热结构（对应维度③）、§6.1 焊接变形精密测量、§6.2 焊缝疲劳与寿命评估（对应维度④的力学性能与疲劳试验方案）、§9.2 局限与验证路线。
+- 恢复 v2 说明书被删除的疲劳章节并更新为 6P 四道口径：IIW 名义应力法 FAT 63～80 基线、参考包络角点名义应力 52.17 MPa、FAT 63 名义裕量 1.21、三级验证试验计划。
+- 新增 §3.1，正面说明 6P 把焊缝压到整圈 22.9%、承载裕量由 5.0× 降至 1.15× 的代价，并给出 6P→8P 的自动切换边界。
+- 新增预算反算：由 Ø0.05 上限反算热残余允许径向上限 0.0102 mm，使位置度由待验证项变为有数值门限的放行条件。该反算与 `studies/ROBUST-BOUNDARY` 输出一致。
+- 叙事重组：摘要改为结论先行并新增「条件性达标判断」表；把分散全文的"未验证/不宣称"集中到 §9.2；局部热模型明确登记为热输入窗口依据并声明不作为位置度证据；432 例敏感性的"不可分辨"结论改写为设计依据。
+- 工艺卡 `06-工艺提案.md` 增加界面与过渡层、稀释控制、表面预处理、反变形、应力释放与隔热、后热、疲劳基线七行。
+- 修复边界图缺失中文字形：`studies/ROBUST-BOUNDARY/run.py` 新增 `configure_cjk_font()`，复用 `project/report.yaml` 的字体候选（本次解析为 DengXian），并设置 `svg.fonttype=path`，使两张随包交付的 SVG 在任何查看器下字形一致，构建警告由 60 余条归零。
+- 页数口径同步：说明书由 14 页增至 22 页，图集 6 页；更新 `10-复现与版本冻结记录.md`、`submission-checklist.md`、`registration-description.md` 与 `00-评审导航.txt`。
+- 新增 `docs/review/competition-r1-gap-analysis.md` 记录本轮诊断依据。
+- 测试锚点收敛：`test_report_contains_single_decision_rule` 改为锚定标题文本并断言全篇仅一处决策表，避免章节号漂移导致假失败。
+- 验证：`python -m pytest -q` → 217 passed；`scripts/competition_submission_lint.py` → PASS（19 文件、22/6 页）。
+
 ## 仓库维护 - 2026-09-19
 
 - 修复 Git LFS 服务端缺对象：全新克隆会报 `[404] Object does not exist on the server`，涉及 9 个 `.step`（共 2.0 MB，`cad/generated/tooling-access/` 与 `simulation/structural-v4/` 下全部模型，含 4P/6P/8P/Continuous 与壳体外壳）。本地缓存与工作树内容完好且 sha256 与指针一致，用 `git lfs push --object-id origin <oid>` 逐对象补传完成。
