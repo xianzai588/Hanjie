@@ -11,6 +11,11 @@ from OCP.IFSelect import IFSelect_RetDone
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def fixed(value):
+    """CSV 定点输出：抑制二进制浮点表示噪声（如 0.04360000000000001），保留双精度有效位。"""
+    return f"{value:.15g}" if isinstance(value, float) else value
+
+
 def main():
     result, bodies, _ = run_design(ROOT)
     g = result["geometry"]
@@ -38,7 +43,7 @@ def main():
         for category in ("process", "precision", "fixture"):
             for key, value in result[category].items():
                 if isinstance(value, (float, int, bool)):
-                    writer.writerow([category, key, value])
+                    writer.writerow([category, key, fixed(value)])
     print(json.dumps({"process":result["process"], "precision":result["precision"],
                       "torch_feed_gap_mm":g["torch_feed_clearance_mm"],"checks":checks}, ensure_ascii=False, indent=2))
 

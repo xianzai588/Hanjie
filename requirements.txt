@@ -14,3 +14,7 @@ gmsh>=4.15
 cadquery-ocp>=7.9.3.1,<8.0
 pytest>=8.0
 reportlab>=4.0
+# 参赛稳健选型研究：studies/COMPETITION-DESIGN/robust_selection.py 用 DataFrame 汇总候选对比
+pandas>=2.0
+# PDF 页数与文本读取：build_submission.py 打包、export_drawing_pdfs.py 与封版 lint 校验页数口径均依赖
+pymupdf>=1.24

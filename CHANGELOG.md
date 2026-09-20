@@ -1,5 +1,18 @@
 # Changelog
 
+## COMPETITION-R1-RC3 - 2026-09-19
+
+- 落实指导教师 2026-09-04 评审意见，在说明书新增两节：2.3「焊缝组织预估与接头性能推测」（母材×焊材×工艺三要素输入、名义稀释成分区间、五区分区组织预估表、强度匹配/硬度梯度/疲劳萌生位置/组织—变形耦合四项性能推测、工艺闭环与实测回填路径）、6.1「焊后变形量的软件预算方案」（Sysweld/Simufact 与 Abaqus+DFLUX 两套方案、材料含线膨胀系数/焊接参数/约束条件三类输入清单、输出回填路径、三因素敏感性与固有应变交叉校核）。
+- 两节均标注证据边界：组织预估为机理预估（无实测金相与显微硬度），变形量一节只给方法与输入、不输出计算数值；同步更新 7.1 放行总表、第 8 节五维度表与主要局限声明。
+- 线膨胀系数按 `project/materials.yaml` 权威口径取值（Q235B 12.0、QT450-10 10.5、ERNiFe-CI 11.0，单位 10⁻⁶/K），未沿用历史草稿中与配置分叉的 13.0/11.0 数值；热源标定、对流与辐射系数不引用已撤回的 V4.0 手工值。
+- 固定题目合规审查后的修正：删除 §8 五维表中对**包外证据**的引用（原“困难视觉和异常信号基准”“视觉基准、异常检测基准、端到端演示”位于 `automation/vision`、`automation/anomaly-detection`、`automation/app`，不在 21 项交付包内），改为包内可核对的项（位置度失效边界、候选与边界汇总、工艺卡与设计参数冻结表）；同步消除 §7.1 局限段与 §8 的口径矛盾，不再以“与题面无关”否定自动化维度的视觉基准。
+- 补齐固定题目明列但此前缺失的可涉及项（均为纯设计描述，不新增证据等级主张）：2 节新增「待焊表面预处理」与「预热与后热制度」（明确不设强制后热及其理由）；3 节新增「应力释放与变形控制的结构手段」（分段焊缝、对称跳序、槽根R2 圆角、薄裙柔性顺应、温度窗口松夹）；7.1 节新增「无损检测方法」（PT/MT/UT 分工，UT 需同批对比试块确认，RT 不作主手段）；9.1 节焊前装配与独立放行两行补入表面处理确认与 PT/UT 记录。
+- 说明书页数仍为 16，页数口径声明无需调整。
+- 重新封版为 RC3，新增 `deliverables/COMPETITION-R1-RC3-SHA256.txt`；RC1、RC2 哈希记录保留为历史。
+- `studies/COMPETITION-DESIGN/run.py` 的 `result.csv` 改为定点输出（`fixed()`，15 位有效数字），清除 CAD 再导出后的浮点表示噪声：`0.04360000000000001`→`0.0436`、`330.00000000000006`→`330`、`142559.99999999983`→`142560`。`assessment.json` 仍保留原始浮点，未改动。
+- 构建非字节确定性已定性：连续两次构建的 `01-工艺设计说明书.pdf`（creationDate）、`competition-assembly.step`（FILE_NAME 时间戳）与压缩包哈希必然不同，几何与正文不变；图件 PNG 逐字节稳定。RC3 记录中已加注说明，避免复现者误判为校验失败。
+- 环境说明：`studies/COMPETITION-DESIGN/robust_selection.py` 依赖 pandas、`build_submission.py` 与 `competition_submission_lint.py` 依赖 pymupdf，此前 `requirements.txt` 均未声明，导致在本机缺失依赖时 `build_submission.py` 中断；本轮已补装并声明 `pandas>=2.0` 与 `pymupdf>=1.24`。pytest 虽已声明但本机未安装，本轮未执行全量测试（`10-复现与版本冻结记录.md` 中原“214 passed”表述已改为本轮实际验证内容）。
+
 ## 仓库维护 - 2026-09-19
 
 - 修复 Git LFS 服务端缺对象：全新克隆会报 `[404] Object does not exist on the server`，涉及 9 个 `.step`（共 2.0 MB，`cad/generated/tooling-access/` 与 `simulation/structural-v4/` 下全部模型，含 4P/6P/8P/Continuous 与壳体外壳）。本地缓存与工作树内容完好且 sha256 与指针一致，用 `git lfs push --object-id origin <oid>` 逐对象补传完成。

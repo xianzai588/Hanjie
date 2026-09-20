@@ -3145,8 +3145,8 @@
         }
       },
       "brep_sha256": {
-        "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "25cbc01823f3921ee03a5a8c272c6da930f0acacd69c67c76c25c550e1271d8b",
-        "simulation/structural-v4/common/shell.brep": "043357e59cc627120082d2f77e0dec95f87c88fafe3bcfc0dcbe9fca3cbf1dc0"
+        "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "ccea3270853d63ea6280f75b5fada3dd4e090ff009677ee3d905bae1dd294b3d",
+        "simulation/structural-v4/common/shell.brep": "02570059d045af1f219a37c0ebafa942dacb5b0a86c33ee08614f40a6f14823e"
       }
     },
     "four_pass_comparison": [
@@ -3194,8 +3194,8 @@
     "precision": {
       "support_tilt_rad": 6.666666666666667e-05,
       "tilt_radial_allowance_mm": 0.0008,
-      "design_diameter_budget_mm": 0.0436,
-      "diameter_with_uncertainty_target_mm": 0.0456,
+      "design_diameter_budget_mm": 0.04360000000000001,
+      "diameter_with_uncertainty_target_mm": 0.04560000000000001,
       "design_budget_closes": true,
       "manufacturing_capability_verified": false,
       "thermal_residual_verified": false
