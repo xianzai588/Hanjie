@@ -52,3 +52,26 @@ git lfs push --object-id origin <oid>   # 对每个服务端缺失的 oid 执行
 ```
 
 已从全新目录克隆检出验证：11 个 `.step` 全部还原为真实 STEP（0 个指针）。**改动 `.step` 后请补跑一次 `git lfs push origin main`；若历史对象疑似缺失，用上面的 `--object-id` 方式补传。**
+
+### 封版哈希校验
+
+每个封版批次在 `deliverables/` 下留一份 `COMPETITION-R1-<RC>-SHA256.txt`，逐行记录产物哈希，格式与 `sha256sum` 一致（`#` 为注释行），可直接被标准工具消费。用仓库自带脚本校验（Windows 下不依赖 coreutils）：
+
+```powershell
+python scripts/verify_release_hashes.py --list          # 列出全部封版记录
+python scripts/verify_release_hashes.py                 # 校验最新一批（应对当前工作树全部通过）
+python scripts/verify_release_hashes.py --record deliverables/COMPETITION-R1-RC2-SHA256.txt
+```
+
+退出码 0 表示全部一致，1 表示存在缺失或不一致并逐项打印记录值与实际值。
+
+注意：**只有最新一批记录能对当前工作树通过**。ZIP、说明书/设计图集 PDF 内嵌生成时间戳，每次重建都会变，因此历史记录是当时的快照校验值，要复验必须先检出对应提交。`04-设计计算.json`、`05-设计指标.csv` 与 `03-名义装配包络.step` 已是确定性输出（见下），在结果未变时应与历史记录保持一致。
+
+### 构建确定性
+
+`python deliverables/build_submission.py` 重建时，以下产物在输入未变的情况下逐字节稳定，便于比对与冻结：
+
+- `03-名义装配包络.step`：`studies/COMPETITION-DESIGN/run.py` 把 OCC 写入 `FILE_NAME` 的导出时刻归一化为固定值（`normalize_step_timestamp()`），否则每次都生成仅差时间戳的新 LFS 对象。
+- `15-确定性边界图.svg`、`16-位置度边界图.svg`：`studies/ROBUST-BOUNDARY/run.py` 固定 `svg.hashsalt` 并传入 `metadata={"Date": None}`，否则 matplotlib 每次都会改写元素 ID 与 `<dc:date>`。
+
+ZIP 与两份 PDF 仍含生成时间戳，尚未做确定性处理；如需把它们也纳入可复现范围，应在构建时固定 PDF 的 `CreationDate`/`ModDate` 并以固定时间写入 ZIP 条目。

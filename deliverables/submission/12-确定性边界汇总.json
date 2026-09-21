@@ -1,5 +1,6 @@
 {
   "version": "COMPETITION-R1-DETERMINISTIC-BOUNDARY-1",
+  "cjk_font": "DengXian",
   "strength": {
     "basis": "required_allowable_mpa scales linearly with load multiplier",
     "thresholds": {

@@ -1,17 +1,56 @@
 # Changelog
 
-## COMPETITION-R1-RC3 - 2026-09-19
+## COMPETITION-R1-RC4 - 2026-09-20
 
-- 落实指导教师 2026-09-04 评审意见，在说明书新增两节：2.3「焊缝组织预估与接头性能推测」（母材×焊材×工艺三要素输入、名义稀释成分区间、五区分区组织预估表、强度匹配/硬度梯度/疲劳萌生位置/组织—变形耦合四项性能推测、工艺闭环与实测回填路径）、6.1「焊后变形量的软件预算方案」（Sysweld/Simufact 与 Abaqus+DFLUX 两套方案、材料含线膨胀系数/焊接参数/约束条件三类输入清单、输出回填路径、三因素敏感性与固有应变交叉校核）。
-- 两节均标注证据边界：组织预估为机理预估（无实测金相与显微硬度），变形量一节只给方法与输入、不输出计算数值；同步更新 7.1 放行总表、第 8 节五维度表与主要局限声明。
-- 线膨胀系数按 `project/materials.yaml` 权威口径取值（Q235B 12.0、QT450-10 10.5、ERNiFe-CI 11.0，单位 10⁻⁶/K），未沿用历史草稿中与配置分叉的 13.0/11.0 数值；热源标定、对流与辐射系数不引用已撤回的 V4.0 手工值。
-- 固定题目合规审查后的修正：删除 §8 五维表中对**包外证据**的引用（原“困难视觉和异常信号基准”“视觉基准、异常检测基准、端到端演示”位于 `automation/vision`、`automation/anomaly-detection`、`automation/app`，不在 21 项交付包内），改为包内可核对的项（位置度失效边界、候选与边界汇总、工艺卡与设计参数冻结表）；同步消除 §7.1 局限段与 §8 的口径矛盾，不再以“与题面无关”否定自动化维度的视觉基准。
-- 补齐固定题目明列但此前缺失的可涉及项（均为纯设计描述，不新增证据等级主张）：2 节新增「待焊表面预处理」与「预热与后热制度」（明确不设强制后热及其理由）；3 节新增「应力释放与变形控制的结构手段」（分段焊缝、对称跳序、槽根R2 圆角、薄裙柔性顺应、温度窗口松夹）；7.1 节新增「无损检测方法」（PT/MT/UT 分工，UT 需同批对比试块确认，RT 不作主手段）；9.1 节焊前装配与独立放行两行补入表面处理确认与 PT/UT 记录。
-- 说明书页数仍为 16，页数口径声明无需调整。
-- 重新封版为 RC3，新增 `deliverables/COMPETITION-R1-RC3-SHA256.txt`；RC1、RC2 哈希记录保留为历史。
-- `studies/COMPETITION-DESIGN/run.py` 的 `result.csv` 改为定点输出（`fixed()`，15 位有效数字），清除 CAD 再导出后的浮点表示噪声：`0.04360000000000001`→`0.0436`、`330.00000000000006`→`330`、`142559.99999999983`→`142560`。`assessment.json` 仍保留原始浮点，未改动。
-- 构建非字节确定性已定性：连续两次构建的 `01-工艺设计说明书.pdf`（creationDate）、`competition-assembly.step`（FILE_NAME 时间戳）与压缩包哈希必然不同，几何与正文不变；图件 PNG 逐字节稳定。RC3 记录中已加注说明，避免复现者误判为校验失败。
-- 环境说明：`studies/COMPETITION-DESIGN/robust_selection.py` 依赖 pandas、`build_submission.py` 与 `competition_submission_lint.py` 依赖 pymupdf，此前 `requirements.txt` 均未声明，导致在本机缺失依赖时 `build_submission.py` 中断；本轮已补装并声明 `pandas>=2.0` 与 `pymupdf>=1.24`。pytest 虽已声明但本机未安装，本轮未执行全量测试（`10-复现与版本冻结记录.md` 中原“214 passed”表述已改为本轮实际验证内容）。
+本批次是两条并行 RC3 工作线（远端按官方五维度重组、本地落实指导教师评审意见）合并后的封版。两条工作线均自称 RC3 且各自重建过产物，因此合并后重新封版为 RC4，RC3 记录保留为历史。
+
+**落实指导教师 2026-09-04 评审意见**
+
+- 说明书新增 §2.4「焊缝组织预估与接头性能推测」，回应意见①（按母材、焊接材料及焊接工艺预估焊缝组织、推测性能）：给出输入三要素表、名义稀释成分区间（Ni 19.74～26.55 wt%、C 1.26～1.79 wt%）、五区分区组织预估表（焊缝区镍基奥氏体／富镍熔合线／铸铁侧半熔化区白口带／铸铁侧针状马氏体热影响区／Q235B 侧粗晶—细晶区）与四项性能推测（强度匹配方向、硬度梯度、疲劳萌生位置、组织—变形耦合），并注明全部为机理预估、不含实测金相与显微硬度数据。
+- 说明书新增 §6.3「焊后变形量的软件预算方案」，回应意见②（根据线膨胀系数、焊接参数及约束条件用相关软件预算变形量）：给出 Sysweld／Simufact 与 Abaqus＋DFLUX 两套方案、三类冻结输入清单、四项输出回填路径与三因素敏感性交叉校核。线膨胀系数按 `project/materials.yaml` 权威口径取值（Q235B 12.0、QT450-10 10.5、ERNiFe-CI 11.0，单位 10⁻⁶/K），未沿用历史草稿中与配置分叉的 13.0/11.0；不引用已撤回的 V4.0 热源、对流与辐射手工值。本节只交付方法与输入，不输出计算变形量数值。
+
+**固定题目合规修正**
+
+- §8 五维表「质量检测与评价」行删除对包外证据的引用（原“困难视觉和异常信号基准”位于 `automation/vision`、`automation/anomaly-detection`，不在 21 项交付包内），改为包内 11～16 号可核对项；「自动化焊接方案」行删除“视觉基准、异常检测基准、端到端演示”，改为包内 06/07 号工艺卡与设计参数冻结表；「材料选配与连接」行补入分区组织预估与稀释成分区间。
+- §7.1 新增「无损检测方法」：PT／MT／UT 按缺陷类型分工，明确 UT 需以同批材料确认探头与对比试块、5 mm 壁厚下 RT 不作主手段、金相与宏观截面为交叉验证而非替代。
+- §9.2 新增 L11（组织与性能推测未实测回填）、L12（变形量软件预算未执行求解）两行未闭合项，使新增两节的证据边界进入统一台账。
+
+**脚本与依赖**
+
+- `studies/COMPETITION-DESIGN/run.py` 合并后同时保留两项改动：CSV 定点输出 `fixed()`（15 位有效数字，清除 `0.04360000000000001`、`330.00000000000006`、`142559.99999999983` 一类浮点表示噪声）与 STEP 头部 `FILE_NAME` 时间戳归一化 `normalize_step_timestamp()`。
+- `requirements.txt` 补声明 `pandas>=2.0`（`robust_selection.py`）与 `pymupdf>=1.24`（`build_submission.py`、`competition_submission_lint.py`、`export_drawing_pdfs.py`），此前缺失会导致构建链在缺依赖环境中断。
+
+**验证**
+
+- `python deliverables/build_submission.py` → 重建技术包并通过 `scripts/competition_submission_lint.py`：`{"status": "PASS", "files": 19, "report_pages": 25, "drawing_pages": 6}`。
+- `python -m pytest -q` → 216 passed、1 failed（Python 3.11.9）。唯一失败项 `test_thermal_plan7::test_native_components_require_nonlinear_convergence` 的成因是本机 `core.autocrlf=true` 把 `simulation/thermal-ref/ReferenceCallbacks.F90` 检出为 CRLF，而该测试比对的 sha256 按 LF 内容记录；该目录在两条工作线上均未被修改，属检出环境差异而非本批次回归。
+- 页数口径：说明书 22 页（RC3）→ 25 页（RC4），图集 6 页；同步更新 `10-复现与版本冻结记录.md`、`submission-checklist.md`、`registration-description.md` 三处声明，页数门禁通过。
+- 重新封版为 RC4，新增 `deliverables/COMPETITION-R1-RC4-SHA256.txt`；RC1～RC3 哈希记录保留为历史，可用 `python scripts/verify_release_hashes.py --record <记录文件>` 复核。
+
+## COMPETITION-R1-RC3 - 2026-09-20
+
+按官方命题五个维度与考核要点逐条复核后，完成说明书内容补齐与叙事重组；本轮不新增未运行的数值声明，全部新增内容基于已有计算结果、真实几何与文献。
+
+- 说明书新增五节：§2.1 异种材料界面设计与表面预处理（对应维度②的界面/过渡层/预处理/强韧匹配）、§3.2 应力释放与反变形与隔热结构（对应维度③）、§6.1 焊接变形精密测量、§6.2 焊缝疲劳与寿命评估（对应维度④的力学性能与疲劳试验方案）、§9.2 局限与验证路线。
+- 恢复 v2 说明书被删除的疲劳章节并更新为 6P 四道口径：IIW 名义应力法 FAT 63～80 基线、参考包络角点名义应力 52.17 MPa、FAT 63 名义裕量 1.21、三级验证试验计划。
+- 新增 §3.1，正面说明 6P 把焊缝压到整圈 22.9%、承载裕量由 5.0× 降至 1.15× 的代价，并给出 6P→8P 的自动切换边界。
+- 新增预算反算：由 Ø0.05 上限反算热残余允许径向上限 0.0102 mm，使位置度由待验证项变为有数值门限的放行条件。该反算与 `studies/ROBUST-BOUNDARY` 输出一致。
+- 叙事重组：摘要改为结论先行并新增「条件性达标判断」表；把分散全文的"未验证/不宣称"集中到 §9.2；局部热模型明确登记为热输入窗口依据并声明不作为位置度证据；432 例敏感性的"不可分辨"结论改写为设计依据。
+- 工艺卡 `06-工艺提案.md` 增加界面与过渡层、稀释控制、表面预处理、反变形、应力释放与隔热、后热、疲劳基线七行。
+- 修复边界图缺失中文字形：`studies/ROBUST-BOUNDARY/run.py` 新增 `configure_cjk_font()`，复用 `project/report.yaml` 的字体候选（本次解析为 DengXian），并设置 `svg.fonttype=path`，使两张随包交付的 SVG 在任何查看器下字形一致，构建警告由 60 余条归零。
+- 页数口径同步：说明书由 14 页增至 22 页，图集 6 页；更新 `10-复现与版本冻结记录.md`、`submission-checklist.md`、`registration-description.md` 与 `00-评审导航.txt`。
+- 新增 `docs/review/competition-r1-gap-analysis.md` 记录本轮诊断依据。
+- 测试锚点收敛：`test_report_contains_single_decision_rule` 改为锚定标题文本并断言全篇仅一处决策表，避免章节号漂移导致假失败。
+- 验证：`python -m pytest -q` → 217 passed；`scripts/competition_submission_lint.py` → PASS（19 文件、22/6 页）。
+- LFS 校验：本轮改动了 `cad/generated/competition-design/competition-assembly.step`，已随提交推送；按 `CONTRIBUTING.md` 的规程在全新目录克隆复核，11 个 `.step` 全部还原为真实 STEP、0 个指针，`git lfs push --dry-run` 无残留待传对象。
+- 重新封版为 RC3，新增 `deliverables/COMPETITION-R1-RC3-SHA256.txt`（技术包 ZIP、manifest、说明书/图集 PDF、STEP、计算记录与指标 CSV）；RC1、RC2 哈希记录保留为历史。
+- 修正 `10-复现与版本冻结记录.md` 中残留的上一轮验证口径：原写 `py -3.11 -m pytest -q` → 214 passed，更正为本轮实测 `python -m pytest -q` → 217 passed（Python 3.12.10）。
+- 构建确定性（SVG）：`studies/ROBUST-BOUNDARY/run.py` 固定 `svg.hashsalt` 并为 `savefig` 传入 `metadata={"Date": None}`。此前 matplotlib 每次重建都会改写元素 ID 与 `<dc:date>`，导致两张随包交付的边界图产生纯噪声差异；现连续多次重建逐字节一致。
+- 构建确定性（STEP）：`studies/COMPETITION-DESIGN/run.py` 新增 `normalize_step_timestamp()`，把 OCC 写入 `FILE_NAME` 的导出时刻归一化为固定值。此前每次重建都生成仅差一行时间戳的新内容，等于每次都向 LFS 写入一个新的 427 KB 对象（几何零变化）；现几何不变时产物逐字节稳定。改动按字节替换，除该字段外零改动，并已用 OCC 回读校验（7 root、8 solid、非空）。
+- 确定性验证：连续三次 `python deliverables/build_submission.py`，`competition-assembly.step`、`03-名义装配包络.step` 与两张边界 SVG 的 sha256 完全不变。
+- 哈希记录可用化：`RC1/RC2/RC3` 记录的首行由裸标题改为 `#` 注释行，使文件可被标准校验工具消费；新增 `scripts/verify_release_hashes.py`，逐项校验记录值与实际产物并打印差异（退出码 0/1），Windows 下不依赖 coreutils。
+- `CONTRIBUTING.md` 新增「封版哈希校验」与「构建确定性」两节，说明校验命令、历史记录为何只能对当时提交复验，以及哪些产物已逐字节稳定。
+- 全新克隆复验（commit 1d50059）：11 个 `.step` 全部为真实内容、0 指针，`git lfs fsck OK`；克隆内 7 项产物 sha256 与 RC3 记录逐项一致；说明书 22 页且新增五节与关键数字齐备。
 
 ## 仓库维护 - 2026-09-19
 

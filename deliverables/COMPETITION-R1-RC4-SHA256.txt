@@ -1,0 +1,12 @@
+# COMPETITION-R1-RC4 SHA256
+# 2026-09-20 封版：两条并行 RC3 工作线合并后重新封版。保留 RC3 的五维度重组六节，并补入 2.4「焊缝组织预估与接头性能推测」与 6.3「焊后变形量的软件预算方案」（落实指导教师 2026-09-04 评审意见）、7.1 无损检测方法分工与 §8 固定题目合规修正；说明书页数 22→25
+# 03 为 Git LFS 内容的 sha256（非指针）；其头部时间戳已归一化，几何不变时逐字节稳定（本表与 RC3 的 03 值一致即为证据）
+# ZIP 与两份 PDF 仍含生成时间戳，本表对这三项为快照校验值；重新构建会得到不同哈希，比对时以内容与页数为准
+# 校验：python scripts/verify_release_hashes.py --record deliverables/COMPETITION-R1-RC4-SHA256.txt
+1250ed2aaccd0c9412e2538cde5727548aba6348fcd8ef29b5524ce7a62be6eb  deliverables/COMPETITION-R1-技术包.zip
+3bde9f71c069021ee9827280a16935b9d821b127b3b177299642978452d50edd  deliverables/submission/manifest.json
+19f416b87f228cce2de879c3cefda57adb1272e8c4c20d71154588e059e45422  deliverables/submission/01-工艺设计说明书.pdf
+d2b4f065ecb2ffb70bf15db56fc995540dac17d5b0c6b6952526556310f7cf18  deliverables/submission/02-设计图集.pdf
+b84e035d2a7c861e56926a077a719d1585a1174949dbe2691d5720ff59c677a9  deliverables/submission/03-名义装配包络.step
+f2f7d3cdc1571f8447f4788fdde25c748270b87e4614501d410e5255b143d4f6  deliverables/submission/04-设计计算.json
+3f03e3b5bdc8d80575c0c73c30ec7a854aa6d1ad62cdff996384fbe3d681ac1d  deliverables/submission/05-设计指标.csv

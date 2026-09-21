@@ -1,5 +1,5 @@
 COMPETITION-R1 技术包
-说明书16页，设计图6页。STEP为名义装配包络，不是完整制造模型。
+说明书25页，设计图6页。STEP为名义装配包络，不是完整制造模型。
 本包为纯数字设计，实物位置度、洁净、完整热结构与疲劳未验证。
 候选选择结果由当前 COMPETITION-DESIGN 四道比较生成；R1单段热诊断为冻结历史附件。
 复现需完整项目及Python依赖，在项目根目录运行 python deliverables/build_submission.py。

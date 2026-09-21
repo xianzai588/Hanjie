@@ -7,9 +7,47 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import yaml
+from matplotlib import font_manager, rcParams
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "studies/ROBUST-BOUNDARY/results"
+
+_FALLBACK_CJK_FONTS = (
+    "C:/Windows/Fonts/Deng.ttf",
+    "C:/Windows/Fonts/simhei.ttf",
+    "C:/Windows/Fonts/simsun.ttc",
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/System/Library/Fonts/PingFang.ttc",
+)
+
+# 两张边界图随技术包交付并登记进 SHA256 冻结记录，必须逐字节可复现：
+# 固定元素 ID 的盐值，并关闭 SVG 内嵌日期，否则每次重建都会产生纯噪声差异。
+SVG_HASHSALT = "hanjie-competition-r1"
+SVG_METADATA = {"Date": None}
+
+
+def configure_cjk_font() -> str | None:
+    """matplotlib 默认字体缺少中文字形；优先复用报告字体候选，避免图内中文变成空框。"""
+    candidates = []
+    try:
+        report = yaml.safe_load((ROOT / "project/report.yaml").read_text(encoding="utf-8"))
+        candidates.extend(item["regular"] for item in report["pdf"]["font_candidates"])
+    except (OSError, KeyError, TypeError):
+        pass
+    candidates.extend(_FALLBACK_CJK_FONTS)
+    for path in candidates:
+        if not Path(path).is_file():
+            continue
+        try:
+            font_manager.fontManager.addfont(path)
+            name = font_manager.FontProperties(fname=path).get_name()
+        except (OSError, ValueError, RuntimeError):
+            continue
+        rcParams["font.family"] = "sans-serif"
+        rcParams["font.sans-serif"] = [name, "DejaVu Sans"]
+        rcParams["axes.unicode_minus"] = False
+        return name
+    return None
 
 
 def load_inputs():
@@ -50,7 +88,7 @@ def strength_boundary(authority, assessment):
     ax.set(xlabel="载荷倍率（相对参考包络）", ylabel="假设许用应力 / MPa",
            title="COMPETITION-R1 确定性 6P → 8P 切换边界")
     ax.set_xlim(.5, 2.0); ax.set_ylim(0, 125); ax.grid(alpha=.2); ax.legend(loc="upper left", frameon=True)
-    fig.tight_layout(); fig.savefig(OUT / "strength-boundary.svg", format="svg"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(OUT / "strength-boundary.svg", format="svg", metadata=SVG_METADATA); plt.close(fig)
     return {"basis": "required_allowable_mpa scales linearly with load multiplier",
             "thresholds": {"6P-FAIR_B": six, "8P-FAIR_B": eight},
             "reference_point": {"load_multiplier": authority["assumptions"]["load_scale"],
@@ -108,13 +146,20 @@ def position_boundary():
     ax.set_ylabel("热残余最大允许径向量 / mm"); ax.set_title("Ø0.05 位置度预算：热残余确定性边界")
     ax.grid(axis="y", alpha=.2); ax.legend(loc="upper right")
     for bar, val in zip(bars, vals): ax.text(bar.get_x()+bar.get_width()/2, val+.0001, f"{val:.4f}", ha="center", fontsize=8)
-    fig.tight_layout(); fig.savefig(OUT / "position-boundary.svg", format="svg"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(OUT / "position-boundary.svg", format="svg", metadata=SVG_METADATA); plt.close(fig)
     return payload
 
 
 def main():
+    # 图件随包交付，必须在中文字形可用的前提下渲染；文字转路径以保证任何查看器一致。
+    font_name = configure_cjk_font()
+    rcParams["svg.fonttype"] = "path"
+    rcParams["svg.hashsalt"] = SVG_HASHSALT
+    if font_name is None:
+        print("警告：未找到中文字体，边界图内的中文可能缺字形")
     authority, assessment = load_inputs()
     payload = {"version": "COMPETITION-R1-DETERMINISTIC-BOUNDARY-1",
+               "cjk_font": font_name,
                "strength": strength_boundary(authority, assessment), "position": position_boundary()}
     (OUT / "boundary-summary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False, indent=2))

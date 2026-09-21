@@ -2,6 +2,7 @@
 from pathlib import Path
 import csv
 import json
+import re
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 from hanjie.domain.competition_design import run_design
@@ -9,6 +10,20 @@ from OCP.STEPControl import STEPControl_Writer, STEPControl_AsIs
 from OCP.IFSelect import IFSelect_RetDone
 
 ROOT = Path(__file__).resolve().parents[2]
+
+# OCC 会把导出时刻写进 STEP 头部 FILE_NAME，使同几何重建得到仅差时间戳的新内容；
+# 该文件由 Git LFS 托管且登记进 SHA256 冻结记录，因此把时间戳归一化为固定值，
+# 保证几何不变时产物逐字节一致，避免每次都向 LFS 写入一个仅时间戳不同的新对象。
+STEP_TIMESTAMP_EPOCH = b"1970-01-01T00:00:00"
+
+
+def normalize_step_timestamp(path: Path, epoch: bytes = STEP_TIMESTAMP_EPOCH) -> None:
+    """把 STEP 头部 FILE_NAME 的导出时间替换为固定值；按字节处理以保证除该字段外零改动。"""
+    data = path.read_bytes()
+    patched, count = re.subn(rb"(FILE_NAME\('[^']*',')([^']*)(')", rb"\g<1>" + epoch + rb"\g<3>", data, count=1)
+    if count != 1:
+        raise ValueError(f"未能在 STEP 头部找到唯一的 FILE_NAME 时间戳：{path}")
+    path.write_bytes(patched)
 
 
 def fixed(value):
@@ -34,8 +49,10 @@ def main():
     for shape in bodies.values():
         if writer.Transfer(shape, STEPControl_AsIs) != IFSelect_RetDone:
             raise ValueError("STEP转换失败")
-    if writer.Write(str(cad / "competition-assembly.step")) != IFSelect_RetDone:
+    assembly = cad / "competition-assembly.step"
+    if writer.Write(str(assembly)) != IFSelect_RetDone:
         raise ValueError("STEP写入失败")
+    normalize_step_timestamp(assembly)
     (out / "assessment.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     with (out / "result.csv").open("w", encoding="utf-8-sig", newline="") as stream:
         writer = csv.writer(stream)

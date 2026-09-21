@@ -19,7 +19,8 @@ def test_competition_authority_uses_conservative_endpoint():
 def test_report_contains_single_decision_rule():
     root = Path(__file__).parents[1]
     report = (root / "deliverables/report/technical-report-v4-unified.md").read_text(encoding="utf-8")
-    assert "2.2 评委快速决策表" in report
+    # 章节号随内容增减而漂移，这里锚定标题本身，并确认全篇只保留一处决策表。
+    assert report.count("评委快速决策表") == 1
     assert report.count("52.17 MPa") >= 4
     assert "56.59 MPa" not in report
     assert "Monte Carlo 代理通过率" not in report
