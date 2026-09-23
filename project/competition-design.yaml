@@ -29,8 +29,10 @@ process:
 fixture:
   type: 内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱
   bore_limits_mm: [40.0, 40.025]
-  collapsed_sleeve_diameter_mm: 39.94
-  maximum_sleeve_diameter_mm: 40.04
+  pre_weld_bore_diameter_mm: 39.60
+  radial_machining_allowance_mm: 0.20
+  collapsed_sleeve_diameter_mm: 39.54
+  maximum_sleeve_diameter_mm: 39.64
   contact_bands_z_mm: [[101.0, 103.0], [109.0, 111.0]]
   contact_coverage_fraction: 0.9
   internal_cone_half_angle_deg: 10.0

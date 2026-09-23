@@ -23,7 +23,7 @@
     "19-收缩量级估算.json": "studies/SHRINKAGE-ESTIMATE/results/estimate.json",
     "20-载荷一阶估算.json": "studies/LOAD-ESTIMATE/results/load-estimate.json"
   },
-  "report_pages": 25,
+  "report_pages": 27,
   "drawing_pages": 6,
   "submission_scope": "technical_design_only",
   "physical_performance_verified": false

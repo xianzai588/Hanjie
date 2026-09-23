@@ -82,7 +82,8 @@ def build_story(source: Path = SOURCE) -> list:
         illustration = re.fullmatch(r"!\[([^]]+)\]\(([^)]+)\)", line)
         if illustration:
             figure = Image(str(ROOT / illustration[2]))
-            ratio = min(170*mm/figure.imageWidth, 99*mm/figure.imageHeight)
+            # 横向设计卡按接近正文满宽排版，使A4打印后的图内注释保持可读。
+            ratio = min(170*mm/figure.imageWidth, 113*mm/figure.imageHeight)
             figure.drawWidth = figure.imageWidth*ratio
             figure.drawHeight = figure.imageHeight*ratio
             story.extend([figure,Paragraph(inline(illustration[1]),cell),Spacer(1,5)])

@@ -1,30 +1,44 @@
 {
-  "version": "LOAD-ESTIMATE-2",
+  "version": "LOAD-ESTIMATE-3",
   "evidence_level": "parameterized_first_order_screening",
   "inputs": {
     "reciprocating_mass_kg": 0.8,
     "crank_radius_m": 0.02,
-    "speed_rpm": 3000,
+    "speed_rpm": 3000.0,
     "rod_ratio": 0.25,
     "bore_diameter_m": 0.04,
     "pressure_difference_pa": 1500000.0,
     "force_line_to_weld_centroid_m": 0.07
   },
+  "reference": {
+    "radial_force_n": 5000.0,
+    "axial_force_n": 5000.0,
+    "moment_n_mm": 250000.0
+  },
   "formulas": {
     "omega": "2*pi*n/60",
-    "inertial_amplitude": "m*r*omega^2",
+    "inertial_force_amplitude": "m*r*omega^2; 忽略连杆二阶项",
     "gas_force": "pi*D^2*delta_p/4",
-    "overturning_moment": "(inertial+gas)*e",
-    "reference_interaction": "sqrt((Fr/5000)^2+(Fa/5000)^2+(M/250)^2)"
+    "radial_force": "sqrt(F_i^2+F_g^2)",
+    "tipover_moment": "F_i*e + F_g*(r/2)",
+    "reference_interaction": "sqrt((Fr/5000)^2+(Fa/5000)^2+(M/250000)^2)",
+    "combined_R": "Fmin/Fmax; 同向极值保守叠加，未建模相位"
+  },
+  "stress_ratio_R": {
+    "inertial": -1.0,
+    "gas": 0.0,
+    "combined": -0.45585872693061086,
+    "combined_force_min_n": -1579.1367041742974,
+    "combined_force_max_n": 3464.0922963281732
   },
   "results": {
     "inertial_force_n": 1579.1367041742974,
     "gas_force_n": 1884.9555921538758,
-    "radial_force_n": 3464.0922963281732,
+    "radial_force_n": 2459.010027401806,
     "axial_force_n": 1884.9555921538758,
-    "overturning_moment_nm": 242.48646074297216,
-    "reference_interaction_ratio": 1.250165852666494,
-    "reference_envelope_nm": 250
+    "tipover_moment_n_mm": 129389.1252137396,
+    "reference_moment_n_mm": 250000.0,
+    "reference_interaction_ratio": 0.8073761499743601
   },
-  "interpretation": "示例参数下径向约3.46 kN、轴向约1.88 kN、倾覆约0.24 kN·m；按三分量同时作用的平方和口径，交互比约1.46，不能宣称覆盖当前参考包络。须用实际机型载荷谱、相位和支承偏心更新后再做承载/疲劳判定。"
+  "interpretation": "参数化一阶筛查；按平方和合成径向载荷，并以Fi*e+Fg*(r/2)估倾覆力矩。惯性项R=-1、气体项R≈0；同向极值叠加后的R为非对称值。载荷幅值、相位、连杆二阶项及支承偏心仍须由实际机型数据验证。"
 }
