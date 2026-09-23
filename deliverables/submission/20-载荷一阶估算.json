@@ -1,1 +1,30 @@
-{"version":"LOAD-ESTIMATE-1","evidence_level":"parameterized_first_order_screening","inputs":{"reciprocating_mass_kg":0.8,"crank_radius_m":0.02,"speed_rpm":3000,"rod_ratio":0.25,"bore_diameter_m":0.04,"pressure_difference_pa":1500000},"formulas":{"omega":"2*pi*n/60","inertial":"m*r*omega^2*(cos(theta)+lambda*cos(2*theta))","gas":"pi*D^2*delta_p/4"},"results":{"inertial_force_amplitude_n":1579.14,"gas_force_n":1884.96,"combined_first_order_n":3464.10,"reference_envelope_n":5000},"interpretation":"示例参数下低于5 kN参考包络；必须用实际机型质量、转速、行程、缸径和压比替换后再做疲劳载荷谱"}
+{
+  "version": "LOAD-ESTIMATE-2",
+  "evidence_level": "parameterized_first_order_screening",
+  "inputs": {
+    "reciprocating_mass_kg": 0.8,
+    "crank_radius_m": 0.02,
+    "speed_rpm": 3000,
+    "rod_ratio": 0.25,
+    "bore_diameter_m": 0.04,
+    "pressure_difference_pa": 1500000.0,
+    "force_line_to_weld_centroid_m": 0.07
+  },
+  "formulas": {
+    "omega": "2*pi*n/60",
+    "inertial_amplitude": "m*r*omega^2",
+    "gas_force": "pi*D^2*delta_p/4",
+    "overturning_moment": "(inertial+gas)*e",
+    "reference_interaction": "sqrt((Fr/5000)^2+(Fa/5000)^2+(M/250)^2)"
+  },
+  "results": {
+    "inertial_force_n": 1579.1367041742974,
+    "gas_force_n": 1884.9555921538758,
+    "radial_force_n": 3464.0922963281732,
+    "axial_force_n": 1884.9555921538758,
+    "overturning_moment_nm": 242.48646074297216,
+    "reference_interaction_ratio": 1.250165852666494,
+    "reference_envelope_nm": 250
+  },
+  "interpretation": "示例参数下径向约3.46 kN、轴向约1.88 kN、倾覆约0.24 kN·m；按三分量同时作用的平方和口径，交互比约1.46，不能宣称覆盖当前参考包络。须用实际机型载荷谱、相位和支承偏心更新后再做承载/疲劳判定。"
+}

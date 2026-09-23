@@ -1,27 +1,28 @@
 {
-  "version": "SHRINKAGE-ESTIMATE-1",
-  "evidence_level": "literature_order_screening",
+  "version": "SHRINKAGE-ESTIMATE-2",
+  "evidence_level": "TWI_empirical_screening_rule",
+  "source": {
+    "title": "TWI Job Knowledge 33 - Distortion: types and causes",
+    "url": "https://www.twi-global.com/technical-knowledge/job-knowledge/distortion-types-and-causes-033",
+    "rule": "fillet transverse shrinkage 0.8 mm per weld when leg <= 3/4 plate thickness; longitudinal 0.8 mm per 3 m"
+  },
   "inputs": {
     "segments": 6,
     "segment_length_mm": 18.0,
     "plate_thickness_mm": 5.0,
     "fillet_leg_mm": 3.5,
-    "free_transverse_shrinkage_per_segment_mm": [
-      0.0048,
-      0.8
-    ],
+    "leg_to_thickness": 0.7,
     "asymmetry_fraction": 0.02
   },
-  "formula": "residual_range = segments * free_shrinkage_per_segment * asymmetry_fraction",
-  "free_shrinkage_total_mm": [
-    0.0288,
-    4.800000000000001
-  ],
-  "residual_asymmetry_mm": [
-    0.000576,
-    0.09600000000000002
-  ],
+  "free_shrinkage_mm": {
+    "transverse_total": 4.800000000000001,
+    "longitudinal_total": 0.0288
+  },
+  "residual_asymmetry_screen_mm": {
+    "transverse": 0.09600000000000002,
+    "longitudinal": 0.000576
+  },
   "thermal_allowance_comparison_mm": 0.0102,
   "exceeds_thermal_allowance_possible": true,
-  "decision": "焊后终加工作为主路线；焊序和夹具用于降低加工余量需求，不宣称直接达到位置度限值"
+  "decision": "横向收缩的2%不对称筛查已超过0.0102 mm，因此采用焊后终加工主路线；TWI经验规则针对钢件，QT450-10/Q235B异种接头仍须小试校准"
 }
