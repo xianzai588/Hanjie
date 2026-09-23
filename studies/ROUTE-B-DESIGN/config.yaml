@@ -19,10 +19,12 @@ selection:
   constraint: 参考焊缝组模型在声明沉积效率范围内的最大应力不超过假设许用应力
   interpretation: 仅在六个候选内给出条件承载筛查后的低热输入研究优先项，不代表完整工艺可行或全局最优
 precision:
-  # 扫描焊接径向预算，反算夹具与装配的总预算；不修改现有权威预算。
+  # 保留旧口径用于复算历史设计结论，不进入当前位置度或加工余量判定。
+  scope: historical_legacy_position_budget_reproduction
+  current_release_budget_evidence: false
   thermal_radial_allocations_mm: [0.002, 0.005, 0.008, 0.011, 0.012]
   adjustable_contributions: [fixture_repeatability, initial_assembly]
-  interpretation: 反算要求，不是设备能力、计算变形或实测公差
+  interpretation: 旧版将热残余分配进位置度预算的口径复现；当前热残余由0.20 mm加工余量筛查管理，不构成当前位置度预算证据
 release:
   product_position_acceptance_claim_allowed: false
   welding_procedure_qualified: false

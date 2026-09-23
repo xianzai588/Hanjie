@@ -23,6 +23,8 @@ def read_spec(root: Path):
     budget = yaml.safe_load((root / spec["precision"]["allocation_source"]).read_text(encoding="utf-8"))
     spec["precision"]["radial_allocations_mm"] = budget["product_geometry_chain"]["contributions_mm"]
     spec["precision"]["measurement_expanded_uncertainty_diameter_target_mm"] = budget["measurement_chain"]["design_expanded_uncertainty_diameter_target_mm"]
+    spec["precision"]["thermal_residual_closure_status"] = budget["thermal_residual_management"]["closure_status"]
+    spec["precision"]["measurement_uncertainty_verified"] = budget["measurement_chain"]["expanded_uncertainty_mm"] is not None
     return spec
 
 
@@ -64,19 +66,29 @@ def precision_budget(spec):
     # 三个等角支点中任一点达到极差，平面最大斜率为2Δh/(3R)，孔两端按全长保守计。
     tilt = 2 * p["support_height_spread_limit_mm"] / (3 * f["support_radius_mm"])
     tilt_radial = p["bore_length_mm"] * tilt
-    radial = sum(p["radial_allocations_mm"].values()) + tilt_radial
+    contributions = p["radial_allocations_mm"]
+    if "thermal_residual_target" in contributions or "support_tilt" not in contributions:
+        raise ValueError("位置度预算必须显式区分热残余加工余量，并在唯一配置中列出支点倾斜")
+    if not math.isclose(contributions["support_tilt"], tilt_radial, abs_tol=1e-9):
+        raise ValueError("project/tolerance.yaml 的支点倾斜分配与工装几何推导不一致")
+    radial = sum(contributions.values())
     diameter = 2 * radial
     uncertainty = p["measurement_expanded_uncertainty_diameter_target_mm"]
-    contributions = {**p["radial_allocations_mm"], "support_tilt": tilt_radial}
-    nonthermal = radial - contributions["thermal_residual_target"]
+    datum_chain_closes = diameter + uncertainty <= p["limit_diameter_mm"]
+    end_to_end_closes = (datum_chain_closes
+                         and p["thermal_residual_closure_status"] == "closed"
+                         and p["measurement_uncertainty_verified"])
     return {"radial_contributions_mm": contributions, "radial_sum_mm": radial,
-            "nonthermal_radial_sum_mm": nonthermal,
-            "thermal_max_allowed_radial_mm": (p["limit_diameter_mm"] - uncertainty) / 2 - nonthermal,
             "measurement_uncertainty_diameter_target_mm": uncertainty,
             "support_tilt_rad": tilt, "tilt_radial_allowance_mm": tilt_radial,
             "design_diameter_budget_mm": diameter,
             "diameter_with_uncertainty_target_mm": diameter + uncertainty,
-            "design_budget_closes": diameter + uncertainty <= p["limit_diameter_mm"],
+            "datum_chain_arithmetic_closes": datum_chain_closes,
+            "design_budget_closes": end_to_end_closes,
+            "overall_closure_status": "closed" if end_to_end_closes else "not_closed_pending_weld_displacement_measurement_and_cmm_uncertainty",
+            "thermal_residual_closure_status": p["thermal_residual_closure_status"],
+            "measurement_uncertainty_verified": p["measurement_uncertainty_verified"],
+            "thermal_residual_in_position_budget": False,
             "manufacturing_capability_verified": False, "thermal_residual_verified": False}
 
 

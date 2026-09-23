@@ -1,6 +1,6 @@
 # 材料参数与物性数据 - Hanjie Engineering Materials
 # 版本: V4.1
-# 关联规范: GB/T 700 (Q235B), GB/T 1348 (QT450-10), GB/T 10044 / AWS A5.15 (ERNiFe-CI)
+# 关联规范: GB/T 700 (Q235B), GB/T 1348 (QT450-10), GB/T 10044；AWS A5.15 焊材分类待批次证书确认
 
 materials:
   q235b:
@@ -58,8 +58,8 @@ materials:
       alpha_per_k: [1.05e-5, 1.12e-5, 1.20e-5, 1.30e-5, 1.35e-5, 1.38e-5, 1.40e-5]
 
   ernife_ci:
-    name: "镍铁铸铁焊丝 ERNiFe-CI"
-    standard: "AWS A5.15 / GB/T 10044"
+    name: "NiFe 55型镍铁基填充金属（TIG实心棒候选）"
+    standard: "供方页面标注 EN ISO 1071 S C NiFe-2；AWS A5.15 分类待批次证书确认"
     composition_nominal_wt_pct:
       Ni: 55.0
       Fe: "Balance"

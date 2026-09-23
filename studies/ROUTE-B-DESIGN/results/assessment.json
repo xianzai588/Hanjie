@@ -721,6 +721,9 @@
     }
   ],
   "precision": {
+    "scope": "historical_legacy_position_budget_reproduction",
+    "current_release_budget_evidence": false,
+    "interpretation": "旧版将热残余分配进位置度预算的口径复现；当前热残余由0.20 mm加工余量筛查管理，不构成当前位置度预算证据",
     "evidence_level": "design_requirement_not_achieved_capability",
     "radial_limit_mm": 0.025,
     "current_total_radial_mm": 0.035,

@@ -42,6 +42,14 @@
         "10.2478/pomr-2025-0027",
         "10.22486/iwj.v15i4.148501"
       ]
+    },
+    "TWI transverse fillet-weld shrinkage comparator": {
+      "value_mm_per_weld": 0.8,
+      "condition": "weld leg <= 0.75 * plate thickness",
+      "condition_met": true,
+      "source_scope": "TWI rule of thumb for steel welding",
+      "project_material_scope_match": false,
+      "use": "comparative stress screen only; not a validated coefficient for the QT450-10/Q235B joint"
     }
   },
   "free_transverse_shrinkage_per_segment_mm": [
@@ -62,7 +70,6 @@
     0.1,
     0.2
   ],
-  "historical_allowance_comparison_mm": 0.0102,
   "residual_grid_mm": {
     "d0.25_s0.02": 0.00408,
     "d0.25_s0.05": 0.01021,
@@ -77,31 +84,46 @@
     "d0.65_s0.1": 0.05307,
     "d0.65_s0.2": 0.10614
   },
-  "exceeds_historical_0p0102_mm": {
-    "d0.25_s0.02": false,
-    "d0.25_s0.05": true,
-    "d0.25_s0.1": true,
-    "d0.25_s0.2": true,
-    "d0.45_s0.02": false,
-    "d0.45_s0.05": true,
-    "d0.45_s0.1": true,
-    "d0.45_s0.2": true,
-    "d0.65_s0.02": true,
-    "d0.65_s0.05": true,
-    "d0.65_s0.1": true,
-    "d0.65_s0.2": true
+  "machining_allowance_screen": {
+    "formula": "required_radial_allowance = 1.25 * (2*sigma*delta/sqrt(n)) + angular_margin",
+    "angular_margin_mm": 0.05,
+    "available_radial_allowance_mm": 0.2,
+    "scenarios": [
+      {
+        "scenario": "内部筛查上界δ=0.65，σ=0.20",
+        "free_shrinkage_mm_per_segment": 0.65,
+        "relative_asymmetry_sigma": 0.2,
+        "estimated_asymmetric_residual_mm": 0.106145,
+        "angular_distortion_margin_mm": 0.05,
+        "required_radial_allowance_mm": 0.182681,
+        "available_radial_allowance_mm": 0.2,
+        "arithmetic_fit": true,
+        "evidence_status": "unvalidated screening calculation"
+      },
+      {
+        "scenario": "TWI钢焊缝比较值δ=0.80，σ=0.20",
+        "free_shrinkage_mm_per_segment": 0.8,
+        "relative_asymmetry_sigma": 0.2,
+        "estimated_asymmetric_residual_mm": 0.130639,
+        "angular_distortion_margin_mm": 0.05,
+        "required_radial_allowance_mm": 0.213299,
+        "available_radial_allowance_mm": 0.2,
+        "arithmetic_fit": false,
+        "evidence_status": "unvalidated screening calculation"
+      }
+    ],
+    "closure_status": "not_closed_due_to_exceedance_in_external_comparison_and_unvalidated_inputs"
   },
   "combined_offset_screen_with_angular_distortion_mm": [
     0.02,
     0.16
   ],
-  "angular_distortion_screen_mm": 0.05,
-  "machining_allowance_radial_mm": 0.2,
-  "decision": "焊后终加工为主路线；焊序与夹具用于降低余量需求，不宣称焊接直接达到位置度限值",
+  "combined_offset_evidence_status": "unvalidated engineering screen; not simulation or measurement",
+  "decision": "0.20 mm径向加工余量未闭合；TWI钢焊缝比较情景需要0.213 mm，当前值短缺约0.013 mm。须用接头试验/实测或兼容的余量与工装重设计关闭。",
   "literature_to_verify": [
     "10.1115/OMAE2002-28181",
     "10.2478/pomr-2025-0027",
     "10.22486/iwj.v15i4.148501"
   ],
-  "citation_boundary": "文献用于变形机理、计算方法或相近接头背景；k与beta区间尚未由原文核实，不得写成文献直接给出的系数"
+  "citation_boundary": "TWI的0.8 mm/焊经验规则针对钢焊缝，虽满足焊脚/板厚几何条件，但材料为球铁—钢异种接头，仅作为比较压力筛查；k与beta区间仍是工程假设，未由所列论文原文核实"
 }

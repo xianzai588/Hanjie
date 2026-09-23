@@ -49,6 +49,9 @@ def precision_requirements(tolerance: dict, spec: dict) -> dict:
             "nonnegative_budget_possible": remaining >= -1e-12,
         })
     return {
+        "scope": spec["scope"],
+        "current_release_budget_evidence": spec["current_release_budget_evidence"],
+        "interpretation": spec["interpretation"],
         "evidence_level": "design_requirement_not_achieved_capability",
         "radial_limit_mm": limit,
         "current_total_radial_mm": total,
@@ -203,8 +206,9 @@ def build_design_study(root: Path) -> dict:
 
 
 def render_design_markdown(result: dict) -> str:
-    lines = ["## 无实物条件选型与精度反算", "",
+    lines = ["## 无实物条件选型与历史公差口径复现", "",
              "以下为设计假设下的焊缝组核算，未增加实焊、整件热塑性或质量验收证据。",
+             f"精度表范围：`{result['precision']['scope']}`；{result['precision']['interpretation']}。该表不进入当前产品位置度预算。",
              f"共 {result['candidate_count']} 个候选、{result['case_count']} 个确定性组合；沉积效率使用原配置两端。",
              "参考包络：径向力 0–5000 N、轴向力 0–5000 N、倾覆力矩 0–250 N·m；缩放系数同时作用于三者。",
              "许用应力仅取原配置的敏感性假设，不能作为 QT450-10 异种焊缝的真实许用值。", "",

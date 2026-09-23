@@ -38,7 +38,7 @@ def main():
               all(row["clear"] for row in g["poses"]), g["torch_feed_intersection_mm3"] < 1e-6,
               g["torch_feed_clearance_mm"] >= 1.5,
               max(g["cartridge_intersections_mm3"].values()) < 1e-6,
-              result["precision"]["design_budget_closes"]]
+              result["precision"]["datum_chain_arithmetic_closes"]]
     if not all(checks):
         raise ValueError("参赛设计内部检查未通过："+json.dumps(result, ensure_ascii=False))
     out = ROOT / "studies/COMPETITION-DESIGN/results"

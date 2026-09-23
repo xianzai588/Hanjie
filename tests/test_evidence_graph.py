@@ -64,9 +64,10 @@ def test_tolerance_chains_do_not_claim_closure() -> None:
     product = budget["product_geometry_chain"]
     from hanjie.domain.competition_design import read_spec, precision_budget
     result = precision_budget(read_spec(ROOT))
-    assert abs(sum(product["contributions_mm"].values()) + result["tilt_radial_allowance_mm"] - result["radial_sum_mm"]) < 1e-12
+    assert abs(sum(product["contributions_mm"].values()) - result["radial_sum_mm"]) < 1e-12
+    assert result["thermal_residual_in_position_budget"] is False
+    assert result["design_budget_closes"] is False
     assert not result["manufacturing_capability_verified"]
-    assert result["thermal_max_allowed_radial_mm"] > product["contributions_mm"]["thermal_residual_target"]
     assert budget["measurement_chain"]["expanded_uncertainty_mm"] is None
     assert product["p95_mm"] is None
 

@@ -16,58 +16,38 @@
     "plot_svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg"
   },
   "position": {
-    "limit_diameter_mm": 0.05,
-    "limit_radial_mm": 0.025,
-    "tilt_radial_allowance_mm": 0.0008,
-    "other_radial_error_baseline_mm": 0.013800000000000002,
-    "formula": "thermal_max = 0.025 - other_radial_error - measurement_uncertainty_diameter/2",
+    "purpose": "收缩—径向加工余量压力筛查；不是最终位置度预算或实测结果",
+    "machining_allowance_radial_mm": 0.2,
+    "formula": "required_radial_allowance = 1.25 * (2*sigma*delta/sqrt(n)) + angular_margin",
     "rows": [
       {
-        "scenario": "当前目标",
-        "other_radial_error_mm": 0.0138,
-        "measurement_uncertainty_diameter_mm": 0.002,
-        "thermal_residual_radial_mm": 0.008,
-        "thermal_max_allowed_radial_mm": 0.0102,
-        "total_diameter_with_uncertainty_mm": 0.0456,
-        "closes": true
+        "scenario": "内部筛查上界δ=0.65，σ=0.20",
+        "free_shrinkage_mm_per_segment": 0.65,
+        "relative_asymmetry_sigma": 0.2,
+        "estimated_asymmetric_residual_mm": 0.106145,
+        "angular_distortion_margin_mm": 0.05,
+        "required_radial_allowance_mm": 0.182681,
+        "available_radial_allowance_mm": 0.2,
+        "arithmetic_fit": true,
+        "evidence_status": "unvalidated screening calculation",
+        "allowance_margin_mm": 0.017319
       },
       {
-        "scenario": "工装差0.002",
-        "other_radial_error_mm": 0.0158,
-        "measurement_uncertainty_diameter_mm": 0.002,
-        "thermal_residual_radial_mm": 0.008,
-        "thermal_max_allowed_radial_mm": 0.0082,
-        "total_diameter_with_uncertainty_mm": 0.0496,
-        "closes": true
-      },
-      {
-        "scenario": "测量不确定度恶化",
-        "other_radial_error_mm": 0.0138,
-        "measurement_uncertainty_diameter_mm": 0.004,
-        "thermal_residual_radial_mm": 0.008,
-        "thermal_max_allowed_radial_mm": 0.0092,
-        "total_diameter_with_uncertainty_mm": 0.0476,
-        "closes": true
-      },
-      {
-        "scenario": "工装差+测量恶化",
-        "other_radial_error_mm": 0.0158,
-        "measurement_uncertainty_diameter_mm": 0.004,
-        "thermal_residual_radial_mm": 0.008,
-        "thermal_max_allowed_radial_mm": 0.0072,
-        "total_diameter_with_uncertainty_mm": 0.0516,
-        "closes": false
-      },
-      {
-        "scenario": "热残余失效边界",
-        "other_radial_error_mm": 0.0138,
-        "measurement_uncertainty_diameter_mm": 0.002,
-        "thermal_residual_radial_mm": 0.0102,
-        "thermal_max_allowed_radial_mm": 0.0102,
-        "total_diameter_with_uncertainty_mm": 0.05,
-        "closes": true
+        "scenario": "TWI钢焊缝比较值δ=0.80，σ=0.20",
+        "free_shrinkage_mm_per_segment": 0.8,
+        "relative_asymmetry_sigma": 0.2,
+        "estimated_asymmetric_residual_mm": 0.130639,
+        "angular_distortion_margin_mm": 0.05,
+        "required_radial_allowance_mm": 0.213299,
+        "available_radial_allowance_mm": 0.2,
+        "arithmetic_fit": false,
+        "evidence_status": "unvalidated screening calculation",
+        "allowance_margin_mm": -0.013299
       }
     ],
+    "closure_status": "not_closed_due_to_exceedance_in_external_comparison_and_unvalidated_inputs",
+    "position_tolerance_acceptance": "终加工后以CMM测得位置度直径＋同口径扩展不确定度≤0.05 mm判定",
+    "twi_scope_note": "comparative stress screen only; not a validated coefficient for the QT450-10/Q235B joint",
     "continuous_skirt_check": {
       "configuration": "连续浅波纹金属薄裙＋刚性接料盘",
       "thickness_mm": 0.15,

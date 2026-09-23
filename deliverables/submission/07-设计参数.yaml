@@ -19,7 +19,7 @@ process:
   minimum_leg_mm: 3.5
   clearance_leg_mm: 3.8
   feed_policy: 按效率下界反算固定送丝；不得逐件假定已知沉积效率
-  filler_candidate: NiFe 55 TIG实心棒材；具体批次牌号按供方证书核对
+  filler_candidate: NiFe 55 TIG实心棒材；供方页面标注EN ISO 1071 S C NiFe-2，AWS A5.15分类按批次证书核对
   filler_source: https://certilas.com/en/product/nife-55-tig
   wire_entry_offset_xyz_mm: [-1.0, -4.0, -0.5]
   hold_after_arc_s: 120.0
@@ -66,5 +66,5 @@ precision:
   bore_length_mm: 12.0
   support_height_spread_limit_mm: 0.003
   allocation_source: project/tolerance.yaml
-  status: 设计分配；制造能力、热残余和卸夹位移未实测
+  status: 七项基准链算术闭合；焊接收缩、制造能力、测量不确定度和卸夹位移未闭合
   conformity_rule: 测得位置度直径＋同口径扩展不确定度≤0.05 mm

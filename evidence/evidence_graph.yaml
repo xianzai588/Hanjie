@@ -17,10 +17,51 @@ taxonomy:
     SRC-GB-T10044:
       title: GB/T 10044-2006 铸铁焊条及焊丝
       type: national_standard
-      relevance: ERNiFe-CI 镍铁基焊丝选型依据
+      relevance: 镍铁基填充材料族与分类背景；供方AWS A5.15具体牌号待TIG棒批次证书确认
       evidence_level: literature_supported
       status: unvalidated
       verification_status: citation_pending_verification
+    SRC-TWI-JK33:
+      title: "TWI Job Knowledge 33 — Distortion: Types and Causes"
+      type: technical_reference
+      relevance: 钢焊缝0.8 mm/焊横向收缩比较规则；不直接覆盖本QT450-10/Q235B接头
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
+    SRC-ISO-15614-3:
+      title: "ISO 15614-3:2008 — Specification and qualification of welding procedures for metallic materials — Welding procedure test — Part 3: Fusion welding of non-alloyed and low-alloyed cast irons"
+      type: international_standard
+      relevance: 铸铁焊接工艺评定标准题名与范围；不能替代项目实际工艺评定
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
+    SRC-ISO-16232:
+      title: "ISO 16232:2018 — Road vehicles: Cleanliness of components and systems"
+      type: international_standard
+      relevance: 颗粒洁净度检验方法和结果表达；不提供本项目具体限值
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
+    SRC-ISO-15530-3:
+      title: "ISO 15530-3:2011 — CMM measurement uncertainty using calibrated workpieces or standards"
+      type: international_standard
+      relevance: CMM替代测量不确定度评估方法；需核实校准件几何适用性
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
+    SRC-NASA-HDBK-7009:
+      title: "NASA-HDBK-7009B (2026) — NASA Handbook for Models and Simulations: An Implementation Guide for NASA-STD-7009B"
+      type: technical_handbook
+      relevance: verification、validation与模型可信度评估框架
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
+    SRC-BACCO-2026:
+      citation: Bacco et al., Fracture and Structural Integrity 20(78), 2026, DOI 10.3221/IGF-ESIS.78.01
+      relevance: GJS500-7/S355 FCAW对接接头公开实验—热力有限元对照；仅作为相近对象基准
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
     SRC-LIT-001:
       citation: Cárcel-Carrasco et al., Metals 2016, 6, 283
       relevance: 球铁异种连接 TIG 根部镍基填充与热管理规律
@@ -42,7 +83,7 @@ taxonomy:
   designs:
     DES-COMPETITION-R1:
       path: studies/COMPETITION-DESIGN/results/assessment.json
-      parameters: 四道固定送丝、连续薄裙安装包络、圆柱胀套与独立轴向夹紧、精度目标分配及失败闭锁
+      parameters: 四道固定送丝、连续薄裙安装包络、圆柱胀套与独立轴向夹紧、0.0138 mm径向基准链分配及失败闭锁；焊接收缩和测量不确定度未闭合
       status: design_checks_completed_physical_performance_unverified
       evidence_level: design_assumption
     DES-TOOLING-ACCESS:
@@ -52,7 +93,7 @@ taxonomy:
       evidence_level: design_assumption
     DES-ROUTE-B-SELECTION:
       path: studies/ROUTE-B-DESIGN/results/assessment.json
-      parameters: 六候选108组合；固定送丝下的沉积效率端点、参考载荷与假设许用应力；公差反算未修改原预算
+      parameters: 历史六候选108组合；固定送丝下的沉积效率端点、参考载荷与假设许用应力；旧公差反算不作为当前分配
       status: conditional_screening_completed
       evidence_level: design_assumption
     DES-CAD-BASELINE:
@@ -237,6 +278,14 @@ claims_graph:
     - EXP-HARD-002
     report_section: 计划一执行记录 §4-§5
     status: unresolved
+  CLAIM-008:
+    statement: 终加工基准链七项设计分配径向合计0.0138 mm；总位置度仍未闭合，0.20 mm径向加工余量未由比较压力筛查证明充足
+    confidence: unresolved
+    supporting_evidence:
+    - DES-COMPETITION-R1
+    - SRC-TWI-JK33
+    report_section: §6 位置度分配与收缩—加工余量筛查
+    status: not_closed
 version: '4.3'
 allowed_evidence_levels:
 - official

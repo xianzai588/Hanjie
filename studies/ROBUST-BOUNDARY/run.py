@@ -103,29 +103,17 @@ def position_boundary():
     sys.path.insert(0, str(ROOT / "src"))
     from hanjie.domain.competition_design import read_spec
     spec = read_spec(ROOT)
-    p, f = spec["precision"], spec["fixture"]
-    tilt = 2 * p["support_height_spread_limit_mm"] / (3 * f["support_radius_mm"])
-    tilt_radial = p["bore_length_mm"] * tilt
-    allocations = p["radial_allocations_mm"]
-    other = sum(v for k, v in allocations.items() if k != "thermal_residual_target") + tilt_radial
-    limit_radial = p["limit_diameter_mm"] / 2
-    scenarios = [
-        ("当前目标", allocations["thermal_residual_target"], p["measurement_expanded_uncertainty_diameter_target_mm"], 0.0),
-        ("工装差0.002", allocations["thermal_residual_target"], p["measurement_expanded_uncertainty_diameter_target_mm"], 0.002),
-        ("测量不确定度恶化", allocations["thermal_residual_target"], 0.004, 0.0),
-        ("工装差+测量恶化", allocations["thermal_residual_target"], 0.004, 0.002),
-        ("热残余失效边界", limit_radial - other - p["measurement_expanded_uncertainty_diameter_target_mm"] / 2, p["measurement_expanded_uncertainty_diameter_target_mm"], 0.0),
-    ]
+    p, fixture = spec["precision"], spec["fixture"]
+    estimate = json.loads((ROOT / "studies/SHRINKAGE-ESTIMATE/results/estimate.json").read_text(encoding="utf-8"))
+    machining = estimate["machining_allowance_screen"]
+    available = fixture["radial_machining_allowance_mm"]
     rows = []
-    for name, thermal, uncertainty_dia, fixture_extra in scenarios:
-        allowed = limit_radial - (other + fixture_extra) - uncertainty_dia / 2
-        total_dia = 2 * (other + fixture_extra + thermal) + uncertainty_dia
-        rows.append({"scenario": name, "other_radial_error_mm": round(other + fixture_extra, 6),
-                     "measurement_uncertainty_diameter_mm": uncertainty_dia,
-                     "thermal_residual_radial_mm": round(thermal, 6),
-                     "thermal_max_allowed_radial_mm": round(allowed, 6),
-                     "total_diameter_with_uncertainty_mm": round(total_dia, 6),
-                     "closes": total_dia <= p["limit_diameter_mm"] + 1e-12})
+    for item in machining["scenarios"]:
+        required = item["required_radial_allowance_mm"]
+        rows.append({**item,
+                     "available_radial_allowance_mm": available,
+                     "allowance_margin_mm": round(available - required, 6),
+                     "arithmetic_fit": required <= available})
     # 连续浅波纹薄裙的梁近似：把半波长视为简支弯曲长度，给出数量级应变检查。
     t, wave_pitch, compression = 0.15, 24.0, 0.35
     half_span = wave_pitch / 2
@@ -134,20 +122,25 @@ def position_boundary():
              "wave_pitch_mm": wave_pitch, "radial_compliance_required_mm": compression,
              "beam_approx_bending_strain": round(bending_strain, 7),
              "interpretation": "数量级筛查；候选弹簧不锈钢需以材料证书屈服应变和热态循环试验复核"}
-    payload = {"limit_diameter_mm": p["limit_diameter_mm"], "limit_radial_mm": limit_radial,
-               "tilt_radial_allowance_mm": tilt_radial, "other_radial_error_baseline_mm": other,
-               "formula": "thermal_max = 0.025 - other_radial_error - measurement_uncertainty_diameter/2",
-               "rows": rows, "continuous_skirt_check": skirt,
+    payload = {"purpose": "收缩—径向加工余量压力筛查；不是最终位置度预算或实测结果",
+               "machining_allowance_radial_mm": available,
+               "formula": machining["formula"],
+               "rows": rows,
+               "closure_status": machining["closure_status"],
+               "position_tolerance_acceptance": "终加工后以CMM测得位置度直径＋同口径扩展不确定度≤0.05 mm判定",
+               "twi_scope_note": estimate["relations"]["TWI transverse fillet-weld shrinkage comparator"]["use"],
+               "continuous_skirt_check": skirt,
                "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"}
     (OUT / "position-boundary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     with (OUT / "position-boundary.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
     fig, ax = plt.subplots(figsize=(8.4, 4.8), dpi=160)
-    names = [r["scenario"] for r in rows]; vals = [r["thermal_max_allowed_radial_mm"] for r in rows]
-    bars = ax.bar(names, vals, color=["#2a9d8f", "#f2c94c", "#f4a261", "#e76f51", "#1b4965"])
-    ax.axhline(allocations["thermal_residual_target"], color="#333", ls="--", label="当前热残余目标 0.008 mm")
-    ax.set_ylabel("热残余最大允许径向量 / mm"); ax.set_title("Ø0.05 位置度预算：热残余确定性边界")
-    ax.grid(axis="y", alpha=.2); ax.legend(loc="upper right")
+    names = [r["scenario"] for r in rows]
+    vals = [r["required_radial_allowance_mm"] for r in rows]
+    bars = ax.bar(names, vals, color=["#f2c94c", "#e76f51"])
+    ax.axhline(available, color="#1b4965", ls="--", label=f"当前径向余量 {available:.2f} mm")
+    ax.set_ylabel("筛查所需径向加工余量 / mm"); ax.set_title("焊接收缩比较与加工余量筛查")
+    ax.grid(axis="y", alpha=.2); ax.legend(loc="upper left")
     for bar, val in zip(bars, vals): ax.text(bar.get_x()+bar.get_width()/2, val+.0001, f"{val:.4f}", ha="center", fontsize=8)
     fig.tight_layout(); fig.savefig(OUT / "position-boundary.svg", format="svg", metadata=SVG_METADATA); plt.close(fig)
     return payload

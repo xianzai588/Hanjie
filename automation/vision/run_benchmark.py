@@ -169,7 +169,7 @@ def render_difficult_summary(summaries: list[dict[str, object]]) -> str:
         "",
         f"位置度限值 Ø{POSITION_TOLERANCE_DIAMETER_LIMIT_MM:.2f} mm 对应径向限值 {POSITION_TOLERANCE_RADIUS_LIMIT_MM:.3f} mm，但这不是可由自动化路径项直接线性分配并宣称闭合的总预算。",
         f"自动化路径链（来自 `project/tolerance.yaml`）：视觉径向 P95 {display(path_chain['vision_radial_p95'])}、相机外参 {display(path_chain['camera_extrinsic'])}、TCP 标定 {display(path_chain['tcp_calibration'])}、机器人重复定位 {display(path_chain['robot_repeatability'])}；产品灵敏度为{'待核实' if path_chain['product_sensitivities'] is None else path_chain['product_sensitivities']}。未知项未回填，路径链当前不闭合。",
-        f"产品几何链另行管理，当前最坏情况设计和为 {sum(map(float, product_chain["contributions_mm"].values())) + .0008:.3f} mm，预算状态为 `{TOLERANCE['budget_status']}`；夹具、热变形等产品项不与上述路径链直接相加。",
+        f"产品几何链另行管理，当前最坏情况设计和为 {sum(map(float, product_chain["contributions_mm"].values())):.3f} mm，预算状态为 `{TOLERANCE['budget_status']}`；夹具、热变形等产品项不与上述路径链直接相加。",
         f"视觉数字门限：径向 P95 ≤ {VISION_RADIAL_P95_LIMIT_MM:.3f} mm；以 {POSE_LEVER_ARM_MM:.1f} mm 姿态作用半径换算，角度 P95 ≤ {VISION_ANGLE_P95_LIMIT_DEG:.4f}°。MAE 作为描述性统计保留；该门限仅是数字样本的视觉份额，不是相机、机器人或产品精度认证。",
         "因此“原始返回率”不等于“质量接受率”或“工程通过”：质量门会拒绝透视、遮挡、光照梯度、噪声和缺边等低可信结果，避免错误坐标进入路径规划。",
         "",

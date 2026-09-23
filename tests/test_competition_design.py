@@ -38,10 +38,12 @@ def test_support_plane_budget_matches_independent_plane_fit():
         slopes.append(np.linalg.norm(plane[:2]))
     budget = precision_budget(spec)
     assert max(slopes) == pytest.approx(budget["support_tilt_rad"])
-    assert budget["design_budget_closes"]
+    assert budget["datum_chain_arithmetic_closes"]
+    assert not budget["design_budget_closes"]
     assert not budget["thermal_residual_verified"]
     spec["precision"]["radial_allocations_mm"]["thermal_residual_target"] = .012
-    assert not precision_budget(spec)["design_budget_closes"]
+    with pytest.raises(ValueError, match="必须显式区分"):
+        precision_budget(spec)
 
 
 @pytest.fixture(scope="module")

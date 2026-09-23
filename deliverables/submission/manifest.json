@@ -15,15 +15,15 @@
     "11-候选选择.json": "studies/COMPETITION-DESIGN/results/robust-selection.json",
     "12-确定性边界汇总.json": "studies/ROBUST-BOUNDARY/results/boundary-summary.json",
     "13-6P-8P切换边界.csv": "studies/ROBUST-BOUNDARY/results/strength-boundary.csv",
-    "14-位置度失效边界.csv": "studies/ROBUST-BOUNDARY/results/position-boundary.csv",
+    "14-加工余量筛查.csv": "studies/ROBUST-BOUNDARY/results/position-boundary.csv",
     "15-确定性边界图.svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg",
-    "16-位置度边界图.svg": "studies/ROBUST-BOUNDARY/results/position-boundary.svg",
+    "16-加工余量筛查图.svg": "studies/ROBUST-BOUNDARY/results/position-boundary.svg",
     "17-参数来源与证据等级.md": "deliverables/submission/17-参数来源与证据等级.md",
     "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg",
     "19-收缩量级估算.json": "studies/SHRINKAGE-ESTIMATE/results/estimate.json",
     "20-载荷一阶估算.json": "studies/LOAD-ESTIMATE/results/load-estimate.json"
   },
-  "report_pages": 27,
+  "report_pages": 28,
   "drawing_pages": 6,
   "submission_scope": "technical_design_only",
   "physical_performance_verified": false

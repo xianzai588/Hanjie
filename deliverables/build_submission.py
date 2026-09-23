@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     for script in ("studies/COMPETITION-DESIGN/run.py", "studies/COMPETITION-DESIGN/robust_selection.py",
-                   "studies/ROBUST-BOUNDARY/run.py",
+                   "studies/SHRINKAGE-ESTIMATE/estimate.py", "studies/ROBUST-BOUNDARY/run.py",
                    "deliverables/process/generate_joint_process_card.py",
                    "cad/parametric/generate_engineering_drawings.py", "cad/parametric/export_drawing_pdfs.py",
                    "deliverables/report/build_technical_report_pdf.py"):
@@ -33,9 +33,9 @@ def main():
         "11-候选选择.json":"studies/COMPETITION-DESIGN/results/robust-selection.json",
         "12-确定性边界汇总.json":"studies/ROBUST-BOUNDARY/results/boundary-summary.json",
         "13-6P-8P切换边界.csv":"studies/ROBUST-BOUNDARY/results/strength-boundary.csv",
-        "14-位置度失效边界.csv":"studies/ROBUST-BOUNDARY/results/position-boundary.csv",
+        "14-加工余量筛查.csv":"studies/ROBUST-BOUNDARY/results/position-boundary.csv",
         "15-确定性边界图.svg":"studies/ROBUST-BOUNDARY/results/strength-boundary.svg",
-        "16-位置度边界图.svg":"studies/ROBUST-BOUNDARY/results/position-boundary.svg",
+        "16-加工余量筛查图.svg":"studies/ROBUST-BOUNDARY/results/position-boundary.svg",
         "17-参数来源与证据等级.md":"deliverables/submission/17-参数来源与证据等级.md",
         "18-证据等级总图.svg":"deliverables/submission/18-证据等级总图.svg",
         "19-收缩量级估算.json":"studies/SHRINKAGE-ESTIMATE/results/estimate.json",

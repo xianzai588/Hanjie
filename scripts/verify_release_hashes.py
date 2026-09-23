@@ -26,11 +26,20 @@ ROOT = Path(__file__).resolve().parents[1]
 RECORD_DIR = ROOT / "deliverables"
 RECORD_GLOB = "COMPETITION-R1-*-SHA256.txt"
 _DIGEST = re.compile(r"^([0-9a-fA-F]{64})[ \t]{2}(.+)$")
+_RECORD_REVISION = re.compile(r"-RC(\d+)-SHA256\.txt$")
 
 
 def records() -> list[Path]:
     """按 RC 序号升序返回全部哈希记录文件。"""
-    return sorted(RECORD_DIR.glob(RECORD_GLOB), key=lambda p: p.name)
+    paths = list(RECORD_DIR.glob(RECORD_GLOB))
+
+    def revision(path: Path) -> int:
+        match = _RECORD_REVISION.search(path.name)
+        if match is None:
+            raise ValueError(f"哈希记录文件名缺少数字RC序号：{path.name}")
+        return int(match.group(1))
+
+    return sorted(paths, key=revision)
 
 
 def latest_record() -> Path:

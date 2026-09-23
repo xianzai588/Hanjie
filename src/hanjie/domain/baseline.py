@@ -117,8 +117,8 @@ def validate_parameter_consistency() -> Dict[str, Any]:
     expected_status = "design_allocated_capability_unverified"
     if tolerance["budget_status"] != expected_status:
         errors.append(f"公差预算状态应为 {expected_status}")
-    if stated_sum + float(tolerance["product_geometry_chain"].get("support_tilt_radial_allowance_mm", .0008)) > radial_limit:
-        errors.append("产品几何链分项与支点倾斜折算超出径向限值")
+    if stated_sum > radial_limit:
+        errors.append("产品几何链分项超出径向限值")
     if abs(float(contributions["sleeve_centering"]) + float(contributions["initial_assembly_residual"]) - .003)>1e-12:
         errors.append("胀套定心与初始装配残差未保持原分配总额")
 

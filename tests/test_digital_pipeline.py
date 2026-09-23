@@ -42,7 +42,7 @@ def test_all_weld_sequences_are_permutations() -> None:
 from hanjie.domain.baseline import get_baseline, get_process, get_tolerance, validate_parameter_consistency  # noqa: E402
 
 
-def test_baseline_parameter_consistency() -> None:
+def test_baseline_parameter_consistency(monkeypatch) -> None:
     """全工程唯一参数源 (SSOT) 一致性校验：禁止任何模块出现硬编码分叉。"""
     res = validate_parameter_consistency()
     assert res["status"] == "PASSED"
@@ -76,6 +76,15 @@ def test_baseline_parameter_consistency() -> None:
     tolerance = get_tolerance()
     assert tolerance["product_geometry_chain"]["contributions_mm"]["initial_assembly_residual"] > 0
     assert get_process()["authority"].startswith("焊接工艺")
+
+    # 支点倾斜已计入分项；逼近限值时不能再额外计一次。
+    import copy
+    import hanjie.domain.baseline as baseline_module
+
+    near_limit = copy.deepcopy(tolerance)
+    near_limit["product_geometry_chain"]["contributions_mm"]["fixture_axis_setting"] += .0108
+    monkeypatch.setattr(baseline_module, "get_tolerance", lambda: near_limit)
+    assert baseline_module.validate_parameter_consistency()["status"] == "PASSED"
 
 
 def test_joint_design_and_wire_deposition_are_not_conflated() -> None:
@@ -189,7 +198,8 @@ def test_vision_summary_keeps_path_and_product_budget_chains_separate() -> None:
     assert "机器人重复定位 待核实" in summary
     assert "产品灵敏度为待核实" in summary
     assert "产品几何链另行管理" in summary
-    assert "0.022 mm" in summary
+    assert "0.014 mm" in summary
+    assert "0.022 mm" not in summary
     assert "机器人重复定位 0.003 mm" not in summary
     assert "合计 0.025 mm" not in summary
 

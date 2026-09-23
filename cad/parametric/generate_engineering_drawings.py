@@ -101,7 +101,7 @@ def weld_note() -> str:
     return (
         "WELDING METHOD: 141 (GTAW/TIG) per GB/T 5185-2005\n"
         "WELD SYMBOL: per GB/T 324-2008\n"
-        "FILLER: ERNiFe-CI candidate; product form/specification/lot pending"
+        "FILLER: NiFe 55 TIG solid rod candidate; EN ISO 1071 S C NiFe-2; confirm AWS classification on lot certificate"
     )
 
 

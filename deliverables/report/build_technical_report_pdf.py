@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from html import escape
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -110,9 +111,30 @@ def validate_report_numbers(result, source=SOURCE):
     """计算变更后禁止悄悄发布旧摘要；正文论证需要随数字共同修订。"""
     body = source.read_text(encoding="utf-8")
     p = result["process"]
+    precision = result["precision"]
+    section = body.split("## 6 位置度分配与独立质量评价", 1)[-1].split("### 6.1", 1)[0]
+    allocation = re.search(
+        r"当前七项工装与基准径向分配合计([0-9.]+) mm，折合直径([0-9.]+) mm",
+        section,
+    )
+    if allocation is None or not (
+        abs(float(allocation[1]) - precision["radial_sum_mm"]) < 5e-5
+        and abs(float(allocation[2]) - precision["design_diameter_budget_mm"]) < 5e-5
+    ):
+        raise ValueError("当前公差配置与正文§6中的径向/直径分配不一致")
+    if (not precision["datum_chain_arithmetic_closes"]
+            or precision["design_budget_closes"]
+            or precision["thermal_residual_in_position_budget"]):
+        raise ValueError("位置度摘要必须区分基准链算术闭合与焊后变形/测量尚未闭合")
+    estimate = json.loads((ROOT / "studies/SHRINKAGE-ESTIMATE/results/estimate.json").read_text(encoding="utf-8"))
+    twi_case = estimate["machining_allowance_screen"]["scenarios"][1]
     required = [f"固定送丝{p['fixed_feed_mm_s']:.3f} mm/s",
                 f"每件名义净热输入{p['total_net_heat_j']/1000:.2f} kJ，弧燃时间{p['arc_on_time_s']:.0f} s",
-                f"合计{result['precision']['diameter_with_uncertainty_target_mm']:.4f}",
+                f"加入{precision['measurement_uncertainty_diameter_target_mm']:.3f} mm目标测量扩展不确定度",
+                f"为{precision['diameter_with_uncertainty_target_mm']:.4f} mm",
+                "不含焊后收缩与角变形",
+                "当前0.20 mm余量尚未证明充足",
+                f"所需余量为{twi_case['required_radial_allowance_mm']:.3f} mm",
                 f"包络间距{result['geometry']['torch_feed_clearance_mm']:.2f} mm"]
     if any(value not in body for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")

@@ -40,7 +40,7 @@
     "minimum_leg_mm": 3.5,
     "clearance_leg_mm": 3.8,
     "feed_policy": "按效率下界反算固定送丝；不得逐件假定已知沉积效率",
-    "filler_candidate": "NiFe 55 TIG实心棒材；具体批次牌号按供方证书核对",
+    "filler_candidate": "NiFe 55 TIG实心棒材；供方页面标注EN ISO 1071 S C NiFe-2，AWS A5.15分类按批次证书核对",
     "filler_source": "https://certilas.com/en/product/nife-55-tig",
     "wire_entry_offset_xyz_mm": [
       -1.0,

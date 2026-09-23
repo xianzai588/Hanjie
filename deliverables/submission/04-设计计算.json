@@ -34,7 +34,7 @@
       "minimum_leg_mm": 3.5,
       "clearance_leg_mm": 3.8,
       "feed_policy": "按效率下界反算固定送丝；不得逐件假定已知沉积效率",
-      "filler_candidate": "NiFe 55 TIG实心棒材；具体批次牌号按供方证书核对",
+      "filler_candidate": "NiFe 55 TIG实心棒材；供方页面标注EN ISO 1071 S C NiFe-2，AWS A5.15分类按批次证书核对",
       "filler_source": "https://certilas.com/en/product/nife-55-tig",
       "wire_entry_offset_xyz_mm": [
         -1.0,
@@ -108,7 +108,7 @@
       "bore_length_mm": 12.0,
       "support_height_spread_limit_mm": 0.003,
       "allocation_source": "project/tolerance.yaml",
-      "status": "设计分配；制造能力、热残余和卸夹位移未实测",
+      "status": "七项基准链算术闭合；焊接收缩、制造能力、测量不确定度和卸夹位移未闭合",
       "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm",
       "radial_allocations_mm": {
         "datum_transfer": 0.003,
@@ -116,10 +116,12 @@
         "sleeve_centering": 0.002,
         "initial_assembly_residual": 0.001,
         "clamp_elastic_shift": 0.002,
-        "thermal_residual_target": 0.008,
-        "release_shift_target": 0.002
+        "release_shift_target": 0.002,
+        "support_tilt": 0.0008
       },
-      "measurement_expanded_uncertainty_diameter_target_mm": 0.002
+      "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
+      "thermal_residual_closure_status": "not_closed_pending_joint_specific_measurement",
+      "measurement_uncertainty_verified": false
     }
   },
   "inputs": {
@@ -157,7 +159,7 @@
           "minimum_leg_mm": 3.5,
           "clearance_leg_mm": 3.8,
           "feed_policy": "按效率下界反算固定送丝；不得逐件假定已知沉积效率",
-          "filler_candidate": "NiFe 55 TIG实心棒材；具体批次牌号按供方证书核对",
+          "filler_candidate": "NiFe 55 TIG实心棒材；供方页面标注EN ISO 1071 S C NiFe-2，AWS A5.15分类按批次证书核对",
           "filler_source": "https://certilas.com/en/product/nife-55-tig",
           "wire_entry_offset_xyz_mm": [
             -1.0,
@@ -231,7 +233,7 @@
           "bore_length_mm": 12.0,
           "support_height_spread_limit_mm": 0.003,
           "allocation_source": "project/tolerance.yaml",
-          "status": "设计分配；制造能力、热残余和卸夹位移未实测",
+          "status": "七项基准链算术闭合；焊接收缩、制造能力、测量不确定度和卸夹位移未闭合",
           "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
         }
       },
@@ -271,20 +273,25 @@
         "legacy_v41_note": "旧表 0.028 而非 0.025 mm；混合路径/几何误差且含 P95，不能作为最坏情况上界",
         "product_geometry_chain": {
           "unit": "radial_mm",
-          "interpretation": "径向设计分配；支点倾斜由几何单独计算。胀套定心与装配残差共用原0.003预算，细分目标均未实测。",
+          "interpretation": "终加工基准链的径向设计分配；含支点倾斜，焊接热残余由独立加工余量筛查管理。各项目标均未实测。",
           "contributions_mm": {
             "datum_transfer": 0.003,
             "fixture_axis_setting": 0.003,
             "sleeve_centering": 0.002,
             "initial_assembly_residual": 0.001,
             "clamp_elastic_shift": 0.002,
-            "thermal_residual_target": 0.008,
-            "release_shift_target": 0.002
+            "release_shift_target": 0.002,
+            "support_tilt": 0.0008
           },
           "rss_mm": null,
           "p95_mm": null,
-          "distribution_status": "unknown",
-          "derived_sum_source": "COMPETITION-DESIGN assessment.precision；包含支点倾斜"
+          "distribution_status": "unknown"
+        },
+        "thermal_residual_management": {
+          "position_budget_included": false,
+          "method": "焊后收缩与角变形由径向加工余量筛查，并以焊后实测/终加工复核",
+          "current_radial_machining_allowance_mm": 0.2,
+          "closure_status": "not_closed_pending_joint_specific_measurement"
         },
         "automation_path_chain": {
           "unit": "mm",
@@ -961,19 +968,21 @@
       "sleeve_centering": 0.002,
       "initial_assembly_residual": 0.001,
       "clamp_elastic_shift": 0.002,
-      "thermal_residual_target": 0.008,
       "release_shift_target": 0.002,
       "support_tilt": 0.0008
     },
-    "radial_sum_mm": 0.0218,
-    "nonthermal_radial_sum_mm": 0.0138,
-    "thermal_max_allowed_radial_mm": 0.0102,
+    "radial_sum_mm": 0.0138,
     "measurement_uncertainty_diameter_target_mm": 0.002,
     "support_tilt_rad": 6.666666666666667e-05,
     "tilt_radial_allowance_mm": 0.0008,
-    "design_diameter_budget_mm": 0.0436,
-    "diameter_with_uncertainty_target_mm": 0.0456,
-    "design_budget_closes": true,
+    "design_diameter_budget_mm": 0.0276,
+    "diameter_with_uncertainty_target_mm": 0.0296,
+    "datum_chain_arithmetic_closes": true,
+    "design_budget_closes": false,
+    "overall_closure_status": "not_closed_pending_weld_displacement_measurement_and_cmm_uncertainty",
+    "thermal_residual_closure_status": "not_closed_pending_joint_specific_measurement",
+    "measurement_uncertainty_verified": false,
+    "thermal_residual_in_position_budget": false,
     "manufacturing_capability_verified": false,
     "thermal_residual_verified": false
   },

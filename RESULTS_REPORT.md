@@ -1,6 +1,6 @@
-# V4.3 关键结果索引
+# COMPETITION-R1 关键结果索引
 
-更新时间：2026-09-07
+更新时间：2026-09-22
 
 本文件只登记已实际运行且当前有效的结果；完整边界见各结果文件。
 
@@ -20,6 +20,7 @@
 | 显式边界 Neumann F/VF | 四项解析验证与仿射精确同材料 WLS patch tests 通过；F→VF NiFe P95/MAE 仍为 10.923/8.066 °C；最差固定点 RMS 2.785 °C，QT 近界面峰值差 10.232 °C | 面源与固定点 RMS 已闭环，但连续场和一个峰值门仍失败；按预登记规则不跑新 M/XF/dt，转成熟 FE/FVM 独立参考 | `simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json` |
 | Continuous 扫掠网格与彩排 | 84,420 节点、360,990 四面体，整网格及焊缝区 minSICN<0.1 均为 0，最小 0.1681；合成热循环彩排最大 10 次 Newton，合力/合矩误差 1.85e-13 N/4.39e-11 N·mm | `STRUCT-0-PREP=ready_pending_admitted_thermal_history`；合成 PFEP_FE 无工程意义，正式 STRUCT-0 仍关闭 | `simulation/structural-v4/results/struct0-prep/struct0-prep-plan6-assessment.json` |
 | 逐件预偏置 | 逆补偿合成代理均值 0.00647 mm、P95 0.01585 mm、总体通过率 100% | synthetic_demo；未做实物标定 | `studies/PRECOMPENSATION/results/precompensation_summary.json` |
-| 误差预算 | 最坏径向 0.035 mm，对应 Ø0.070 mm | 未满足 Ø0.05 mm 目标 | `project/tolerance.yaml` |
+| 终加工基准链公差分配 | 七项线性径向和 0.0138 mm；Ø0.0276 mm，加 0.002 mm目标测量不确定度为Ø0.0296 mm | 基准链算术闭合；不含焊接收缩，整体位置度未闭合 | `project/tolerance.yaml`、`studies/COMPETITION-DESIGN/results/assessment.json` |
+| 焊接收缩与加工余量 | 当前径向余量0.20 mm；TWI钢焊缝比较情景需约0.213 mm | 比较筛查未通过；异种接头系数未验证，需试件测量或重新设计 | `studies/SHRINKAGE-ESTIMATE/results/estimate.json` |
 
 热模型串联热阻修正相对历史名义峰温变化为 -2.55、+0.88、+3.55 °C；它只表示离散修正差异，不是真值误差。真实焊接、宏观截面、CMM、硬度、NDT、洁净度及 WPS/PQR 均未被这些数值结果替代。

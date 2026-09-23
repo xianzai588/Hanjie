@@ -70,6 +70,8 @@ def test_each_candidate_uses_its_own_volume_and_energy(study):
 
 def test_budget_inversion_keeps_unclosed_authority_and_diameter_units(study):
     result = study["precision"]
+    assert result["scope"] == "historical_legacy_position_budget_reproduction"
+    assert result["current_release_budget_evidence"] is False
     assert result["radial_deficit_mm"] == pytest.approx(.01)
     assert result["thermal_budget_if_other_items_unchanged_mm"] == pytest.approx(.002)
     for row in result["rows"]:
