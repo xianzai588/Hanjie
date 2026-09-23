@@ -113,14 +113,15 @@ def validate_parameter_consistency() -> Dict[str, Any]:
     if abs(2*radial_limit-target_limit)>1e-12:
         errors.append("径向偏差限值必须等于直径位置度限值的一半")
     contributions = tolerance["product_geometry_chain"]["contributions_mm"]
-    stated_sum = float(tolerance["product_geometry_chain"]["worst_case_design_sum_mm"])
-    if abs(sum(map(float,contributions.values()))-stated_sum)>1e-12:
-        errors.append("产品几何链分项之和与声明最坏情况不一致")
-    expected_status = "not_closed" if stated_sum>radial_limit else "closed_by_design_allocation_only"
-    if tolerance["budget_status"]!=expected_status:
+    stated_sum = sum(map(float, contributions.values()))
+    expected_status = "design_allocated_capability_unverified"
+    if tolerance["budget_status"] != expected_status:
         errors.append(f"公差预算状态应为 {expected_status}")
-    if abs(float(contributions["fixture_repeatability"])-float(fixt["positioning_repeatability_mm"]))>1e-12:
-        errors.append("产品链夹具重复性与夹具基线不一致")
+    if stated_sum + float(tolerance["product_geometry_chain"].get("support_tilt_radial_allowance_mm", .0008)) > radial_limit:
+        errors.append("产品几何链分项与支点倾斜折算超出径向限值")
+    if abs(float(contributions["sleeve_centering"]) + float(contributions["initial_assembly_residual"]) - .003)>1e-12:
+        errors.append("胀套定心与初始装配残差未保持原分配总额")
+
 
     nominal = process["process"]["nominal"]
     expected_heat = nominal["current_a"]*nominal["voltage_v"]*nominal["arc_efficiency"]/nominal["travel_speed_mm_s"]

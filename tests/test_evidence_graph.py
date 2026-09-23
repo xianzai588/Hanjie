@@ -62,8 +62,11 @@ def test_low_level_evidence_cannot_promote_item_or_claim() -> None:
 def test_tolerance_chains_do_not_claim_closure() -> None:
     budget = yaml.safe_load((ROOT / "project/tolerance.yaml").read_text(encoding="utf-8"))
     product = budget["product_geometry_chain"]
-    assert abs(sum(product["contributions_mm"].values()) - product["worst_case_design_sum_mm"]) < 1e-12
-    assert product["worst_case_design_sum_mm"] > budget["target"]["radial_deviation_limit_mm"]
+    from hanjie.domain.competition_design import read_spec, precision_budget
+    result = precision_budget(read_spec(ROOT))
+    assert abs(sum(product["contributions_mm"].values()) + result["tilt_radial_allowance_mm"] - result["radial_sum_mm"]) < 1e-12
+    assert not result["manufacturing_capability_verified"]
+    assert result["thermal_max_allowed_radial_mm"] > product["contributions_mm"]["thermal_residual_target"]
     assert budget["measurement_chain"]["expanded_uncertainty_mm"] is None
     assert product["p95_mm"] is None
 
@@ -138,7 +141,7 @@ def test_generated_report_status_uses_current_authorities() -> None:
     assert status["stages"]["stages"]["THERMAL-0.4R1"]["execution_status"]=="ten_case_run_and_audit_completed"
     assert status["stages"]["stages"]["THERMAL-0.4R1"]["acceptance_result"]=="failed_spatial_convergence"
     assert status["stages"]["stages"]["STRUCT-0"]["execution_status"]=="not_executed"
-    assert status["tolerance"]["status"]=="not_closed"
+    assert status["tolerance"]["status"]=="design_allocated_capability_unverified"
     assert status["joint"]["nominal_wire_deposition"]["equivalent_ideal_fillet_leg_mm"]==pytest.approx(1.7366430137)
     assert status["structural"]["ranking"][0]["model_id"]=="Continuous"
     assert status["thermal"]["stage"]=="THERMAL-0.4R1"

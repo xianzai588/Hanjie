@@ -84,7 +84,7 @@ def collect_current_status(root: Path) -> Dict[str, Any]:
         "tolerance":{
             "status":tolerance["budget_status"],
             "radial_limit_mm":tolerance["target"]["radial_deviation_limit_mm"],
-            "product_worst_case_design_sum_mm":tolerance["product_geometry_chain"]["worst_case_design_sum_mm"],
+            "product_worst_case_design_sum_mm":current_assessment(root)["precision"]["radial_sum_mm"],
             "measurement_expanded_uncertainty_mm":tolerance["measurement_chain"]["expanded_uncertainty_mm"],
         },
         "joint":joint_design_metrics(),
@@ -168,7 +168,10 @@ def render_markdown(status: Dict[str, Any]) -> str:
         "当前说明书与设计图集（页数以构建后 manifest 实际计数为准）采用圆柱胀套、连续薄裙和Ø1.6四道固定送丝。下列ROUTE-B-DESIGN与TOOLING-ACCESS是历史选型/失败情景，不覆盖新工装。",
         f"修订直径预算（含目标测量不确定度）{status['competition_design']['precision']['diameter_with_uncertainty_target_mm']:.4f} mm；仅设计分配，实物与正式热—结构仍未放行。", "",
         f"已实际运行R1单段FV热诊断：60 s、最高温度{status['competition_thermal_diagnostic']['maximum_temperature_c']:.1f}°C、最大能量残差{status['competition_thermal_diagnostic']['maximum_absolute_energy_residual_j']:.3g} J；不代表四道整件热历史。", "",
-        render_design_markdown(status["route_b_design"]),
+        "| 当前布局 | 所需许用 MPa | 净热输入 kJ |", "| --- | ---: | ---: |",
+        *[f"| {r['layout']} | {r['required_allowable_mpa']:.2f} | {r['net_heat_kj']:.2f} |" for r in status["competition_design"]["four_pass_comparison"]],
+        f"固定送丝 {status['competition_design']['process']['fixed_feed_mm_s']:.3f} mm/s；等效焊脚 3.50～3.80 mm。疲劳尚未评定。",
+        "## 历史研究入口", "ROUTE-B-DESIGN 的旧送丝与0.035 mm预算仅用于历史复现，见 studies/ROUTE-B-DESIGN；不得用作当前设计。",
         render_tooling_markdown(status["tooling_access"]),
         "## 当前关键阶段","","| 阶段 | 验收状态 | 允许用途 |","| --- | --- | --- |"]
     visible_stages = {"G-INPUTS", "LOAD-BASIS-0", "COMPETITION-R1", "THERMAL-R1-SINGLEPASS-DIAGNOSTIC", "THERMAL-0.4R1", "THERMAL-REF-PLAN8",

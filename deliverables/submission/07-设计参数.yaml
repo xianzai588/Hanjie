@@ -63,13 +63,6 @@ precision:
   limit_diameter_mm: 0.05
   bore_length_mm: 12.0
   support_height_spread_limit_mm: 0.003
-  radial_allocations_mm:
-    datum_transfer: 0.003
-    fixture_axis_setting: 0.003
-    sleeve_centering: 0.003
-    clamp_elastic_shift: 0.002
-    thermal_residual_target: 0.008
-    release_shift_target: 0.002
+  allocation_source: project/tolerance.yaml
   status: 设计分配；制造能力、热残余和卸夹位移未实测
-  measurement_expanded_uncertainty_diameter_target_mm: 0.002
   conformity_rule: 测得位置度直径＋同口径扩展不确定度≤0.05 mm

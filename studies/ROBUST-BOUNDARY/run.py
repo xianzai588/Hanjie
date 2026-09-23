@@ -99,7 +99,10 @@ def strength_boundary(authority, assessment):
 
 
 def position_boundary():
-    spec = yaml.safe_load((ROOT / "project/competition-design.yaml").read_text(encoding="utf-8"))
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from hanjie.domain.competition_design import read_spec
+    spec = read_spec(ROOT)
     p, f = spec["precision"], spec["fixture"]
     tilt = 2 * p["support_height_spread_limit_mm"] / (3 * f["support_radius_mm"])
     tilt_radial = p["bore_length_mm"] * tilt

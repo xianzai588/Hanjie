@@ -1,0 +1,27 @@
+{
+  "version": "SHRINKAGE-ESTIMATE-1",
+  "evidence_level": "literature_order_screening",
+  "inputs": {
+    "segments": 6,
+    "segment_length_mm": 18.0,
+    "plate_thickness_mm": 5.0,
+    "fillet_leg_mm": 3.5,
+    "free_transverse_shrinkage_per_segment_mm": [
+      0.0048,
+      0.8
+    ],
+    "asymmetry_fraction": 0.02
+  },
+  "formula": "residual_range = segments * free_shrinkage_per_segment * asymmetry_fraction",
+  "free_shrinkage_total_mm": [
+    0.0288,
+    4.800000000000001
+  ],
+  "residual_asymmetry_mm": [
+    0.000576,
+    0.09600000000000002
+  ],
+  "thermal_allowance_comparison_mm": 0.0102,
+  "exceeds_thermal_allowance_possible": true,
+  "decision": "焊后终加工作为主路线；焊序和夹具用于降低加工余量需求，不宣称直接达到位置度限值"
+}

@@ -1,3 +1,5 @@
+> 历史方案存档：不代表当前参赛设计。当前预算见 project/tolerance.yaml 与 COMPETITION-DESIGN 计算；当前正文为 technical-report-v4-unified.md。
+
 # V4.3 提交版论证提纲
 
 目标读者为焊接固定命题评委。全文按“命题约束—推荐方案—已执行证据—不能推出的结论—验证路线”推进，不把研发版本记录当作正文主线。

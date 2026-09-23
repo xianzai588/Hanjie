@@ -38,6 +38,8 @@ def main():
         "16-位置度边界图.svg":"studies/ROBUST-BOUNDARY/results/position-boundary.svg",
         "17-参数来源与证据等级.md":"deliverables/submission/17-参数来源与证据等级.md",
         "18-证据等级总图.svg":"deliverables/submission/18-证据等级总图.svg",
+        "19-收缩量级估算.json":"studies/SHRINKAGE-ESTIMATE/results/estimate.json",
+        "20-载荷一阶估算.json":"studies/LOAD-ESTIMATE/results/load-estimate.json",
     }
     for name, source in files.items():
         target = out/name
@@ -56,7 +58,7 @@ def main():
     (out/"提交说明.txt").write_text(
         f"COMPETITION-R1 技术包\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。STEP为名义装配包络，不是完整制造模型。\n"
         "本包为纯数字设计，实物位置度、洁净、完整热结构与疲劳未验证。\n"
-        "候选选择结果由当前 COMPETITION-DESIGN 四道比较生成；R1单段热诊断为冻结历史附件。\n"
+        "候选选择结果由当前 COMPETITION-DESIGN 四道比较生成；收缩量级和载荷一阶估算均为条件筛查，不是实测或寿命证明；R1单段热诊断为冻结历史附件。\n"
         "复现需完整项目及Python依赖，在项目根目录运行 python deliverables/build_submission.py。\n"
         "校方另附真实报名表、推荐与盖章汇总表；固定命题作品详细描述按附件填‘无’。\n"
         "本包没有办理报名、学校推荐或外部提交。截止时间与命名请核对官方原件及后续通知。\n",

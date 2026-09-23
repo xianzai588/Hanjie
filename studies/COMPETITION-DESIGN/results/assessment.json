@@ -105,17 +105,19 @@
       "limit_diameter_mm": 0.05,
       "bore_length_mm": 12.0,
       "support_height_spread_limit_mm": 0.003,
+      "allocation_source": "project/tolerance.yaml",
+      "status": "设计分配；制造能力、热残余和卸夹位移未实测",
+      "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm",
       "radial_allocations_mm": {
         "datum_transfer": 0.003,
         "fixture_axis_setting": 0.003,
-        "sleeve_centering": 0.003,
+        "sleeve_centering": 0.002,
+        "initial_assembly_residual": 0.001,
         "clamp_elastic_shift": 0.002,
         "thermal_residual_target": 0.008,
         "release_shift_target": 0.002
       },
-      "status": "设计分配；制造能力、热残余和卸夹位移未实测",
-      "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
-      "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
+      "measurement_expanded_uncertainty_diameter_target_mm": 0.002
     }
   },
   "inputs": {
@@ -224,17 +226,85 @@
           "limit_diameter_mm": 0.05,
           "bore_length_mm": 12.0,
           "support_height_spread_limit_mm": 0.003,
-          "radial_allocations_mm": {
+          "allocation_source": "project/tolerance.yaml",
+          "status": "设计分配；制造能力、热残余和卸夹位移未实测",
+          "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
+        }
+      },
+      "project/tolerance.yaml": {
+        "version": "TOLERANCE-2.0",
+        "authority": "当前参赛产品公差分项唯一来源；历史预算见 tolerance-legacy-route-b.yaml",
+        "target": {
+          "tolerance_callout": "Ø0.05 | A | B",
+          "cylindrical_tolerance_zone_diameter_mm": 0.05,
+          "radial_deviation_limit_mm": 0.025
+        },
+        "quality_gates": {
+          "vision": {
+            "rejection_reasons": [
+              "extreme_illumination",
+              "excessive_blur",
+              "low_contrast",
+              "severe_distortion",
+              "heavy_occlusion"
+            ],
+            "action_on_failure": "REFUSE_AND_ALARM"
+          },
+          "temperature": {
+            "max_peak_temperature_c": 1650.0,
+            "interpass_gate_temperature_c": 200.0,
+            "max_circumferential_delta_t_c": 40.0
+          },
+          "position_tolerance_cmm": {
+            "acceptance_threshold_mm": 0.05,
+            "guard_band_safety_margin_mm": 0.005,
+            "guard_band_status": "design_assumption_pending_uncertainty"
+          }
+        },
+        "evidence_level": "design_assumption",
+        "budget_status": "design_allocated_capability_unverified",
+        "legacy_v41_mixed_sum_mm": 0.028,
+        "legacy_v41_note": "旧表 0.028 而非 0.025 mm；混合路径/几何误差且含 P95，不能作为最坏情况上界",
+        "product_geometry_chain": {
+          "unit": "radial_mm",
+          "interpretation": "径向设计分配；支点倾斜由几何单独计算。胀套定心与装配残差共用原0.003预算，细分目标均未实测。",
+          "contributions_mm": {
             "datum_transfer": 0.003,
             "fixture_axis_setting": 0.003,
-            "sleeve_centering": 0.003,
+            "sleeve_centering": 0.002,
+            "initial_assembly_residual": 0.001,
             "clamp_elastic_shift": 0.002,
             "thermal_residual_target": 0.008,
             "release_shift_target": 0.002
           },
-          "status": "设计分配；制造能力、热残余和卸夹位移未实测",
-          "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
-          "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
+          "rss_mm": null,
+          "p95_mm": null,
+          "distribution_status": "unknown",
+          "derived_sum_source": "COMPETITION-DESIGN assessment.precision；包含支点倾斜"
+        },
+        "automation_path_chain": {
+          "unit": "mm",
+          "evidence_level": "design_assumption",
+          "vision_radial_p95": 0.01,
+          "camera_extrinsic": 0.004,
+          "tcp_calibration": 0.003,
+          "robot_repeatability": null,
+          "product_sensitivities": null,
+          "note": "机器人指标尚未核实；原 0.003 与设备表 0.03 不一致，待核实后经灵敏度映射，禁止直接相加"
+        },
+        "measurement_chain": {
+          "expanded_uncertainty_mm": null,
+          "coverage_factor": null,
+          "components": [
+            "CMM",
+            "probe",
+            "datum_reconstruction",
+            "sampling",
+            "repeatability",
+            "environment"
+          ],
+          "note": "MPE 不等于测量不确定度；未取得校准证书及重复测量数据",
+          "design_expanded_uncertainty_diameter_target_mm": 0.002
         }
       },
       "project/process.yaml": {
@@ -834,8 +904,8 @@
       }
     },
     "brep_sha256": {
-      "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "ccea3270853d63ea6280f75b5fada3dd4e090ff009677ee3d905bae1dd294b3d",
-      "simulation/structural-v4/common/shell.brep": "02570059d045af1f219a37c0ebafa942dacb5b0a86c33ee08614f40a6f14823e"
+      "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "25cbc01823f3921ee03a5a8c272c6da930f0acacd69c67c76c25c550e1271d8b",
+      "simulation/structural-v4/common/shell.brep": "043357e59cc627120082d2f77e0dec95f87c88fafe3bcfc0dcbe9fca3cbf1dc0"
     }
   },
   "four_pass_comparison": [
@@ -881,10 +951,24 @@
     ]
   },
   "precision": {
+    "radial_contributions_mm": {
+      "datum_transfer": 0.003,
+      "fixture_axis_setting": 0.003,
+      "sleeve_centering": 0.002,
+      "initial_assembly_residual": 0.001,
+      "clamp_elastic_shift": 0.002,
+      "thermal_residual_target": 0.008,
+      "release_shift_target": 0.002,
+      "support_tilt": 0.0008
+    },
+    "radial_sum_mm": 0.0218,
+    "nonthermal_radial_sum_mm": 0.0138,
+    "thermal_max_allowed_radial_mm": 0.0102,
+    "measurement_uncertainty_diameter_target_mm": 0.002,
     "support_tilt_rad": 6.666666666666667e-05,
     "tilt_radial_allowance_mm": 0.0008,
-    "design_diameter_budget_mm": 0.04360000000000001,
-    "diameter_with_uncertainty_target_mm": 0.04560000000000001,
+    "design_diameter_budget_mm": 0.0436,
+    "diameter_with_uncertainty_target_mm": 0.0456,
     "design_budget_closes": true,
     "manufacturing_capability_verified": false,
     "thermal_residual_verified": false

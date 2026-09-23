@@ -6,7 +6,7 @@ sources:
   materials: project/materials.yaml
   geometry: cad/parametric/geometry.json
   load_basis: project/load-basis-v1.yaml
-  tolerance: project/tolerance.yaml
+  tolerance: project/tolerance-legacy-route-b.yaml
   structural_uncertainty: simulation/structural-v4/results/struct-uncertainty/assessment.json
 load_scales: [0.5, 1.0, 1.5]
 load_scale_basis: 同比例缩放径向力、轴向力和倾覆力矩的确定性敏感性；不是整机载荷或概率

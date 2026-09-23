@@ -7,7 +7,7 @@
     "materials": "project/materials.yaml",
     "geometry": "cad/parametric/geometry.json",
     "load_basis": "project/load-basis-v1.yaml",
-    "tolerance": "project/tolerance.yaml",
+    "tolerance": "project/tolerance-legacy-route-b.yaml",
     "structural_uncertainty": "simulation/structural-v4/results/struct-uncertainty/assessment.json"
   },
   "reference_envelope": {

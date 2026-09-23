@@ -636,9 +636,9 @@
     }
   },
   "geometry_sha256": {
-    "simulation/structural-v4/common/shell.brep": "02570059d045af1f219a37c0ebafa942dacb5b0a86c33ee08614f40a6f14823e",
-    "simulation/structural-v4/models/continuous/Continuous.brep": "4e064b640d64236ff0dc61117dc703564bff51ef61333e7801b8e587f6499b8a",
-    "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "ccea3270853d63ea6280f75b5fada3dd4e090ff009677ee3d905bae1dd294b3d",
-    "simulation/structural-v4/models/8p-fair-b/8P-FAIR_B.brep": "42e00cda7fbaac7a0f3d4ad5176023aee121643355553987243cacaf4e979be4"
+    "simulation/structural-v4/common/shell.brep": "043357e59cc627120082d2f77e0dec95f87c88fafe3bcfc0dcbe9fca3cbf1dc0",
+    "simulation/structural-v4/models/continuous/Continuous.brep": "1d20d84958865e9636b9e9ffe21283d22bd6534d0b0bace980f44c518f8452df",
+    "simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep": "25cbc01823f3921ee03a5a8c272c6da930f0acacd69c67c76c25c550e1271d8b",
+    "simulation/structural-v4/models/8p-fair-b/8P-FAIR_B.brep": "d71f6d36706f522c1cedd441113ddfd249cd0beb05f5685756e9c900224b876d"
   }
 }

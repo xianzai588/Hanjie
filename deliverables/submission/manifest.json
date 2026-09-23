@@ -19,7 +19,9 @@
     "15-确定性边界图.svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg",
     "16-位置度边界图.svg": "studies/ROBUST-BOUNDARY/results/position-boundary.svg",
     "17-参数来源与证据等级.md": "deliverables/submission/17-参数来源与证据等级.md",
-    "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg"
+    "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg",
+    "19-收缩量级估算.json": "studies/SHRINKAGE-ESTIMATE/results/estimate.json",
+    "20-载荷一阶估算.json": "studies/LOAD-ESTIMATE/results/load-estimate.json"
   },
   "report_pages": 25,
   "drawing_pages": 6,

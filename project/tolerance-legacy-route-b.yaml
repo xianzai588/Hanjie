@@ -1,5 +1,6 @@
-version: TOLERANCE-2.0
-authority: 当前参赛产品公差分项唯一来源；历史预算见 tolerance-legacy-route-b.yaml
+version: "TOLERANCE-1.0"
+authority: "产品几何、自动化路径和测量不确定度三条链的历史 ROUTE-B 冻结配置，禁止用于当前参赛预算"
+# 三链分离；数值为设计分配，未完成实测预算闭合。
 target:
   tolerance_callout: Ø0.05 | A | B
   cylindrical_tolerance_zone_diameter_mm: 0.05
@@ -22,24 +23,23 @@ quality_gates:
     guard_band_safety_margin_mm: 0.005
     guard_band_status: design_assumption_pending_uncertainty
 evidence_level: design_assumption
-budget_status: design_allocated_capability_unverified
+budget_status: not_closed
 legacy_v41_mixed_sum_mm: 0.028
 legacy_v41_note: 旧表 0.028 而非 0.025 mm；混合路径/几何误差且含 P95，不能作为最坏情况上界
 product_geometry_chain:
   unit: radial_mm
-  interpretation: 径向设计分配；支点倾斜由几何单独计算。胀套定心与装配残差共用原0.003预算，细分目标均未实测。
+  interpretation: 各项为等效径向设计分配，并非原始平面度直接相加；灵敏度待验证
   contributions_mm:
-    datum_transfer: 0.003
-    fixture_axis_setting: 0.003
-    sleeve_centering: 0.002
-    initial_assembly_residual: 0.001
-    clamp_elastic_shift: 0.002
-    thermal_residual_target: 0.008
-    release_shift_target: 0.002
+    datum_a_equivalent: 0.005
+    datum_b_equivalent: 0.003
+    fixture_repeatability: 0.008
+    initial_assembly: 0.005
+    thermal_deformation: 0.012
+    unclamping: 0.002
+  worst_case_design_sum_mm: 0.035
   rss_mm: null
   p95_mm: null
   distribution_status: unknown
-  derived_sum_source: COMPETITION-DESIGN assessment.precision；包含支点倾斜
 automation_path_chain:
   unit: mm
   evidence_level: design_assumption
@@ -60,4 +60,3 @@ measurement_chain:
   - repeatability
   - environment
   note: MPE 不等于测量不确定度；未取得校准证书及重复测量数据
-  design_expanded_uncertainty_diameter_target_mm: 0.002

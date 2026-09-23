@@ -1,3 +1,5 @@
+> 历史方案存档：不代表当前参赛设计。当前预算见 project/tolerance.yaml 与 COMPETITION-DESIGN 计算；当前正文为 technical-report-v4-unified.md。
+
 # V3 误差预算分配表
 
 **版本**：V3 · 2026-09-03

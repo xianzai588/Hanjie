@@ -19,13 +19,17 @@ SPEC = "project/competition-design.yaml"
 
 
 def read_spec(root: Path):
-    return yaml.safe_load((root / SPEC).read_text(encoding="utf-8"))
+    spec = yaml.safe_load((root / SPEC).read_text(encoding="utf-8"))
+    budget = yaml.safe_load((root / spec["precision"]["allocation_source"]).read_text(encoding="utf-8"))
+    spec["precision"]["radial_allocations_mm"] = budget["product_geometry_chain"]["contributions_mm"]
+    spec["precision"]["measurement_expanded_uncertainty_diameter_target_mm"] = budget["measurement_chain"]["design_expanded_uncertainty_diameter_target_mm"]
+    return spec
 
 
 def input_snapshot(root):
     spec = read_spec(root)
     load = yaml.safe_load((root/"project/load-basis-v1.yaml").read_text(encoding="utf-8"))
-    paths = list(dict.fromkeys([SPEC, spec["process_source"], spec["geometry_manifest"], "project/load-basis-v1.yaml",
+    paths = list(dict.fromkeys([SPEC, spec["precision"]["allocation_source"], spec["process_source"], spec["geometry_manifest"], "project/load-basis-v1.yaml",
                                "studies/TOOLING-ACCESS/config.yaml", *load["layouts"].values()]))
     return {"structured":{path:yaml.safe_load((root/path).read_text(encoding="utf-8")) for path in paths},
             "brep_sha256":{spec[key]:hashlib.sha256((root/spec[key]).read_bytes()).hexdigest() for key in ("seat_brep","shell_brep")}}
@@ -63,7 +67,13 @@ def precision_budget(spec):
     radial = sum(p["radial_allocations_mm"].values()) + tilt_radial
     diameter = 2 * radial
     uncertainty = p["measurement_expanded_uncertainty_diameter_target_mm"]
-    return {"support_tilt_rad": tilt, "tilt_radial_allowance_mm": tilt_radial,
+    contributions = {**p["radial_allocations_mm"], "support_tilt": tilt_radial}
+    nonthermal = radial - contributions["thermal_residual_target"]
+    return {"radial_contributions_mm": contributions, "radial_sum_mm": radial,
+            "nonthermal_radial_sum_mm": nonthermal,
+            "thermal_max_allowed_radial_mm": (p["limit_diameter_mm"] - uncertainty) / 2 - nonthermal,
+            "measurement_uncertainty_diameter_target_mm": uncertainty,
+            "support_tilt_rad": tilt, "tilt_radial_allowance_mm": tilt_radial,
             "design_diameter_budget_mm": diameter,
             "diameter_with_uncertainty_target_mm": diameter + uncertainty,
             "design_budget_closes": diameter + uncertainty <= p["limit_diameter_mm"],

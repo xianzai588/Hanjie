@@ -8,7 +8,7 @@
       "materials": "project/materials.yaml",
       "geometry": "cad/parametric/geometry.json",
       "load_basis": "project/load-basis-v1.yaml",
-      "tolerance": "project/tolerance.yaml",
+      "tolerance": "project/tolerance-legacy-route-b.yaml",
       "structural_uncertainty": "simulation/structural-v4/results/struct-uncertainty/assessment.json"
     },
     "load_scales": [
@@ -430,9 +430,9 @@
     },
     "decision_rule": "仅当真实载荷包络和有依据的许用/疲劳数据确认后，才能冻结焊脚；当前只比较条件裕量与热量/节拍代价"
   },
-  "project/tolerance.yaml": {
+  "project/tolerance-legacy-route-b.yaml": {
     "version": "TOLERANCE-1.0",
-    "authority": "产品几何、自动化路径和测量不确定度三条链的唯一权威配置",
+    "authority": "产品几何、自动化路径和测量不确定度三条链的历史 ROUTE-B 冻结配置，禁止用于当前参赛预算",
     "target": {
       "tolerance_callout": "Ø0.05 | A | B",
       "cylindrical_tolerance_zone_diameter_mm": 0.05,

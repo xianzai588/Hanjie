@@ -46,7 +46,7 @@ def test_baseline_parameter_consistency() -> None:
     """全工程唯一参数源 (SSOT) 一致性校验：禁止任何模块出现硬编码分叉。"""
     res = validate_parameter_consistency()
     assert res["status"] == "PASSED"
-    assert res["budget_status"] == "not_closed"
+    assert res["budget_status"] == "design_allocated_capability_unverified"
 
     # 交叉核验 CAD、仿真配置与 SSOT 基线
     base = get_baseline()
@@ -74,7 +74,7 @@ def test_baseline_parameter_consistency() -> None:
     assert diameter_taper == pytest.approx(base["fixture"]["taper_ratio"])
     assert "tolerance" not in base and "process" not in base
     tolerance = get_tolerance()
-    assert tolerance["product_geometry_chain"]["contributions_mm"]["fixture_repeatability"] == base["fixture"]["positioning_repeatability_mm"]
+    assert tolerance["product_geometry_chain"]["contributions_mm"]["initial_assembly_residual"] > 0
     assert get_process()["authority"].startswith("焊接工艺")
 
 
@@ -189,7 +189,7 @@ def test_vision_summary_keeps_path_and_product_budget_chains_separate() -> None:
     assert "机器人重复定位 待核实" in summary
     assert "产品灵敏度为待核实" in summary
     assert "产品几何链另行管理" in summary
-    assert "最坏情况设计和为 0.035 mm" in summary
+    assert "0.022 mm" in summary
     assert "机器人重复定位 0.003 mm" not in summary
     assert "合计 0.025 mm" not in summary
 

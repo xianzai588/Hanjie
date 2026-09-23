@@ -7,6 +7,10 @@ process,weld_length_mm,108
 process,arc_on_time_s,288
 process,total_net_heat_j,142560
 process,wire_length_mm,387.06248108562
+precision,radial_sum_mm,0.0218
+precision,nonthermal_radial_sum_mm,0.0138
+precision,thermal_max_allowed_radial_mm,0.0102
+precision,measurement_uncertainty_diameter_target_mm,0.002
 precision,support_tilt_rad,6.66666666666667e-05
 precision,tilt_radial_allowance_mm,0.0008
 precision,design_diameter_budget_mm,0.0436

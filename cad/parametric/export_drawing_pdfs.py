@@ -160,6 +160,9 @@ def main() -> None:
         style_element = root.find(f"{NS}style")
         rules = parse_css(style_element.text or "") if style_element is not None else {}
         pdf_path = PDF_DIR / (svg_path.stem + ".pdf")
+        # Windows 下旧 PDF 可能被预览句柄短暂占用；先删除可写旧产物，避免 reportlab 以无效句柄打开。
+        if pdf_path.exists():
+            pdf_path.unlink()
         canvas = Canvas(str(pdf_path), pagesize=landscape(A4))
         title = export_sheet(svg_path, canvas, page_pw, page_ph, rules)
         canvas.setFont("HanjieCN",7)
