@@ -1,0 +1,39 @@
+{
+  "study": "THERMO-STRUCTURAL-6P-8P",
+  "evidence_level": "solver_disagreement_physical_unvalidated",
+  "source_assessment": "simulation/structural-v4/results/struct-uncertainty/assessment.json",
+  "same_conditions": [
+    "同一 3D 固有应变代理",
+    "同一夹具/载荷假设",
+    "FVM 与 Elmer 两条来源"
+  ],
+  "comparison": {
+    "6P_maximum_envelope_mm": 0.0096467070353191,
+    "8P_maximum_envelope_mm": 0.0095908489505759,
+    "maximum_difference_6P_minus_8P_mm": 5.585808474319921e-05,
+    "maximum_difference_percent_of_8P": 0.5824102228181305,
+    "6P_minimum_envelope_mm": 1.3238297281554495e-05,
+    "8P_minimum_envelope_mm": 1.2540423839183665e-05,
+    "paired_signed_difference_min_mm": -0.0006879148152223995,
+    "paired_signed_difference_max_mm": 0.00046030906291420065,
+    "paired_unresolved_cases": 72,
+    "paired_total_cases": 72,
+    "maximum_model_disagreement_span_mm": 0.00016795273518449994
+  },
+  "mechanical_tradeoff": {
+    "6P_required_allowable_mpa": 52.173,
+    "8P_required_allowable_mpa": 39.12989758955982,
+    "6P_to_8P_allowable_ratio": 1.3333283042866995,
+    "6P_net_heat_input_kj": 142.56,
+    "8P_net_heat_input_kj": 190.08,
+    "6P_heat_reduction_percent": 25.0
+  },
+  "decision": "当前代理证据不支持把 6P 宣称为偏移更优；6P 仅因低热输入保留为条件性首选，8P 因更高承载筛查余量保留为稳健方案。",
+  "limitations": [
+    "非正式固有应变响应，不是三材料整件瞬态热塑性求解",
+    "局部热循环沿候选实体铺展，未证明整件热量保守、焊序累积或端部热效应",
+    "壳体和焊缝的力学作用简化为按实际接口面积分布的弹性基础，未求解其塑性与接触释放",
+    "固有应变来自材料点约束情景，未用整件位移反校准，不能称最终焊接残余位置度",
+    "网格C/M比较只报告误差跨度，未达到三网格GCI验证"
+  ]
+}
