@@ -2,9 +2,15 @@
 from pathlib import Path
 import json
 import math
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "src"))
+
+from hanjie.domain.joint_load import build_load_basis
+
+
 OUTPUT = Path(__file__).resolve().parent / "results/load-estimate.json"
 
 INPUTS = {
@@ -44,6 +50,12 @@ def calculate() -> dict:
     # 同向、相位未知时叠加载荷极值：惯性[-Fi,+Fi]，气体[0,Fg]。
     combined_min = -inertial
     combined_max = inertial + gas
+    joint_screen = calculate_joint_weld_screen(
+        root=ROOT,
+        radial_force_n=radial,
+        axial_force_n=axial,
+        moment_n_mm=moment_n_mm,
+    )
     return {
         "version": "LOAD-ESTIMATE-3",
         "evidence_level": "parameterized_first_order_screening",
@@ -74,11 +86,52 @@ def calculate() -> dict:
             "reference_moment_n_mm": REFERENCE["moment_n_mm"],
             "reference_interaction_ratio": interaction,
         },
+        "joint_weld_screen": joint_screen,
         "interpretation": (
             "参数化一阶筛查；按平方和合成径向载荷，并以Fi*e+Fg*(r/2)估倾覆力矩。"
             "惯性项R=-1、气体项R≈0；同向极值叠加后的R为非对称值。"
             "载荷幅值、相位、连杆二阶项及支承偏心仍须由实际机型数据验证。"
         ),
+    }
+
+
+def calculate_joint_weld_screen(
+    root: Path, radial_force_n: float, axial_force_n: float, moment_n_mm: float
+) -> dict:
+    """将一阶载荷代回同一焊缝组公式，给出候选方案的量级筛查。"""
+    basis = build_load_basis(root)
+    reference_force = math.hypot(
+        REFERENCE["radial_force_n"], REFERENCE["axial_force_n"]
+    )
+    force_scale = math.hypot(radial_force_n, axial_force_n) / reference_force
+    moment_scale = moment_n_mm / REFERENCE["moment_n_mm"]
+    rows = {}
+    for layout, data in basis["layouts"].items():
+        components = data["rows"][-1][
+            "reference_envelope_component_required_allowable_mpa"
+        ]
+        force_term = float(components["combined_force"]) * force_scale
+        moment_term = float(components["overturning_only"]) * moment_scale
+        required = math.hypot(force_term, moment_term)
+        rows[layout] = {
+            "required_allowable_mpa": required,
+            "conditional_margin_at_60_mpa": 60.0 / required,
+            "force_term_mpa": force_term,
+            "moment_term_mpa": moment_term,
+            "evidence_status": "parameterized first-order screen; not fatigue or product release",
+        }
+    return {
+        "load_inputs": {
+            "radial_force_n": radial_force_n,
+            "axial_force_n": axial_force_n,
+            "moment_n_mm": moment_n_mm,
+        },
+        "scales_vs_reference": {
+            "resultant_force_scale": force_scale,
+            "moment_scale": moment_scale,
+        },
+        "model_source": "project/load-basis-v1.yaml + src/hanjie/domain/joint_load.py",
+        "rows": rows,
     }
 
 
