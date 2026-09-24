@@ -36,6 +36,15 @@ def test_stale_page_claims_are_detected():
         assert scan("样本", text, actual) == []
 
 
+def test_page_claim_covers_freeze_record_wording():
+    """冻结记录用「说明书N页、图集M页」表述，同样必须受页数口径门禁约束。"""
+    scan = _load_lint().scan_page_claims
+    actual = {"report": 14, "drawing": 6}
+    assert scan("样本", "清单22项、说明书28页、图集6页", actual), "未识别图集写法的过期页数"
+    assert scan("样本", "清单22项、说明书14页、图集5页", actual), "未识别图集页数漂移"
+    assert scan("样本", "清单22项、说明书14页、图集6页", actual) == []
+
+
 def test_parse_count_accepts_arabic_and_chinese():
     parse = _load_lint().parse_count
     assert (parse("14"), parse("6"), parse("六"), parse("十"), parse("十四")) == (14, 6, 6, 10, 14)

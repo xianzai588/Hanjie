@@ -45,7 +45,7 @@ def inline(text: str) -> str:
 def build_story(source: Path = SOURCE) -> list:
     body = ParagraphStyle("BodyCN", fontName=REGULAR_FONT, fontSize=9, leading=14,
                           wordWrap="CJK", spaceAfter=5)
-    cell = ParagraphStyle("CellCN", parent=body, fontSize=8, leading=12)
+    cell = ParagraphStyle("CellCN", parent=body, fontSize=8, leading=11)
     headings = {i: ParagraphStyle(f"H{i}", parent=body, fontName=BOLD_FONT,
                 fontSize=19 if i == 1 else 14 if i == 2 else 11,
                 leading=25 if i == 1 else 19, spaceBefore=12, spaceAfter=7,
@@ -57,8 +57,19 @@ def build_story(source: Path = SOURCE) -> list:
         if not table_rows:
             return
         n = max(len(row) for row in table_rows)
-        rows = [[Paragraph(inline(value), cell) for value in row + [""] * (n - len(row))] for row in table_rows]
-        table = Table(rows, colWidths=[170 * mm / n] * n, repeatRows=1, hAlign="LEFT")
+        normalized = [row + [""] * (n - len(row)) for row in table_rows]
+        # 按列内容分配宽度，避免四列以上的表格把说明列压成窄条。
+        scores = []
+        for col in range(n):
+            score = max(8, min(54, max(len(re.sub(r"[*`（）()]", "", row[col])) for row in normalized)))
+            scores.append(score)
+        widths = [max(20, 170 * score / sum(scores)) for score in scores]
+        scale = 170 / sum(widths)
+        widths = [width * scale for width in widths]
+        cell_style = ParagraphStyle("CellCN", parent=cell, fontSize=7.6 if n >= 5 else 8,
+                                    leading=10.2 if n >= 5 else 11)
+        rows = [[Paragraph(inline(value), cell_style) for value in row] for row in normalized]
+        table = Table(rows, colWidths=[width * mm for width in widths], repeatRows=1, hAlign="LEFT")
         table.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#E8EEF4")),
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -133,8 +144,8 @@ def validate_report_numbers(result, source=SOURCE):
                 f"加入{precision['measurement_uncertainty_diameter_target_mm']:.3f} mm目标测量扩展不确定度",
                 f"为{precision['diameter_with_uncertainty_target_mm']:.4f} mm",
                 "不含焊后收缩与角变形",
-                "当前0.20 mm余量尚未证明充足",
-                f"所需余量为{twi_case['required_radial_allowance_mm']:.3f} mm",
+                "当前0.20 mm余量需由焊后测量回填",
+                f"对应{twi_case['required_radial_allowance_mm']:.3f} mm",
                 f"包络间距{result['geometry']['torch_feed_clearance_mm']:.2f} mm"]
     if any(value not in body for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")

@@ -1,14 +1,14 @@
 {
-  "run_timestamp_utc": "2026-09-06T04:36:37.208555+00:00",
-  "git_commit": "24f00d6c2c1e77174fa0d9dcd038d8733f83f141",
+  "run_timestamp_utc": "2026-09-23T22:49:59.642082+00:00",
+  "git_commit": "361a0465ea536cec6ea48cb7c30b8186fe23d1ef",
   "python_version": "3.12.10",
-  "solver_version": "METALLURGY-0.2-parent-material-risk-mapper-v5",
+  "solver_version": "METALLURGY-0.3-thermal-activation-guard-v5",
   "dependency_versions": {
     "numpy": "2.3.5",
     "PyYAML": "6.0.3"
   },
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
+  "input_sha256": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
   "thermal_input_sha256": "f1106b96b665e1f6796b16b9b12f6f8ce116e87a81080bbd9779565f793221ad",
   "stage": "METALLURGY-0",
   "evidence_level": "literature_supported_plus_solver_result_unvalidated",
@@ -62,31 +62,37 @@
   },
   "risk_assessment": {
     "qt450_10": {
-      "white_cast_iron_carbide_risk": "Medium",
-      "martensite_high_hardening_risk": "Medium",
-      "haz_embrittlement_risk": "Low",
-      "cold_crack_risk": "Medium",
+      "white_cast_iron_carbide_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "martensite_high_hardening_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "haz_embrittlement_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "cold_crack_risk": "unresolved_due_to_non_fusing_thermal_baseline",
       "thermal_exposure_width_tpeak_ge_400c_mm": 0.2788461538461533,
-      "hardness_trend": "靠近代理母材—焊缝界面和快速冷却区域预计高于 QT450-10 母材；需显微硬度线扫确认",
+      "hardness_trend": "母材未达到本风险映射的热激活门槛；不足以评价真实熔焊 HAZ 硬化风险。",
       "risk_location": {
         "angle_deg": 18.573029501921635,
         "n_mm": -3.2788461538461533,
         "z_mm": -0.3999999999999986,
         "peak_temperature_c": 434.87971175197345
-      }
+      },
+      "thermal_activation_threshold_c": 900.0,
+      "thermal_activation_reached": false,
+      "risk_status": "unresolved_due_to_non_fusing_thermal_baseline"
     },
     "q235b": {
-      "high_temperature_grain_coarsening_risk": "Low",
-      "hardening_risk": "Medium",
-      "haz_embrittlement_risk": "Low",
-      "hardness_trend": "靠近代理母材—焊缝界面处出现热影响梯度；不得由硬度趋势直接推断疲劳寿命",
+      "high_temperature_grain_coarsening_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "hardening_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "haz_embrittlement_risk": "unresolved_due_to_non_fusing_thermal_baseline",
+      "hardness_trend": "母材未达到本风险映射的热激活门槛；不足以评价真实熔焊 HAZ 硬化风险。",
       "thermal_exposure_width_tpeak_ge_400c_mm": 1.6057692307692264,
       "risk_location": {
         "angle_deg": 18.573029501921635,
         "n_mm": 3.0288461538461533,
         "z_mm": -0.3999999999999986,
         "peak_temperature_c": 525.8731320993082
-      }
+      },
+      "thermal_activation_threshold_c": 723.0,
+      "thermal_activation_reached": false,
+      "risk_status": "unresolved_due_to_non_fusing_thermal_baseline"
     },
     "ernife_ci_weld_surrogate": {
       "peak_temperature_c": 896.991325781074,
@@ -102,7 +108,13 @@
   },
   "weld_dilution_and_composition": {
     "dilution_method": "geometry_based_nominal",
+    "dilution_model": "conservative_lower_bound_plus_sequential_scenarios",
     "evidence_level": "design_assumption",
+    "model_selection": {
+      "conservative_lower_bound": "single_pass_equivalent",
+      "reported_scope": "保守单道敏感性下界 + 逐道控熔深名义区间",
+      "backfill_gate": "§9.2 L7：宏观截面、化学分析与熔深分道记录"
+    },
     "nominal_cross_section_area_mm2": {
       "weld_metal": 6.125,
       "qt450_10_parent": 5.25,
@@ -130,14 +142,137 @@
         "max_wt_pct": 26.551724137931036
       },
       "C": {
-        "min_wt_pct": 1.259090909090909,
-        "max_wt_pct": 1.7934285714285714
+        "min_wt_pct": 1.051212121212121,
+        "max_wt_pct": 1.5974285714285714
       }
     },
+    "composition_envelope_wt_pct": {
+      "Ni": {
+        "min_wt_pct": 19.743589743589745,
+        "max_wt_pct": 55.0
+      },
+      "C": {
+        "min_wt_pct": 0.01,
+        "max_wt_pct": 1.5974285714285714
+      }
+    },
+    "scenarios": [
+      {
+        "scenario": "single_pass_equivalent",
+        "interpretation": "最终 3.5 mm 等效焊脚全长计入母材熔入；作为保守下界",
+        "parent_fusion_depth_assumption_mm": {
+          "qt450_10": 1.5,
+          "q235b": 1.0
+        },
+        "nominal_cross_section_area_mm2": {
+          "weld_metal": 6.125,
+          "qt450_10_parent": 5.25,
+          "q235b_parent": 3.5,
+          "total": 14.875
+        },
+        "nominal_dilution_fraction": {
+          "weld_metal": 0.4117647058823529,
+          "qt450_10": 0.35294117647058826,
+          "q235b": 0.23529411764705882
+        },
+        "composition_wt_pct": {
+          "Ni": 22.64705882352941,
+          "C": 1.3323529411764705
+        },
+        "composition_range_wt_pct": {
+          "Ni": {
+            "min_wt_pct": 19.743589743589745,
+            "max_wt_pct": 26.551724137931036
+          },
+          "C": {
+            "min_wt_pct": 1.051212121212121,
+            "max_wt_pct": 1.5974285714285714
+          }
+        },
+        "thermal_fusion_validated": false,
+        "chemistry_validated": false
+      },
+      {
+        "nominal_cross_section_area_mm2": {
+          "weld_metal": 12.25,
+          "qt450_10_parent": 5.25,
+          "q235b_parent": 3.5,
+          "total": 21.0
+        },
+        "nominal_dilution_fraction": {
+          "weld_metal": 0.5833333333333334,
+          "qt450_10": 0.25,
+          "q235b": 0.16666666666666666
+        },
+        "composition_wt_pct": {
+          "Ni": 32.083333333333336,
+          "C": 0.9466666666666664
+        },
+        "scenario": "first_pass_controlled_1p5_1p0",
+        "interpretation": "仅第一道名义熔入母材，后三道在上道表面重熔；填充等效面积采用 z² 比较口径",
+        "parent_fusion_depth_assumption_mm": {
+          "qt450_10": 1.5,
+          "q235b": 1.0
+        },
+        "thermal_fusion_validated": false,
+        "chemistry_validated": false
+      },
+      {
+        "nominal_cross_section_area_mm2": {
+          "weld_metal": 12.25,
+          "qt450_10_parent": 2.8000000000000003,
+          "q235b_parent": 1.75,
+          "total": 16.8
+        },
+        "nominal_dilution_fraction": {
+          "weld_metal": 0.7291666666666666,
+          "qt450_10": 0.16666666666666669,
+          "q235b": 0.10416666666666666
+        },
+        "composition_wt_pct": {
+          "Ni": 40.104166666666664,
+          "C": 0.6333333333333333
+        },
+        "scenario": "first_pass_controlled_0p8_0p5",
+        "interpretation": "仅第一道名义熔入母材，后三道在上道表面重熔；填充等效面积采用 z² 比较口径",
+        "parent_fusion_depth_assumption_mm": {
+          "qt450_10": 0.8,
+          "q235b": 0.5
+        },
+        "thermal_fusion_validated": false,
+        "chemistry_validated": false
+      },
+      {
+        "nominal_cross_section_area_mm2": {
+          "weld_metal": 12.25,
+          "qt450_10_parent": 0.0,
+          "q235b_parent": 0.0,
+          "total": 12.25
+        },
+        "nominal_dilution_fraction": {
+          "weld_metal": 1.0,
+          "qt450_10": 0.0,
+          "q235b": 0.0
+        },
+        "composition_wt_pct": {
+          "Ni": 55.0,
+          "C": 0.01
+        },
+        "scenario": "zero_dilution_reference",
+        "interpretation": "纯焊材参考上限，不代表实际熔敷截面",
+        "parent_fusion_depth_assumption_mm": {
+          "qt450_10": 0.0,
+          "q235b": 0.0
+        },
+        "thermal_fusion_validated": false,
+        "chemistry_validated": false
+      }
+    ],
     "fe_content": "balance; not independently resolved from nominal compositions",
-    "limitation": "未进行宏观截面实测、化学成分分析或 CALPHAD 计算；只能报告区间和趋势。"
+    "limitation": "未进行宏观截面实测、化学成分分析或 CALPHAD 计算；单道等效是保守下界，逐道分支是名义比较区间，只能报告区间和趋势。"
   },
   "evidence_boundary": [
+    "未被热激活不等于风险低；不熔合基线不能证明实际焊接安全。",
     "组织输出为风险等级、区间、趋势和位置，不含伪精确相含量。",
     "t8/5 作为热循环描述量，不单独等同于 QT450-10 的 CCT 相组成判据。",
     "显微硬度只能支持组织变化和脆硬趋势，不能替代拉伸、韧性或疲劳试验。",

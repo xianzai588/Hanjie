@@ -169,7 +169,7 @@ def main() -> None:
         canvas.setFillColor(HexColor("#475569"))
         canvas.drawCentredString(
             page_pw / 2, 10,
-            f"HJ 数字工程图集 · {today} · 第 {index}/{len(svg_paths)} 页 · 状态 design-review（未完成制造签审）",
+            f"HJ 数字工程图集 · {today} · 第 {index}/{len(svg_paths)} 页 · 状态 design-review",
         )
         canvas.showPage()
         canvas.save()

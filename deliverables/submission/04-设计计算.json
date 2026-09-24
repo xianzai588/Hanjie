@@ -46,6 +46,65 @@
       "measurement_temperature_c": 20.0,
       "measurement_temperature_band_c": 1.0
     },
+    "material_qualification_gate": {
+      "status": "blocked_pending_batch_evidence",
+      "substrate_grade": "QT450-10",
+      "standard_grade_family": "ferritic_to_pearlitic",
+      "actual_batch_matrix_status": "unverified",
+      "required_evidence": [
+        "批次质保书、炉批号、热处理状态和材料性能记录",
+        "按GB/T 9441-2021形成的代表性金相，记录石墨形态、球化情况、铁素体/珠光体比例及碳化物"
+      ],
+      "blocks": [
+        "preheat_window_freeze",
+        "pwht_branch_selection",
+        "wps_pqr_release"
+      ],
+      "preheat_basis": {
+        "current_candidate_c": 150,
+        "current_candidate_status": "not_released",
+        "twi_process_scope": "MMA/MIG类比，不是TIG认可窗口",
+        "ferritic_nodular_mma_mig_c": [
+          "室温",
+          150
+        ],
+        "pearlitic_nodular_mma_mig_c": [
+          200,
+          330
+        ],
+        "decision_rule": "未完成批次组织确认前不冻结TIG预热；明显珠光体强化或不符合原假设时重定TIG窗口并做代表性试件"
+      },
+      "pwht_comparison_only": true,
+      "qualification_scenarios": [
+        {
+          "id": "I_no_pwht_nife",
+          "filler": "NiFe 55 TIG候选",
+          "preheat_c": 150,
+          "postheat": "覆盖缓冷，不做PWHT",
+          "evidence": "R007灰铸铁FC250在250℃预热但不做PWHT时，NiFe对应HAZ约442.5 HB；跨材料压力参照",
+          "approved_for_production": false
+        },
+        {
+          "id": "II_nife_pwht",
+          "filler": "NiFe 55 TIG候选",
+          "preheat_c": 250,
+          "pwht_c": 650,
+          "pwht_hold_min": 90,
+          "evidence": "R007灰铸铁FC250的HAZ约249.9 HB，焊缝约403.5 HB；PWHT后焊缝升硬",
+          "approved_for_production": false
+        },
+        {
+          "id": "III_nici_pwht",
+          "filler": "Ni-CI",
+          "preheat_c": 250,
+          "pwht_c": 650,
+          "pwht_hold_min": 90,
+          "evidence": "R007灰铸铁FC250的HAZ约223.8 HB、焊缝约195.9 HB；仅表示该研究的组织/硬度结果",
+          "approved_for_production": false
+        }
+      ],
+      "current_batch_release": "blocked"
+    },
     "fixture": {
       "type": "内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱",
       "bore_limits_mm": [
@@ -170,6 +229,65 @@
           "release_below_c": 55.0,
           "measurement_temperature_c": 20.0,
           "measurement_temperature_band_c": 1.0
+        },
+        "material_qualification_gate": {
+          "status": "blocked_pending_batch_evidence",
+          "substrate_grade": "QT450-10",
+          "standard_grade_family": "ferritic_to_pearlitic",
+          "actual_batch_matrix_status": "unverified",
+          "required_evidence": [
+            "批次质保书、炉批号、热处理状态和材料性能记录",
+            "按GB/T 9441-2021形成的代表性金相，记录石墨形态、球化情况、铁素体/珠光体比例及碳化物"
+          ],
+          "blocks": [
+            "preheat_window_freeze",
+            "pwht_branch_selection",
+            "wps_pqr_release"
+          ],
+          "preheat_basis": {
+            "current_candidate_c": 150,
+            "current_candidate_status": "not_released",
+            "twi_process_scope": "MMA/MIG类比，不是TIG认可窗口",
+            "ferritic_nodular_mma_mig_c": [
+              "室温",
+              150
+            ],
+            "pearlitic_nodular_mma_mig_c": [
+              200,
+              330
+            ],
+            "decision_rule": "未完成批次组织确认前不冻结TIG预热；明显珠光体强化或不符合原假设时重定TIG窗口并做代表性试件"
+          },
+          "pwht_comparison_only": true,
+          "qualification_scenarios": [
+            {
+              "id": "I_no_pwht_nife",
+              "filler": "NiFe 55 TIG候选",
+              "preheat_c": 150,
+              "postheat": "覆盖缓冷，不做PWHT",
+              "evidence": "R007灰铸铁FC250在250℃预热但不做PWHT时，NiFe对应HAZ约442.5 HB；跨材料压力参照",
+              "approved_for_production": false
+            },
+            {
+              "id": "II_nife_pwht",
+              "filler": "NiFe 55 TIG候选",
+              "preheat_c": 250,
+              "pwht_c": 650,
+              "pwht_hold_min": 90,
+              "evidence": "R007灰铸铁FC250的HAZ约249.9 HB，焊缝约403.5 HB；PWHT后焊缝升硬",
+              "approved_for_production": false
+            },
+            {
+              "id": "III_nici_pwht",
+              "filler": "Ni-CI",
+              "preheat_c": 250,
+              "pwht_c": 650,
+              "pwht_hold_min": 90,
+              "evidence": "R007灰铸铁FC250的HAZ约223.8 HB、焊缝约195.9 HB；仅表示该研究的组织/硬度结果",
+              "approved_for_production": false
+            }
+          ],
+          "current_batch_release": "blocked"
         },
         "fixture": {
           "type": "内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱",

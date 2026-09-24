@@ -1,5 +1,8 @@
 > 历史方案存档：不代表当前参赛设计。当前预算见 project/tolerance.yaml 与 COMPETITION-DESIGN 计算；当前正文为 technical-report-v4-unified.md。
 
+> **历史快照（V3）**：本表为 V3 阶段的误差预算，**0.035 mm／Ø0.070 mm 已撤回**，不得作为当前结论。
+> 现行口径为终加工基准链 0.0138 mm 径向设计分配（折合 Ø0.0276 mm），加 0.002 mm 目标测量扩展不确定度为 Ø0.0296 mm；不含焊接收缩，最终由焊后偏移与 CMM 放行。见 `project/tolerance.yaml`。
+
 # V3 误差预算分配表
 
 **版本**：V3 · 2026-09-03

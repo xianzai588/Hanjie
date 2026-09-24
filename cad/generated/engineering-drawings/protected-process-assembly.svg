@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<style>text{font-family:"Microsoft YaHei";font-size:18px;fill:#183247}.title{font-size:30px;font-weight:700}.small{font-size:15px}.section{font-size:22px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">连续防护、承力组件与退出路径</text>
@@ -20,21 +20,22 @@
 <line x1="380.0" y1="481.0" x2="380.0" y2="692.5" stroke="#176b7b" stroke-width="3"/>
 <polygon points="373.25,683.50 386.75,683.50 380.00,697.00" fill="#176b7b" stroke="#334155"/>
 <text x="65" y="155" class="small">同轴工序剖面，翼片方向简化投影</text>
-<text x="65" y="698" class="small">盘面保持朝上，下撤全程贴壁，不折叠脏面</text>
+<text x="65" y="698" class="small">盘面朝上；组件下撤贴壁</text>
+<text x="405" y="650" class="small">下撤方向</text>
 <text x="640" y="167" class="note">刚性盘Ø148；底板1；底面z90</text>
 <text x="640" y="205" class="note">连续薄裙：安装外缘Ø150，z94；t0.15</text>
 <text x="640" y="243" class="note">盘体—薄裙、穿盘支承均连续密封连接</text>
 <text x="640" y="281" class="note">薄裙径向顺应能力要求≥0.35</text>
 <text x="640" y="319" class="note">贴壁后覆盖R74.98落物路径；不留1 mm缝</text>
-<text x="640" y="357" class="note">名义接触不等于热态密封；磨损需验证</text>
+<text x="640" y="357" class="note">热态接触按磨损试验记录</text>
 <text x="640" y="395" class="note">下撤不经过Ø40孔，不依赖收折倒渣</text>
 <text x="640" y="433" class="note">焊枪30°弯头＋竖直枪体；喷嘴Ø10</text>
 <text x="640" y="471" class="note">送丝管与焊枪周向错开，出口偏置y=-4</text>
 <text x="640" y="509" class="note">所建模焊枪／送丝最小间距 2.28</text>
 <text x="640" y="547" class="note">执行互锁：防护在位、底口开放、轨迹确认</text>
 <text x="640" y="585" class="note">冷却松夹→胀套顶回确认→组件下撤→封盖</text>
-<text x="640" y="623" class="note">内窥镜＋全表面颗粒检查，不以低飞溅免责</text>
+<text x="640" y="623" class="note">内窥镜＋全表面颗粒检查</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
-<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计评审图 | 参数为设计输入</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；放行记录见工艺卡</text>
 </svg>

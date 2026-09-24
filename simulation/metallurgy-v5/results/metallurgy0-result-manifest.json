@@ -2,12 +2,12 @@
   "stage": "METALLURGY-0",
   "evidence_level": "literature_supported_plus_solver_result_unvalidated",
   "input_file": "project/g-inputs-v5.2.yaml",
-  "input_sha256": "c139ce75b899888d74d68d910c7b9f5dd4cdd3467891bd2bcee33ef8b2f0d3a8",
+  "input_sha256": "177ef072ea1e301e08cb0ef01134e940e6873483656105aef95d954331911664",
   "thermal_input": "simulation/thermal-v5/results/thermal0-field.npz",
   "thermal_input_sha256": "f1106b96b665e1f6796b16b9b12f6f8ce116e87a81080bbd9779565f793221ad",
   "files": {
-    "metallurgy0-summary.json": "c59f2588270878daf26366e086714b8c8c6bc5dbc970b83e5f767b33341989db",
-    "metallurgy0-risk.csv": "c8bc16861541d0aed0db9f9553adbecf125aadc1295a4c86f05dba3a97985898",
-    "metallurgy0-report.md": "824c8f2f6ceba147b65085679923a368713a18e8572d863118caab16458c8d88"
+    "metallurgy0-summary.json": "c63a74c77afc801a3b83b804ecd5990c460b3a469385ba5035cd87a3ad591bf0",
+    "metallurgy0-risk.csv": "c370e9e241248dbcb7fea160a8a20f05b1f664e3f003a9595055b620759811c6",
+    "metallurgy0-report.md": "dc25c3b49a4eb370ccf898d86ac0f0f3fae61dec793b767bf5976419e8874b88"
   }
 }

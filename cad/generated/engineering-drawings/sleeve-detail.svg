@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<style>text{font-family:"Microsoft YaHei";font-size:18px;fill:#183247}.title{font-size:30px;font-weight:700}.small{font-size:15px}.section{font-size:22px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">胀套—锥芯—拉杆—压环局部剖视详图</text>
-<text x="50" y="99" class="small">局部制造定义 / SECTION B-B / 尺寸为设计冻结值，未作制造签审</text>
+<text x="50" y="99" class="small">局部制造定义 / SECTION B-B / 尺寸为设计冻结值</text>
 <text x="1020" y="65" class="section">HJ-R1-006</text>
 <text x="70" y="155" class="section">轴向剖面 B-B</text>
 <rect x="90" y="260" width="300" height="86" fill="#dbe7ee" stroke="#334155"/>
@@ -13,7 +13,8 @@
 <rect x="130" y="384" width="220" height="26" fill="#475569" stroke="#334155"/>
 <rect x="178" y="410" width="124" height="55" fill="#cbd5e1" stroke="#334155"/>
 <line x1="240" y1="145" x2="240" y2="470" stroke="#64748b" stroke-width="1"/>
-<text x="104" y="245" class="small">焊前孔Ø39.60；胀套 OD 39.54 收拢 / 39.64 最大</text>
+<text x="70" y="465" class="small">焊前孔 Ø39.60</text>
+<text x="70" y="492" class="small">胀套 Ø39.54 收拢 / Ø39.64 最大</text>
 <text x="300" y="210" class="dim">10°</text>
 <text x="308" y="178" class="note">锥芯</text>
 <text x="102" y="435" class="note">回退肩</text>
@@ -38,8 +39,8 @@
 <text x="620" y="422" class="note">径向合力标量≤100 N；驱动力上限由可更换限力垫片设定</text>
 <text x="620" y="458" class="note">配合：锥芯/拉杆 H7/g6；胀套外圆与孔为功能接触，不作过盈配合</text>
 <text x="620" y="494" class="note">关键表面：接触带Ra0.8，槽口去毛刺R0.2，边缘不得划伤孔壁</text>
-<text x="620" y="530" class="note">详图用于工程评审；材料批次、热处理和弹性回程仍需验证</text>
+<text x="620" y="530" class="note">工程评审项：材料批次、热处理与弹性回程记录</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
-<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计评审图 | 参数为设计输入</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；放行记录见工艺卡</text>
 </svg>

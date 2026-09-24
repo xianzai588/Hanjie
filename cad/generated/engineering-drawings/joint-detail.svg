@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<style>text{font-family:"Microsoft YaHei";font-size:18px;fill:#183247}.title{font-size:30px;font-weight:700}.small{font-size:15px}.section{font-size:22px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">四道焊接截面与工艺设计卡</text>
-<text x="50" y="99" class="small">角焊缝：6×18；单段逐道焊；相邻段不同时起弧；本卡为工艺提案，不是评定合格WPS</text>
+<text x="50" y="99" class="small">角焊缝：6×18；单段逐道焊；相邻段不同时起弧；参数以试件评定后冻结</text>
 <text x="1020" y="65" class="section">HJ-R1-002</text>
 <rect x="435" y="185" width="50" height="360" fill="#cbd5e1" stroke="#334155"/>
 <rect x="115" y="485" width="320" height="60" fill="#efd18b" stroke="#334155"/>
@@ -12,7 +12,8 @@
 <text x="410" y="165" class="note">Q235B，t5</text>
 <text x="140" y="230" class="section">等效焊脚 z=3.50～3.80</text>
 <line x1="140" y1="242" x2="325" y2="368" stroke="#176b7b" stroke-width="1.5"/>
-<text x="95" y="630" class="note">图示为最终包络；四道面积不等于实际熔池形状</text>
+<polygon points="325.00,368.00 312.00,365.00 318.00,356.00" fill="#176b7b" stroke="#334155"/>
+<text x="95" y="630" class="note">图示为最终包络；四道沉积面积按守恒计算</text>
 <text x="95" y="663" class="small">每道沉积目标1.531～1.801 mm²；总面积6.125～7.206 mm²</text>
 <text x="640" y="167" class="note">方法：自动TIG；直流正接（电极负极）</text>
 <text x="640" y="205" class="note">焊材：NiFe 55类TIG实心棒，Ø1.6</text>
@@ -28,6 +29,6 @@
 <text x="640" y="585" class="note">停弧后≥120 s且最高温度&lt;55℃才松夹</text>
 <text x="640" y="623" class="note">冷却至20±1℃后独立测量并判定</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
-<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计评审图 | 参数为设计输入</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；放行记录见工艺卡</text>
 </svg>

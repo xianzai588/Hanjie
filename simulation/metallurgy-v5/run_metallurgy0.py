@@ -103,16 +103,49 @@ def _parent_exposure_width(
     return float(max(abs(float(field["n"][index]) - interface_n_mm) for index in indices))
 
 
+def _mix_composition(
+    weld_area: float,
+    qt_area: float,
+    q235_area: float,
+    materials: dict[str, Any],
+) -> dict[str, Any]:
+    """按截面积混合名义成分；该结果仍是几何假设，不是化学分析。"""
+    total_area = weld_area + qt_area + q235_area
+    weld_nominal = materials["ernife_ci"]["composition_nominal_wt_pct"]
+    qt_nominal = materials["qt450_10"]["composition_nominal_wt_pct"]
+    q235_nominal = materials["q235b"]["composition_nominal_wt_pct"]
+    fractions = {
+        "weld_metal": weld_area / total_area,
+        "qt450_10": qt_area / total_area,
+        "q235b": q235_area / total_area,
+    }
+    return {
+        "nominal_cross_section_area_mm2": {
+            "weld_metal": weld_area,
+            "qt450_10_parent": qt_area,
+            "q235b_parent": q235_area,
+            "total": total_area,
+        },
+        "nominal_dilution_fraction": fractions,
+        "composition_wt_pct": {
+            "Ni": weld_nominal["Ni"] * fractions["weld_metal"],
+            "C": (
+                weld_nominal["C"] * weld_area
+                + qt_nominal["C"] * qt_area
+                + q235_nominal["C"] * q235_area
+            ) / total_area,
+        },
+    }
+
+
 def _dilution_estimate(config: dict[str, Any], materials: dict[str, Any]) -> dict[str, Any]:
-    """用名义焊脚和假设熔入深度计算区间，不把几何估计写成化学实测。"""
+    """同时登记保守单道等效和逐道控熔深口径，不把几何估计写成化学实测。"""
     leg = float(config["geometry"]["fillet_leg_length_mm"])
     weld_area = 0.5 * leg**2
     qt_depth = 1.5
     q235_depth = 1.0
     qt_area = qt_depth * leg
     q235_area = q235_depth * leg
-    total_area = weld_area + qt_area + q235_area
-    fractions = {"weld_metal": weld_area / total_area, "qt450_10": qt_area / total_area, "q235b": q235_area / total_area}
     scales = np.linspace(0.75, 1.25, 11)
     compositions: list[dict[str, float]] = []
     weld_nominal = materials["ernife_ci"]["composition_nominal_wt_pct"]
@@ -133,21 +166,85 @@ def _dilution_estimate(config: dict[str, Any], materials: dict[str, Any]) -> dic
         element: {"min_wt_pct": float(min(item[element] for item in compositions)), "max_wt_pct": float(max(item[element] for item in compositions))}
         for element in ("Ni", "C")
     }
+    equivalent = _mix_composition(weld_area, qt_area, q235_area, materials)
+
+    # 逐道口径只把母材熔入归于第一道；为与现有四道沉积守恒表一致，
+    # 采用 z² 作为填充等效面积。它是比较口径，不等同于实测熔池截面。
+    layered_weld_area = leg**2
+    layered_cases: list[dict[str, Any]] = []
+    for name, qt_layer_depth, q235_layer_depth in (
+        ("first_pass_controlled_1p5_1p0", 1.5, 1.0),
+        ("first_pass_controlled_0p8_0p5", 0.8, 0.5),
+    ):
+        case = _mix_composition(
+            layered_weld_area,
+            qt_layer_depth * leg,
+            q235_layer_depth * leg,
+            materials,
+        )
+        case.update(
+            {
+                "scenario": name,
+                "interpretation": "仅第一道名义熔入母材，后三道在上道表面重熔；填充等效面积采用 z² 比较口径",
+                "parent_fusion_depth_assumption_mm": {
+                    "qt450_10": qt_layer_depth,
+                    "q235b": q235_layer_depth,
+                },
+                "thermal_fusion_validated": False,
+                "chemistry_validated": False,
+            }
+        )
+        layered_cases.append(case)
+    zero_dilution = _mix_composition(layered_weld_area, 0.0, 0.0, materials)
+    zero_dilution.update(
+        {
+            "scenario": "zero_dilution_reference",
+            "interpretation": "纯焊材参考上限，不代表实际熔敷截面",
+            "parent_fusion_depth_assumption_mm": {"qt450_10": 0.0, "q235b": 0.0},
+            "thermal_fusion_validated": False,
+            "chemistry_validated": False,
+        }
+    )
+    scenario_cases = [
+        {
+            "scenario": "single_pass_equivalent",
+            "interpretation": "最终 3.5 mm 等效焊脚全长计入母材熔入；作为保守下界",
+            "parent_fusion_depth_assumption_mm": {"qt450_10": qt_depth, "q235b": q235_depth},
+            **equivalent,
+            "composition_range_wt_pct": composition_ranges,
+            "thermal_fusion_validated": False,
+            "chemistry_validated": False,
+        },
+        *layered_cases,
+        zero_dilution,
+    ]
+    nominal_compositions = [case["composition_wt_pct"] for case in scenario_cases]
     return {
         "dilution_method": "geometry_based_nominal",
+        "dilution_model": "conservative_lower_bound_plus_sequential_scenarios",
         "evidence_level": "design_assumption",
-        "nominal_cross_section_area_mm2": {"weld_metal": weld_area, "qt450_10_parent": qt_area, "q235b_parent": q235_area, "total": total_area},
-        "nominal_dilution_fraction": fractions,
-        "qt450_10_fraction": fractions["qt450_10"],
-        "q235b_fraction": fractions["q235b"],
-        "filler_fraction": fractions["weld_metal"],
+        "model_selection": {
+            "conservative_lower_bound": "single_pass_equivalent",
+            "reported_scope": "保守单道敏感性下界 + 逐道控熔深名义区间",
+            "backfill_gate": "§9.2 L7：宏观截面、化学分析与熔深分道记录",
+        },
+        "nominal_cross_section_area_mm2": equivalent["nominal_cross_section_area_mm2"],
+        "nominal_dilution_fraction": equivalent["nominal_dilution_fraction"],
+        "qt450_10_fraction": equivalent["nominal_dilution_fraction"]["qt450_10"],
+        "q235b_fraction": equivalent["nominal_dilution_fraction"]["q235b"],
+        "filler_fraction": equivalent["nominal_dilution_fraction"]["weld_metal"],
         "thermal_fusion_validated": False,
         "chemistry_validated": False,
         "parent_fusion_depth_assumption_mm": {"qt450_10": qt_depth, "q235b": q235_depth},
         "parent_fusion_depth_sensitivity": "each parent fusion depth varied independently from 75% to 125%",
         "composition_range_wt_pct": composition_ranges,
+        "composition_envelope_wt_pct": {
+            "Ni": {"min_wt_pct": float(min(item["Ni"] for item in nominal_compositions + compositions)), "max_wt_pct": float(max(item["Ni"] for item in nominal_compositions + compositions))},
+            "C": {"min_wt_pct": float(min(item["C"] for item in nominal_compositions + compositions)), "max_wt_pct": float(max(item["C"] for item in nominal_compositions + compositions))},
+        },
+        "scenarios": scenario_cases,
         "fe_content": "balance; not independently resolved from nominal compositions",
-        "limitation": "未进行宏观截面实测、化学成分分析或 CALPHAD 计算；只能报告区间和趋势。",
+        "limitation": "未进行宏观截面实测、化学成分分析或 CALPHAD 计算；单道等效是保守下界，逐道分支是名义比较区间，只能报告区间和趋势。",
     }
 
 
@@ -285,8 +382,28 @@ def run(config: dict[str, Any], materials: dict[str, Any], thermal_dir: Path, ou
         "",
         f"- 名义焊缝金属截面积：{dilution['nominal_cross_section_area_mm2']['weld_metal']:.3f} mm²。",
         f"- 名义 QT450-10 熔入比例：{dilution['nominal_dilution_fraction']['qt450_10']:.1%}；Q235B 熔入比例：{dilution['nominal_dilution_fraction']['q235b']:.1%}。",
-        f"- Ni 区间：{dilution['composition_range_wt_pct']['Ni']['min_wt_pct']:.2f}–{dilution['composition_range_wt_pct']['Ni']['max_wt_pct']:.2f} wt%；C 区间：{dilution['composition_range_wt_pct']['C']['min_wt_pct']:.2f}–{dilution['composition_range_wt_pct']['C']['max_wt_pct']:.2f} wt%。",
-        "- 上述成分为 geometry_based_nominal 稀释贡献的敏感性估计，不是焊缝化学分析结果；填充金属贡献约为 41.2%。",
+        "",
+        f"- 保守单道等效敏感性：Ni {dilution['composition_range_wt_pct']['Ni']['min_wt_pct']:.2f}–{dilution['composition_range_wt_pct']['Ni']['max_wt_pct']:.2f} wt%；C {dilution['composition_range_wt_pct']['C']['min_wt_pct']:.2f}–{dilution['composition_range_wt_pct']['C']['max_wt_pct']:.2f} wt%。",
+        "",
+        "| 口径 | 填充 | QT450-10 | Q235B | Ni wt% | C wt% |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ])
+    for case in dilution["scenarios"]:
+        fractions = case["nominal_dilution_fraction"]
+        composition = case["composition_wt_pct"]
+        label = {
+            "single_pass_equivalent": "单道等效（保守下界）",
+            "first_pass_controlled_1p5_1p0": "仅第一道熔入 1.5/1.0",
+            "first_pass_controlled_0p8_0p5": "仅第一道熔入 0.8/0.5",
+            "zero_dilution_reference": "零稀释（纯焊材参考）",
+        }[case["scenario"]]
+        lines.append(
+            f"| {label} | {fractions['weld_metal']:.1%} | {fractions['qt450_10']:.1%} | {fractions['q235b']:.1%} | {composition['Ni']:.2f} | {composition['C']:.2f} |"
+        )
+    lines.extend([
+        "",
+        "- 逐道分支把母材熔入归于第一道，后三道只作上道表面重熔的名义比较；其填充等效面积采用 z² 口径，不等同于实测熔池截面。上述所有数值均待 §9.2 L7 的宏观截面与化学分析回填。",
+        "- 无论采用哪一口径，当前成分范围对应 Fe-Ni-C 奥氏体（Ni 约 20–40 wt%）；不得把它当作未稀释镍基固溶体，也不得把供方未稀释熔敷金属 Rm 450 MPa 直接当作本接头强度。",
         "",
         "## Gate 边界",
         "",

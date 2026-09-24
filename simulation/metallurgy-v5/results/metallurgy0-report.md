@@ -13,22 +13,32 @@
 
 | 材料侧 | 风险项 | 等级 |
 | --- | --- | --- |
-| qt450_10 | white_cast_iron_carbide_risk | **Medium** |
-| qt450_10 | martensite_high_hardening_risk | **Medium** |
-| qt450_10 | haz_embrittlement_risk | **Low** |
-| qt450_10 | cold_crack_risk | **Medium** |
-| q235b | high_temperature_grain_coarsening_risk | **Low** |
-| q235b | hardening_risk | **Medium** |
-| q235b | haz_embrittlement_risk | **Low** |
+| qt450_10 | white_cast_iron_carbide_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
+| qt450_10 | martensite_high_hardening_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
+| qt450_10 | haz_embrittlement_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
+| qt450_10 | cold_crack_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
+| q235b | high_temperature_grain_coarsening_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
+| q235b | hardening_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
+| q235b | haz_embrittlement_risk | **unresolved_due_to_non_fusing_thermal_baseline** |
 
 ## 焊缝稀释—成分区间
 
 - 名义焊缝金属截面积：6.125 mm²。
 - 名义 QT450-10 熔入比例：35.3%；Q235B 熔入比例：23.5%。
-- Ni 区间：19.74–26.55 wt%；C 区间：1.26–1.79 wt%。
-- 上述成分为 geometry_based_nominal 稀释贡献的敏感性估计，不是焊缝化学分析结果；填充金属贡献约为 41.2%。
+
+- 保守单道等效敏感性：Ni 19.74–26.55 wt%；C 1.05–1.60 wt%。
+
+| 口径 | 填充 | QT450-10 | Q235B | Ni wt% | C wt% |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 单道等效（保守下界） | 41.2% | 35.3% | 23.5% | 22.65 | 1.33 |
+| 仅第一道熔入 1.5/1.0 | 58.3% | 25.0% | 16.7% | 32.08 | 0.95 |
+| 仅第一道熔入 0.8/0.5 | 72.9% | 16.7% | 10.4% | 40.10 | 0.63 |
+| 零稀释（纯焊材参考） | 100.0% | 0.0% | 0.0% | 55.00 | 0.01 |
+
+- 逐道分支把母材熔入归于第一道，后三道只作上道表面重熔的名义比较；其填充等效面积采用 z² 口径，不等同于实测熔池截面。上述所有数值均待 §9.2 L7 的宏观截面与化学分析回填。
+- 无论采用哪一口径，当前成分范围对应 Fe-Ni-C 奥氏体（Ni 约 20–40 wt%）；不得把它当作未稀释镍基固溶体，也不得把供方未稀释熔敷金属 Rm 450 MPa 直接当作本接头强度。
 
 ## Gate 边界
 
-- G-METALLURGY：**未通过物理验证**；当前可作为 THERMAL-0 驱动的风险筛查。
+- G-METALLURGY：**未通过物理验证**；未热激活的母材标记 unresolved，不能把 Low 或未激活解释为方案安全。
 - 下一步物理证据：宏观截面 → 金相（QT 母材—QT HAZ—熔合线—NiFe 焊缝—Q235B HAZ—母材）→ 显微硬度线扫。

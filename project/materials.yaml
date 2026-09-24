@@ -59,13 +59,19 @@ materials:
 
   ernife_ci:
     name: "NiFe 55型镍铁基填充金属（TIG实心棒候选）"
-    standard: "供方页面标注 EN ISO 1071 S C NiFe-2；AWS A5.15 分类待批次证书确认"
+    standard: "供方页面标注 AWS A5.15 E NiFe-CI、EN ISO 1071 S C NiFe-2、W.Nr. 2.4472；E为供方标注前缀，本项目为实心棒材，不自行转换为R，最终以批次证书为准"
     composition_nominal_wt_pct:
       Ni: 55.0
       Fe: "Balance"
-      C: 0.5
-      Mn: 1.0
-      Si: 0.5
+      C: 0.01
+      Mn: 0.7
+      Si: 0.13
+      P: 0.005
+      S: 0.001
+      Cu: 0.03
+      Mo: 0.03
+    composition_source: "供方页面标称熔敷金属成分，2026-09-23核对 https://certilas.com/en/product/nife-55-tig；原建模输入 C 0.5/Mn 1.0/Si 0.5 与供方标称不符，已按供方更正。批次证书为最终依据"
+    recommended_base_materials_supplier: "灰口、可锻、球墨铸铁（含GGG-40～70）；低碳与低合金钢；明确列出钢—铸铁异种接头。供方未给预热/层间/PWHT参数"
     nominal_properties_20c:
       density_kg_m3: 8200.0
       specific_heat_j_kgk: 480.0

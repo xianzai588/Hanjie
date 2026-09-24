@@ -2,7 +2,7 @@
   <rect width="1400" height="900" fill="#f7f8fa"/>
   <style>text{font-family:'Microsoft YaHei',Arial,sans-serif;fill:#17202a} .title{font-size:34px;font-weight:700}.h{font-size:22px;font-weight:700}.b{font-size:18px}.s{font-size:16px}.box{fill:white;stroke:#263746;stroke-width:2}.good{fill:#e8f5e9;stroke:#2e7d32}.warn{fill:#fff8e1;stroke:#a66b00}</style>
   <text x="60" y="60" class="title">COMPETITION-R1：守恒修订与三项放行闭环</text>
-  <text x="60" y="95" class="s">数字设计证据图｜推荐路线为条件性设计推荐，未替代实物验证</text>
+  <text x="60" y="95" class="s">数字设计证据图｜推荐路线为条件性设计推荐，放行条件见说明书§9.2</text>
   <text x="60" y="150" class="h">一、3.5 mm 设计目标的守恒修订</text>
   <rect x="60" y="180" width="360" height="180" rx="12" class="box warn"/>
   <text x="85" y="220" class="h">旧单道基线</text><text x="85" y="255" class="b">Ø1.2 mm，送丝 2.0 mm/s</text><text x="85" y="285" class="b">等效焊脚约 1.737 mm</text><text x="85" y="325" class="s">无法同时支撑 3.5 mm 目标截面</text>

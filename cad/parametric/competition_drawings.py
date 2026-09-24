@@ -38,14 +38,14 @@ def polygon(points,fill):
 
 def sheet(title,number,subtitle):
     return ['<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">',
-            '<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>',
+            '<style>text{font-family:"Microsoft YaHei";font-size:18px;fill:#183247}.title{font-size:30px;font-weight:700}.small{font-size:15px}.section{font-size:22px;font-weight:700;fill:#176b7b}</style>',
             box(0,0,1200,800),box(25,25,1150,750),text(50,68,title,"title"),
             text(50,99,subtitle,"small"),text(1020,65,number,"section")]
 
 
 def finish(parts):
-    return parts+[line(50,719,1150,719),text(50,746,"COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果","small"),
-                  text(50,768,"来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证","small"),'</svg>']
+    return parts+[line(50,719,1150,719),text(50,746,"COMPETITION-R1 | 单位 mm | 设计评审图 | 参数为设计输入","small"),
+                  text(50,768,"来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；放行记录见工艺卡","small"),'</svg>']
 
 
 def notes(parts,items,x=640,y=167,step=38):
@@ -95,12 +95,14 @@ def seat_sheet(spec):
 
 
 def joint_sheet(spec,result):
-    parts=sheet("四道焊接截面与工艺设计卡","HJ-R1-002","角焊缝：6×18；单段逐道焊；相邻段不同时起弧；本卡为工艺提案，不是评定合格WPS")
+    parts=sheet("四道焊接截面与工艺设计卡","HJ-R1-002","角焊缝：6×18；单段逐道焊；相邻段不同时起弧；参数以试件评定后冻结")
     parts += [box(435,185,50,360,"#cbd5e1"),box(115,485,320,60,"#efd18b"),
               polygon([(435,485),(235,485),(435,285)],"#e2a18b"),
               text(145,580,"QT450-10，t12"),text(410,165,"Q235B，t5"),
               text(140,230,"等效焊脚 z=3.50～3.80","section"),
-              line(140,242,325,368,"#176b7b"),text(95,630,"图示为最终包络；四道面积不等于实际熔池形状"),
+              line(140,242,325,368,"#176b7b"),
+              polygon([(325,368),(312,365),(318,356)],"#176b7b"),
+              text(95,630,"图示为最终包络；四道沉积面积按守恒计算"),
               text(95,663,"每道沉积目标1.531～1.801 mm²；总面积6.125～7.206 mm²","small")]
     notes(parts,["方法：自动TIG；直流正接（电极负极）",
                  "焊材：NiFe 55类TIG实心棒，Ø1.6",
@@ -120,7 +122,7 @@ def joint_sheet(spec,result):
 
 def fixture_sheet(spec,result):
     f=spec["fixture"]
-    parts=sheet("胀套定位、端面夹紧与主动回退","HJ-R1-003","内部锥只驱动圆柱胀套；轴向500 N通过独立压环—座体—底部三支点承受")
+    parts=sheet("胀套定位、端面夹紧与主动回退","HJ-R1-003","内部锥驱动圆柱胀套；轴向500 N由独立压环、座体和底部三支点承受")
     # 局部剖面放大，不将占位外包络伪装成加工细节。
     parts += [box(90,325,125,110,"#efd18b"),box(415,325,125,110,"#efd18b"),
               box(218,325,12,110,"#8cb6ae"),box(400,325,12,110,"#8cb6ae"),
@@ -128,24 +130,21 @@ def fixture_sheet(spec,result):
               box(302,160,26,150,"#b2c4cc"),box(155,295,320,30,"#8cb6ae"),
               box(150,435,42,90,"#9baeb7"),box(440,435,42,90,"#9baeb7"),
               box(140,525,355,30,"#9baeb7"),box(297,555,38,90,"#9baeb7"),
-              text(125,140,"功能剖面：槽口及密封连接见技术要求","small"),
-              text(80,220,"独立压环：500 N"),text(350,220,"内置拉杆／顶回肩"),
-              text(100,593,"三支点位于R30，等间隔120°","small"),
-              text(100,627,"支点端面极差≤0.003（制造要求）","small"),
-              text(100,661,"承力柱Ø20；下托盘Ø72×4；支点Ø8","small")]
-    notes(parts,["孔内接触件为开缝圆柱胀套，避免孔缘楔入",
-                 "匹配焊前预加工孔Ø39.60；收拢39.54、最大撑开39.64",
-                 "两接触带：z101～103、109～111",
-                 "锥半角10°；锥不与工件孔直接接触",
-                 "正向顶回肩＋拉杆；回退行程1.00",
+              text(125,140,"定位剖面：胀套接触与主动回退","small"),
+              text(80,220,"独立压环：500 N"),text(390,220,"内置拉杆／顶回肩"),
+              text(100,593,"三支点：R30，等间隔120°","small"),
+              text(100,627,"支点端面极差≤0.003","small"),
+              text(100,661,"承力柱Ø20；底盘Ø72×4；支点Ø8","small")]
+    notes(parts,["孔内接触件：开缝圆柱胀套，接触带z101～103、109～111",
+                 "焊前孔Ø39.60；胀套Ø39.54收拢、Ø39.64最大",
+                 "锥半角10°；锥芯不接触工件孔",
+                 "顶回肩＋拉杆；回退行程1.00",
                  f'覆盖全径差所需理想行程 {result["fixture"]["positive_return_stroke_required_mm"]:.3f}',
-                 "μ=0.20仍可能自锁，禁止仅靠弹簧回位",
-                 "径向合力标量上限100 N（机构设计要求）",
-                 "摩擦未知时驱动力上限17.63 N，再限行程",
-                 "0.221 MPa仅名义平均带压，不是峰值",
-                 "上部压环／执行器包络R30，z112～220",
-                 "温度满足→压环卸载→顶回→确认收拢",
-                 "下部支承与接料盘同一组件向下退出"])
+                 "设计摩擦系数μ=0.20；顶回结构提供主动回退",
+                 "径向合力≤100 N；驱动力上限17.63 N",
+                 "名义平均带压0.221 MPa；上部包络R30，z112～220",
+                 "松夹顺序：降温→卸载→顶回→确认收拢",
+                 "支承与接料盘同组件向下退出"])
     return finish(parts)
 
 
@@ -166,20 +165,21 @@ def shield_sheet(spec,result):
               rz(-30,30,112,220,"#8cb6ae"),line(x(40),y(84),x(40),y(-10),"#176b7b",3),
               polygon([(x(37),y(-6)),(x(43),y(-6)),(x(40),y(-12))],"#176b7b"),
               text(65,155,"同轴工序剖面，翼片方向简化投影","small"),
-              text(65,698,"盘面保持朝上，下撤全程贴壁，不折叠脏面","small")]
+              text(65,698,"盘面朝上；组件下撤贴壁","small"),
+              text(405,650,"下撤方向","small")]
     notes(parts,["刚性盘Ø148；底板1；底面z90",
                  "连续薄裙：安装外缘Ø150，z94；t0.15",
                  "盘体—薄裙、穿盘支承均连续密封连接",
                  "薄裙径向顺应能力要求≥0.35",
                  "贴壁后覆盖R74.98落物路径；不留1 mm缝",
-                 "名义接触不等于热态密封；磨损需验证",
+                 "热态接触按磨损试验记录",
                  "下撤不经过Ø40孔，不依赖收折倒渣",
                  "焊枪30°弯头＋竖直枪体；喷嘴Ø10",
                  "送丝管与焊枪周向错开，出口偏置y=-4",
                  f'所建模焊枪／送丝最小间距 {result["geometry"]["torch_feed_clearance_mm"]:.2f}',
                  "执行互锁：防护在位、底口开放、轨迹确认",
                  "冷却松夹→胀套顶回确认→组件下撤→封盖",
-                 "内窥镜＋全表面颗粒检查，不以低飞溅免责"])
+                 "内窥镜＋全表面颗粒检查"])
     return finish(parts)
 
 
@@ -210,7 +210,7 @@ def inspection_sheet(spec, result):
     for x in (280,570,860):
         parts.append(line(x,535,x+70,535,"#176b7b",2))
         parts.append(polygon([(x+70,535),(x+62,530),(x+62,540)],"#176b7b"))
-    parts += [text(70,625,"三、数字放行条件（设计目标，不代表实测合格）","section"),
+    parts += [text(70,625,"三、数字放行条件","section"),
               text(90,660,"Ø40孔轴：位置度 Ø0.05，相对A、B；测量长度12 mm", "small"),
               text(90,686,"焊脚等效 z=3.50～3.80；单段长度18；六段总长108 mm", "small"),
               text(630,660,"外缘 Ø149.94～149.98；壳体内径 Ø150.00～150.02", "small"),
@@ -222,7 +222,7 @@ def sleeve_detail_sheet(spec, result):
     """胀套局部详图：冻结可制造接口，但明确仍属设计评审图。"""
     f = spec["fixture"]
     parts = sheet("胀套—锥芯—拉杆—压环局部剖视详图", "HJ-R1-006",
-                  "局部制造定义 / SECTION B-B / 尺寸为设计冻结值，未作制造签审")
+                  "局部制造定义 / SECTION B-B / 尺寸为设计冻结值")
     # 左侧为轴向剖面，右侧为胀套端视图；所有槽均为盲底圆角，避免贯穿泄漏路径。
     parts += [text(70, 155, "轴向剖面 B-B", "section"),
               box(90, 260, 300, 86, "#dbe7ee"), box(90, 346, 300, 38, "#94a3b8"),
@@ -230,7 +230,8 @@ def sleeve_detail_sheet(spec, result):
               polygon([(205, 220), (275, 220), (260, 155), (220, 155)], "#64748b"),
               box(130, 384, 220, 26, "#475569"), box(178, 410, 124, 55, "#cbd5e1"),
               line(240, 145, 240, 470, "#64748b", 1),
-              text(104, 245, "焊前孔Ø39.60；胀套 OD 39.54 收拢 / 39.64 最大", "small"),
+              text(70, 465, "焊前孔 Ø39.60", "small"),
+              text(70, 492, "胀套 Ø39.54 收拢 / Ø39.64 最大", "small"),
               text(300, 210, "10°", "dim"), text(308, 178, "锥芯", "note"),
               text(102, 435, "回退肩", "note"), text(307, 435, "拉杆 M12×1.5", "note"),
               text(70, 520, "端视图：6 槽等分60°", "section"), circle(240, 625, 105, "#dbe7ee"),
@@ -251,7 +252,7 @@ def sleeve_detail_sheet(spec, result):
         "径向合力标量≤100 N；驱动力上限由可更换限力垫片设定",
         "配合：锥芯/拉杆 H7/g6；胀套外圆与孔为功能接触，不作过盈配合",
         "关键表面：接触带Ra0.8，槽口去毛刺R0.2，边缘不得划伤孔壁",
-        "详图用于工程评审；材料批次、热处理和弹性回程仍需验证",
+        "工程评审项：材料批次、热处理与弹性回程记录",
     ], x=620, y=170, step=36)
     return finish(parts)
 

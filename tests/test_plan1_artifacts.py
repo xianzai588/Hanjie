@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 import yaml
 
 
@@ -50,6 +51,12 @@ def test_plan1_outputs_are_traceable_and_unvalidated() -> None:
     assert dilution["thermal_fusion_validated"] is False
     assert dilution["chemistry_validated"] is False
     assert abs(sum(dilution["nominal_dilution_fraction"].values()) - 1.0) < 1e-12
+    assert dilution["dilution_model"] == "conservative_lower_bound_plus_sequential_scenarios"
+    scenarios = {item["scenario"]: item for item in dilution["scenarios"]}
+    assert scenarios["single_pass_equivalent"]["nominal_dilution_fraction"]["weld_metal"] == pytest.approx(0.4117647058823529)
+    assert scenarios["first_pass_controlled_1p5_1p0"]["nominal_dilution_fraction"]["weld_metal"] == pytest.approx(0.5833333333333334)
+    assert scenarios["first_pass_controlled_0p8_0p5"]["nominal_dilution_fraction"]["weld_metal"] == pytest.approx(0.7291666666666666)
+    assert scenarios["zero_dilution_reference"]["composition_wt_pct"]["Ni"] == pytest.approx(55.0)
     assert metallurgy["region_semantics"]["parent_risk_mask_includes_weld_cells"] == 0
     assert metallurgy["region_semantics"]["parent_haz_width_includes_weld"] is False
     assert metallurgy["risk_assessment"]["qt450_10"]["risk_location"]["n_mm"] < -3.0

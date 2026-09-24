@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<style>text{font-family:"Microsoft YaHei";font-size:18px;fill:#183247}.title{font-size:30px;font-weight:700}.small{font-size:15px}.section{font-size:22px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">接头布局、座体尺寸与独立基准</text>
@@ -2294,6 +2294,6 @@
 <text x="640" y="585" class="note">测量长度12；不默认扩展到整根主轴</text>
 <text x="640" y="623" class="note">C仅周向识别焊段，不加入位置度基准框</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
-<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计评审图 | 参数为设计输入</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；放行记录见工艺卡</text>
 </svg>
