@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import math
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -11,7 +12,14 @@ segment_length_mm = 18.0
 plate_thickness_mm = 5.0
 fillet_leg_mm = 3.5
 weld_area_mm2 = fillet_leg_mm**2 / 2.0
-machining_allowance_mm = 0.20
+design_spec = yaml.safe_load((ROOT / "project/competition-design.yaml").read_text(encoding="utf-8"))
+fixture_spec = design_spec["fixture"]
+machining_allowance_mm = float(fixture_spec["radial_machining_allowance_mm"])
+selected_candidate = fixture_spec["selected_machining_candidate"]
+final_bore_min_mm = float(fixture_spec["final_bore_limits_mm"][0])
+pre_bore_limits = {
+    row["id"]: row["pre_weld_bore_limits_mm"] for row in fixture_spec["machining_candidates"]
+}
 angular_margin_mm = 0.05
 twi_transverse_mm_per_weld = 0.80
 twi_sigma = 0.20
@@ -111,15 +119,20 @@ def main() -> Path:
         "sigma_sensitivity_points": list(sigma_points),
         "residual_grid_mm": grid,
         "machining_allowance_screen": {
-            "formula": "required_radial_allowance = 1.25 * (2*sigma*delta/sqrt(n)) + angular_margin",
+            "formula": "A_geometric,min=(D_final,min-D_pre,max)/2; margin_screen=A_geometric,min-A_required",
             "angular_margin_mm": angular_margin_mm,
             "available_radial_allowance_mm": machining_allowance_mm,
             "scenarios": allowance_rows,
-            "closure_status": "not_closed_due_to_exceedance_in_external_comparison_and_unvalidated_inputs",
+            "required_radial_allowance_mm": allowance_rows[-1]["required_radial_allowance_mm"],
+            "candidate_source": "project/competition-design.yaml",
+            "selected_candidate": selected_candidate,
+            "final_bore_min_mm": final_bore_min_mm,
+            "pre_bore_limits_by_candidate_mm": pre_bore_limits,
+            "closure_status": "pressure_screen_closed_design_measurement_pending",
         },
         "combined_offset_screen_with_angular_distortion_mm": [0.02, 0.16],
         "combined_offset_evidence_status": "unvalidated engineering screen; not simulation or measurement",
-        "decision": "0.20 mm径向加工余量未闭合；TWI钢焊缝比较情景需要0.213 mm，当前值短缺约0.013 mm。须用接头试验/实测或兼容的余量与工装重设计关闭。",
+        "decision": "A2候选将预加工孔最大允许直径限制为39.500 mm，最小几何径向余量0.250 mm，覆盖TWI比较情景约0.213299 mm；真实焊后变形、制造能力与终检仍待工业验证。",
         "literature_to_verify": [
             "10.1115/OMAE2002-28181",
             "10.2478/pomr-2025-0027",

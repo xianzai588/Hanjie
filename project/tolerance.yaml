@@ -42,8 +42,9 @@ product_geometry_chain:
 thermal_residual_management:
   position_budget_included: false
   method: 焊后收缩与角变形由径向加工余量筛查，并以焊后实测/终加工复核
-  current_radial_machining_allowance_mm: 0.20
-  closure_status: not_closed_pending_joint_specific_measurement
+  current_radial_machining_allowance_mm: 0.25
+  selected_candidate: A2
+  closure_status: pressure_screen_closed_joint_specific_measurement_pending
 automation_path_chain:
   unit: mm
   evidence_level: design_assumption

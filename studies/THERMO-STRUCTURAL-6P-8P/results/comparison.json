@@ -1,6 +1,7 @@
 {
   "study": "THERMO-STRUCTURAL-6P-8P",
   "evidence_level": "solver_disagreement_physical_unvalidated",
+  "model_status": "existing_3d_inherent_strain_proxy; full_thermoelastic_plastic_FE_not_executed",
   "source_assessment": "simulation/structural-v4/results/struct-uncertainty/assessment.json",
   "same_conditions": [
     "同一 3D 固有应变代理",
@@ -20,6 +21,19 @@
     "paired_total_cases": 72,
     "maximum_model_disagreement_span_mm": 0.00016795273518449994
   },
+  "sensitivity_boundary": {
+    "paired_unresolved_fraction": 1.0,
+    "max_paired_source_change_mm": 5.803237373750011e-05,
+    "comparison_resolution_mm": 0.00016795273518449994,
+    "difference_is_resolvable": false,
+    "hole_wall_envelope": "not_available_in_existing_proxy; requires released FE or post-weld section/envelope measurement"
+  },
+  "machining_check": {
+    "selected_candidate": "A2",
+    "minimum_geometric_allowance_mm": 0.25,
+    "required_radial_allowance_mm": 0.21329931618554526,
+    "status": "pressure_screen_closed; hole_wall_shape_still_requires_check"
+  },
   "mechanical_tradeoff": {
     "6P_required_allowable_mpa": 52.173,
     "8P_required_allowable_mpa": 39.12989758955982,
@@ -28,7 +42,7 @@
     "8P_net_heat_input_kj": 190.08,
     "6P_heat_reduction_percent": 25.0
   },
-  "decision": "当前代理证据不支持把 6P 宣称为偏移更优；6P 仅因低热输入保留为条件性首选，8P 因更高承载筛查余量保留为稳健方案。",
+  "decision": "当前代理证据下6P与8P不可分辨；不输出布局胜负。6P仅因低热输入保留为条件性首选，8P因更高承载筛查余量保留为切换方案。",
   "limitations": [
     "非正式固有应变响应，不是三材料整件瞬态热塑性求解",
     "局部热循环沿候选实体铺展，未证明整件热量保守、焊序累积或端部热效应",

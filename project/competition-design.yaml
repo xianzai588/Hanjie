@@ -76,10 +76,38 @@ material_qualification_gate:
 fixture:
   type: 内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱
   bore_limits_mm: [40.0, 40.025]
-  pre_weld_bore_diameter_mm: 39.60
-  radial_machining_allowance_mm: 0.20
-  collapsed_sleeve_diameter_mm: 39.54
-  maximum_sleeve_diameter_mm: 39.64
+  final_bore_limits_mm: [40.000, 40.025]
+  selected_machining_candidate: A2
+  machining_pressure_screen:
+    segment_count: 6
+    relative_asymmetry_sigma: 0.20
+    free_shrinkage_mm_per_segment: 0.80
+    angular_margin_mm: 0.05
+  machining_candidates:
+    - id: A0
+      nominal_radial_allowance_mm: 0.200
+      pre_weld_bore_limits_mm: [39.590, 39.600]
+      collapsed_sleeve_diameter_limits_mm: [39.530, 39.540]
+      maximum_sleeve_diameter_limits_mm: [39.630, 39.640]
+    - id: A1
+      nominal_radial_allowance_mm: 0.225
+      pre_weld_bore_limits_mm: [39.540, 39.550]
+      collapsed_sleeve_diameter_limits_mm: [39.480, 39.490]
+      maximum_sleeve_diameter_limits_mm: [39.580, 39.590]
+    - id: A2
+      nominal_radial_allowance_mm: 0.250
+      pre_weld_bore_limits_mm: [39.490, 39.500]
+      collapsed_sleeve_diameter_limits_mm: [39.430, 39.440]
+      maximum_sleeve_diameter_limits_mm: [39.530, 39.540]
+  pre_weld_bore_diameter_mm: 39.50
+  pre_weld_bore_limits_mm: [39.490, 39.500]
+  radial_machining_allowance_mm: 0.25
+  collapsed_sleeve_diameter_mm: 39.44
+  collapsed_sleeve_diameter_limits_mm: [39.430, 39.440]
+  maximum_sleeve_diameter_mm: 39.54
+  maximum_sleeve_diameter_limits_mm: [39.530, 39.540]
+  minimum_insertion_clearance_mm: 0.010
+  minimum_contact_interference_mm: 0.010
   contact_bands_z_mm: [[101.0, 103.0], [109.0, 111.0]]
   contact_coverage_fraction: 0.9
   internal_cone_half_angle_deg: 10.0
@@ -113,5 +141,5 @@ precision:
   bore_length_mm: 12.0
   support_height_spread_limit_mm: 0.003
   allocation_source: project/tolerance.yaml
-  status: 七项基准链算术闭合；焊接收缩、制造能力、测量不确定度和卸夹位移未闭合
+  status: A2压力情景与数字加工余量链闭合；真实焊后变形、制造能力、测量不确定度和卸夹位移仍待工业验证
   conformity_rule: 测得位置度直径＋同口径扩展不确定度≤0.05 mm

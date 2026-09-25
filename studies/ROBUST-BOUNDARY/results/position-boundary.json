@@ -1,7 +1,7 @@
 {
   "purpose": "收缩—径向加工余量压力筛查；不是最终位置度预算或实测结果",
-  "machining_allowance_radial_mm": 0.2,
-  "formula": "required_radial_allowance = 1.25 * (2*sigma*delta/sqrt(n)) + angular_margin",
+  "machining_allowance_radial_mm": 0.25,
+  "formula": "A_geometric,min=(D_final,min-D_pre,max)/2; margin_screen=A_geometric,min-A_required",
   "rows": [
     {
       "scenario": "内部筛查上界δ=0.65，σ=0.20",
@@ -10,10 +10,10 @@
       "estimated_asymmetric_residual_mm": 0.106145,
       "angular_distortion_margin_mm": 0.05,
       "required_radial_allowance_mm": 0.182681,
-      "available_radial_allowance_mm": 0.2,
+      "available_radial_allowance_mm": 0.25,
       "arithmetic_fit": true,
       "evidence_status": "unvalidated screening calculation",
-      "allowance_margin_mm": 0.017319
+      "allowance_margin_mm": 0.067319
     },
     {
       "scenario": "TWI钢焊缝比较值δ=0.80，σ=0.20",
@@ -22,13 +22,13 @@
       "estimated_asymmetric_residual_mm": 0.130639,
       "angular_distortion_margin_mm": 0.05,
       "required_radial_allowance_mm": 0.213299,
-      "available_radial_allowance_mm": 0.2,
-      "arithmetic_fit": false,
+      "available_radial_allowance_mm": 0.25,
+      "arithmetic_fit": true,
       "evidence_status": "unvalidated screening calculation",
-      "allowance_margin_mm": -0.013299
+      "allowance_margin_mm": 0.036701
     }
   ],
-  "closure_status": "not_closed_due_to_exceedance_in_external_comparison_and_unvalidated_inputs",
+  "closure_status": "pressure_screen_closed_design_measurement_pending",
   "position_tolerance_acceptance": "终加工后以CMM测得位置度直径＋同口径扩展不确定度≤0.05 mm判定",
   "twi_scope_note": "comparative stress screen only; not a validated coefficient for the QT450-10/Q235B joint",
   "continuous_skirt_check": {

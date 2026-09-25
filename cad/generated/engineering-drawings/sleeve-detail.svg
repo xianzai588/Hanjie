@@ -13,8 +13,8 @@
 <rect x="130" y="384" width="220" height="26" fill="#475569" stroke="#334155"/>
 <rect x="178" y="410" width="124" height="55" fill="#cbd5e1" stroke="#334155"/>
 <line x1="240" y1="145" x2="240" y2="470" stroke="#64748b" stroke-width="1"/>
-<text x="70" y="465" class="small">焊前孔 Ø39.60</text>
-<text x="70" y="492" class="small">胀套 Ø39.54 收拢 / Ø39.64 最大</text>
+<text x="70" y="465" class="small">焊前孔 Ø39.490～Ø39.500</text>
+<text x="70" y="492" class="small">胀套 ≤Ø39.440 收拢 / ≤Ø39.540 最大</text>
 <text x="300" y="210" class="dim">10°</text>
 <text x="308" y="178" class="note">锥芯</text>
 <text x="102" y="435" class="note">回退肩</text>

@@ -1,6 +1,11 @@
 {
   "version": "COMPETITION-R1",
   "process": {
+    "eta_dep_range": [
+      0.85,
+      1.0
+    ],
+    "eta_arc": 0.55,
     "fixed_feed_mm_s": 1.3439669482139598,
     "minimum_area_mm2": 6.125,
     "area_range_mm2": [

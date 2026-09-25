@@ -13,6 +13,7 @@ def main():
     for script in ("studies/COMPETITION-DESIGN/run.py", "studies/COMPETITION-DESIGN/robust_selection.py",
                    "studies/SHRINKAGE-ESTIMATE/estimate.py", "studies/ROBUST-BOUNDARY/run.py",
                    "deliverables/process/generate_joint_process_card.py",
+                   "deliverables/report/generate_report_figures.py",
                    "cad/parametric/generate_engineering_drawings.py", "cad/parametric/export_drawing_pdfs.py",
                    "deliverables/report/build_technical_report_pdf.py"):
         subprocess.run([sys.executable, "-X", "utf8", str(ROOT/script)], cwd=ROOT, check=True)

@@ -85,9 +85,9 @@
     "d0.65_s0.2": 0.10614
   },
   "machining_allowance_screen": {
-    "formula": "required_radial_allowance = 1.25 * (2*sigma*delta/sqrt(n)) + angular_margin",
+    "formula": "A_geometric,min=(D_final,min-D_pre,max)/2; margin_screen=A_geometric,min-A_required",
     "angular_margin_mm": 0.05,
-    "available_radial_allowance_mm": 0.2,
+    "available_radial_allowance_mm": 0.25,
     "scenarios": [
       {
         "scenario": "内部筛查上界δ=0.65，σ=0.20",
@@ -96,7 +96,7 @@
         "estimated_asymmetric_residual_mm": 0.106145,
         "angular_distortion_margin_mm": 0.05,
         "required_radial_allowance_mm": 0.182681,
-        "available_radial_allowance_mm": 0.2,
+        "available_radial_allowance_mm": 0.25,
         "arithmetic_fit": true,
         "evidence_status": "unvalidated screening calculation"
       },
@@ -107,19 +107,37 @@
         "estimated_asymmetric_residual_mm": 0.130639,
         "angular_distortion_margin_mm": 0.05,
         "required_radial_allowance_mm": 0.213299,
-        "available_radial_allowance_mm": 0.2,
-        "arithmetic_fit": false,
+        "available_radial_allowance_mm": 0.25,
+        "arithmetic_fit": true,
         "evidence_status": "unvalidated screening calculation"
       }
     ],
-    "closure_status": "not_closed_due_to_exceedance_in_external_comparison_and_unvalidated_inputs"
+    "required_radial_allowance_mm": 0.213299,
+    "candidate_source": "project/competition-design.yaml",
+    "selected_candidate": "A2",
+    "final_bore_min_mm": 40.0,
+    "pre_bore_limits_by_candidate_mm": {
+      "A0": [
+        39.59,
+        39.6
+      ],
+      "A1": [
+        39.54,
+        39.55
+      ],
+      "A2": [
+        39.49,
+        39.5
+      ]
+    },
+    "closure_status": "pressure_screen_closed_design_measurement_pending"
   },
   "combined_offset_screen_with_angular_distortion_mm": [
     0.02,
     0.16
   ],
   "combined_offset_evidence_status": "unvalidated engineering screen; not simulation or measurement",
-  "decision": "0.20 mm径向加工余量未闭合；TWI钢焊缝比较情景需要0.213 mm，当前值短缺约0.013 mm。须用接头试验/实测或兼容的余量与工装重设计关闭。",
+  "decision": "A2候选将预加工孔最大允许直径限制为39.500 mm，最小几何径向余量0.250 mm，覆盖TWI比较情景约0.213299 mm；真实焊后变形、制造能力与终检仍待工业验证。",
   "literature_to_verify": [
     "10.1115/OMAE2002-28181",
     "10.2478/pomr-2025-0027",

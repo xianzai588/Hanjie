@@ -122,6 +122,10 @@ def joint_sheet(spec,result):
 
 def fixture_sheet(spec,result):
     f=spec["fixture"]
+    pre_min, pre_max = f["pre_weld_bore_limits_mm"]
+    collapsed_max = f["collapsed_sleeve_diameter_limits_mm"][1]
+    expanded_max = f["maximum_sleeve_diameter_limits_mm"][1]
+    selected = result["machining_allowance"]["selected_candidate"]
     parts=sheet("胀套定位、端面夹紧与主动回退","HJ-R1-003","内部锥驱动圆柱胀套；轴向500 N由独立压环、座体和底部三支点承受")
     # 局部剖面放大，不将占位外包络伪装成加工细节。
     parts += [box(90,325,125,110,"#efd18b"),box(415,325,125,110,"#efd18b"),
@@ -136,7 +140,8 @@ def fixture_sheet(spec,result):
               text(100,627,"支点端面极差≤0.003","small"),
               text(100,661,"承力柱Ø20；底盘Ø72×4；支点Ø8","small")]
     notes(parts,["孔内接触件：开缝圆柱胀套，接触带z101～103、109～111",
-                 "焊前孔Ø39.60；胀套Ø39.54收拢、Ø39.64最大",
+                 f"候选{selected}：焊前孔Ø{pre_min:.3f}～{pre_max:.3f}",
+                 f"胀套收拢≤Ø{collapsed_max:.3f}、最大撑开≤Ø{expanded_max:.3f}",
                  "锥半角10°；锥芯不接触工件孔",
                  "顶回肩＋拉杆；回退行程1.00",
                  f'覆盖全径差所需理想行程 {result["fixture"]["positive_return_stroke_required_mm"]:.3f}',
@@ -230,8 +235,8 @@ def sleeve_detail_sheet(spec, result):
               polygon([(205, 220), (275, 220), (260, 155), (220, 155)], "#64748b"),
               box(130, 384, 220, 26, "#475569"), box(178, 410, 124, 55, "#cbd5e1"),
               line(240, 145, 240, 470, "#64748b", 1),
-              text(70, 465, "焊前孔 Ø39.60", "small"),
-              text(70, 492, "胀套 Ø39.54 收拢 / Ø39.64 最大", "small"),
+              text(70, 465, f"焊前孔 Ø{f['pre_weld_bore_limits_mm'][0]:.3f}～Ø{f['pre_weld_bore_limits_mm'][1]:.3f}", "small"),
+              text(70, 492, f"胀套 ≤Ø{f['collapsed_sleeve_diameter_limits_mm'][1]:.3f} 收拢 / ≤Ø{f['maximum_sleeve_diameter_limits_mm'][1]:.3f} 最大", "small"),
               text(300, 210, "10°", "dim"), text(308, 178, "锥芯", "note"),
               text(102, 435, "回退肩", "note"), text(307, 435, "拉杆 M12×1.5", "note"),
               text(70, 520, "端视图：6 槽等分60°", "section"), circle(240, 625, 105, "#dbe7ee"),

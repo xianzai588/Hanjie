@@ -1,3 +1,3 @@
 ﻿scenario,free_shrinkage_mm_per_segment,relative_asymmetry_sigma,estimated_asymmetric_residual_mm,angular_distortion_margin_mm,required_radial_allowance_mm,available_radial_allowance_mm,arithmetic_fit,evidence_status,allowance_margin_mm
-内部筛查上界δ=0.65，σ=0.20,0.65,0.2,0.106145,0.05,0.182681,0.2,True,unvalidated screening calculation,0.017319
-TWI钢焊缝比较值δ=0.80，σ=0.20,0.8,0.2,0.130639,0.05,0.213299,0.2,False,unvalidated screening calculation,-0.013299
+内部筛查上界δ=0.65，σ=0.20,0.65,0.2,0.106145,0.05,0.182681,0.25,True,unvalidated screening calculation,0.067319
+TWI钢焊缝比较值δ=0.80，σ=0.20,0.8,0.2,0.130639,0.05,0.213299,0.25,True,unvalidated screening calculation,0.036701

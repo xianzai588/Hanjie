@@ -116,10 +116,85 @@
         40.0,
         40.025
       ],
-      "pre_weld_bore_diameter_mm": 39.6,
-      "radial_machining_allowance_mm": 0.2,
-      "collapsed_sleeve_diameter_mm": 39.54,
-      "maximum_sleeve_diameter_mm": 39.64,
+      "final_bore_limits_mm": [
+        40.0,
+        40.025
+      ],
+      "selected_machining_candidate": "A2",
+      "machining_pressure_screen": {
+        "segment_count": 6,
+        "relative_asymmetry_sigma": 0.2,
+        "free_shrinkage_mm_per_segment": 0.8,
+        "angular_margin_mm": 0.05
+      },
+      "machining_candidates": [
+        {
+          "id": "A0",
+          "nominal_radial_allowance_mm": 0.2,
+          "pre_weld_bore_limits_mm": [
+            39.59,
+            39.6
+          ],
+          "collapsed_sleeve_diameter_limits_mm": [
+            39.53,
+            39.54
+          ],
+          "maximum_sleeve_diameter_limits_mm": [
+            39.63,
+            39.64
+          ]
+        },
+        {
+          "id": "A1",
+          "nominal_radial_allowance_mm": 0.225,
+          "pre_weld_bore_limits_mm": [
+            39.54,
+            39.55
+          ],
+          "collapsed_sleeve_diameter_limits_mm": [
+            39.48,
+            39.49
+          ],
+          "maximum_sleeve_diameter_limits_mm": [
+            39.58,
+            39.59
+          ]
+        },
+        {
+          "id": "A2",
+          "nominal_radial_allowance_mm": 0.25,
+          "pre_weld_bore_limits_mm": [
+            39.49,
+            39.5
+          ],
+          "collapsed_sleeve_diameter_limits_mm": [
+            39.43,
+            39.44
+          ],
+          "maximum_sleeve_diameter_limits_mm": [
+            39.53,
+            39.54
+          ]
+        }
+      ],
+      "pre_weld_bore_diameter_mm": 39.5,
+      "pre_weld_bore_limits_mm": [
+        39.49,
+        39.5
+      ],
+      "radial_machining_allowance_mm": 0.25,
+      "collapsed_sleeve_diameter_mm": 39.44,
+      "collapsed_sleeve_diameter_limits_mm": [
+        39.43,
+        39.44
+      ],
+      "maximum_sleeve_diameter_mm": 39.54,
+      "maximum_sleeve_diameter_limits_mm": [
+        39.53,
+        39.54
+      ],
+      "minimum_insertion_clearance_mm": 0.01,
+      "minimum_contact_interference_mm": 0.01,
       "contact_bands_z_mm": [
         [
           101.0,
@@ -153,7 +228,8 @@
         90.0
       ],
       "carrier_post_radius_mm": 10.0,
-      "carrier_post_bottom_z_mm": -20.0
+      "carrier_post_bottom_z_mm": -20.0,
+      "selected_candidate": "A2"
     },
     "shield": {
       "rigid_radius_mm": 74.0,
@@ -172,7 +248,7 @@
       "bore_length_mm": 12.0,
       "support_height_spread_limit_mm": 0.003,
       "allocation_source": "project/tolerance.yaml",
-      "status": "七项基准链算术闭合；焊接收缩、制造能力、测量不确定度和卸夹位移未闭合",
+      "status": "A2压力情景与数字加工余量链闭合；真实焊后变形、制造能力、测量不确定度和卸夹位移仍待工业验证",
       "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm",
       "radial_allocations_mm": {
         "datum_transfer": 0.003,
@@ -184,7 +260,7 @@
         "support_tilt": 0.0008
       },
       "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
-      "thermal_residual_closure_status": "not_closed_pending_joint_specific_measurement",
+      "thermal_residual_closure_status": "pressure_screen_closed_joint_specific_measurement_pending",
       "measurement_uncertainty_verified": false
     }
   },
@@ -305,10 +381,85 @@
             40.0,
             40.025
           ],
-          "pre_weld_bore_diameter_mm": 39.6,
-          "radial_machining_allowance_mm": 0.2,
-          "collapsed_sleeve_diameter_mm": 39.54,
-          "maximum_sleeve_diameter_mm": 39.64,
+          "final_bore_limits_mm": [
+            40.0,
+            40.025
+          ],
+          "selected_machining_candidate": "A2",
+          "machining_pressure_screen": {
+            "segment_count": 6,
+            "relative_asymmetry_sigma": 0.2,
+            "free_shrinkage_mm_per_segment": 0.8,
+            "angular_margin_mm": 0.05
+          },
+          "machining_candidates": [
+            {
+              "id": "A0",
+              "nominal_radial_allowance_mm": 0.2,
+              "pre_weld_bore_limits_mm": [
+                39.59,
+                39.6
+              ],
+              "collapsed_sleeve_diameter_limits_mm": [
+                39.53,
+                39.54
+              ],
+              "maximum_sleeve_diameter_limits_mm": [
+                39.63,
+                39.64
+              ]
+            },
+            {
+              "id": "A1",
+              "nominal_radial_allowance_mm": 0.225,
+              "pre_weld_bore_limits_mm": [
+                39.54,
+                39.55
+              ],
+              "collapsed_sleeve_diameter_limits_mm": [
+                39.48,
+                39.49
+              ],
+              "maximum_sleeve_diameter_limits_mm": [
+                39.58,
+                39.59
+              ]
+            },
+            {
+              "id": "A2",
+              "nominal_radial_allowance_mm": 0.25,
+              "pre_weld_bore_limits_mm": [
+                39.49,
+                39.5
+              ],
+              "collapsed_sleeve_diameter_limits_mm": [
+                39.43,
+                39.44
+              ],
+              "maximum_sleeve_diameter_limits_mm": [
+                39.53,
+                39.54
+              ]
+            }
+          ],
+          "pre_weld_bore_diameter_mm": 39.5,
+          "pre_weld_bore_limits_mm": [
+            39.49,
+            39.5
+          ],
+          "radial_machining_allowance_mm": 0.25,
+          "collapsed_sleeve_diameter_mm": 39.44,
+          "collapsed_sleeve_diameter_limits_mm": [
+            39.43,
+            39.44
+          ],
+          "maximum_sleeve_diameter_mm": 39.54,
+          "maximum_sleeve_diameter_limits_mm": [
+            39.53,
+            39.54
+          ],
+          "minimum_insertion_clearance_mm": 0.01,
+          "minimum_contact_interference_mm": 0.01,
           "contact_bands_z_mm": [
             [
               101.0,
@@ -361,7 +512,7 @@
           "bore_length_mm": 12.0,
           "support_height_spread_limit_mm": 0.003,
           "allocation_source": "project/tolerance.yaml",
-          "status": "七项基准链算术闭合；焊接收缩、制造能力、测量不确定度和卸夹位移未闭合",
+          "status": "A2压力情景与数字加工余量链闭合；真实焊后变形、制造能力、测量不确定度和卸夹位移仍待工业验证",
           "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
         }
       },
@@ -418,8 +569,9 @@
         "thermal_residual_management": {
           "position_budget_included": false,
           "method": "焊后收缩与角变形由径向加工余量筛查，并以焊后实测/终加工复核",
-          "current_radial_machining_allowance_mm": 0.2,
-          "closure_status": "not_closed_pending_joint_specific_measurement"
+          "current_radial_machining_allowance_mm": 0.25,
+          "selected_candidate": "A2",
+          "closure_status": "pressure_screen_closed_joint_specific_measurement_pending"
         },
         "automation_path_chain": {
           "unit": "mm",
@@ -1069,6 +1221,11 @@
     }
   ],
   "process": {
+    "eta_dep_range": [
+      0.85,
+      1.0
+    ],
+    "eta_arc": 0.55,
     "fixed_feed_mm_s": 1.3439669482139598,
     "minimum_area_mm2": 6.125,
     "area_range_mm2": [
@@ -1109,11 +1266,91 @@
     "datum_chain_arithmetic_closes": true,
     "design_budget_closes": false,
     "overall_closure_status": "not_closed_pending_weld_displacement_measurement_and_cmm_uncertainty",
-    "thermal_residual_closure_status": "not_closed_pending_joint_specific_measurement",
+    "thermal_residual_closure_status": "pressure_screen_closed_joint_specific_measurement_pending",
     "measurement_uncertainty_verified": false,
     "thermal_residual_in_position_budget": false,
     "manufacturing_capability_verified": false,
     "thermal_residual_verified": false
+  },
+  "machining_allowance": {
+    "formula": "A_geometric,min=(D_final,min-D_pre,max)/2; margin_screen=A_geometric,min-A_required",
+    "pressure_scenario": {
+      "n": 6.0,
+      "sigma": 0.2,
+      "delta_mm": 0.8,
+      "angular_margin_mm": 0.05
+    },
+    "required_radial_allowance_mm": 0.21329931618554526,
+    "selected_candidate": "A2",
+    "candidates": [
+      {
+        "id": "A0",
+        "nominal_radial_allowance_mm": 0.2,
+        "pre_weld_bore_min_mm": 39.59,
+        "pre_weld_bore_max_mm": 39.6,
+        "final_bore_min_mm": 40.0,
+        "final_bore_max_mm": 40.025,
+        "geometric_min_radial_allowance_mm": 0.1999999999999993,
+        "screen_margin_mm": -0.013299316185545973,
+        "required_radial_allowance_mm": 0.21329931618554526,
+        "insertion_clearance_min_mm": 0.05000000000000426,
+        "contact_interference_min_mm": 0.030000000000001137,
+        "tooling_checks": {
+          "pre_bore_ordered": true,
+          "insertion_clearance_pass": true,
+          "contact_reach_pass": true,
+          "return_stroke_pass": true
+        },
+        "tooling_chain_pass": true,
+        "pressure_screen_pass": false,
+        "pass": false
+      },
+      {
+        "id": "A1",
+        "nominal_radial_allowance_mm": 0.225,
+        "pre_weld_bore_min_mm": 39.54,
+        "pre_weld_bore_max_mm": 39.55,
+        "final_bore_min_mm": 40.0,
+        "final_bore_max_mm": 40.025,
+        "geometric_min_radial_allowance_mm": 0.22500000000000142,
+        "screen_margin_mm": 0.011700683814456159,
+        "required_radial_allowance_mm": 0.21329931618554526,
+        "insertion_clearance_min_mm": 0.04999999999999716,
+        "contact_interference_min_mm": 0.030000000000001137,
+        "tooling_checks": {
+          "pre_bore_ordered": true,
+          "insertion_clearance_pass": true,
+          "contact_reach_pass": true,
+          "return_stroke_pass": true
+        },
+        "tooling_chain_pass": true,
+        "pressure_screen_pass": true,
+        "pass": true
+      },
+      {
+        "id": "A2",
+        "nominal_radial_allowance_mm": 0.25,
+        "pre_weld_bore_min_mm": 39.49,
+        "pre_weld_bore_max_mm": 39.5,
+        "final_bore_min_mm": 40.0,
+        "final_bore_max_mm": 40.025,
+        "geometric_min_radial_allowance_mm": 0.25,
+        "screen_margin_mm": 0.03670068381445474,
+        "required_radial_allowance_mm": 0.21329931618554526,
+        "insertion_clearance_min_mm": 0.05000000000000426,
+        "contact_interference_min_mm": 0.030000000000001137,
+        "tooling_checks": {
+          "pre_bore_ordered": true,
+          "insertion_clearance_pass": true,
+          "contact_reach_pass": true,
+          "return_stroke_pass": true
+        },
+        "tooling_chain_pass": true,
+        "pressure_screen_pass": true,
+        "pass": true
+      }
+    ],
+    "closure_status": "pressure_screen_closed_design_measurement_pending"
   },
   "conditional_strength": {
     "model_id": "6P-FAIR_B",

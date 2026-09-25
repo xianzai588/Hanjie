@@ -12,6 +12,50 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "deliverables/report/figures"
 
 
+def generate_state_machine(font: FontProperties) -> None:
+    """生成执行状态图，显式区分焊后检查、终镗和最终放行。"""
+    fig, ax = plt.subplots(figsize=(11.2, 5.8), dpi=240, facecolor="white")
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
+    navy, teal, orange, pale, grey = "#183B56", "#0F6F78", "#D97742", "#EEF4F5", "#5D6B78"
+    ax.text(0.0, 1.04, "自动化执行状态与放行互锁", fontsize=13, fontproperties=font,
+            fontweight="bold", color=navy, va="bottom")
+    rows = [
+        ["INIT", "PRECHECK", "PREHEAT", "WELD_P1–P4", "INTERPASS", "COOL_HOLD", "RELEASE_AND_RECOVERY", "COLD_STABILIZE"],
+        ["WELD_GEOMETRY_CHECK", "FINAL_BORING", "DEBURR_AND_CLEAN", "FINAL_THERMAL_STABILIZE", "FINAL_CMM", "FINAL_CLEAN_CHECK", "PASS"],
+    ]
+    for row_index, row in enumerate(rows):
+        y = 0.73 - row_index * 0.26
+        width = 0.105 if row_index == 0 else 0.115
+        gap = 0.015
+        x = (1.0 - (len(row) * width + (len(row) - 1) * gap)) / 2
+        for index, label in enumerate(row):
+            face = "#DDF1F1" if label in {"WELD_GEOMETRY_CHECK", "FINAL_CMM"} else pale
+            edge = teal if label in {"WELD_GEOMETRY_CHECK", "FINAL_CMM"} else "#B8CDD0"
+            ax.add_patch(FancyBboxPatch((x, y), width, 0.12, boxstyle="round,pad=0.006,rounding_size=0.012",
+                                        facecolor=face, edgecolor=edge, linewidth=0.9))
+            ax.text(x + width / 2, y + 0.06, label, fontsize=7.0 if len(label) <= 15 else 6.1,
+                    fontproperties=font, color=navy, ha="center", va="center")
+            if index < len(row) - 1:
+                ax.annotate("", xy=(x + width + gap - 0.002, y + 0.06), xytext=(x + width + 0.003, y + 0.06),
+                            arrowprops={"arrowstyle": "-|>", "lw": 0.8, "color": orange})
+            x += width + gap
+    ax.annotate("", xy=(0.49, 0.59), xytext=(0.49, 0.70), arrowprops={"arrowstyle": "-|>", "lw": 1.0, "color": orange})
+    ax.text(0.24, 0.37, "温度/气流/轨迹异常：停弧、锁存事件、HOLD/REJECT",
+            fontsize=8.1, fontproperties=font, color="#9A4D2D", ha="center")
+    ax.text(0.76, 0.37, "退锥未确认或焊后检查缺失：禁止下撤/终镗",
+            fontsize=8.1, fontproperties=font, color="#9A4D2D", ha="center")
+    ax.text(0.02, 0.23, "焊后几何检查独立记录焊接变形和可加工性；终镗不能覆盖严格焊后位置度失败。",
+            fontsize=8.8, fontproperties=font, color=grey)
+    ax.text(0.02, 0.13, "冷却计时：t_postweld = max(120 s, t_to_below_55)；408 s 仅为弧燃288 s + 保持120 s 的已知下界。",
+            fontsize=8.8, fontproperties=font, color=grey)
+    fig.savefig(OUT / "process-state-machine.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / "process-state-machine.svg", bbox_inches="tight")
+    fig.savefig(OUT / "process-state-machine.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     data = json.loads((ROOT / "studies/COMPETITION-DESIGN/results/robust-selection.json").read_text(encoding="utf-8"))
@@ -24,6 +68,7 @@ def main() -> None:
         "svg.fonttype": "none",
         "pdf.fonttype": 42,
     })
+    generate_state_machine(font)
 
     fig = plt.figure(figsize=(11.2, 4.15), dpi=240, facecolor="white")
     gs = fig.add_gridspec(1, 2, width_ratios=(1.02, 1.35), wspace=0.16,

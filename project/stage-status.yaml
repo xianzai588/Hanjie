@@ -15,7 +15,7 @@ stages:
     acceptance_result: design_checks_passed_physical_performance_unverified
     evidence_level: design_assumption
     evidence: studies/COMPETITION-DESIGN/results/assessment.json
-    allowed_use: 四道沉积、修订胀套与连续薄裙、名义包络、七项终加工基准链0.0138 mm径向算术分配及互锁；焊接收缩/0.20 mm加工余量和CMM不确定度未闭合，不放行实物性能或正式热结构
+    allowed_use: 四道沉积、A2加工余量与联动胀套、连续薄裙、名义包络、七项终加工基准链0.0138 mm径向算术分配及互锁；真实焊后变形、制造能力和CMM不确定度仍未闭合，不放行实物性能或正式热结构
     upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS]
     next_action: 按当前说明书与设计图集开展设计评审；如进入工程放行，先用同接头测量或重设计闭合加工余量，再评定CMM不确定度和焊接性能
   THERMAL-R1-SINGLEPASS-DIAGNOSTIC:
@@ -208,12 +208,12 @@ stages:
     execution_status: six_candidates_108_capacity_process_cases_completed_historical_precision_reproduction_retained
     acceptance_result: digital_recommendation_frozen_physical_release_not_available
     evidence_level: design_assumption_reference_envelope
-    allowed_use: 原沉积效率范围内的承载—净热输入—弧燃时间条件选型；附带的旧公差口径仅供历史复算，不进入当前位置度预算或0.20 mm加工余量判定
+    allowed_use: 原沉积效率范围内的承载—净热输入—弧燃时间条件选型；附带的旧公差口径仅供历史复算，不进入当前位置度预算或A2加工余量判定
     evidence: [studies/ROUTE-B-DESIGN/results/assessment.json, studies/COMPETITION-DESIGN/results/robust-selection.json]
     upstream_dependencies: [LOAD-BASIS-0, STRUCT-UNCERTAINTY]
     formal: false
     experimental_data_required: false
-    next_action: 6P-FAIR_B四道冻结为数字推荐；当前焊接热残余由0.20 mm加工余量筛查管理；若进入工程放行，补实际载荷、焊序热结构、焊缝成形和物理质量验证
+    next_action: 6P-FAIR_B四道与A2余量候选冻结为数字推荐；既定压力情景已由0.250 mm最小径向余量覆盖；若进入工程放行，补实际载荷、焊序热结构、焊缝成形和物理质量验证
   TOOLING-ACCESS:
     execution_status: occ_swept_shield_torch_envelopes_and_cone_force_checks_completed
     acceptance_result: limited_geometry_routes_available_cleanliness_and_repeatability_open

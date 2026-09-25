@@ -10,6 +10,10 @@ ROOT = Path(__file__).resolve().parents[2]
 def main():
     r = current_assessment(ROOT)
     p = r["process"]
+    fixture = r["spec"]["fixture"]
+    machining = r["machining_allowance"]
+    selected = machining["selected_candidate"]
+    selected_row = next(row for row in machining["candidates"] if row["id"] == selected)
     out = ROOT / "deliverables/process"
     out.mkdir(parents=True, exist_ok=True)
     card = f"""# COMPETITION-R1 焊接工艺提案
@@ -30,7 +34,8 @@ def main():
 | 反变形 | 主：焊序对称化；辅：逐件装配预偏置（上限受0.01～0.04 mm径向间隙约束，超限拒绝）；辅：卸夹时机控制 |
 | 应力释放 / 隔热 | 6条径向柔顺释放槽，宽4.0 mm、槽根R2.0、槽底最小半径R39.0；兼作孔心至焊道的热阻隔离 |
 | 固定送丝 | {p['fixed_feed_mm_s']:.6f} mm/s |
-| 沉积效率假设 | 0.85～1.00 |
+| 沉积效率 η_dep | 0.85～1.00；固定送丝按下界反算 |
+| 电弧热效率 η_arc | {p['eta_arc']:.2f}；只用于净热输入 |
 | 等面积焊脚 | 3.500～3.796 mm；最大可达性包络3.8 |
 | 气体 | 99.999% Ar，10 L/min；设计监控区间8～12 |
 | 预热 / 层间 | QT450-10列入铁素体至珠光体型牌号系列，但实际批次组织未核实；150℃仍是未放行候选。TWI的RT～150℃/200～330℃是MMA/MIG类比，没有TIG栏；层间≤200℃须经TIG试件评定 |
@@ -44,7 +49,7 @@ def main():
 | 防护与夹紧 | 连续薄裙接料组件、圆柱胀套、独立500 N端面压环 |
 | 松夹 | 停弧后≥120 s且最高温度<55℃；确认主动回退 |
 | 回收 | 底口开放、盘面朝上贴壁下撤，离开底口后封盖 |
-| 焊后加工 | 当前径向余量0.20 mm未通过压力筛查闭合；先测孔轴偏移并确认可达，再按A/B基准终镗，最终由CMM验收 |
+| 焊后加工 | 候选{selected}：预加工孔Ø{selected_row['pre_weld_bore_min_mm']:.3f}～Ø{selected_row['pre_weld_bore_max_mm']:.3f}，最小径向余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm；焊后检查→终镗→最终CMM |
 | 洁净判据 | 项目设计限值：≥0.5 mm颗粒0个、0.2～0.5 mm不超过5个，内窥覆盖率≥95%；ISO 16232/VDA 19.1仅作取样与报告方法依据 |
 | 测量 | 20±1℃；测得位置度直径＋同口径不确定度≤0.05 mm |
 
@@ -67,7 +72,7 @@ def main():
 | 冷丝送进 | Ø1.6 mm实心棒，稳定覆盖1.343967 mm/s；支持连续送进、尾料管理与速度追溯 |
 | 在线监控 | 同步记录电流、电压、焊速、送棒速度、氩流量与多点温度；信号缺失或越限闭锁 |
 
-公开钢焊缝比较情景代入现有筛查式后所需径向余量约0.213 mm，高于当前0.20 mm；且收缩模型与参数均未针对本异种接头验证，因此余量状态为未闭合。薄裙热接触、胀套柔性、四道熔合与裂纹、完整热残余尚未验证；等面积守恒不等于实际成形。焊后终镗用于去除焊时受损表层并恢复配合尺寸，仍须先确认偏移和余量可达。表面预处理、稀释控制与后热须经小试确认。焊材规格依据：https://certilas.com/en/product/nife-55-tig ，供方AWS分类待批次证书确认；Rm 450 MPa、Rp0.2 300 MPa为供方典型熔敷金属值，只用于强度匹配量级说明，不作本接头许用值。
+既定压力情景所需径向余量为{machining['required_radial_allowance_mm']:.6f} mm；候选{selected}按预加工孔最大允许直径{selected_row['pre_weld_bore_max_mm']:.3f} mm计算，最小几何余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm，设计筛查已闭合。真实焊后变形、制造能力、胀套弹性与终检仍待工业验证；薄裙热接触、四道熔合与裂纹也尚未验证。终镗前必须独立记录焊后几何检查，终镗后再做CMM和最终洁净检查。焊材规格依据：https://certilas.com/en/product/nife-55-tig ，供方AWS分类待批次证书确认；Rm 450 MPa、Rp0.2 300 MPa为供方典型熔敷金属值，只用于强度匹配量级说明，不作本接头许用值。
 """
     (out / "joint-process-card.md").write_text(card, encoding="utf-8")
     (out / "joint-process-card.json").write_text(json.dumps({"version":r["version"], "process":p, "proposal":r["spec"]["process"], "release":r["release"]},ensure_ascii=False,indent=2),encoding="utf-8")
