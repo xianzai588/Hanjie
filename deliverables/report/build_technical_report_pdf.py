@@ -138,14 +138,15 @@ def validate_report_numbers(result, source=SOURCE):
             or precision["thermal_residual_in_position_budget"]):
         raise ValueError("位置度摘要必须区分基准链算术闭合与焊后变形/测量尚未闭合")
     estimate = json.loads((ROOT / "studies/SHRINKAGE-ESTIMATE/results/estimate.json").read_text(encoding="utf-8"))
-    twi_case = estimate["machining_allowance_screen"]["scenarios"][1]
+    internal_case, twi_case = estimate["machining_allowance_screen"]["scenarios"]
     required = [f"固定送丝{p['fixed_feed_mm_s']:.3f} mm/s",
                 f"每件名义净热输入{p['total_net_heat_j']/1000:.2f} kJ，弧燃时间{p['arc_on_time_s']:.0f} s",
                 f"加入{precision['measurement_uncertainty_diameter_target_mm']:.3f} mm目标测量扩展不确定度",
                 f"为{precision['diameter_with_uncertainty_target_mm']:.4f} mm",
                 "不含焊后收缩与角变形",
-                "当前0.20 mm余量需由焊后测量回填",
-                f"对应{twi_case['required_radial_allowance_mm']:.3f} mm",
+                 f"0.20 mm径向余量在内部筛查上界可覆盖到{internal_case['required_radial_allowance_mm']:.3f} mm",
+                 "最终冻结前需要增加余量",
+                 f"对应{twi_case['required_radial_allowance_mm']:.3f} mm",
                 f"包络间距{result['geometry']['torch_feed_clearance_mm']:.2f} mm"]
     if any(value not in body for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")
