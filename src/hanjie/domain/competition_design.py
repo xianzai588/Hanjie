@@ -215,7 +215,8 @@ def cycle_permission(stage, *, shield_present, bottom_open, return_confirmed=Fal
         else:
             geometry_limit = machinability_limit_diameter
         limit_ok = geometry_limit is not None and math.isfinite(geometry_limit) and geometry_limit >= 0
-        return bool(finite and limit_ok and temperature_max <= 55 and clamp_released and return_confirmed
+        # 55℃只用于卸夹；焊后几何采样必须在最终测量温度20±1℃完成。
+        return bool(finite and limit_ok and 19 <= temperature_max <= 21 and clamp_released and return_confirmed
                     and inspection_passed is True and weld_geometry_passed is True
                     and measurement_diameter + uncertainty_diameter <= geometry_limit)
     if stage == "final_boring":
@@ -356,7 +357,7 @@ def run_design(root):
                            "arc_time_s":length_i/nominal["travel_speed_mm_s"]*p["pass_count"],
                            "required_allowable_mpa":row["rows"][0]["reference_envelope_corner_required_allowable_mpa"]})
     angle = math.radians(f["internal_cone_half_angle_deg"])
-    stroke_needed = (f["maximum_sleeve_diameter_mm"]-f["collapsed_sleeve_diameter_mm"]) / (2*math.tan(angle))
+    nominal_stroke_needed = (f["maximum_sleeve_diameter_mm"]-f["collapsed_sleeve_diameter_mm"]) / (2*math.tan(angle))
     forces = [{"mu": mu, "drive_force_for_radial_limit_n": f["radial_force_limit_n"] * (math.sin(angle)+mu*math.cos(angle))/(math.cos(angle)-mu*math.sin(angle)),
                "self_lock_possible": mu >= math.tan(angle)} for mu in f["friction_scenarios"]]
     contact_diameter_limits = [pre_bore_min, pre_bore_max]
@@ -367,6 +368,8 @@ def run_design(root):
                               f["radial_force_limit_n"] / min(contact_area_limits)]
     area = math.pi * f["pre_weld_bore_diameter_mm"] * contact_band_length * f["contact_coverage_fraction"]
     machining = machining_allowance_screen(spec)
+    selected_machining_row = next(row for row in machining["candidates"] if row["id"] == f["selected_candidate"])
+    stroke_needed = selected_machining_row["return_stroke_required_mm"]
     fixture_states = {
         "seat_pre_weld_bore_limits_mm": [pre_bore_min, pre_bore_max],
         "seat_final_bore_limits_mm": list(f["final_bore_limits_mm"]),
@@ -389,7 +392,9 @@ def run_design(root):
               "process": balance, "precision": precision_budget(spec),
               "machining_allowance": machining,
               "conditional_strength": strength,
-              "fixture": {"positive_return_stroke_required_mm":stroke_needed, "positive_return_stroke_available_mm":f["positive_return_stroke_mm"],
+              "fixture": {"positive_return_stroke_required_mm":stroke_needed,
+                          "nominal_positive_return_stroke_required_mm":nominal_stroke_needed,
+                          "positive_return_stroke_available_mm":f["positive_return_stroke_mm"],
                           "contact_diameter_limits_mm":contact_diameter_limits,
                           "nominal_average_band_pressure_mpa":f["radial_force_limit_n"]/area,
                           "average_band_pressure_mpa_range":contact_pressure_range,

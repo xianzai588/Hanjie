@@ -66,6 +66,8 @@ def test_revised_access_has_no_named_body_collision(design):
 def test_internal_cone_has_positive_return_even_if_self_locking(design):
     f = design["fixture"]
     assert f["positive_return_stroke_available_mm"] > f["positive_return_stroke_required_mm"]
+    assert f["nominal_positive_return_stroke_required_mm"] < f["positive_return_stroke_required_mm"]
+    assert f["positive_return_stroke_required_mm"] == pytest.approx(.3119205001)
     assert f["cone_force_scenarios"][-1]["self_lock_possible"]
     assert f["nominal_average_band_pressure_mpa"] < .25
     states = design["geometry"]["fixture_states"]
@@ -127,12 +129,14 @@ def test_acceptance_requires_explicit_new_process_results():
 
 def test_weld_geometry_requires_measured_route_result_and_strict_gate():
     ready = dict(shield_present=False, bottom_open=True, return_confirmed=True, clamp_released=True,
-                 inspection_passed=True, temperature_max=50, measurement_diameter=.30,
+                 inspection_passed=True, temperature_max=20, measurement_diameter=.30,
                  uncertainty_diameter=.002, weld_geometry_passed=True,
                  machinability_limit_diameter=.50)
     assert cycle_permission("weld_geometry", **ready)
     assert not cycle_permission("weld_geometry", **{**ready, "machinability_limit_diameter": None})
     assert not cycle_permission("weld_geometry", **{**ready, "strict_weld_geometry": True})
+    for temperature in (0, 18.9, 21.1, 50, 55):
+        assert not cycle_permission("weld_geometry", **{**ready, "temperature_max": temperature})
 
 
 def test_release_threshold_matches_baseline_band():

@@ -47,7 +47,7 @@ def main():
 | 条件承载 | 参考载荷包络下所需许用应力量级见说明书第3节；切换阈值随载荷倍率给出 |
 | 疲劳口径 | 52.17 MPa为静力等效喉部筛查值；1.150为60/52.17静力条件比值。焊趾、焊根/喉部和翼根/槽根分开评定，本接头FAT等级和寿命均未评定 |
 | 防护与夹紧 | 连续薄裙接料组件、圆柱胀套、独立500 N端面压环 |
-| 松夹 | 停弧后≥120 s且最高温度<55℃；确认主动回退 |
+| 松夹 | 停弧后≥120 s且最高温度<55℃；名义回退行程{r['fixture']['nominal_positive_return_stroke_required_mm']:.3f} mm，最不利端点需{r['fixture']['positive_return_stroke_required_mm']:.3f} mm；可用{r['fixture']['positive_return_stroke_available_mm']:.3f} mm |
 | 回收 | 底口开放、盘面朝上贴壁下撤，离开底口后封盖 |
 | 焊后加工 | 候选{selected}：预加工孔Ø{selected_row['pre_weld_bore_min_mm']:.3f}～Ø{selected_row['pre_weld_bore_max_mm']:.3f}，最小径向余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm；装入/接触/回退端点已筛查；焊后检查→终镗→最终CMM |
 | 洁净判据 | 项目设计限值：≥0.5 mm颗粒0个、0.2～0.5 mm不超过5个，内窥覆盖率≥95%；ISO 16232/VDA 19.1仅作取样与报告方法依据 |

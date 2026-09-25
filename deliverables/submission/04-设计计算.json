@@ -1415,7 +1415,8 @@
     ]
   },
   "fixture": {
-    "positive_return_stroke_required_mm": 0.2835640909808895,
+    "positive_return_stroke_required_mm": 0.31192050007897243,
+    "nominal_positive_return_stroke_required_mm": 0.2835640909808895,
     "positive_return_stroke_available_mm": 1.0,
     "contact_diameter_limits_mm": [
       39.49,
