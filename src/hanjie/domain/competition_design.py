@@ -6,13 +6,13 @@ import hashlib
 import json
 from pathlib import Path
 import yaml
-from OCP.BRepAlgoAPI import BRepAlgoAPI_Fuse
+from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut, BRepAlgoAPI_Fuse
 from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeFace, BRepBuilderAPI_MakePolygon
 from OCP.BRepCheck import BRepCheck_Analyzer
 from OCP.BRepPrimAPI import BRepPrimAPI_MakeCylinder, BRepPrimAPI_MakeRevol
 from OCP.gp import gp_Ax1, gp_Ax2, gp_Pnt, gp_Dir
 from hanjie.domain.tooling_access import (read_brep, translated, cylinder, common_volume,
-    clearance, make_weld_envelope, make_torch)
+    clearance, make_weld_envelope, make_torch, volume)
 from hanjie.domain.joint_load import evaluate_layout
 
 SPEC = "project/competition-design.yaml"
@@ -92,6 +92,10 @@ def machining_allowance_screen(spec: dict) -> dict:
     angular_margin = float(screen["angular_margin_mm"])
     required = 1.25 * (2.0 * sigma * delta / math.sqrt(n)) + angular_margin
     final_min, final_max = map(float, fixture.get("final_bore_limits_mm", fixture["bore_limits_mm"]))
+    cone_angle = math.radians(float(fixture["internal_cone_half_angle_deg"]))
+    if cone_angle <= 0 or cone_angle >= math.pi / 2:
+        raise ValueError("胀套锥角必须位于0～90°之间")
+    return_stroke_available = float(fixture["positive_return_stroke_mm"])
     rows = []
     for candidate in fixture["machining_candidates"]:
         pre_min, pre_max = map(float, candidate["pre_weld_bore_limits_mm"])
@@ -100,12 +104,14 @@ def machining_allowance_screen(spec: dict) -> dict:
         geometric_min = (final_min - pre_max) / 2.0
         insertion_clearance = pre_min - collapsed_max
         contact_margin = expanded_min - pre_max
+        return_stroke_required = (expanded_max - collapsed_min) / (2.0 * math.tan(cone_angle))
         tooling_checks = {
             "pre_bore_ordered": pre_min <= pre_max,
             "insertion_clearance_pass": insertion_clearance >= float(fixture["minimum_insertion_clearance_mm"]),
             "contact_reach_pass": contact_margin >= float(fixture["minimum_contact_interference_mm"]),
-            "return_stroke_pass": True,
+            "return_stroke_pass": return_stroke_available >= return_stroke_required,
         }
+        dimension_endpoint_pass = all(tooling_checks.values())
         row = {
             "id": candidate["id"],
             "nominal_radial_allowance_mm": float(candidate["nominal_radial_allowance_mm"]),
@@ -118,11 +124,16 @@ def machining_allowance_screen(spec: dict) -> dict:
             "required_radial_allowance_mm": required,
             "insertion_clearance_min_mm": insertion_clearance,
             "contact_interference_min_mm": contact_margin,
+            "return_stroke_required_mm": return_stroke_required,
+            "return_stroke_available_mm": return_stroke_available,
             "tooling_checks": tooling_checks,
-            "tooling_chain_pass": all(tooling_checks.values()),
+            "dimension_endpoint_pass": dimension_endpoint_pass,
+            "tooling_chain_pass": None,
+            "tooling_chain_status": "partial_pass_pending_geometry_envelope",
+            "pending_checks": ["final_boring_envelope", "hole_wall_thinnest_section", "sleeve_elastic_repeatability"],
             "pressure_screen_pass": geometric_min + 1e-12 >= required,
         }
-        row["pass"] = row["tooling_chain_pass"] and row["pressure_screen_pass"]
+        row["pass"] = dimension_endpoint_pass and row["pressure_screen_pass"]
         rows.append(row)
     selected = next(row for row in rows if row["id"] == fixture["selected_candidate"])
     if not selected["pass"]:
@@ -133,6 +144,9 @@ def machining_allowance_screen(spec: dict) -> dict:
         "required_radial_allowance_mm": required,
         "selected_candidate": fixture["selected_candidate"],
         "candidates": rows,
+        "dimension_endpoint_status": "pass",
+        "tooling_chain_status": "partial_pass_pending_geometry_envelope",
+        "pending_checks": ["final_boring_envelope", "hole_wall_thinnest_section", "sleeve_elastic_repeatability"],
         "closure_status": "pressure_screen_closed_design_measurement_pending",
     }
 
@@ -173,7 +187,8 @@ def cycle_permission(stage, *, shield_present, bottom_open, return_confirmed=Fal
                      uncertainty_diameter=None, temperature_max=None, time_after_arc=None,
                      fixture_locked=False, path_checked=False, gas_flow_l_min=None,
                      temperature_min=None, boring_completed=None, cleanliness_passed=None,
-                     weld_geometry_passed=None):
+                     weld_geometry_passed=None, machinability_limit_diameter=None,
+                     strict_weld_geometry=False):
     """失败闭锁：信号缺失不允许开始焊接、下撤或合格出站。"""
     if stage == "weld":
         finite = all(v is not None and math.isfinite(v) for v in (temperature_min, temperature_max, gas_flow_l_min))
@@ -186,16 +201,23 @@ def cycle_permission(stage, *, shield_present, bottom_open, return_confirmed=Fal
     if stage == "accept":
         finite = all(v is not None and math.isfinite(v) and v >= 0 for v in (measurement_diameter, uncertainty_diameter))
         temperature_ok = temperature_max is not None and math.isfinite(temperature_max) and 19 <= temperature_max <= 21
-        # 未传 boring_completed 时兼容历史单步调用；显式 False 代表跳过终镗，必须拒绝。
-        boring_ok = boring_completed is not False
-        clean_ok = cleanliness_passed is not False
-        weld_ok = weld_geometry_passed is not False
+        # 最终放行必须取得三道新增工序的明确结果；缺失信号保持待判，不兼容为通过。
+        boring_ok = boring_completed is True
+        clean_ok = cleanliness_passed is True
+        weld_ok = weld_geometry_passed is True
         return bool(finite and temperature_ok and inspection_passed and clamp_released and return_confirmed
                     and boring_ok and clean_ok and weld_ok
                     and measurement_diameter + uncertainty_diameter <= .05)
     if stage == "weld_geometry":
-        finite = temperature_max is not None and math.isfinite(temperature_max)
-        return bool(finite and temperature_max <= 55 and clamp_released and return_confirmed and inspection_passed)
+        finite = all(v is not None and math.isfinite(v) and v >= 0 for v in (temperature_max, measurement_diameter, uncertainty_diameter))
+        if strict_weld_geometry:
+            geometry_limit = .05
+        else:
+            geometry_limit = machinability_limit_diameter
+        limit_ok = geometry_limit is not None and math.isfinite(geometry_limit) and geometry_limit >= 0
+        return bool(finite and limit_ok and temperature_max <= 55 and clamp_released and return_confirmed
+                    and inspection_passed is True and weld_geometry_passed is True
+                    and measurement_diameter + uncertainty_diameter <= geometry_limit)
     if stage == "final_boring":
         return bool(clamp_released and return_confirmed and weld_geometry_passed is True)
     if stage == "final_clean_check":
@@ -223,6 +245,28 @@ def revolved_section(points):
     return BRepPrimAPI_MakeRevol(face, gp_Ax1(gp_Pnt(0., 0., 0.), gp_Dir(0., 0., 1.))).Shape()
 
 
+def cut(base, tool):
+    """用布尔差把配置孔径落实到座体实体；失败时禁止把名义尺寸当作几何结果。"""
+    operation = BRepAlgoAPI_Cut(base, tool)
+    operation.Build()
+    if not operation.IsDone():
+        raise ValueError("座体孔径布尔切除失败")
+    return operation.Shape()
+
+
+def bored_seat(base, *, seat_z: float, thickness_mm: float, original_bore_diameter_mm: float,
+               target_bore_diameter_mm: float):
+    """生成指定孔径状态的座体实体，原始 BREP 仅作为外形和焊缝界面来源。"""
+    if not 0 < target_bore_diameter_mm <= original_bore_diameter_mm:
+        raise ValueError("目标孔径必须不大于原始座体孔径")
+    if math.isclose(target_bore_diameter_mm, original_bore_diameter_mm, abs_tol=1e-12):
+        return base
+    fill = cylinder(original_bore_diameter_mm / 2 + 0.02, seat_z, thickness_mm)
+    filled = fuse([base, fill])
+    bore = cylinder(target_bore_diameter_mm / 2, seat_z, thickness_mm)
+    return cut(filled, bore)
+
+
 def run_design(root):
     spec = read_spec(root)
     nominal = yaml.safe_load((root / spec["process_source"]).read_text(encoding="utf-8"))["process"]["nominal"]
@@ -235,7 +279,19 @@ def run_design(root):
         raise ValueError("名义薄裙没有贴合壳体内壁，不能建立连续屏障")
     if s["lip_z_mm"] >= seat_z or f["support_top_z_mm"] != seat_z:
         raise ValueError("防护与支承轴向装配尺寸不闭合")
-    shell, seat = read_brep(root / spec["shell_brep"]), translated(read_brep(root / spec["seat_brep"]), seat_z)
+    shell = read_brep(root / spec["shell_brep"])
+    seat_base = translated(read_brep(root / spec["seat_brep"]), seat_z)
+    original_bore_diameter = float(manifest["seat"]["bore_nominal_diameter_mm"])
+    final_bore_min = float(f["final_bore_limits_mm"][0])
+    pre_bore_min, pre_bore_max = map(float, f["pre_weld_bore_limits_mm"])
+    seat_final_bore = bored_seat(
+        seat_base, seat_z=seat_z, thickness_mm=manifest["seat"]["thickness_mm"],
+        original_bore_diameter_mm=original_bore_diameter, target_bore_diameter_mm=final_bore_min)
+    # 焊接状态使用最不利的预加工孔上限；最小孔端点仍由筛查和装入间隙单独核对。
+    seat_pre_weld = bored_seat(
+        seat_base, seat_z=seat_z, thickness_mm=manifest["seat"]["thickness_mm"],
+        original_bore_diameter_mm=original_bore_diameter, target_bore_diameter_mm=pre_bore_max)
+    seat = seat_pre_weld
     floor = cylinder(s["rigid_radius_mm"], s["floor_z_mm"], s["floor_thickness_mm"])
     r0, r1, z0, z1, t = s["rigid_radius_mm"] - 2, s["installed_lip_radius_mm"], s["floor_z_mm"], s["lip_z_mm"], s["lip_thickness_mm"]
     lip = revolved_section([(r0, z0 + .5), (r1, z1), (r1, z1-t), (r0, z0+.5-t)])
@@ -247,10 +303,13 @@ def run_design(root):
         axis = gp_Ax2(gp_Pnt(f["support_radius_mm"] * math.cos(angle), f["support_radius_mm"] * math.sin(angle), high), gp_Dir(0., 0., 1.))
         support.append(BRepPrimAPI_MakeCylinder(axis, f["support_pad_radius_mm"], seat_z-high).Shape())
     cartridge = fuse([floor, lip] + support)
-    # 上部实体为胀套和独立压环的保守外包络；内部驱动锥不再直接与工件孔接触。
+    # 上部实体为独立压环的保守外包络；胀套三种状态单独建模并检查，不再用Ø40包络替代。
     upper = cylinder(f["upper_envelope_radius_mm"], seat_top, f["upper_envelope_top_z_mm"]-seat_top)
-    sleeve = cylinder(20., seat_z+1, seat_top-seat_z-2)
-    upper = fuse([upper, sleeve])
+    sleeve_z = seat_z + 1
+    sleeve_height = seat_top - seat_z - 2
+    collapsed_sleeve = cylinder(f["collapsed_sleeve_diameter_limits_mm"][1] / 2, sleeve_z, sleeve_height)
+    contact_sleeve = cylinder(f["maximum_sleeve_diameter_limits_mm"][0] / 2, sleeve_z, sleeve_height)
+    maximum_sleeve = cylinder(f["maximum_sleeve_diameter_limits_mm"][1] / 2, sleeve_z, sleeve_height)
     weld = make_weld_envelope(shell_r, p["clearance_leg_mm"], seat_top)
     torch_spec = yaml.safe_load((root / "studies/TOOLING-ACCESS/config.yaml").read_text(encoding="utf-8"))["torch"]
     target = (shell_r-p["clearance_leg_mm"]/2, seat_top+p["clearance_leg_mm"]/2)
@@ -277,6 +336,9 @@ def run_design(root):
     # 工装只下移，所有支承已在座体底面以下；R75圆柱包络给出连续路径充分条件。
     sweep = cylinder(shell_r, -a["bottom_clearance_mm"]-30, seat_z+a["bottom_clearance_mm"]+30)
     sweep_intersections = {"shell": common_volume(sweep, shell), "seat": common_volume(sweep, seat)}
+    insertion_overlap = common_volume(collapsed_sleeve, seat_pre_weld)
+    contact_overlap = common_volume(contact_sleeve, seat_pre_weld)
+    maximum_overlap = common_volume(maximum_sleeve, seat_pre_weld)
     balance = process_balance(spec, nominal)
     length = manifest["manufacturing"]["cad_measured_total_weld_length_mm"]
     balance.update({"weld_length_mm": length, "arc_on_time_s": length / nominal["travel_speed_mm_s"] * p["pass_count"],
@@ -297,16 +359,50 @@ def run_design(root):
     stroke_needed = (f["maximum_sleeve_diameter_mm"]-f["collapsed_sleeve_diameter_mm"]) / (2*math.tan(angle))
     forces = [{"mu": mu, "drive_force_for_radial_limit_n": f["radial_force_limit_n"] * (math.sin(angle)+mu*math.cos(angle))/(math.cos(angle)-mu*math.sin(angle)),
                "self_lock_possible": mu >= math.tan(angle)} for mu in f["friction_scenarios"]]
-    area = math.pi * f["final_bore_limits_mm"][0] * sum(hi-lo for lo,hi in f["contact_bands_z_mm"]) * f["contact_coverage_fraction"]
+    contact_diameter_limits = [pre_bore_min, pre_bore_max]
+    contact_band_length = sum(hi-lo for lo,hi in f["contact_bands_z_mm"])
+    contact_area_limits = [math.pi * diameter * contact_band_length * f["contact_coverage_fraction"]
+                           for diameter in contact_diameter_limits]
+    contact_pressure_range = [f["radial_force_limit_n"] / max(contact_area_limits),
+                              f["radial_force_limit_n"] / min(contact_area_limits)]
+    area = math.pi * f["pre_weld_bore_diameter_mm"] * contact_band_length * f["contact_coverage_fraction"]
+    machining = machining_allowance_screen(spec)
+    fixture_states = {
+        "seat_pre_weld_bore_limits_mm": [pre_bore_min, pre_bore_max],
+        "seat_final_bore_limits_mm": list(f["final_bore_limits_mm"]),
+        "sleeve_collapsed_diameter_mm": f["collapsed_sleeve_diameter_limits_mm"][1],
+        "sleeve_contact_diameter_mm": f["maximum_sleeve_diameter_limits_mm"][0],
+        "sleeve_maximum_diameter_mm": f["maximum_sleeve_diameter_limits_mm"][1],
+        "insertion_overlap_mm3": insertion_overlap,
+        "contact_overlap_mm3": contact_overlap,
+        "maximum_overlap_mm3": maximum_overlap,
+        "insertion_geometry_clear": insertion_overlap < 1e-6,
+        "contact_geometry_reached": contact_overlap > 1e-6,
+        "return_stroke_pass": next(row for row in machining["candidates"] if row["id"] == f["selected_candidate"])["tooling_checks"]["return_stroke_pass"],
+        "final_boring_envelope_status": "pending",
+        "hole_wall_thinnest_section_status": "pending",
+        "sleeve_elastic_repeatability_status": "pending",
+        "status": "dimension_endpoint_pass_with_pending_geometry_envelope",
+    }
     result = {"version":spec["version"], "evidence_level":"design_assumption_with_geometry_checks", "spec":spec, "inputs":input_snapshot(root),
               "four_pass_comparison":comparison,
               "process": balance, "precision": precision_budget(spec),
-              "machining_allowance": machining_allowance_screen(spec),
+              "machining_allowance": machining,
               "conditional_strength": strength,
               "fixture": {"positive_return_stroke_required_mm":stroke_needed, "positive_return_stroke_available_mm":f["positive_return_stroke_mm"],
-                          "nominal_average_band_pressure_mpa":f["radial_force_limit_n"]/area, "cone_force_scenarios":forces,
+                          "contact_diameter_limits_mm":contact_diameter_limits,
+                          "nominal_average_band_pressure_mpa":f["radial_force_limit_n"]/area,
+                          "average_band_pressure_mpa_range":contact_pressure_range,
+                          "cone_force_scenarios":forces,
                           "pressure_is_not_peak_contact_stress":True},
-              "geometry": {"shape_validity":{k:BRepCheck_Analyzer(v).IsValid() for k,v in {**obstacles,**tools,"cartridge":cartridge}.items()},
+              "geometry": {"shape_validity":{k:BRepCheck_Analyzer(v).IsValid() for k,v in {**obstacles,**tools,"cartridge":cartridge,
+                                                                                                    "seat_final_bore":seat_final_bore,
+                                                                                                    "seat_pre_weld":seat_pre_weld,
+                                                                                                    "sleeve_collapsed":collapsed_sleeve,
+                                                                                                    "sleeve_contact":contact_sleeve,
+                                                                                                    "sleeve_maximum":maximum_sleeve}.items()},
+                           "fixture_states": fixture_states,
+                           "seat_state_volumes_mm3": {"pre_weld": volume(seat_pre_weld), "final_bore": volume(seat_final_bore)},
                            "cartridge_intersections_mm3":{k:common_volume(cartridge,v) for k,v in {"shell":shell,"seat":seat,"upper_fixture":upper}.items()},
                            "bottom_sweep_intersections_mm3":sweep_intersections,
                            "bottom_route_allowed":a["bottom_open"] and max(sweep_intersections.values()) < 1e-6,
@@ -317,5 +413,8 @@ def run_design(root):
                            "coverage_requires_continuous_wall_contact":True},
               "release":{"physical_position_verified":False,"physical_cleanliness_verified":False,
                          "formal_thermal_structural_allowed":False,"manufacturing_released":False}}
-    bodies = {**obstacles,**tools,"cartridge":cartridge}
+    bodies = {**obstacles,**tools,"cartridge":cartridge,
+              "seat_pre_weld": seat_pre_weld, "seat_final_bore": seat_final_bore,
+              "sleeve_collapsed": collapsed_sleeve, "sleeve_contact": contact_sleeve,
+              "sleeve_maximum": maximum_sleeve}
     return result, bodies, points

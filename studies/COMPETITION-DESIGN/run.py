@@ -34,11 +34,15 @@ def fixed(value):
 def main():
     result, bodies, _ = run_design(ROOT)
     g = result["geometry"]
+    fixture_states = g["fixture_states"]
     checks = [all(g["shape_validity"].values()), g["bottom_route_allowed"],
               all(row["clear"] for row in g["poses"]), g["torch_feed_intersection_mm3"] < 1e-6,
               g["torch_feed_clearance_mm"] >= 1.5,
               max(g["cartridge_intersections_mm3"].values()) < 1e-6,
-              result["precision"]["datum_chain_arithmetic_closes"]]
+              result["precision"]["datum_chain_arithmetic_closes"],
+              fixture_states["insertion_geometry_clear"],
+              fixture_states["contact_geometry_reached"],
+              fixture_states["return_stroke_pass"]]
     if not all(checks):
         raise ValueError("参赛设计内部检查未通过："+json.dumps(result, ensure_ascii=False))
     out = ROOT / "studies/COMPETITION-DESIGN/results"

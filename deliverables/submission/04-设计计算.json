@@ -1295,13 +1295,22 @@
         "required_radial_allowance_mm": 0.21329931618554526,
         "insertion_clearance_min_mm": 0.05000000000000426,
         "contact_interference_min_mm": 0.030000000000001137,
+        "return_stroke_required_mm": 0.31192050007897243,
+        "return_stroke_available_mm": 1.0,
         "tooling_checks": {
           "pre_bore_ordered": true,
           "insertion_clearance_pass": true,
           "contact_reach_pass": true,
           "return_stroke_pass": true
         },
-        "tooling_chain_pass": true,
+        "dimension_endpoint_pass": true,
+        "tooling_chain_pass": null,
+        "tooling_chain_status": "partial_pass_pending_geometry_envelope",
+        "pending_checks": [
+          "final_boring_envelope",
+          "hole_wall_thinnest_section",
+          "sleeve_elastic_repeatability"
+        ],
         "pressure_screen_pass": false,
         "pass": false
       },
@@ -1317,13 +1326,22 @@
         "required_radial_allowance_mm": 0.21329931618554526,
         "insertion_clearance_min_mm": 0.04999999999999716,
         "contact_interference_min_mm": 0.030000000000001137,
+        "return_stroke_required_mm": 0.3119205000789926,
+        "return_stroke_available_mm": 1.0,
         "tooling_checks": {
           "pre_bore_ordered": true,
           "insertion_clearance_pass": true,
           "contact_reach_pass": true,
           "return_stroke_pass": true
         },
-        "tooling_chain_pass": true,
+        "dimension_endpoint_pass": true,
+        "tooling_chain_pass": null,
+        "tooling_chain_status": "partial_pass_pending_geometry_envelope",
+        "pending_checks": [
+          "final_boring_envelope",
+          "hole_wall_thinnest_section",
+          "sleeve_elastic_repeatability"
+        ],
         "pressure_screen_pass": true,
         "pass": true
       },
@@ -1339,16 +1357,32 @@
         "required_radial_allowance_mm": 0.21329931618554526,
         "insertion_clearance_min_mm": 0.05000000000000426,
         "contact_interference_min_mm": 0.030000000000001137,
+        "return_stroke_required_mm": 0.31192050007897243,
+        "return_stroke_available_mm": 1.0,
         "tooling_checks": {
           "pre_bore_ordered": true,
           "insertion_clearance_pass": true,
           "contact_reach_pass": true,
           "return_stroke_pass": true
         },
-        "tooling_chain_pass": true,
+        "dimension_endpoint_pass": true,
+        "tooling_chain_pass": null,
+        "tooling_chain_status": "partial_pass_pending_geometry_envelope",
+        "pending_checks": [
+          "final_boring_envelope",
+          "hole_wall_thinnest_section",
+          "sleeve_elastic_repeatability"
+        ],
         "pressure_screen_pass": true,
         "pass": true
       }
+    ],
+    "dimension_endpoint_status": "pass",
+    "tooling_chain_status": "partial_pass_pending_geometry_envelope",
+    "pending_checks": [
+      "final_boring_envelope",
+      "hole_wall_thinnest_section",
+      "sleeve_elastic_repeatability"
     ],
     "closure_status": "pressure_screen_closed_design_measurement_pending"
   },
@@ -1383,7 +1417,15 @@
   "fixture": {
     "positive_return_stroke_required_mm": 0.2835640909808895,
     "positive_return_stroke_available_mm": 1.0,
-    "nominal_average_band_pressure_mpa": 0.22104853207207686,
+    "contact_diameter_limits_mm": [
+      39.49,
+      39.5
+    ],
+    "nominal_average_band_pressure_mpa": 0.2238466147565335,
+    "average_band_pressure_mpa_range": [
+      0.2238466147565335,
+      0.22390329913606166
+    ],
     "cone_force_scenarios": [
       {
         "mu": 0.0,
@@ -1416,7 +1458,39 @@
       "weld_keepout": true,
       "torch": true,
       "wire_guide": true,
-      "cartridge": true
+      "cartridge": true,
+      "seat_final_bore": true,
+      "seat_pre_weld": true,
+      "sleeve_collapsed": true,
+      "sleeve_contact": true,
+      "sleeve_maximum": true
+    },
+    "fixture_states": {
+      "seat_pre_weld_bore_limits_mm": [
+        39.49,
+        39.5
+      ],
+      "seat_final_bore_limits_mm": [
+        40.0,
+        40.025
+      ],
+      "sleeve_collapsed_diameter_mm": 39.44,
+      "sleeve_contact_diameter_mm": 39.53,
+      "sleeve_maximum_diameter_mm": 39.54,
+      "insertion_overlap_mm3": 0.0,
+      "contact_overlap_mm3": 18.62100505599301,
+      "maximum_overlap_mm3": 24.831148333973033,
+      "insertion_geometry_clear": true,
+      "contact_geometry_reached": true,
+      "return_stroke_pass": true,
+      "final_boring_envelope_status": "pending",
+      "hole_wall_thinnest_section_status": "pending",
+      "sleeve_elastic_repeatability_status": "pending",
+      "status": "dimension_endpoint_pass_with_pending_geometry_envelope"
+    },
+    "seat_state_volumes_mm3": {
+      "pre_weld": 95454.06162442431,
+      "final_bore": 95079.42670048375
     },
     "cartridge_intersections_mm3": {
       "shell": 0.0,

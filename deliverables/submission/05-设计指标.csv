@@ -22,5 +22,5 @@ precision,manufacturing_capability_verified,False
 precision,thermal_residual_verified,False
 fixture,positive_return_stroke_required_mm,0.28356409098089
 fixture,positive_return_stroke_available_mm,1
-fixture,nominal_average_band_pressure_mpa,0.221048532072077
+fixture,nominal_average_band_pressure_mpa,0.223846614756534
 fixture,pressure_is_not_peak_contact_stress,True

@@ -49,7 +49,7 @@ def main():
 | 防护与夹紧 | 连续薄裙接料组件、圆柱胀套、独立500 N端面压环 |
 | 松夹 | 停弧后≥120 s且最高温度<55℃；确认主动回退 |
 | 回收 | 底口开放、盘面朝上贴壁下撤，离开底口后封盖 |
-| 焊后加工 | 候选{selected}：预加工孔Ø{selected_row['pre_weld_bore_min_mm']:.3f}～Ø{selected_row['pre_weld_bore_max_mm']:.3f}，最小径向余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm；焊后检查→终镗→最终CMM |
+| 焊后加工 | 候选{selected}：预加工孔Ø{selected_row['pre_weld_bore_min_mm']:.3f}～Ø{selected_row['pre_weld_bore_max_mm']:.3f}，最小径向余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm；装入/接触/回退端点已筛查；焊后检查→终镗→最终CMM |
 | 洁净判据 | 项目设计限值：≥0.5 mm颗粒0个、0.2～0.5 mm不超过5个，内窥覆盖率≥95%；ISO 16232/VDA 19.1仅作取样与报告方法依据 |
 | 测量 | 20±1℃；测得位置度直径＋同口径不确定度≤0.05 mm |
 
@@ -72,7 +72,7 @@ def main():
 | 冷丝送进 | Ø1.6 mm实心棒，稳定覆盖1.343967 mm/s；支持连续送进、尾料管理与速度追溯 |
 | 在线监控 | 同步记录电流、电压、焊速、送棒速度、氩流量与多点温度；信号缺失或越限闭锁 |
 
-既定压力情景所需径向余量为{machining['required_radial_allowance_mm']:.6f} mm；候选{selected}按预加工孔最大允许直径{selected_row['pre_weld_bore_max_mm']:.3f} mm计算，最小几何余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm，设计筛查已闭合。真实焊后变形、制造能力、胀套弹性与终检仍待工业验证；薄裙热接触、四道熔合与裂纹也尚未验证。终镗前必须独立记录焊后几何检查，终镗后再做CMM和最终洁净检查。焊材规格依据：https://certilas.com/en/product/nife-55-tig ，供方AWS分类待批次证书确认；Rm 450 MPa、Rp0.2 300 MPa为供方典型熔敷金属值，只用于强度匹配量级说明，不作本接头许用值。
+既定压力情景所需径向余量为{machining['required_radial_allowance_mm']:.6f} mm；候选{selected}按预加工孔最大允许直径{selected_row['pre_weld_bore_max_mm']:.3f} mm计算，最小几何余量{selected_row['geometric_min_radial_allowance_mm']:.3f} mm，压力与尺寸端点筛查已闭合。终镗刀具包络、孔壁最薄处和胀套弹性重复性尚未完成数字检查，保持待判；真实焊后变形、制造能力与终检仍待工业验证。薄裙热接触、四道熔合与裂纹也尚未验证。终镗前必须独立记录焊后几何检查，终镗后再做CMM和最终洁净检查。焊材规格依据：https://certilas.com/en/product/nife-55-tig ，供方AWS分类待批次证书确认；Rm 450 MPa、Rp0.2 300 MPa为供方典型熔敷金属值，只用于强度匹配量级说明，不作本接头许用值。
 """
     (out / "joint-process-card.md").write_text(card, encoding="utf-8")
     (out / "joint-process-card.json").write_text(json.dumps({"version":r["version"], "process":p, "proposal":r["spec"]["process"], "release":r["release"]},ensure_ascii=False,indent=2),encoding="utf-8")

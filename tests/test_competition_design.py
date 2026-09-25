@@ -6,7 +6,8 @@ import numpy as np
 import pytest
 import yaml
 from hanjie.domain.competition_design import (read_spec, process_balance, precision_budget,
-                                             cycle_permission, run_design, current_assessment)
+                                             cycle_permission, run_design, current_assessment,
+                                             machining_allowance_screen)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -67,6 +68,21 @@ def test_internal_cone_has_positive_return_even_if_self_locking(design):
     assert f["positive_return_stroke_available_mm"] > f["positive_return_stroke_required_mm"]
     assert f["cone_force_scenarios"][-1]["self_lock_possible"]
     assert f["nominal_average_band_pressure_mpa"] < .25
+    states = design["geometry"]["fixture_states"]
+    assert states["insertion_geometry_clear"]
+    assert states["contact_geometry_reached"]
+    assert states["seat_pre_weld_bore_limits_mm"] == [39.49, 39.5]
+    assert design["geometry"]["seat_state_volumes_mm3"]["pre_weld"] > design["geometry"]["seat_state_volumes_mm3"]["final_bore"]
+    selected_row = next(row for row in design["machining_allowance"]["candidates"] if row["id"] == "A2")
+    assert selected_row["tooling_chain_pass"] is None
+    assert "final_boring_envelope" in selected_row["pending_checks"]
+
+
+def test_machining_screen_rejects_insufficient_return_stroke():
+    spec = read_spec(ROOT)
+    spec["fixture"]["positive_return_stroke_mm"] = 0.0
+    with pytest.raises(ValueError, match="加工余量候选"):
+        machining_allowance_screen(spec)
 
 
 def test_weld_interlocks_fail_closed():
@@ -90,11 +106,33 @@ def test_withdraw_requires_cooling_and_positive_return():
 
 def test_acceptance_uses_diameter_uncertainty_and_measurement_temperature():
     ready = dict(shield_present=False, bottom_open=True, return_confirmed=True, clamp_released=True,
-                 inspection_passed=True, measurement_diameter=.048, uncertainty_diameter=.002, temperature_max=20)
+                 inspection_passed=True, measurement_diameter=.048, uncertainty_diameter=.002, temperature_max=20,
+                 boring_completed=True, cleanliness_passed=True, weld_geometry_passed=True)
     assert cycle_permission("accept", **ready)
     for field, value in (("measurement_diameter",.049),("uncertainty_diameter",None),
                          ("temperature_max",50),("inspection_passed",False)):
         assert not cycle_permission("accept", **{**ready, field:value})
+
+
+def test_acceptance_requires_explicit_new_process_results():
+    ready = dict(shield_present=False, bottom_open=True, return_confirmed=True, clamp_released=True,
+                 inspection_passed=True, measurement_diameter=.048, uncertainty_diameter=.002, temperature_max=20)
+    assert not cycle_permission("accept", **ready)
+    assert not cycle_permission("accept", **{**ready, "boring_completed": True,
+                                              "cleanliness_passed": True})
+    assert not cycle_permission("accept", **{**ready, "boring_completed": True,
+                                              "cleanliness_passed": True,
+                                              "weld_geometry_passed": False})
+
+
+def test_weld_geometry_requires_measured_route_result_and_strict_gate():
+    ready = dict(shield_present=False, bottom_open=True, return_confirmed=True, clamp_released=True,
+                 inspection_passed=True, temperature_max=50, measurement_diameter=.30,
+                 uncertainty_diameter=.002, weld_geometry_passed=True,
+                 machinability_limit_diameter=.50)
+    assert cycle_permission("weld_geometry", **ready)
+    assert not cycle_permission("weld_geometry", **{**ready, "machinability_limit_diameter": None})
+    assert not cycle_permission("weld_geometry", **{**ready, "strict_weld_geometry": True})
 
 
 def test_release_threshold_matches_baseline_band():

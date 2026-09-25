@@ -25,11 +25,13 @@ def generate_state_machine(font: FontProperties) -> None:
         ["INIT", "PRECHECK", "PREHEAT", "WELD_P1–P4", "INTERPASS", "COOL_HOLD", "RELEASE_AND_RECOVERY", "COLD_STABILIZE"],
         ["WELD_GEOMETRY_CHECK", "FINAL_BORING", "DEBURR_AND_CLEAN", "FINAL_THERMAL_STABILIZE", "FINAL_CMM", "FINAL_CLEAN_CHECK", "PASS"],
     ]
+    row_boxes = []
     for row_index, row in enumerate(rows):
         y = 0.73 - row_index * 0.26
         width = 0.105 if row_index == 0 else 0.115
         gap = 0.015
         x = (1.0 - (len(row) * width + (len(row) - 1) * gap)) / 2
+        row_boxes.append((x, y, width, gap))
         for index, label in enumerate(row):
             face = "#DDF1F1" if label in {"WELD_GEOMETRY_CHECK", "FINAL_CMM"} else pale
             edge = teal if label in {"WELD_GEOMETRY_CHECK", "FINAL_CMM"} else "#B8CDD0"
@@ -41,7 +43,24 @@ def generate_state_machine(font: FontProperties) -> None:
                 ax.annotate("", xy=(x + width + gap - 0.002, y + 0.06), xytext=(x + width + 0.003, y + 0.06),
                             arrowprops={"arrowstyle": "-|>", "lw": 0.8, "color": orange})
             x += width + gap
-    ax.annotate("", xy=(0.49, 0.59), xytext=(0.49, 0.70), arrowprops={"arrowstyle": "-|>", "lw": 1.0, "color": orange})
+    first_x, first_y, first_width, first_gap = row_boxes[0]
+    second_x, second_y, second_width, second_gap = row_boxes[1]
+    first_last_center = first_x + 7 * (first_width + first_gap) + first_width / 2
+    second_first_center = second_x + second_width / 2
+    # 首行末端回到次行首端，避免固定中线落到终镗状态附近。
+    ax.plot([first_last_center, first_last_center, second_first_center, second_first_center],
+            [first_y, 0.62, 0.62, second_y + 0.12], color=orange, lw=1.0)
+    ax.annotate("", xy=(second_first_center, second_y + 0.115),
+                xytext=(second_first_center, second_y + 0.14),
+                arrowprops={"arrowstyle": "-|>", "lw": 1.0, "color": orange})
+    # 道间检查不是一次性顺序节点；每道完成后通过检查才进入下一道。
+    weld_center = first_x + 3 * (first_width + first_gap) + first_width / 2
+    interpass_center = first_x + 4 * (first_width + first_gap) + first_width / 2
+    ax.annotate("", xy=(weld_center, 0.86), xytext=(interpass_center, 0.86),
+                arrowprops={"arrowstyle": "-|>", "lw": 0.9, "color": orange,
+                            "connectionstyle": "arc3,rad=-0.45"})
+    ax.text((weld_center + interpass_center) / 2, 0.965, "每道后检查，通过后循环至下一道",
+            fontsize=7.6, fontproperties=font, color="#9A4D2D", ha="center")
     ax.text(0.24, 0.37, "温度/气流/轨迹异常：停弧、锁存事件、HOLD/REJECT",
             fontsize=8.1, fontproperties=font, color="#9A4D2D", ha="center")
     ax.text(0.76, 0.37, "退锥未确认或焊后检查缺失：禁止下撤/终镗",

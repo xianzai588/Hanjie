@@ -149,6 +149,7 @@ def validate_report_numbers(result, source=SOURCE):
                  f"A2候选的预加工孔最大允许直径为{selected['pre_weld_bore_max_mm']:.3f} mm",
                  f"最小几何径向余量{selected['geometric_min_radial_allowance_mm']:.3f} mm",
                  f"未圆整值{twi_case['required_radial_allowance_mm']:.6f} mm",
+                f"约{result['fixture']['average_band_pressure_mpa_range'][0]:.5f}～{result['fixture']['average_band_pressure_mpa_range'][1]:.5f} MPa",
                 f"包络间距{result['geometry']['torch_feed_clearance_mm']:.2f} mm"]
     if any(value not in body for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")

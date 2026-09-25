@@ -126,6 +126,7 @@ def fixture_sheet(spec,result):
     collapsed_max = f["collapsed_sleeve_diameter_limits_mm"][1]
     expanded_max = f["maximum_sleeve_diameter_limits_mm"][1]
     selected = result["machining_allowance"]["selected_candidate"]
+    pressure_lo, pressure_hi = result["fixture"]["average_band_pressure_mpa_range"]
     parts=sheet("胀套定位、端面夹紧与主动回退","HJ-R1-003","内部锥驱动圆柱胀套；轴向500 N由独立压环、座体和底部三支点承受")
     # 局部剖面放大，不将占位外包络伪装成加工细节。
     parts += [box(90,325,125,110,"#efd18b"),box(415,325,125,110,"#efd18b"),
@@ -147,7 +148,7 @@ def fixture_sheet(spec,result):
                  f'覆盖全径差所需理想行程 {result["fixture"]["positive_return_stroke_required_mm"]:.3f}',
                  "设计摩擦系数μ=0.20；顶回结构提供主动回退",
                  "径向合力≤100 N；驱动力上限17.63 N",
-                 "名义平均带压0.221 MPa；上部包络R30，z112～220",
+                 f"名义平均带压{pressure_lo:.5f}～{pressure_hi:.5f} MPa；上部包络R30，z112～220",
                  "松夹顺序：降温→卸载→顶回→确认收拢",
                  "支承与接料盘同组件向下退出"])
     return finish(parts)
