@@ -64,8 +64,12 @@ def main() -> None:
         "ranking": ranking,
         "recommended": "6P-FAIR_B/4pass",
         "backup": "8P-FAIR_B/4pass",
+        "engineering_selection_status": "pending_release_gates",
+        "digital_baseline": "6P-FAIR_B/4pass",
+        "low_heat_candidate": "6P-FAIR_B/4pass",
+        "higher_static_margin_candidate": "8P-FAIR_B/4pass",
         "rejected_high_heat_reference": "Continuous/4pass",
-        "interpretation": "统一条件筛查下的工程排序；不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。",
+        "interpretation": "推荐字段表示当前数字设计基线，不代表最终工程放行；8P仅作为几何、热量和静力承载裕量切换候选，尚未冻结独立WPS与自动化段序。统一条件筛查不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -75,6 +79,10 @@ def main() -> None:
         "version": "COMPETITION-R1-AUTHORITY",
         "scope": "参赛说明书与答辩统一引用的保守设计口径",
         "selected_candidate": payload["recommended"],
+        "engineering_selection_status": payload["engineering_selection_status"],
+        "digital_baseline": payload["digital_baseline"],
+        "low_heat_candidate": payload["low_heat_candidate"],
+        "higher_static_margin_candidate": payload["higher_static_margin_candidate"],
         "assumptions": {"deposition_efficiency": 0.85, "load_scale": 1.0,
                         "assumed_allowable_mpa": 60.0, "equivalent_leg_min_mm": 3.5},
         "results": {"required_allowable_mpa": recommended["required_allowable_mpa"],
@@ -86,7 +94,7 @@ def main() -> None:
                     "fallback_required_allowable_mpa": backup["required_allowable_mpa"]},
         "endpoints": {"current_efficiency_0_85_required_allowable_mpa": recommended["required_allowable_mpa"],
                       "interpretation": "当前 COMPETITION-R1 四道比较已按固定送丝与效率下界闭合；此值用于保守筛查。"},
-        "decision_rule": "6P在保守端点通过条件筛查时作为当前数字推荐；实物热残余或裂纹门失败则切换8P",
+        "decision_rule": "6P作为当前详细数字基线；真实载荷、热残余、裂纹、疲劳和位置度放行门闭合后再决定最终工程方案，若静力承载裕量门需要切换则评定8P",
     }
     AUTHORITY.write_text(yaml.safe_dump(authority, allow_unicode=True, sort_keys=False), encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False, indent=2))

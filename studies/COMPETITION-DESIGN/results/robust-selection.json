@@ -36,6 +36,10 @@
   ],
   "recommended": "6P-FAIR_B/4pass",
   "backup": "8P-FAIR_B/4pass",
+  "engineering_selection_status": "pending_release_gates",
+  "digital_baseline": "6P-FAIR_B/4pass",
+  "low_heat_candidate": "6P-FAIR_B/4pass",
+  "higher_static_margin_candidate": "8P-FAIR_B/4pass",
   "rejected_high_heat_reference": "Continuous/4pass",
-  "interpretation": "统一条件筛查下的工程排序；不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。"
+  "interpretation": "推荐字段表示当前数字设计基线，不代表最终工程放行；8P仅作为几何、热量和静力承载裕量切换候选，尚未冻结独立WPS与自动化段序。统一条件筛查不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。"
 }

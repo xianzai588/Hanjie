@@ -1,5 +1,5 @@
 {
-  "version": "LOAD-ESTIMATE-3",
+  "version": "LOAD-ESTIMATE-4",
   "evidence_level": "parameterized_first_order_screening",
   "inputs": {
     "reciprocating_mass_kg": 0.8,
@@ -19,7 +19,9 @@
     "omega": "2*pi*n/60",
     "inertial_force_amplitude": "m*r*omega^2; 忽略连杆二阶项",
     "gas_force": "pi*D^2*delta_p/4",
-    "radial_force": "sqrt(F_i^2+F_g^2)",
+    "radial_force": "F_i",
+    "axial_force": "F_g",
+    "resultant_force": "sqrt(F_i^2+F_g^2); 仅在下游焊缝组模型合成一次",
     "tipover_moment": "F_i*e + F_g*(r/2)",
     "reference_interaction": "sqrt((Fr/5000)^2+(Fa/5000)^2+(M/250000)^2)",
     "combined_R": "Fmin/Fmax; 同向极值保守叠加，未建模相位"
@@ -34,46 +36,46 @@
   "results": {
     "inertial_force_n": 1579.1367041742974,
     "gas_force_n": 1884.9555921538758,
-    "radial_force_n": 2459.010027401806,
+    "radial_force_n": 1579.1367041742974,
     "axial_force_n": 1884.9555921538758,
     "tipover_moment_n_mm": 129389.1252137396,
     "reference_moment_n_mm": 250000.0,
-    "reference_interaction_ratio": 0.8073761499743601
+    "reference_interaction_ratio": 0.7139565422150943
   },
   "joint_weld_screen": {
     "load_inputs": {
-      "radial_force_n": 2459.010027401806,
+      "radial_force_n": 1579.1367041742974,
       "axial_force_n": 1884.9555921538758,
       "moment_n_mm": 129389.1252137396
     },
     "scales_vs_reference": {
-      "resultant_force_scale": 0.4381732054622875,
+      "resultant_force_scale": 0.347756533076307,
       "moment_scale": 0.5175565008549584
     },
     "model_source": "project/load-basis-v1.yaml + src/hanjie/domain/joint_load.py",
     "rows": {
       "Continuous": {
-        "required_allowable_mpa": 5.472383772083199,
-        "conditional_margin_at_60_mpa": 10.964143323807772,
-        "force_term_mpa": 4.602704518746883,
+        "required_allowable_mpa": 4.701709071264819,
+        "conditional_margin_at_60_mpa": 12.761317021229313,
+        "force_term_mpa": 3.6529403127819267,
         "moment_term_mpa": 2.9600836579506606,
         "evidence_status": "parameterized first-order screen; not fatigue or product release"
       },
       "6P-FAIR_B": {
-        "required_allowable_mpa": 23.871411281239354,
-        "conditional_margin_at_60_mpa": 2.5134668115393017,
-        "force_term_mpa": 20.07773159724866,
+        "required_allowable_mpa": 20.50960525419635,
+        "conditional_margin_at_60_mpa": 2.9254585476589683,
+        "force_term_mpa": 15.934708570163258,
         "moment_term_mpa": 12.912357277698142,
         "evidence_status": "parameterized first-order screen; not fatigue or product release"
       },
       "8P-FAIR_B": {
-        "required_allowable_mpa": 17.903558460929485,
-        "conditional_margin_at_60_mpa": 3.3512890820524084,
-        "force_term_mpa": 15.058298697936474,
+        "required_allowable_mpa": 15.382203940647237,
+        "conditional_margin_at_60_mpa": 3.900611396878631,
+        "force_term_mpa": 11.951031427622425,
         "moment_term_mpa": 9.684267958273587,
         "evidence_status": "parameterized first-order screen; not fatigue or product release"
       }
     }
   },
-  "interpretation": "参数化一阶筛查；按平方和合成径向载荷，并以Fi*e+Fg*(r/2)估倾覆力矩。惯性项R=-1、气体项R≈0；同向极值叠加后的R为非对称值。载荷幅值、相位、连杆二阶项及支承偏心仍须由实际机型数据验证。"
+  "interpretation": "参数化一阶筛查；Fi映射到径向、Fg映射到轴向，焊缝组模型仅合成一次合力，并以Fi*e+Fg*(r/2)估倾覆力矩。惯性项R=-1、气体项R≈0；同向极值叠加后的R为非对称值。载荷幅值、相位、连杆二阶项及支承偏心仍须由实际机型数据验证。"
 }

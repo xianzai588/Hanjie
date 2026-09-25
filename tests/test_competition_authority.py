@@ -10,6 +10,9 @@ def test_competition_authority_uses_conservative_endpoint():
     six_p = next(row for row in assessment["four_pass_comparison"] if row["layout"] == "6P-FAIR_B")
     eight_p = next(row for row in assessment["four_pass_comparison"] if row["layout"] == "8P-FAIR_B")
     assert authority["selected_candidate"] == "6P-FAIR_B/4pass"
+    assert authority["engineering_selection_status"] == "pending_release_gates"
+    assert authority["digital_baseline"] == "6P-FAIR_B/4pass"
+    assert authority["higher_static_margin_candidate"] == "8P-FAIR_B/4pass"
     assert authority["assumptions"]["deposition_efficiency"] == 0.85
     assert authority["results"]["required_allowable_mpa"] == six_p["required_allowable_mpa"]
     assert authority["results"]["fallback_required_allowable_mpa"] == eight_p["required_allowable_mpa"]

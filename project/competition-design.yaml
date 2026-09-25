@@ -1,6 +1,11 @@
 version: COMPETITION-R1
 scope: 参赛设计方案；历史仿真输入保持原版本，本配置不追认旧结果
 layout: 6P-FAIR_B
+engineering_selection_status: pending_release_gates
+digital_baseline_layout: 6P-FAIR_B
+low_heat_candidate_layout: 6P-FAIR_B
+higher_static_margin_candidate_layout: 8P-FAIR_B
+selection_note: 当前6P为详细数字设计基线；8P仅为几何、热量和静力承载裕量切换候选，未冻结独立WPS与自动化段序
 geometry_manifest: simulation/structural-v4/models/6p-fair-b/geometry-manifest.json
 seat_brep: simulation/structural-v4/models/6p-fair-b/6P-FAIR_B.brep
 shell_brep: simulation/structural-v4/common/shell.brep

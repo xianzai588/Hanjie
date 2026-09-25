@@ -33,8 +33,9 @@ def calculate() -> dict:
     inertial = m * crank_radius * omega**2
     gas = math.pi * INPUTS["bore_diameter_m"]**2 * INPUTS["pressure_difference_pa"] / 4.0
 
-    # 两个独立载荷源按平方和合成，与说明书§3的合力口径一致。
-    radial = math.hypot(inertial, gas)
+    # 一阶坐标分解：往复惯性项映射到径向，气体压力项映射到轴向。
+    # 下游焊缝组模型会对这两个分量做一次合力合成，不能先把气体力并入径向。
+    radial = inertial
     axial = gas
     moment_nm = (
         inertial * INPUTS["force_line_to_weld_centroid_m"]
@@ -57,7 +58,7 @@ def calculate() -> dict:
         moment_n_mm=moment_n_mm,
     )
     return {
-        "version": "LOAD-ESTIMATE-3",
+        "version": "LOAD-ESTIMATE-4",
         "evidence_level": "parameterized_first_order_screening",
         "inputs": INPUTS,
         "reference": REFERENCE,
@@ -65,7 +66,9 @@ def calculate() -> dict:
             "omega": "2*pi*n/60",
             "inertial_force_amplitude": "m*r*omega^2; 忽略连杆二阶项",
             "gas_force": "pi*D^2*delta_p/4",
-            "radial_force": "sqrt(F_i^2+F_g^2)",
+            "radial_force": "F_i",
+            "axial_force": "F_g",
+            "resultant_force": "sqrt(F_i^2+F_g^2); 仅在下游焊缝组模型合成一次",
             "tipover_moment": "F_i*e + F_g*(r/2)",
             "reference_interaction": "sqrt((Fr/5000)^2+(Fa/5000)^2+(M/250000)^2)",
             "combined_R": "Fmin/Fmax; 同向极值保守叠加，未建模相位",
@@ -88,8 +91,9 @@ def calculate() -> dict:
         },
         "joint_weld_screen": joint_screen,
         "interpretation": (
-            "参数化一阶筛查；按平方和合成径向载荷，并以Fi*e+Fg*(r/2)估倾覆力矩。"
-            "惯性项R=-1、气体项R≈0；同向极值叠加后的R为非对称值。"
+            "参数化一阶筛查；Fi映射到径向、Fg映射到轴向，焊缝组模型仅合成一次合力，"
+            "并以Fi*e+Fg*(r/2)估倾覆力矩。惯性项R=-1、气体项R≈0；"
+            "同向极值叠加后的R为非对称值。"
             "载荷幅值、相位、连杆二阶项及支承偏心仍须由实际机型数据验证。"
         ),
     }
