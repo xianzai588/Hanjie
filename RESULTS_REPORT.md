@@ -1,6 +1,6 @@
 # COMPETITION-R1 关键结果索引
 
-更新时间：2026-09-23
+更新时间：2026-09-29
 
 本文件只登记已实际运行且当前有效的结果；完整边界见各结果文件。
 
@@ -21,8 +21,8 @@
 | Continuous 扫掠网格与彩排 | 84,420 节点、360,990 四面体，整网格及焊缝区 minSICN<0.1 均为 0，最小 0.1681；合成热循环彩排最大 10 次 Newton，合力/合矩误差 1.85e-13 N/4.39e-11 N·mm | `STRUCT-0-PREP=ready_pending_admitted_thermal_history`；合成 PFEP_FE 无工程意义，正式 STRUCT-0 仍关闭 | `simulation/structural-v4/results/struct0-prep/struct0-prep-plan6-assessment.json` |
 | 逐件预偏置 | 逆补偿合成代理均值 0.00647 mm、P95 0.01585 mm、总体通过率 100% | synthetic_demo；未做实物标定 | `studies/PRECOMPENSATION/results/precompensation_summary.json` |
 | 终加工基准链公差分配 | 七项线性径向和 0.0138 mm；Ø0.0276 mm，加 0.002 mm目标测量不确定度为Ø0.0296 mm | 基准链算术闭合；不含焊接收缩，整体位置度未闭合 | `project/tolerance.yaml`、`studies/COMPETITION-DESIGN/results/assessment.json` |
-| 焊接收缩与加工余量 | 当前径向余量0.20 mm；TWI钢焊缝比较情景需约0.213 mm | 比较筛查未通过；异种接头系数未验证，需试件测量或重新设计 | `studies/SHRINKAGE-ESTIMATE/results/estimate.json` |
+| 焊接收缩与加工余量 | 当前选A2候选径向余量0.250 mm；TWI钢焊缝比较情景需0.213299 mm，算术余0.036701 mm | 数字压力筛查闭合（`closure_status: pressure_screen_closed_design_measurement_pending`）；A0的0.20 mm在该情景下差0.013299 mm已弃用。证据仅到文献量级，k、β、σ与终镗包络、孔壁最薄处、胀套弹性重复性待同接头实测与几何核验 | `studies/SHRINKAGE-ESTIMATE/results/estimate.json` |
 
 热模型串联热阻修正相对历史名义峰温变化为 -2.55、+0.88、+3.55 °C；它只表示离散修正差异，不是真值误差。真实焊接、宏观截面、CMM、硬度、NDT、洁净度及 WPS/PQR 均未被这些数值结果替代。
 
-RC11仅修订证据边界、材料放行配置、疲劳分类表述与提交文件；未新增实物焊接或完整工件热—结构求解。QT450-10批次材料证明未取得，150℃预热未放行，PWHT为对比路线；焊趾与焊根疲劳均未评定。固定题的报告/设计图提交形式不以实物为必要条件，样件缺失仅降低可提交的验证证据层级。
+RC13新增座体与胀套按配置孔径的真实布尔建模、工装三态几何判据与放行闭锁收紧，并把焊后几何采样温度统一为20±1 ℃；未新增实物焊接或完整工件热—结构求解。QT450-10批次材料证明未取得，150℃预热未放行，PWHT为对比路线；焊趾与焊根疲劳均未评定。固定题的报告/设计图提交形式不以实物为必要条件，样件缺失仅降低可提交的验证证据层级。

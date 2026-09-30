@@ -6,25 +6,25 @@
       1.0
     ],
     "eta_arc": 0.55,
-    "fixed_feed_mm_s": 1.3439669482139598,
+    "fixed_feed_mm_s": 1.34396694821396,
     "minimum_area_mm2": 6.125,
     "area_range_mm2": [
       6.125,
-      7.205882352941177
+      7.20588235294118
     ],
     "equivalent_leg_range_mm": [
       3.5,
-      3.7962830118264828
+      3.79628301182648
     ],
     "gross_energy_per_pass_j_mm": 600.0,
-    "net_energy_per_pass_j_mm": 330.00000000000006,
-    "weld_length_mm": 107.99999999999984,
-    "arc_on_time_s": 287.9999999999996,
-    "total_net_heat_j": 142559.99999999983,
-    "wire_length_mm": 387.0624810856198,
+    "net_energy_per_pass_j_mm": 330.0,
+    "weld_length_mm": 108.0,
+    "arc_on_time_s": 288.0,
+    "total_net_heat_j": 142560.0,
+    "wire_length_mm": 387.06248108562,
     "deposited_volume_range_mm3": [
-      661.4999999999991,
-      778.2352941176459
+      661.499999999999,
+      778.235294117646
     ]
   },
   "proposal": {

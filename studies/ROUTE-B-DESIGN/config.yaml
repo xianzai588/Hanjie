@@ -24,7 +24,7 @@ precision:
   current_release_budget_evidence: false
   thermal_radial_allocations_mm: [0.002, 0.005, 0.008, 0.011, 0.012]
   adjustable_contributions: [fixture_repeatability, initial_assembly]
-  interpretation: 旧版将热残余分配进位置度预算的口径复现；当前热残余由0.20 mm加工余量筛查管理，不构成当前位置度预算证据
+  interpretation: 旧版将热残余分配进位置度预算的口径复现；当前热残余由A2候选0.250 mm径向加工余量筛查管理，不构成当前位置度预算证据
 release:
   product_position_acceptance_claim_allowed: false
   welding_procedure_qualified: false

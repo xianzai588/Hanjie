@@ -4,8 +4,8 @@
   "strength": {
     "basis": "required_allowable_mpa scales linearly with load multiplier",
     "thresholds": {
-      "6P-FAIR_B": 52.17319678607985,
-      "8P-FAIR_B": 39.12989758955982
+      "6P-FAIR_B": 52.1731967860798,
+      "8P-FAIR_B": 39.1298975895598
     },
     "reference_point": {
       "load_multiplier": 1.0,

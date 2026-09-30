@@ -31,6 +31,17 @@ def fixed(value):
     return f"{value:.15g}" if isinstance(value, float) else value
 
 
+def fixed_json(value, skip=()):
+    """JSON 与 CSV 共用同一 .15g 口径；否则 0.0138 一类求和会写成 0.013800000000000002，使已提交记录无法逐字节重建。"""
+    if isinstance(value, float):
+        return float(f"{value:.15g}")
+    if isinstance(value, dict):
+        return {key: (item if key in skip else fixed_json(item, skip)) for key, item in value.items()}
+    if isinstance(value, list):
+        return [fixed_json(item, skip) for item in value]
+    return value
+
+
 def main():
     result, bodies, _ = run_design(ROOT)
     g = result["geometry"]
@@ -57,7 +68,8 @@ def main():
     if writer.Write(str(assembly)) != IFSelect_RetDone:
         raise ValueError("STEP写入失败")
     normalize_step_timestamp(assembly)
-    (out / "assessment.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    (out / "assessment.json").write_text(
+        json.dumps(fixed_json(result, skip=("inputs",)), ensure_ascii=False, indent=2), encoding="utf-8")
     with (out / "result.csv").open("w", encoding="utf-8-sig", newline="") as stream:
         writer = csv.writer(stream)
         writer.writerow(["category", "metric", "value"])

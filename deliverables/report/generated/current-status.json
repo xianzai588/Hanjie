@@ -1709,7 +1709,7 @@
     "precision": {
       "scope": "historical_legacy_position_budget_reproduction",
       "current_release_budget_evidence": false,
-      "interpretation": "旧版将热残余分配进位置度预算的口径复现；当前热残余由0.20 mm加工余量筛查管理，不构成当前位置度预算证据",
+      "interpretation": "旧版将热残余分配进位置度预算的口径复现；当前热残余由A2候选0.250 mm径向加工余量筛查管理，不构成当前位置度预算证据",
       "evidence_level": "design_requirement_not_achieved_capability",
       "radial_limit_mm": 0.025,
       "current_total_radial_mm": 0.035,
@@ -3517,21 +3517,21 @@
     "four_pass_comparison": [
       {
         "layout": "Continuous",
-        "net_heat_kj": 621.8694693186696,
-        "arc_time_s": 1256.3019582195345,
-        "required_allowable_mpa": 11.960405359620761
+        "net_heat_kj": 621.86946931867,
+        "arc_time_s": 1256.30195821953,
+        "required_allowable_mpa": 11.9604053596208
       },
       {
         "layout": "6P-FAIR_B",
-        "net_heat_kj": 142.5599999999999,
-        "arc_time_s": 287.9999999999997,
-        "required_allowable_mpa": 52.17319678607985
+        "net_heat_kj": 142.56,
+        "arc_time_s": 288.0,
+        "required_allowable_mpa": 52.1731967860798
       },
       {
         "layout": "8P-FAIR_B",
-        "net_heat_kj": 190.08000000000013,
-        "arc_time_s": 384.00000000000017,
-        "required_allowable_mpa": 39.12989758955982
+        "net_heat_kj": 190.08,
+        "arc_time_s": 384.0,
+        "required_allowable_mpa": 39.1298975895598
       }
     ],
     "process": {
@@ -3540,25 +3540,25 @@
         1.0
       ],
       "eta_arc": 0.55,
-      "fixed_feed_mm_s": 1.3439669482139598,
+      "fixed_feed_mm_s": 1.34396694821396,
       "minimum_area_mm2": 6.125,
       "area_range_mm2": [
         6.125,
-        7.205882352941177
+        7.20588235294118
       ],
       "equivalent_leg_range_mm": [
         3.5,
-        3.7962830118264828
+        3.79628301182648
       ],
       "gross_energy_per_pass_j_mm": 600.0,
-      "net_energy_per_pass_j_mm": 330.00000000000006,
-      "weld_length_mm": 107.99999999999984,
-      "arc_on_time_s": 287.9999999999996,
-      "total_net_heat_j": 142559.99999999983,
-      "wire_length_mm": 387.0624810856198,
+      "net_energy_per_pass_j_mm": 330.0,
+      "weld_length_mm": 108.0,
+      "arc_on_time_s": 288.0,
+      "total_net_heat_j": 142560.0,
+      "wire_length_mm": 387.06248108562,
       "deposited_volume_range_mm3": [
-        661.4999999999991,
-        778.2352941176459
+        661.499999999999,
+        778.235294117646
       ]
     },
     "precision": {
@@ -3573,7 +3573,7 @@
       },
       "radial_sum_mm": 0.0138,
       "measurement_uncertainty_diameter_target_mm": 0.002,
-      "support_tilt_rad": 6.666666666666667e-05,
+      "support_tilt_rad": 6.66666666666667e-05,
       "tilt_radial_allowance_mm": 0.0008,
       "design_diameter_budget_mm": 0.0276,
       "diameter_with_uncertainty_target_mm": 0.0296,
@@ -3594,7 +3594,7 @@
         "delta_mm": 0.8,
         "angular_margin_mm": 0.05
       },
-      "required_radial_allowance_mm": 0.21329931618554526,
+      "required_radial_allowance_mm": 0.213299316185545,
       "selected_candidate": "A2",
       "candidates": [
         {
@@ -3604,12 +3604,12 @@
           "pre_weld_bore_max_mm": 39.6,
           "final_bore_min_mm": 40.0,
           "final_bore_max_mm": 40.025,
-          "geometric_min_radial_allowance_mm": 0.1999999999999993,
-          "screen_margin_mm": -0.013299316185545973,
-          "required_radial_allowance_mm": 0.21329931618554526,
-          "insertion_clearance_min_mm": 0.05000000000000426,
-          "contact_interference_min_mm": 0.030000000000001137,
-          "return_stroke_required_mm": 0.31192050007897243,
+          "geometric_min_radial_allowance_mm": 0.199999999999999,
+          "screen_margin_mm": -0.013299316185546,
+          "required_radial_allowance_mm": 0.213299316185545,
+          "insertion_clearance_min_mm": 0.0500000000000043,
+          "contact_interference_min_mm": 0.0300000000000011,
+          "return_stroke_required_mm": 0.311920500078972,
           "return_stroke_available_mm": 1.0,
           "tooling_checks": {
             "pre_bore_ordered": true,
@@ -3635,12 +3635,12 @@
           "pre_weld_bore_max_mm": 39.55,
           "final_bore_min_mm": 40.0,
           "final_bore_max_mm": 40.025,
-          "geometric_min_radial_allowance_mm": 0.22500000000000142,
-          "screen_margin_mm": 0.011700683814456159,
-          "required_radial_allowance_mm": 0.21329931618554526,
-          "insertion_clearance_min_mm": 0.04999999999999716,
-          "contact_interference_min_mm": 0.030000000000001137,
-          "return_stroke_required_mm": 0.3119205000789926,
+          "geometric_min_radial_allowance_mm": 0.225000000000001,
+          "screen_margin_mm": 0.0117006838144562,
+          "required_radial_allowance_mm": 0.213299316185545,
+          "insertion_clearance_min_mm": 0.0499999999999972,
+          "contact_interference_min_mm": 0.0300000000000011,
+          "return_stroke_required_mm": 0.311920500078993,
           "return_stroke_available_mm": 1.0,
           "tooling_checks": {
             "pre_bore_ordered": true,
@@ -3667,11 +3667,11 @@
           "final_bore_min_mm": 40.0,
           "final_bore_max_mm": 40.025,
           "geometric_min_radial_allowance_mm": 0.25,
-          "screen_margin_mm": 0.03670068381445474,
-          "required_radial_allowance_mm": 0.21329931618554526,
-          "insertion_clearance_min_mm": 0.05000000000000426,
-          "contact_interference_min_mm": 0.030000000000001137,
-          "return_stroke_required_mm": 0.31192050007897243,
+          "screen_margin_mm": 0.0367006838144547,
+          "required_radial_allowance_mm": 0.213299316185545,
+          "insertion_clearance_min_mm": 0.0500000000000043,
+          "contact_interference_min_mm": 0.0300000000000011,
+          "return_stroke_required_mm": 0.311920500078972,
           "return_stroke_available_mm": 1.0,
           "tooling_checks": {
             "pre_bore_ordered": true,
@@ -3702,64 +3702,64 @@
     },
     "conditional_strength": {
       "model_id": "6P-FAIR_B",
-      "effective_weld_length_mm": 107.99999999999989,
-      "cad_effective_weld_length_mm": 107.99999999999984,
+      "effective_weld_length_mm": 108.0,
+      "cad_effective_weld_length_mm": 108.0,
       "line_group_principal_second_moments_mm3": [
-        303588.02159999945,
-        303588.0215999999
+        303588.021599999,
+        303588.0216
       ],
-      "line_group_isotropy_ratio": 0.9999999999999984,
+      "line_group_isotropy_ratio": 0.999999999999998,
       "rows": [
         {
           "fillet_leg_mm": 3.5,
-          "effective_throat_mm": 2.4748737341529163,
-          "effective_throat_area_mm2": 267.2863632885147,
-          "von_mises_per_resultant_force_mpa_per_n": 0.006480131594664499,
-          "worst_overturning_stress_mpa_per_n_mm": 9.979476448556283e-05,
-          "reference_envelope_corner_required_allowable_mpa": 52.17319678607985,
+          "effective_throat_mm": 2.47487373415292,
+          "effective_throat_area_mm2": 267.286363288515,
+          "von_mises_per_resultant_force_mpa_per_n": 0.0064801315946645,
+          "worst_overturning_stress_mpa_per_n_mm": 9.97947644855628e-05,
+          "reference_envelope_corner_required_allowable_mpa": 52.1731967860798,
           "reference_envelope_component_required_allowable_mpa": {
-            "radial_only": 32.400657973322495,
-            "axial_only": 32.400657973322495,
-            "combined_force": 45.82144993568463,
-            "overturning_only": 24.948691121390706
+            "radial_only": 32.4006579733225,
+            "axial_only": 32.4006579733225,
+            "combined_force": 45.8214499356846,
+            "overturning_only": 24.9486911213907
           },
-          "force_capacity_n_per_allowable_mpa": 154.31785379534006,
-          "moment_capacity_n_mm_per_allowable_mpa": 10020.565759686408
+          "force_capacity_n_per_allowable_mpa": 154.31785379534,
+          "moment_capacity_n_mm_per_allowable_mpa": 10020.5657596864
         }
       ]
     },
     "fixture": {
-      "positive_return_stroke_required_mm": 0.31192050007897243,
-      "nominal_positive_return_stroke_required_mm": 0.2835640909808895,
+      "positive_return_stroke_required_mm": 0.311920500078972,
+      "nominal_positive_return_stroke_required_mm": 0.28356409098089,
       "positive_return_stroke_available_mm": 1.0,
       "contact_diameter_limits_mm": [
         39.49,
         39.5
       ],
-      "nominal_average_band_pressure_mpa": 0.2238466147565335,
+      "nominal_average_band_pressure_mpa": 0.223846614756534,
       "average_band_pressure_mpa_range": [
-        0.2238466147565335,
-        0.22390329913606166
+        0.223846614756534,
+        0.223903299136062
       ],
       "cone_force_scenarios": [
         {
           "mu": 0.0,
-          "drive_force_for_radial_limit_n": 17.632698070846494,
+          "drive_force_for_radial_limit_n": 17.6326980708465,
           "self_lock_possible": false
         },
         {
           "mu": 0.05,
-          "drive_force_for_radial_limit_n": 22.834010678869994,
+          "drive_force_for_radial_limit_n": 22.83401067887,
           "self_lock_possible": false
         },
         {
           "mu": 0.1,
-          "drive_force_for_radial_limit_n": 28.128682638949762,
+          "drive_force_for_radial_limit_n": 28.1286826389498,
           "self_lock_possible": false
         },
         {
           "mu": 0.2,
-          "drive_force_for_radial_limit_n": 39.00834273005274,
+          "drive_force_for_radial_limit_n": 39.0083427300527,
           "self_lock_possible": true
         }
       ],
@@ -3793,8 +3793,8 @@
         "sleeve_contact_diameter_mm": 39.53,
         "sleeve_maximum_diameter_mm": 39.54,
         "insertion_overlap_mm3": 0.0,
-        "contact_overlap_mm3": 18.62100505599301,
-        "maximum_overlap_mm3": 24.831148333973033,
+        "contact_overlap_mm3": 18.621005055993,
+        "maximum_overlap_mm3": 24.831148333973,
         "insertion_geometry_clear": true,
         "contact_geometry_reached": true,
         "return_stroke_pass": true,
@@ -3804,8 +3804,8 @@
         "status": "dimension_endpoint_pass_with_pending_geometry_envelope"
       },
       "seat_state_volumes_mm3": {
-        "pre_weld": 95454.06162442431,
-        "final_bore": 95079.42670048375
+        "pre_weld": 95454.0616244243,
+        "final_bore": 95079.4267004837
       },
       "cartridge_intersections_mm3": {
         "shell": 0.0,
@@ -3886,9 +3886,9 @@
         }
       ],
       "torch_feed_intersection_mm3": 0.0,
-      "torch_feed_clearance_mm": 2.278536665385916,
-      "torch_shell_radial_bound_mm": 2.1500000000000057,
-      "torch_upper_radial_bound_mm": 17.349999999999994,
+      "torch_feed_clearance_mm": 2.27853666538592,
+      "torch_shell_radial_bound_mm": 2.15000000000001,
+      "torch_upper_radial_bound_mm": 17.35,
       "nominal_vertical_drop_coverage": true,
       "coverage_requires_continuous_wall_contact": true
     },

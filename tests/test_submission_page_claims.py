@@ -48,3 +48,12 @@ def test_page_claim_covers_freeze_record_wording():
 def test_parse_count_accepts_arabic_and_chinese():
     parse = _load_lint().parse_count
     assert (parse("14"), parse("6"), parse("六"), parse("十"), parse("十四")) == (14, 6, 6, 10, 14)
+
+
+def test_count_claim_gate_covers_manifest_items():
+    """清单条目数声明同样受门禁约束；标注当轮/历史批次的行保留原计数。"""
+    scan = _load_lint().scan_count_claims
+    actual = {"files": 22}
+    assert scan("样本", "重建通过（PASS，19 文件）", actual), "未识别过期的清单计数"
+    assert scan("样本", "清单 22 项", actual) == []
+    assert scan("样本", "RC12 验收：清单 20 项、当轮说明书 23 页", actual) == []

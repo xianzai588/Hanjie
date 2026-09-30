@@ -11,27 +11,27 @@
   "ranking": [
     {
       "candidate_id": "6P-FAIR_B/4pass",
-      "required_allowable_mpa": 52.17319678607985,
-      "capacity_margin": 1.1500157877235615,
-      "net_heat_input_kj": 142.5599999999999,
+      "required_allowable_mpa": 52.1731967860798,
+      "capacity_margin": 1.1500157877235626,
+      "net_heat_input_kj": 142.56,
       "weld_length_mm": 108.0,
-      "score": 0.32529060433964585
+      "score": 0.32529060433964574
     },
     {
       "candidate_id": "8P-FAIR_B/4pass",
-      "required_allowable_mpa": 39.12989758955982,
-      "capacity_margin": 1.5333543836314178,
-      "net_heat_input_kj": 190.08000000000013,
+      "required_allowable_mpa": 39.1298975895598,
+      "capacity_margin": 1.5333543836314185,
+      "net_heat_input_kj": 190.08,
       "weld_length_mm": 144.0,
-      "score": 0.3576348938064948
+      "score": 0.3576348938064946
     },
     {
       "candidate_id": "Continuous/4pass",
-      "required_allowable_mpa": 11.960405359620761,
-      "capacity_margin": 5.016552382293376,
-      "net_heat_input_kj": 621.8694693186696,
+      "required_allowable_mpa": 11.9604053596208,
+      "capacity_margin": 5.01655238229336,
+      "net_heat_input_kj": 621.86946931867,
       "weld_length_mm": 471.1132343323254,
-      "score": 0.8799010133990519
+      "score": 0.879901013399052
     }
   ],
   "recommended": "6P-FAIR_B/4pass",

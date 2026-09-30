@@ -12,6 +12,9 @@
 *.bak
 ~$*
 
+# 外部桌面程序（NVIDIA App CEF）以当前目录写出的日志，非本作品产物
+/debug.log
+
 # Python
 __pycache__/
 *.pyc

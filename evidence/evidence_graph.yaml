@@ -279,7 +279,7 @@ claims_graph:
     report_section: 计划一执行记录 §4-§5
     status: unresolved
   CLAIM-008:
-    statement: 终加工基准链七项设计分配径向合计0.0138 mm；总位置度仍未闭合，0.20 mm径向加工余量未由比较压力筛查证明充足
+    statement: 终加工基准链七项设计分配径向合计0.0138 mm；总位置度仍未闭合。A2候选0.250 mm径向加工余量在既定比较压力筛查下算术覆盖所需0.213299 mm（余0.036701 mm），但收缩系数、终镗包络与制造能力未经本接头验证
     confidence: unresolved
     supporting_evidence:
     - DES-COMPETITION-R1

@@ -22,6 +22,13 @@ PAGE_CLAIM_DOCS = [
     "deliverables/submission/提交说明.txt",
 ]
 _CN_DIGITS = {"零": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+# 清单条目数声明与页数同属会随批次过期的计数（RC4 轮曾长期写「19 文件」而 manifest 实为 22 项）。
+COUNT_CLAIM_RULES = [
+    re.compile(r"清单\s*(\d+)\s*项"),
+    re.compile(r"(\d+)\s*文件"),
+]
+# 标注为既往批次快照的行记录的是当轮计数，不参与当前 manifest 比对。
+HISTORY_MARKERS = ("当轮", "历史版本", "历史批次")
 PAGE_CLAIM_RULES = [
     (re.compile(r"当前版本为(\d+)页与(\d+)页"), "pair"),          # 冻结记录：说明书页、图集页
     (re.compile(r"(\d+)\s*页说明书[、,，]\s*(\d+)\s*页设计图"), "pair"),
@@ -61,9 +68,25 @@ def scan_page_claims(label: str, text: str, actual: dict) -> list[str]:
     return errors
 
 
+def scan_count_claims(label: str, text: str, actual: dict) -> list[str]:
+    """逐行查找清单条目数声明；标注为既往批次的行保留当轮计数，不参与比对。"""
+    errors: list[str] = []
+    for line in text.splitlines():
+        if any(marker in line for marker in HISTORY_MARKERS):
+            continue
+        for pattern in COUNT_CLAIM_RULES:
+            for match in pattern.finditer(line):
+                claimed = int(match.group(1))
+                if claimed != actual["files"]:
+                    errors.append(f"清单计数漂移: {label} 写“{match.group(0)}”，实际为"
+                                  f"{actual['files']} 项")
+    return errors
+
+
 def check_page_claims(manifest: dict) -> list[str]:
     """校验文档中声明的说明书/图集页数是否等于 manifest 的实际计数。"""
-    actual = {"report": manifest["report_pages"], "drawing": manifest["drawing_pages"]}
+    actual = {"report": manifest["report_pages"], "drawing": manifest["drawing_pages"],
+              "files": len(manifest["files"])}
     texts: list[tuple[str, str]] = []
     for rel in PAGE_CLAIM_DOCS:
         path = ROOT / rel
@@ -74,6 +97,7 @@ def check_page_claims(manifest: dict) -> list[str]:
     errors: list[str] = []
     for label, text in texts:
         errors.extend(scan_page_claims(label, text, actual))
+        errors.extend(scan_count_claims(label, text, actual))
     return errors
 
 
@@ -123,6 +147,7 @@ def main() -> None:
         text_parts.extend(page.get_text() for page in pdf)
     text = "\n".join(text_parts)
     for token in ("56.59", "当前Ø1.2", "当前 Ø1.2", "当前工艺为Ø1.2", "当前工艺为 Ø1.2", "产品已达标", "焊缝合格", "制造已释放",
+                  "按说明书§9.2放行", "按§9.2放行",
                   "0.77/0.69", "FAT 63～80见 §6.2", "疲劳FAT基线"):
         if token in text:
             errors.append(f"提交包含禁止回流/越级措辞: {token}")
