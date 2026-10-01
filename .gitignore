@@ -48,6 +48,11 @@ simulation/thermal-ref/results/**/temperature.vtu
 simulation/thermal-ref/results/**/initial-temperature.dat
 simulation/thermal-ref/results/**/window-fields.npz
 
+# 评审用页面渲染图与本地排障中间件；由 PDF 随时重新导出，不入版本库。
+output/review-png/
+output/tmp/*.png
+output/tmp/*.txt
+
 # IDE
 .vscode/
 .idea/
