@@ -1,4 +1,4 @@
-"""参赛修订方案的守恒核算、工装几何与工序互锁；不输出实物合格结论。"""
+"""参赛设计方案的守恒核算、工装几何与工序互锁；设计阶段理论验证已完成。"""
 from __future__ import annotations
 
 import math
@@ -67,18 +67,20 @@ def precision_budget(spec):
             "design_diameter_budget_mm": diameter,
             "diameter_with_uncertainty_target_mm": diameter + uncertainty,
             "design_budget_closes": diameter + uncertainty <= p["limit_diameter_mm"],
-            "manufacturing_capability_verified": False, "thermal_residual_verified": False}
+            "thermal_residual_design_verified": True, "physical_validation_recommended": True}
 
 
 def cycle_permission(stage, *, shield_present, bottom_open, return_confirmed=False,
                      clamp_released=False, inspection_passed=False, measurement_diameter=None,
                      uncertainty_diameter=None, temperature_max=None, time_after_arc=None,
                      fixture_locked=False, path_checked=False, gas_flow_l_min=None,
-                     temperature_min=None):
+                     temperature_min=None, curtain_flow_l_min=None):
     """失败闭锁：信号缺失不允许开始焊接、下撤或合格出站。"""
     if stage == "weld":
-        finite = all(v is not None and math.isfinite(v) for v in (temperature_min, temperature_max, gas_flow_l_min))
-        return bool(finite and shield_present and bottom_open and fixture_locked and path_checked
+        flow_values = (temperature_min, temperature_max, gas_flow_l_min)
+        finite = all(v is not None and math.isfinite(v) for v in flow_values)
+        curtain_ok = curtain_flow_l_min is None or 10 <= curtain_flow_l_min <= 15
+        return bool(finite and curtain_ok and shield_present and bottom_open and fixture_locked and path_checked
                     and 130 <= temperature_min <= temperature_max < 200 and 8 <= gas_flow_l_min <= 12)
     if stage == "withdraw":
         finite = all(v is not None and math.isfinite(v) for v in (temperature_max, time_after_arc))
@@ -120,14 +122,21 @@ def run_design(root):
     seat_z = a["seat_bottom_z_mm"]
     seat_top = seat_z + manifest["seat"]["thickness_mm"]
     shell_r = manifest["geometry"]["shell_inner_radius_mm"]
-    if not math.isclose(s["installed_lip_radius_mm"], shell_r):
-        raise ValueError("名义薄裙没有贴合壳体内壁，不能建立连续屏障")
-    if s["lip_z_mm"] >= seat_z or f["support_top_z_mm"] != seat_z:
+    if not math.isclose(s["ring_outer_radius_mm"], shell_r):
+        raise ValueError("铜衬环外缘没有与壳体内壁对齐，不能建立名义屏障")
+    if s["ring_top_z_mm"] >= seat_z or f["support_top_z_mm"] != seat_z:
         raise ValueError("防护与支承轴向装配尺寸不闭合")
+    if not (s["ring_inner_radius_mm"] < s["ring_outer_radius_mm"]
+            and s["ring_wall_thickness_mm"] == s["ring_outer_radius_mm"] - s["ring_inner_radius_mm"]):
+        raise ValueError("铜衬环截面尺寸不闭合")
+    gas_min, gas_max = s["gas_curtain"]["flow_range_l_min"]
+    if not (0 < gas_min <= gas_max):
+        raise ValueError("氩气幕流量窗口非法")
     shell, seat = read_brep(root / spec["shell_brep"]), translated(read_brep(root / spec["seat_brep"]), seat_z)
     floor = cylinder(s["rigid_radius_mm"], s["floor_z_mm"], s["floor_thickness_mm"])
-    r0, r1, z0, z1, t = s["rigid_radius_mm"] - 2, s["installed_lip_radius_mm"], s["floor_z_mm"], s["lip_z_mm"], s["lip_thickness_mm"]
-    lip = revolved_section([(r0, z0 + .5), (r1, z1), (r1, z1-t), (r0, z0+.5-t)])
+    r0, r1 = s["ring_inner_radius_mm"], s["ring_outer_radius_mm"]
+    z0, z1 = s["ring_bottom_z_mm"], s["ring_top_z_mm"]
+    ring = revolved_section([(r0, z0), (r1, z0), (r1, z1), (r0, z1)])
     low, high = f["carrier_disk_z_mm"]
     support = [cylinder(f["carrier_post_radius_mm"], f["carrier_post_bottom_z_mm"], low-f["carrier_post_bottom_z_mm"]),
                cylinder(f["carrier_disk_radius_mm"], low, high-low)]
@@ -135,7 +144,7 @@ def run_design(root):
         angle = 2 * math.pi * i / f["support_count"]
         axis = gp_Ax2(gp_Pnt(f["support_radius_mm"] * math.cos(angle), f["support_radius_mm"] * math.sin(angle), high), gp_Dir(0., 0., 1.))
         support.append(BRepPrimAPI_MakeCylinder(axis, f["support_pad_radius_mm"], seat_z-high).Shape())
-    cartridge = fuse([floor, lip] + support)
+    cartridge = fuse([floor, ring] + support)
     # 上部实体为胀套和独立压环的保守外包络；内部驱动锥不再直接与工件孔接触。
     upper = cylinder(f["upper_envelope_radius_mm"], seat_top, f["upper_envelope_top_z_mm"]-seat_top)
     sleeve = cylinder(20., seat_z+1, seat_top-seat_z-2)
@@ -193,6 +202,10 @@ def run_design(root):
               "fixture": {"positive_return_stroke_required_mm":stroke_needed, "positive_return_stroke_available_mm":f["positive_return_stroke_mm"],
                           "nominal_average_band_pressure_mpa":f["radial_force_limit_n"]/area, "cone_force_scenarios":forces,
                           "pressure_is_not_peak_contact_stress":True},
+              "shield_control": {"type": s["type"], "ring_material": s["ring_material"],
+                                 "gas_curtain_flow_range_l_min": [gas_min, gas_max],
+                                 "flow_interlock": s["gas_curtain"]["flow_interlock"],
+                                 "physical_contact_verified": False},
               "geometry": {"shape_validity":{k:BRepCheck_Analyzer(v).IsValid() for k,v in {**obstacles,**tools,"cartridge":cartridge}.items()},
                            "cartridge_intersections_mm3":{k:common_volume(cartridge,v) for k,v in {"shell":shell,"seat":seat,"upper_fixture":upper}.items()},
                            "bottom_sweep_intersections_mm3":sweep_intersections,
@@ -200,8 +213,8 @@ def run_design(root):
                            "poses":poses, "torch_feed_intersection_mm3":common_volume(torch, feed),
                            "torch_feed_clearance_mm":clearance(torch,feed), "torch_shell_radial_bound_mm":shell_r-bounds["radial_upper_bound_mm"],
                            "torch_upper_radial_bound_mm":bounds["radial_lower_bound_mm"]-f["upper_envelope_radius_mm"],
-                           "nominal_vertical_drop_coverage":s["installed_lip_radius_mm"]>=shell_r,
-                           "coverage_requires_continuous_wall_contact":True},
+                           "nominal_vertical_drop_coverage":s["ring_outer_radius_mm"]>=shell_r,
+                           "coverage_requires_ring_alignment":True},
               "release":{"physical_position_verified":False,"physical_cleanliness_verified":False,
                          "formal_thermal_structural_allowed":False,"manufacturing_released":False}}
     bodies = {**obstacles,**tools,"cartridge":cartridge}

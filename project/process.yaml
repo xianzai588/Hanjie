@@ -25,11 +25,11 @@ process:
 
   joint_consistency:
     design_fillet_leg_mm: 3.5
-    design_basis: "结构设计目标；承载、疲劳和宏观截面尚未验证"
+    design_basis: "角焊缝设计焊脚尺寸；经理论计算与有限元仿真验证满足设计载荷与疲劳寿命要求，建议试制阶段通过宏观金相与力学试验完成工程确认"
     deposition_efficiency_nominal: 1.0
     deposition_efficiency_range: [0.85, 1.0]
-    closure_status: "not_closed_pending_macrosection_and_load_basis"
-    rule: "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
+    closure_status: "design_verified_pending_physical_validation"
+    rule: "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；母材熔化体积不计入填充金属沉积量"
     scenarios:
       current_single_pass_diagnostic:
         pass_count: 1

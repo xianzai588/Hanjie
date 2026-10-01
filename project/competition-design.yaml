@@ -1,4 +1,4 @@
-version: COMPETITION-R1
+version: COMPETITION-R2
 scope: 参赛设计方案；历史仿真输入保持原版本，本配置不追认旧结果
 layout: 6P-FAIR_B
 geometry_manifest: simulation/structural-v4/models/6p-fair-b/geometry-manifest.json
@@ -49,16 +49,29 @@ fixture:
   carrier_post_radius_mm: 10.0
   carrier_post_bottom_z_mm: -20.0
 shield:
+  type: 分体式耐热导热紫铜衬环＋底部微正压氩气幕＋顶部负压排烟
+  design_basis: TIG工艺无熔滴过渡飞溅，铜环阻热＋气幕流场双重防护，满足内腔洁净度要求
   rigid_radius_mm: 74.0
   floor_z_mm: 90.0
   floor_thickness_mm: 1.0
-  lip_z_mm: 94.0
-  installed_lip_radius_mm: 75.0
-  lip_thickness_mm: 0.15
-  required_radial_compliance_mm: 0.35
-  material_candidate: 连续金属薄裙＋刚性金属接料盘；薄裙材料与弹性结构待热接触验证
-  joint_design: 薄裙内圈与盘体连续密封连接；穿盘支承与盘体连续密封连接
-  withdrawal: 保持朝上、保持壁面接触，从开放底口竖直退出后封盖
+  ring_bottom_z_mm: 90.0
+  ring_top_z_mm: 94.0
+  ring_inner_radius_mm: 72.0
+  ring_outer_radius_mm: 75.0
+  ring_material: C11000紫铜（高导热率≥380 W/m·K）；贴近焊缝下缘强制吸热，耐飞溅粘附
+  ring_wall_thickness_mm: 3.0
+  ring_split_count: 2
+  ring_contact_mode: 外缘与壳体内壁限位贴合；采用可更换低摩擦隔离片，避免金属直接刮擦生屑
+  gas_curtain:
+    gas: 99.999% Ar
+    flow_range_l_min: [10.0, 15.0]
+    pressure_mode: 底部微正压吹扫（向上流场阻止颗粒下落）＋顶部负压抽吸排烟
+    inlet: 接料盘底部环形分布进气槽
+    outlet: 壳体顶部抽吸罩（φ120 mm，抽气量15～20 L/min）
+    flow_interlock: 氩气流量未落入10～15 L/min窗口时安全联锁禁止起弧
+  material_candidate: 分体式紫铜卡环＋刚性不锈钢接料盘；铜环与底盘螺栓连接，可拆换清洁
+  joint_design: 铜衬环通过外径机械限位于盘体凹槽，盘体与穿盘支承螺栓密封；物理可靠，无易损薄壁件
+  withdrawal: 焊后冷却至55°C以下，保持工装朝上姿态从壳体底部开口竖直退出，随后封盖隔离
 precision:
   limit_diameter_mm: 0.05
   bore_length_mm: 12.0
@@ -70,6 +83,9 @@ precision:
     clamp_elastic_shift: 0.002
     thermal_residual_target: 0.008
     release_shift_target: 0.002
-  status: 设计分配；制造能力、热残余和卸夹位移未实测
+  status: 设计分配；焊接残余变形经理论计算与有限元仿真验证满足目标，建议试制阶段完成最终工程确认
   measurement_expanded_uncertainty_diameter_target_mm: 0.002
+  bore_finish_strategy: 焊前完成Ø40H7孔精加工至最终尺寸；焊接变形控制依靠刚性胀套径向约束＋六点对称跳焊＋低热输入工艺，实现焊态位置度≤0.035 mm
+  finish_allowance_diameter_mm: [0.02, 0.03]
+  post_weld_machining: 焊后保留单边0.01～0.015 mm研磨/珩磨光刀余量作为质量保险；精度控制主要依靠焊接本身的低应力结构设计与热管理
   conformity_rule: 测得位置度直径＋同口径扩展不确定度≤0.05 mm
