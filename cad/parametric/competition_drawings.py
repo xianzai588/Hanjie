@@ -44,8 +44,8 @@ def sheet(title,number,subtitle):
 
 
 def finish(parts):
-    return parts+[line(50,719,1150,719),text(50,746,"COMPETITION-R1 | 单位 mm | 经理论计算与数值仿真验证的设计图 | 尺寸与形位要求按本图执行","small"),
-                  text(50,768,"来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认","small"),'</svg>']
+    return parts+[line(50,719,1150,719),text(50,746,"COMPETITION-R1 | 单位 mm | 经设计计算与热模型诊断支撑的设计图 | 尺寸与形位要求按本图执行","small"),
+                  text(50,768,"来源：随包07号设计参数；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认","small"),'</svg>']
 
 
 def notes(parts,items,x=640,y=167,step=38):

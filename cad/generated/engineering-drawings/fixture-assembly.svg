@@ -36,6 +36,6 @@
 <text x="640" y="585" class="note">温度满足→压环卸载→顶回→确认收拢</text>
 <text x="640" y="623" class="note">下部支承与接料盘同一组件向下退出</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 经理论计算与数值仿真验证的设计图 | 尺寸与形位要求按本图执行</text>
-<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认</text>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 经设计计算与热模型诊断支撑的设计图 | 尺寸与形位要求按本图执行</text>
+<text x="50" y="768" class="small">来源：随包07号设计参数；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认</text>
 </svg>
