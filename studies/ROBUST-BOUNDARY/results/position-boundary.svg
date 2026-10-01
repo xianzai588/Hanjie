@@ -9,7 +9,7 @@
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
@@ -29,52 +29,52 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 56.069922 317.380078 
-L 594 317.380078 
-L 594 26.520703 
-L 56.069922 26.520703 
+    <path d="M 54.544531 318.167187 
+L 594 318.167187 
+L 594 25.785937 
+L 54.544531 25.785937 
 z
 " style="fill: #ffffff"/>
    </g>
    <g id="patch_3">
-    <path d="M 80.521289 317.380078 
-L 162.025846 317.380078 
-L 162.025846 40.37115 
-L 80.521289 40.37115 
+    <path d="M 79.065234 318.167187 
+L 160.800911 318.167187 
+L 160.800911 39.708854 
+L 79.065234 39.708854 
 z
-" clip-path="url(#pf2cada0ecc)" style="fill: #2a9d8f"/>
+" clip-path="url(#p32e5e36863)" style="fill: #2a9d8f"/>
    </g>
    <g id="patch_4">
-    <path d="M 182.401986 317.380078 
-L 263.906543 317.380078 
-L 263.906543 94.686626 
-L 182.401986 94.686626 
+    <path d="M 181.234831 318.167187 
+L 262.970508 318.167187 
+L 262.970508 94.308527 
+L 181.234831 94.308527 
 z
-" clip-path="url(#pf2cada0ecc)" style="fill: #f2c94c"/>
+" clip-path="url(#p32e5e36863)" style="fill: #f2c94c"/>
    </g>
    <g id="patch_5">
-    <path d="M 284.282682 317.380078 
-L 365.78724 317.380078 
-L 365.78724 67.528888 
-L 284.282682 67.528888 
+    <path d="M 283.404427 318.167187 
+L 365.140104 318.167187 
+L 365.140104 67.008691 
+L 283.404427 67.008691 
 z
-" clip-path="url(#pf2cada0ecc)" style="fill: #f4a261"/>
+" clip-path="url(#p32e5e36863)" style="fill: #f4a261"/>
    </g>
    <g id="patch_6">
-    <path d="M 386.163379 317.380078 
-L 467.667936 317.380078 
-L 467.667936 121.844364 
-L 386.163379 121.844364 
+    <path d="M 385.574023 318.167187 
+L 467.309701 318.167187 
+L 467.309701 121.608364 
+L 385.574023 121.608364 
 z
-" clip-path="url(#pf2cada0ecc)" style="fill: #e76f51"/>
+" clip-path="url(#p32e5e36863)" style="fill: #e76f51"/>
    </g>
    <g id="patch_7">
-    <path d="M 488.044076 317.380078 
-L 569.548633 317.380078 
-L 569.548633 40.37115 
-L 488.044076 40.37115 
+    <path d="M 487.74362 318.167187 
+L 569.479297 318.167187 
+L 569.479297 39.708854 
+L 487.74362 39.708854 
 z
-" clip-path="url(#pf2cada0ecc)" style="fill: #1b4965"/>
+" clip-path="url(#p32e5e36863)" style="fill: #1b4965"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
@@ -85,14 +85,14 @@ L 0 3.5
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m9e726d714a" x="121.273568" y="317.380078" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m9e726d714a" x="119.933073" y="318.167187" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
       <!-- 当前目标 -->
-      <g transform="translate(101.273568 332.480664) scale(0.1 -0.1)">
+      <g transform="translate(99.933073 332.320312) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-2e52" d="M 903 3988 
+        <path id="DengXian-5f53" d="M 903 3988 
 L 1197 4288 
 Q 1806 3738 2400 3103 
 L 2081 2791 
@@ -141,7 +141,7 @@ L 1172 1281
 Q 1484 1241 1656 1241 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-214c" d="M 1741 4716 
+        <path id="DengXian-524d" d="M 1741 4716 
 L 2028 5013 
 Q 2509 4622 2894 4225 
 L 2619 3950 
@@ -224,7 +224,7 @@ Q 5356 -738 5166 -831
 Q 5006 -953 4263 -1006 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-45ed" d="M 4672 -134 
+        <path id="DengXian-76ee" d="M 4672 -134 
 L 1716 -134 
 Q 1716 -434 1753 -769 
 L 1319 -769 
@@ -259,7 +259,7 @@ L 4672 1319
 L 1716 1319 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-3706" d="M 2131 -13 
+        <path id="DengXian-6807" d="M 2131 -13 
 Q 2900 750 3194 1684 
 L 3675 1472 
 Q 3719 1453 3713 1422 
@@ -337,24 +337,24 @@ Q 922 1491 1363 3034
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-2e52"/>
-       <use xlink:href="#DengXian-214c" transform="translate(100 0)"/>
-       <use xlink:href="#DengXian-45ed" transform="translate(200 0)"/>
-       <use xlink:href="#DengXian-3706" transform="translate(300 0)"/>
+       <use xlink:href="#DengXian-5f53"/>
+       <use xlink:href="#DengXian-524d" transform="translate(100 0)"/>
+       <use xlink:href="#DengXian-76ee" transform="translate(200 0)"/>
+       <use xlink:href="#DengXian-6807" transform="translate(300 0)"/>
       </g>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#m9e726d714a" x="223.154264" y="317.380078" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m9e726d714a" x="222.102669" y="318.167187" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
       <!-- 工装差0.002 -->
-      <g transform="translate(196.520671 332.480664) scale(0.1 -0.1)">
+      <g transform="translate(195.469076 332.13125) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-2ce4" d="M 953 -166 
+        <path id="DengXian-5de5" d="M 953 -166 
 L 3003 -166 
 L 3003 3975 
 L 1472 3975 
@@ -377,7 +377,7 @@ L 469 -128
 Q 641 -159 953 -166 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-57c4" d="M 544 2631 
+        <path id="DengXian-88c5" d="M 544 2631 
 Q 1428 2925 2169 3316 
 L 2169 4269 
 Q 2169 4519 2131 4788 
@@ -471,7 +471,7 @@ Q 4538 4703 4481 4672
 Q 4403 4628 4403 4341 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-2ced" d="M 422 403 
+        <path id="DengXian-5dee" d="M 422 403 
 Q 1881 756 2597 1825 
 L 1100 1825 
 Q 884 1819 603 1784 
@@ -541,7 +541,7 @@ Q 2450 4544 2822 4219
 L 2559 3950 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-6fc3" d="M 3106 1953 
+        <path id="DengXian-30" d="M 3106 1953 
 Q 3106 850 2750 268 
 Q 2394 -313 1697 -313 
 Q 1006 -313 654 256 
@@ -562,14 +562,14 @@ Q 2216 22 2461 508
 Q 2706 994 2706 1953 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-6fc1" d="M 475 -250 
+        <path id="DengXian-2e" d="M 475 -250 
 L 475 291 
 L 928 291 
 L 928 -250 
 L 475 -250 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-6fc5" d="M 347 -250 
+        <path id="DengXian-32" d="M 347 -250 
 L 347 31 
 Q 491 394 764 751 
 Q 1038 1109 1566 1569 
@@ -594,28 +594,28 @@ L 347 -250
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-2ce4"/>
-       <use xlink:href="#DengXian-57c4" transform="translate(100 0)"/>
-       <use xlink:href="#DengXian-2ced" transform="translate(200 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(300 0)"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(352.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(374.609375 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(427.296875 0)"/>
-       <use xlink:href="#DengXian-6fc5" transform="translate(479.984375 0)"/>
+       <use xlink:href="#DengXian-5de5"/>
+       <use xlink:href="#DengXian-88c5" transform="translate(100 0)"/>
+       <use xlink:href="#DengXian-5dee" transform="translate(200 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(300 0)"/>
+       <use xlink:href="#DengXian-2e" transform="translate(352.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(374.609375 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(427.294922 0)"/>
+       <use xlink:href="#DengXian-32" transform="translate(479.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#m9e726d714a" x="325.034961" y="317.380078" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m9e726d714a" x="324.272266" y="318.167187" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
       <!-- 测量不确定度恶化 -->
-      <g transform="translate(285.034961 332.480664) scale(0.1 -0.1)">
+      <g transform="translate(284.272266 332.317187) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-3c4a" d="M 313 -466 
+        <path id="DengXian-6d4b" d="M 313 -466 
 Q 1013 525 1441 1672 
 Q 1569 1447 1728 1338 
 Q 1013 -38 697 -750 
@@ -698,7 +698,7 @@ Q 5797 -666 5619 -756
 Q 5484 -878 4728 -922 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-60ce" d="M 6106 2797 
+        <path id="DengXian-91cf" d="M 6106 2797 
 L 6106 2425 
 Q 5825 2472 5588 2463 
 L 844 2463 
@@ -798,7 +798,7 @@ L 3097 1906
 L 1588 1906 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-1d0c" d="M 3450 4184 
+        <path id="DengXian-4e0d" d="M 3450 4184 
 L 1044 4184 
 Q 794 4178 469 4134 
 L 469 4556 
@@ -825,7 +825,7 @@ Q 5178 2022 6075 1134
 L 5747 788 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-476d" d="M 2875 3122 
+        <path id="DengXian-786e" d="M 2875 3122 
 Q 2778 3016 2591 2828 
 Q 2528 2772 2503 2747 
 Q 2291 2900 2016 2975 
@@ -931,7 +931,7 @@ L 2003 2291
 L 1259 2291 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-2a99" d="M 206 -622 
+        <path id="DengXian-5b9a" d="M 206 -622 
 Q 1497 84 1625 1838 
 L 2113 1722 
 Q 2209 1697 2203 1672 
@@ -988,7 +988,7 @@ Q 3103 4372 2541 4716
 L 2772 5056 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-2da5" d="M 3419 153 
+        <path id="DengXian-5ea6" d="M 3419 153 
 Q 2809 684 2522 1253 
 L 2444 1253 
 Q 2259 1259 1947 1216 
@@ -1071,7 +1071,7 @@ Q 1216 50 744 -647
 Q 581 -513 275 -447 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-2f75" d="M 250 -422 
+        <path id="DengXian-6076" d="M 250 -422 
 Q 863 172 1125 978 
 L 1550 763 
 Q 1594 738 1587 714 
@@ -1154,7 +1154,7 @@ L 5869 -366
 Q 5388 244 4769 838 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-2215" d="M 238 2034 
+        <path id="DengXian-5316" d="M 238 2034 
 Q 1325 2931 2113 4972 
 L 2584 4728 
 Q 2650 4697 2644 4678 
@@ -1203,28 +1203,28 @@ Q 3859 4622 3866 4250
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-3c4a"/>
-       <use xlink:href="#DengXian-60ce" transform="translate(100 0)"/>
-       <use xlink:href="#DengXian-1d0c" transform="translate(200 0)"/>
-       <use xlink:href="#DengXian-476d" transform="translate(300 0)"/>
-       <use xlink:href="#DengXian-2a99" transform="translate(400 0)"/>
-       <use xlink:href="#DengXian-2da5" transform="translate(500 0)"/>
-       <use xlink:href="#DengXian-2f75" transform="translate(600 0)"/>
-       <use xlink:href="#DengXian-2215" transform="translate(700 0)"/>
+       <use xlink:href="#DengXian-6d4b"/>
+       <use xlink:href="#DengXian-91cf" transform="translate(100 0)"/>
+       <use xlink:href="#DengXian-4e0d" transform="translate(200 0)"/>
+       <use xlink:href="#DengXian-786e" transform="translate(300 0)"/>
+       <use xlink:href="#DengXian-5b9a" transform="translate(400 0)"/>
+       <use xlink:href="#DengXian-5ea6" transform="translate(500 0)"/>
+       <use xlink:href="#DengXian-6076" transform="translate(600 0)"/>
+       <use xlink:href="#DengXian-5316" transform="translate(700 0)"/>
       </g>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#m9e726d714a" x="426.915658" y="317.380078" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m9e726d714a" x="426.441862" y="318.167187" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
       <!-- 工装差+测量恶化 -->
-      <g transform="translate(388.580501 332.480664) scale(0.1 -0.1)">
+      <g transform="translate(388.106706 332.21875) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-6fbe" d="M 2297 1713 
+        <path id="DengXian-2b" d="M 2297 1713 
 L 2297 375 
 L 1969 375 
 L 1969 1713 
@@ -1240,28 +1240,28 @@ L 2297 1713
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-2ce4"/>
-       <use xlink:href="#DengXian-57c4" transform="translate(100 0)"/>
-       <use xlink:href="#DengXian-2ced" transform="translate(200 0)"/>
-       <use xlink:href="#DengXian-6fbe" transform="translate(300 0)"/>
-       <use xlink:href="#DengXian-3c4a" transform="translate(366.703125 0)"/>
-       <use xlink:href="#DengXian-60ce" transform="translate(466.703125 0)"/>
-       <use xlink:href="#DengXian-2f75" transform="translate(566.703125 0)"/>
-       <use xlink:href="#DengXian-2215" transform="translate(666.703125 0)"/>
+       <use xlink:href="#DengXian-5de5"/>
+       <use xlink:href="#DengXian-88c5" transform="translate(100 0)"/>
+       <use xlink:href="#DengXian-5dee" transform="translate(200 0)"/>
+       <use xlink:href="#DengXian-2b" transform="translate(300 0)"/>
+       <use xlink:href="#DengXian-6d4b" transform="translate(366.699219 0)"/>
+       <use xlink:href="#DengXian-91cf" transform="translate(466.699219 0)"/>
+       <use xlink:href="#DengXian-6076" transform="translate(566.699219 0)"/>
+       <use xlink:href="#DengXian-5316" transform="translate(666.699219 0)"/>
       </g>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_5">
       <g>
-       <use xlink:href="#m9e726d714a" x="528.796354" y="317.380078" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m9e726d714a" x="528.611458" y="318.167187" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
       <!-- 热残余失效边界 -->
-      <g transform="translate(493.796354 332.480664) scale(0.1 -0.1)">
+      <g transform="translate(493.611458 332.429688) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-3fec" d="M 2859 2694 
+        <path id="DengXian-70ed" d="M 2859 2694 
 L 3116 2950 
 Q 3156 2913 3231 2847 
 Q 3366 2734 3450 2656 
@@ -1371,7 +1371,7 @@ L 3847 -594
 Q 3659 147 3419 563 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-3a8a" d="M 159 1544 
+        <path id="DengXian-6b8b" d="M 159 1544 
 Q 1172 2328 1300 4072 
 L 884 4072 
 Q 653 4063 372 4031 
@@ -1452,7 +1452,7 @@ L 5247 3828
 Q 4922 4159 4494 4488 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-1e58" d="M 1959 872 
+        <path id="DengXian-4f59" d="M 1959 872 
 L 2328 563 
 Q 2394 506 2387 479 
 Q 2381 453 2297 434 
@@ -1511,7 +1511,7 @@ Q 500 2369 225 2534
 Q 2106 3200 3059 5006 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-2830" d="M 391 -588 
+        <path id="DengXian-5931" d="M 391 -588 
 Q 2497 -331 2969 1703 
 L 1209 1703 
 Q 997 1697 684 1663 
@@ -1554,7 +1554,7 @@ Q 2834 -341 781 -1044
 Q 628 -819 391 -588 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-3447" d="M 916 1441 
+        <path id="DengXian-6548" d="M 916 1441 
 L 1159 1734 
 Q 1184 1709 1241 1663 
 Q 1550 1409 1875 1113 
@@ -1630,7 +1630,7 @@ Q 3866 -391 2881 -1031
 Q 2719 -800 2478 -697 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-5eb8" d="M 1991 3653 
+        <path id="DengXian-8fb9" d="M 1991 3653 
 L 1703 3366 
 Q 1247 3928 756 4341 
 L 1044 4628 
@@ -1698,7 +1698,7 @@ L 1166 2625
 Q 1478 2625 1684 2663 
 z
 " transform="scale(0.015625)"/>
-        <path id="DengXian-444b" d="M 3803 2328 
+        <path id="DengXian-754c" d="M 3803 2328 
 L 2694 2328 
 Q 1784 1203 603 697 
 Q 447 934 225 1088 
@@ -1768,13 +1768,13 @@ Q 1119 -722 903 -531
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-3fec"/>
-       <use xlink:href="#DengXian-3a8a" transform="translate(100 0)"/>
-       <use xlink:href="#DengXian-1e58" transform="translate(200 0)"/>
-       <use xlink:href="#DengXian-2830" transform="translate(300 0)"/>
-       <use xlink:href="#DengXian-3447" transform="translate(400 0)"/>
-       <use xlink:href="#DengXian-5eb8" transform="translate(500 0)"/>
-       <use xlink:href="#DengXian-444b" transform="translate(600 0)"/>
+       <use xlink:href="#DengXian-70ed"/>
+       <use xlink:href="#DengXian-6b8b" transform="translate(100 0)"/>
+       <use xlink:href="#DengXian-4f59" transform="translate(200 0)"/>
+       <use xlink:href="#DengXian-5931" transform="translate(300 0)"/>
+       <use xlink:href="#DengXian-6548" transform="translate(400 0)"/>
+       <use xlink:href="#DengXian-8fb9" transform="translate(500 0)"/>
+       <use xlink:href="#DengXian-754c" transform="translate(600 0)"/>
       </g>
      </g>
     </g>
@@ -1782,9 +1782,9 @@ z
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_6">
-      <path d="M 56.069922 317.380078 
-L 594 317.380078 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 54.544531 318.167187 
+L 594 318.167187 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_7">
       <defs>
@@ -1793,58 +1793,58 @@ L -3.5 0
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#mab701163c5" x="56.069922" y="317.380078" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mab701163c5" x="54.544531" y="318.167187" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_6">
       <!-- 0.000 -->
-      <g transform="translate(25.802734 321.430371) scale(0.1 -0.1)">
-       <use xlink:href="#DengXian-6fc3"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(179.984375 0)"/>
+      <g transform="translate(24.277344 321.521875) scale(0.1 -0.1)">
+       <use xlink:href="#DengXian-30"/>
+       <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(179.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_8">
-      <path d="M 56.069922 263.064602 
-L 594 263.064602 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 54.544531 263.567514 
+L 594 263.567514 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_9">
       <g>
-       <use xlink:href="#mab701163c5" x="56.069922" y="263.064602" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mab701163c5" x="54.544531" y="263.567514" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_7">
       <!-- 0.002 -->
-      <g transform="translate(25.802734 267.114895) scale(0.1 -0.1)">
-       <use xlink:href="#DengXian-6fc3"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-       <use xlink:href="#DengXian-6fc5" transform="translate(179.984375 0)"/>
+      <g transform="translate(24.277344 266.922202) scale(0.1 -0.1)">
+       <use xlink:href="#DengXian-30"/>
+       <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+       <use xlink:href="#DengXian-32" transform="translate(179.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_10">
-      <path d="M 56.069922 208.749126 
-L 594 208.749126 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 54.544531 208.967841 
+L 594 208.967841 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_11">
       <g>
-       <use xlink:href="#mab701163c5" x="56.069922" y="208.749126" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mab701163c5" x="54.544531" y="208.967841" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
       <!-- 0.004 -->
-      <g transform="translate(25.802734 212.799419) scale(0.1 -0.1)">
+      <g transform="translate(24.277344 212.322529) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-6fc7" d="M 2516 803 
+        <path id="DengXian-34" d="M 2516 803 
 L 2516 -250 
 L 2125 -250 
 L 2125 803 
@@ -1864,30 +1864,30 @@ L 2125 3628
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-6fc3"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-       <use xlink:href="#DengXian-6fc7" transform="translate(179.984375 0)"/>
+       <use xlink:href="#DengXian-30"/>
+       <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+       <use xlink:href="#DengXian-34" transform="translate(179.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="ytick_4">
      <g id="line2d_12">
-      <path d="M 56.069922 154.43365 
-L 594 154.43365 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 54.544531 154.368168 
+L 594 154.368168 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_13">
       <g>
-       <use xlink:href="#mab701163c5" x="56.069922" y="154.43365" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mab701163c5" x="54.544531" y="154.368168" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
       <!-- 0.006 -->
-      <g transform="translate(25.802734 158.483943) scale(0.1 -0.1)">
+      <g transform="translate(24.277344 157.722855) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-6fc9" d="M 3047 1191 
+        <path id="DengXian-36" d="M 3047 1191 
 Q 3047 491 2697 89 
 Q 2347 -313 1747 -313 
 Q 1075 -313 720 234 
@@ -1918,30 +1918,30 @@ Q 2647 631 2647 1166
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-6fc3"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-       <use xlink:href="#DengXian-6fc9" transform="translate(179.984375 0)"/>
+       <use xlink:href="#DengXian-30"/>
+       <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+       <use xlink:href="#DengXian-36" transform="translate(179.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="ytick_5">
      <g id="line2d_14">
-      <path d="M 56.069922 100.118173 
-L 594 100.118173 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 54.544531 99.768495 
+L 594 99.768495 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_15">
       <g>
-       <use xlink:href="#mab701163c5" x="56.069922" y="100.118173" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mab701163c5" x="54.544531" y="99.768495" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_10">
       <!-- 0.008 -->
-      <g transform="translate(25.802734 104.168466) scale(0.1 -0.1)">
+      <g transform="translate(24.277344 103.123182) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-6fcb" d="M 3050 972 
+        <path id="DengXian-38" d="M 3050 972 
 Q 3050 359 2697 23 
 Q 2344 -313 1688 -313 
 Q 1038 -313 680 25 
@@ -1983,30 +1983,30 @@ Q 2644 513 2644 1009
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-6fc3"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-       <use xlink:href="#DengXian-6fcb" transform="translate(179.984375 0)"/>
+       <use xlink:href="#DengXian-30"/>
+       <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+       <use xlink:href="#DengXian-38" transform="translate(179.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="ytick_6">
      <g id="line2d_16">
-      <path d="M 56.069922 45.802697 
-L 594 45.802697 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 54.544531 45.168821 
+L 594 45.168821 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_17">
       <g>
-       <use xlink:href="#mab701163c5" x="56.069922" y="45.802697" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mab701163c5" x="54.544531" y="45.168821" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_11">
       <!-- 0.010 -->
-      <g transform="translate(25.802734 49.85299) scale(0.1 -0.1)">
+      <g transform="translate(24.277344 48.523509) scale(0.1 -0.1)">
        <defs>
-        <path id="DengXian-6fc4" d="M 484 -250 
+        <path id="DengXian-31" d="M 484 -250 
 L 484 84 
 L 1609 84 
 L 1609 3744 
@@ -2021,19 +2021,19 @@ L 484 -250
 z
 " transform="scale(0.015625)"/>
        </defs>
-       <use xlink:href="#DengXian-6fc3"/>
-       <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-       <use xlink:href="#DengXian-6fc4" transform="translate(127.296875 0)"/>
-       <use xlink:href="#DengXian-6fc3" transform="translate(179.984375 0)"/>
+       <use xlink:href="#DengXian-30"/>
+       <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+       <use xlink:href="#DengXian-31" transform="translate(127.294922 0)"/>
+       <use xlink:href="#DengXian-30" transform="translate(179.980469 0)"/>
       </g>
      </g>
     </g>
     <g id="text_12">
      <!-- 热残余最大允许径向量 / mm -->
-     <g transform="translate(19.483398 234.991797) rotate(-90) scale(0.1 -0.1)">
+     <g transform="translate(17.958594 235.017969) rotate(-90) scale(0.1 -0.1)">
       <defs>
-       <path id="DengXian-35ff" d="M 5563 2419 
+       <path id="DengXian-6700" d="M 5563 2419 
 L 3103 2419 
 L 3103 459 
 Q 3169 481 3297 506 
@@ -2127,7 +2127,7 @@ L 3853 1594
 Q 4056 1081 4469 594 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-2826" d="M 331 -634 
+       <path id="DengXian-5927" d="M 331 -634 
 Q 2572 488 2828 2725 
 L 1069 2725 
 Q 856 2719 550 2688 
@@ -2153,7 +2153,7 @@ Q 2731 428 806 -941
 Q 603 -788 331 -634 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-2040" d="M 2906 4991 
+       <path id="DengXian-5141" d="M 2906 4991 
 L 3438 4775 
 Q 3519 4744 3519 4703 
 Q 3513 4666 3431 4634 
@@ -2191,7 +2191,7 @@ Q 1216 2669 1416 2881
 Q 2419 3950 2906 4991 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-5ab7" d="M 1588 2944 
+       <path id="DengXian-8bb8" d="M 1588 2944 
 Q 1569 2772 1556 2522 
 L 1503 -6 
 Q 2088 434 2413 800 
@@ -2247,7 +2247,7 @@ Q 2797 2894 2431 2369
 Q 2194 2497 1959 2534 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-2e83" d="M 1209 -384 
+       <path id="DengXian-5f84" d="M 1209 -384 
 L 1209 1953 
 Q 934 1600 653 1288 
 Q 513 1453 244 1588 
@@ -2309,7 +2309,7 @@ Q 2419 2175 2203 2369
 Q 3922 2700 4781 4250 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-2310" d="M 2175 4897 
+       <path id="DengXian-5411" d="M 2175 4897 
 L 2741 4672 
 Q 2816 4641 2803 4622 
 Q 2797 4594 2688 4556 
@@ -2358,15 +2358,15 @@ L 2438 2022
 L 2438 800 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-6fb3" transform="scale(0.015625)"/>
-       <path id="DengXian-6fc2" d="M 422 -250 
+       <path id="DengXian-20" transform="scale(0.015625)"/>
+       <path id="DengXian-2f" d="M 422 -250 
 L 19 -250 
 L 2009 4300 
 L 2397 4300 
 L 422 -250 
 z
 " transform="scale(0.015625)"/>
-       <path id="DengXian-7000" d="M 4506 -250 
+       <path id="DengXian-6d" d="M 4506 -250 
 L 4506 1613 
 Q 4506 2181 4336 2423 
 Q 4166 2666 3772 2666 
@@ -2399,76 +2399,76 @@ L 4506 -250
 z
 " transform="scale(0.015625)"/>
       </defs>
-      <use xlink:href="#DengXian-3fec"/>
-      <use xlink:href="#DengXian-3a8a" transform="translate(100 0)"/>
-      <use xlink:href="#DengXian-1e58" transform="translate(200 0)"/>
-      <use xlink:href="#DengXian-35ff" transform="translate(300 0)"/>
-      <use xlink:href="#DengXian-2826" transform="translate(400 0)"/>
-      <use xlink:href="#DengXian-2040" transform="translate(500 0)"/>
-      <use xlink:href="#DengXian-5ab7" transform="translate(600 0)"/>
-      <use xlink:href="#DengXian-2e83" transform="translate(700 0)"/>
-      <use xlink:href="#DengXian-2310" transform="translate(800 0)"/>
-      <use xlink:href="#DengXian-60ce" transform="translate(900 0)"/>
-      <use xlink:href="#DengXian-6fb3" transform="translate(1000 0)"/>
-      <use xlink:href="#DengXian-6fc2" transform="translate(1027.390625 0)"/>
-      <use xlink:href="#DengXian-6fb3" transform="translate(1065.1875 0)"/>
-      <use xlink:href="#DengXian-7000" transform="translate(1092.578125 0)"/>
-      <use xlink:href="#DengXian-7000" transform="translate(1176.703125 0)"/>
+      <use xlink:href="#DengXian-70ed"/>
+      <use xlink:href="#DengXian-6b8b" transform="translate(100 0)"/>
+      <use xlink:href="#DengXian-4f59" transform="translate(200 0)"/>
+      <use xlink:href="#DengXian-6700" transform="translate(300 0)"/>
+      <use xlink:href="#DengXian-5927" transform="translate(400 0)"/>
+      <use xlink:href="#DengXian-5141" transform="translate(500 0)"/>
+      <use xlink:href="#DengXian-8bb8" transform="translate(600 0)"/>
+      <use xlink:href="#DengXian-5f84" transform="translate(700 0)"/>
+      <use xlink:href="#DengXian-5411" transform="translate(800 0)"/>
+      <use xlink:href="#DengXian-91cf" transform="translate(900 0)"/>
+      <use xlink:href="#DengXian-20" transform="translate(1000 0)"/>
+      <use xlink:href="#DengXian-2f" transform="translate(1027.392578 0)"/>
+      <use xlink:href="#DengXian-20" transform="translate(1065.185547 0)"/>
+      <use xlink:href="#DengXian-6d" transform="translate(1092.578125 0)"/>
+      <use xlink:href="#DengXian-6d" transform="translate(1176.708984 0)"/>
      </g>
     </g>
    </g>
    <g id="line2d_18">
-    <path d="M 56.069922 100.118173 
-L 594 100.118173 
-" clip-path="url(#pf2cada0ecc)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #333333; stroke-width: 1.5"/>
+    <path d="M 54.544531 99.768495 
+L 594 99.768495 
+" clip-path="url(#p32e5e36863)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #333333; stroke-width: 1.5"/>
    </g>
    <g id="patch_8">
-    <path d="M 56.069922 317.380078 
-L 56.069922 26.520703 
+    <path d="M 54.544531 318.167187 
+L 54.544531 25.785937 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_9">
-    <path d="M 594 317.380078 
-L 594 26.520703 
+    <path d="M 594 318.167187 
+L 594 25.785937 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_10">
-    <path d="M 56.069922 317.380078 
-L 594 317.380078 
+    <path d="M 54.544531 318.167187 
+L 594 318.167187 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_11">
-    <path d="M 56.069922 26.520703 
-L 594 26.520703 
+    <path d="M 54.544531 25.785937 
+L 594 25.785937 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_13">
     <!-- 0.0102 -->
-    <g transform="translate(109.859193 37.655376) scale(0.08 -0.08)">
-     <use xlink:href="#DengXian-6fc3"/>
-     <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-     <use xlink:href="#DengXian-6fc4" transform="translate(127.296875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(179.984375 0)"/>
-     <use xlink:href="#DengXian-6fc5" transform="translate(232.671875 0)"/>
+    <g transform="translate(108.518698 36.978871) scale(0.08 -0.08)">
+     <use xlink:href="#DengXian-30"/>
+     <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+     <use xlink:href="#DengXian-31" transform="translate(127.294922 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(179.980469 0)"/>
+     <use xlink:href="#DengXian-32" transform="translate(232.666016 0)"/>
     </g>
    </g>
    <g id="text_14">
     <!-- 0.0082 -->
-    <g transform="translate(211.739889 91.970852) scale(0.08 -0.08)">
-     <use xlink:href="#DengXian-6fc3"/>
-     <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-     <use xlink:href="#DengXian-6fcb" transform="translate(179.984375 0)"/>
-     <use xlink:href="#DengXian-6fc5" transform="translate(232.671875 0)"/>
+    <g transform="translate(210.688294 91.578544) scale(0.08 -0.08)">
+     <use xlink:href="#DengXian-30"/>
+     <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+     <use xlink:href="#DengXian-38" transform="translate(179.980469 0)"/>
+     <use xlink:href="#DengXian-32" transform="translate(232.666016 0)"/>
     </g>
    </g>
    <g id="text_15">
     <!-- 0.0092 -->
-    <g transform="translate(313.620586 64.813114) scale(0.08 -0.08)">
+    <g transform="translate(312.857891 64.278707) scale(0.08 -0.08)">
      <defs>
-      <path id="DengXian-6fcc" d="M 3013 2047 
+      <path id="DengXian-39" d="M 3013 2047 
 Q 3013 894 2638 290 
 Q 2263 -313 1538 -313 
 Q 622 -313 384 500 
@@ -2497,19 +2497,19 @@ Q 2572 2200 2572 2634
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#DengXian-6fc3"/>
-     <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-     <use xlink:href="#DengXian-6fcc" transform="translate(179.984375 0)"/>
-     <use xlink:href="#DengXian-6fc5" transform="translate(232.671875 0)"/>
+     <use xlink:href="#DengXian-30"/>
+     <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+     <use xlink:href="#DengXian-39" transform="translate(179.980469 0)"/>
+     <use xlink:href="#DengXian-32" transform="translate(232.666016 0)"/>
     </g>
    </g>
    <g id="text_16">
     <!-- 0.0072 -->
-    <g transform="translate(415.501283 119.12859) scale(0.08 -0.08)">
+    <g transform="translate(415.027487 118.87838) scale(0.08 -0.08)">
      <defs>
-      <path id="DengXian-6fca" d="M 3031 3809 
+      <path id="DengXian-37" d="M 3031 3809 
 Q 2278 2631 1928 1634 
 Q 1578 638 1578 -250 
 L 1172 -250 
@@ -2522,30 +2522,30 @@ L 3031 3809
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#DengXian-6fc3"/>
-     <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(127.296875 0)"/>
-     <use xlink:href="#DengXian-6fca" transform="translate(179.984375 0)"/>
-     <use xlink:href="#DengXian-6fc5" transform="translate(232.671875 0)"/>
+     <use xlink:href="#DengXian-30"/>
+     <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(127.294922 0)"/>
+     <use xlink:href="#DengXian-37" transform="translate(179.980469 0)"/>
+     <use xlink:href="#DengXian-32" transform="translate(232.666016 0)"/>
     </g>
    </g>
    <g id="text_17">
     <!-- 0.0102 -->
-    <g transform="translate(517.381979 37.655376) scale(0.08 -0.08)">
-     <use xlink:href="#DengXian-6fc3"/>
-     <use xlink:href="#DengXian-6fc1" transform="translate(52.6875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(74.609375 0)"/>
-     <use xlink:href="#DengXian-6fc4" transform="translate(127.296875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(179.984375 0)"/>
-     <use xlink:href="#DengXian-6fc5" transform="translate(232.671875 0)"/>
+    <g transform="translate(517.197083 36.978871) scale(0.08 -0.08)">
+     <use xlink:href="#DengXian-30"/>
+     <use xlink:href="#DengXian-2e" transform="translate(52.685547 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(74.609375 0)"/>
+     <use xlink:href="#DengXian-31" transform="translate(127.294922 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(179.980469 0)"/>
+     <use xlink:href="#DengXian-32" transform="translate(232.666016 0)"/>
     </g>
    </g>
    <g id="text_18">
     <!-- Ø0.05 位置度预算：热残余确定性边界 -->
-    <g transform="translate(224.048398 20.520703) scale(0.12 -0.12)">
+    <g transform="translate(223.285703 19.785937) scale(0.12 -0.12)">
      <defs>
-      <path id="DengXian-7065" d="M 4503 1972 
+      <path id="DengXian-d8" d="M 4503 1972 
 Q 4503 1288 4248 766 
 Q 3994 244 3523 -34 
 Q 3053 -313 2419 -313 
@@ -2577,7 +2577,7 @@ Q 1638 3863 1203 3364
 Q 769 2866 769 1972 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-6fc8" d="M 3047 1169 
+      <path id="DengXian-35" d="M 3047 1169 
 Q 3047 469 2676 78 
 Q 2306 -313 1641 -313 
 Q 575 -313 366 672 
@@ -2602,7 +2602,7 @@ Q 2359 2503 2703 2142
 Q 3047 1781 3047 1169 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-1e4c" d="M 4500 -122 
+      <path id="DengXian-4f4d" d="M 4500 -122 
 L 5819 -122 
 Q 5972 -128 6222 -84 
 L 6222 -466 
@@ -2657,7 +2657,7 @@ Q 481 2075 184 2181
 Q 1131 3097 1684 4966 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-4e6d" d="M 1850 2222 
+      <path id="DengXian-7f6e" d="M 1850 2222 
 L 2650 2222 
 Q 2719 2431 2766 2638 
 L 1125 2638 
@@ -2751,7 +2751,7 @@ L 2328 4341
 L 1313 4341 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-6783" d="M 2413 2253 
+      <path id="DengXian-9884" d="M 2413 2253 
 L 1772 2253 
 L 1772 -313 
 Q 1784 -697 1619 -775 
@@ -2838,7 +2838,7 @@ Q 5241 -281 4531 225
 L 4788 500 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-4a96" d="M 1416 909 
+      <path id="DengXian-7b97" d="M 1416 909 
 Q 1447 1106 1453 1403 
 L 1453 2888 
 Q 1453 3175 1416 3384 
@@ -2937,7 +2937,7 @@ Q 3181 3603 2969 3694
 Q 3641 4256 3938 5100 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-6f21" d="M 1322 2941 
+      <path id="DengXian-ff1a" d="M 1322 2941 
 Q 1206 2941 1122 3025 
 Q 1038 3109 1038 3234 
 Q 1038 3356 1119 3437 
@@ -2958,7 +2958,7 @@ Q 1619 113 1534 25
 Q 1450 -63 1322 -63 
 z
 " transform="scale(0.015625)"/>
-      <path id="DengXian-2f26" d="M 416 2069 
+      <path id="DengXian-6027" d="M 416 2069 
 Q 666 2656 722 3609 
 L 1131 3525 
 Q 1216 3513 1216 3500 
@@ -3037,75 +3037,75 @@ Q 1409 4575 1375 4922
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#DengXian-7065"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(75.734375 0)"/>
-     <use xlink:href="#DengXian-6fc1" transform="translate(128.421875 0)"/>
-     <use xlink:href="#DengXian-6fc3" transform="translate(150.34375 0)"/>
-     <use xlink:href="#DengXian-6fc8" transform="translate(203.03125 0)"/>
-     <use xlink:href="#DengXian-6fb3" transform="translate(255.71875 0)"/>
-     <use xlink:href="#DengXian-1e4c" transform="translate(283.109375 0)"/>
-     <use xlink:href="#DengXian-4e6d" transform="translate(383.109375 0)"/>
-     <use xlink:href="#DengXian-2da5" transform="translate(483.109375 0)"/>
-     <use xlink:href="#DengXian-6783" transform="translate(583.109375 0)"/>
-     <use xlink:href="#DengXian-4a96" transform="translate(683.109375 0)"/>
-     <use xlink:href="#DengXian-6f21" transform="translate(783.109375 0)"/>
-     <use xlink:href="#DengXian-3fec" transform="translate(883.109375 0)"/>
-     <use xlink:href="#DengXian-3a8a" transform="translate(983.109375 0)"/>
-     <use xlink:href="#DengXian-1e58" transform="translate(1083.109375 0)"/>
-     <use xlink:href="#DengXian-476d" transform="translate(1183.109375 0)"/>
-     <use xlink:href="#DengXian-2a99" transform="translate(1283.109375 0)"/>
-     <use xlink:href="#DengXian-2f26" transform="translate(1383.109375 0)"/>
-     <use xlink:href="#DengXian-5eb8" transform="translate(1483.109375 0)"/>
-     <use xlink:href="#DengXian-444b" transform="translate(1583.109375 0)"/>
+     <use xlink:href="#DengXian-d8"/>
+     <use xlink:href="#DengXian-30" transform="translate(75.732422 0)"/>
+     <use xlink:href="#DengXian-2e" transform="translate(128.417969 0)"/>
+     <use xlink:href="#DengXian-30" transform="translate(150.341797 0)"/>
+     <use xlink:href="#DengXian-35" transform="translate(203.027344 0)"/>
+     <use xlink:href="#DengXian-20" transform="translate(255.712891 0)"/>
+     <use xlink:href="#DengXian-4f4d" transform="translate(283.105469 0)"/>
+     <use xlink:href="#DengXian-7f6e" transform="translate(383.105469 0)"/>
+     <use xlink:href="#DengXian-5ea6" transform="translate(483.105469 0)"/>
+     <use xlink:href="#DengXian-9884" transform="translate(583.105469 0)"/>
+     <use xlink:href="#DengXian-7b97" transform="translate(683.105469 0)"/>
+     <use xlink:href="#DengXian-ff1a" transform="translate(783.105469 0)"/>
+     <use xlink:href="#DengXian-70ed" transform="translate(883.105469 0)"/>
+     <use xlink:href="#DengXian-6b8b" transform="translate(983.105469 0)"/>
+     <use xlink:href="#DengXian-4f59" transform="translate(1083.105469 0)"/>
+     <use xlink:href="#DengXian-786e" transform="translate(1183.105469 0)"/>
+     <use xlink:href="#DengXian-5b9a" transform="translate(1283.105469 0)"/>
+     <use xlink:href="#DengXian-6027" transform="translate(1383.105469 0)"/>
+     <use xlink:href="#DengXian-8fb9" transform="translate(1483.105469 0)"/>
+     <use xlink:href="#DengXian-754c" transform="translate(1583.105469 0)"/>
     </g>
    </g>
    <g id="legend_1">
     <g id="patch_12">
-     <path d="M 439.429688 49.940625 
-L 587 49.940625 
-Q 589 49.940625 589 47.940625 
-L 589 33.520703 
-Q 589 31.520703 587 31.520703 
-L 439.429688 31.520703 
-Q 437.429688 31.520703 437.429688 33.520703 
-L 437.429688 47.940625 
-Q 437.429688 49.940625 439.429688 49.940625 
+     <path d="M 439.429688 48.307813 
+L 587 48.307813 
+Q 589 48.307813 589 46.307813 
+L 589 32.785937 
+Q 589 30.785937 587 30.785937 
+L 439.429688 30.785937 
+Q 437.429688 30.785937 437.429688 32.785937 
+L 437.429688 46.307813 
+Q 437.429688 48.307813 439.429688 48.307813 
 z
 " style="fill: #ffffff; opacity: 0.8; stroke: #cccccc; stroke-linejoin: miter"/>
     </g>
     <g id="line2d_19">
-     <path d="M 441.429688 40.121289 
-L 451.429688 40.121289 
-L 461.429688 40.121289 
+     <path d="M 441.429688 38.489062 
+L 451.429688 38.489062 
+L 461.429688 38.489062 
 " style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #333333; stroke-width: 1.5"/>
     </g>
     <g id="text_19">
      <!-- 当前热残余目标 0.008 mm -->
-     <g transform="translate(469.429688 43.621289) scale(0.1 -0.1)">
-      <use xlink:href="#DengXian-2e52"/>
-      <use xlink:href="#DengXian-214c" transform="translate(100 0)"/>
-      <use xlink:href="#DengXian-3fec" transform="translate(200 0)"/>
-      <use xlink:href="#DengXian-3a8a" transform="translate(300 0)"/>
-      <use xlink:href="#DengXian-1e58" transform="translate(400 0)"/>
-      <use xlink:href="#DengXian-45ed" transform="translate(500 0)"/>
-      <use xlink:href="#DengXian-3706" transform="translate(600 0)"/>
-      <use xlink:href="#DengXian-6fb3" transform="translate(700 0)"/>
-      <use xlink:href="#DengXian-6fc3" transform="translate(727.390625 0)"/>
-      <use xlink:href="#DengXian-6fc1" transform="translate(780.078125 0)"/>
-      <use xlink:href="#DengXian-6fc3" transform="translate(802 0)"/>
-      <use xlink:href="#DengXian-6fc3" transform="translate(854.6875 0)"/>
-      <use xlink:href="#DengXian-6fcb" transform="translate(907.375 0)"/>
-      <use xlink:href="#DengXian-6fb3" transform="translate(960.0625 0)"/>
-      <use xlink:href="#DengXian-7000" transform="translate(987.453125 0)"/>
-      <use xlink:href="#DengXian-7000" transform="translate(1071.578125 0)"/>
+     <g transform="translate(469.429688 41.989062) scale(0.1 -0.1)">
+      <use xlink:href="#DengXian-5f53"/>
+      <use xlink:href="#DengXian-524d" transform="translate(100 0)"/>
+      <use xlink:href="#DengXian-70ed" transform="translate(200 0)"/>
+      <use xlink:href="#DengXian-6b8b" transform="translate(300 0)"/>
+      <use xlink:href="#DengXian-4f59" transform="translate(400 0)"/>
+      <use xlink:href="#DengXian-76ee" transform="translate(500 0)"/>
+      <use xlink:href="#DengXian-6807" transform="translate(600 0)"/>
+      <use xlink:href="#DengXian-20" transform="translate(700 0)"/>
+      <use xlink:href="#DengXian-30" transform="translate(727.392578 0)"/>
+      <use xlink:href="#DengXian-2e" transform="translate(780.078125 0)"/>
+      <use xlink:href="#DengXian-30" transform="translate(802.001953 0)"/>
+      <use xlink:href="#DengXian-30" transform="translate(854.6875 0)"/>
+      <use xlink:href="#DengXian-38" transform="translate(907.373047 0)"/>
+      <use xlink:href="#DengXian-20" transform="translate(960.058594 0)"/>
+      <use xlink:href="#DengXian-6d" transform="translate(987.451172 0)"/>
+      <use xlink:href="#DengXian-6d" transform="translate(1071.582031 0)"/>
      </g>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pf2cada0ecc">
-   <rect x="56.069922" y="26.520703" width="537.930078" height="290.859375"/>
+  <clipPath id="p32e5e36863">
+   <rect x="54.544531" y="25.785937" width="539.455469" height="292.38125"/>
   </clipPath>
  </defs>
 </svg>

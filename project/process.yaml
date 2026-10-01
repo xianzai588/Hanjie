@@ -1,6 +1,11 @@
 # 焊接工艺规范与窗口参数 - Hanjie Process Specification
-# 版本: V4.3
-# 工艺路线: 自动非熔化极气体保护电弧焊 (Automatic TIG) + ERNiFe-CI 填丝 + 预热
+# 版本: V4.4
+# 本文件是历史 Ø1.2 单道局部热诊断基线与基础电参数的权威配置，其预热/层间字段
+# 服务于 simulation/thermal-v5 的历史准入窗口，与 project/g-inputs-v5.2.yaml 保持
+# SSOT 一致（见 src/hanjie/domain/baseline.py 校验）。
+# 参赛设计的棒径、道数、送丝策略与热制度由 project/competition-design.yaml 的
+# process / thermal_regime / peening 显式覆盖：Ø1.6 mm、四道、固定送丝、
+# 铸铁冷焊（不预热、层间 ≤ 100 ℃）＋ 焊后半热态锤击。
 
 version: "PROCESS-1.0"
 authority: "焊接工艺与填丝参数的唯一权威配置"

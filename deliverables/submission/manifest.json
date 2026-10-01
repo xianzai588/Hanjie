@@ -9,7 +9,7 @@
     "05-设计指标.csv": "studies/COMPETITION-DESIGN/results/result.csv",
     "06-工艺提案.md": "deliverables/process/joint-process-card.md",
     "07-设计参数.yaml": "project/competition-design.yaml",
-    "08-R1单段热诊断.json": "simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
+    "08-R1单段热诊断（冻结历史附件）.json": "simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
     "09-守恒修订与放行闭环.svg": "deliverables/submission/09-守恒修订与放行闭环.svg",
     "10-复现与版本冻结记录.md": "deliverables/submission/10-复现与版本冻结记录.md",
     "11-候选选择.json": "studies/COMPETITION-DESIGN/results/robust-selection.json",
@@ -19,10 +19,16 @@
     "15-确定性边界图.svg": "studies/ROBUST-BOUNDARY/results/strength-boundary.svg",
     "16-位置度边界图.svg": "studies/ROBUST-BOUNDARY/results/position-boundary.svg",
     "17-参数来源与证据等级.md": "deliverables/submission/17-参数来源与证据等级.md",
-    "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg"
+    "18-证据等级总图.svg": "deliverables/submission/18-证据等级总图.svg",
+    "19-Schaeffler相图映射.json": "studies/SCHAEFFLER-MAP/results/schaeffler-mapping.json",
+    "20-Schaeffler相图映射.svg": "studies/SCHAEFFLER-MAP/results/schaeffler-map.svg",
+    "21-冷焊热制度对比.svg": "studies/SCHAEFFLER-MAP/results/cold-weld-regime.svg",
+    "22-冷焊与锤击工艺卡.md": "deliverables/process/cold-weld-and-peening-card.md"
   },
-  "report_pages": 25,
+  "report_pages": 28,
   "drawing_pages": 6,
   "submission_scope": "technical_design_only",
-  "physical_performance_verified": false
+  "design_verified": true,
+  "physical_validation_recommended": true,
+  "product_conformity_claimed": false
 }

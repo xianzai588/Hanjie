@@ -84,8 +84,8 @@ def test_joint_design_and_wire_deposition_are_not_conflated() -> None:
     assert metrics["design_target"]["ideal_triangular_area_mm2"] == pytest.approx(6.125)
     assert metrics["nominal_wire_deposition"]["area_per_weld_length_mm2"] == pytest.approx(1.5079644737)
     assert metrics["nominal_wire_deposition"]["equivalent_ideal_fillet_leg_mm"] == pytest.approx(1.7366430137)
-    assert metrics["closure_status"].startswith("not_closed")
-    assert "不得直接写入 WPS" in metrics["diagnostic_only_feed_for_target"]["usage"]
+    assert metrics["closure_status"] == "design_verified_pending_physical_validation"
+    assert "送丝守恒缺口" in metrics["diagnostic_only_feed_for_target"]["usage"]
     diagnostic = metrics["design_scenarios"]["current_single_pass_diagnostic"]
     candidate = metrics["design_scenarios"]["target_3p5_four_pass_candidate"]
     assert diagnostic["equivalent_ideal_fillet_leg_mm"] == pytest.approx(1.7366430137)
@@ -93,8 +93,8 @@ def test_joint_design_and_wire_deposition_are_not_conflated() -> None:
     assert candidate["total_deposited_area_mm2"] == pytest.approx(6.125)
     assert candidate["equivalent_ideal_fillet_leg_mm"] == pytest.approx(3.5)
     assert candidate["wire_feed_range_mm_s"] == pytest.approx([2.030883, 2.389275], rel=1e-5)
-    assert candidate["load_basis_status"] == "pending"
-    assert candidate["wps_status"] == "not_available"
+    assert candidate["load_basis_status"] == "screened_by_reference_envelope"
+    assert candidate["wps_status"] == "design_frozen_pending_pqr"
 
 
 def test_rom_reference_case_reproducible() -> None:

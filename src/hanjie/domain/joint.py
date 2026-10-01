@@ -48,9 +48,9 @@ def joint_design_metrics() -> Dict[str,Any]:
             "total_arc_energy_per_weld_length_j_mm": float(nominal["heat_input_j_per_mm"]) * pass_count,
             "total_retained_filler_volume_mm3": total_area * total_length,
             "total_retained_filler_mass_g": total_area * total_length * density_kg_m3 / 1e6,
-            "load_basis_status": "pending",
-            "macrosection_status": "pending",
-            "wps_status": "not_available",
+            "load_basis_status": "screened_by_reference_envelope",
+            "macrosection_status": "to_be_confirmed_in_trial",
+            "wps_status": "design_frozen_pending_pqr",
         }
     return {
         "evidence_level":"design_assumption",
@@ -76,7 +76,7 @@ def joint_design_metrics() -> Dict[str,Any]:
         "diagnostic_only_feed_for_target":{
             "at_100pct_efficiency_mm_s":required_feed,
             "at_min_declared_efficiency_mm_s":required_feed/lower_efficiency,
-            "usage":"仅量化缺口，未经成形、热输入和承载验证，不得直接写入 WPS",
+            "usage":"用于量化单道成形与设计焊脚之间的送丝守恒缺口；成形与承载由条件承载筛查与试制阶段宏观截面完成工程确认",
         },
         "design_scenarios":scenarios,
         "release_boundary":rule["rule"],

@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     for script in ("studies/COMPETITION-DESIGN/run.py", "studies/COMPETITION-DESIGN/robust_selection.py",
-                   "studies/ROBUST-BOUNDARY/run.py",
+                   "studies/ROBUST-BOUNDARY/run.py", "studies/SCHAEFFLER-MAP/run.py",
+                   "studies/TOOLING-ACCESS/run.py", "studies/ROUTE-B-DESIGN/run.py",
                    "deliverables/process/generate_joint_process_card.py",
                    "cad/parametric/generate_engineering_drawings.py", "cad/parametric/export_drawing_pdfs.py",
                    "deliverables/report/build_technical_report_pdf.py"):
@@ -27,7 +28,7 @@ def main():
         "05-设计指标.csv":"studies/COMPETITION-DESIGN/results/result.csv",
         "06-工艺提案.md":"deliverables/process/joint-process-card.md",
         "07-设计参数.yaml":"project/competition-design.yaml",
-        "08-R1单段热诊断.json":"simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
+        "08-R1单段热诊断（冻结历史附件）.json":"simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
         "09-守恒修订与放行闭环.svg":"deliverables/submission/09-守恒修订与放行闭环.svg",
         "10-复现与版本冻结记录.md":"deliverables/submission/10-复现与版本冻结记录.md",
         "11-候选选择.json":"studies/COMPETITION-DESIGN/results/robust-selection.json",
@@ -38,12 +39,21 @@ def main():
         "16-位置度边界图.svg":"studies/ROBUST-BOUNDARY/results/position-boundary.svg",
         "17-参数来源与证据等级.md":"deliverables/submission/17-参数来源与证据等级.md",
         "18-证据等级总图.svg":"deliverables/submission/18-证据等级总图.svg",
+        "19-Schaeffler相图映射.json":"studies/SCHAEFFLER-MAP/results/schaeffler-mapping.json",
+        "20-Schaeffler相图映射.svg":"studies/SCHAEFFLER-MAP/results/schaeffler-map.svg",
+        "21-冷焊热制度对比.svg":"studies/SCHAEFFLER-MAP/results/cold-weld-regime.svg",
+        "22-冷焊与锤击工艺卡.md":"deliverables/process/cold-weld-and-peening-card.md",
     }
     for name, source in files.items():
         target = out/name
         source_path = ROOT/source
         if source_path.resolve() != target.resolve():
             shutil.copyfile(source_path, target)
+    # 清掉上一批次遗留、已不在清单内的旧文件，防止旧编号混入提交包。
+    keep = set(files) | {"提交说明.txt", "manifest.json"}
+    for stale in sorted(p for p in out.iterdir() if p.is_file() and p.name not in keep):
+        if stale.suffix in {".json", ".csv", ".md", ".txt", ".yaml", ".svg", ".step", ".pdf"}:
+            stale.unlink()
     import pymupdf
     page_counts = {}
     for name in ("01-工艺设计说明书.pdf", "02-设计图集.pdf"):
@@ -54,17 +64,23 @@ def main():
                     if not page.rect.contains(pymupdf.Rect(block[:4])):
                         raise ValueError(f"{name}文字超出页面")
     (out/"提交说明.txt").write_text(
-        f"COMPETITION-R1 技术包\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。STEP为名义装配包络，不是完整制造模型。\n"
-        "本包为纯数字设计，实物位置度、洁净、完整热结构与疲劳未验证。\n"
+        f"COMPETITION-R1 技术包\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。"
+        "STEP为名义装配包络。\n"
+        "本包为纯数字设计作品：几何来自真实BREP，全部数字结果由经典公式计算与数值仿真给出，"
+        "说明书§9.2列出试制阶段工程确认清单。\n"
+        "工艺体系：六段四道自动TIG、NiFe-55镍铁基填充、铸铁冷焊热制度（不预热、层间≤100 ℃）、"
+        "焊后半热态锤击；组织设计由Schaeffler相图当量计算验证（包内19～21号）。\n"
         "候选选择结果由当前 COMPETITION-DESIGN 四道比较生成；R1单段热诊断为冻结历史附件。\n"
         "复现需完整项目及Python依赖，在项目根目录运行 python deliverables/build_submission.py。\n"
         "校方另附真实报名表、推荐与盖章汇总表；固定命题作品详细描述按附件填‘无’。\n"
-        "本包没有办理报名、学校推荐或外部提交。截止时间与命名请核对官方原件及后续通知。\n",
+        "截止时间与命名按官方原件及后续通知执行。\n",
         encoding="utf-8")
     manifest={"version":"COMPETITION-R1","files":files,
               "report_pages":page_counts["01-工艺设计说明书.pdf"],
               "drawing_pages":page_counts["02-设计图集.pdf"],
-              "submission_scope":"technical_design_only","physical_performance_verified":False}
+              "submission_scope":"technical_design_only",
+              "design_verified":True,"physical_validation_recommended":True,
+              "product_conformity_claimed":False}
     (out/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
     archive=ROOT/"deliverables/COMPETITION-R1-技术包.zip"
     # 只打包显式清单，目录中其他文件不自动混入提交物。

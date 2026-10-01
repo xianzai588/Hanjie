@@ -26,6 +26,32 @@ process:
   release_below_c: 55.0
   measurement_temperature_c: 20.0
   measurement_temperature_band_c: 1.0
+thermal_regime:
+  method: 铸铁冷焊（不预热）
+  design_basis: 铸铁基体当量点(3.95, 5.18)、Ms +468 ℃，淬硬倾向源于基体而非冷却速度，预热无法将其移出淬硬区；镍由NiFe-55从外部引入，拉应力由半热态锤击处理
+  start_temperature_c: 20.0
+  start_temperature_min_c: 15.0
+  preheat_policy: 不设预热工序；起焊前工件与环境同温，各监测点最低温度≥15 ℃
+  interpass_limit_c: 100.0
+  interpass_measurement: 距焊道边缘10 mm的座体表面，接触式热电偶或红外测温
+  seat_stored_heat_kj: {at_20c: 0.0, at_100c: 25.19, at_150c: 40.94, at_500c: 151.15}
+  free_radial_contraction_mm: {at_interpass_100c: 0.0630, at_preheat_150c: 0.1024, at_interpass_200c: 0.1418, at_hot_weld_500c: 0.3780}
+  component_heat_capacity_j_per_k: 2092.0
+  component_temperature_rise_k: 40.9
+  temperature_gradient_for_full_radial_limit_k: 31.7
+  shielding: 停弧后覆盖耐高温保温毯缓冷至55 ℃以下；PWHT不列入主流程
+peening:
+  method: 焊后半热态气动圆头锤轻击
+  mechanism: 400～500 ℃下表层塑性延展0.3%～0.8%，冷却后应力松弛能力570～1520 MPa，高于熔敷金属室温屈服强度300 MPa，锤击层稳定处于压应力状态
+  window_c: [400.0, 500.0]
+  lower_prohibited_below_c: 300.0
+  tool: 气动圆头锤，Ø8 mm球头（范围Ø6～10 mm）
+  air_pressure_mpa: [0.4, 0.6]
+  impact_rate_per_min: [2000, 3000]
+  overlap_fraction_min: 0.75
+  coverage: 焊道全宽及熔合线两侧各5 mm
+  acceptance: 表面均匀麻点、压痕深度0.1～0.2 mm，无撕裂、无层状剥离
+  sequence: 每段收弧后立即锤击，四道共24个段次逐段执行
 fixture:
   type: 内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱
   bore_limits_mm: [40.0, 40.025]

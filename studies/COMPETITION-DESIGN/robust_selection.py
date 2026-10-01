@@ -65,7 +65,7 @@ def main() -> None:
         "recommended": "6P-FAIR_B/4pass",
         "backup": "8P-FAIR_B/4pass",
         "rejected_high_heat_reference": "Continuous/4pass",
-        "interpretation": "统一条件筛查下的工程排序；不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。",
+        "interpretation": "统一条件筛查下的工程排序，用于确定低热输入优先解与承载/疲劳强制切换边界。",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

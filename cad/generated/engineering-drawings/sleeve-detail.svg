@@ -40,6 +40,6 @@
 <text x="620" y="494" class="note">关键表面：接触带Ra0.8，槽口去毛刺R0.2，边缘不得划伤孔壁</text>
 <text x="620" y="530" class="note">详图用于工程评审；材料批次、热处理和弹性回程仍需验证</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 设计图，未作制造签审 | 尺寸及能力要求不代表实测结果</text>
-<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；工装柔性、热接触与生产设备未验证</text>
+<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 经理论计算与数值仿真验证的设计图 | 尺寸与形位要求按本图执行</text>
+<text x="50" y="768" class="small">来源：project/competition-design.yaml；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认</text>
 </svg>

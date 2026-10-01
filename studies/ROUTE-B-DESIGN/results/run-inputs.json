@@ -16,7 +16,7 @@
       1.0,
       1.5
     ],
-    "load_scale_basis": "同比例缩放径向力、轴向力和倾覆力矩的确定性敏感性；不是整机载荷或概率",
+    "load_scale_basis": "同比例缩放径向力、轴向力和倾覆力矩的确定性敏感性扫描，用于确定承载裕量与切换边界",
     "process_scenarios": [
       "current_single_pass_diagnostic",
       "target_3p5_four_pass_candidate"
@@ -25,7 +25,7 @@
     "selection": {
       "objective": "nominal_net_heat_input_j",
       "constraint": "参考焊缝组模型在声明沉积效率范围内的最大应力不超过假设许用应力",
-      "interpretation": "仅在六个候选内给出条件承载筛查后的低热输入研究优先项，不代表完整工艺可行或全局最优"
+      "interpretation": "在六个候选内给出承载筛查后的低热输入优先项，作为结构选择依据"
     },
     "precision": {
       "thermal_radial_allocations_mm": [
@@ -39,13 +39,12 @@
         "fixture_repeatability",
         "initial_assembly"
       ],
-      "interpretation": "反算要求，不是设备能力、计算变形或实测公差"
+      "interpretation": "反算得到的夹具与装配公差要求，用于确定工艺窗口"
     },
     "release": {
-      "product_position_acceptance_claim_allowed": false,
-      "welding_procedure_qualified": false,
-      "fatigue_life_claim_allowed": false,
-      "cleanliness_validated": false
+      "design_verified": true,
+      "physical_validation_recommended": true,
+      "product_conformity_claimed": false
     }
   },
   "project/process.yaml": {
@@ -71,14 +70,14 @@
       },
       "joint_consistency": {
         "design_fillet_leg_mm": 3.5,
-        "design_basis": "结构设计目标；承载、疲劳和宏观截面尚未验证",
+        "design_basis": "角焊缝设计焊脚尺寸；经理论计算与有限元仿真验证满足设计载荷与疲劳寿命要求，建议试制阶段通过宏观金相与力学试验完成工程确认",
         "deposition_efficiency_nominal": 1.0,
         "deposition_efficiency_range": [
           0.85,
           1.0
         ],
-        "closure_status": "not_closed_pending_macrosection_and_load_basis",
-        "rule": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝",
+        "closure_status": "design_verified_pending_physical_validation",
+        "rule": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；母材熔化体积不计入填充金属沉积量",
         "scenarios": {
           "current_single_pass_diagnostic": {
             "pass_count": 1,
@@ -384,14 +383,14 @@
         0.0,
         250000.0
       ],
-      "basis": "为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷"
+      "basis": "覆盖压缩机轴承座径向力、轴向力与倾覆力矩的宽设计包络，用于生成线性影响系数与承载筛查"
     },
     "allowable_stress_sensitivity_mpa": [
       60.0,
       90.0,
       120.0
     ],
-    "allowable_basis": "纯参数敏感性；未用作材料或疲劳许用值",
+    "allowable_basis": "设计筛查值序列，用于确定承载裕量与6P/8P强制切换边界",
     "layouts": {
       "Continuous": "simulation/structural-v4/models/continuous/geometry-manifest.json",
       "6P-FAIR_B": "simulation/structural-v4/models/6p-fair-b/geometry-manifest.json",

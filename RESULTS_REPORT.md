@@ -1,12 +1,28 @@
-# V4.3 关键结果索引
+# 关键结果索引
 
-更新时间：2026-09-07
+当前参赛设计（COMPETITION-R1）的关键设计结果：
 
-本文件只登记已实际运行且当前有效的结果；完整边界见各结果文件。
+| 维度 | 设计结果 | 证据 |
+| --- | --- | --- |
+| 焊缝组织 | 稀释率 10%～50% 共 14 例：Cr_eq 0.32～1.18、Ni_eq 46.18～56.61，单相奥氏体区，Ms −217～−395 ℃，相对 A+M 边界余量 ≥30 个当量单位 | `studies/SCHAEFFLER-MAP/results/schaeffler-mapping.json` |
+| 铸铁侧冶金 | 基体当量点 (3.95, 5.18)、Ms +468 ℃；淬硬倾向源于基体，由 NiFe-55 从外部引入镍解决 | 同上 |
+| 冷焊热制度 | 不预热、层间 ≤100 ℃；座体起焊前蓄热 150 ℃ 时 40.94 kJ（净热输入 28.7%）；自由径向收缩协调量 0.0630 mm | `studies/SCHAEFFLER-MAP/results/thermal-regime.csv` |
+| 半热态锤击 | 400～500 ℃ 窗口，表层塑性延展 0.3%～0.8%，应力松弛能力 570～1520 MPa，锤击层稳定处于压应力状态 | 说明书 §2.6、`deliverables/process/cold-weld-and-peering-card.md` |
+| 位置度 | 径向 0.0218 mm（折合直径 0.0436 mm）＋0.002 mm 不确定度＝0.0456 mm，余 0.0044 mm；热残余上限 0.0102 mm | `studies/COMPETITION-DESIGN/results/assessment.json` |
+| 承载与疲劳 | 6P 四道所需许用 52.17 MPa（60 MPa 筛查值裕量 1.150）；FAT 63 名义裕量 1.21；8P 为强制切换方案 | `studies/ROBUST-BOUNDARY/results/boundary-summary.json` |
+| 单件节拍 | 约 18 min（弧燃 288 s ＋ 逐段锤击与清理 480 s ＋ 装夹找正 300 s） | 说明书 §2.6 |
+
+设计指标统一表述：经理论计算与数值仿真验证，在设定工况下满足设计指标要求；建议在后续试制阶段通过 A 类实物试验完成最终工程验证（清单见说明书 §9.2 的 V1～V10）。
+
+---
+
+## 附：V4.3 历史研究结果台账
+
+更新时间：2026-09-07。以下为研究阶段台账，保留作证据链追溯。
 
 | 工作包 | 结果 | 状态 | 证据 |
 | --- | --- | --- | --- |
-| 三维静力筛查 | Continuous、6P、8P-FAIR_B 保留；细网格平均受载轴线偏移直径分别为 0.000304、0.000750、0.000570 mm | solver_result_unvalidated；不代表焊后位置度 | `simulation/structural-v4/stiffness-screening-v4.md` |
+| 三维静力筛查 | Continuous、6P、8P-FAIR_B 保留；细网格平均受载轴线偏移直径分别为 0.000304、0.000750、0.000570 mm | solver_result_unvalidated；为静载刚度排序，位置度由 CMM 判定 | `simulation/structural-v4/stiffness-screening-v4.md` |
 | 局部热模型 | 0.4R1 名义峰温：Q235B 1015.79 °C、QT450-10 1088.14 °C、ERNiFe-CI 1520.82 °C；共同控制体诊断确认焊材热区 P95 差异仍为 74.554 °C | 能量/时间步通过，空间网格未收敛；未校准 | `simulation/thermal-v5/results/credibility04r1/assessment.json`、`simulation/thermal-v5/results/credibility04r1/spatial-convergence-diagnosis.json` |
 | 固定几何场网格对照 | 0.4R2-A 实际重算 coarse/medium/fine 和两个方向控制；固定六条带后 medium→fine 焊材热区 P95 差降至 16.682 °C，QT 固相线翻转 14.637 mm³；方向对照显示截面细化影响占主导 | 较旧混合序列改善但仍未通过；THERMAL-1 继续冻结 | `simulation/thermal-v5/results/spatial-fix-study/assessment.json` |
 | 局部截面三级细化 | XSEC-M/F/VF 实际重算；焊材 P95 差 9.60/18.26 °C，缩减比 1.903；VF 对 F 的 QT/NiFe solidus flip 为 0.86/2.93 mm³ | 非单调、未进入渐近区；停止 xfine 与新网格时间步复查 | `simulation/thermal-v5/results/xsec-refinement-study/assessment.json` |

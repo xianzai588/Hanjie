@@ -26,18 +26,37 @@ REGULAR_FONT = "HanjieCN"
 BOLD_FONT = "HanjieCN-Bold"
 
 
+SUPERSCRIPT = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5",
+               "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-", "⁺": "+"}
+SUBSCRIPT = {"₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5",
+             "₆": "6", "₇": "7", "₈": "8", "₉": "9", "₊": "+", "₋": "-", "₌": "="}
+_SUP_TOKEN = "\x00SUP"
+_SUB_TOKEN = "\x00SUB"
+
+
 def inline(text: str) -> str:
     # ReportLab 不解析 LaTeX；将本报告使用的有限命令显式转为可读 Unicode。
     text = text.replace("✅", "[记录]").replace("⚠️", "[注意]").replace("🔄", "[进行中]").replace("⏳", "[待验证]").replace("❌", "[撤回]")
+    text = text.replace("📋", "[计划]").replace("≈", "约等于 ")
     text = re.sub(r"\[([^]]+)\]\([^)]+\)", r"\1", text)
+    # 上标/下标区间在中文字体子集中缺字形，统一转为 <super>/<sub> 标签。
+    for table, token, tag in ((SUPERSCRIPT, _SUP_TOKEN, "super"), (SUBSCRIPT, _SUB_TOKEN, "sub")):
+        text = re.sub("[%s]+" % "".join(table),
+                      lambda m, t=table, k=token: k + "".join(t[c] for c in m.group(0)) + k, text)
     replacements = {r"\widetilde{\Delta T}":"ΔT~",r"\Delta":"Δ",r"\lambda":"λ",r"\delta":"δ",
-                    r"\theta":"θ",r"\le":"≤",r"\ge":"≥",r"\rightarrow":"→",r"\times":"×",r"\text":""}
+                    r"\theta":"θ",r"\le":"≤",r"\ge":"≥",r"\rightarrow":"→",r"\times":"×",
+                    r"\%":"%",r"\text":"",r"\,":"",r"\;":""}
     for source,target in replacements.items():
         text = text.replace(source,target)
     text = re.sub(r"\\tilde\{([^}]+)\}",r"\1~",text)
     text = re.sub(r"([A-Za-z])_\{?([A-Za-z0-9]+)\}?",r"\1_\2",text)
     text = text.replace("{","").replace("}","").replace("`","").replace("$","")
+    # 数学减号 U+2212 在中文字体子集中缺字形，统一为 ASCII 连字符以保证 PDF 可读。
+    text = text.replace("\u2212","-")
     text = escape(text)
+    for token, tag in ((_SUP_TOKEN, "super"), (_SUB_TOKEN, "sub")):
+        text = re.sub(re.escape(token) + r"(.*?)" + re.escape(token),
+                      r"<%s>\1</%s>" % (tag, tag), text)
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
 
 

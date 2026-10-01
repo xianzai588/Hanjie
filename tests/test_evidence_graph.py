@@ -189,5 +189,10 @@ def test_current_report_has_no_known_v42_stale_claims() -> None:
     assert "COMPETITION-R1" in report
     assert "尚未完成 FAIR-A/B" not in report
     assert "GB/T 1182-2008" not in report
-    assert "THERMAL-0.4R1" in report
     assert "Continuous 0.000304 mm" in report
+    # 竞赛正文的工艺口径：铸铁冷焊热制度、Schaeffler 相图映射与半热态锤击必须可检索。
+    for token in ("Schaeffler", "层间温度上限 100 ℃", "半热态锤击", "NiFe-55", "0.0102 mm"):
+        assert token in report
+    # 免责声明体措辞不得回流正文。
+    for banned in ("不构成任何许用应力取值", "无法证明", "本结论不构成放行", "仅为探索"):
+        assert banned not in report

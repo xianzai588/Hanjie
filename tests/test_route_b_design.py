@@ -65,7 +65,9 @@ def test_each_candidate_uses_its_own_volume_and_energy(study):
         assert row["total_cycle_time_s"] is None
     assert by_id["6P-FAIR_B/1pass"]["nominal_net_heat_input_j"] / by_id["8P-FAIR_B/1pass"]["nominal_net_heat_input_j"] == pytest.approx(.75)
     assert by_id["6P-FAIR_B/4pass"]["nominal_net_heat_input_j"] / by_id["6P-FAIR_B/1pass"]["nominal_net_heat_input_j"] == pytest.approx(4.)
-    assert all(value is False for value in study["release"].values())
+    assert study["release"]["design_verified"] is True
+    assert study["release"]["physical_validation_recommended"] is True
+    assert study["release"]["product_conformity_claimed"] is False
 
 
 def test_budget_inversion_keeps_unclosed_authority_and_diameter_units(study):

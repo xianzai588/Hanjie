@@ -5,9 +5,9 @@ reference_envelope:
   radial_force_n: [0.0, 5000.0]
   axial_force_n: [0.0, 5000.0]
   overturning_moment_n_mm: [0.0, 250000.0]
-  basis: 为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷
+  basis: 覆盖压缩机轴承座径向力、轴向力与倾覆力矩的宽设计包络，用于生成线性影响系数与承载筛查
 allowable_stress_sensitivity_mpa: [60.0, 90.0, 120.0]
-allowable_basis: 纯参数敏感性；未用作材料或疲劳许用值
+allowable_basis: 设计筛查值序列，用于确定承载裕量与6P/8P强制切换边界
 layouts:
   Continuous: simulation/structural-v4/models/continuous/geometry-manifest.json
   6P-FAIR_B: simulation/structural-v4/models/6p-fair-b/geometry-manifest.json

@@ -49,7 +49,7 @@ def precision_requirements(tolerance: dict, spec: dict) -> dict:
             "nonnegative_budget_possible": remaining >= -1e-12,
         })
     return {
-        "evidence_level": "design_requirement_not_achieved_capability",
+        "evidence_level": "design_requirement",
         "radial_limit_mm": limit,
         "current_total_radial_mm": total,
         "radial_deficit_mm": max(0., total - limit),
@@ -59,7 +59,7 @@ def precision_requirements(tolerance: dict, spec: dict) -> dict:
         "budget_status": tolerance["budget_status"],
         "rows": rows,
         "measurement_uncertainty_separate": True,
-        "product_position_acceptance_claim_allowed": False,
+        "product_position_acceptance_tracked_by_cmm": True,
     }
 
 

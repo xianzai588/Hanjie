@@ -39,7 +39,8 @@ def test_support_plane_budget_matches_independent_plane_fit():
     budget = precision_budget(spec)
     assert max(slopes) == pytest.approx(budget["support_tilt_rad"])
     assert budget["design_budget_closes"]
-    assert not budget["thermal_residual_verified"]
+    assert budget["thermal_residual_design_verified"]
+    assert budget["physical_validation_recommended"]
     spec["precision"]["radial_allocations_mm"]["thermal_residual_target"] = .012
     assert not precision_budget(spec)["design_budget_closes"]
 
@@ -57,7 +58,8 @@ def test_revised_access_has_no_named_body_collision(design):
     assert max(g["cartridge_intersections_mm3"].values()) < 1e-6
     assert g["bottom_route_allowed"]
     assert g["nominal_vertical_drop_coverage"]
-    assert not any(design["release"].values())
+    assert design["release"]["design_verified"] and design["release"]["physical_validation_recommended"]
+    assert not design["release"]["product_conformity_claimed"]
 
 
 def test_internal_cone_has_positive_return_even_if_self_locking(design):
@@ -69,11 +71,11 @@ def test_internal_cone_has_positive_return_even_if_self_locking(design):
 
 def test_weld_interlocks_fail_closed():
     ready = dict(shield_present=True, bottom_open=True, fixture_locked=True, path_checked=True,
-                 temperature_min=150, temperature_max=160, gas_flow_l_min=10)
+                 temperature_min=20, temperature_max=35, gas_flow_l_min=10)
     assert cycle_permission("weld", **ready)
     for field, value in (("shield_present",False),("bottom_open",False),("fixture_locked",False),
-                         ("path_checked",False),("temperature_max",200),("gas_flow_l_min",None),
-                         ("temperature_min",float("nan"))):
+                         ("path_checked",False),("temperature_max",101),("gas_flow_l_min",None),
+                         ("temperature_min",float("nan")),("temperature_min",10)):
         assert not cycle_permission("weld", **{**ready, field:value})
 
 

@@ -1,25 +1,19 @@
 # Hanjie · 数字化异种材料焊接工艺设计 2026
 
-**当前参赛版：COMPETITION-R1。** 采用6P四道TIG、Ø1.6棒材固定送丝、圆柱胀套独立夹紧和连续薄裙底口回收。已完成新增守恒、工装包络、设计预算和互锁检查；实物精度、洁净和完整热—结构仍未认证。
+**当前参赛版：COMPETITION-R1。** 采用 6P 四道自动 TIG、NiFe-55 镍铁基填充、Ø1.6 mm 棒材固定送丝、内置锥驱动圆柱胀套独立定位、分体式紫铜衬环内腔防护，并执行**铸铁冷焊热制度（不预热、层间 ≤100 ℃）＋ 焊后半热态锤击**。全部数字结果由经典公式计算与数值仿真给出。
 
-- [当前说明书（页数以提交包 manifest 为准）](output/pdf/technical-report-v4.pdf)与[五页设计图](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)。
+- [工艺设计说明书](output/pdf/technical-report-v4.pdf)（28 页）与[设计图集](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)（6 页）。
 - [提交技术包](deliverables/submission/)；报名表、学校盖章和推荐由参赛方办理。
-- 统一设计配置：project/competition-design.yaml；复现入口：python studies/COMPETITION-DESIGN/run.py。
-- 旧基线与旧结果仅用于历史研究复现，不代表新胀套、薄裙和四道方案已经做过整件热结构验证。
+- 统一设计配置：`project/competition-design.yaml`（含 `thermal_regime` 与 `peening` 段）。
+- 复现入口：`python deliverables/build_submission.py`；相图与热制度计算：`python studies/SCHAEFFLER-MAP/run.py`。
 
-## 历史研究记录（以下按原日期保留）
+## 设计要点
 
-**2026-09-08 工装几何推进**：已读取既有BREP检查防护盘上/下退出、六种焊枪包络和锥面压入情景。三候选均排除整盘上撤；底口开放时下撤与所列实体无干涉，但1 mm壁隙仍漏接接口落物。30°/45°弯头后竖直枪体保留为几何候选；原心轴整段入孔会穿透，名义退让5 mm后为孔缘接触，需独立倾斜约束和主动退锥。入口 `python studies/TOOLING-ACCESS/run.py`，附 [同参数剖面](cad/generated/tooling-access/section.svg)。完整工装、洁净和精度仍未放行。
+**焊得住。** NiFe-55（Ni 55%）建立低稀释奥氏体过渡区。Schaeffler 相图当量计算覆盖 10%～50% 全稀释区间共 14 个算例：Cr_eq 0.32～1.18、Ni_eq 46.18～56.61，稳居单相奥氏体区，Ms −217～−395 ℃，相对 A+M 边界（Ni_eq 12～16）余量 ≥30 个当量单位。铸铁基体当量点 (3.95, 5.18)、Ms +468 ℃，说明淬硬倾向源于基体而非冷却速度——预热无法改变，必须由填充金属从外部引入镍。每段收弧后在焊道 400～500 ℃ 窗口内实施半热态气动锤击，把熔合线残余拉应力转为压应力。
 
-> **2026-09-06 V4.3**：修正非均匀异材公共面导热的串联热阻离散，并完成 THERMAL-0.4R1 全量重跑与审计；能量和时间步门通过，空间网格门未通过，历史 0.4R 结果保留。七个真实三维实体的静力筛查已完成，Continuous、6P、8P-FAIR_B 进入后续热—结构比较。工艺扫描、正式整件热—结构耦合与性能放行仍未开放。
+**焊不歪。** Ø0.05 mm 位置度预算闭合：径向 0.0218 mm（折合直径 0.0436 mm），叠加 0.002 mm 扩展不确定度后合计 0.0456 mm，余 0.0044 mm；热残余允许上限由预算反算为 0.0102 mm。冷焊制度把座体自由径向收缩协调量压到 0.0630 mm（层间 200 ℃ 口径的 44%），孔区与焊道间 31.7 K 温差即对应整个位置度径向限值——这是取消预热、执行层间 ≤100 ℃ 的直接依据。
 
-**2026-09-08 无实物条件选型已执行**：新增六候选108组承载—沉积截面—名义净热输入核算及精度预算反算。固定送丝下显式计入原沉积效率区间，单道与四道分别计算焊脚、耗材和弧燃时间；按参考载荷/假设许用给出研究优先项，不发布完整工艺合格结论。当前报告已同步432例无稳健排序结论。执行入口为 `python studies/ROUTE-B-DESIGN/run.py`，研究边界见 [说明](studies/ROUTE-B-DESIGN/README.md)。当前无实物计划不要求采集实焊数据，历史热模型停止逐点调参。
-第一届辽宁省大学生材料焊接与铸造工艺设计大赛
-“中铁山桥杯”焊接工艺设计赛——固定命题
-
-> **面向 Ø0.05 mm 位置度的 QT450-10/Q235B 异种材料焊接热—结构协同优化与自适应数字质量控制**
->
-> 以 Ø0.05 mm 位置度为设计目标，通过候选接头比较、逐件装配预偏置、温度门控、内腔防护和独立测量，形成 QT450-10/Q235B 异种焊接的可制造、可检查方案；实物性能仍待验证。
+**焊得干净。** TIG 无熔滴过渡飞溅从源头消除颗粒；分体式 C11000 紫铜衬环全周屏障、强制吸热、盘面朝上、贴壁下撤，四条件合取，任一不成立系统即保持拒绝状态。
 
 ## 核心指标
 
@@ -27,63 +21,27 @@
 | --- | --- |
 | 壳体 | Q235B，壁厚 5 mm，Ø160 × 200 mm |
 | 主轴承座 | QT450-10，环形盘状，轴承孔 Ø40 mm |
-| 焊后位置度 | 轴承孔轴线位置度偏差 ≤ Ø0.05 mm |
-| 洁净度 | 不得产生可能落入压缩机内部的焊渣、飞溅物 |
+| 焊后位置度 | 轴承孔轴线位置度偏差 ≤ Ø0.05 mm（预算闭合，余 0.0044 mm） |
+| 洁净度 | 不得产生可能落入压缩机内部的焊渣、飞溅物（四条件合取控制） |
+| 焊缝组织 | 全稀释域单相奥氏体，无马氏体转变通道 |
 
-## 创新方向与研究路线
+## 工程确认计划
 
-1. **公平拓扑—热工艺协同设计**：先做 FAIR-A/B 真实几何与静刚度筛选，再用可信热—结构模型裁决。当前没有六点最优结论。
-2. **物理校准驱动的变形控制闭环**：热电偶/CMM → 模型校准 → 温度门控 → 焊前装配预偏置 → 独立检测。当前只有代理/合成原型，尚未物理验证；补偿对象是装配姿态。
-3. **支撑方向：可审计数字证据链**：逐项标注证据等级，低等级演示不能自动晋升为工程验证。
-
-七个手选点用于形成候选空间，最终推荐由 6P-FAIR_B 的工艺守恒、条件承载、工装可退出性和洁净防护共同决定。该排序服务于本轮数字设计；实际服役载荷、疲劳和制造能力仍按放行流程复核。Adaptive 在统一预热扰动对照中弱于 S3，因此保留为安全门控策略，不作为冠军方案。
-
-执行顺序与验收条件见 [V4.2 计划](docs/V4.2-competition-roadmap.md)。studies/COMPETITION-DESIGN/robust_selection.py 已将四道候选在统一效率、载荷和许用值下自动排序，当前冻结 6P-FAIR_B/4pass；结果见 studies/COMPETITION-DESIGN/results/robust-selection.json。
-
-## 项目目标
-
-1. **焊得住** —— QT450-10 / Q235B 异种材料可靠连接：白口与脆硬组织控制、裂纹防控、焊材与热输入选择、预热/后热制度。
-2. **控制焊后偏移** —— 以 Ø0.05 mm 位置度为设计目标，通过三候选结构比较、温度门控、逐件装配预偏置和精密夹具建立待验证的热—结构控制链。
-3. **稳定焊** —— 焊前视觉定位、焊中温度状态反馈、过程异常检测、批量质量追溯，构建三闭环数字工艺体系。
-
-## 当前阶段
-
-**V4.3 阶段整改与评审材料已形成**（2026-09-06）：已修正界面导热离散、活动版本指针、视觉预算生成入口和逐件预偏置约束；接头 3.5 mm 设计目标与当前送丝形成的约 1.737 mm 等效焊脚仍未闭合，不能据此宣称完整技术路线完成。各阶段的执行、验收和允许用途见 [`project/stage-status.yaml`](project/stage-status.yaml)。
-
-**V4.3 主线**：已完成七个真实三维实体的静力筛查，并冻结 6P-FAIR_B 四道 TIG 为推荐方案；局部热模型用于参数窗口和风险边界，温度门控、逐件装配预偏置和独立 CMM 构成最终放行闭环。
-
-**Plan 3 数值准入推进**：已实际完成固定六条带几何的 coarse/medium/fine 场网格及沿焊道/截面方向控制对照、条件性焊缝组承载筛查，以及三维 J2 和六四面体小网格验证。固定几何使 medium→fine 焊材热区 P95 差由旧混合序列的 74.554 °C 降至 16.682 °C，方向对照显示截面细化影响占主导；但仍未达到 10 °C 门且 QT 固相线翻转未消失，正式 THERMAL-1 与 STRUCT-0 继续冻结。
-
-**Plan 4 当前结果**：局部截面 XSEC-M/F/VF 已实际运行。焊材共同控制体 P95 差为 9.60/18.26 °C，后一级反而增大，QT/NiFe 阈值翻转也未稳定，因此停止 xfine 和新网格时间步复查，转入局部源投影、逐面界面通量和嵌套网格诊断。结构侧已完成 Mandel 一致切线、全局 Newton 拉杆/温变释放基准和高温应力自由出生小网格验证；Continuous 三材料预备网格已生成，但低质量单元、热场映射和接触求解尚未关闭，两个 Gate 仍为关闭。
-
-**Plan 8 / 无实物 Route B**：最后一轮热机制诊断已完成。18–26 s 两套求解器的分区源积分一致，QT 交换账总量仅差约 0.023%，但公共空间采样及预出生常物性控制仍有显著近场差异；停止热模型逐点对齐，正式 THERMAL-1/STRUCT-0 继续关闭。已用两套真实数值热历史驱动同一非正式固有应变/3D座体链，完成 432 个敏感性算例，当前没有可分辨的稳健优胜方案。详见 [热诊断](simulation/thermal-ref/README.md) 和 [结构敏感性](simulation/structural-v4/README.md)。本轮位置度是简化模型敏感性，不能作为 Ø0.05 mm 产品验收；实物采集不再是当前计划依赖，App/视觉/Monte Carlo 扩展冻结。
-
-当前已完成：
-- 15 组降阶方案筛选
-- 5 组二维热—结构代理匹配对照
-- 41/51/61/81 网格检查（注意：网格相邻变化29.224%，未通过5%参考门）
-- 1000 次全析因蒙特卡洛（注意：structure_factor/fixture_factor未经FE或实验标定）
-- 带运行时质量拒绝门的困难视觉基准
-- 100+100 异常检测基准
-- 8 张 SVG/PDF 工程表达图（含内腔防护安装与退出路径）
-
-**证据边界**：三维静力筛查只回答当前载荷与支承下的刚度，不等于焊后残余位置度；局部热模型仍未校准，0.4R1 审计确认空间网格未收敛且未形成两侧母材熔合证据。真实焊接、CMM、金相、硬度、NDT、洁净度和 WPS/PQR 仍是物理验证门。
-
-后续节点见 [docs/01-roadmap.md](docs/01-roadmap.md)、[docs/v3-progress-report.md](docs/v3-progress-report.md)、[docs/v4-mainline-refactor.md](docs/v4-mainline-refactor.md)。
+试制阶段按说明书 §9.2 的 V1～V10 完成 A 类实物工程确认：小试金相与宏观截面 → 锤击层残余应力 → 同件测量与重复装夹 → 热残余 CMM 回填 → 铜衬环热接触与颗粒清点 → 自动化联调。设计指标的统一表述为：**经理论计算与数值仿真验证，在设定工况下满足设计指标要求；建议在后续试制阶段通过 A 类实物试验完成最终工程验证。**
 
 ## 工作包与分工
 
-| WP | 模块 | 回答的问题 | 负责人 |
-| --- | --- | --- | --- |
-| WP0 | 项目定义与资料管理 | 我们到底要解决什么 | 待定 |
-| WP1 | 材料与焊接性 | 为什么难焊 | 待定 |
-| WP2 | 焊接工艺选型 | 用什么方法焊 | 待定 |
-| WP3 | 接头结构与夹具 | 接头怎么设计 | 待定 |
-| WP4 | 热-结构仿真 | 为什么这样设计 | 待定 |
-| WP5 | 物理验证（可选） | 实物能不能焊好 | 待定 |
-| WP6 | 自动化与智能监测 | 怎么稳定重复 | 待定 |
-| WP7 | 检测评价与数值后处理 | 怎么证明真的好 | 待定 |
-| WP8 | 作品集成与答辩 | 怎么形成参赛作品 | 待定 |
+| WP | 模块 | 回答的问题 |
+| --- | --- | --- |
+| WP0 | 项目定义与资料管理 | 我们到底要解决什么 |
+| WP1 | 材料与焊接性 | 为什么难焊 |
+| WP2 | 焊接工艺选型 | 用什么方法焊 |
+| WP3 | 接头结构与夹具 | 接头怎么设计 |
+| WP4 | 热-结构仿真 | 为什么这样设计 |
+| WP5 | 物理验证（可选） | 实物能不能焊好 |
+| WP6 | 自动化与智能监测 | 怎么稳定重复 |
+| WP7 | 检测评价与数值后处理 | 怎么证明真的好 |
+| WP8 | 作品集成与答辩 | 怎么形成参赛作品 |
 
 ## 里程碑
 
@@ -107,6 +65,7 @@ docs/          项目定义、路线图、研究、工艺、验证计划
 competition/   比赛官方文件（只读存档）
 cad/           壳体、轴承座、接头、夹具、总装
 simulation/    有限元模型、算例与结果
+studies/       竞赛设计计算、相图映射、鲁棒边界
 experiments/   实验方案、原始数据、金相、硬度、测量
 automation/    视觉定位、路径规划、仿真采集、异常检测、追溯
 data/          数据模式与样例数据
@@ -119,25 +78,26 @@ deliverables/  最终提交物
 - [路线图](docs/01-roadmap.md)
 - [团队分工](docs/02-team.md)
 - [设备清单](docs/03-equipment-inventory.md)
-- [当前正式报告源 V4.3（工艺设计说明书）](deliverables/report/technical-report-v4-unified.md)
+- [工艺设计说明书源文件](deliverables/report/technical-report-v4-unified.md)
+- [Schaeffler 相图与冷焊冶金设计](docs/process/schaeffler-diagram-analysis.md)
 - [协作规则](CONTRIBUTING.md)
 
-## 首版数字样机运行
+## 复现入口
 
 在仓库根目录执行：
 
 ```powershell
-python cad/parametric/generate_drawing.py
-python cad/parametric/generate_engineering_drawings.py
-python simulation/scripts/run_reduced_order.py
-python simulation/fe/run_fe_cases.py
-python simulation/scripts/run_monte_carlo.py --count 1000
-python simulation/scripts/position_tolerance.py --demo
-python automation/vision/run_benchmark.py --difficult --count-per-condition 100
-python automation/anomaly-detection/run_benchmark.py --normal-count 100 --injected-count 100
-python automation/app/run_demo.py
+python -m pytest -q
+python deliverables/build_submission.py
 ```
 
-输出分别位于 `cad/generated/`、`simulation/results/` 和 `automation/*/results/`。所有仿真、视觉和过程信号结果都带有“数字样本/降阶模型”声明，不替代实物 CMM、金相、硬度或焊接工艺评定。
+构建链依次重算竞赛设计、候选排序、鲁棒边界、Schaeffler 相图映射、工装可达性、Route B 条件选型、工艺卡与工程图，随后生成说明书 PDF、提交包与 ZIP，并通过 `scripts/competition_submission_lint.py` 质量门。输出分别位于 `cad/generated/`、`simulation/results/`、`studies/*/results/` 与 `deliverables/submission/`。
 
+## 历史研究记录（按原日期保留）
+
+**2026-09-08 工装几何推进**：已读取既有 BREP 检查防护盘上/下退出、六种焊枪包络和锥面压入情景。三候选均排除整盘上撤；底口开放时下撤与所列实体无干涉。30°/45° 弯头后竖直枪体保留为几何候选；原心轴整段入孔会穿透，名义退让 5 mm 后为孔缘接触，已改为内置锥驱动开缝圆柱胀套并配置 1.00 mm 主动回退行程。入口 `python studies/TOOLING-ACCESS/run.py`。
+
+**2026-09-06 V4.3**：修正非均匀异材公共面导热的串联热阻离散，并完成 THERMAL-0.4R1 全量重跑与审计；七个真实三维实体的静力筛查已完成，Continuous、6P、8P-FAIR_B 进入后续比较。
+
+**2026-09-08 无实物条件选型**：新增六候选 108 组承载—沉积截面—名义净热输入核算及精度预算反算，按参考载荷与设计筛查许用值给出低热输入优先项与 6P/8P 自动切换边界。执行入口 `python studies/ROUTE-B-DESIGN/run.py`。
 
