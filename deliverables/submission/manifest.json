@@ -9,7 +9,7 @@
     "05-设计指标.csv": "studies/COMPETITION-DESIGN/results/result.csv",
     "06-工艺提案.md": "deliverables/process/joint-process-card.md",
     "07-设计参数.yaml": "project/competition-design.yaml",
-    "08-整件热结构粗网格结果.json": "simulation/competition-r3/results/8p-coarse/result.json",
+    "08-整件热结构主网格结果.json": "simulation/competition-r3/results/8p-coarse/result.json",
     "08b-整件热结构输入.json": "simulation/competition-r3/results/8p-coarse/input.json",
     "08c-整件热结构能量历史.csv": "simulation/competition-r3/results/8p-coarse/thermal-history.csv",
     "08d-整件热结构平衡历史.csv": "simulation/competition-r3/results/8p-coarse/equilibrium-history.csv",

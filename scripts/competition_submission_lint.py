@@ -76,6 +76,41 @@ def check_page_claims(manifest: dict) -> list[str]:
     return errors
 
 
+# 导航与说明性文档中的“§章节”引用必须真实存在，防止说明书重构后出现悬空引用。
+SECTION_REF_DOCS = [
+    "deliverables/submission/00-评审导航.txt",
+    "deliverables/submission/10-复现与版本冻结记录.md",
+    "deliverables/submission/提交说明.txt",
+    "deliverables/submission-checklist.md",
+    "deliverables/registration-description.md",
+]
+
+
+def check_section_refs(report_text: str) -> list[str]:
+    """说明书章节标题须渲染进 PDF；交付文档的 § 引用须指向真实章节。"""
+    collapsed = re.sub(r"\s+", "", report_text)
+    headings: list[tuple[str, str]] = []
+    source = (ROOT / "deliverables/report/technical-report-v4-unified.md").read_text(encoding="utf-8")
+    for line in source.splitlines():
+        match = re.match(r"#{2,3}\s+(\d+(?:\.\d+)?)\s+(\S.*)$", line)
+        if match:
+            headings.append((match.group(1), f"{match.group(1)} {match.group(2).strip()}"))
+    errors: list[str] = []
+    numbers: set[str] = set()
+    for number, heading in headings:
+        numbers.add(number)
+        if re.sub(r"\s+", "", heading) not in collapsed:
+            errors.append(f"说明书PDF缺少章节标题: {heading}")
+    for rel in SECTION_REF_DOCS:
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        for ref in re.findall(r"§(\d+(?:\.\d+)?)", path.read_text(encoding="utf-8")):
+            if ref not in numbers:
+                errors.append(f"章节引用不存在: {rel} 引用说明书§{ref}")
+    return errors
+
+
 def main() -> None:
     manifest = json.loads((SUB / "manifest.json").read_text(encoding="utf-8"))
     authority = yaml.safe_load((ROOT / "project/competition-authority.yaml").read_text(encoding="utf-8"))
@@ -108,11 +143,13 @@ def main() -> None:
     for name in ("06-工艺提案.md", "07-设计参数.yaml", "10-复现与版本冻结记录.md", "提交说明.txt"):
         text_parts.append((SUB / name).read_text(encoding="utf-8"))
     with pymupdf.open(SUB / "01-工艺设计说明书.pdf") as pdf:
+        report_text = "\n".join(page.get_text() for page in pdf)
         text_parts.extend(page.get_text() for page in pdf)
     text = "\n".join(text_parts)
     for token in ("56.59", "当前Ø1.2", "当前 Ø1.2", "当前工艺为Ø1.2", "当前工艺为 Ø1.2", "产品已达标", "焊缝合格", "制造已释放"):
         if token in text:
             errors.append(f"提交包含禁止回流/越级措辞: {token}")
+    errors.extend(check_section_refs(report_text))
     archive = ROOT / "deliverables/COMPETITION-R3-焊接固定题技术包.zip"
     if archive.exists():
         expected = set(files) | {"提交说明.txt", "manifest.json"}

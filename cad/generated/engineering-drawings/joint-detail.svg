@@ -10,8 +10,13 @@
 <polygon points="435.00,485.00 235.00,485.00 435.00,285.00" fill="#e2a18b" stroke="#334155"/>
 <text x="145" y="580" class="note">QT450-10，t12</text>
 <text x="410" y="165" class="note">Q235B，t5</text>
-<text x="140" y="230" class="section">焊脚 z≥3.50 / 可达包络4.30</text>
-<line x1="140" y1="242" x2="325" y2="368" stroke="#176b7b" stroke-width="1.5"/>
+<text x="140" y="214" class="section">焊脚 z≥3.50 / 可达包络4.30</text>
+<line x1="95" y1="240" x2="330" y2="240" stroke="#334155" stroke-width="1.2"/>
+<line x1="330" y1="240" x2="335" y2="378" stroke="#334155" stroke-width="1.2"/>
+<polygon points="130.00,242.00 146.00,242.00 130.00,258.00" fill="#183247" stroke="#334155"/>
+<text x="100" y="256" class="note">z3.5</text>
+<text x="154" y="256" class="note">8×18(41)</text>
+<text x="95" y="290" class="small">焊缝符号按GB/T 324；段间净距≈41</text>
 <text x="95" y="630" class="note">根道目标2.8；名义最终4.0；以截面确认熔合</text>
 <text x="95" y="663" class="small">总面积7.326～8.760 mm²；剩余Ni99隔离层≥0.8</text>
 <text x="640" y="167" class="small">方法：自动TIG；直流正接（电极负极）</text>
@@ -29,6 +34,15 @@
 <text x="640" y="585" class="small">停弧后≥120 s且最高温度&lt;55℃才松夹</text>
 <text x="640" y="623" class="small">冷却至20±1℃后独立测量并判定</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
-<text x="50" y="768" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书工艺评定计划执行</text>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
+<text x="50" y="764" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书§7放行顺序执行</text>
+<text x="572" y="742" class="small">比例 1:1.35（俯视投影）</text>
+<text x="572" y="764" class="small">其余视图示意（NTS）</text>
+<text x="772" y="742" class="small">材料：QT450-10＋Q235B</text>
+<text x="772" y="764" class="small">焊材：NiFe-55；隔离层Ni99</text>
+<text x="962" y="742" class="small">设计／审核／批准：＿＿＿＿</text>
+<text x="962" y="764" class="small">状态：未完成制造签审</text>
 </svg>

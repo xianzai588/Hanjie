@@ -36,6 +36,15 @@
 <text x="640" y="585" class="small">温度满足→压环卸载→顶回→确认收拢</text>
 <text x="640" y="623" class="small">下部支承与接料盘同一组件向下退出</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
-<text x="50" y="768" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书工艺评定计划执行</text>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
+<text x="50" y="764" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书§7放行顺序执行</text>
+<text x="572" y="742" class="small">比例 1:1.35（俯视投影）</text>
+<text x="572" y="764" class="small">其余视图示意（NTS）</text>
+<text x="772" y="742" class="small">材料：QT450-10＋Q235B</text>
+<text x="772" y="764" class="small">焊材：NiFe-55；隔离层Ni99</text>
+<text x="962" y="742" class="small">设计／审核／批准：＿＿＿＿</text>
+<text x="962" y="764" class="small">状态：未完成制造签审</text>
 </svg>

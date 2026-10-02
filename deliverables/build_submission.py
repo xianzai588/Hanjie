@@ -28,7 +28,7 @@ def main():
         "05-设计指标.csv":"studies/COMPETITION-DESIGN/results/result.csv",
         "06-工艺提案.md":"deliverables/process/joint-process-card.md",
         "07-设计参数.yaml":"project/competition-design.yaml",
-        "08-整件热结构粗网格结果.json":"simulation/competition-r3/results/8p-coarse/result.json",
+        "08-整件热结构主网格结果.json":"simulation/competition-r3/results/8p-coarse/result.json",
         "08b-整件热结构输入.json":"simulation/competition-r3/results/8p-coarse/input.json",
         "08c-整件热结构能量历史.csv":"simulation/competition-r3/results/8p-coarse/thermal-history.csv",
         "08d-整件热结构平衡历史.csv":"simulation/competition-r3/results/8p-coarse/equilibrium-history.csv",
@@ -69,7 +69,7 @@ def main():
         f"COMPETITION-R3 技术包（焊接固定题）\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。"
         "STEP为名义装配包络。\n"
         "本包为纯数字设计作品：几何来自真实BREP，全部数字结果由经典公式计算、局部热模型诊断与公差预算给出，"
-        "正文显式区分计算结果与设计目标；说明书§9.2列出试制阶段工程确认清单。\n"
+        "正文显式区分计算结果与设计目标；说明书§7列出设计放行顺序与试制工程确认要求。\n"
         "工艺体系：八段两道脉冲TIG、Ni99预制隔离层＋NiFe55填充、铸铁冷焊（不预热、层间≤100 ℃）、"
         "热态轻击；整件热结构结果与能量历史在08号文件，冶金适用域声明见19～21号。\n"
         "复现需完整项目及Python依赖，在项目根目录运行 python deliverables/build_submission.py。\n"

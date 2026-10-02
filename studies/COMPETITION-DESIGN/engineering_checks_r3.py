@@ -45,7 +45,33 @@ for passes in (2,4):
  welded_station_work_s=arc+tool,serial_before_cooling_s=arc+tool+assembly+qc,
  actual_cooling_s='read full-part thermal history; fixture remains occupied until release temperature',
  pipeline='two assembly pallets alone do not reduce occupied welding/holding resource; dedicated holding pallets required'))
-result=dict(load_basis='proposed design conditions, official problem gives no numerical load spectrum',load_spectrum=cycles,
+# First-order reciprocating-compressor load derivation, ported from origin/main
+# studies/LOAD-ESTIMATE (LOAD-ESTIMATE-4). Its inputs remain engineering assumptions,
+# so the outputs are a reference point, not a measured load spectrum.
+di=dict(reciprocating_mass_kg=0.8,crank_radius_m=0.02,speed_rpm=3000.0,rod_ratio=0.25,
+ bore_diameter_m=0.04,pressure_difference_pa=1500000.0,force_line_to_weld_centroid_m=0.07)
+omega=2*math.pi*di['speed_rpm']/60
+Fi=di['reciprocating_mass_kg']*di['crank_radius_m']*omega**2
+Fg=math.pi*di['bore_diameter_m']**2*di['pressure_difference_pa']/4
+M=Fi*di['force_line_to_weld_centroid_m']+Fg*di['crank_radius_m']/2  # N·m
+M_mm=M*1000.0  # N·mm, same unit as the spectra and the 250000 N·mm official reference
+derivation=dict(
+ ported_from='origin/main studies/LOAD-ESTIMATE LOAD-ESTIMATE-4',
+ inputs=di,
+ formulas=dict(omega='2*pi*n/60',inertial_force='Fi=m*r*omega^2',
+  gas_force='Fg=pi*D^2*delta_p/4',tipover_moment='M=Fi*e+Fg*(r/2)'),
+ not_modelled=['connecting-rod second-order term','cylinder-pressure phase vs crank angle','multi-cylinder superposition'],
+ outputs=dict(inertial_force_N=round(Fi,1),gas_force_N=round(Fg,1),tipover_moment_N_mm=round(M_mm,0),
+  official_reference_loads=dict(radial_N=5000.0,axial_N=5000.0,moment_N_mm=250000.0,
+   note='fixed-problem screening basis; already used by layout_checks static columns and the 5000 N tooling backstop'),
+  relation_to_spectra=dict(M_ratio_continuous=round(25000/M_mm,2),M_ratio_start_stop=round(75000/M_mm,2),
+   Fr_ratio_continuous=round(500/Fi,2),Fr_ratio_start_stop=round(1500/Fi,2),
+   note='proposed fatigue spectra sit below the first-order derivation in the moment channel '
+        '(0.19~0.58x); Miner damage is therefore a same-spectrum relative comparison between 6P '
+        'and 8P, not an absolute life claim; damage scales with the cube of stress range if loads move up')))
+result=dict(load_basis='proposed screening spectra for relative route comparison; official problem gives '
+ 'no measured spectrum, static columns use its 5000 N reference loads, first-order derivation in load_derivation',
+ load_spectrum=cycles,load_derivation=derivation,
  layout_checks=rows,tooling=tools,cleanliness=clean,cycle_resource=process,
  scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],weighted_scores=[6.8,6.15,7.1,8.4],role='subjective decision aid with explicit anchors, not official points or measured performance'))
 OUT.mkdir(exist_ok=True);(OUT/'engineering-checks-r3.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
