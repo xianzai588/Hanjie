@@ -218,12 +218,21 @@
       0.1,
       0.05
     ],
+    "candidates": [
+      "GMAW-plug",
+      "laser",
+      "micro-plasma",
+      "pulsed-TIG",
+      "brazing-eliminated"
+    ],
     "weighted_scores": [
       6.8,
       6.15,
       7.1,
-      8.4
+      7.6,
+      5.7
     ],
-    "role": "subjective decision aid with explicit anchors, not official points or measured performance"
+    "role": "subjective decision aid with explicit anchors, not official points or measured performance",
+    "notes": "TIG cast-iron score re-based to intrinsic-method risk (9->5) and debug/reachability set to 7 so cells times weights reproduce the total; brazing scored 5.70 and eliminated: furnace brazing impossible (in-shell assembly), flux residue violates hermetic no-cleaning constraint, no creep/fatigue data for silver-brazed joints under compressor cycling"
   }
 }

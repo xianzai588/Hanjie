@@ -148,6 +148,11 @@ def main() -> None:
     register_fonts()
     manifest = json.loads((SVG_DIR / "drawing-manifest.json").read_text(encoding="utf-8"))
     svg_paths = [SVG_DIR / name for name in manifest["drawings"] + manifest.get("supplemental_drawings", [])]
+    # 合并图集页序按图号 HJ-001..008 排列；补充详图不再整体垫底。
+    def hj_number(path):
+        match = re.search(r"HJ-(\d{3})", path.read_text(encoding="utf-8"))
+        return int(match.group(1)) if match else 999
+    svg_paths.sort(key=hj_number)
     if not svg_paths:
         raise FileNotFoundError(f"未找到 SVG 图纸: {SVG_DIR}")
     PDF_DIR.mkdir(parents=True, exist_ok=True)

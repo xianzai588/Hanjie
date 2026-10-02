@@ -3025,7 +3025,7 @@
 <text x="640" y="547" class="small">Ø40孔轴：位置度 Ø0.05，相对A、B</text>
 <text x="640" y="585" class="small">测量长度12；不默认扩展到整根主轴</text>
 <text x="640" y="623" class="small">C仅周向识别焊段，不加入位置度基准框</text>
-<line x1="113" y1="588" x2="250" y2="497" stroke="#334155" stroke-width="1.2"/>
+<line x1="113" y1="588" x2="267" y2="437" stroke="#334155" stroke-width="1.2"/>
 <rect x="95" y="588" width="80" height="32" fill="none" stroke="#334155"/>
 <rect x="175" y="588" width="36" height="32" fill="none" stroke="#334155"/>
 <rect x="211" y="588" width="36" height="32" fill="none" stroke="#334155"/>

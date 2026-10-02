@@ -14,9 +14,9 @@
 <line x1="95" y1="240" x2="330" y2="240" stroke="#334155" stroke-width="1.2"/>
 <line x1="330" y1="240" x2="335" y2="378" stroke="#334155" stroke-width="1.2"/>
 <polygon points="130.00,242.00 146.00,242.00 130.00,258.00" fill="#183247" stroke="#334155"/>
-<text x="100" y="256" class="note">z3.5</text>
+<text x="100" y="256" class="note">z4.0</text>
 <text x="154" y="256" class="note">8×18(41)</text>
-<text x="95" y="290" class="small">焊缝符号按GB/T 324；段间净距≈41</text>
+<text x="95" y="290" class="small">焊缝符号按GB/T 324；名义焊脚4.0、最小3.50；段间净距≈41</text>
 <text x="95" y="630" class="note">根道目标2.8；名义最终4.0；以截面确认熔合</text>
 <text x="95" y="663" class="small">总面积7.326～8.760 mm²；剩余Ni99隔离层≥0.8</text>
 <text x="640" y="167" class="small">方法：自动TIG；直流正接（电极负极）</text>

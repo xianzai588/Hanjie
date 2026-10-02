@@ -32,6 +32,11 @@
       "source": "inspection-and-release.svg"
     },
     {
+      "pdf": "pdf/sleeve-detail.pdf",
+      "title": "胀套—锥芯—拉杆—压环局部剖视详图",
+      "source": "sleeve-detail.svg"
+    },
+    {
       "pdf": "pdf/gas-water-detail.pdf",
       "title": "铜环分体、静态密封与独立气水路",
       "source": "gas-water-detail.svg"
@@ -40,11 +45,6 @@
       "pdf": "pdf/workstation.pdf",
       "title": "自动焊接工作站与工装资源配置",
       "source": "workstation.svg"
-    },
-    {
-      "pdf": "pdf/sleeve-detail.pdf",
-      "title": "胀套—锥芯—拉杆—压环局部剖视详图",
-      "source": "sleeve-detail.svg"
     }
   ]
 }

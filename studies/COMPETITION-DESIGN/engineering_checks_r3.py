@@ -73,6 +73,13 @@ result=dict(load_basis='proposed screening spectra for relative route comparison
  'no measured spectrum, static columns use its 5000 N reference loads, first-order derivation in load_derivation',
  load_spectrum=cycles,load_derivation=derivation,
  layout_checks=rows,tooling=tools,cleanliness=clean,cycle_resource=process,
- scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],weighted_scores=[6.8,6.15,7.1,8.4],role='subjective decision aid with explicit anchors, not official points or measured performance'))
+ scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],
+  candidates=['GMAW-plug','laser','micro-plasma','pulsed-TIG','brazing-eliminated'],
+  weighted_scores=[6.8,6.15,7.1,7.6,5.7],
+  role='subjective decision aid with explicit anchors, not official points or measured performance',
+  notes='TIG cast-iron score re-based to intrinsic-method risk (9->5) and debug/reachability set to 7 so '
+        'cells times weights reproduce the total; brazing scored 5.70 and eliminated: furnace brazing '
+        'impossible (in-shell assembly), flux residue violates hermetic no-cleaning constraint, no '
+        'creep/fatigue data for silver-brazed joints under compressor cycling'))
 OUT.mkdir(exist_ok=True);(OUT/'engineering-checks-r3.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
 print(json.dumps(result,ensure_ascii=False,indent=2))
