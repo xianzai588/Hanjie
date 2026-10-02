@@ -4,7 +4,7 @@
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">胀套定位、端面夹紧与主动回退</text>
 <text x="50" y="99" class="small">内部锥只驱动圆柱胀套；轴向500 N通过独立压环—座体—底部三支点承受</text>
-<text x="1020" y="65" class="section">HJ-R1-003</text>
+<text x="1020" y="65" class="section">HJ-003</text>
 <rect x="90" y="325" width="125" height="110" fill="#efd18b" stroke="#334155"/>
 <rect x="415" y="325" width="125" height="110" fill="#efd18b" stroke="#334155"/>
 <rect x="218" y="325" width="12" height="110" fill="#8cb6ae" stroke="#334155"/>
@@ -22,20 +22,20 @@
 <text x="100" y="593" class="small">三支点位于R30，等间隔120°</text>
 <text x="100" y="627" class="small">支点端面极差≤0.003（制造要求）</text>
 <text x="100" y="661" class="small">承力柱Ø20；下托盘Ø72×4；支点Ø8</text>
-<text x="640" y="167" class="note">孔内接触件为开缝圆柱胀套，避免孔缘楔入</text>
-<text x="640" y="205" class="note">收拢外径39.94；最大撑开外径40.04</text>
-<text x="640" y="243" class="note">两接触带：z101～103、109～111</text>
-<text x="640" y="281" class="note">锥半角10°；锥不与工件孔直接接触</text>
-<text x="640" y="319" class="note">正向顶回肩＋拉杆；回退行程1.00</text>
-<text x="640" y="357" class="note">覆盖全径差所需理想行程 0.284</text>
-<text x="640" y="395" class="note">μ=0.20仍可能自锁，禁止仅靠弹簧回位</text>
-<text x="640" y="433" class="note">径向合力标量上限100 N（机构设计要求）</text>
-<text x="640" y="471" class="note">摩擦未知时驱动力上限17.63 N，再限行程</text>
-<text x="640" y="509" class="note">0.221 MPa仅名义平均带压，不是峰值</text>
-<text x="640" y="547" class="note">上部压环／执行器包络R30，z112～220</text>
-<text x="640" y="585" class="note">温度满足→压环卸载→顶回→确认收拢</text>
-<text x="640" y="623" class="note">下部支承与接料盘同一组件向下退出</text>
+<text x="640" y="167" class="small">孔内接触件为开缝圆柱胀套，避免孔缘楔入</text>
+<text x="640" y="205" class="small">收拢外径39.94；最大撑开外径40.04</text>
+<text x="640" y="243" class="small">两接触带：z101～103、109～111</text>
+<text x="640" y="281" class="small">锥半角10°；锥不与工件孔直接接触</text>
+<text x="640" y="319" class="small">正向顶回肩＋拉杆；回退行程1.00</text>
+<text x="640" y="357" class="small">覆盖全径差所需理想行程 0.284</text>
+<text x="640" y="395" class="small">μ=0.20仍可能自锁，禁止仅靠弹簧回位</text>
+<text x="640" y="433" class="small">径向预载≤100 N；热反力由机械止挡承受</text>
+<text x="640" y="471" class="small">胀套6指：L30、t0.8、宽19；外圆同轴≤0.003</text>
+<text x="640" y="509" class="small">芯轴Ø36/内孔Ø24；止挡设计承载5000 N</text>
+<text x="640" y="547" class="small">上部压环／执行器包络R30，z112～220</text>
+<text x="640" y="585" class="small">温度满足→压环卸载→顶回→确认收拢</text>
+<text x="640" y="623" class="small">下部支承与接料盘同一组件向下退出</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 经设计计算与热模型诊断支撑的设计图 | 尺寸与形位要求按本图执行</text>
-<text x="50" y="768" class="small">来源：随包07号设计参数；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认</text>
+<text x="50" y="746" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
+<text x="50" y="768" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书工艺评定计划执行</text>
 </svg>

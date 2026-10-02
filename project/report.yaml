@@ -1,13 +1,13 @@
-version: "REPORT-1.0"
+version: REPORT-1.0
 pdf:
   font_candidates:
-    - regular: "C:/Windows/Fonts/Deng.ttf"
-      bold: "C:/Windows/Fonts/Dengb.ttf"
-    - regular: "C:/Windows/Fonts/msyh.ttc"
-      bold: "C:/Windows/Fonts/msyhbd.ttc"
-    - regular: "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
-      bold: "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
+  - regular: C:/Windows/Fonts/Deng.ttf
+    bold: C:/Windows/Fonts/Dengb.ttf
+  - regular: C:/Windows/Fonts/msyh.ttc
+    bold: C:/Windows/Fonts/msyhbd.ttc
+  - regular: /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc
+    bold: /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc
   environment_overrides:
-    regular: "HANJIE_PDF_FONT_REGULAR"
-    bold: "HANJIE_PDF_FONT_BOLD"
-  page_footer: "COMPETITION-R1 工艺设计说明书 | 设计计算与热模型诊断支撑 | 试制阶段完成A类实物工程确认"
+    regular: HANJIE_PDF_FONT_REGULAR
+    bold: HANJIE_PDF_FONT_BOLD
+  page_footer: 中铁山桥杯 · 焊接工艺设计固定题

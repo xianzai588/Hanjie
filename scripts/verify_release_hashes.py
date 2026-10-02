@@ -2,8 +2,8 @@
 
 记录文件格式（`#` 开头为注释，其余每行为 `<sha256>  <相对路径>`）：
 
-    # COMPETITION-R1-RC3 SHA256
-    <64位十六进制>  deliverables/COMPETITION-R1-技术包.zip
+    # COMPETITION-R2 SHA256
+    <64位十六进制>  deliverables/COMPETITION-R2-技术包.zip
 
 用法：
     python scripts/verify_release_hashes.py                      # 默认校验最新的 RC 记录
@@ -24,7 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORD_DIR = ROOT / "deliverables"
-RECORD_GLOB = "COMPETITION-R1-*-SHA256.txt"
+RECORD_GLOB = "COMPETITION-R2-*-SHA256.txt"
 _DIGEST = re.compile(r"^([0-9a-fA-F]{64})[ \t]{2}(.+)$")
 
 

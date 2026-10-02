@@ -1,19 +1,25 @@
 {
-  "version": "SCHAEFFLER-MAP-1",
+  "version": "SCHAEFFLER-R3",
   "formula": {
-    "cr_eq": "Cr + Mo + 1.5 Si + 0.5 Nb",
-    "ni_eq": "Ni + 30 C + 0.5 Mn",
-    "ms_c": "561 - 474 C - 33 Mn - 17 Ni - 17 Cr - 21 Mo"
+    "cr_eq": "Cr+Mo+1.5Si+0.5Nb",
+    "ni_eq": "Ni+30C+0.5Mn"
   },
-  "austenite_boundary_ni_eq_at_low_cr": [
-    12.0,
-    16.0
-  ],
+  "original_diagram": {
+    "url": "https://www.kobelco-welding.jp/images/education-center/pdf/Specific_4Ed.pdf",
+    "page": "3-7",
+    "figure": "2.3",
+    "plot_extent": [
+      0,
+      40,
+      0,
+      30
+    ],
+    "tracing_accuracy_equivalent_units": 0.4,
+    "role": "读图重绘，非热力学数据库；不对图外点分类"
+  },
   "base_metals": [
     {
       "material": "Q235B",
-      "role": "壳体母材",
-      "source": "GB/T 700 碳素结构钢，Q235B 标称成分",
       "composition_wt_pct": {
         "C": 0.17,
         "Si": 0.22,
@@ -21,447 +27,306 @@
         "Cr": 0.05,
         "Ni": 0.05,
         "Mo": 0.01,
-        "Nb": 0.0
+        "Nb": 0
       },
       "cr_eq": 0.39,
       "ni_eq": 5.4,
-      "ms_c": 462.00999999999993,
-      "caliber": "标称成分"
+      "source": "工程成分假设，按来料化学分析替换；牌号不等于固定化学成分"
     },
     {
       "material": "QT450-10",
-      "role": "轴承座母材",
-      "source": "GB/T 1348 球墨铸铁件，QT450-10 标称成分",
       "composition_wt_pct": {
         "C": 3.65,
         "Si": 2.6,
-        "Mn": 0.4,
+        "Mn": 0.3,
         "Cr": 0.05,
         "Ni": 0.05,
-        "Mo": 0.0,
-        "Nb": 0.0
+        "Mo": 0,
+        "Nb": 0
       },
       "cr_eq": 3.95,
-      "ni_eq": 109.75,
-      "ms_c": -1183.9999999999998,
-      "caliber": "标称成分",
-      "graphite_carbon_wt_pct": 3.4856700232378,
-      "matrix_composition_wt_pct": {
-        "C": 0.16432997676219996,
-        "Si": 2.6,
-        "Mn": 0.4,
-        "Cr": 0.05,
-        "Ni": 0.05,
-        "Mo": 0.0,
-        "Nb": 0.0
-      },
-      "matrix_cr_eq": 3.95,
-      "matrix_ni_eq": 5.179899302865999,
-      "matrix_ms_c": 468.2075910147172
+      "ni_eq": 109.7,
+      "source": "工程成分假设，按来料化学分析替换；牌号不等于固定化学成分"
     },
     {
       "material": "NiFe-55",
-      "role": "填充金属",
-      "source": "CEWELD NiFe 55 Tig 技术数据表（AWS A5.15 E NiFe-CI / EN ISO 1071 S C NiFe-2 / W.Nr. 2.4472）",
       "composition_wt_pct": {
         "C": 0.01,
         "Si": 0.13,
         "Mn": 0.7,
-        "Cr": 0.0,
-        "Ni": 55.0,
-        "Mo": 0.0,
-        "Nb": 0.0
+        "Cr": 0,
+        "Ni": 55,
+        "Mo": 0,
+        "Nb": 0
       },
       "cr_eq": 0.195,
       "ni_eq": 55.65,
-      "ms_c": -401.84000000000003,
-      "caliber": "标称成分"
+      "source": "供方典型成分"
+    },
+    {
+      "material": "Ni99",
+      "composition_wt_pct": {
+        "C": 0.02,
+        "Si": 0.1,
+        "Mn": 0.1,
+        "Cr": 0,
+        "Ni": 99,
+        "Mo": 0,
+        "Nb": 0
+      },
+      "cr_eq": 0.15000000000000002,
+      "ni_eq": 99.64999999999999,
+      "source": "工程成分假设，按来料化学分析替换；牌号不等于固定化学成分"
     }
   ],
   "dilution_sweep": {
-    "design_cast_iron_share": 0.4,
-    "conservative_cast_iron_share": 0.3,
     "design_rows": [
       {
         "dilution": 0.1,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.04000000000000001,
-          "Q235B": 0.06,
-          "NiFe-55": 0.9
-        },
-        "composition_wt_pct": {
-          "C": 0.1652,
-          "Si": 0.23420000000000002,
-          "Mn": 0.676,
-          "Cr": 0.005000000000000001,
-          "Ni": 49.505,
-          "Mo": 0.0006,
-          "Nb": 0.0
-        },
-        "cr_eq": 0.35690000000000005,
-        "ni_eq": 54.79900000000001,
-        "ms_c": -381.29540000000003,
-        "ni_eq_margin": 38.79900000000001,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      },
-      {
-        "dilution": 0.15,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.06,
-          "Q235B": 0.09,
-          "NiFe-55": 0.85
-        },
-        "composition_wt_pct": {
-          "C": 0.24280000000000002,
-          "Si": 0.2863,
-          "Mn": 0.6639999999999999,
-          "Cr": 0.0075,
-          "Ni": 46.7575,
-          "Mo": 0.0009,
-          "Nb": 0.0
-        },
-        "cr_eq": 0.43785,
-        "ni_eq": 54.3735,
-        "ms_c": -371.0231,
-        "ni_eq_margin": 38.3735,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      },
-      {
-        "dilution": 0.2,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.08000000000000002,
-          "Q235B": 0.12,
-          "NiFe-55": 0.8
-        },
-        "composition_wt_pct": {
-          "C": 0.3204,
-          "Si": 0.33840000000000003,
-          "Mn": 0.6519999999999999,
-          "Cr": 0.010000000000000002,
-          "Ni": 44.01,
-          "Mo": 0.0012,
-          "Nb": 0.0
-        },
-        "cr_eq": 0.5188,
-        "ni_eq": 53.948,
-        "ms_c": -360.75079999999997,
-        "ni_eq_margin": 37.948,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      },
-      {
-        "dilution": 0.25,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.1,
-          "Q235B": 0.15,
-          "NiFe-55": 0.75
-        },
-        "composition_wt_pct": {
-          "C": 0.398,
-          "Si": 0.39050000000000007,
-          "Mn": 0.6399999999999999,
-          "Cr": 0.0125,
-          "Ni": 41.2625,
-          "Mo": 0.0015,
-          "Nb": 0.0
-        },
-        "cr_eq": 0.5997500000000001,
-        "ni_eq": 53.5225,
-        "ms_c": -350.4785000000001,
-        "ni_eq_margin": 37.5225,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      },
-      {
-        "dilution": 0.3,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.12,
-          "Q235B": 0.18,
-          "NiFe-55": 0.7
-        },
-        "composition_wt_pct": {
-          "C": 0.4756,
-          "Si": 0.4426,
-          "Mn": 0.6279999999999999,
-          "Cr": 0.015,
-          "Ni": 38.515,
-          "Mo": 0.0018,
-          "Nb": 0.0
-        },
-        "cr_eq": 0.6807,
-        "ni_eq": 53.097,
-        "ms_c": -340.20619999999997,
-        "ni_eq_margin": 37.097,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      },
-      {
-        "dilution": 0.4,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.16000000000000003,
-          "Q235B": 0.24,
-          "NiFe-55": 0.6
-        },
-        "composition_wt_pct": {
-          "C": 0.6308,
-          "Si": 0.5468000000000001,
-          "Mn": 0.604,
-          "Cr": 0.020000000000000004,
-          "Ni": 33.02,
-          "Mo": 0.0024,
-          "Nb": 0.0
-        },
-        "cr_eq": 0.8426,
-        "ni_eq": 52.246,
-        "ms_c": -319.6616,
-        "ni_eq_margin": 36.246,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      },
-      {
-        "dilution": 0.5,
-        "cast_iron_share": 0.4,
-        "fractions": {
-          "QT450-10": 0.2,
-          "Q235B": 0.3,
-          "NiFe-55": 0.5
-        },
-        "composition_wt_pct": {
-          "C": 0.786,
-          "Si": 0.651,
-          "Mn": 0.58,
-          "Cr": 0.025,
-          "Ni": 27.525,
-          "Mo": 0.003,
-          "Nb": 0.0
-        },
-        "cr_eq": 1.0045,
-        "ni_eq": 51.395,
-        "ms_c": -299.11699999999996,
-        "ni_eq_margin": 35.395,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
-      }
-    ],
-    "conservative_rows": [
-      {
-        "dilution": 0.1,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.03,
-          "Q235B": 0.06999999999999999,
-          "NiFe-55": 0.9
-        },
         "composition_wt_pct": {
           "C": 0.1304,
           "Si": 0.2104,
-          "Mn": 0.677,
+          "Mn": 0.674,
           "Cr": 0.004999999999999999,
           "Ni": 49.505,
           "Mo": 0.0007,
           "Nb": 0.0
         },
         "cr_eq": 0.3213,
-        "ni_eq": 53.755500000000005,
-        "ms_c": -364.8353,
-        "ni_eq_margin": 37.755500000000005,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "ni_eq": 53.754000000000005,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
       {
         "dilution": 0.15,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.045,
-          "Q235B": 0.105,
-          "NiFe-55": 0.85
-        },
         "composition_wt_pct": {
           "C": 0.1906,
           "Si": 0.2506,
-          "Mn": 0.6655,
+          "Mn": 0.6609999999999999,
           "Cr": 0.0075,
-          "Ni": 46.7575,
+          "Ni": 46.75749999999999,
           "Mo": 0.00105,
           "Nb": 0.0
         },
         "cr_eq": 0.38445,
-        "ni_eq": 52.808249999999994,
-        "ms_c": -346.33295000000004,
-        "ni_eq_margin": 36.808249999999994,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "ni_eq": 52.806,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
       {
         "dilution": 0.2,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.06,
-          "Q235B": 0.13999999999999999,
-          "NiFe-55": 0.8
-        },
         "composition_wt_pct": {
-          "C": 0.25079999999999997,
+          "C": 0.2508,
           "Si": 0.2908,
-          "Mn": 0.6539999999999999,
+          "Mn": 0.6479999999999999,
           "Cr": 0.009999999999999998,
           "Ni": 44.01,
           "Mo": 0.0014,
           "Nb": 0.0
         },
         "cr_eq": 0.44760000000000005,
-        "ni_eq": 51.861,
-        "ms_c": -327.83059999999995,
-        "ni_eq_margin": 35.861,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "ni_eq": 51.858,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
       {
         "dilution": 0.25,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.075,
-          "Q235B": 0.175,
-          "NiFe-55": 0.75
-        },
         "composition_wt_pct": {
           "C": 0.311,
-          "Si": 0.331,
-          "Mn": 0.6424999999999998,
+          "Si": 0.33099999999999996,
+          "Mn": 0.6349999999999999,
           "Cr": 0.012499999999999999,
-          "Ni": 41.2625,
+          "Ni": 41.262499999999996,
           "Mo": 0.0017499999999999998,
           "Nb": 0.0
         },
-        "cr_eq": 0.51075,
-        "ni_eq": 50.91375,
-        "ms_c": -309.32825,
-        "ni_eq_margin": 34.91375,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "cr_eq": 0.5107499999999999,
+        "ni_eq": 50.91,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
       {
         "dilution": 0.3,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.09,
-          "Q235B": 0.21,
-          "NiFe-55": 0.7
-        },
         "composition_wt_pct": {
           "C": 0.3712,
           "Si": 0.3712,
-          "Mn": 0.6309999999999999,
+          "Mn": 0.6219999999999999,
           "Cr": 0.015,
           "Ni": 38.515,
           "Mo": 0.0021,
           "Nb": 0.0
         },
         "cr_eq": 0.5739,
-        "ni_eq": 49.966499999999996,
-        "ms_c": -290.8259,
-        "ni_eq_margin": 33.966499999999996,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "ni_eq": 49.961999999999996,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
       {
         "dilution": 0.4,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.12,
-          "Q235B": 0.27999999999999997,
-          "NiFe-55": 0.6
-        },
         "composition_wt_pct": {
           "C": 0.4916,
           "Si": 0.4516,
-          "Mn": 0.608,
+          "Mn": 0.596,
           "Cr": 0.019999999999999997,
           "Ni": 33.02,
           "Mo": 0.0028,
           "Nb": 0.0
         },
         "cr_eq": 0.7002,
-        "ni_eq": 48.072,
-        "ms_c": -253.82120000000003,
-        "ni_eq_margin": 32.072,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "ni_eq": 48.066,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
       {
         "dilution": 0.5,
         "cast_iron_share": 0.3,
-        "fractions": {
-          "QT450-10": 0.15,
-          "Q235B": 0.35,
-          "NiFe-55": 0.5
-        },
         "composition_wt_pct": {
           "C": 0.612,
           "Si": 0.532,
-          "Mn": 0.585,
+          "Mn": 0.57,
           "Cr": 0.024999999999999998,
           "Ni": 27.525,
           "Mo": 0.0034999999999999996,
           "Nb": 0.0
         },
         "cr_eq": 0.8265,
-        "ni_eq": 46.177499999999995,
-        "ms_c": -216.8165,
-        "ni_eq_margin": 30.177499999999995,
-        "constitution": "单相奥氏体 A（无马氏体转变）"
+        "ni_eq": 46.169999999999995,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      }
+    ],
+    "conservative_rows": [
+      {
+        "dilution": 0.1,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.1652,
+          "Si": 0.23420000000000002,
+          "Mn": 0.672,
+          "Cr": 0.005000000000000001,
+          "Ni": 49.505,
+          "Mo": 0.0006,
+          "Nb": 0.0
+        },
+        "cr_eq": 0.35690000000000005,
+        "ni_eq": 54.797000000000004,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      },
+      {
+        "dilution": 0.15,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.24280000000000002,
+          "Si": 0.2863,
+          "Mn": 0.658,
+          "Cr": 0.0075,
+          "Ni": 46.7575,
+          "Mo": 0.0009,
+          "Nb": 0.0
+        },
+        "cr_eq": 0.43785,
+        "ni_eq": 54.3705,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      },
+      {
+        "dilution": 0.2,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.3204,
+          "Si": 0.33840000000000003,
+          "Mn": 0.6439999999999999,
+          "Cr": 0.010000000000000002,
+          "Ni": 44.01,
+          "Mo": 0.0012,
+          "Nb": 0.0
+        },
+        "cr_eq": 0.5188,
+        "ni_eq": 53.944,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      },
+      {
+        "dilution": 0.25,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.398,
+          "Si": 0.39050000000000007,
+          "Mn": 0.6299999999999999,
+          "Cr": 0.0125,
+          "Ni": 41.2625,
+          "Mo": 0.0015,
+          "Nb": 0.0
+        },
+        "cr_eq": 0.5997500000000001,
+        "ni_eq": 53.5175,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      },
+      {
+        "dilution": 0.3,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.4756,
+          "Si": 0.4426,
+          "Mn": 0.6159999999999999,
+          "Cr": 0.015,
+          "Ni": 38.515,
+          "Mo": 0.0018,
+          "Nb": 0.0
+        },
+        "cr_eq": 0.6807,
+        "ni_eq": 53.091,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      },
+      {
+        "dilution": 0.4,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.6308,
+          "Si": 0.5468000000000001,
+          "Mn": 0.588,
+          "Cr": 0.020000000000000004,
+          "Ni": 33.02,
+          "Mo": 0.0024,
+          "Nb": 0.0
+        },
+        "cr_eq": 0.8426,
+        "ni_eq": 52.238,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
+      },
+      {
+        "dilution": 0.5,
+        "cast_iron_share": 0.4,
+        "composition_wt_pct": {
+          "C": 0.786,
+          "Si": 0.651,
+          "Mn": 0.5599999999999999,
+          "Cr": 0.025,
+          "Ni": 27.525000000000002,
+          "Mo": 0.003,
+          "Nb": 0.0
+        },
+        "cr_eq": 1.0045,
+        "ni_eq": 51.385000000000005,
+        "within_schaeffler_plot": false,
+        "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       }
     ]
   },
-  "steel_side": {
-    "Q235B_carbon_equivalent_pct": 0.2625,
-    "preheat_exempt_limit_pct": 0.4,
-    "preheat_exempt": true
+  "metallurgy_reference": {
+    "doi": "10.1007/s11661-024-07399-4",
+    "scope": "EN-GJS-500-14 / GMAW-MCAW；机理参考，非本件合格评定",
+    "conclusion": "NiFe与纯Ni均有奥氏体主枝晶；NiFe枝晶间可析出渗碳体，纯Ni促进石墨，HAZ仍可出现马氏体"
   },
-  "fillers": {
-    "NiFe-55": {
-      "cr_eq": 0.195,
-      "ni_eq": 55.65,
-      "ms_c": -401.84000000000003
-    }
-  },
-  "thermal_regime": {
-    "component_heat_capacity_j_per_k": 2092.617561232002,
-    "retained_fraction": 0.6,
-    "net_heat_input_j": 142560.0,
-    "component_temperature_rise_k": 40.87512290092881,
-    "temperature_difference_for_full_radial_limit_k": 31.754499612595108,
-    "rows": [
-      {
-        "pre_temperature_c": 20.0,
-        "seat_stored_heat_j": 0.0,
-        "seat_stored_heat_share_of_net_input": 0.0,
-        "free_radial_contraction_mm": 0.0
-      },
-      {
-        "pre_temperature_c": 100.0,
-        "seat_stored_heat_j": 25192.244898560162,
-        "seat_stored_heat_share_of_net_input": 0.1767132779079697,
-        "free_radial_contraction_mm": 0.06298319999999999
-      },
-      {
-        "pre_temperature_c": 150.0,
-        "seat_stored_heat_j": 40937.39796016026,
-        "seat_stored_heat_share_of_net_input": 0.28715907660045076,
-        "free_radial_contraction_mm": 0.1023477
-      },
-      {
-        "pre_temperature_c": 200.0,
-        "seat_stored_heat_j": 56682.551021760366,
-        "seat_stored_heat_share_of_net_input": 0.39760487529293187,
-        "free_radial_contraction_mm": 0.14171219999999998
-      },
-      {
-        "pre_temperature_c": 500.0,
-        "seat_stored_heat_j": 151153.46939136097,
-        "seat_stored_heat_share_of_net_input": 1.0602796674478183,
-        "free_radial_contraction_mm": 0.3778992
-      }
-    ]
-  },
-  "verdict": {
-    "weld_metal": "全域落于单相奥氏体区，Ms 远低于室温，无马氏体转变通道",
-    "cast_iron_matrix": "基体口径落于淬硬区，说明铸铁侧淬硬倾向来自基体而非石墨",
-    "min_ni_eq_margin": 30.177499999999995
-  }
+  "design_decision": "QT侧预制Ni99隔离层，接头主体NiFe55；保证最终焊接不穿透隔离层，镍层制作在精加工孔之前完成；宏观金相确认剩余层厚≥0.8 mm"
 }

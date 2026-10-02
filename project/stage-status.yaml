@@ -1,21 +1,29 @@
 version: STAGE-STATUS-1.0
-updated: "2026-09-08"
+updated: "2026-10-02"
 authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
 route_b:
   selected: true
   experimental_data_required: false
   objective: 跨求解器与参数情景的条件性数字设计证据，不承诺实物位置度验收
-  current_research_stage: COMPETITION-R1
+  current_research_stage: COMPETITION-R3
   thermal_diagnostic_budget_exhausted: true
   frozen_work: [app_expansion, vision_network_expansion, uncalibrated_monte_carlo]
   supersedes: 历史Plan7以实物热电偶裁决的退出策略；物理验证协议保留但不作为当前计划依赖
 stages:
-  COMPETITION-R1:
+  COMPETITION-R3:
+    execution_status: full_part_thermal_structural_solver_completed_coarse_and_independent_mesh_check
+    acceptance_result: design_checks_passed_physical_performance_unverified
+    evidence_level: numerical_design_verification
+    evidence: simulation/competition-r3/results/verification.json
+    allowed_use: 当前固定题 8P 两道工艺的热-结构设计验证、位置度预算和控形决策；不替代首件实物放行
+    upstream_dependencies: [COMPETITION-DESIGN, SCHAEFFLER-MAP]
+    next_action: 按说明书 §9.2 完成 NiFe/QT 熔合、裂纹、疲劳、洁净度和测量能力的 A 类首件确认
+  COMPETITION-R2:
     execution_status: revised_design_geometry_process_budget_and_interlocks_completed
     acceptance_result: design_checks_passed_physical_performance_unverified
     evidence_level: design_assumption
     evidence: studies/COMPETITION-DESIGN/results/assessment.json
-    allowed_use: 四道沉积、修订胀套与连续薄裙、名义包络、设计预算及互锁；不放行实物性能或正式热结构
+    allowed_use: 历史四道沉积基线；不覆盖当前 R3 两道脉冲方案，也不放行实物性能或正式热结构
     upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS]
     next_action: 按当前说明书与设计图集开展设计评审；完整热结构、柔性工装与洁净性能保持未验证
   THERMAL-R1-SINGLEPASS-DIAGNOSTIC:
@@ -24,8 +32,8 @@ stages:
     evidence_level: solver_result_unvalidated
     evidence: simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json
     allowed_use: 新Ø1.6棒径和3.5 mm等面积截面接入既有FV求解链的单段热诊断；禁止代表四道整件热历史
-    upstream_dependencies: [COMPETITION-R1, THERMAL-NUMERICAL-GATE]
-    next_action: 若要给正式热载荷，需建立四道108 mm路径和通过空间/能量准入；当前结果仅用于数值回归
+    upstream_dependencies: [COMPETITION-R2, THERMAL-NUMERICAL-GATE]
+    next_action: 历史单段结果仅作数值回归；当前整件 R3 热-结构结果见 simulation/competition-r3
   G-INPUTS:
     execution_status: controlled_inputs_volume_candidate_and_conditional_load_basis_defined
     acceptance_result: not_closed
@@ -213,7 +221,7 @@ stages:
     upstream_dependencies: [LOAD-BASIS-0, STRUCT-UNCERTAINTY]
     formal: false
     experimental_data_required: false
-    next_action: 6P-FAIR_B四道冻结为数字推荐；若进入工程放行，补实际载荷、焊序热结构、焊缝成形和物理质量验证
+    next_action: 8P-FAIR_B两道冻结为当前数字推荐；若进入工程放行，补实际载荷、焊缝成形、夹具重复性和物理质量验证
   TOOLING-ACCESS:
     execution_status: occ_swept_shield_torch_envelopes_and_cone_force_checks_completed
     acceptance_result: limited_geometry_routes_available_cleanliness_and_repeatability_open
@@ -231,6 +239,6 @@ stages:
     allowed_use: 竞赛数字设计推荐和阶段设计评审；不等同产品工程放行
     upstream_dependencies: [ROUTE-B-DESIGN, TOOLING-ACCESS, SERVICE]
     optional_physical_dependencies: [EXP-FINAL]
-    next_action: 竞赛提交采用6P-FAIR_B；工程放行仍需热结构、焊缝成形、夹具重复性、洁净度和独立位置度证据
+    next_action: 竞赛提交采用8P-FAIR_B两道；工程放行仍需焊缝成形、夹具重复性、洁净度和独立位置度证据
 
 

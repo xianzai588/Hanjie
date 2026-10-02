@@ -1,4 +1,4 @@
-"""COMPETITION-R1 提交包质量门：检查权威数字、清单、措辞和压缩包闭合。"""
+"""COMPETITION-R3 提交包质量门：检查权威数字、清单、措辞和压缩包闭合。"""
 from __future__ import annotations
 
 import json
@@ -96,11 +96,13 @@ def main() -> None:
         errors.append("authority.required_allowable_mpa 未与 assessment 对齐")
     if abs(authority["results"]["net_heat_input_kj"] - selected_row["net_heat_kj"]) > 1e-6:
         errors.append("authority.net_heat_input_kj 未与 assessment 对齐")
-    process = yaml.safe_load((ROOT / "project/process.yaml").read_text(encoding="utf-8"))["process"]["nominal"]
+    # R3 的冻结工艺以 process-r3.yaml 为唯一口径；project/process.yaml 保留为历史
+    # 诊断输入，不能再让旧的 1.2 mm / 1.5 mm 参数回流到提交门。
+    process = yaml.safe_load((ROOT / "project/process-r3.yaml").read_text(encoding="utf-8"))["process"]["nominal"]
     design = yaml.safe_load((ROOT / "project/competition-design.yaml").read_text(encoding="utf-8"))["process"]
-    if design["wire_diameter_mm"] != 1.6 or process["filler_diameter_mm"] != 1.2:
-        errors.append("当前工艺棒径口径异常：设计应为 Ø1.6，历史 nominal 不得回流")
-    if design["pass_count"] != 4 or process["travel_speed_mm_s"] != 1.5:
+    if design["wire_diameter_mm"] != 1.6 or process["filler_diameter_mm"] != 1.6:
+        errors.append("当前工艺棒径口径异常：设计与冻结工艺均应为 Ø1.6")
+    if design["pass_count"] != 2 or process["travel_speed_mm_s"] != 1.65:
         errors.append("道数/焊速未使用冻结工艺口径")
     text_parts = []
     for name in ("06-工艺提案.md", "07-设计参数.yaml", "10-复现与版本冻结记录.md", "提交说明.txt"):
@@ -111,7 +113,7 @@ def main() -> None:
     for token in ("56.59", "当前Ø1.2", "当前 Ø1.2", "当前工艺为Ø1.2", "当前工艺为 Ø1.2", "产品已达标", "焊缝合格", "制造已释放"):
         if token in text:
             errors.append(f"提交包含禁止回流/越级措辞: {token}")
-    archive = ROOT / "deliverables/COMPETITION-R1-技术包.zip"
+    archive = ROOT / "deliverables/COMPETITION-R3-焊接固定题技术包.zip"
     if archive.exists():
         expected = set(files) | {"提交说明.txt", "manifest.json"}
         with zipfile.ZipFile(archive) as z:

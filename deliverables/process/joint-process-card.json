@@ -1,46 +1,48 @@
 {
-  "version": "COMPETITION-R2",
+  "version": "COMPETITION-R3",
   "process": {
-    "fixed_feed_mm_s": 1.3439669482139598,
+    "fixed_feed_mm_s": 3.5,
     "minimum_area_mm2": 6.125,
     "area_range_mm2": [
-      6.125,
-      7.205882352941177
+      7.326416667650864,
+      8.760240674746626
     ],
     "equivalent_leg_range_mm": [
-      3.5,
-      3.7962830118264828
+      3.8279019495412534,
+      4.185747406317449
     ],
-    "gross_energy_per_pass_j_mm": 600.0,
-    "net_energy_per_pass_j_mm": 330.00000000000006,
-    "weld_length_mm": 107.99999999999984,
-    "arc_on_time_s": 287.9999999999996,
-    "total_net_heat_j": 142559.99999999983,
-    "wire_length_mm": 387.0624810856198,
+    "gross_energy_per_pass_j_mm": 545.4545454545455,
+    "net_energy_per_pass_j_mm": 300.00000000000006,
+    "weld_length_mm": 143.9999999999999,
+    "arc_on_time_s": 174.54545454545442,
+    "total_net_heat_j": 86399.99999999994,
+    "wire_length_mm": 610.9090909090904,
     "deposited_volume_range_mm3": [
-      661.4999999999991,
-      778.2352941176459
+      1055.0040001417237,
+      1261.4746571635133
     ]
   },
-  "proposal": {
-    "pass_count": 4,
+  "spec": {
+    "pass_count": 2,
     "sequence": [
       1,
-      4,
+      5,
       3,
-      6,
+      7,
       2,
-      5
+      6,
+      4,
+      8
     ],
     "wire_diameter_mm": 1.6,
     "deposition_efficiency_range": [
-      0.85,
-      1.0
+      0.9,
+      0.98
     ],
     "minimum_leg_mm": 3.5,
-    "clearance_leg_mm": 3.8,
-    "feed_policy": "按效率下界反算固定送丝；不得逐件假定已知沉积效率",
-    "filler_candidate": "NiFe 55 TIG实心棒材；具体批次牌号按供方证书核对",
+    "clearance_leg_mm": 4.3,
+    "feed_policy": "送丝3.50±0.05 mm/s，实际分辨率≤0.01；速度与丝径公差均入守恒边界",
+    "filler_candidate": "Ni99预制隔离层＋NiFe55两道承载焊；隔离层制作在轴承孔最终精加工之前",
     "filler_source": "https://certilas.com/en/product/nife-55-tig",
     "wire_entry_offset_xyz_mm": [
       -1.0,
@@ -50,58 +52,10 @@
     "hold_after_arc_s": 120.0,
     "release_below_c": 55.0,
     "measurement_temperature_c": 20.0,
-    "measurement_temperature_band_c": 1.0
-  },
-  "thermal_regime": {
-    "method": "铸铁冷焊（不预热）",
-    "design_basis": "铸铁基体当量点(3.95, 5.18)、Ms +468 ℃，淬硬倾向源于基体而非冷却速度，预热无法将其移出淬硬区；镍由NiFe-55从外部引入，拉应力由半热态锤击处理",
-    "start_temperature_c": 20.0,
-    "start_temperature_min_c": 15.0,
-    "preheat_policy": "不设预热工序；起焊前工件与环境同温，各监测点最低温度≥15 ℃",
-    "interpass_limit_c": 100.0,
-    "interpass_measurement": "距焊道边缘10 mm的座体表面，接触式热电偶或红外测温",
-    "seat_stored_heat_kj": {
-      "at_20c": 0.0,
-      "at_100c": 25.19,
-      "at_150c": 40.94,
-      "at_500c": 151.15
-    },
-    "free_radial_contraction_mm": {
-      "at_interpass_100c": 0.063,
-      "at_preheat_150c": 0.1024,
-      "at_interpass_200c": 0.1418,
-      "at_hot_weld_500c": 0.378
-    },
-    "component_heat_capacity_j_per_k": 2092.0,
-    "component_temperature_rise_k": 40.9,
-    "temperature_gradient_for_full_radial_limit_k": 31.7,
-    "shielding": "停弧后覆盖耐高温保温毯缓冷至55 ℃以下；PWHT不列入主流程"
-  },
-  "peening": {
-    "method": "焊后半热态气动圆头锤轻击",
-    "mechanism": "400～500 ℃下表层塑性延展0.3%～0.8%，冷却后应力松弛能力570～1520 MPa，高于熔敷金属室温屈服强度300 MPa，锤击层稳定处于压应力状态",
-    "window_c": [
-      400.0,
-      500.0
-    ],
-    "lower_prohibited_below_c": 300.0,
-    "tool": "气动圆头锤，Ø8 mm球头（范围Ø6～10 mm）",
-    "air_pressure_mpa": [
-      0.4,
-      0.6
-    ],
-    "impact_rate_per_min": [
-      2000,
-      3000
-    ],
-    "overlap_fraction_min": 0.75,
-    "coverage": "焊道全宽及熔合线两侧各5 mm",
-    "acceptance": "表面均匀麻点、压痕深度0.1～0.2 mm，无撕裂、无层状剥离",
-    "sequence": "每段收弧后立即锤击，四道共24个段次逐段执行"
-  },
-  "release": {
-    "design_verified": true,
-    "physical_validation_recommended": true,
-    "product_conformity_claimed": false
+    "measurement_temperature_band_c": 1.0,
+    "feed_nominal_mm_s": 3.5,
+    "feed_tolerance_mm_s": 0.05,
+    "wire_diameter_tolerance_mm": 0.01,
+    "travel_relative_tolerance": 0.02
   }
 }

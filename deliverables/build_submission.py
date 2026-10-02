@@ -10,10 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    for script in ("studies/COMPETITION-DESIGN/run.py", "studies/COMPETITION-DESIGN/robust_selection.py",
-                   "studies/ROBUST-BOUNDARY/run.py", "studies/SCHAEFFLER-MAP/run.py",
-                   "studies/TOOLING-ACCESS/run.py", "studies/ROUTE-B-DESIGN/run.py",
-                   "deliverables/process/generate_joint_process_card.py",
+    for script in ("studies/COMPETITION-DESIGN/run.py", "studies/SCHAEFFLER-MAP/run.py",
+                   "studies/COMPETITION-DESIGN/robust_selection.py",
+                   "studies/COMPETITION-DESIGN/engineering_checks_r3.py",
+                   "deliverables/process/generate_process_r3.py",
                    "cad/parametric/generate_engineering_drawings.py", "cad/parametric/export_drawing_pdfs.py",
                    "deliverables/report/build_technical_report_pdf.py"):
         subprocess.run([sys.executable, "-X", "utf8", str(ROOT/script)], cwd=ROOT, check=True)
@@ -28,21 +28,23 @@ def main():
         "05-设计指标.csv":"studies/COMPETITION-DESIGN/results/result.csv",
         "06-工艺提案.md":"deliverables/process/joint-process-card.md",
         "07-设计参数.yaml":"project/competition-design.yaml",
-        "08-R1单段热诊断（冻结历史附件）.json":"simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json",
+        "08-整件热结构粗网格结果.json":"simulation/competition-r3/results/8p-coarse/result.json",
+        "08b-整件热结构输入.json":"simulation/competition-r3/results/8p-coarse/input.json",
+        "08c-整件热结构能量历史.csv":"simulation/competition-r3/results/8p-coarse/thermal-history.csv",
+        "08d-整件热结构平衡历史.csv":"simulation/competition-r3/results/8p-coarse/equilibrium-history.csv",
+        "08e-工程载荷夹具洁净核算.json":"studies/COMPETITION-DESIGN/results/engineering-checks-r3.json",
         "09-守恒修订与放行闭环.svg":"deliverables/submission/09-守恒修订与放行闭环.svg",
         "10-复现与版本冻结记录.md":"deliverables/submission/10-复现与版本冻结记录.md",
-        "11-候选选择.json":"studies/COMPETITION-DESIGN/results/robust-selection.json",
-        "12-确定性边界汇总.json":"studies/ROBUST-BOUNDARY/results/boundary-summary.json",
-        "13-6P-8P切换边界.csv":"studies/ROBUST-BOUNDARY/results/strength-boundary.csv",
-        "14-位置度失效边界.csv":"studies/ROBUST-BOUNDARY/results/position-boundary.csv",
-        "15-确定性边界图.svg":"studies/ROBUST-BOUNDARY/results/strength-boundary.svg",
-        "16-位置度边界图.svg":"studies/ROBUST-BOUNDARY/results/position-boundary.svg",
+        "11-候选选择.json":"studies/COMPETITION-DESIGN/results/engineering-checks-r3.json",
         "17-参数来源与证据等级.md":"deliverables/submission/17-参数来源与证据等级.md",
         "18-证据等级总图.svg":"deliverables/submission/18-证据等级总图.svg",
         "19-Schaeffler相图映射.json":"studies/SCHAEFFLER-MAP/results/schaeffler-mapping.json",
         "20-Schaeffler相图映射.svg":"studies/SCHAEFFLER-MAP/results/schaeffler-map.svg",
         "21-冷焊热制度对比.svg":"studies/SCHAEFFLER-MAP/results/cold-weld-regime.svg",
         "22-冷焊与锤击工艺卡.md":"deliverables/process/cold-weld-and-peening-card.md",
+        "23-网格与位置度图.png":"docs/report/figures/r3-mesh-budget.png",
+        "24-热场与接触图.png":"docs/report/figures/r3-thermal-contact.png",
+        "25-位移与残余应力图.png":"docs/report/figures/r3-residual-fields.png",
     }
     for name, source in files.items():
         target = out/name
@@ -64,25 +66,24 @@ def main():
                     if not page.rect.contains(pymupdf.Rect(block[:4])):
                         raise ValueError(f"{name}文字超出页面")
     (out/"提交说明.txt").write_text(
-        f"COMPETITION-R1 技术包\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。"
+        f"COMPETITION-R3 技术包（焊接固定题）\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。"
         "STEP为名义装配包络。\n"
         "本包为纯数字设计作品：几何来自真实BREP，全部数字结果由经典公式计算、局部热模型诊断与公差预算给出，"
         "正文显式区分计算结果与设计目标；说明书§9.2列出试制阶段工程确认清单。\n"
-        "工艺体系：六段四道自动TIG、NiFe-55镍铁基填充、铸铁冷焊热制度（不预热、层间≤100 ℃）、"
-        "焊后半热态锤击；组织判定由当量计算与高镍奥氏体成分规律支撑，适用域声明见说明书§2.4（包内19～21号）。\n"
-        "候选选择结果由当前 COMPETITION-DESIGN 四道比较生成；R1单段热诊断为冻结历史附件。\n"
+        "工艺体系：八段两道脉冲TIG、Ni99预制隔离层＋NiFe55填充、铸铁冷焊（不预热、层间≤100 ℃）、"
+        "热态轻击；整件热结构结果与能量历史在08号文件，冶金适用域声明见19～21号。\n"
         "复现需完整项目及Python依赖，在项目根目录运行 python deliverables/build_submission.py。\n"
         "校方另附真实报名表、推荐与盖章汇总表；固定命题作品详细描述按附件填‘无’。\n"
         "截止时间与命名按官方原件及后续通知执行。\n",
         encoding="utf-8")
-    manifest={"version":"COMPETITION-R1","files":files,
+    manifest={"version":"COMPETITION-R3","files":files,
               "report_pages":page_counts["01-工艺设计说明书.pdf"],
               "drawing_pages":page_counts["02-设计图集.pdf"],
               "submission_scope":"technical_design_only",
-              "design_verified":True,"physical_validation_recommended":True,
+              "design_verified":False,"physical_validation_recommended":True,
               "product_conformity_claimed":False}
     (out/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
-    archive=ROOT/"deliverables/COMPETITION-R1-技术包.zip"
+    archive=ROOT/"deliverables/COMPETITION-R3-焊接固定题技术包.zip"
     # 只打包显式清单，目录中其他文件不自动混入提交物。
     with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as bundle:
         for name in [*files,"提交说明.txt","manifest.json"]:

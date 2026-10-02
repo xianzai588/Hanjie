@@ -25,7 +25,7 @@ def read_spec(root: Path):
 def input_snapshot(root):
     spec = read_spec(root)
     load = yaml.safe_load((root/"project/load-basis-v1.yaml").read_text(encoding="utf-8"))
-    paths = list(dict.fromkeys([SPEC, spec["process_source"], spec["geometry_manifest"], "project/load-basis-v1.yaml",
+    paths = list(dict.fromkeys([SPEC, spec["process_source"], "project/materials.yaml", spec["geometry_manifest"], "project/load-basis-v1.yaml",
                                "studies/TOOLING-ACCESS/config.yaml", *load["layouts"].values()]))
     return {"structured":{path:yaml.safe_load((root/path).read_text(encoding="utf-8")) for path in paths},
             "brep_sha256":{spec[key]:hashlib.sha256((root/spec[key]).read_bytes()).hexdigest() for key in ("seat_brep","shell_brep")}}
@@ -44,13 +44,17 @@ def process_balance(spec, nominal):
     if not 0 < lo <= hi <= 1 or p["pass_count"] < 1:
         raise ValueError("沉积效率和道数非法")
     minimum_area = p["minimum_leg_mm"] ** 2 / 2
-    feed = minimum_area * nominal["travel_speed_mm_s"] / (p["pass_count"] * lo * math.pi * p["wire_diameter_mm"] ** 2 / 4)
-    maximum_leg = p["minimum_leg_mm"] * math.sqrt(hi / lo)
+    feed = p.get('feed_nominal_mm_s', minimum_area * nominal["travel_speed_mm_s"] / (p["pass_count"] * lo * math.pi * p["wire_diameter_mm"] ** 2 / 4))
+    ferr=p.get('feed_tolerance_mm_s',0);derr=p.get('wire_diameter_tolerance_mm',0);verr=p.get('travel_relative_tolerance',0)
+    minarea=p['pass_count']*lo*math.pi*(p['wire_diameter_mm']-derr)**2/4*(feed-ferr)/(nominal['travel_speed_mm_s']*(1+verr))
+    maxarea=p['pass_count']*hi*math.pi*(p['wire_diameter_mm']+derr)**2/4*(feed+ferr)/(nominal['travel_speed_mm_s']*(1-verr))
+    maximum_leg=math.sqrt(2*maxarea)
+    if math.sqrt(2*minarea)<p['minimum_leg_mm']:raise ValueError('鲁棒送丝下限不足')
     if maximum_leg > p["clearance_leg_mm"]:
         raise ValueError("最大等效焊脚超出可达性包络")
     return {"fixed_feed_mm_s": feed, "minimum_area_mm2": minimum_area,
-            "area_range_mm2": [minimum_area, minimum_area * hi / lo],
-            "equivalent_leg_range_mm": [p["minimum_leg_mm"], maximum_leg],
+            "area_range_mm2": [minarea,maxarea],
+            "equivalent_leg_range_mm": [math.sqrt(2*minarea), maximum_leg],
             "gross_energy_per_pass_j_mm": nominal["current_a"] * nominal["voltage_v"] / nominal["travel_speed_mm_s"],
             "net_energy_per_pass_j_mm": nominal["current_a"] * nominal["voltage_v"] * nominal["arc_efficiency"] / nominal["travel_speed_mm_s"]}
 
@@ -67,7 +71,7 @@ def precision_budget(spec):
             "design_diameter_budget_mm": diameter,
             "diameter_with_uncertainty_target_mm": diameter + uncertainty,
             "design_budget_closes": diameter + uncertainty <= p["limit_diameter_mm"],
-            "thermal_residual_design_verified": True, "physical_validation_recommended": True}
+            "thermal_residual_design_verified": False, "physical_validation_recommended": True}
 
 
 def cycle_permission(stage, *, shield_present, bottom_open, return_confirmed=False,
@@ -77,9 +81,9 @@ def cycle_permission(stage, *, shield_present, bottom_open, return_confirmed=Fal
                      temperature_min=None, curtain_flow_l_min=None):
     """失败闭锁：信号缺失不允许开始焊接、下撤或合格出站。"""
     if stage == "weld":
-        flow_values = (temperature_min, temperature_max, gas_flow_l_min)
+        flow_values = (temperature_min, temperature_max, gas_flow_l_min,curtain_flow_l_min)
         finite = all(v is not None and math.isfinite(v) for v in flow_values)
-        curtain_ok = curtain_flow_l_min is None or 10 <= curtain_flow_l_min <= 15
+        curtain_ok = curtain_flow_l_min is not None and math.isfinite(curtain_flow_l_min) and 10 <= curtain_flow_l_min <= 15
         return bool(finite and curtain_ok and shield_present and bottom_open and fixture_locked and path_checked
                     and 15 <= temperature_min <= temperature_max <= 100 and 8 <= gas_flow_l_min <= 12)
     if stage == "withdraw":
@@ -122,8 +126,8 @@ def run_design(root):
     seat_z = a["seat_bottom_z_mm"]
     seat_top = seat_z + manifest["seat"]["thickness_mm"]
     shell_r = manifest["geometry"]["shell_inner_radius_mm"]
-    if not math.isclose(s["ring_outer_radius_mm"], shell_r):
-        raise ValueError("铜衬环外缘没有与壳体内壁对齐，不能建立名义屏障")
+    if s['ring_outer_radius_mm']>shell_r or s['ring_outer_radius_mm']+s.get('seal_radial_thickness_mm',0)<shell_r:
+        raise ValueError('铜环及静态密封尺寸没有覆盖壳体内壁')
     if s["ring_top_z_mm"] >= seat_z or f["support_top_z_mm"] != seat_z:
         raise ValueError("防护与支承轴向装配尺寸不闭合")
     if not (s["ring_inner_radius_mm"] < s["ring_outer_radius_mm"]
@@ -213,9 +217,9 @@ def run_design(root):
                            "poses":poses, "torch_feed_intersection_mm3":common_volume(torch, feed),
                            "torch_feed_clearance_mm":clearance(torch,feed), "torch_shell_radial_bound_mm":shell_r-bounds["radial_upper_bound_mm"],
                            "torch_upper_radial_bound_mm":bounds["radial_lower_bound_mm"]-f["upper_envelope_radius_mm"],
-                           "nominal_vertical_drop_coverage":s["ring_outer_radius_mm"]>=shell_r,
+                           "nominal_vertical_drop_coverage":s["ring_outer_radius_mm"]+s.get('seal_radial_thickness_mm',0)>=shell_r,
                            "coverage_requires_ring_alignment":True},
-              "release":{"design_verified":True,"physical_validation_recommended":True,
+              "release":{"design_verified":False,"physical_validation_recommended":True,
                          "product_conformity_claimed":False}}
     bodies = {**obstacles,**tools,"cartridge":cartridge}
     return result, bodies, points

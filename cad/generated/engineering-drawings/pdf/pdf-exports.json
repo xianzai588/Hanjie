@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-01",
+  "generated_at": "2026-10-02",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 6,
+  "sheet_count": 8,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "pdf": "pdf/joint-detail.pdf",
-      "title": "四道焊接截面与工艺设计卡",
+      "title": "两道脉冲TIG截面与pWPS",
       "source": "joint-detail.svg"
     },
     {
@@ -30,6 +30,16 @@
       "pdf": "pdf/inspection-and-release.pdf",
       "title": "焊接顺序、测量基准与放行卡",
       "source": "inspection-and-release.svg"
+    },
+    {
+      "pdf": "pdf/gas-water-detail.pdf",
+      "title": "铜环分体、静态密封与独立气水路",
+      "source": "gas-water-detail.svg"
+    },
+    {
+      "pdf": "pdf/workstation.pdf",
+      "title": "自动焊接工作站与工装资源配置",
+      "source": "workstation.svg"
     },
     {
       "pdf": "pdf/sleeve-detail.pdf",

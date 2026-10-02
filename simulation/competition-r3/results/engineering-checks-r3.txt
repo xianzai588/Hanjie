@@ -1,0 +1,188 @@
+{
+  "load_basis": "proposed design conditions, official problem gives no numerical load spectrum",
+  "load_spectrum": [
+    {
+      "name": "continuous",
+      "cycles": 100000000.0,
+      "Fr_amp": 500,
+      "Fa_mean": 2000,
+      "Fa_amp": 200,
+      "M_amp": 25000
+    },
+    {
+      "name": "start_stop",
+      "cycles": 10000.0,
+      "Fr_amp": 1500,
+      "Fa_mean": 2500,
+      "Fa_amp": 1000,
+      "M_amp": 75000
+    }
+  ],
+  "layout_checks": [
+    {
+      "n": 6,
+      "throat_mm": 2.4748737341529163,
+      "area_mm2": 267.28636328851496,
+      "second_moment_mm4": 751342.0206612883,
+      "static_equivalent_MPa": 52.173196786079785,
+      "static_allowable_MPa": 60,
+      "static_margin": 1.1500157877235628,
+      "fatigue": [
+        {
+          "name": "continuous",
+          "cycles": 100000000.0,
+          "Fr_amp": 500,
+          "Fa_mean": 2000,
+          "Fa_amp": 200,
+          "M_amp": 25000,
+          "normal_range_MPa": 4.989738224278132,
+          "shear_range_MPa": 4.029509579822173,
+          "equivalent_range_MPa": 8.579529702055835,
+          "life_at_design_curve_cycles": 85507323.68375754,
+          "damage": 1.1694904680895235
+        },
+        {
+          "name": "start_stop",
+          "cycles": 10000.0,
+          "Fr_amp": 1500,
+          "Fa_mean": 2500,
+          "Fa_amp": 1000,
+          "M_amp": 75000,
+          "normal_range_MPa": 14.969214672834395,
+          "shear_range_MPa": 13.489469612679326,
+          "equivalent_range_MPa": 27.748419039930855,
+          "life_at_design_curve_cycles": 2527429.3637502627,
+          "damage": 0.003956589309052638
+        }
+      ],
+      "miner_damage": 1.1734470573985762,
+      "fatigue_curve": {
+        "reference_range_MPa": 30,
+        "reference_cycles": 2000000.0,
+        "slope": 3,
+        "basis": "proposed qualification target, not a published FAT class for NiFe/QT",
+        "qualification_required": true
+      },
+      "heat_kJ": 64.8,
+      "arc_s": 130.9090909090909
+    },
+    {
+      "n": 8,
+      "throat_mm": 2.4748737341529163,
+      "area_mm2": 356.38181771801993,
+      "second_moment_mm4": 1001789.3608817176,
+      "static_equivalent_MPa": 39.12989758955984,
+      "static_allowable_MPa": 60,
+      "static_margin": 1.5333543836314172,
+      "fatigue": [
+        {
+          "name": "continuous",
+          "cycles": 100000000.0,
+          "Fr_amp": 500,
+          "Fa_mean": 2000,
+          "Fa_amp": 200,
+          "M_amp": 25000,
+          "normal_range_MPa": 3.7423036682085993,
+          "shear_range_MPa": 3.0221321848666305,
+          "equivalent_range_MPa": 6.4346472765418765,
+          "life_at_design_curve_cycles": 202684026.50964743,
+          "damage": 0.4933787912252679
+        },
+        {
+          "name": "start_stop",
+          "cycles": 10000.0,
+          "Fr_amp": 1500,
+          "Fa_mean": 2500,
+          "Fa_amp": 1000,
+          "M_amp": 75000,
+          "normal_range_MPa": 11.226911004625798,
+          "shear_range_MPa": 10.117102209509495,
+          "equivalent_range_MPa": 20.811314279948142,
+          "life_at_design_curve_cycles": 5990943.677037656,
+          "damage": 0.0016691861147565825
+        }
+      ],
+      "miner_damage": 0.4950479773400245,
+      "fatigue_curve": {
+        "reference_range_MPa": 30,
+        "reference_cycles": 2000000.0,
+        "slope": 3,
+        "basis": "proposed qualification target, not a published FAT class for NiFe/QT",
+        "qualification_required": true
+      },
+      "heat_kJ": 86.39999999999999,
+      "arc_s": 174.54545454545456
+    }
+  ],
+  "tooling": {
+    "finger_radial_stiffness_N_mm": 108.0888888888889,
+    "max_free_expand_radial_mm": 0.042500000000000426,
+    "elastic_expand_N": 4.593777777777825,
+    "finger_root_stress_MPa": 11.333333333333446,
+    "preload_N": 100,
+    "radial_backstop_capacity_N": 5000,
+    "shaft_area_mm2": 565.4866776461628,
+    "thermal_reaction_separate_from_preload": true,
+    "backstop_average_axial_MPa": 8.841941282883074
+  },
+  "cleanliness": {
+    "copper_mass_kg": 0.061898925717385866,
+    "radial_hot_growth_at_100C_mm": 0.10172799999999999,
+    "hot_metal_radius_mm": 74.901728,
+    "seal_compression_at_20C_mm": 0.1,
+    "nozzle_area_mm2": 9.42477796076938,
+    "jet_velocity_at_10_15L_min_m_s": [
+      17.683882565766147,
+      26.52582384864922
+    ],
+    "full_bore_average_velocity_m_s": [
+      0.009431404035075279,
+      0.014147106052612917
+    ],
+    "water_flow_L_min": 0.2,
+    "coolant_capacity_W_at_10K": 139.33333333333334,
+    "function": "mechanical collection and static seal prevent downward debris; jets assist transport only"
+  },
+  "cycle_resource": [
+    {
+      "passes": 2,
+      "arc_s": 130.9090909090909,
+      "peen_clean_transfer_s": 216,
+      "assembly_s": 120,
+      "inspection_s": 120,
+      "welded_station_work_s": 346.9090909090909,
+      "serial_before_cooling_s": 586.9090909090909,
+      "actual_cooling_s": "read full-part thermal history; fixture remains occupied until release temperature",
+      "pipeline": "two assembly pallets alone do not reduce occupied welding/holding resource; dedicated holding pallets required"
+    },
+    {
+      "passes": 4,
+      "arc_s": 261.8181818181818,
+      "peen_clean_transfer_s": 432,
+      "assembly_s": 120,
+      "inspection_s": 120,
+      "welded_station_work_s": 693.8181818181818,
+      "serial_before_cooling_s": 933.8181818181818,
+      "actual_cooling_s": "read full-part thermal history; fixture remains occupied until release temperature",
+      "pipeline": "two assembly pallets alone do not reduce occupied welding/holding resource; dedicated holding pallets required"
+    }
+  ],
+  "scoring": {
+    "weights": [
+      0.2,
+      0.2,
+      0.2,
+      0.15,
+      0.1,
+      0.1,
+      0.05
+    ],
+    "weighted_scores": [
+      6.8,
+      6.15,
+      7.1,
+      8.4
+    ],
+    "role": "subjective decision aid with explicit anchors, not official points or measured performance"
+  }
+}

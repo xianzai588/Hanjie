@@ -50,8 +50,10 @@ def main():
         if writer.Transfer(shape, STEPControl_AsIs) != IFSelect_RetDone:
             raise ValueError("STEP转换失败")
     assembly = cad / "competition-assembly.step"
-    if writer.Write(str(assembly)) != IFSelect_RetDone:
+    staging = assembly.with_name('competition-assembly-new.step')
+    if writer.Write(str(staging)) != IFSelect_RetDone:
         raise ValueError("STEP写入失败")
+    staging.replace(assembly)
     normalize_step_timestamp(assembly)
     (out / "assessment.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     with (out / "result.csv").open("w", encoding="utf-8-sig", newline="") as stream:

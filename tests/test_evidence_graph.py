@@ -186,12 +186,12 @@ def test_struct_prep_records_global_solver_without_claiming_full_part_solution()
 
 def test_current_report_has_no_known_v42_stale_claims() -> None:
     report = (ROOT/"deliverables/report/technical-report-v4-unified.md").read_text(encoding="utf-8")
-    assert "COMPETITION-R1" in report
+    assert "8P-FAIR_B" in report
     assert "尚未完成 FAIR-A/B" not in report
     assert "GB/T 1182-2008" not in report
-    assert "Continuous 0.000304 mm" in report
+    assert "0.001742 mm" in report
     # 竞赛正文的工艺口径：铸铁冷焊热制度、Schaeffler 相图映射与半热态锤击必须可检索。
-    for token in ("Schaeffler", "层间温度上限 100 ℃", "半热态锤击", "NiFe-55", "0.0102 mm"):
+    for token in ("Schaeffler", "层间温度≤100℃", "趁热轻击", "NiFe-55", "0.001742 mm"):
         assert token in report
     # 免责声明体措辞不得回流正文。
     for banned in ("不构成任何许用应力取值", "无法证明", "本结论不构成放行", "仅为探索"):

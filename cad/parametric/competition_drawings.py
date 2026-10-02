@@ -44,17 +44,19 @@ def sheet(title,number,subtitle):
 
 
 def finish(parts):
-    return parts+[line(50,719,1150,719),text(50,746,"COMPETITION-R1 | 单位 mm | 经设计计算与热模型诊断支撑的设计图 | 尺寸与形位要求按本图执行","small"),
-                  text(50,768,"来源：随包07号设计参数；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认","small"),'</svg>']
+    return parts+[line(50,719,1150,719),text(50,746,"中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行","small"),
+                  text(50,768,"来源：当前设计参数、真实座体BREP与计算；试制按说明书工艺评定计划执行","small"),'</svg>']
 
 
 def notes(parts,items,x=640,y=167,step=38):
     for i,item in enumerate(items):
-        parts.append(text(x,y+i*step,item))
+        
+        for j in range(0,len(item),32):
+            parts.append(text(x,y+i*step+(j//32)*16,item[j:j+32],'small'))
 
 
 def seat_sheet(spec):
-    parts=sheet("接头布局、座体尺寸与独立基准","HJ-R1-001","主设计：6P-FAIR_B，六段各18 mm；圆周段长来自真实圆柱界面测量")
+    parts=sheet("接头布局、座体尺寸与独立基准","HJ-001","主设计：8P-FAIR_B，八段各18 mm；焊后孔轴位置度在精整前检验")
     scale,cx,cy=3.0,310,395
     shape=read_brep(ROOT/spec["seat_brep"])
     edges=TopExp_Explorer(shape,TopAbs_EDGE)
@@ -75,8 +77,8 @@ def seat_sheet(spec):
               line(cx-260,cy,cx+260,cy,"#7a939f",.7),line(cx,cy-250,cx,cy+250,"#7a939f",.7),
               text(65,150,"俯视：真实BREP边界投影","section"),text(260,400,"Ø40","section"),
               text(115,671,"壳体 Ø160 / 内径名义 Ø150；H200；t5")]
-    for i in range(6):
-        angle=i*math.pi/3
+    for i in range(8):
+        angle=i*math.pi/4
         parts.append(text(cx+205*math.cos(angle)-5,cy-205*math.sin(angle)+5,str(i+1),"section"))
     notes(parts,["材料：QT450-10座体 / Q235B壳体",
                  "座体厚12；中心环外径82；槽根R2",
@@ -84,7 +86,7 @@ def seat_sheet(spec):
                  "壳体内径150.00～150.02（设计限值）",
                  "径向装配间隙0.01～0.04，不能靠间隙定心",
                  "座体底面距壳体下端100（工序设计尺寸）",
-                 "孔径40.000～40.025（自行分配公差）",
+                 "焊前孔40.010～40.018；最终40.000～40.025",
                  "A：壳体下端独立安装面",
                  "B：壳体内壁双测量带所建立的轴线",
                  "B定向按A法向约束；不以胀套轴冒充B",
@@ -95,24 +97,24 @@ def seat_sheet(spec):
 
 
 def joint_sheet(spec,result):
-    parts=sheet("四道焊接截面与工艺设计卡","HJ-R1-002","角焊缝：6×18；单段逐道焊；相邻段不同时起弧；本卡为工艺提案，不是评定合格WPS")
+    parts=sheet("两道脉冲TIG截面与pWPS","HJ-002","8×18角焊缝；根道＋盖面；QT侧预制Ni99层在轴承孔精加工前完成")
     parts += [box(435,185,50,360,"#cbd5e1"),box(115,485,320,60,"#efd18b"),
               polygon([(435,485),(235,485),(435,285)],"#e2a18b"),
               text(145,580,"QT450-10，t12"),text(410,165,"Q235B，t5"),
-              text(140,230,"等效焊脚 z=3.50～3.80","section"),
-              line(140,242,325,368,"#176b7b"),text(95,630,"图示为最终包络；四道面积不等于实际熔池形状"),
-              text(95,663,"每道沉积目标1.531～1.801 mm²；总面积6.125～7.206 mm²","small")]
+              text(140,230,"焊脚 z≥3.50 / 可达包络4.30","section"),
+              line(140,242,325,368,"#176b7b"),text(95,630,"根道目标2.8；名义最终4.0；以截面确认熔合"),
+              text(95,663,"总面积7.326～8.760 mm²；剩余Ni99隔离层≥0.8","small")]
     notes(parts,["方法：自动TIG；直流正接（电极负极）",
                  "焊材：NiFe 55类TIG实心棒，Ø1.6",
-                 "电流75 A；电压12 V；焊速1.5 mm/s",
-                 f'固定送丝 {result["process"]["fixed_feed_mm_s"]:.3f} mm/s；共4道',
-                 "沉积效率假设0.85～1.00，固定送丝计算",
+                 "脉冲100/50 A；50%占空；20 Hz；12 V",
+                 f'固定送丝 {result["process"]["fixed_feed_mm_s"]:.3f} ±0.05 mm/s；共2道；焊速1.65±2%',
+                 "Ø1.60±0.01；沉积效率0.90～0.98入边界",
                  "纯氩99.999%；名义10 L/min",
-                 "预热名义150℃；起弧前各监测点≥130℃",
-                 "层间最高温度<200℃；超温等待",
-                 "每道顺序 1→4→3→6→2→5",
-                 "每道净热输入330 J/mm；四道1320 J/mm",
-                 "本件净热输入142.56 kJ；弧燃时间288 s",
+                 "不预热；起弧前工件温度15～35℃",
+                 "层间温度≤100℃；超温等待",
+                 "每道顺序 1→5→3→7→2→6→4→8",
+                 "每道净热300 J/mm；在线窗口250～350",
+                 "本件净热输入86.40 kJ；弧燃时间174.5 s",
                  "停弧后≥120 s且最高温度<55℃才松夹",
                  "冷却至20±1℃后独立测量并判定"])
     return finish(parts)
@@ -120,7 +122,7 @@ def joint_sheet(spec,result):
 
 def fixture_sheet(spec,result):
     f=spec["fixture"]
-    parts=sheet("胀套定位、端面夹紧与主动回退","HJ-R1-003","内部锥只驱动圆柱胀套；轴向500 N通过独立压环—座体—底部三支点承受")
+    parts=sheet("胀套定位、端面夹紧与主动回退","HJ-003","内部锥只驱动圆柱胀套；轴向500 N通过独立压环—座体—底部三支点承受")
     # 局部剖面放大，不将占位外包络伪装成加工细节。
     parts += [box(90,325,125,110,"#efd18b"),box(415,325,125,110,"#efd18b"),
               box(218,325,12,110,"#8cb6ae"),box(400,325,12,110,"#8cb6ae"),
@@ -140,9 +142,9 @@ def fixture_sheet(spec,result):
                  "正向顶回肩＋拉杆；回退行程1.00",
                  f'覆盖全径差所需理想行程 {result["fixture"]["positive_return_stroke_required_mm"]:.3f}',
                  "μ=0.20仍可能自锁，禁止仅靠弹簧回位",
-                 "径向合力标量上限100 N（机构设计要求）",
-                 "摩擦未知时驱动力上限17.63 N，再限行程",
-                 "0.221 MPa仅名义平均带压，不是峰值",
+                 "径向预载≤100 N；热反力由机械止挡承受",
+                 "胀套6指：L30、t0.8、宽19；外圆同轴≤0.003",
+                 "芯轴Ø36/内孔Ø24；止挡设计承载5000 N",
                  "上部压环／执行器包络R30，z112～220",
                  "温度满足→压环卸载→顶回→确认收拢",
                  "下部支承与接料盘同一组件向下退出"])
@@ -150,7 +152,7 @@ def fixture_sheet(spec,result):
 
 
 def shield_sheet(spec,result):
-    parts=sheet("连续防护、承力组件与退出路径","HJ-R1-004","底口在焊接与回收工序均保持开放；内机件在本工序以后安装；底部预留120 mm操作空间")
+    parts=sheet("连续防护、承力组件与退出路径","HJ-004","底口在焊接与回收工序均保持开放；内机件在本工序以后安装；底部预留120 mm操作空间")
     scale,cx,base=2.25,290,670
     x=lambda r:cx+r*scale
     y=lambda z:base-z*scale
@@ -166,13 +168,13 @@ def shield_sheet(spec,result):
               rz(-30,30,112,220,"#8cb6ae"),line(x(40),y(84),x(40),y(-10),"#176b7b",3),
               polygon([(x(37),y(-6)),(x(43),y(-6)),(x(40),y(-12))],"#176b7b"),
               text(65,155,"同轴工序剖面，翼片方向简化投影","small"),
-              text(65,698,"盘面保持朝上，下撤全程贴壁，不折叠脏面","small")]
+              text(65,698,"盘面朝上；密封回缩0.5后竖直下撤；禁止刮壁","small")]
     notes(parts,["刚性盘Ø148；底板1；底面z90",
-                 "连续薄裙：安装外缘Ø150，z94；t0.15",
-                 "盘体—薄裙、穿盘支承均连续密封连接",
-                 "薄裙径向顺应能力要求≥0.35",
-                 "贴壁后覆盖R74.98落物路径；不留1 mm缝",
-                 "名义接触不等于热态密封；磨损需验证",
+                 "C11000铜环OD149.60 / ID143.60 / z94～99",
+                 "静态密封0.30厚；先回缩再下撤，避免自生屑",
+                 "水路Ø2，0.20 L/min；气水分离，检漏互锁",
+                 "气道3×2；12孔Ø1.0向上；10～15 L/min",
+                 "静态密封＋盘面截留；气幕辅助，不承诺悬浮全部颗粒",
                  "下撤不经过Ø40孔，不依赖收折倒渣",
                  "焊枪30°弯头＋竖直枪体；喷嘴Ø10",
                  "送丝管与焊枪周向错开，出口偏置y=-4",
@@ -185,19 +187,19 @@ def shield_sheet(spec,result):
 
 def inspection_sheet(spec, result):
     """把焊接顺序、测量基准和放行条件放在一张可执行的检查图中。"""
-    parts=sheet("焊接顺序、测量基准与放行卡","HJ-R1-005",
+    parts=sheet("焊接顺序、测量基准与放行卡","HJ-005",
                 "数字样机执行卡：顺序用于避免相邻段同时起弧；尺寸放行以A、B独立基准和冷态复测为准")
     parts += [text(70,160,"一、焊接顺序与温度门控","section")]
-    sequence=["1","4","3","6","2","5"]
+    sequence=["1","5","3","7","2","6","4","8"]
     for i, item in enumerate(sequence):
-        x=85+i*82
+        x=75+i*68
         parts.append(circle(x,235,25,fill="#d7eef0",stroke="#176b7b"))
         parts.append(text(x-7,242,item,"section"))
         if i < len(sequence)-1:
             parts.append(line(x+28,235,x+55,235,"#176b7b",2))
             parts.append(polygon([(x+55,235),(x+47,230),(x+47,240)],"#176b7b"))
-    parts += [text(72,295,"起弧前：监测点≥130℃", "small"),
-              text(72,323,"层间最高温度<200℃；超温等待", "small"),
+    parts += [text(72,295,"起弧前：工件温度15～35℃", "small"),
+              text(72,323,"层间温度≤100℃；超温等待", "small"),
               text(72,351,"停弧后≥120 s且最高温度<55℃才松夹", "small"),
               text(72,379,"冷却至20±1℃后进入独立测量", "small")]
     parts += [text(70,445,"二、基准与测量闭环","section"),
@@ -212,7 +214,7 @@ def inspection_sheet(spec, result):
         parts.append(polygon([(x+70,535),(x+62,530),(x+62,540)],"#176b7b"))
     parts += [text(70,625,"三、数字放行条件（设计目标，不代表实测合格）","section"),
               text(90,660,"Ø40孔轴：位置度 Ø0.05，相对A、B；测量长度12 mm", "small"),
-              text(90,686,"焊脚等效 z=3.50～3.80；单段长度18；六段总长108 mm", "small"),
+              text(90,686,"焊脚 z≥3.50；单段18；八段总长144 mm", "small"),
               text(630,660,"外缘 Ø149.94～149.98；壳体内径 Ø150.00～150.02", "small"),
               text(630,686,"检查记录需绑定图号、批次、温度曲线和复测结果", "small")]
     return finish(parts)
@@ -221,7 +223,7 @@ def inspection_sheet(spec, result):
 def sleeve_detail_sheet(spec, result):
     """胀套局部详图：冻结可制造接口，但明确仍属设计评审图。"""
     f = spec["fixture"]
-    parts = sheet("胀套—锥芯—拉杆—压环局部剖视详图", "HJ-R1-006",
+    parts = sheet("胀套—锥芯—拉杆—压环局部剖视详图", "HJ-006",
                   "局部制造定义 / SECTION B-B / 尺寸为设计冻结值，未作制造签审")
     # 左侧为轴向剖面，右侧为胀套端视图；所有槽均为盲底圆角，避免贯穿泄漏路径。
     parts += [text(70, 155, "轴向剖面 B-B", "section"),
@@ -241,18 +243,60 @@ def sleeve_detail_sheet(spec, result):
         x2, y2 = 240 + 105 * math.cos(a), 625 - 105 * math.sin(a)
         parts.append(line(x1, y1, x2, y2, "#dc2626", 3))
     notes(parts, [
-        "胀套：17-4PH 或同等强度耐蚀钢；有效壁厚2.0",
+        "胀套：17-4PH；弹性指壁厚0.80±0.03，长度30",
         "槽数6；槽宽0.80；槽底R1.00；槽深贯穿至内孔但不延伸出接触带",
-        "接触带 z101～103、109～111；覆盖率90%",
+        "连续接触带 z100.2～111.8；开槽后覆盖率90%",
         "锥芯半角10°；有效驱动长度8；锥面Ra1.6",
         "拉杆接口 M12×1.5；压环端面承担500 N轴向力",
         "回退肩＋机械止挡：正向行程1.00，收拢确认后才允许下撤",
         "防转：拉杆端键宽4×4，胀套外圆导向键槽；不靠摩擦传扭",
-        "径向合力标量≤100 N；驱动力上限由可更换限力垫片设定",
+        "预载≤100 N；机械止挡承受热收缩反力；强制回退",
         "配合：锥芯/拉杆 H7/g6；胀套外圆与孔为功能接触，不作过盈配合",
         "关键表面：接触带Ra0.8，槽口去毛刺R0.2，边缘不得划伤孔壁",
         "详图用于工程评审；材料批次、热处理和弹性回程仍需验证",
     ], x=620, y=170, step=36)
+    return finish(parts)
+
+def gas_water_detail_sheet(spec,result):
+    parts=sheet('铜环分体、静态密封与独立气水路','HJ-007','铜环两半；接料盘朝上；气水互不相通；全部工具在装配进入内腔前清洗清点')
+    cx,cy=300,355
+    parts+=[circle(cx,cy,230,fill='#d9ad83'),circle(cx,cy,221,fill='#ffffff'),
+            circle(cx,cy,225,stroke='#2563eb'),line(60,355,540,355,'#475569',2),
+            text(80,155,'俯视：分体缝0.20，两端搭接密封宽5','small'),
+            text(100,635,'铜环 OD149.60±0.05 / ID143.60±0.05 / 高5.00±0.05','small'),
+            text(95,666,'外缘可更换石英密封0.30厚；安装压缩0.10；最高100℃','small')]
+    for i in range(12):
+        a=2*math.pi*i/12
+        parts.append(circle(cx+210*math.cos(a),cy+210*math.sin(a),3,fill='#059669'))
+    parts += [line(75,395,170,465,'#2563eb',2),text(75,488,'水入口/出口 M5；Ø2水道','small'),
+              line(450,230,540,190,'#059669',2),text(340,174,'12×Ø1.0喷孔，等分30°','small')]
+    notes(parts,['铜环C11000；两半以定位销Ø3、M3螺栓连盘',
+      '分体缝0.20；上下错层搭接5宽，防直通落屑',
+      '铜环z94～99；离座底面1.00，禁止顶压翼片',
+      '气道3×2；出口向上并朝缝下缘偏15°',
+      '喷孔12×Ø1.0，分配公差±0.05；不吹熔池',
+      '环水道Ø2.0，轴心R73.3，z96.5；最小壁0.5',
+      '气/水接口分别标色；0.3 MPa水路保压无泄漏',
+      '水0.20 L/min；入口20±5℃；出口≤35℃',
+      '气幕10～15 L/min；保护气8～12 L/min',
+      '顶罩抽吸22～28 L/min；腔内压差0～+20 Pa',
+      '取流量、压力、漏水、铜环回缩位信号入PLC',
+      '停弧冷却→密封径向回缩0.5→盘面朝上下撤',
+      '盘面与焊缝下方抽吸采样；不得在内腔清洗'])
+    return finish(parts)
+
+def workstation_sheet(spec,result):
+    parts=sheet('自动焊接工作站与工装资源配置','HJ-008','定位装配 / 机器人焊接 / 带工装冷却 / 独立CMM检测；冷却保持同一定位托盘')
+    for x,title in [(70,'装配'),(345,'焊接'),(620,'带工装冷却'),(900,'检测')]:
+        parts += [box(x,240,230,140,'#e7f1f5'),text(x+24,280,title,'section')]
+    parts += [text(80,320,'清洗、装夹120 s','small'),text(350,320,'两道8段，弧燃174.5 s','small'),
+              text(625,320,'温度门控，保持胀套','small'),text(915,320,'20±1℃，独立A/B','small')]
+    for x in (300,575,850):parts.append(line(x,310,x+40,310,'#176b7b',3))
+    parts += [box(345,430,500,95,'#f8fafc'),text(368,463,'机器人＋竖轴变位机；测温、弧压及送丝采样','small'),
+              text(368,498,'安全PLC：防护门、夹紧、气幕、保护气、漏水、轨迹','small'),
+              text(80,590,'资源节拍下界：焊接174.5＋16段×18=462.5 s；装配与检测独立各120 s','small'),
+              text(80,625,'三套以上定位托盘支持离线保持冷却；若冷却时间长于925 s，应按计算增加托盘','small'),
+              text(80,660,'单件串行周期＝装配＋焊接段次＋实际冷却＋检测；不把并行节拍说成单件周期','small')]
     return finish(parts)
 
 
@@ -266,11 +310,13 @@ def main():
     drawings={"bearing-seat.svg":seat_sheet(spec),"joint-detail.svg":joint_sheet(spec,result),
               "fixture-assembly.svg":fixture_sheet(spec,result),"protected-process-assembly.svg":shield_sheet(spec,result),
               "inspection-and-release.svg":inspection_sheet(spec,result),
-              "sleeve-detail.svg":sleeve_detail_sheet(spec,result)}
+              "sleeve-detail.svg":sleeve_detail_sheet(spec,result),
+              "gas-water-detail.svg":gas_water_detail_sheet(spec,result),
+              "workstation.svg":workstation_sheet(spec,result)}
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
     core = [name for name in drawings if name != "sleeve-detail.svg"]
-    (out/"drawing-manifest.json").write_text(json.dumps({"version":"COMPETITION-R1","source":"project/competition-design.yaml",
+    (out/"drawing-manifest.json").write_text(json.dumps({"version":"COMPETITION-R3","source":"project/competition-design.yaml",
         "status":"competition design; not manufacturing release","drawings":core,"drawing_count":len(core),
         "supplemental_drawings":["sleeve-detail.svg"],
         "excluded":"本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"},ensure_ascii=False,indent=2),encoding="utf-8")

@@ -1,4 +1,4 @@
-"""生成 COMPETITION-R1 的确定性鲁棒边界，不进行随机抽样或实物性能推断。"""
+"""生成 COMPETITION-R2 的确定性鲁棒边界，不进行随机抽样或实物性能推断。"""
 from __future__ import annotations
 
 import csv
@@ -86,7 +86,7 @@ def strength_boundary(authority, assessment):
     ax.axvline(authority["assumptions"]["load_scale"], color="#555", ls="--", lw=1)
     ax.axhline(authority["assumptions"]["assumed_allowable_mpa"], color="#555", ls=":", lw=1)
     ax.set(xlabel="载荷倍率（相对参考包络）", ylabel="假设许用应力 / MPa",
-           title="COMPETITION-R1 确定性 6P → 8P 切换边界")
+           title="COMPETITION-R2 确定性 6P → 8P 切换边界")
     ax.set_xlim(.5, 2.0); ax.set_ylim(0, 125); ax.grid(alpha=.2); ax.legend(loc="upper left", frameon=True)
     fig.tight_layout(); fig.savefig(OUT / "strength-boundary.svg", format="svg", metadata=SVG_METADATA); plt.close(fig)
     return {"basis": "required_allowable_mpa scales linearly with load multiplier",
@@ -123,18 +123,16 @@ def position_boundary():
                      "thermal_max_allowed_radial_mm": round(allowed, 6),
                      "total_diameter_with_uncertainty_mm": round(total_dia, 6),
                      "closes": total_dia <= p["limit_diameter_mm"] + 1e-12})
-    # 连续浅波纹薄裙的梁近似：把半波长视为简支弯曲长度，给出数量级应变检查。
-    t, wave_pitch, compression = 0.15, 24.0, 0.35
-    half_span = wave_pitch / 2
-    bending_strain = 6 * compression * t / half_span**2
-    skirt = {"configuration": "连续浅波纹金属薄裙＋刚性接料盘", "thickness_mm": t,
-             "wave_pitch_mm": wave_pitch, "radial_compliance_required_mm": compression,
-             "beam_approx_bending_strain": round(bending_strain, 7),
-             "interpretation": "数量级筛查；候选弹簧不锈钢需以材料证书屈服应变和热态循环试验复核"}
+    # 采用可承受电弧热输入与磨损验证的分体式 C11000 紫铜衬环，不使用超薄金属薄裙。
+    copper_ring = {"configuration": "分体式C11000紫铜衬环＋刚性不锈钢接料盘＋底部微正压气幕",
+                   "material": "C11000", "wall_thickness_mm": 3.0,
+                   "outer_radius_mm": 75.0, "inner_radius_mm": 72.0,
+                   "axial_span_mm": 4.0, "gas_flow_l_min": [10.0, 15.0],
+                   "interpretation": "设计输入；热接触、磨损和颗粒拦截须在V5实物试验中确认"}
     payload = {"limit_diameter_mm": p["limit_diameter_mm"], "limit_radial_mm": limit_radial,
                "tilt_radial_allowance_mm": tilt_radial, "other_radial_error_baseline_mm": other,
                "formula": "thermal_max = 0.025 - other_radial_error - measurement_uncertainty_diameter/2",
-               "rows": rows, "continuous_skirt_check": skirt,
+               "rows": rows, "copper_ring_shield_check": copper_ring,
                "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"}
     (OUT / "position-boundary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     with (OUT / "position-boundary.csv").open("w", encoding="utf-8-sig", newline="") as f:
@@ -158,7 +156,7 @@ def main():
     if font_name is None:
         print("警告：未找到中文字体，边界图内的中文可能缺字形")
     authority, assessment = load_inputs()
-    payload = {"version": "COMPETITION-R1-DETERMINISTIC-BOUNDARY-1",
+    payload = {"version": "COMPETITION-R2-DETERMINISTIC-BOUNDARY-1",
                "cjk_font": font_name,
                "strength": strength_boundary(authority, assessment), "position": position_boundary()}
     (OUT / "boundary-summary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

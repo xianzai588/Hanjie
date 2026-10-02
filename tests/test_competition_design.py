@@ -17,10 +17,13 @@ def test_fixed_feed_closes_both_efficiency_endpoints():
     result = process_balance(spec, nominal)
     p = spec["process"]
     for eta, leg in zip(p["deposition_efficiency_range"], result["equivalent_leg_range_mm"]):
-        volume_one_second = math.pi * p["wire_diameter_mm"]**2/4 * result["fixed_feed_mm_s"] * eta * p["pass_count"]
-        assert volume_one_second == pytest.approx(leg**2/2*nominal["travel_speed_mm_s"])
-    assert result["equivalent_leg_range_mm"][0] == 3.5
-    assert result["equivalent_leg_range_mm"][1] < 3.8
+        d = p["wire_diameter_mm"] + (-p["wire_diameter_tolerance_mm"] if eta == p["deposition_efficiency_range"][0] else p["wire_diameter_tolerance_mm"])
+        feed = result["fixed_feed_mm_s"] + (-p["feed_tolerance_mm_s"] if eta == p["deposition_efficiency_range"][0] else p["feed_tolerance_mm_s"])
+        speed = nominal["travel_speed_mm_s"] * (1 + p["travel_relative_tolerance"] if eta == p["deposition_efficiency_range"][0] else 1 - p["travel_relative_tolerance"])
+        volume_one_second = math.pi * d**2/4 * feed * eta * p["pass_count"] / speed
+        assert volume_one_second == pytest.approx(leg**2/2)
+    assert result["equivalent_leg_range_mm"][0] >= 3.5
+    assert result["equivalent_leg_range_mm"][1] < 4.3
     spec["process"]["clearance_leg_mm"] = 3.5
     with pytest.raises(ValueError, match="包络"):
         process_balance(spec, nominal)
@@ -39,7 +42,7 @@ def test_support_plane_budget_matches_independent_plane_fit():
     budget = precision_budget(spec)
     assert max(slopes) == pytest.approx(budget["support_tilt_rad"])
     assert budget["design_budget_closes"]
-    assert budget["thermal_residual_design_verified"]
+    assert not budget["thermal_residual_design_verified"]
     assert budget["physical_validation_recommended"]
     spec["precision"]["radial_allocations_mm"]["thermal_residual_target"] = .012
     assert not precision_budget(spec)["design_budget_closes"]
@@ -58,7 +61,7 @@ def test_revised_access_has_no_named_body_collision(design):
     assert max(g["cartridge_intersections_mm3"].values()) < 1e-6
     assert g["bottom_route_allowed"]
     assert g["nominal_vertical_drop_coverage"]
-    assert design["release"]["design_verified"] and design["release"]["physical_validation_recommended"]
+    assert not design["release"]["design_verified"] and design["release"]["physical_validation_recommended"]
     assert not design["release"]["product_conformity_claimed"]
 
 
@@ -71,7 +74,7 @@ def test_internal_cone_has_positive_return_even_if_self_locking(design):
 
 def test_weld_interlocks_fail_closed():
     ready = dict(shield_present=True, bottom_open=True, fixture_locked=True, path_checked=True,
-                 temperature_min=20, temperature_max=35, gas_flow_l_min=10)
+                 temperature_min=20, temperature_max=35, gas_flow_l_min=10, curtain_flow_l_min=10)
     assert cycle_permission("weld", **ready)
     for field, value in (("shield_present",False),("bottom_open",False),("fixture_locked",False),
                          ("path_checked",False),("temperature_max",101),("gas_flow_l_min",None),
@@ -106,7 +109,7 @@ def test_release_threshold_matches_baseline_band():
 def test_report_rejects_stale_inputs(monkeypatch):
     import hanjie.domain.competition_design as module
     snapshot = copy.deepcopy(current_assessment(ROOT)["inputs"])
-    snapshot["structured"]["project/process.yaml"]["process"]["nominal"]["current_a"] += 1
+    snapshot["structured"]["project/process-r3.yaml"]["process"]["nominal"]["current_a"] += 1
     monkeypatch.setattr(module, "input_snapshot", lambda root:snapshot)
     with pytest.raises(ValueError, match="输入已变化"):
         current_assessment(ROOT)
@@ -115,11 +118,13 @@ def test_report_rejects_stale_inputs(monkeypatch):
 def test_current_drawing_manifest_excludes_legacy_fixture():
     import json
     manifest = json.loads((ROOT/"cad/generated/engineering-drawings/drawing-manifest.json").read_text(encoding="utf-8"))
-    assert manifest["version"] == "COMPETITION-R1"
-    assert len(manifest["drawings"]) == 5
+    assert manifest["version"] == "COMPETITION-R3"
+    assert len(manifest["drawings"]) == 7
+    assert "sleeve-detail.svg" in manifest["supplemental_drawings"]
     assert "inspection-and-release.svg" in manifest["drawings"]
     assert "fixture-part.svg" not in manifest["drawings"]
     assert "weld-assembly.svg" not in manifest["drawings"]
+    assert "gas-water-detail.svg" in manifest["drawings"]
 
 
 @pytest.mark.parametrize("key",["fixed_feed_mm_s","total_net_heat_j","arc_on_time_s"])

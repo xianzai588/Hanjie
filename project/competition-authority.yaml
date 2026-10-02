@@ -1,20 +1,20 @@
-version: COMPETITION-R1-AUTHORITY
-scope: 参赛说明书与答辩统一引用的保守设计口径
-selected_candidate: 6P-FAIR_B/4pass
+version: COMPETITION-R3-AUTHORITY
+scope: 固定题焊接设计说明书与答辩统一引用的当前冻结口径
+selected_candidate: 8P-FAIR_B/2pass
 assumptions:
-  deposition_efficiency: 0.85
+  deposition_efficiency: 0.9
   load_scale: 1.0
   assumed_allowable_mpa: 60.0
   equivalent_leg_min_mm: 3.5
 results:
-  required_allowable_mpa: 52.17319678607985
-  conditional_margin: 1.1500157877235615
-  weld_length_mm: 108.0
-  net_heat_input_kj: 142.56
-  arc_on_time_s: 288.0
-  fallback_candidate: 8P-FAIR_B/4pass
-  fallback_required_allowable_mpa: 39.12989758955982
+  required_allowable_mpa: 39.12989758955982
+  conditional_margin: 1.5333543836314178
+  weld_length_mm: 144.0
+  net_heat_input_kj: 86.4
+  arc_on_time_s: 174.545
+  fallback_candidate: 6P-FAIR_B/2pass
+  fallback_required_allowable_mpa: 52.17319678607985
 endpoints:
-  current_efficiency_0_85_required_allowable_mpa: 52.17319678607985
-  interpretation: 当前 COMPETITION-R1 四道比较已按固定送丝与效率下界闭合；此值用于保守筛查。
-decision_rule: 6P在保守端点通过条件筛查时作为当前数字推荐；实物热残余或裂纹门失败则切换8P
+  current_efficiency_0_90_required_allowable_mpa: 39.12989758955982
+  interpretation: 当前 COMPETITION-R3 两道比较按固定送丝与效率窗口闭合；此值用于条件承载筛查。
+decision_rule: 8P两道作为当前数字推荐；首件热残余、熔合、裂纹或疲劳门失败时按说明书切换或返修评审

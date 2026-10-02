@@ -1,0 +1,38 @@
+{
+  "layout": 6,
+  "h_mm": 2.5,
+  "dt_s": 2,
+  "nodes": 8881,
+  "tetrahedra": 28520,
+  "peak_C": 657.1892820788166,
+  "final_max_C": 20.497817447925687,
+  "released": true,
+  "max_newton_iterations": 7,
+  "max_equilibrium_residual_N": 0.0497290590978352,
+  "max_mandrel_reaction_N": 1620.9892040927343,
+  "input_J": 64845.0,
+  "loss_J": 65762.8752953886,
+  "stored_J": -917.8752953961181,
+  "energy_balance_relative": 1.1594497091593235e-13,
+  "elapsed_s": 824.9993050000012,
+  "fit": {
+    "position_diameter_mm": 0.0007559830917471405,
+    "bore_radius_mm": 19.99991379550612,
+    "bore_axis_slopes": [
+      -2.3834859206727575e-06,
+      6.671412419391754e-06
+    ],
+    "bore_fit_rms_mm": 0.0009336007715431164,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "max_von_mises_MPa": 325.13591206701716,
+  "peak_nodal_C": 716.5683515858959,
+  "accepted": false,
+  "rejection": "filler mean peak below fusion; apparent energy formulation does not conserve birth enthalpy"
+}

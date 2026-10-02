@@ -51,13 +51,18 @@
       "closes": true
     }
   ],
-  "continuous_skirt_check": {
-    "configuration": "连续浅波纹金属薄裙＋刚性接料盘",
-    "thickness_mm": 0.15,
-    "wave_pitch_mm": 24.0,
-    "radial_compliance_required_mm": 0.35,
-    "beam_approx_bending_strain": 0.0021875,
-    "interpretation": "数量级筛查；候选弹簧不锈钢需以材料证书屈服应变和热态循环试验复核"
+  "copper_ring_shield_check": {
+    "configuration": "分体式C11000紫铜衬环＋刚性不锈钢接料盘＋底部微正压气幕",
+    "material": "C11000",
+    "wall_thickness_mm": 3.0,
+    "outer_radius_mm": 75.0,
+    "inner_radius_mm": 72.0,
+    "axial_span_mm": 4.0,
+    "gas_flow_l_min": [
+      10.0,
+      15.0
+    ],
+    "interpretation": "设计输入；热接触、磨损和颗粒拦截须在V5实物试验中确认"
   },
   "plot": "studies/ROBUST-BOUNDARY/results/position-boundary.svg"
 }

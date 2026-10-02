@@ -128,10 +128,11 @@ def validate_report_numbers(result, source=SOURCE):
     """计算变更后禁止悄悄发布旧摘要；正文论证需要随数字共同修订。"""
     body = source.read_text(encoding="utf-8")
     p = result["process"]
-    required = [f"固定送丝{p['fixed_feed_mm_s']:.3f} mm/s",
-                f"每件名义净热输入{p['total_net_heat_j']/1000:.2f} kJ，弧燃时间{p['arc_on_time_s']:.0f} s",
-                f"合计{result['precision']['diameter_with_uncertainty_target_mm']:.4f}",
-                f"包络间距{result['geometry']['torch_feed_clearance_mm']:.2f} mm"]
+    required = ["8P-FAIR_B", "两道脉冲 TIG",
+                f"净热 {p['total_net_heat_j']/1000:.2f} kJ",
+                f"弧燃 {p['arc_on_time_s']:.1f} s",
+                f"送丝 {p['fixed_feed_mm_s']:.2f}",
+                "冷却至20±1℃", "热残余允许上限"]
     if any(value not in body for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")
 
@@ -146,7 +147,7 @@ def main() -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm,
                             topMargin=18 * mm, bottomMargin=22 * mm,
-                            title="QT450-10/Q235B Competition R1 Design Report",author="")
+                            title="QT450-10/Q235B Welding Fixed Topic R3 Design Report",author="")
     generated_status = write_status_artifacts(ROOT)
     # 研究状态独立保留，正文只呈现比赛论证所需证据。
     story = build_story()

@@ -4,32 +4,40 @@
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">焊接顺序、测量基准与放行卡</text>
 <text x="50" y="99" class="small">数字样机执行卡：顺序用于避免相邻段同时起弧；尺寸放行以A、B独立基准和冷态复测为准</text>
-<text x="1020" y="65" class="section">HJ-R1-005</text>
+<text x="1020" y="65" class="section">HJ-005</text>
 <text x="70" y="160" class="section">一、焊接顺序与温度门控</text>
-<circle cx="85" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
-<text x="78" y="242" class="section">1</text>
-<line x1="113" y1="235" x2="140" y2="235" stroke="#176b7b" stroke-width="2"/>
-<polygon points="140.00,235.00 132.00,230.00 132.00,240.00" fill="#176b7b" stroke="#334155"/>
-<circle cx="167" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
-<text x="160" y="242" class="section">4</text>
-<line x1="195" y1="235" x2="222" y2="235" stroke="#176b7b" stroke-width="2"/>
-<polygon points="222.00,235.00 214.00,230.00 214.00,240.00" fill="#176b7b" stroke="#334155"/>
-<circle cx="249" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
-<text x="242" y="242" class="section">3</text>
-<line x1="277" y1="235" x2="304" y2="235" stroke="#176b7b" stroke-width="2"/>
-<polygon points="304.00,235.00 296.00,230.00 296.00,240.00" fill="#176b7b" stroke="#334155"/>
-<circle cx="331" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
-<text x="324" y="242" class="section">6</text>
-<line x1="359" y1="235" x2="386" y2="235" stroke="#176b7b" stroke-width="2"/>
-<polygon points="386.00,235.00 378.00,230.00 378.00,240.00" fill="#176b7b" stroke="#334155"/>
-<circle cx="413" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
-<text x="406" y="242" class="section">2</text>
-<line x1="441" y1="235" x2="468" y2="235" stroke="#176b7b" stroke-width="2"/>
-<polygon points="468.00,235.00 460.00,230.00 460.00,240.00" fill="#176b7b" stroke="#334155"/>
-<circle cx="495" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
-<text x="488" y="242" class="section">5</text>
-<text x="72" y="295" class="small">起弧前：监测点≥130℃</text>
-<text x="72" y="323" class="small">层间最高温度&lt;200℃；超温等待</text>
+<circle cx="75" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="68" y="242" class="section">1</text>
+<line x1="103" y1="235" x2="130" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="130.00,235.00 122.00,230.00 122.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="143" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="136" y="242" class="section">5</text>
+<line x1="171" y1="235" x2="198" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="198.00,235.00 190.00,230.00 190.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="211" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="204" y="242" class="section">3</text>
+<line x1="239" y1="235" x2="266" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="266.00,235.00 258.00,230.00 258.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="279" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="272" y="242" class="section">7</text>
+<line x1="307" y1="235" x2="334" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="334.00,235.00 326.00,230.00 326.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="347" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="340" y="242" class="section">2</text>
+<line x1="375" y1="235" x2="402" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="402.00,235.00 394.00,230.00 394.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="415" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="408" y="242" class="section">6</text>
+<line x1="443" y1="235" x2="470" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="470.00,235.00 462.00,230.00 462.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="483" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="476" y="242" class="section">4</text>
+<line x1="511" y1="235" x2="538" y2="235" stroke="#176b7b" stroke-width="2"/>
+<polygon points="538.00,235.00 530.00,230.00 530.00,240.00" fill="#176b7b" stroke="#334155"/>
+<circle cx="551" cy="235" r="25" fill="#d7eef0" stroke="#176b7b"/>
+<text x="544" y="242" class="section">8</text>
+<text x="72" y="295" class="small">起弧前：工件温度15～35℃</text>
+<text x="72" y="323" class="small">层间温度≤100℃；超温等待</text>
 <text x="72" y="351" class="small">停弧后≥120 s且最高温度&lt;55℃才松夹</text>
 <text x="72" y="379" class="small">冷却至20±1℃后进入独立测量</text>
 <text x="70" y="445" class="section">二、基准与测量闭环</text>
@@ -49,10 +57,10 @@
 <polygon points="930.00,535.00 922.00,530.00 922.00,540.00" fill="#176b7b" stroke="#334155"/>
 <text x="70" y="625" class="section">三、数字放行条件（设计目标，不代表实测合格）</text>
 <text x="90" y="660" class="small">Ø40孔轴：位置度 Ø0.05，相对A、B；测量长度12 mm</text>
-<text x="90" y="686" class="small">焊脚等效 z=3.50～3.80；单段长度18；六段总长108 mm</text>
+<text x="90" y="686" class="small">焊脚 z≥3.50；单段18；八段总长144 mm</text>
 <text x="630" y="660" class="small">外缘 Ø149.94～149.98；壳体内径 Ø150.00～150.02</text>
 <text x="630" y="686" class="small">检查记录需绑定图号、批次、温度曲线和复测结果</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="746" class="small">COMPETITION-R1 | 单位 mm | 经设计计算与热模型诊断支撑的设计图 | 尺寸与形位要求按本图执行</text>
-<text x="50" y="768" class="small">来源：随包07号设计参数；座体采用6P-FAIR_B真实BREP；试制阶段按说明书§9.2完成工装重复性、热接触与设备联调确认</text>
+<text x="50" y="746" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
+<text x="50" y="768" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书工艺评定计划执行</text>
 </svg>

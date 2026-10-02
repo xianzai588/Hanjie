@@ -1,0 +1,15 @@
+{
+  "position_diameter_mm": 0.0017418444242139368,
+  "mesh_difference_absolute_mm": 0.0007839194657555195,
+  "mesh_difference_relative_to_response": 0.45005136788223116,
+  "mesh_difference_fraction_of_design_limit": 0.01567838931511039,
+  "engineering_mesh_acceptance": "absolute difference ≤ 0.0025 mm (5% of design limit); also report response-relative difference, never hide it",
+  "engineering_mesh_pass": true,
+  "max_stress_MPa": 314.3541926366984,
+  "max_displacement_mm": 0.026527012777300376,
+  "cold_measurement_temperature_pass": true,
+  "full_part_result_valid": true,
+  "hotspot_QT_slot_root_residual_VM_MPa": 17.102009947540033,
+  "position_budget_mm": 0.03134184442421394,
+  "position_design_pass": true
+}

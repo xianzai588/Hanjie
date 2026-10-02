@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">自动焊接工作站与工装资源配置</text>
+<text x="50" y="99" class="small">定位装配 / 机器人焊接 / 带工装冷却 / 独立CMM检测；冷却保持同一定位托盘</text>
+<text x="1020" y="65" class="section">HJ-008</text>
+<rect x="70" y="240" width="230" height="140" fill="#e7f1f5" stroke="#334155"/>
+<text x="94" y="280" class="section">装配</text>
+<rect x="345" y="240" width="230" height="140" fill="#e7f1f5" stroke="#334155"/>
+<text x="369" y="280" class="section">焊接</text>
+<rect x="620" y="240" width="230" height="140" fill="#e7f1f5" stroke="#334155"/>
+<text x="644" y="280" class="section">带工装冷却</text>
+<rect x="900" y="240" width="230" height="140" fill="#e7f1f5" stroke="#334155"/>
+<text x="924" y="280" class="section">检测</text>
+<text x="80" y="320" class="small">清洗、装夹120 s</text>
+<text x="350" y="320" class="small">两道8段，弧燃174.5 s</text>
+<text x="625" y="320" class="small">温度门控，保持胀套</text>
+<text x="915" y="320" class="small">20±1℃，独立A/B</text>
+<line x1="300" y1="310" x2="340" y2="310" stroke="#176b7b" stroke-width="3"/>
+<line x1="575" y1="310" x2="615" y2="310" stroke="#176b7b" stroke-width="3"/>
+<line x1="850" y1="310" x2="890" y2="310" stroke="#176b7b" stroke-width="3"/>
+<rect x="345" y="430" width="500" height="95" fill="#f8fafc" stroke="#334155"/>
+<text x="368" y="463" class="small">机器人＋竖轴变位机；测温、弧压及送丝采样</text>
+<text x="368" y="498" class="small">安全PLC：防护门、夹紧、气幕、保护气、漏水、轨迹</text>
+<text x="80" y="590" class="small">资源节拍下界：焊接174.5＋16段×18=462.5 s；装配与检测独立各120 s</text>
+<text x="80" y="625" class="small">三套以上定位托盘支持离线保持冷却；若冷却时间长于925 s，应按计算增加托盘</text>
+<text x="80" y="660" class="small">单件串行周期＝装配＋焊接段次＋实际冷却＋检测；不把并行节拍说成单件周期</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="746" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
+<text x="50" y="768" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书工艺评定计划执行</text>
+</svg>
