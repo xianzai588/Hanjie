@@ -46,5 +46,7 @@
     "evidence_level": "solver_verified_measurement_scenario",
     "official_cmm_equivalence_confirmed": false
   },
-  "measurement_protocol": "same 36 bore samples and 48 independent shell samples for every mesh; periodic surface interpolation"
+  "measurement_protocol": "same 36 bore samples and 48 independent shell samples for every mesh; periodic surface interpolation",
+  "bore_wall_peak_C": 51.2,
+  "bore_wall_probe_nodes": 66
 }

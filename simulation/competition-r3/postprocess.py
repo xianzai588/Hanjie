@@ -26,6 +26,10 @@ def fixed_measurement(folder,result):
     bb=surface_points(75,[20,180],24);hole=surface_points(20,[100,106,112],12)
     result['fit_original_mesh_nodes']=result.get('fit_original_mesh_nodes',result['fit']);result['fit']=fit_position_diameter(aa,bb,hole)
     result['measurement_protocol']='same 36 bore samples and 48 independent shell samples for every mesh; periodic surface interpolation'
+    bore=(abs(rad-20)<1e-5)&(x[:,2]>95)&(x[:,2]<115)
+    if not bore.any():raise RuntimeError('bore-wall probe empty: no nodes on the finished Ø40 surface')
+    result['bore_wall_peak_C']=round(float(f['peak_nodal_temperature'][bore].max()),1)
+    result['bore_wall_probe_nodes']=int(bore.sum())
     (folder/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
     return result
 coarse=fixed_measurement(OUT/'8p-coarse',coarse);fine=fixed_measurement(OUT/'8p-review',fine)
@@ -43,6 +47,7 @@ fields={'position_diameter_mm':fine['fit']['position_diameter_mm'],'mesh_differe
  'hotspot_QT_slot_root_residual_VM_MPa':float(vm[(m==1)&(np.linalg.norm(c[:,:2],axis=1)>35)&(np.linalg.norm(c[:,:2],axis=1)<47)].max())}
 fields['position_budget_mm']=2*(.003+.003+.003+.002+.002+.0008)+position[1]+.002
 fields['position_design_pass']=bool(fields['position_budget_mm']<=.05 and fields['engineering_mesh_pass'] and fields['full_part_result_valid'])
+fields['bore_wall_peak_C']={'8p-coarse':coarse['bore_wall_peak_C'],'8p-review':fine['bore_wall_peak_C']}
 (OUT/'verification.json').write_text(json.dumps(fields,ensure_ascii=False,indent=2),encoding='utf8')
 FIG.mkdir(exist_ok=True,parents=True)
 fig,axes=plt.subplots(1,2,figsize=(11,5),layout='constrained')

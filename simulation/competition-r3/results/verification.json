@@ -11,5 +11,9 @@
   "full_part_result_valid": true,
   "hotspot_QT_slot_root_residual_VM_MPa": 17.102009947540033,
   "position_budget_mm": 0.03134184442421394,
-  "position_design_pass": true
+  "position_design_pass": true,
+  "bore_wall_peak_C": {
+    "8p-coarse": 49.0,
+    "8p-review": 51.2
+  }
 }
