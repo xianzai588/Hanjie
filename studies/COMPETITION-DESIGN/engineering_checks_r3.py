@@ -69,13 +69,24 @@ derivation=dict(
    note='proposed fatigue spectra sit below the first-order derivation in the moment channel '
         '(0.19~0.58x); Miner damage is therefore a same-spectrum relative comparison between 6P '
         'and 8P, not an absolute life claim; damage scales with the cube of stress range if loads move up')))
+# 打分矩阵单一来源：格子与权重在此定义，总分由格子×权重算出并写入 JSON，
+# 说明书§1.1表格与 tests/test_scoring_matrix.py 都以此为准，杜绝总分与格子漂移。
+scoring_weights=[.2,.2,.2,.15,.1,.1,.05]
+scoring_cells=[[6,7,10,5,6,7,3],   # GMAW-plug: 热输入/铸铁界面/内腔洁净/设备柔性/调试可达/节拍/多品种
+               [9,3,9,2,4,9,7],    # laser
+               [8,8,9,4,5,6,8],    # micro-plasma
+               [8,5,9,9,7,7,9],    # pulsed-TIG（铸铁界面按方法本征风险5分）
+               [9,10,2,3,3,5,5]]   # brazing（淘汰）
+scoring_weighted=[round(sum(w*s for w,s in zip(scoring_weights,row)),2) for row in scoring_cells]
 result=dict(load_basis='proposed screening spectra for relative route comparison; official problem gives '
  'no measured spectrum, static columns use its 5000 N reference loads, first-order derivation in load_derivation',
  load_spectrum=cycles,load_derivation=derivation,
  layout_checks=rows,tooling=tools,cleanliness=clean,cycle_resource=process,
- scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],
+ scoring=dict(
+  weights=scoring_weights,
   candidates=['GMAW-plug','laser','micro-plasma','pulsed-TIG','brazing-eliminated'],
-  weighted_scores=[6.8,6.15,7.1,7.6,5.7],
+  cells=scoring_cells,
+  weighted_scores=scoring_weighted,
   role='subjective decision aid with explicit anchors, not official points or measured performance',
   notes='TIG cast-iron score re-based to intrinsic-method risk (9->5) and debug/reachability set to 7 so '
         'cells times weights reproduce the total; brazing scored 5.70 and eliminated: furnace brazing '

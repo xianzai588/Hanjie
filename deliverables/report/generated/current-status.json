@@ -3418,8 +3418,8 @@
         }
       },
       "brep_sha256": {
-        "simulation/structural-v4/models/8p-fair-b/8P-FAIR_B.brep": "d71f6d36706f522c1cedd441113ddfd249cd0beb05f5685756e9c900224b876d",
-        "simulation/structural-v4/common/shell.brep": "043357e59cc627120082d2f77e0dec95f87c88fafe3bcfc0dcbe9fca3cbf1dc0"
+        "simulation/structural-v4/models/8p-fair-b/8P-FAIR_B.brep": "42e00cda7fbaac7a0f3d4ad5176023aee121643355553987243cacaf4e979be4",
+        "simulation/structural-v4/common/shell.brep": "02570059d045af1f219a37c0ebafa942dacb5b0a86c33ee08614f40a6f14823e"
       }
     },
     "four_pass_comparison": [
@@ -3467,8 +3467,8 @@
     "precision": {
       "support_tilt_rad": 6.666666666666667e-05,
       "tilt_radial_allowance_mm": 0.0008,
-      "design_diameter_budget_mm": 0.0436,
-      "diameter_with_uncertainty_target_mm": 0.0456,
+      "design_diameter_budget_mm": 0.04360000000000001,
+      "diameter_with_uncertainty_target_mm": 0.04560000000000001,
       "design_budget_closes": true,
       "thermal_residual_design_verified": false,
       "physical_validation_recommended": true
