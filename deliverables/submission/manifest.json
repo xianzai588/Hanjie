@@ -3,7 +3,6 @@
   "files": {
     "00-评审导航.txt": "deliverables/submission/00-评审导航.txt",
     "01-工艺设计说明书.pdf": "output/pdf/technical-report-v4.pdf",
-    "02-设计图集.pdf": "cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf",
     "03-名义装配包络.step": "cad/generated/competition-design/competition-assembly.step",
     "04-设计计算.json": "studies/COMPETITION-DESIGN/results/assessment.json",
     "05-设计指标.csv": "studies/COMPETITION-DESIGN/results/result.csv",
@@ -27,7 +26,7 @@
     "24-热场与接触图.png": "docs/report/figures/r3-thermal-contact.png",
     "25-位移与残余应力图.png": "docs/report/figures/r3-residual-fields.png"
   },
-  "report_pages": 8,
+  "report_pages": 16,
   "drawing_pages": 8,
   "submission_scope": "technical_design_only",
   "design_verified": false,

@@ -19,5 +19,5 @@ def test_record_covers_zip_and_every_packaged_entry():
                record.read_text(encoding="utf-8").splitlines()
                if line.strip() and not line.startswith("#")]
     assert entries[0] == "deliverables/COMPETITION-R3-焊接固定题技术包.zip"
-    assert len(entries) == 28  # ZIP + 25 个清单文件 + 提交说明.txt + manifest.json
+    assert len(entries) == 27  # ZIP + 24 个清单文件（图集并入论文01号） + 提交说明.txt + manifest.json
     assert all(entry.startswith("deliverables/submission/") for entry in entries[1:])

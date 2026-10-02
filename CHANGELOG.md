@@ -1,5 +1,15 @@
 # Changelog
 
+## COMPETITION-R3 论文合一批次 - 2026-10-02
+
+应用户要求把说明书与设计图集合并为单文件论文：01-工艺设计说明书.pdf 共 16 页（第 1～8 页竖版正文，第 9～16 页横版设计图 HJ-001～008），02 号不再随包交付。lint PASS、SHA256 27/27、测试 224 通过（thermal 1 项为 Windows CRLF 环境项）。
+
+- build_technical_report_pdf.py：doc.build 后用 pymupdf 把 HJ-DRW-drawing-set.pdf 追加进论文；§0 交付句补"设计图集附于文末"。
+- build_submission.py：清单移除 02 号（24 文件）；manifest report_pages=16、drawing_pages=8（对源图集 PDF 计数）；提交说明改为"论文共16页：第1～8页正文，第9～16页横版设计图"。
+- competition_submission_lint.py：图集页数校验改指源图集 PDF（不再要求包内独立 02 号）。
+- test_release_hashes.py：封版条目 28→27。
+- 00-评审导航.txt、submission-checklist.md、registration-description.md：阅读顺序与页数口径同步（评审导航直接给出 8 张图纸在论文中的页位）。
+
 ## COMPETITION-R3 说明书文体批次 - 2026-10-02
 
 全文文体重写（数值、表格、引文、结论一律不动），目标：去掉工作日志腔与 AI 套话，按工程说明书文体交稿。重建后仍为说明书 8 页/图集 8 页/25 文件，lint PASS、SHA256 28/28、测试 224 通过（test_thermal_plan7 为 Windows CRLF 环境项）。

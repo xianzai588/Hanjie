@@ -154,7 +154,15 @@ def main() -> int:
     if "--include-research-status" in sys.argv:
         story += [PageBreak()]+build_story(generated_status)
     doc.build(story,onFirstPage=on_page,onLaterPages=on_page)
-    print(f"工艺设计说明书已生成：{OUT}")
+    # 设计图集并入论文：正文之后接横版 HJ-001～008，交付单文件，评委不用跨文件翻图。
+    import pymupdf
+    drawing_set = ROOT / "cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf"
+    with pymupdf.open(OUT) as body, pymupdf.open(drawing_set) as sheets:
+        body.insert_pdf(sheets)
+        merged = OUT.with_suffix(".merged.pdf")
+        body.save(str(merged))
+    merged.replace(OUT)
+    print(f"工艺设计说明书已生成：{OUT}（含设计图集共 {len(pymupdf.open(OUT))} 页）")
     return 0
 
 

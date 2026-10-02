@@ -22,7 +22,6 @@ def main():
     files = {
         "00-评审导航.txt":"deliverables/submission/00-评审导航.txt",
         "01-工艺设计说明书.pdf":"output/pdf/technical-report-v4.pdf",
-        "02-设计图集.pdf":"cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf",
         "03-名义装配包络.step":"cad/generated/competition-design/competition-assembly.step",
         "04-设计计算.json":"studies/COMPETITION-DESIGN/results/assessment.json",
         "05-设计指标.csv":"studies/COMPETITION-DESIGN/results/result.csv",
@@ -58,15 +57,20 @@ def main():
             stale.unlink()
     import pymupdf
     page_counts = {}
-    for name in ("01-工艺设计说明书.pdf", "02-设计图集.pdf"):
+    # 设计图集已并入 01 号论文文末（横版），单独文件不再随包交付。
+    for name in ("01-工艺设计说明书.pdf",):
         with pymupdf.open(out/name) as pdf:
             page_counts[name] = len(pdf)
             for page in pdf:
                 for block in page.get_text("blocks"):
                     if not page.rect.contains(pymupdf.Rect(block[:4])):
                         raise ValueError(f"{name}文字超出页面")
+    with pymupdf.open(ROOT/"cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf") as sheets:
+        drawing_pages = len(sheets)
     (out/"提交说明.txt").write_text(
-        f"COMPETITION-R3 技术包（焊接固定题）\n说明书{page_counts['01-工艺设计说明书.pdf']}页，设计图{page_counts['02-设计图集.pdf']}页。"
+        f"COMPETITION-R3 技术包（焊接固定题）\n论文（说明书＋设计图集）共{page_counts['01-工艺设计说明书.pdf']}页："
+        f"第1～{page_counts['01-工艺设计说明书.pdf']-drawing_pages}页为说明书正文，"
+        f"第{page_counts['01-工艺设计说明书.pdf']-drawing_pages+1}～{page_counts['01-工艺设计说明书.pdf']}页为横版设计图 HJ-001～008。"
         "STEP为名义装配包络。\n"
         "本包为纯数字设计作品：几何来自真实BREP，全部数字结果由经典公式计算、局部热模型诊断与公差预算给出，"
         "正文显式区分计算结果与设计目标；说明书§7列出设计放行顺序与试制工程确认要求。\n"
@@ -78,7 +82,7 @@ def main():
         encoding="utf-8")
     manifest={"version":"COMPETITION-R3","files":files,
               "report_pages":page_counts["01-工艺设计说明书.pdf"],
-              "drawing_pages":page_counts["02-设计图集.pdf"],
+              "drawing_pages":drawing_pages,
               "submission_scope":"technical_design_only",
               "design_verified":False,"physical_validation_recommended":True,
               "product_conformity_claimed":False}

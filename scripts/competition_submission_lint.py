@@ -122,7 +122,8 @@ def main() -> None:
             errors.append(f"清单文件缺失: {name} <- {source}")
     if manifest["report_pages"] != len(pymupdf.open(SUB / "01-工艺设计说明书.pdf")):
         errors.append("说明书页数与 manifest 不一致")
-    if manifest["drawing_pages"] != len(pymupdf.open(SUB / "02-设计图集.pdf")):
+    # 图集已并入论文文末；页数口径对源图集 PDF 校验。
+    if manifest["drawing_pages"] != len(pymupdf.open(ROOT / "cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf")):
         errors.append("图集页数与 manifest 不一致")
     errors.extend(check_page_claims(manifest))
     selected = authority["selected_candidate"]
