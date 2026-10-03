@@ -18,7 +18,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     card = f"""# COMPETITION-R1 焊接工艺提案
 状态：设计提案，不是经评定合格的WPS/PQR。详细依据见当前说明书。
-历史Ø1.2单道局部热诊断仍保留在project/process.yaml；本卡按project/competition-design.yaml显式修订。
+历史Ø1.2单道局部热诊断仅保留于 simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json；project/process.yaml 与 project/competition-design.yaml 均采用当前6P四道工艺口径。
 
 | 项目 | 当前设计 |
 | --- | --- |
