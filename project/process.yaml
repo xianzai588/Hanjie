@@ -1,8 +1,10 @@
 # 焊接工艺规范与窗口参数 - Hanjie Process Specification
-# 版本: V4.3
-# 工艺路线: 自动非熔化极气体保护电弧焊 (Automatic TIG) + ERNiFe-CI 填丝 + 预热
+# 当前参赛配置：COMPETITION-R1 / RC13
+# 工艺路线：自动 TIG + NiFe 55 型实心TIG棒 + 四道沉积；本文件为当前工艺过程源
 
-version: "PROCESS-1.0"
+version: "COMPETITION-R1-PROCESS-1"
+state: "current_design_source"
+notes: "历史单段诊断不在本文件中承载；见 simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json"
 authority: "焊接工艺与填丝参数的唯一权威配置"
 
 process:
@@ -15,8 +17,10 @@ process:
     heat_input_j_per_mm: 330.0
     preheat_c: 150.0
     interpass_limit_c: 200.0
-    filler_feed_rate_mm_s: 2.0
-    filler_diameter_mm: 1.2
+    filler_feed_rate_mm_s: 1.343967
+    filler_diameter_mm: 1.6
+    pass_count: 4
+    sequence: [1, 4, 3, 6, 2, 5]
     shielding_gas: "99.999% Ar"
     gas_flow_rate_l_min: 10.0
     tungsten_electrode: "W-La20 (Ø2.0 mm)"
@@ -31,14 +35,14 @@ process:
     closure_status: "not_closed_pending_macrosection_and_load_basis"
     rule: "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝"
     scenarios:
-      current_single_pass_diagnostic:
-        pass_count: 1
-        identity: "当前 1.737 mm 等效焊脚局部热诊断基线"
-        disposition: "diagnostic_only"
-      target_3p5_four_pass_candidate:
+      historical_single_pass_diagnostic:
+        evidence_file: "simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json"
+        disposition: "historical_only"
+        current_process_authority: false
+      current_4pass_design:
         pass_count: 4
-        identity: "3.5 mm 理想三角截面的等面积四道设计候选"
-        disposition: "candidate_pending_load_basis_macrosection_and_thermal_revalidation"
+        identity: "3.5 mm 理想三角截面的等面积四道当前设计候选"
+        disposition: "design_candidate_pending_macrosection_load_basis_and_thermal_revalidation"
         feed_policy: "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值"
         thermal_policy: "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论"
 
