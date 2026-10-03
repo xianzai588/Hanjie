@@ -125,6 +125,17 @@ def main() -> None:
     process = yaml.safe_load((ROOT / "project/process.yaml").read_text(encoding="utf-8"))["process"]["nominal"]
     design = design_config["process"]
     gate = design_config.get("material_qualification_gate", {})
+    # 当前工艺源必须与竞赛设计配置一致；历史诊断只允许作为独立附件存在。
+    if process["filler_diameter_mm"] != design["wire_diameter_mm"]:
+        errors.append("工艺源与竞赛设计的棒径不一致")
+    if abs(process["filler_feed_rate_mm_s"] - (assessment["process"]["fixed_feed_mm_s"])) > 1e-9:
+        errors.append("工艺源与设计计算的固定送丝速度不一致")
+    if process["pass_count"] != design["pass_count"] or process["sequence"] != design["sequence"]:
+        errors.append("工艺源与竞赛设计的道数/顺序不一致")
+    if abs(process["travel_speed_mm_s"] - 1.5) > 1e-12 or abs(process["current_a"] - 75.0) > 1e-12 or abs(process["voltage_v"] - 12.0) > 1e-12:
+        errors.append("当前工艺源电流/电压/焊速不在冻结口径")
+    if abs(process["arc_efficiency"] - 0.55) > 1e-12 or abs(process["heat_input_j_per_mm"] - 330.0) > 1e-9:
+        errors.append("当前工艺源热效率/净热输入不在冻结口径")
     if gate.get("status") != "blocked_pending_batch_evidence":
         errors.append("QT450-10批次组织证明门未保持阻断")
     if gate.get("standard_grade_family") != "ferritic_to_pearlitic" or gate.get("actual_batch_matrix_status") != "unverified":
@@ -136,8 +147,8 @@ def main() -> None:
         errors.append("热循环三分支比较表不完整")
     if any(branch.get("approved_for_production") is not False for branch in branches):
         errors.append("文献对照分支不得标记为生产放行")
-    if design["wire_diameter_mm"] != 1.6 or process["filler_diameter_mm"] != 1.2:
-        errors.append("当前工艺棒径口径异常：设计应为 Ø1.6，历史 nominal 不得回流")
+    if design["wire_diameter_mm"] != 1.6 or process["filler_diameter_mm"] != 1.6:
+        errors.append("当前工艺棒径口径异常：必须为 Ø1.6")
     if design["pass_count"] != 4 or process["travel_speed_mm_s"] != 1.5:
         errors.append("道数/焊速未使用冻结工艺口径")
     text_parts = []
