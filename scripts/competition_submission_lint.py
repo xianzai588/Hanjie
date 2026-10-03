@@ -122,6 +122,14 @@ def main() -> None:
         errors.append("authority.required_allowable_mpa 未与 assessment 对齐")
     if abs(authority["results"]["net_heat_input_kj"] - selected_row["net_heat_kj"]) > 1e-6:
         errors.append("authority.net_heat_input_kj 未与 assessment 对齐")
+    # 选择结果必须由硬约束+Pareto生成，禁止回流旧的任意加权 score。
+    selection = json.loads((ROOT / "studies/COMPETITION-DESIGN/results/robust-selection.json").read_text(encoding="utf-8"))
+    if "score" in selection or any("score" in row for row in selection.get("candidates", [])):
+        errors.append("候选选择结果仍包含旧加权 score")
+    if sorted(selection.get("pareto_front", [])) != sorted(authority.get("pareto_front", [])):
+        errors.append("Pareto前沿未与authority同步")
+    if selection.get("digital_baseline") != authority.get("digital_baseline"):
+        errors.append("数字基线未与authority同步")
     process = yaml.safe_load((ROOT / "project/process.yaml").read_text(encoding="utf-8"))["process"]["nominal"]
     design = design_config["process"]
     gate = design_config.get("material_qualification_gate", {})
