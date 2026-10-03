@@ -1,14 +1,14 @@
 # 焊接工艺规范与窗口参数 - Hanjie Process Specification
-# 版本: V4.4
-# 本文件是历史 Ø1.2 单道局部热诊断基线与基础电参数的权威配置，其预热/层间字段
-# 服务于 simulation/thermal-v5 的历史准入窗口，与 project/g-inputs-v5.2.yaml 保持
-# SSOT 一致（见 src/hanjie/domain/baseline.py 校验）。
-# 参赛设计的棒径、道数、送丝策略与热制度由 project/competition-design.yaml 的
-# process / thermal_regime / peening 显式覆盖：Ø1.6 mm、四道、固定送丝、
-# 铸铁冷焊（不预热、层间 ≤ 100 ℃）＋ 焊后半热态锤击。
+# 历史输入：旧单道局部热诊断与基础电参数，仅供历史仿真复现。
+# 重要：本文件不是当前参赛工艺源，不得作为pWPS或提交包参数来源。
+# 当前COMPETITION-R3唯一工艺源：project/process-r3.yaml；其由project/competition-design.yaml的process_source引用。
+# 历史诊断使用本文件中的旧参数是有意的，但任何当前构建若读取本文件作为竞赛工艺均应失败。
 
-version: "PROCESS-1.0"
-authority: "焊接工艺与填丝参数的唯一权威配置"
+version: "PROCESS-HISTORICAL-SINGLEPASS-1"
+state: "historical_only"
+authority: "历史诊断输入；非当前参赛工艺权威源"
+current_authority: "project/process-r3.yaml"
+current_design_ref: "project/competition-design.yaml"
 
 process:
   nominal:
