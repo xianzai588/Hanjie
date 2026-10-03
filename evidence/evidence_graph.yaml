@@ -62,6 +62,13 @@ taxonomy:
       evidence_level: literature_supported
       status: source_metadata_confirmed
       verification_status: citation_verified
+    SRC-AWS-D11-2-2025:
+      title: "AWS D11.2/D11.2M:2025 — Guide for Welding Iron Castings"
+      type: industry_standard
+      relevance: "铸铁焊接工艺、焊接性试验、工艺评定与质量控制的专门指导；不替代本项目实际WPS/PQR或实物验收"
+      evidence_level: literature_supported
+      status: source_metadata_confirmed
+      verification_status: citation_verified
     SRC-LIT-001:
       citation: Cárcel-Carrasco et al., Metals 2016, 6, 283
       relevance: 球铁异种连接 TIG 根部镍基填充与热管理规律
