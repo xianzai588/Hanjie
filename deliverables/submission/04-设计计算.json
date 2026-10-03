@@ -15,9 +15,9 @@
     "shell_brep": "simulation/structural-v4/common/shell.brep",
     "process_source": "project/process.yaml",
     "assembly": {
-      "seat_bottom_z_mm": 100.0,
+      "seat_bottom_z_mm": 100,
       "bottom_open": true,
-      "bottom_clearance_mm": 120.0,
+      "bottom_clearance_mm": 120,
       "datum_A": "壳体下端独立安装面",
       "datum_B": "壳体内壁两个轴向测量带拟合的轴线，按A法向约束定向"
     },
@@ -34,7 +34,7 @@
       "wire_diameter_mm": 1.6,
       "deposition_efficiency_range": [
         0.85,
-        1.0
+        1
       ],
       "minimum_leg_mm": 3.5,
       "clearance_leg_mm": 3.8,
@@ -42,14 +42,14 @@
       "filler_candidate": "NiFe 55 TIG实心棒材；供方页面标注EN ISO 1071 S C NiFe-2，AWS A5.15分类按批次证书核对",
       "filler_source": "https://certilas.com/en/product/nife-55-tig",
       "wire_entry_offset_xyz_mm": [
-        -1.0,
-        -4.0,
+        -1,
+        -4,
         -0.5
       ],
-      "hold_after_arc_s": 120.0,
-      "release_below_c": 55.0,
-      "measurement_temperature_c": 20.0,
-      "measurement_temperature_band_c": 1.0
+      "hold_after_arc_s": 120,
+      "release_below_c": 55,
+      "measurement_temperature_c": 20,
+      "measurement_temperature_band_c": 1
     },
     "material_qualification_gate": {
       "status": "blocked_pending_batch_evidence",
@@ -113,11 +113,11 @@
     "fixture": {
       "type": "内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱",
       "bore_limits_mm": [
-        40.0,
+        40,
         40.025
       ],
       "final_bore_limits_mm": [
-        40.0,
+        40,
         40.025
       ],
       "selected_machining_candidate": "A2",
@@ -197,46 +197,46 @@
       "minimum_contact_interference_mm": 0.01,
       "contact_bands_z_mm": [
         [
-          101.0,
-          103.0
+          101,
+          103
         ],
         [
-          109.0,
-          111.0
+          109,
+          111
         ]
       ],
       "contact_coverage_fraction": 0.9,
-      "internal_cone_half_angle_deg": 10.0,
-      "positive_return_stroke_mm": 1.0,
-      "radial_force_limit_n": 100.0,
+      "internal_cone_half_angle_deg": 10,
+      "positive_return_stroke_mm": 1,
+      "radial_force_limit_n": 100,
       "friction_scenarios": [
-        0.0,
+        0,
         0.05,
         0.1,
         0.2
       ],
-      "axial_clamp_force_n": 500.0,
-      "upper_envelope_radius_mm": 30.0,
-      "upper_envelope_top_z_mm": 220.0,
-      "support_radius_mm": 30.0,
-      "support_pad_radius_mm": 4.0,
+      "axial_clamp_force_n": 500,
+      "upper_envelope_radius_mm": 30,
+      "upper_envelope_top_z_mm": 220,
+      "support_radius_mm": 30,
+      "support_pad_radius_mm": 4,
       "support_count": 3,
-      "support_top_z_mm": 100.0,
-      "carrier_disk_radius_mm": 36.0,
+      "support_top_z_mm": 100,
+      "carrier_disk_radius_mm": 36,
       "carrier_disk_z_mm": [
-        86.0,
-        90.0
+        86,
+        90
       ],
-      "carrier_post_radius_mm": 10.0,
-      "carrier_post_bottom_z_mm": -20.0,
+      "carrier_post_radius_mm": 10,
+      "carrier_post_bottom_z_mm": -20,
       "selected_candidate": "A2"
     },
     "shield": {
-      "rigid_radius_mm": 74.0,
-      "floor_z_mm": 90.0,
-      "floor_thickness_mm": 1.0,
-      "lip_z_mm": 94.0,
-      "installed_lip_radius_mm": 75.0,
+      "rigid_radius_mm": 74,
+      "floor_z_mm": 90,
+      "floor_thickness_mm": 1,
+      "lip_z_mm": 94,
+      "installed_lip_radius_mm": 75,
       "lip_thickness_mm": 0.15,
       "required_radial_compliance_mm": 0.35,
       "material_candidate": "连续金属薄裙＋刚性金属接料盘；薄裙材料与弹性结构待热接触验证",
@@ -245,7 +245,7 @@
     },
     "precision": {
       "limit_diameter_mm": 0.05,
-      "bore_length_mm": 12.0,
+      "bore_length_mm": 12,
       "support_height_spread_limit_mm": 0.003,
       "allocation_source": "project/tolerance.yaml",
       "status": "A2压力情景与数字加工余量链闭合；真实焊后变形、制造能力、测量不确定度和卸夹位移仍待工业验证",
@@ -280,9 +280,9 @@
         "shell_brep": "simulation/structural-v4/common/shell.brep",
         "process_source": "project/process.yaml",
         "assembly": {
-          "seat_bottom_z_mm": 100.0,
+          "seat_bottom_z_mm": 100,
           "bottom_open": true,
-          "bottom_clearance_mm": 120.0,
+          "bottom_clearance_mm": 120,
           "datum_A": "壳体下端独立安装面",
           "datum_B": "壳体内壁两个轴向测量带拟合的轴线，按A法向约束定向"
         },
@@ -299,7 +299,7 @@
           "wire_diameter_mm": 1.6,
           "deposition_efficiency_range": [
             0.85,
-            1.0
+            1
           ],
           "minimum_leg_mm": 3.5,
           "clearance_leg_mm": 3.8,
@@ -307,14 +307,14 @@
           "filler_candidate": "NiFe 55 TIG实心棒材；供方页面标注EN ISO 1071 S C NiFe-2，AWS A5.15分类按批次证书核对",
           "filler_source": "https://certilas.com/en/product/nife-55-tig",
           "wire_entry_offset_xyz_mm": [
-            -1.0,
-            -4.0,
+            -1,
+            -4,
             -0.5
           ],
-          "hold_after_arc_s": 120.0,
-          "release_below_c": 55.0,
-          "measurement_temperature_c": 20.0,
-          "measurement_temperature_band_c": 1.0
+          "hold_after_arc_s": 120,
+          "release_below_c": 55,
+          "measurement_temperature_c": 20,
+          "measurement_temperature_band_c": 1
         },
         "material_qualification_gate": {
           "status": "blocked_pending_batch_evidence",
@@ -378,11 +378,11 @@
         "fixture": {
           "type": "内置锥驱动开缝圆柱胀套＋独立端面压环＋底部承力柱",
           "bore_limits_mm": [
-            40.0,
+            40,
             40.025
           ],
           "final_bore_limits_mm": [
-            40.0,
+            40,
             40.025
           ],
           "selected_machining_candidate": "A2",
@@ -462,45 +462,45 @@
           "minimum_contact_interference_mm": 0.01,
           "contact_bands_z_mm": [
             [
-              101.0,
-              103.0
+              101,
+              103
             ],
             [
-              109.0,
-              111.0
+              109,
+              111
             ]
           ],
           "contact_coverage_fraction": 0.9,
-          "internal_cone_half_angle_deg": 10.0,
-          "positive_return_stroke_mm": 1.0,
-          "radial_force_limit_n": 100.0,
+          "internal_cone_half_angle_deg": 10,
+          "positive_return_stroke_mm": 1,
+          "radial_force_limit_n": 100,
           "friction_scenarios": [
-            0.0,
+            0,
             0.05,
             0.1,
             0.2
           ],
-          "axial_clamp_force_n": 500.0,
-          "upper_envelope_radius_mm": 30.0,
-          "upper_envelope_top_z_mm": 220.0,
-          "support_radius_mm": 30.0,
-          "support_pad_radius_mm": 4.0,
+          "axial_clamp_force_n": 500,
+          "upper_envelope_radius_mm": 30,
+          "upper_envelope_top_z_mm": 220,
+          "support_radius_mm": 30,
+          "support_pad_radius_mm": 4,
           "support_count": 3,
-          "support_top_z_mm": 100.0,
-          "carrier_disk_radius_mm": 36.0,
+          "support_top_z_mm": 100,
+          "carrier_disk_radius_mm": 36,
           "carrier_disk_z_mm": [
-            86.0,
-            90.0
+            86,
+            90
           ],
-          "carrier_post_radius_mm": 10.0,
-          "carrier_post_bottom_z_mm": -20.0
+          "carrier_post_radius_mm": 10,
+          "carrier_post_bottom_z_mm": -20
         },
         "shield": {
-          "rigid_radius_mm": 74.0,
-          "floor_z_mm": 90.0,
-          "floor_thickness_mm": 1.0,
-          "lip_z_mm": 94.0,
-          "installed_lip_radius_mm": 75.0,
+          "rigid_radius_mm": 74,
+          "floor_z_mm": 90,
+          "floor_thickness_mm": 1,
+          "lip_z_mm": 94,
+          "installed_lip_radius_mm": 75,
           "lip_thickness_mm": 0.15,
           "required_radial_compliance_mm": 0.35,
           "material_candidate": "连续金属薄裙＋刚性金属接料盘；薄裙材料与弹性结构待热接触验证",
@@ -509,7 +509,7 @@
         },
         "precision": {
           "limit_diameter_mm": 0.05,
-          "bore_length_mm": 12.0,
+          "bore_length_mm": 12,
           "support_height_spread_limit_mm": 0.003,
           "allocation_source": "project/tolerance.yaml",
           "status": "A2压力情景与数字加工余量链闭合；真实焊后变形、制造能力、测量不确定度和卸夹位移仍待工业验证",
@@ -536,9 +536,9 @@
             "action_on_failure": "REFUSE_AND_ALARM"
           },
           "temperature": {
-            "max_peak_temperature_c": 1650.0,
-            "interpass_gate_temperature_c": 200.0,
-            "max_circumferential_delta_t_c": 40.0
+            "max_peak_temperature_c": 1650,
+            "interpass_gate_temperature_c": 200,
+            "max_circumferential_delta_t_c": 40
           },
           "position_tolerance_cmm": {
             "acceptance_threshold_mm": 0.05,
@@ -599,33 +599,42 @@
         }
       },
       "project/process.yaml": {
-        "version": "PROCESS-1.0",
+        "version": "COMPETITION-R1-PROCESS-1",
         "authority": "焊接工艺与填丝参数的唯一权威配置",
         "process": {
           "nominal": {
             "method": "automatic_TIG",
-            "current_a": 75.0,
-            "voltage_v": 12.0,
+            "current_a": 75,
+            "voltage_v": 12,
             "travel_speed_mm_s": 1.5,
             "arc_efficiency": 0.55,
-            "heat_input_j_per_mm": 330.0,
-            "preheat_c": 150.0,
-            "interpass_limit_c": 200.0,
-            "filler_feed_rate_mm_s": 2.0,
-            "filler_diameter_mm": 1.2,
+            "heat_input_j_per_mm": 330,
+            "preheat_c": 150,
+            "interpass_limit_c": 200,
+            "filler_feed_rate_mm_s": 1.343967,
+            "filler_diameter_mm": 1.6,
             "shielding_gas": "99.999% Ar",
-            "gas_flow_rate_l_min": 10.0,
+            "gas_flow_rate_l_min": 10,
             "tungsten_electrode": "W-La20 (Ø2.0 mm)",
-            "nozzle_diameter_mm": 10.0,
-            "standoff_distance_mm": 2.5
+            "nozzle_diameter_mm": 10,
+            "standoff_distance_mm": 2.5,
+            "pass_count": 4,
+            "sequence": [
+              1,
+              4,
+              3,
+              6,
+              2,
+              5
+            ]
           },
           "joint_consistency": {
             "design_fillet_leg_mm": 3.5,
             "design_basis": "结构设计目标；承载、疲劳和宏观截面尚未验证",
-            "deposition_efficiency_nominal": 1.0,
+            "deposition_efficiency_nominal": 1,
             "deposition_efficiency_range": [
               0.85,
-              1.0
+              1
             ],
             "closure_status": "not_closed_pending_macrosection_and_load_basis",
             "rule": "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；禁止把母材熔化体积计作新增填丝",
@@ -646,31 +655,31 @@
           },
           "acceptable_window": {
             "current_a": {
-              "min": 65.0,
-              "nominal": 75.0,
-              "max": 85.0
+              "min": 65,
+              "nominal": 75,
+              "max": 85
             },
             "voltage_v": {
-              "min": 11.0,
-              "nominal": 12.0,
+              "min": 11,
+              "nominal": 12,
               "max": 13.5
             },
             "travel_speed_mm_s": {
               "min": 1.2,
               "nominal": 1.5,
-              "max": 2.0
+              "max": 2
             },
             "heat_input_j_per_mm": {
-              "min": 240.0,
-              "max": 420.0
+              "min": 240,
+              "max": 420
             },
             "preheat_c": {
-              "min": 130.0,
-              "nominal": 150.0,
-              "max": 180.0
+              "min": 130,
+              "nominal": 150,
+              "max": 180
             },
             "interpass_limit_c": {
-              "max": 200.0
+              "max": 200
             }
           },
           "sequence_strategies": [
@@ -695,7 +704,8 @@
               "description": "在线测温反馈 + 动态加权选段跳焊，受邻段道温门限与温差约束"
             }
           ]
-        }
+        },
+        "state": "current_design_source"
       },
       "simulation/structural-v4/models/6p-fair-b/geometry-manifest.json": {
         "model_id": "6P-FAIR_B",
@@ -703,20 +713,20 @@
         "layout": "6P",
         "N": 6,
         "shell": {
-          "outer_diameter_mm": 160.0,
-          "height_mm": 200.0,
-          "thickness_mm": 5.0
+          "outer_diameter_mm": 160,
+          "height_mm": 200,
+          "thickness_mm": 5
         },
         "seat": {
-          "bore_nominal_diameter_mm": 40.0,
-          "thickness_mm": 12.0,
+          "bore_nominal_diameter_mm": 40,
+          "thickness_mm": 12,
           "outer_radius_mm": 74.98,
-          "core_diameter_mm": 82.0,
-          "slot_width_mm": 4.0,
-          "slot_root_radius_mm": 2.0,
+          "core_diameter_mm": 82,
+          "slot_width_mm": 4,
+          "slot_root_radius_mm": 2,
           "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
-          "fair_target_width_each_mm": 18.0,
-          "fair_target_total_width_mm": 108.0,
+          "fair_target_width_each_mm": 18,
+          "fair_target_total_width_mm": 108,
           "effective_width_each_mm": 17.999999999999975,
           "effective_total_width_mm": 107.99999999999984,
           "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
@@ -730,12 +740,12 @@
             "y": 137.9131396002134,
             "z": 12.000000199999999
           },
-          "seat_min_remaining_wall_thickness_mm": 19.0,
-          "min_remaining_wall_thickness_mm": 5.0,
+          "seat_min_remaining_wall_thickness_mm": 19,
+          "min_remaining_wall_thickness_mm": 5,
           "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
-          "bore_ligament_mm": 21.0,
-          "slot_root_min_radius_mm": 39.0,
-          "slot_root_radius_applied_mm": 2.0,
+          "bore_ligament_mm": 21,
+          "slot_root_min_radius_mm": 39,
+          "slot_root_radius_applied_mm": 2,
           "solid_count": 1,
           "brep_valid": true,
           "solid_valid": true,
@@ -746,11 +756,11 @@
           "minimum_edge_length_mm": 0.85735220056842,
           "zero_thickness_free": true,
           "max_radial_envelope_mm": 74.98,
-          "shell_inner_radius_mm": 75.0,
+          "shell_inner_radius_mm": 75,
           "seat_shell_min_gap_mm": 0.019999999999983305,
-          "seat_shell_max_penetration_mm": 0.0,
-          "seat_shell_intersection_volume_mm3": 0.0,
-          "seat_outside_shell_inner_volume_mm3": 0.0,
+          "seat_shell_max_penetration_mm": 0,
+          "seat_shell_intersection_volume_mm3": 0,
+          "seat_outside_shell_inner_volume_mm3": 0,
           "shell_interference_free": true
         },
         "manufacturing": {
@@ -815,7 +825,7 @@
           "cad_measured_total_weld_length_mm": 107.99999999999984,
           "cad_measured_weld_interface_area_mm2": 1295.999999999998,
           "actual_total_weld_length_mm": 107.99999999999984,
-          "nominal_total_weld_length_mm": 108.0,
+          "nominal_total_weld_length_mm": 108,
           "effective_connection_width_mm": 107.99999999999984,
           "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
         },
@@ -835,23 +845,23 @@
         "scope": "条件性焊缝组筛查；题面未给真实整机载荷或载荷谱",
         "reference_envelope": {
           "radial_force_n": [
-            0.0,
-            5000.0
+            0,
+            5000
           ],
           "axial_force_n": [
-            0.0,
-            5000.0
+            0,
+            5000
           ],
           "overturning_moment_n_mm": [
-            0.0,
-            250000.0
+            0,
+            250000
           ],
           "basis": "为生成线性影响系数和敏感性表选取的宽参考区间，不代表压缩机真实载荷"
         },
         "allowable_stress_sensitivity_mpa": [
-          60.0,
-          90.0,
-          120.0
+          60,
+          90,
+          120
         ],
         "allowable_basis": "纯参数敏感性；未用作材料或疲劳许用值",
         "layouts": {
@@ -861,9 +871,9 @@
         },
         "weld_legs_mm": [
           1.73664301094,
-          2.0,
+          2,
           2.5,
-          3.0,
+          3,
           3.5
         ],
         "effective_throat_factor": 0.7071067811865476,
@@ -903,51 +913,51 @@
           "shell_brep": "simulation/structural-v4/common/shell.brep"
         },
         "assembly": {
-          "seat_bottom_z_mm": 100.0,
+          "seat_bottom_z_mm": 100,
           "seat_height_basis": "题面未指定轴承座轴向高度；取壳体中部作为明确的装配情景，不修改既有座体实体",
           "bottom_access_open": true,
           "bottom_access_basis": "仅适用于底盖封闭及内部易损部件装入之前；不是已核实的生产顺序"
         },
         "shield": {
-          "outer_radius_mm": 74.0,
-          "floor_thickness_mm": 1.0,
-          "rim_height_mm": 3.0,
-          "rim_thickness_mm": 1.0,
-          "top_to_seat_bottom_gap_mm": 6.0,
-          "extraction_below_shell_mm": 5.0,
+          "outer_radius_mm": 74,
+          "floor_thickness_mm": 1,
+          "rim_height_mm": 3,
+          "rim_thickness_mm": 1,
+          "top_to_seat_bottom_gap_mm": 6,
+          "extraction_below_shell_mm": 5,
           "dimensional_status": "新增刚性截留盘包络设计假设，未指定材料和热变形能力"
         },
         "torch": {
           "tilt_from_vertical_deg": [
-            15.0,
-            30.0,
-            45.0
+            15,
+            30,
+            45
           ],
-          "export_tilt_deg": 30.0,
-          "exposed_tungsten_length_mm": 8.0,
-          "tungsten_radius_mm": 1.0,
-          "nozzle_length_mm": 25.0,
-          "body_radius_mm": 8.0,
-          "body_top_z_mm": 220.0,
+          "export_tilt_deg": 30,
+          "exposed_tungsten_length_mm": 8,
+          "tungsten_radius_mm": 1,
+          "nozzle_length_mm": 25,
+          "body_radius_mm": 8,
+          "body_top_z_mm": 220,
           "radial_clearance_requirement_mm": 0.2,
           "envelope_basis": "比较直线延长枪体与弯头后竖直枪体；喷嘴直径和弧间距取现有工艺值，其余是空间包络假设，不对应已购设备"
         },
         "mandrel": {
           "friction_coefficients": [
-            0.0,
+            0,
             0.05,
             0.1,
             0.2
           ],
           "friction_basis": "库仑摩擦确定性情景，未测量；轴向500 N全部用于压入锥面只是载荷分配上界情景",
-          "upper_obstruction_top_z_mm": 220.0
+          "upper_obstruction_top_z_mm": 220
         },
         "checks": {
-          "boolean_volume_tolerance_mm3": 1e-06,
+          "boolean_volume_tolerance_mm3": 0.000001,
           "pose_lifts_mm": [
-            0.0,
-            40.0,
-            120.0
+            0,
+            40,
+            120
           ]
         },
         "limitations": [
@@ -963,15 +973,15 @@
         "layout": "Continuous",
         "N": 0,
         "shell": {
-          "outer_diameter_mm": 160.0,
-          "height_mm": 200.0,
-          "thickness_mm": 5.0
+          "outer_diameter_mm": 160,
+          "height_mm": 200,
+          "thickness_mm": 5
         },
         "seat": {
-          "bore_nominal_diameter_mm": 40.0,
-          "thickness_mm": 12.0,
+          "bore_nominal_diameter_mm": 40,
+          "thickness_mm": 12,
           "outer_radius_mm": 74.98,
-          "core_diameter_mm": 82.0,
+          "core_diameter_mm": 82,
           "slot_width_mm": null,
           "slot_root_radius_mm": null,
           "slot_root_profile": null,
@@ -990,10 +1000,10 @@
             "y": 149.9600002,
             "z": 12.000000199999999
           },
-          "seat_min_remaining_wall_thickness_mm": 21.0,
-          "min_remaining_wall_thickness_mm": 5.0,
+          "seat_min_remaining_wall_thickness_mm": 21,
+          "min_remaining_wall_thickness_mm": 5,
           "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
-          "bore_ligament_mm": 21.0,
+          "bore_ligament_mm": 21,
           "slot_root_min_radius_mm": null,
           "slot_root_radius_applied_mm": null,
           "solid_count": 1,
@@ -1003,14 +1013,14 @@
           "algorithmic_self_interference_free": true,
           "self_intersection_free": true,
           "minimum_face_area_mm2": 1507.9644737231008,
-          "minimum_edge_length_mm": 12.0,
+          "minimum_edge_length_mm": 12,
           "zero_thickness_free": true,
           "max_radial_envelope_mm": 74.98,
-          "shell_inner_radius_mm": 75.0,
+          "shell_inner_radius_mm": 75,
           "seat_shell_min_gap_mm": 0.019999999999988853,
-          "seat_shell_max_penetration_mm": 0.0,
-          "seat_shell_intersection_volume_mm3": 0.0,
-          "seat_outside_shell_inner_volume_mm3": 0.0,
+          "seat_shell_max_penetration_mm": 0,
+          "seat_shell_intersection_volume_mm3": 0,
+          "seat_outside_shell_inner_volume_mm3": 0,
           "shell_interference_free": true
         },
         "manufacturing": {
@@ -1019,9 +1029,9 @@
           "weld_segments": [
             {
               "segment_id": 1,
-              "start_angle_deg": -180.0,
-              "end_angle_deg": 180.0,
-              "arc_angle_deg": 360.0,
+              "start_angle_deg": -180,
+              "end_angle_deg": 180,
+              "arc_angle_deg": 360,
               "arc_length_mm": 471.1132343323254,
               "interface_area_mm2": 5653.358811987905,
               "face_count": 1
@@ -1050,20 +1060,20 @@
         "layout": "8P",
         "N": 8,
         "shell": {
-          "outer_diameter_mm": 160.0,
-          "height_mm": 200.0,
-          "thickness_mm": 5.0
+          "outer_diameter_mm": 160,
+          "height_mm": 200,
+          "thickness_mm": 5
         },
         "seat": {
-          "bore_nominal_diameter_mm": 40.0,
-          "thickness_mm": 12.0,
+          "bore_nominal_diameter_mm": 40,
+          "thickness_mm": 12,
           "outer_radius_mm": 74.98,
-          "core_diameter_mm": 82.0,
-          "slot_width_mm": 4.0,
-          "slot_root_radius_mm": 2.0,
+          "core_diameter_mm": 82,
+          "slot_width_mm": 4,
+          "slot_root_radius_mm": 2,
           "slot_root_profile": "R2.0 circular end cap at R41 centerline, deepest point R39",
-          "fair_target_width_each_mm": 18.0,
-          "fair_target_total_width_mm": 144.0,
+          "fair_target_width_each_mm": 18,
+          "fair_target_total_width_mm": 144,
           "effective_width_each_mm": 17.999999999999986,
           "effective_total_width_mm": 143.9999999999999,
           "connection_width_definition": "R74.98 cylindrical weld-interface arc length after R2.0 fillets"
@@ -1077,12 +1087,12 @@
             "y": 149.9600002,
             "z": 12.000000199999999
           },
-          "seat_min_remaining_wall_thickness_mm": 19.0,
-          "min_remaining_wall_thickness_mm": 5.0,
+          "seat_min_remaining_wall_thickness_mm": 19,
+          "min_remaining_wall_thickness_mm": 5,
           "minimum_wall_scope": "seat slot-root ligament, bore ligament, and common Q235B shell wall",
-          "bore_ligament_mm": 21.0,
-          "slot_root_min_radius_mm": 39.0,
-          "slot_root_radius_applied_mm": 2.0,
+          "bore_ligament_mm": 21,
+          "slot_root_min_radius_mm": 39,
+          "slot_root_radius_applied_mm": 2,
           "solid_count": 1,
           "brep_valid": true,
           "solid_valid": true,
@@ -1093,11 +1103,11 @@
           "minimum_edge_length_mm": 0.8573522005682441,
           "zero_thickness_free": true,
           "max_radial_envelope_mm": 74.98,
-          "shell_inner_radius_mm": 75.0,
+          "shell_inner_radius_mm": 75,
           "seat_shell_min_gap_mm": 0.019999999999976804,
-          "seat_shell_max_penetration_mm": 0.0,
-          "seat_shell_intersection_volume_mm3": 0.0,
-          "seat_outside_shell_inner_volume_mm3": 0.0,
+          "seat_shell_max_penetration_mm": 0,
+          "seat_shell_intersection_volume_mm3": 0,
+          "seat_outside_shell_inner_volume_mm3": 0,
           "shell_interference_free": true
         },
         "manufacturing": {
@@ -1180,7 +1190,7 @@
           "cad_measured_total_weld_length_mm": 143.9999999999999,
           "cad_measured_weld_interface_area_mm2": 1727.9999999999984,
           "actual_total_weld_length_mm": 143.9999999999999,
-          "nominal_total_weld_length_mm": 144.0,
+          "nominal_total_weld_length_mm": 144,
           "effective_connection_width_mm": 143.9999999999999,
           "weld_length_definition": "sum of R74.98 cylindrical interface arc lengths measured from OCC face area / seat thickness"
         },
@@ -1210,20 +1220,20 @@
     {
       "layout": "6P-FAIR_B",
       "net_heat_kj": 142.56,
-      "arc_time_s": 288.0,
+      "arc_time_s": 288,
       "required_allowable_mpa": 52.1731967860798
     },
     {
       "layout": "8P-FAIR_B",
       "net_heat_kj": 190.08,
-      "arc_time_s": 384.0,
+      "arc_time_s": 384,
       "required_allowable_mpa": 39.1298975895598
     }
   ],
   "process": {
     "eta_dep_range": [
       0.85,
-      1.0
+      1
     ],
     "eta_arc": 0.55,
     "fixed_feed_mm_s": 1.34396694821396,
@@ -1236,11 +1246,11 @@
       3.5,
       3.79628301182648
     ],
-    "gross_energy_per_pass_j_mm": 600.0,
-    "net_energy_per_pass_j_mm": 330.0,
-    "weld_length_mm": 108.0,
-    "arc_on_time_s": 288.0,
-    "total_net_heat_j": 142560.0,
+    "gross_energy_per_pass_j_mm": 600,
+    "net_energy_per_pass_j_mm": 330,
+    "weld_length_mm": 108,
+    "arc_on_time_s": 288,
+    "total_net_heat_j": 142560,
     "wire_length_mm": 387.06248108562,
     "deposited_volume_range_mm3": [
       661.499999999999,
@@ -1259,7 +1269,7 @@
     },
     "radial_sum_mm": 0.0138,
     "measurement_uncertainty_diameter_target_mm": 0.002,
-    "support_tilt_rad": 6.66666666666667e-05,
+    "support_tilt_rad": 0.0000666666666666667,
     "tilt_radial_allowance_mm": 0.0008,
     "design_diameter_budget_mm": 0.0276,
     "diameter_with_uncertainty_target_mm": 0.0296,
@@ -1275,7 +1285,7 @@
   "machining_allowance": {
     "formula": "A_geometric,min=(D_final,min-D_pre,max)/2; margin_screen=A_geometric,min-A_required",
     "pressure_scenario": {
-      "n": 6.0,
+      "n": 6,
       "sigma": 0.2,
       "delta_mm": 0.8,
       "angular_margin_mm": 0.05
@@ -1288,7 +1298,7 @@
         "nominal_radial_allowance_mm": 0.2,
         "pre_weld_bore_min_mm": 39.59,
         "pre_weld_bore_max_mm": 39.6,
-        "final_bore_min_mm": 40.0,
+        "final_bore_min_mm": 40,
         "final_bore_max_mm": 40.025,
         "geometric_min_radial_allowance_mm": 0.199999999999999,
         "screen_margin_mm": -0.013299316185546,
@@ -1296,7 +1306,7 @@
         "insertion_clearance_min_mm": 0.0500000000000043,
         "contact_interference_min_mm": 0.0300000000000011,
         "return_stroke_required_mm": 0.311920500078972,
-        "return_stroke_available_mm": 1.0,
+        "return_stroke_available_mm": 1,
         "tooling_checks": {
           "pre_bore_ordered": true,
           "insertion_clearance_pass": true,
@@ -1319,7 +1329,7 @@
         "nominal_radial_allowance_mm": 0.225,
         "pre_weld_bore_min_mm": 39.54,
         "pre_weld_bore_max_mm": 39.55,
-        "final_bore_min_mm": 40.0,
+        "final_bore_min_mm": 40,
         "final_bore_max_mm": 40.025,
         "geometric_min_radial_allowance_mm": 0.225000000000001,
         "screen_margin_mm": 0.0117006838144562,
@@ -1327,7 +1337,7 @@
         "insertion_clearance_min_mm": 0.0499999999999972,
         "contact_interference_min_mm": 0.0300000000000011,
         "return_stroke_required_mm": 0.311920500078993,
-        "return_stroke_available_mm": 1.0,
+        "return_stroke_available_mm": 1,
         "tooling_checks": {
           "pre_bore_ordered": true,
           "insertion_clearance_pass": true,
@@ -1350,7 +1360,7 @@
         "nominal_radial_allowance_mm": 0.25,
         "pre_weld_bore_min_mm": 39.49,
         "pre_weld_bore_max_mm": 39.5,
-        "final_bore_min_mm": 40.0,
+        "final_bore_min_mm": 40,
         "final_bore_max_mm": 40.025,
         "geometric_min_radial_allowance_mm": 0.25,
         "screen_margin_mm": 0.0367006838144547,
@@ -1358,7 +1368,7 @@
         "insertion_clearance_min_mm": 0.0500000000000043,
         "contact_interference_min_mm": 0.0300000000000011,
         "return_stroke_required_mm": 0.311920500078972,
-        "return_stroke_available_mm": 1.0,
+        "return_stroke_available_mm": 1,
         "tooling_checks": {
           "pre_bore_ordered": true,
           "insertion_clearance_pass": true,
@@ -1388,8 +1398,8 @@
   },
   "conditional_strength": {
     "model_id": "6P-FAIR_B",
-    "effective_weld_length_mm": 108.0,
-    "cad_effective_weld_length_mm": 108.0,
+    "effective_weld_length_mm": 108,
+    "cad_effective_weld_length_mm": 108,
     "line_group_principal_second_moments_mm3": [
       303588.021599999,
       303588.0216
@@ -1401,7 +1411,7 @@
         "effective_throat_mm": 2.47487373415292,
         "effective_throat_area_mm2": 267.286363288515,
         "von_mises_per_resultant_force_mpa_per_n": 0.0064801315946645,
-        "worst_overturning_stress_mpa_per_n_mm": 9.97947644855628e-05,
+        "worst_overturning_stress_mpa_per_n_mm": 0.0000997947644855628,
         "reference_envelope_corner_required_allowable_mpa": 52.1731967860798,
         "reference_envelope_component_required_allowable_mpa": {
           "radial_only": 32.4006579733225,
@@ -1417,7 +1427,7 @@
   "fixture": {
     "positive_return_stroke_required_mm": 0.311920500078972,
     "nominal_positive_return_stroke_required_mm": 0.28356409098089,
-    "positive_return_stroke_available_mm": 1.0,
+    "positive_return_stroke_available_mm": 1,
     "contact_diameter_limits_mm": [
       39.49,
       39.5
@@ -1429,7 +1439,7 @@
     ],
     "cone_force_scenarios": [
       {
-        "mu": 0.0,
+        "mu": 0,
         "drive_force_for_radial_limit_n": 17.6326980708465,
         "self_lock_possible": false
       },
@@ -1472,13 +1482,13 @@
         39.5
       ],
       "seat_final_bore_limits_mm": [
-        40.0,
+        40,
         40.025
       ],
       "sleeve_collapsed_diameter_mm": 39.44,
       "sleeve_contact_diameter_mm": 39.53,
       "sleeve_maximum_diameter_mm": 39.54,
-      "insertion_overlap_mm3": 0.0,
+      "insertion_overlap_mm3": 0,
       "contact_overlap_mm3": 18.621005055993,
       "maximum_overlap_mm3": 24.831148333973,
       "insertion_geometry_clear": true,
@@ -1494,84 +1504,84 @@
       "final_bore": 95079.4267004837
     },
     "cartridge_intersections_mm3": {
-      "shell": 0.0,
-      "seat": 0.0,
-      "upper_fixture": 0.0
+      "shell": 0,
+      "seat": 0,
+      "upper_fixture": 0
     },
     "bottom_sweep_intersections_mm3": {
-      "shell": 0.0,
-      "seat": 0.0
+      "shell": 0,
+      "seat": 0
     },
     "bottom_route_allowed": true,
     "poses": [
       {
         "tool": "torch",
-        "lift_mm": 0.0,
+        "lift_mm": 0,
         "intersections_mm3": {
-          "shell": 0.0,
-          "seat": 0.0,
-          "upper_fixture": 0.0,
-          "weld_keepout": 0.0
+          "shell": 0,
+          "seat": 0,
+          "upper_fixture": 0,
+          "weld_keepout": 0
         },
         "clear": true
       },
       {
         "tool": "wire_guide",
-        "lift_mm": 0.0,
+        "lift_mm": 0,
         "intersections_mm3": {
-          "shell": 0.0,
-          "seat": 0.0,
-          "upper_fixture": 0.0,
-          "weld_keepout": 0.0
+          "shell": 0,
+          "seat": 0,
+          "upper_fixture": 0,
+          "weld_keepout": 0
         },
         "clear": true
       },
       {
         "tool": "torch",
-        "lift_mm": 40.0,
+        "lift_mm": 40,
         "intersections_mm3": {
-          "shell": 0.0,
-          "seat": 0.0,
-          "upper_fixture": 0.0,
-          "weld_keepout": 0.0
+          "shell": 0,
+          "seat": 0,
+          "upper_fixture": 0,
+          "weld_keepout": 0
         },
         "clear": true
       },
       {
         "tool": "wire_guide",
-        "lift_mm": 40.0,
+        "lift_mm": 40,
         "intersections_mm3": {
-          "shell": 0.0,
-          "seat": 0.0,
-          "upper_fixture": 0.0,
-          "weld_keepout": 0.0
+          "shell": 0,
+          "seat": 0,
+          "upper_fixture": 0,
+          "weld_keepout": 0
         },
         "clear": true
       },
       {
         "tool": "torch",
-        "lift_mm": 120.0,
+        "lift_mm": 120,
         "intersections_mm3": {
-          "shell": 0.0,
-          "seat": 0.0,
-          "upper_fixture": 0.0,
-          "weld_keepout": 0.0
+          "shell": 0,
+          "seat": 0,
+          "upper_fixture": 0,
+          "weld_keepout": 0
         },
         "clear": true
       },
       {
         "tool": "wire_guide",
-        "lift_mm": 120.0,
+        "lift_mm": 120,
         "intersections_mm3": {
-          "shell": 0.0,
-          "seat": 0.0,
-          "upper_fixture": 0.0,
-          "weld_keepout": 0.0
+          "shell": 0,
+          "seat": 0,
+          "upper_fixture": 0,
+          "weld_keepout": 0
         },
         "clear": true
       }
     ],
-    "torch_feed_intersection_mm3": 0.0,
+    "torch_feed_intersection_mm3": 0,
     "torch_feed_clearance_mm": 2.27853666538592,
     "torch_shell_radial_bound_mm": 2.15000000000001,
     "torch_upper_radial_bound_mm": 17.35,
