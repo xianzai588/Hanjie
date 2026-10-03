@@ -52,10 +52,10 @@ def main() -> None:
 
     pareto = hard_feasible[~hard_feasible.apply(lambda row: is_dominated(row, hard_feasible), axis=1)].copy()
     pareto["capacity_margin"] = 60.0 / pareto["required_allowable_mpa"]
-    ranking = []
+    candidates = []
     for _, r in hard_feasible.sort_values(["required_allowable_mpa", "heat_kj"]).iterrows():
         cid = r["candidate_id"]
-        ranking.append(
+        candidates.append(
             {
                 "candidate_id": cid,
                 "required_allowable_mpa": float(r["required_allowable_mpa"]),
@@ -78,7 +78,7 @@ def main() -> None:
         },
         "hard_constraint": "required_allowable_mpa <= 60.0 MPa in the stated reference screening scenario",
         "pareto_front": pareto["candidate_id"].tolist(),
-        "ranking": ranking,
+        "candidates": candidates,
         "digital_baseline": "6P-FAIR_B/4pass",
         "fallback": "8P-FAIR_B/4pass",
         "engineering_selection_status": "pending_release_gates",
@@ -89,8 +89,8 @@ def main() -> None:
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    recommended = next(r for r in ranking if r["candidate_id"] == payload["digital_baseline"])
-    backup = next(r for r in ranking if r["candidate_id"] == payload["fallback"])
+    recommended = next(r for r in candidates if r["candidate_id"] == payload["digital_baseline"])
+    backup = next(r for r in candidates if r["candidate_id"] == payload["fallback"])
     authority = {
         "version": "COMPETITION-R2-AUTHORITY",
         "scope": "参赛说明书与答辩统一引用的保守设计口径",
