@@ -26,33 +26,48 @@ def main() -> None:
     view = view.rename(columns={"layout": "candidate_id", "net_heat_kj": "heat_kj"})
     view["candidate_id"] = view["candidate_id"] + "/4pass"
     view["capacity_margin"] = 60.0 / view["required_allowable_mpa"]
-    view["length_penalty"] = view["candidate_id"].map(
+    view["weld_length_mm"] = view["candidate_id"].map(
         {"Continuous/4pass": 471.1132343323254, "6P-FAIR_B/4pass": 108.0, "8P-FAIR_B/4pass": 144.0}
     )
-    # 只在满足条件承载筛查的方案中比较热输入和焊缝长度；分数是排序工具，
-    # 不是概率，也不替代热—结构正式求解。
-    # four_pass_comparison 已由当前设计计算的同一条件筛查生成。
-    feasible = view.copy()
-    feasible["score"] = (
-        0.60 * feasible["heat_kj"] / feasible["heat_kj"].max()
-        + 0.25 * feasible["length_penalty"] / feasible["length_penalty"].max()
-        + 0.15 / feasible["capacity_margin"]
-    )
-    feasible = feasible.sort_values(["score", "heat_kj"]).reset_index(drop=True)
+    # 一级：硬约束筛选。这里的60 MPa只是本轮统一条件筛查的假设许用值，不是材料许用标准。
+    # 二级：Pareto比较，同时最小化净热输入、焊缝长度和所需许用应力。
+    # 三级：保留工程语境下的当前数字基线，不宣称存在唯一数学最优解。
+    hard_feasible = view[view["required_allowable_mpa"] <= 60.0].copy()
+
+    def is_dominated(row, frame):
+        for _, other in frame.iterrows():
+            no_worse = (
+                other["heat_kj"] <= row["heat_kj"]
+                and other["weld_length_mm"] <= row["weld_length_mm"]
+                and other["required_allowable_mpa"] <= row["required_allowable_mpa"]
+            )
+            strictly_better = (
+                other["heat_kj"] < row["heat_kj"]
+                or other["weld_length_mm"] < row["weld_length_mm"]
+                or other["required_allowable_mpa"] < row["required_allowable_mpa"]
+            )
+            if no_worse and strictly_better:
+                return True
+        return False
+
+    pareto = hard_feasible[~hard_feasible.apply(lambda row: is_dominated(row, hard_feasible), axis=1)].copy()
+    pareto["capacity_margin"] = 60.0 / pareto["required_allowable_mpa"]
     ranking = []
-    for _, r in feasible.iterrows():
+    for _, r in hard_feasible.sort_values(["required_allowable_mpa", "heat_kj"]).iterrows():
+        cid = r["candidate_id"]
         ranking.append(
             {
-                "candidate_id": r["candidate_id"],
+                "candidate_id": cid,
                 "required_allowable_mpa": float(r["required_allowable_mpa"]),
                 "capacity_margin": float(r["capacity_margin"]),
                 "net_heat_input_kj": float(r["heat_kj"]),
-                "weld_length_mm": float(r["length_penalty"]),
-                "score": float(r["score"]),
+                "weld_length_mm": float(r["weld_length_mm"]),
+                "hard_constraint_pass": True,
+                "pareto_front": cid in set(pareto["candidate_id"]),
             }
         )
     payload = {
-        "version": "COMPETITION-R1-DIGITAL-SELECTION-1",
+        "version": "COMPETITION-R2-DIGITAL-SELECTION-1",
         "evidence_level": "design_assumption_reference_envelope",
         "input": str(INPUT.relative_to(ROOT)).replace("\\", "/"),
         "frozen_scenario": {
@@ -61,28 +76,30 @@ def main() -> None:
             "load_scale": 1.0,
             "assumed_allowable_mpa": 60.0,
         },
+        "hard_constraint": "required_allowable_mpa <= 60.0 MPa in the stated reference screening scenario",
+        "pareto_front": pareto["candidate_id"].tolist(),
         "ranking": ranking,
-        "recommended": "6P-FAIR_B/4pass",
-        "backup": "8P-FAIR_B/4pass",
-        "engineering_selection_status": "pending_release_gates",
         "digital_baseline": "6P-FAIR_B/4pass",
+        "fallback": "8P-FAIR_B/4pass",
+        "engineering_selection_status": "pending_release_gates",
         "low_heat_candidate": "6P-FAIR_B/4pass",
         "higher_static_margin_candidate": "8P-FAIR_B/4pass",
-        "rejected_high_heat_reference": "Continuous/4pass",
-        "interpretation": "推荐字段表示当前数字设计基线，不代表最终工程放行；8P仅作为几何、热量和静力承载裕量切换候选，尚未冻结独立WPS与自动化段序。统一条件筛查不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。",
+        "rejected_high_heat_reference": null,
+        "interpretation": "三候选均通过本轮60 MPa参考承载硬约束且均处于Pareto前沿；不存在由任意人为权重导出的唯一数学优胜者。6P-FAIR_B仅作为当前详细数字设计基线，8P作为承载裕量切换候选，Continuous作为高热输入/高焊缝长度参考。所有结果均不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    recommended = next(r for r in ranking if r["candidate_id"] == payload["recommended"])
-    backup = next(r for r in ranking if r["candidate_id"] == payload["backup"])
+    recommended = next(r for r in ranking if r["candidate_id"] == payload["digital_baseline"])
+    backup = next(r for r in ranking if r["candidate_id"] == payload["fallback"])
     authority = {
-        "version": "COMPETITION-R1-AUTHORITY",
+        "version": "COMPETITION-R2-AUTHORITY",
         "scope": "参赛说明书与答辩统一引用的保守设计口径",
-        "selected_candidate": payload["recommended"],
+        "selected_candidate": payload["digital_baseline"],
         "engineering_selection_status": payload["engineering_selection_status"],
         "digital_baseline": payload["digital_baseline"],
         "low_heat_candidate": payload["low_heat_candidate"],
         "higher_static_margin_candidate": payload["higher_static_margin_candidate"],
+        "pareto_front": pareto["candidate_id"].tolist(),
         "assumptions": {"deposition_efficiency": 0.85, "load_scale": 1.0,
                         "assumed_allowable_mpa": 60.0, "equivalent_leg_min_mm": 3.5},
         "results": {"required_allowable_mpa": recommended["required_allowable_mpa"],
@@ -94,7 +111,7 @@ def main() -> None:
                     "fallback_required_allowable_mpa": backup["required_allowable_mpa"]},
         "endpoints": {"current_efficiency_0_85_required_allowable_mpa": recommended["required_allowable_mpa"],
                       "interpretation": "当前 COMPETITION-R1 四道比较已按固定送丝与效率下界闭合；此值用于保守筛查。"},
-        "decision_rule": "6P作为当前详细数字基线；真实载荷、热残余、裂纹、疲劳和位置度放行门闭合后再决定最终工程方案，若静力承载裕量门需要切换则评定8P",
+        "decision_rule": "一级按统一60 MPa参考情景做硬约束；二级以热输入、焊缝长度和所需许用应力构成Pareto前沿；三级由工艺成熟度与当前详细设计完整度确定6P为数字基线。真实载荷、焊后变形、裂纹、疲劳、洁净度和位置度放行门闭合后再决定最终工程方案，承载裕量不足时评定8P。",
     }
     AUTHORITY.write_text(yaml.safe_dump(authority, allow_unicode=True, sort_keys=False), encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False, indent=2))
