@@ -134,7 +134,13 @@ def main() -> None:
         errors.append("authority.net_heat_input_kj 未与 assessment 对齐")
     # R3 的冻结工艺以 process-r3.yaml 为唯一口径；project/process.yaml 保留为历史
     # 诊断输入，不能再让旧的 1.2 mm / 1.5 mm 参数回流到提交门。
-    process = yaml.safe_load((ROOT / "project/process-r3.yaml").read_text(encoding="utf-8"))["process"]["nominal"]
+    current_process_doc = yaml.safe_load((ROOT / "project/process-r3.yaml").read_text(encoding="utf-8"))
+    legacy_process_doc = yaml.safe_load((ROOT / "project/process.yaml").read_text(encoding="utf-8"))
+    if current_process_doc.get("state") != "current_frozen_design" or current_process_doc.get("authority") != "current_competition_process_source":
+        errors.append("当前工艺源未声明为唯一冻结权威")
+    if legacy_process_doc.get("state") != "historical_only" or legacy_process_doc.get("current_authority") != "project/process-r3.yaml":
+        errors.append("历史process.yaml未明确降级为历史输入")
+    process = current_process_doc["process"]["nominal"]
     design = yaml.safe_load((ROOT / "project/competition-design.yaml").read_text(encoding="utf-8"))["process"]
     if design["wire_diameter_mm"] != 1.6 or process["filler_diameter_mm"] != 1.6:
         errors.append("当前工艺棒径口径异常：设计与冻结工艺均应为 Ø1.6")
