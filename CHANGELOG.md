@@ -1,3 +1,10 @@
+## COMPETITION-R3 Wave 2 数字链批次 - 2026-10-02（分支 wave2/continuous-fatigue-stiffness）
+
+落实外审遗留的两个数字链算例，均在独立分支完成并重跑封版链：
+
+- **连续焊对比算例**：08e layout_checks 新增第三行（Continuous，L=471.11 mm，同一两道焊脚、同一资格曲线）——静力筛查 11.96 MPa/裕量 5.02，两工况 Miner 损伤 0.0141（8P 的 2.9%、6P 的 1.2%）；净热与弧燃均为 8P 的 3.27 倍；角色定位为工艺评定对比项与首件否决时的形状退路，其热变形无 FE 证据、不得沿用 8P 的 31.34 μm 合成。说明书 §5 已回填。
+- **服务刚度核算**：新增 simulation/structural-v4/run_service_stiffness.py（复用 P1A 静刚度筛查的网格/装配/载荷链，细网格 8P-FAIR_B 与 Continuous 各 7 方向），新增孔椭圆化指标——8P 1000 N 轴线偏移 0.000567 mm（复现存档值）/椭圆化 0.000284 mm，连续环 0.000303/0.000156（开槽代价 1.8~1.9 倍）；按启停 Fr 幅 1500 N 线性缩放轴线偏移 0.00085 mm（占 Ø0.05 的 1.7%）、椭圆化 0.00043 mm（0.9%）。摘要入 08e service_stiffness 段，完整数据 simulation/structural-v4/results/service-stiffness-8p.json。说明书 §3.1 已回填。
+
 # Changelog
 
 ## COMPETITION-R3 文献评审修复批次 - 2026-10-02

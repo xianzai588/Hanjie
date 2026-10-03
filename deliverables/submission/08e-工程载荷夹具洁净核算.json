@@ -62,6 +62,8 @@
   "layout_checks": [
     {
       "n": 6,
+      "layout": "6P-FAIR_B",
+      "length_mm": 108,
       "throat_mm": 2.4748737341529163,
       "area_mm2": 267.28636328851496,
       "second_moment_mm4": 751342.0206612883,
@@ -109,6 +111,8 @@
     },
     {
       "n": 8,
+      "layout": "8P-FAIR_B",
+      "length_mm": 144,
       "throat_mm": 2.4748737341529163,
       "area_mm2": 356.38181771801993,
       "second_moment_mm4": 1001789.3608817176,
@@ -153,6 +157,56 @@
       },
       "heat_kJ": 86.39999999999999,
       "arc_s": 174.54545454545456
+    },
+    {
+      "n": null,
+      "layout": "Continuous",
+      "length_mm": 471.11,
+      "throat_mm": 2.4748737341529163,
+      "area_mm2": 1165.9457694609,
+      "second_moment_mm4": 3277473.7911437443,
+      "static_equivalent_MPa": 11.960405359620763,
+      "static_allowable_MPa": 60,
+      "static_margin": 5.0165523822933755,
+      "fatigue": [
+        {
+          "name": "continuous",
+          "cycles": 100000000.0,
+          "Fr_amp": 500,
+          "Fa_mean": 2000,
+          "Fa_amp": 200,
+          "M_amp": 25000,
+          "normal_range_MPa": 1.1438687961839373,
+          "shear_range_MPa": 0.92374190089895,
+          "equivalent_range_MPa": 1.9668078506332303,
+          "life_at_design_curve_cycles": 7097541824.4548645,
+          "damage": 0.014089385096040716
+        },
+        {
+          "name": "start_stop",
+          "cycles": 10000.0,
+          "Fr_amp": 1500,
+          "Fa_mean": 2500,
+          "Fa_amp": 1000,
+          "M_amp": 75000,
+          "normal_range_MPa": 3.431606388551812,
+          "shear_range_MPa": 3.0923833422639317,
+          "equivalent_range_MPa": 6.361165507395947,
+          "life_at_design_curve_cycles": 209789464.16235843,
+          "damage": 4.766683608220138e-05
+        }
+      ],
+      "miner_damage": 0.014137051932122918,
+      "fatigue_curve": {
+        "reference_range_MPa": 30,
+        "reference_cycles": 2000000.0,
+        "slope": 3,
+        "basis": "same qualification curve; continuous weld has no weld-end notches, so the nominal comparison understates its real fatigue advantage",
+        "qualification_required": true
+      },
+      "heat_kJ": 282.66794059939525,
+      "arc_s": 571.0463446452429,
+      "role": "qualification comparison item and shape fallback if the first-article metallography rejects the 8P metallurgical route; its weld thermal distortion has no FE evidence and must not inherit the 8P 31.34 um synthesis"
     }
   ],
   "tooling": {
@@ -208,6 +262,43 @@
       "pipeline": "two assembly pallets alone do not reduce occupied welding/holding resource; dedicated holding pallets required"
     }
   ],
+  "continuous_comparison": {
+    "continuous_miner_damage": 0.014137,
+    "ratio_to_8P": 0.0286,
+    "ratio_to_6P": 0.012,
+    "heat_ratio_vs_8P": 3.27,
+    "arc_ratio_vs_8P": 3.27,
+    "note": "continuous weld is the fatigue-safest shape on the same spectra and has no weld-end notches; its cost is 3.27x heat and arc time, and its weld thermal distortion has no FE evidence, so it serves as qualification comparison item and shape fallback, not the current baseline"
+  },
+  "service_stiffness": {
+    "source": "simulation/structural-v4/results/service-stiffness-8p.json (WAVE2-SERVICE-STIFFNESS-1)",
+    "method": "linear elastic seat-only FEM on cached fine meshes via run_static_screening functions; bore ovalization = half range of load-induced radial displacement on the finished Ø40 surface",
+    "boundaries": [
+      "seat-only linear elastic at room temperature (E=169 GPa, nu=0.27)",
+      "weld interface as distributed isotropic springs BC-1=1e8 N/mm; shell flexibility not modelled",
+      "no weld residual stress state, no mandrel contact, no thermal field — service stiffness magnitude only",
+      "linear scaling to service loads is exact within linear elasticity"
+    ],
+    "axis_offset_diameter_mm_at_1000N": 0.0005665991841596807,
+    "bore_ovalization_amplitude_mm_at_1000N": 0.000284127,
+    "start_stop_Fr1500N": {
+      "radial_force_n": 1500.0,
+      "axis_offset_diameter_mm": 0.0008499,
+      "bore_ovalization_amplitude_mm": 0.0004262,
+      "fraction_of_position_limit_mm": 0.016998
+    },
+    "continuous_condition_Fr500N": {
+      "radial_force_n": 500.0,
+      "axis_offset_diameter_mm": 0.0002833,
+      "bore_ovalization_amplitude_mm": 0.0001421,
+      "fraction_of_position_limit_mm": 0.005666
+    },
+    "ratio_8p_vs_continuous": {
+      "axis_offset_ratio_8p_vs_continuous": 1.87,
+      "ovalization_ratio_8p_vs_continuous": 1.82
+    },
+    "interpretation": "slotted-seat service stiffness loss is 1.8-1.9x vs continuous ring but both are around or below 2% of the 0.05 mm position limit at the start-stop radial load amplitude"
+  },
   "scoring": {
     "weights": [
       0.2,

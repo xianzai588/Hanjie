@@ -1,0 +1,205 @@
+{
+  "version": "WAVE2-SERVICE-STIFFNESS-1",
+  "method": "linear elastic seat-only FEM on cached fine meshes via run_static_screening functions; bore ovalization = half range of load-induced radial displacement on the finished Ø40 surface",
+  "boundaries": [
+    "seat-only linear elastic at room temperature (E=169 GPa, nu=0.27)",
+    "weld interface as distributed isotropic springs BC-1=1e8 N/mm; shell flexibility not modelled",
+    "no weld residual stress state, no mandrel contact, no thermal field — service stiffness magnitude only",
+    "linear scaling to service loads is exact within linear elasticity"
+  ],
+  "service_spectra_source": "report §5 design conditions (start_stop Fr amp 1500 N, continuous Fr amp 500 N)",
+  "models": [
+    {
+      "model_id": "8P-FAIR_B",
+      "resolution": "fine",
+      "boundary_condition": "BC-1",
+      "mesh": {
+        "tetrahedron_count": 36190,
+        "node_count": 9745
+      },
+      "reference_load_n": 1000.0,
+      "worst_direction_deg": 90,
+      "worst_axis_offset_diameter_mm": 0.0005665991841596807,
+      "worst_bore_ovalization_amplitude_mm": 0.000284127,
+      "worst_bore_mean_radial_displacement_mm": 1.28e-07,
+      "worst_p95_von_mises_mpa": 0.9663090976230246,
+      "directions": [
+        {
+          "load_angle_deg": 0,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0005664629132006246,
+          "p95_von_mises_mpa": 0.9650792953195911,
+          "bore_ovalization_amplitude_mm": 0.000283216,
+          "bore_mean_radial_displacement_mm": 1.798e-06,
+          "bore_probe_nodes": 462
+        },
+        {
+          "load_angle_deg": 15,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0005664626948813319,
+          "p95_von_mises_mpa": 0.9716490528026771,
+          "bore_ovalization_amplitude_mm": 0.000287035,
+          "bore_mean_radial_displacement_mm": 1.769e-06,
+          "bore_probe_nodes": 462
+        },
+        {
+          "load_angle_deg": 30,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.000566480793821512,
+          "p95_von_mises_mpa": 0.9711758296179218,
+          "bore_ovalization_amplitude_mm": 0.000286581,
+          "bore_mean_radial_displacement_mm": 1.621e-06,
+          "bore_probe_nodes": 462
+        },
+        {
+          "load_angle_deg": 45,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0005665123590354303,
+          "p95_von_mises_mpa": 0.9656221754160735,
+          "bore_ovalization_amplitude_mm": 0.000283604,
+          "bore_mean_radial_displacement_mm": 1.361e-06,
+          "bore_probe_nodes": 462
+        },
+        {
+          "load_angle_deg": 60,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0005665489312447141,
+          "p95_von_mises_mpa": 0.9707798859797603,
+          "bore_ovalization_amplitude_mm": 0.00028754,
+          "bore_mean_radial_displacement_mm": 1.01e-06,
+          "bore_probe_nodes": 462
+        },
+        {
+          "load_angle_deg": 75,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0005665807109390948,
+          "p95_von_mises_mpa": 0.9717307579685686,
+          "bore_ovalization_amplitude_mm": 0.000287213,
+          "bore_mean_radial_displacement_mm": 5.89e-07,
+          "bore_probe_nodes": 462
+        },
+        {
+          "load_angle_deg": 90,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0005665991841596807,
+          "p95_von_mises_mpa": 0.9663090976230246,
+          "bore_ovalization_amplitude_mm": 0.000284127,
+          "bore_mean_radial_displacement_mm": 1.28e-07,
+          "bore_probe_nodes": 462
+        }
+      ],
+      "service_scaling_linear": {
+        "start_stop_amp": {
+          "radial_force_n": 1500.0,
+          "axis_offset_diameter_mm": 0.0008499,
+          "bore_ovalization_amplitude_mm": 0.0004262,
+          "fraction_of_position_limit_mm": 0.016998
+        },
+        "continuous_amp": {
+          "radial_force_n": 500.0,
+          "axis_offset_diameter_mm": 0.0002833,
+          "bore_ovalization_amplitude_mm": 0.0001421,
+          "fraction_of_position_limit_mm": 0.005666
+        }
+      }
+    },
+    {
+      "model_id": "Continuous",
+      "resolution": "fine",
+      "boundary_condition": "BC-1",
+      "mesh": {
+        "tetrahedron_count": 55901,
+        "node_count": 13039
+      },
+      "reference_load_n": 1000.0,
+      "worst_direction_deg": 90,
+      "worst_axis_offset_diameter_mm": 0.0003030119820640037,
+      "worst_bore_ovalization_amplitude_mm": 0.000155909,
+      "worst_bore_mean_radial_displacement_mm": 1.468e-06,
+      "worst_p95_von_mises_mpa": 0.6312250170501499,
+      "directions": [
+        {
+          "load_angle_deg": 0,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.00030299285032261335,
+          "p95_von_mises_mpa": 0.6322594591832706,
+          "bore_ovalization_amplitude_mm": 0.000156857,
+          "bore_mean_radial_displacement_mm": 1.23e-06,
+          "bore_probe_nodes": 458
+        },
+        {
+          "load_angle_deg": 15,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0003029726396935423,
+          "p95_von_mises_mpa": 0.6305622582672021,
+          "bore_ovalization_amplitude_mm": 0.000157337,
+          "bore_mean_radial_displacement_mm": 1.568e-06,
+          "bore_probe_nodes": 458
+        },
+        {
+          "load_angle_deg": 30,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0003029604071684166,
+          "p95_von_mises_mpa": 0.6300736358552667,
+          "bore_ovalization_amplitude_mm": 0.000156175,
+          "bore_mean_radial_displacement_mm": 1.799e-06,
+          "bore_probe_nodes": 458
+        },
+        {
+          "load_angle_deg": 45,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0003029594314958784,
+          "p95_von_mises_mpa": 0.6301677089067563,
+          "bore_ovalization_amplitude_mm": 0.000155148,
+          "bore_mean_radial_displacement_mm": 1.908e-06,
+          "bore_probe_nodes": 458
+        },
+        {
+          "load_angle_deg": 60,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0003029699742146228,
+          "p95_von_mises_mpa": 0.6302126934317568,
+          "bore_ovalization_amplitude_mm": 0.00015578,
+          "bore_mean_radial_displacement_mm": 1.886e-06,
+          "bore_probe_nodes": 458
+        },
+        {
+          "load_angle_deg": 75,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.00030298920944526466,
+          "p95_von_mises_mpa": 0.6310272199636714,
+          "bore_ovalization_amplitude_mm": 0.000156498,
+          "bore_mean_radial_displacement_mm": 1.736e-06,
+          "bore_probe_nodes": 458
+        },
+        {
+          "load_angle_deg": 90,
+          "load_total_n": 1000.0,
+          "position_diameter_mm": 0.0003030119820640037,
+          "p95_von_mises_mpa": 0.6312250170501499,
+          "bore_ovalization_amplitude_mm": 0.000155909,
+          "bore_mean_radial_displacement_mm": 1.468e-06,
+          "bore_probe_nodes": 458
+        }
+      ],
+      "service_scaling_linear": {
+        "start_stop_amp": {
+          "radial_force_n": 1500.0,
+          "axis_offset_diameter_mm": 0.0004545,
+          "bore_ovalization_amplitude_mm": 0.0002339,
+          "fraction_of_position_limit_mm": 0.00909
+        },
+        "continuous_amp": {
+          "radial_force_n": 500.0,
+          "axis_offset_diameter_mm": 0.0001515,
+          "bore_ovalization_amplitude_mm": 7.8e-05,
+          "fraction_of_position_limit_mm": 0.00303
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "axis_offset_ratio_8p_vs_continuous": 1.87,
+    "ovalization_ratio_8p_vs_continuous": 1.82
+  }
+}

@@ -4,6 +4,22 @@ import json, math
 import numpy as np
 ROOT=Path(__file__).resolve().parents[2];OUT=Path(__file__).parent/'results'
 rows=[]
+def _service_stiffness_summary():
+ """Wave 2: 服务载荷下开槽座体刚度摘要，完整场数据见 structural-v4 结果文件。"""
+ path=ROOT/'simulation/structural-v4/results/service-stiffness-8p.json'
+ if not path.exists():return None
+ full=json.loads(path.read_text(encoding='utf8'))
+ by_id={m['model_id']:m for m in full['models']}
+ slotted=by_id['8P-FAIR_B'];cont=by_id['Continuous']
+ return dict(source='simulation/structural-v4/results/service-stiffness-8p.json ('+full['version']+')',
+  method=full['method'],boundaries=full['boundaries'],
+  axis_offset_diameter_mm_at_1000N=slotted['worst_axis_offset_diameter_mm'],
+  bore_ovalization_amplitude_mm_at_1000N=slotted['worst_bore_ovalization_amplitude_mm'],
+  start_stop_Fr1500N=slotted['service_scaling_linear']['start_stop_amp'],
+  continuous_condition_Fr500N=slotted['service_scaling_linear']['continuous_amp'],
+  ratio_8p_vs_continuous=full['comparison'],
+  interpretation='slotted-seat service stiffness loss is 1.8-1.9x vs continuous ring but both are '
+   'around or below 2% of the 0.05 mm position limit at the start-stop radial load amplitude')
 # Design spectra, explicitly proposed engineering conditions, not measured compressor data.
 cycles=[dict(name='continuous',cycles=1e8,Fr_amp=500,Fa_mean=2000,Fa_amp=200,M_amp=25000),
  dict(name='start_stop',cycles=1e4,Fr_amp=1500,Fa_mean=2500,Fa_amp=1000,M_amp=75000)]
@@ -19,10 +35,27 @@ for n in (6,8):
   # Design endurance target, no claim of an IIW classified NiFe/QT detail.
   life=2e6*(30/dr)**3;damage+=b['cycles']/life
   fatigue.append({**b,'normal_range_MPa':ds,'shear_range_MPa':dt,'equivalent_range_MPa':dr,'life_at_design_curve_cycles':life,'damage':b['cycles']/life})
- rows.append(dict(n=n,throat_mm=a,area_mm2=A,second_moment_mm4=I,static_equivalent_MPa=static_vm,
+ rows.append(dict(n=n,layout=f'{n}P-FAIR_B',length_mm=L,throat_mm=a,area_mm2=A,second_moment_mm4=I,static_equivalent_MPa=static_vm,
  static_allowable_MPa=60,static_margin=60/static_vm,fatigue=fatigue,miner_damage=damage,
  fatigue_curve=dict(reference_range_MPa=30,reference_cycles=2e6,slope=3,basis='proposed qualification target, not a published FAT class for NiFe/QT',qualification_required=True),
  heat_kJ=18*n*2*.300,arc_s=18*n*2/1.65))
+# Full-circumference comparison layout (Wave 2): same two-pass legs, no weld ends.
+r=74.98;L=2*math.pi*r;a=3.5/math.sqrt(2);A=a*L;I=a*L*r*r/2
+static_tau=math.hypot(5000,5000)/A;static_sigma=250000*r/I
+static_vm=math.sqrt(static_sigma**2+3*static_tau**2)
+fatigue=[];damage=0.
+for b in cycles:
+ ds=2*b['M_amp']*r/I;dt=2*math.hypot(b['Fr_amp'],b['Fa_amp'])/A
+ dr=math.sqrt(ds*ds+3*dt*dt)
+ life=2e6*(30/dr)**3;damage+=b['cycles']/life
+ fatigue.append({**b,'normal_range_MPa':ds,'shear_range_MPa':dt,'equivalent_range_MPa':dr,'life_at_design_curve_cycles':life,'damage':b['cycles']/life})
+continuous_damage=damage
+rows.append(dict(n=None,layout='Continuous',length_mm=round(L,2),throat_mm=a,area_mm2=A,second_moment_mm4=I,static_equivalent_MPa=static_vm,
+ static_allowable_MPa=60,static_margin=60/static_vm,fatigue=fatigue,miner_damage=damage,
+ fatigue_curve=dict(reference_range_MPa=30,reference_cycles=2e6,slope=3,basis='same qualification curve; continuous weld has no weld-end notches, so the nominal comparison understates its real fatigue advantage',qualification_required=True),
+ heat_kJ=L*2*.300,arc_s=L*2/1.65,
+ role='qualification comparison item and shape fallback if the first-article metallography rejects the 8P metallurgical route; '
+      'its weld thermal distortion has no FE evidence and must not inherit the 8P 31.34 um synthesis'))
 # Slotted finger beam conservatively all six fingers carry radial preload.
 E=200000.;w=19.;th=.8;leng=30.;I=w*th**3/12;k=6*3*E*I/leng**3
 u=(40.025-39.94)/2;F=k*u;rootstress=6*(F/6)*leng/(w*th**2)
@@ -73,6 +106,16 @@ result=dict(load_basis='proposed screening spectra for relative route comparison
  'no measured spectrum, static columns use its 5000 N reference loads, first-order derivation in load_derivation',
  load_spectrum=cycles,load_derivation=derivation,
  layout_checks=rows,tooling=tools,cleanliness=clean,cycle_resource=process,
+ continuous_comparison=dict(
+  continuous_miner_damage=round(continuous_damage,6),
+  ratio_to_8P=round(continuous_damage/rows[1]['miner_damage'],4),
+  ratio_to_6P=round(continuous_damage/rows[0]['miner_damage'],4),
+  heat_ratio_vs_8P=round(rows[2]['heat_kJ']/rows[1]['heat_kJ'],2),
+  arc_ratio_vs_8P=round(rows[2]['arc_s']/rows[1]['arc_s'],2),
+  note='continuous weld is the fatigue-safest shape on the same spectra and has no weld-end notches; '
+       'its cost is 3.27x heat and arc time, and its weld thermal distortion has no FE evidence, '
+       'so it serves as qualification comparison item and shape fallback, not the current baseline'),
+ service_stiffness=_service_stiffness_summary(),
  scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],
   candidates=['GMAW-plug','laser','micro-plasma','pulsed-TIG','brazing-eliminated'],
   weighted_scores=[6.8,6.15,7.1,7.6,5.7],
