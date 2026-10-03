@@ -27,3 +27,27 @@ def test_report_contains_single_decision_rule():
     assert report.count("52.17 MPa") >= 4
     assert "56.59 MPa" not in report
     assert "Monte Carlo 代理通过率" not in report
+
+
+def test_current_process_source_matches_design_authority():
+    root = Path(__file__).parents[1]
+    process = yaml.safe_load((root / "project/process.yaml").read_text(encoding="utf-8"))["process"]["nominal"]
+    design = yaml.safe_load((root / "project/competition-design.yaml").read_text(encoding="utf-8"))["process"]
+    assert process["pass_count"] == design["pass_count"] == 4
+    assert process["sequence"] == design["sequence"] == [1, 4, 3, 6, 2, 5]
+    assert process["filler_diameter_mm"] == design["wire_diameter_mm"] == 1.6
+    assert process["filler_feed_rate_mm_s"] == 1.343967
+    assert process["current_a"] == 75.0
+    assert process["voltage_v"] == 12.0
+    assert process["travel_speed_mm_s"] == 1.5
+
+
+def test_selection_uses_pareto_front_not_weighted_score():
+    root = Path(__file__).parents[1]
+    selection = json.loads((root / "studies/COMPETITION-DESIGN/results/robust-selection.json").read_text(encoding="utf-8"))
+    assert "score" not in selection
+    assert all("score" not in row for row in selection["candidates"])
+    assert set(selection["pareto_front"]) == {
+        "Continuous/4pass", "6P-FAIR_B/4pass", "8P-FAIR_B/4pass"
+    }
+    assert selection["digital_baseline"] == "6P-FAIR_B/4pass"
