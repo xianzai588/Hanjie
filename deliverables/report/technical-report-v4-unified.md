@@ -618,3 +618,5 @@ TWI原文将0.8 mm/焊列为钢焊缝的经验规则，并说明准确预测收�
 [25] Roy, P. “Effect of Preheating the Work Piece Material on the Width of Heat Affected Zone of Cast Iron and Mild Steel Weldments.” Indian Welding Journal 25(1) (1992). DOI: https://doi.org/10.22486/iwj.v25i1.148352 。本次未取得全文，留作馆际调取事项。
 
 [26] GB/T 1348-2019《球墨铸铁件》（现行，QT450牌号信息）；GB/T 9441-2021《球墨铸铁金相检验》（现行）。标准目录：[GB/T 1348-2019](https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=15FEC696DDAC0A0B7586F376DD19935A)、[GB/T 9441-2021](https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=D24E4E418C01F543351FA0A1F82D3659)。牌号类别不能替代供货批次的质保与金相记录。
+
+[27] AWS D11.2/D11.2M:2025, *Guide for Welding Iron Castings*. AWS. 用于铸铁焊接工艺、焊接性试验、工艺评定与质量控制的专门指导；本项目不据此宣称已完成WPS/PQR或实物验收。https://pubs.aws.org/p/2289/d112d112m2025-guide-for-welding-iron-castings
