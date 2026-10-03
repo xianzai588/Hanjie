@@ -25,3 +25,25 @@ def test_report_contains_single_decision_rule():
     assert report.count("39.13 MPa") >= 1
     assert "56.59 MPa" not in report
     assert "Monte Carlo 代理通过率" not in report
+
+
+def test_current_process_has_single_authority_and_legacy_source_is_historical():
+    root = Path(__file__).parents[1]
+    current = yaml.safe_load((root / "project/process-r3.yaml").read_text(encoding="utf-8"))
+    legacy = yaml.safe_load((root / "project/process.yaml").read_text(encoding="utf-8"))
+    design = yaml.safe_load((root / "project/competition-design.yaml").read_text(encoding="utf-8"))
+    assert current["state"] == "current_frozen_design"
+    assert current["authority"] == "current_competition_process_source"
+    assert design["process_source"] == "project/process-r3.yaml"
+    assert legacy["state"] == "historical_only"
+    assert legacy["current_authority"] == "project/process-r3.yaml"
+    assert legacy["authority"] != "焊接工艺与填丝参数的唯一权威配置"
+
+
+def test_legacy_process_card_entrypoint_contains_no_current_6p_parameters():
+    root = Path(__file__).parents[1]
+    script = (root / "deliverables/process/generate_joint_process_card.py").read_text(encoding="utf-8")
+    assert "6P-FAIR_B" not in script
+    assert "1.343967" not in script
+    assert "3.50±0.05" not in script
+    assert "generate_process_r3" in script
