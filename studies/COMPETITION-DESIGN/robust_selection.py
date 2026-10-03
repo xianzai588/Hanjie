@@ -84,7 +84,7 @@ def main() -> None:
         "engineering_selection_status": "pending_release_gates",
         "low_heat_candidate": "6P-FAIR_B/4pass",
         "higher_static_margin_candidate": "8P-FAIR_B/4pass",
-        "rejected_high_heat_reference": null,
+        "rejected_high_heat_reference": None,
         "interpretation": "三候选均通过本轮60 MPa参考承载硬约束且均处于Pareto前沿；不存在由任意人为权重导出的唯一数学优胜者。6P-FAIR_B仅作为当前详细数字设计基线，8P作为承载裕量切换候选，Continuous作为高热输入/高焊缝长度参考。所有结果均不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
