@@ -1,45 +1,53 @@
 {
-  "version": "COMPETITION-R1-DIGITAL-SELECTION-1",
+  "version": "COMPETITION-R2-DIGITAL-SELECTION-1",
   "evidence_level": "design_assumption_reference_envelope",
   "input": "studies/COMPETITION-DESIGN/results/assessment.json",
   "frozen_scenario": {
     "pass_count": 4,
     "deposition_efficiency": 0.85,
-    "load_scale": 1.0,
-    "assumed_allowable_mpa": 60.0
+    "load_scale": 1,
+    "assumed_allowable_mpa": 60
   },
-  "ranking": [
-    {
-      "candidate_id": "6P-FAIR_B/4pass",
-      "required_allowable_mpa": 52.1731967860798,
-      "capacity_margin": 1.1500157877235626,
-      "net_heat_input_kj": 142.56,
-      "weld_length_mm": 108.0,
-      "score": 0.32529060433964574
-    },
-    {
-      "candidate_id": "8P-FAIR_B/4pass",
-      "required_allowable_mpa": 39.1298975895598,
-      "capacity_margin": 1.5333543836314185,
-      "net_heat_input_kj": 190.08,
-      "weld_length_mm": 144.0,
-      "score": 0.3576348938064946
-    },
+  "hard_constraint": "required_allowable_mpa <= 60.0 MPa in the stated reference screening scenario",
+  "pareto_front": [
+    "Continuous/4pass",
+    "6P-FAIR_B/4pass",
+    "8P-FAIR_B/4pass"
+  ],
+  "candidates": [
     {
       "candidate_id": "Continuous/4pass",
       "required_allowable_mpa": 11.9604053596208,
       "capacity_margin": 5.01655238229336,
       "net_heat_input_kj": 621.86946931867,
       "weld_length_mm": 471.1132343323254,
-      "score": 0.879901013399052
+      "hard_constraint_pass": true,
+      "pareto_front": true
+    },
+    {
+      "candidate_id": "8P-FAIR_B/4pass",
+      "required_allowable_mpa": 39.1298975895598,
+      "capacity_margin": 1.5333543836314185,
+      "net_heat_input_kj": 190.08,
+      "weld_length_mm": 144,
+      "hard_constraint_pass": true,
+      "pareto_front": true
+    },
+    {
+      "candidate_id": "6P-FAIR_B/4pass",
+      "required_allowable_mpa": 52.1731967860798,
+      "capacity_margin": 1.1500157877235626,
+      "net_heat_input_kj": 142.56,
+      "weld_length_mm": 108,
+      "hard_constraint_pass": true,
+      "pareto_front": true
     }
   ],
-  "recommended": "6P-FAIR_B/4pass",
-  "backup": "8P-FAIR_B/4pass",
-  "engineering_selection_status": "pending_release_gates",
   "digital_baseline": "6P-FAIR_B/4pass",
+  "fallback": "8P-FAIR_B/4pass",
+  "engineering_selection_status": "pending_release_gates",
   "low_heat_candidate": "6P-FAIR_B/4pass",
   "higher_static_margin_candidate": "8P-FAIR_B/4pass",
-  "rejected_high_heat_reference": "Continuous/4pass",
-  "interpretation": "推荐字段表示当前数字设计基线，不代表最终工程放行；8P仅作为几何、热量和静力承载裕量切换候选，尚未冻结独立WPS与自动化段序。统一条件筛查不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。"
+  "rejected_high_heat_reference": null,
+  "interpretation": "三候选均通过本轮60 MPa参考承载硬约束且均处于Pareto前沿；不存在由任意人为权重导出的唯一数学优胜者。6P-FAIR_B仅作为当前详细数字设计基线，8P作为承载裕量切换候选，Continuous作为高热输入/高焊缝长度参考。所有结果均不代表实际载荷、疲劳寿命、焊缝成形或产品位置度验收。"
 }
