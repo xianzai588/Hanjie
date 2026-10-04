@@ -10,11 +10,27 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parents[2];OUT=Path(__file__).parent/'results';FIG=ROOT/'docs/report/figures'
-COMPOSITIONS={
- 'Q235B':dict(C=.17,Si=.22,Mn=.5,Cr=.05,Ni=.05,Mo=.01,Nb=0),
- 'QT450-10':dict(C=3.65,Si=2.60,Mn=.30,Cr=.05,Ni=.05,Mo=0,Nb=0),
- 'NiFe-55':dict(C=.01,Si=.13,Mn=.70,Cr=0,Ni=55,Mo=0,Nb=0),
- 'Ni99':dict(C=.02,Si=.1,Mn=.1,Cr=0,Ni=99,Mo=0,Nb=0)}
+MATERIALS=yaml.safe_load((ROOT/'project/materials.yaml').read_text(encoding='utf8'))['materials']
+COMPOSITIONS={name:{key:float(MATERIALS[material]['composition_nominal_wt_pct'].get(key,0))
+ for key in ('C','Si','Mn','Cr','Ni','Mo','Nb')}
+ for name,material in (('Q235B','q235b'),('QT450-10','qt450_10'),('NiFe-55','ernife_ci'))}
+COMPOSITIONS['Ni99']=dict(C=.01,Si=.05,Mn=.17,Cr=0,Ni=99.62,Mo=0,Nb=0)
+def blend(components):
+ return {k:sum(weight*composition[k] for weight,composition in components) for k in COMPOSITIONS['Ni99']}
+def transition_cases():
+ """Track carbon inherited from QT into both butter layers and the final pool."""
+ rows=[]
+ for d1 in (.1,.2,.3):
+  for d2 in (.1,.15,.2):
+   first=blend([(1-d1,COMPOSITIONS['Ni99']),(d1,COMPOSITIONS['QT450-10'])])
+   second=blend([(1-d2,COMPOSITIONS['Ni99']),(d2,first)])
+   for dnickel,dsteel in ((.1,.05),(.15,.1),(.2,.1)):
+    final=blend([(1-dnickel-dsteel,COMPOSITIONS['NiFe-55']),(dnickel,second),(dsteel,COMPOSITIONS['Q235B'])])
+    rows.append(dict(first_QT_dilution=d1,second_first_layer_remelt=d2,final_Ni_layer_dilution=dnickel,final_steel_dilution=dsteel,
+     first_composition_wt_pct=first,second_composition_wt_pct=second,final_composition_wt_pct=final,
+     final_cr_eq=equivalents(final)[0],final_ni_eq=equivalents(final)[1],
+     meets_selected_dilution_envelope=d1<=.2 and d2<=.15 and dnickel<=.2 and dsteel<=.1))
+ return rows
 def equivalents(c):return c['Cr']+c['Mo']+1.5*c['Si']+.5*c['Nb'],c['Ni']+30*c['C']+.5*c['Mn']
 def mix(d,r,filler='NiFe-55'):
  return {k:(1-d)*COMPOSITIONS[filler][k]+d*r*COMPOSITIONS['QT450-10'][k]+d*(1-r)*COMPOSITIONS['Q235B'][k] for k in COMPOSITIONS[filler]}
@@ -26,14 +42,16 @@ def build():
    rows.append(dict(dilution=d,cast_iron_share=r,composition_wt_pct=c,cr_eq=ce,ni_eq=ne,within_schaeffler_plot=0<=ce<=40 and 0<=ne<=30,
        constitution='图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ'))
  base=[dict(material=k,composition_wt_pct=v,cr_eq=equivalents(v)[0],ni_eq=equivalents(v)[1],
-   source='供方典型成分' if k=='NiFe-55' else '工程成分假设，按来料化学分析替换；牌号不等于固定化学成分') for k,v in COMPOSITIONS.items()]
- return dict(version='SCHAEFFLER-R3',formula=dict(cr_eq='Cr+Mo+1.5Si+0.5Nb',ni_eq='Ni+30C+0.5Mn'),
+   source='供方典型成分，按批次证书复核' if k in ('NiFe-55','Ni99') else '工程成分假设，按来料化学分析替换；牌号不等于固定化学成分') for k,v in COMPOSITIONS.items()]
+ return dict(version='SCHAEFFLER-R4',formula=dict(cr_eq='Cr+Mo+1.5Si+0.5Nb',ni_eq='Ni+30C+0.5Mn'),
   original_diagram=dict(url='https://www.kobelco-welding.jp/images/education-center/pdf/Specific_4Ed.pdf',page='3-7',figure='2.3',plot_extent=[0,40,0,30],
    tracing_accuracy_equivalent_units=.4,role='读图重绘，非热力学数据库；不对图外点分类'),
   base_metals=base,dilution_sweep=dict(design_rows=rows[:7],conservative_rows=rows[7:]),
+  transition_layer_sweep=transition_cases(),
+  Ni99_source=dict(url='https://www.weldwire.net/wp-content/uploads/2013/08/ERNi-CI.pdf',product='WWNA99 / ERNi-CI',basis='typical deposited chemistry, not a batch certificate',processes=['GTAW','GMAW']),
   metallurgy_reference=dict(doi='10.1007/s11661-024-07399-4',scope='EN-GJS-500-14 / GMAW-MCAW；机理参考，非本件合格评定',
    conclusion='NiFe与纯Ni均有奥氏体主枝晶；NiFe枝晶间可析出渗碳体，纯Ni促进石墨，HAZ仍可出现马氏体'),
-  design_decision='QT侧预制Ni99隔离层，接头主体NiFe55；保证最终焊接不穿透隔离层，镍层制作在精加工孔之前完成；宏观金相确认剩余层厚≥0.8 mm')
+  design_decision='QT侧两层Ni99过渡层，QT稀释≤20%、第二层重熔首层≤15%；加工后第二层≥0.5 mm，最终熔深≤0.4 mm只重熔第二层；最终Ni层稀释≤20%、钢侧≤10%；厚度与稀释独立控制，总残层≥0.8 mm；首次QT/Ni99界面的PMZ与HAZ仍按冷焊裂纹控制程序管理')
 def plot(r):
  plt.rcParams.update({'font.sans-serif':['Microsoft YaHei'],'axes.unicode_minus':False})
  fig,(ax,z)=plt.subplots(1,2,figsize=(12,5.6),gridspec_kw={'width_ratios':[1.2,1]},layout='constrained')
@@ -51,6 +69,8 @@ def plot(r):
  q=r['base_metals'][0];ax.scatter(q['cr_eq'],q['ni_eq'],s=35,color='#2563eb');ax.annotate('Q235B成分点\n不判母材供货组织',(q['cr_eq'],q['ni_eq']),xytext=(3,3),fontsize=8)
  for j,(tag,rows) in enumerate(r['dilution_sweep'].items()):
   z.plot([a['cr_eq'] for a in rows],[a['ni_eq'] for a in rows],'-o',label=f'铸铁熔入占比 {rows[0]["cast_iron_share"]:.0%}')
+ valid=[a for a in r['transition_layer_sweep'] if a['meets_selected_dilution_envelope']]
+ z.scatter([a['final_cr_eq'] for a in valid],[a['final_ni_eq'] for a in valid],s=18,color='#059669',label='两层Ni99后最终熔池（设计窗口）')
  for a in r['base_metals']:
   z.scatter(a['cr_eq'],a['ni_eq'],marker='*',s=70);z.annotate(f'{a["material"]} ({a["cr_eq"]:.2f},{a["ni_eq"]:.2f})',(a['cr_eq'],a['ni_eq']),xytext=(4,2),textcoords='offset points',fontsize=7)
  z.axhline(30,color='#94a3b8',ls='--');z.text(.1,31,'原图Ni_eq上限30；上方点不作相区外推',fontsize=8)
@@ -59,7 +79,16 @@ def plot(r):
  fig.savefig(FIG/'schaeffler-map.png',dpi=220);fig.savefig(OUT/'schaeffler-map.svg');plt.close(fig)
  temps=np.array([20,100,150,200,500]);delta=temps-20
  fig,axes=plt.subplots(1,2,figsize=(10,4),layout='constrained')
- axes[0].bar(temps.astype(str),.684571872*.460*delta,color='#0284c7');axes[0].set(ylabel='座体蓄热 kJ',xlabel='均匀温度 ℃',title='热容量核算')
+ spec=yaml.safe_load((ROOT/'project/competition-design.yaml').read_text(encoding='utf8'))
+ manifest=json.loads((ROOT/spec['geometry_manifest']).read_text(encoding='utf8'))
+ mass=manifest['geometry']['calculated_mass_kg']
+ tab=yaml.safe_load((ROOT/'project/materials.yaml').read_text(encoding='utf8'))['materials']['qt450_10']['temperature_dependent']
+ knots=np.array(tab['temperatures_c']);values=np.array(tab['specific_heat_j_kgk'])
+ heat=[]
+ for top in temps:
+  grid=np.unique(np.r_[20,knots[(knots>20)&(knots<top)],top])
+  heat.append(mass*np.trapezoid(np.interp(grid,knots,values),grid)/1000)
+ axes[0].bar(temps.astype(str),heat,color='#0284c7');axes[0].set(ylabel='座体蓄热 kJ',xlabel='均匀温度 ℃',title='15 mm实际座体：温变比热积分')
  axes[1].bar(temps.astype(str),74.98*1.05e-5*delta,color='#059669');axes[1].set(ylabel='自由半径增量 mm',xlabel='均匀温度 ℃',title='自由热胀（不等于孔轴偏移或残余量）')
  fig.savefig(FIG/'cold-weld-regime.png',dpi=220);fig.savefig(OUT/'cold-weld-regime.svg');plt.close(fig)
 def main():
@@ -69,5 +98,5 @@ def main():
   w=csv.writer(f);w.writerow(['cast_iron_share','dilution','Ni_wt_pct','C_wt_pct','Cr_eq','Ni_eq','within_original_domain'])
   for rows in r['dilution_sweep'].values():
    for a in rows:w.writerow([a['cast_iron_share'],a['dilution'],a['composition_wt_pct']['Ni'],a['composition_wt_pct']['C'],a['cr_eq'],a['ni_eq'],a['within_schaeffler_plot']])
- plot(r);print('真实相图与14例成分核算已生成，无自设相界与Ms外推')
+ plot(r);print('原图域、14组直接稀释对照及27组两层过渡配混已生成')
 if __name__=='__main__':main()

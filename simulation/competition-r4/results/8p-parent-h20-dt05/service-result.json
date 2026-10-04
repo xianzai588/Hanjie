@@ -1,0 +1,48 @@
+{
+  "mesh_h_mm": 2.0,
+  "nodes": 21397,
+  "tetrahedra": 74192,
+  "load_conditions": {
+    "Fr_N": 5000,
+    "Fa_N": 5000,
+    "Mx_Nmm": 250000,
+    "continuous_amplitudes_N_N_Nmm": [
+      500,
+      200,
+      25000
+    ]
+  },
+  "boundary": "cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support",
+  "stress_method": "linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class",
+  "elastic_yield_screen": {
+    "safety_factor": 1.5,
+    "allowable_MPa": {
+      "QT": 206.66666666666666,
+      "NiFe": 193.33333333333334,
+      "Q235": 156.66666666666666
+    },
+    "scope": "incremental cold service stress, separate from weld residual stress; local metal yield checks do not determine PMZ brittle fracture"
+  },
+  "zones": {
+    "QT_slot_root": {
+      "peak_service_VM_MPa": 182.1555603689552,
+      "continuous_peak_range_MPa": 27.683282625901086,
+      "p95_service_VM_MPa": 89.82851928927373
+    },
+    "QT_body": {
+      "peak_service_VM_MPa": 182.1555603689552,
+      "continuous_peak_range_MPa": 27.683282625901086,
+      "p95_service_VM_MPa": 78.11569228324169
+    },
+    "NiFe_weld": {
+      "peak_service_VM_MPa": 156.76819512787554,
+      "continuous_peak_range_MPa": 23.105924736330437,
+      "p95_service_VM_MPa": 99.57843140441723
+    },
+    "Q235_shell": {
+      "peak_service_VM_MPa": 84.833647299331,
+      "continuous_peak_range_MPa": 13.955485405507925,
+      "p95_service_VM_MPa": 27.6839215777111
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "event_temperature_increment_C": 25.0,
+  "event_trigger_counts": {
+    "birth": 352,
+    "annealing": 316,
+    "temperature_jump": 428,
+    "arc_boundary": 16
+  },
+  "mechanical_samples": 1307,
+  "missed_above_annealing_mm3": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0
+  }
+}

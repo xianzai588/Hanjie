@@ -13,13 +13,15 @@ def _service_stiffness_summary():
  slotted=by_id['8P-FAIR_B'];cont=by_id['Continuous']
  return dict(source='simulation/structural-v4/results/service-stiffness-8p.json ('+full['version']+')',
   method=full['method'],boundaries=full['boundaries'],
+  geometry_scope='historical original 12 mm FAIR_B seat-only comparison; not the current 15 mm R2 full assembly',
+  accepted_current_design_evidence=False,
   axis_offset_diameter_mm_at_1000N=slotted['worst_axis_offset_diameter_mm'],
   bore_ovalization_amplitude_mm_at_1000N=slotted['worst_bore_ovalization_amplitude_mm'],
   start_stop_Fr1500N=slotted['service_scaling_linear']['start_stop_amp'],
   continuous_condition_Fr500N=slotted['service_scaling_linear']['continuous_amp'],
   ratio_8p_vs_continuous=full['comparison'],
-  interpretation='slotted-seat service stiffness loss is 1.8-1.9x vs continuous ring but both are '
-   'around or below 2% of the 0.05 mm position limit at the start-stop radial load amplitude')
+  interpretation='Historical geometry and seat-only boundary comparison; preserve its relative trend, '
+   'but use competition-r4/results/service-verification.json for current 15 mm assembly strength and stiffness')
 # Design spectra, explicitly proposed engineering conditions, not measured compressor data.
 cycles=[dict(name='continuous',cycles=1e8,Fr_amp=500,Fa_mean=2000,Fa_amp=200,M_amp=25000),
  dict(name='start_stop',cycles=1e4,Fr_amp=1500,Fa_mean=2500,Fa_amp=1000,M_amp=75000)]
@@ -52,58 +54,106 @@ for b in cycles:
 continuous_damage=damage
 rows.append(dict(n=None,layout='Continuous',length_mm=round(L,2),throat_mm=a,area_mm2=A,second_moment_mm4=I,static_equivalent_MPa=static_vm,
  static_allowable_MPa=60,static_margin=60/static_vm,fatigue=fatigue,miner_damage=damage,
- fatigue_curve=dict(reference_range_MPa=30,reference_cycles=2e6,slope=3,basis='same qualification curve; continuous weld has no weld-end notches, so the nominal comparison understates its real fatigue advantage',qualification_required=True),
+ fatigue_curve=dict(reference_range_MPa=30,reference_cycles=2e6,slope=3,basis='same assumed qualification curve for nominal stress-range comparison; local end/toe/root effects require separate verification',qualification_required=True),
  heat_kJ=L*2*.300,arc_s=L*2/1.65,
- role='qualification comparison item and shape fallback if the first-article metallography rejects the 8P metallurgical route; '
+ role='qualification comparison for weld layout and service stiffness; metallurgy uses the same independently assessed Ni99 transition; '
       'its weld thermal distortion has no FE evidence and must not inherit the 8P 31.34 um synthesis'))
 # Slotted finger beam conservatively all six fingers carry radial preload.
-E=200000.;w=19.;th=.8;leng=30.;I=w*th**3/12;k=6*3*E*I/leng**3
-u=(40.025-39.94)/2;F=k*u;rootstress=6*(F/6)*leng/(w*th**2)
+E=200000.;w=19.;th=.8;leng=30.;arm=115.4-107.5;I=w*th**3/12
+# The backed terminal block transmits the free setting force below the neck.
+# Include its rigid arm in both compliance and neck-root moment.
+k=6*E*I/(leng**3/3+arm*leng**2+arm**2*leng)
+u=(40.025-39.94)/2;F=k*u;rootstress=6*(F/6)*(leng+arm)/(w*th**2)
 tools=dict(finger_radial_stiffness_N_mm=k,max_free_expand_radial_mm=u,elastic_expand_N=F,
  finger_root_stress_MPa=rootstress,preload_N=100,radial_backstop_capacity_N=5000,
  shaft_area_mm2=math.pi*(36**2-24**2)/4,thermal_reaction_separate_from_preload=True)
 tools['backstop_average_axial_MPa']=5000/tools['shaft_area_mm2']
-ring_mass=math.pi*(74.8**2-71.8**2)*5*8.96e-6
+tools['cone_half_angle_deg']=10
+tools['cone_friction_assumed']=.20
+tools['axial_drive_N_at_radial_5000N']=5000*(math.tan(math.radians(10))+.20)/(1-.20*math.tan(math.radians(10)))
+tools['derived_shaft_axial_stress_MPa']=tools['axial_drive_N_at_radial_5000N']/tools['shaft_area_mm2']
+tools['shaft_design_axial_capacity_N']=5000
+tools['three_pad_average_pressure_MPa_at_500N']=500/(3*math.pi*4**2)
+tools['terminal_block_rigid_arm_mm']=arm
+tools['locked_band_length_mm']=14.6
+tools['locked_compliance_source']='simulation/competition-r4/results/mandrel-compliance-verification.json'
+tools['thermal_load_path']='full-band mating cone, annular stem and positive axial shoulder; M12 rod sets and returns only'
+from seal_design import evaluate as seal_evaluate
 jet_area=12*math.pi*.5**2
-clean=dict(copper_mass_kg=ring_mass,radial_hot_growth_at_100C_mm=74.8*17e-6*80,
- hot_metal_radius_mm=74.8*(1+17e-6*80),seal_compression_at_20C_mm=.1,
- nozzle_area_mm2=jet_area,jet_velocity_at_10_15L_min_m_s=[q*1e6/60/jet_area/1000 for q in (10,15)],
+clean=seal_evaluate()
+argon_density=101325/(208.13*293.15)
+jet_velocity=[q*1e6/60/jet_area/1000 for q in (10,15)]
+jet_pressure=[argon_density/2*(jet_velocity[0]/.9)**2,argon_density/2*(jet_velocity[1]/.5)**2]
+clean.update(cavity_pressure_basis='open upper mouth, approximately atmospheric; no whole-cavity positive-pressure barrier credited',
+ curtain_manifold_pressure_target_Pa=[250,2800],argon_density_at_20C_kg_m3=argon_density,
+ curtain_orifice_discharge_coefficient_design_range=[.5,.9],curtain_orifice_pressure_estimate_Pa=jet_pressure,
+ open_mouth_5Pa_flow_estimate_L_min=.6*math.pi*.075**2*math.sqrt(2*5/argon_density)*60000,
+ makeup_Ar_L_min=[0,12],
+ worst_required_makeup_Ar_L_min=28-8-10+.5,
+ gas_balance_rule='Q_makeup=max(0,Q_exhaust-Q_shield-Q_curtain+0.5); flow balance limits air entrainment at the open mouth; independently interlock actual curtain flow and manifold pressure',
+ nozzle_area_mm2=jet_area,jet_velocity_at_10_15L_min_m_s=jet_velocity,
  full_bore_average_velocity_m_s=[q*1e6/60/(math.pi*75**2)/1000 for q in (10,15)],
- water_flow_L_min=.2,coolant_capacity_W_at_10K=.2/60*4180*10,
- function='mechanical collection and static seal prevent downward debris; jets assist transport only')
+ coolant_capacity_W_at_10K=.6/60*4180*10,
+ function='mechanical collection and captured static seal block debris; jets assist transport; seal and copper temperature interlocks are independent',
+ inspection_design=dict(card='HJ-Q-02',scope='process acceptance goals, not measured cleanliness or a product-standard limit',
+     membrane_pore_um=1,optical_minimum_particle_um=5,net_mass_plus_uncertainty_limit_mg=.50,
+     method_quantification_limit_mg=.10,blank_mass_limit_mg=.05,
+     metal_or_hard_particle_reject_from_um=5,other_particle_reject_from_um=25,fibre_length_reject_from_um=100,
+     weld_slag_spatter_machining_chips='reject whenever identified, regardless of size',
+     initial_rinse_rounds=3,initial_liquid_L_per_round=.5,final_round_fraction_limit=.1,
+     qualification_recovery_range=[.90,1.10]))
 process=[]
-for passes in (2,4):
- arc=18*6/1.65*passes;tool=6*passes*18;assembly=120;qc=120
- process.append(dict(passes=passes,arc_s=arc,peen_clean_transfer_s=tool,assembly_s=assembly,inspection_s=qc,
- welded_station_work_s=arc+tool,serial_before_cooling_s=arc+tool+assembly+qc,
+for layout,n,passes,heads in [('8P-FAIR_B',8,2,1),('6P-FAIR_B',6,2,1),('6P-legacy-fourpass',6,4,1),('8P-opposed-candidate',8,2,2)]:
+ arc=18*n/1.65*passes;stages=n*passes/heads;tool=stages*18;assembly=120;qc=120
+ station=arc/heads+tool
+ process.append(dict(layout=layout,segments=n,segment_length_mm=18,segment_operations=n*passes,passes=passes,
+ maximum_simultaneous_heads=heads,stage_count=stages,arc_s=arc,elapsed_arc_s=arc/heads,
+ peen_clean_transfer_s=tool,assembly_s=assembly,inspection_s=qc,
+ welded_station_work_s=station,serial_before_cooling_s=station+assembly+qc,
+ Ni99_precoat_arc_s=144,Ni99_precoat_single_head_minimum_station_s=432,
+ Ni99_precoat_stations_to_match_weld_interval=math.ceil(432/station),
+ Ni99_delayed_PT_minimum_h=24,shift_design_hours=8,
+ Ni99_minimum_one_shift_delay_inventory_parts=math.ceil(8*3600/station),
+ total_precoat_and_joining_aggregate_arc_s=144+arc,
+ PT_elapsed_range_s=[1980,4080],PT_waiting_positions=math.ceil(4080/station),
+ UT_station_time_s=600,UT_parallel_stations=math.ceil(600/station),
+ CMM_station_time_s=120,CMM_parallel_stations=math.ceil(120/station),
+ NDT_total_operator_work_s=1200,NDT_operator_equivalents=math.ceil(1200/station),
+ cleanliness_inspection_elapsed_s=1800,cleanliness_inspection_operator_work_s=480,
+ cleanliness_parallel_positions=math.ceil(1800/station),
+ inspection_total_operator_work_s=1680,inspection_operator_equivalents=math.ceil(1680/station),
+ shielding_Ar_per_head_L_min=[8,12],shielding_Ar_total_L_min=[8*heads,12*heads],
+ independent_torch_and_wire_axes=heads,independent_peening_axes=heads,
+ power_source_gross_nominal_W_per_head=900,
+ role='candidate until full cold release and mesh/time checks pass' if heads==2 else 'single-head resource comparison',
  actual_cooling_s='read full-part thermal history; fixture remains occupied until release temperature',
- pipeline='two assembly pallets alone do not reduce occupied welding/holding resource; dedicated holding pallets required'))
+ pipeline='precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required'))
 # First-order reciprocating-compressor load derivation, ported from origin/main
 # studies/LOAD-ESTIMATE (LOAD-ESTIMATE-4). Its inputs remain engineering assumptions,
 # so the outputs are a reference point, not a measured load spectrum.
-di=dict(reciprocating_mass_kg=0.8,crank_radius_m=0.02,speed_rpm=3000.0,rod_ratio=0.25,
- bore_diameter_m=0.04,pressure_difference_pa=1500000.0,force_line_to_weld_centroid_m=0.07)
+di=dict(eccentric_rotating_mass_kg=0.8,orbit_eccentricity_m=0.02,speed_rpm=3000.0,
+ effective_pressure_diameter_m=0.04,pressure_difference_pa=1500000.0,bearing_to_weld_plane_m=0.07,pressure_centroid_offset_m=0.01)
 omega=2*math.pi*di['speed_rpm']/60
-Fi=di['reciprocating_mass_kg']*di['crank_radius_m']*omega**2
-Fg=math.pi*di['bore_diameter_m']**2*di['pressure_difference_pa']/4
-M=Fi*di['force_line_to_weld_centroid_m']+Fg*di['crank_radius_m']/2  # N·m
-M_mm=M*1000.0  # N·mm, same unit as the spectra and the 250000 N·mm official reference
+Fi=di['eccentric_rotating_mass_kg']*di['orbit_eccentricity_m']*omega**2
+Fg=math.pi*di['effective_pressure_diameter_m']**2*di['pressure_difference_pa']/4
+M=Fi*di['bearing_to_weld_plane_m']+Fg*di['pressure_centroid_offset_m']  # N·m
+M_mm=M*1000.0  # N·mm, same unit as the spectra and the 250000 N·mm design reference
 derivation=dict(
- ported_from='origin/main studies/LOAD-ESTIMATE LOAD-ESTIMATE-4',
+ basis='designer-selected eccentric rotating-mass and effective gas-pressure envelope; no measured machine spectrum',
  inputs=di,
  formulas=dict(omega='2*pi*n/60',inertial_force='Fi=m*r*omega^2',
-  gas_force='Fg=pi*D^2*delta_p/4',tipover_moment='M=Fi*e+Fg*(r/2)'),
- not_modelled=['connecting-rod second-order term','cylinder-pressure phase vs crank angle','multi-cylinder superposition'],
+  gas_force='Fg=pi*D^2*delta_p/4',tipover_moment='M=Fi*L+Fg*e_p'),
+ not_modelled=['actual scroll orbit geometry','chamber pressure vs orbit angle','counterweight and bearing load sharing'],
  outputs=dict(inertial_force_N=round(Fi,1),gas_force_N=round(Fg,1),tipover_moment_N_mm=round(M_mm,0),
-  official_reference_loads=dict(radial_N=5000.0,axial_N=5000.0,moment_N_mm=250000.0,
-   note='fixed-problem screening basis; already used by layout_checks static columns and the 5000 N tooling backstop'),
+  design_reference_loads=dict(radial_N=5000.0,axial_N=5000.0,moment_N_mm=250000.0,
+   note='designer-selected screening basis; already used by layout_checks static columns and the 5000 N tooling backstop'),
   relation_to_spectra=dict(M_ratio_continuous=round(25000/M_mm,2),M_ratio_start_stop=round(75000/M_mm,2),
    Fr_ratio_continuous=round(500/Fi,2),Fr_ratio_start_stop=round(1500/Fi,2),
    note='proposed fatigue spectra sit below the first-order derivation in the moment channel '
         '(0.19~0.58x); Miner damage is therefore a same-spectrum relative comparison between 6P '
         'and 8P, not an absolute life claim; damage scales with the cube of stress range if loads move up')))
 result=dict(load_basis='proposed screening spectra for relative route comparison; official problem gives '
- 'no measured spectrum, static columns use its 5000 N reference loads, first-order derivation in load_derivation',
+ 'no measured spectrum, static columns use designer-selected 5000 N reference loads, first-order derivation in load_derivation',
  load_spectrum=cycles,load_derivation=derivation,
  layout_checks=rows,tooling=tools,cleanliness=clean,cycle_resource=process,
  continuous_comparison=dict(
@@ -112,17 +162,19 @@ result=dict(load_basis='proposed screening spectra for relative route comparison
   ratio_to_6P=round(continuous_damage/rows[0]['miner_damage'],4),
   heat_ratio_vs_8P=round(rows[2]['heat_kJ']/rows[1]['heat_kJ'],2),
   arc_ratio_vs_8P=round(rows[2]['arc_s']/rows[1]['arc_s'],2),
-  note='continuous weld is the fatigue-safest shape on the same spectra and has no weld-end notches; '
+  note='continuous weld has lower nominal calculated damage on the same assumed spectra; '
        'its cost is 3.27x heat and arc time, and its weld thermal distortion has no FE evidence, '
-       'so it serves as qualification comparison item and shape fallback, not the current baseline'),
+       'so it serves as a weld-layout qualification comparison, not a remedy for metallurgy' ),
  service_stiffness=_service_stiffness_summary(),
  scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],
+  cells=[[6,7,10,5,6,7,3],[9,3,9,2,4,9,7],[8,8,9,4,5,6,8],[8,5,9,9,7,7,9],[9,10,2,3,3,5,5]],
   candidates=['GMAW-plug','laser','micro-plasma','pulsed-TIG','brazing-eliminated'],
   weighted_scores=[6.8,6.15,7.1,7.6,5.7],
   role='subjective decision aid with explicit anchors, not official points or measured performance',
-  notes='TIG cast-iron score re-based to intrinsic-method risk (9->5) and debug/reachability set to 7 so '
-        'cells times weights reproduce the total; brazing scored 5.70 and eliminated: furnace brazing '
-        'impossible (in-shell assembly), flux residue violates hermetic no-cleaning constraint, no '
+  notes='scores are designer judgements on 1-10 scales: high score means better; quantitative cells need vendor trial data; brazing '
+        'not selected for this design because of full-component heating, potential flux contamination and absent applicable '
         'creep/fatigue data for silver-brazed joints under compressor cycling'))
+result['scoring']['weighted_scores']=[round(sum(w*c for w,c in zip(result['scoring']['weights'],row)),2) for row in result['scoring']['cells']]
+result['fatigue_sensitivity']=[dict(layout=row['layout'],load_scale=scale,miner_damage=row['miner_damage']*scale**3,critical_scale=(1/row['miner_damage'])**(1/3)) for row in rows for scale in (0.8,1.,1.25,1.3,1.5)]
 OUT.mkdir(exist_ok=True);(OUT/'engineering-checks-r3.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
 print(json.dumps(result,ensure_ascii=False,indent=2))

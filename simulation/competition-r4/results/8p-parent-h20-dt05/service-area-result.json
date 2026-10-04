@@ -1,0 +1,49 @@
+{
+  "mesh_h_mm": 2.0,
+  "nodes": 21397,
+  "tetrahedra": 74192,
+  "load_conditions": {
+    "Fr_N": 5000,
+    "Fa_N": 5000,
+    "Mx_Nmm": 250000,
+    "continuous_amplitudes_N_N_Nmm": [
+      500,
+      200,
+      25000
+    ]
+  },
+  "boundary": "cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support",
+  "load_distribution": "area-weighted bore-wall tractions, each prescribed resultant normalized exactly; moment is a zero-resultant force couple about weighted centre; this is a design load-transfer envelope, not a measured bearing contact distribution",
+  "stress_method": "linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class",
+  "elastic_yield_screen": {
+    "safety_factor": 1.5,
+    "allowable_MPa": {
+      "QT": 206.66666666666666,
+      "NiFe": 193.33333333333334,
+      "Q235": 156.66666666666666
+    },
+    "scope": "incremental cold service stress, separate from weld residual stress; local metal yield checks do not determine PMZ brittle fracture"
+  },
+  "zones": {
+    "QT_slot_root": {
+      "peak_service_VM_MPa": 182.31839031859147,
+      "continuous_peak_range_MPa": 27.706996456585834,
+      "p95_service_VM_MPa": 89.9691061785133
+    },
+    "QT_body": {
+      "peak_service_VM_MPa": 182.31839031859147,
+      "continuous_peak_range_MPa": 27.706996456585834,
+      "p95_service_VM_MPa": 78.24681187072541
+    },
+    "NiFe_weld": {
+      "peak_service_VM_MPa": 156.87854943804962,
+      "continuous_peak_range_MPa": 23.092814752146825,
+      "p95_service_VM_MPa": 99.65299672547236
+    },
+    "Q235_shell": {
+      "peak_service_VM_MPa": 84.86881922611188,
+      "continuous_peak_range_MPa": 13.947120994866902,
+      "p95_service_VM_MPa": 27.681743782878268
+    }
+  }
+}

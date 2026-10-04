@@ -1,0 +1,13 @@
+{
+  "scope": "requires service and welding verification",
+  "model_id": "8P-R2-t15",
+  "slot_width_mm": 4,
+  "slot_end_radius_mm": 2,
+  "merged_core_root_radius_mm": 2,
+  "core_diameter_mm": 82,
+  "slot_deepest_radius_mm": 39,
+  "thickness_mm": 15.0,
+  "actual_core_junctions_rounded": 32,
+  "volume_mm3": 138366.51682309294,
+  "mass_kg": 0.9962389211262691
+}

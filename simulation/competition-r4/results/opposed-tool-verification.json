@@ -1,0 +1,264 @@
+{
+  "scope": "two identical declared rigid tool packs, opposed by 180 degrees; workpiece rotates, tool packs remain fixed",
+  "sampled_positive_halfspace_minimum_mm": 39.80403766681404,
+  "opposed_pack_clearance_lower_bound_mm": 78.96607533362808,
+  "sampling_motion_allowance_per_pack_mm": 0.251,
+  "pose_error_per_pack_mm": 0.05,
+  "growth_allowance_per_pack_mm": 0.02,
+  "rows": [
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 4.5,
+      "tool": "torch",
+      "minimum_x_mm": 48.7499999,
+      "maximum_x_mm": 74.11602550378443
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 4.5,
+      "tool": "wire",
+      "minimum_x_mm": 65.94999990000001,
+      "maximum_x_mm": 73.9493998598078
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 4.5,
+      "tool": "peener",
+      "minimum_x_mm": 39.91898095573066,
+      "maximum_x_mm": 74.34998817111597
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.0,
+      "tool": "torch",
+      "minimum_x_mm": 48.7499999,
+      "maximum_x_mm": 74.11602550378443
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.0,
+      "tool": "wire",
+      "minimum_x_mm": 65.94999990000001,
+      "maximum_x_mm": 73.9493998598078
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.0,
+      "tool": "peener",
+      "minimum_x_mm": 39.89998356639999,
+      "maximum_x_mm": 74.31981243097651
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.5,
+      "tool": "torch",
+      "minimum_x_mm": 48.7499999,
+      "maximum_x_mm": 74.11602550378443
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.5,
+      "tool": "wire",
+      "minimum_x_mm": 65.94999990000001,
+      "maximum_x_mm": 73.9493998598078
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.5,
+      "tool": "peener",
+      "minimum_x_mm": 39.87898956491451,
+      "maximum_x_mm": 74.28646524193458
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.0,
+      "tool": "torch",
+      "minimum_x_mm": 48.7499999,
+      "maximum_x_mm": 74.11602550378443
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.0,
+      "tool": "wire",
+      "minimum_x_mm": 65.94999990000001,
+      "maximum_x_mm": 73.9493998598078
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.0,
+      "tool": "peener",
+      "minimum_x_mm": 39.855999884835356,
+      "maximum_x_mm": 74.24994808687275
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.5,
+      "tool": "torch",
+      "minimum_x_mm": 48.7499999,
+      "maximum_x_mm": 74.11602550378443
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.5,
+      "tool": "wire",
+      "minimum_x_mm": 65.94999990000001,
+      "maximum_x_mm": 73.9493998598078
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.5,
+      "tool": "peener",
+      "minimum_x_mm": 39.83101554846743,
+      "maximum_x_mm": 74.2102625896356
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 7.0,
+      "tool": "torch",
+      "minimum_x_mm": 48.7499999,
+      "maximum_x_mm": 74.11602550378443
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 7.0,
+      "tool": "wire",
+      "minimum_x_mm": 65.94999990000001,
+      "maximum_x_mm": 73.9493998598078
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 7.0,
+      "tool": "peener",
+      "minimum_x_mm": 39.80403766681404,
+      "maximum_x_mm": 74.16741051495755
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 4.5,
+      "tool": "torch",
+      "minimum_x_mm": 48.2499999,
+      "maximum_x_mm": 73.61602550378443
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 4.5,
+      "tool": "wire",
+      "minimum_x_mm": 65.44999990000001,
+      "maximum_x_mm": 73.4493998598078
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 4.5,
+      "tool": "peener",
+      "minimum_x_mm": 39.91898095573066,
+      "maximum_x_mm": 73.75106842303957
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.0,
+      "tool": "torch",
+      "minimum_x_mm": 48.2499999,
+      "maximum_x_mm": 73.61602550378443
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.0,
+      "tool": "wire",
+      "minimum_x_mm": 65.44999990000001,
+      "maximum_x_mm": 73.4493998598078
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.0,
+      "tool": "peener",
+      "minimum_x_mm": 39.89998356639999,
+      "maximum_x_mm": 73.72114598142451
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.5,
+      "tool": "torch",
+      "minimum_x_mm": 48.2499999,
+      "maximum_x_mm": 73.61602550378443
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.5,
+      "tool": "wire",
+      "minimum_x_mm": 65.44999990000001,
+      "maximum_x_mm": 73.4493998598078
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.5,
+      "tool": "peener",
+      "minimum_x_mm": 39.87898956491451,
+      "maximum_x_mm": 73.68807871240239
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.0,
+      "tool": "torch",
+      "minimum_x_mm": 48.2499999,
+      "maximum_x_mm": 73.61602550378443
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.0,
+      "tool": "wire",
+      "minimum_x_mm": 65.44999990000001,
+      "maximum_x_mm": 73.4493998598078
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.0,
+      "tool": "peener",
+      "minimum_x_mm": 39.855999884835356,
+      "maximum_x_mm": 73.65186808640829
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.5,
+      "tool": "torch",
+      "minimum_x_mm": 48.2499999,
+      "maximum_x_mm": 73.61602550378443
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.5,
+      "tool": "wire",
+      "minimum_x_mm": 65.44999990000001,
+      "maximum_x_mm": 73.4493998598078
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.5,
+      "tool": "peener",
+      "minimum_x_mm": 39.83101554846743,
+      "maximum_x_mm": 73.61251571365604
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 7.0,
+      "tool": "torch",
+      "minimum_x_mm": 48.2499999,
+      "maximum_x_mm": 73.61602550378443
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 7.0,
+      "tool": "wire",
+      "minimum_x_mm": 65.44999990000001,
+      "maximum_x_mm": 73.4493998598078
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 7.0,
+      "tool": "peener",
+      "minimum_x_mm": 39.80403766681404,
+      "maximum_x_mm": 73.5700233440667
+    }
+  ],
+  "certificate": "all pack-1 points have x>=a; 180-degree pack-2 points have x<=-a; common rotation and vertical lifts preserve separation",
+  "opposed_tool_geometry_pass": true
+}

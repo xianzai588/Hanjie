@@ -1,0 +1,13 @@
+{
+  "scope": "requires service and welding verification",
+  "model_id": "8P-R2-t14",
+  "slot_width_mm": 4,
+  "slot_end_radius_mm": 2,
+  "merged_core_root_radius_mm": 2,
+  "core_diameter_mm": 82,
+  "slot_deepest_radius_mm": 39,
+  "thickness_mm": 14,
+  "actual_core_junctions_rounded": 32,
+  "volume_mm3": 129029.50448813022,
+  "mass_kg": 0.9290124323145376
+}

@@ -1,0 +1,653 @@
+{
+  "scope": "16 constant-length installation bends; Cu connections move, welded manifold ports remain fixed; no cyclic Cu bending",
+  "hose_OD_nominal_mm": 2,
+  "hose_OD_installed_envelope_mm": 2.2,
+  "hose_ID_minimum_mm": 0.95,
+  "maximum_stroke_mm": 1.15,
+  "stroke_spacing_mm": 0.025,
+  "maximum_curve_sample_spacing_mm": 0.06831685194396733,
+  "maximum_adjacent_pose_centre_motion_mm": 0.06019233644956203,
+  "discretisation_allowance_mm": 0.25701837678705874,
+  "hose_pair_surface_clearance_lower_mm": 3.853350081891561,
+  "minimum_sampled_bend_radius_mm": 16.51998664435677,
+  "copper_connection_radial_stagger_mm": 10,
+  "copper_connection_tail_offset_mm": 9,
+  "manifold_ports_local_xyz_mm": [
+    [
+      58,
+      -8,
+      92
+    ],
+    [
+      52,
+      -8,
+      94
+    ],
+    [
+      58,
+      8,
+      92
+    ],
+    [
+      52,
+      8,
+      94
+    ]
+  ],
+  "custom_union_design": "316L M4x0.5 compression union, maximum OD5 x length8, PFA insertion >=4 mm, fitted low-outgassing ferrule; fixed to metal elbow, no swivelling joint",
+  "metallic_inlet": "OD1.80 Cu microtube to machined5x5x5 Cu L-port block with integral M4 outlet nipple; block and compression joint stationary relative to the sector; inspect minimum clear bore and proof pressure",
+  "rows": [
+    {
+      "stroke_mm": 0.0,
+      "minimum_bend_radius_mm": 16.58442240640297,
+      "minimum_sampled_hose_centre_distance_mm": 6.31036845867862,
+      "free_lengths_mm": [
+        31.423998345519287,
+        24.508908250071485
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.66930802849026
+      ]
+    },
+    {
+      "stroke_mm": 0.024999999999999998,
+      "minimum_bend_radius_mm": 16.568023052399166,
+      "minimum_sampled_hose_centre_distance_mm": 6.31346126698503,
+      "free_lengths_mm": [
+        31.42399834552053,
+        24.508908250072693
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.64943363052002
+      ]
+    },
+    {
+      "stroke_mm": 0.049999999999999996,
+      "minimum_bend_radius_mm": 16.553789237974097,
+      "minimum_sampled_hose_centre_distance_mm": 6.31609228756609,
+      "free_lengths_mm": [
+        31.423998345521703,
+        24.508908250073787
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.62952355122029
+      ]
+    },
+    {
+      "stroke_mm": 0.075,
+      "minimum_bend_radius_mm": 16.541958597065733,
+      "minimum_sampled_hose_centre_distance_mm": 6.318301550917623,
+      "free_lengths_mm": [
+        31.42399834552279,
+        24.50890825007479
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.60959868261675
+      ]
+    },
+    {
+      "stroke_mm": 0.09999999999999999,
+      "minimum_bend_radius_mm": 16.532595544212914,
+      "minimum_sampled_hose_centre_distance_mm": 6.320096704905829,
+      "free_lengths_mm": [
+        31.423998345523824,
+        24.50890825007571
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.58963053962553
+      ]
+    },
+    {
+      "stroke_mm": 0.12499999999999999,
+      "minimum_bend_radius_mm": 16.525766647179616,
+      "minimum_sampled_hose_centre_distance_mm": 6.321526363728499,
+      "free_lengths_mm": [
+        31.423998345524787,
+        24.50890825007655
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.56962040545115
+      ]
+    },
+    {
+      "stroke_mm": 0.15,
+      "minimum_bend_radius_mm": 16.52154033187833,
+      "minimum_sampled_hose_centre_distance_mm": 6.322625803096504,
+      "free_lengths_mm": [
+        31.42399834552569,
+        24.508908250077326
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.54957720367058
+      ]
+    },
+    {
+      "stroke_mm": 0.175,
+      "minimum_bend_radius_mm": 16.51998664435677,
+      "minimum_sampled_hose_centre_distance_mm": 6.323424500960776,
+      "free_lengths_mm": [
+        31.42399834552654,
+        24.508908250078036
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.52951940703586
+      ]
+    },
+    {
+      "stroke_mm": 0.19999999999999998,
+      "minimum_bend_radius_mm": 16.52117705983652,
+      "minimum_sampled_hose_centre_distance_mm": 6.323969896909044,
+      "free_lengths_mm": [
+        31.423998345527348,
+        24.50890825007869
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.50942175262078
+      ]
+    },
+    {
+      "stroke_mm": 0.22499999999999998,
+      "minimum_bend_radius_mm": 16.524948564497596,
+      "minimum_sampled_hose_centre_distance_mm": 6.324306962309481,
+      "free_lengths_mm": [
+        31.423998345528105,
+        24.508908250079294
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.48928526903318
+      ]
+    },
+    {
+      "stroke_mm": 0.24999999999999997,
+      "minimum_bend_radius_mm": 16.531539733535976,
+      "minimum_sampled_hose_centre_distance_mm": 6.324486045621028,
+      "free_lengths_mm": [
+        31.423998345528815,
+        24.508908250079855
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.46911092712284
+      ]
+    },
+    {
+      "stroke_mm": 0.27499999999999997,
+      "minimum_bend_radius_mm": 16.540684629148608,
+      "minimum_sampled_hose_centre_distance_mm": 6.324548990881629,
+      "free_lengths_mm": [
+        31.423998345529487,
+        24.508908250080374
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.44891973338348
+      ]
+    },
+    {
+      "stroke_mm": 0.3,
+      "minimum_bend_radius_mm": 16.552541549875954,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345530116,
+        24.508908250080854
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.42869977617953
+      ]
+    },
+    {
+      "stroke_mm": 0.32499999999999996,
+      "minimum_bend_radius_mm": 16.567038235517337,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345530705,
+        24.50890825008129
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.40844343817128
+      ]
+    },
+    {
+      "stroke_mm": 0.35,
+      "minimum_bend_radius_mm": 16.584107256033054,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345531274,
+        24.50890825008171
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.38815152566262
+      ]
+    },
+    {
+      "stroke_mm": 0.37499999999999994,
+      "minimum_bend_radius_mm": 16.603685676468192,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345531803,
+        24.508908250082087
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.36782480569204
+      ]
+    },
+    {
+      "stroke_mm": 0.39999999999999997,
+      "minimum_bend_radius_mm": 16.625714758501758,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345532304,
+        24.50890825008244
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.3474737549094
+      ]
+    },
+    {
+      "stroke_mm": 0.425,
+      "minimum_bend_radius_mm": 16.6501396937593,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345532773,
+        24.508908250082758
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.32710206028675
+      ]
+    },
+    {
+      "stroke_mm": 0.44999999999999996,
+      "minimum_bend_radius_mm": 16.676909364773927,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345533207,
+        24.508908250083064
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.30669661018064
+      ]
+    },
+    {
+      "stroke_mm": 0.475,
+      "minimum_bend_radius_mm": 16.70588130536726,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345533626,
+        24.508908250083344
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.28625805922663
+      ]
+    },
+    {
+      "stroke_mm": 0.49999999999999994,
+      "minimum_bend_radius_mm": 16.736953034826293,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345534024,
+        24.508908250083596
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.26578703401407
+      ]
+    },
+    {
+      "stroke_mm": 0.5249999999999999,
+      "minimum_bend_radius_mm": 16.770096381887612,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345534393,
+        24.508908250083834
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.24528413492487
+      ]
+    },
+    {
+      "stroke_mm": 0.5499999999999999,
+      "minimum_bend_radius_mm": 16.805120369423282,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553474,
+        24.508908250084055
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.2247499378136
+      ]
+    },
+    {
+      "stroke_mm": 0.575,
+      "minimum_bend_radius_mm": 16.84190880118519,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345535068,
+        24.50890825008425
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.2041984061065
+      ]
+    },
+    {
+      "stroke_mm": 0.6,
+      "minimum_bend_radius_mm": 16.88038090328452,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553537,
+        24.508908250084435
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.18361926399737
+      ]
+    },
+    {
+      "stroke_mm": 0.625,
+      "minimum_bend_radius_mm": 16.920364031240204,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553566,
+        24.5089082500846
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.16300948128104
+      ]
+    },
+    {
+      "stroke_mm": 0.6499999999999999,
+      "minimum_bend_radius_mm": 16.95901165346706,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553592,
+        24.508908250084747
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.14236956375164
+      ]
+    },
+    {
+      "stroke_mm": 0.6749999999999999,
+      "minimum_bend_radius_mm": 16.983320158595504,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345536177,
+        24.508908250084886
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.12169999869174
+      ]
+    },
+    {
+      "stroke_mm": 0.7,
+      "minimum_bend_radius_mm": 17.00907684665824,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553641,
+        24.508908250085007
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.10100125591143
+      ]
+    },
+    {
+      "stroke_mm": 0.725,
+      "minimum_bend_radius_mm": 17.036261480597513,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345536628,
+        24.508908250085113
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.0802737887085
+      ]
+    },
+    {
+      "stroke_mm": 0.7499999999999999,
+      "minimum_bend_radius_mm": 17.064805604323578,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553683,
+        24.508908250085206
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.05951803475648
+      ]
+    },
+    {
+      "stroke_mm": 0.7749999999999999,
+      "minimum_bend_radius_mm": 17.09469250192682,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345537015,
+        24.508908250085288
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.03873441692713
+      ]
+    },
+    {
+      "stroke_mm": 0.7999999999999999,
+      "minimum_bend_radius_mm": 17.125971719702925,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345537186,
+        24.50890825008536
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        67.0179233440534
+      ]
+    },
+    {
+      "stroke_mm": 0.825,
+      "minimum_bend_radius_mm": 17.15862624166046,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345537356,
+        24.508908250085412
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.99709004460505
+      ]
+    },
+    {
+      "stroke_mm": 0.85,
+      "minimum_bend_radius_mm": 17.19263980237172,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345537484,
+        24.508908250085454
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.97623280911807
+      ]
+    },
+    {
+      "stroke_mm": 0.8749999999999999,
+      "minimum_bend_radius_mm": 17.227996853276586,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345537612,
+        24.508908250085494
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.95534844050299
+      ]
+    },
+    {
+      "stroke_mm": 0.8999999999999999,
+      "minimum_bend_radius_mm": 17.264682531248777,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345537736,
+        24.50890825008551
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.93443730801694
+      ]
+    },
+    {
+      "stroke_mm": 0.9249999999999999,
+      "minimum_bend_radius_mm": 17.302682629215987,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553784,
+        24.508908250085522
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.9134997696589
+      ]
+    },
+    {
+      "stroke_mm": 0.95,
+      "minimum_bend_radius_mm": 17.341983568685507,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553793,
+        24.508908250085522
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.89253617268105
+      ]
+    },
+    {
+      "stroke_mm": 0.9749999999999999,
+      "minimum_bend_radius_mm": 17.38257237401854,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553801,
+        24.508908250085508
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.87154685406722
+      ]
+    },
+    {
+      "stroke_mm": 0.9999999999999999,
+      "minimum_bend_radius_mm": 17.424436648318807,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345538084,
+        24.508908250085483
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.85053214098046
+      ]
+    },
+    {
+      "stroke_mm": 1.025,
+      "minimum_bend_radius_mm": 17.467564550811666,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553814,
+        24.50890825008544
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.82949235118242
+      ]
+    },
+    {
+      "stroke_mm": 1.0499999999999998,
+      "minimum_bend_radius_mm": 17.51186543681731,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553819,
+        24.508908250085398
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.80842779342652
+      ]
+    },
+    {
+      "stroke_mm": 1.075,
+      "minimum_bend_radius_mm": 17.55735214082238,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.42399834553823,
+        24.508908250085337
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.78733876782707
+      ]
+    },
+    {
+      "stroke_mm": 1.0999999999999999,
+      "minimum_bend_radius_mm": 17.60405126564291,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345538255,
+        24.508908250085266
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.76622556620586
+      ]
+    },
+    {
+      "stroke_mm": 1.125,
+      "minimum_bend_radius_mm": 17.65195304028668,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345538273,
+        24.508908250085188
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.74508847241839
+      ]
+    },
+    {
+      "stroke_mm": 1.15,
+      "minimum_bend_radius_mm": 17.68118132071741,
+      "minimum_sampled_hose_centre_distance_mm": 6.324555320336755,
+      "free_lengths_mm": [
+        31.423998345538273,
+        24.50890825008509
+      ],
+      "radial_envelope_mm": [
+        52.61178575186362,
+        66.72392776266047
+      ]
+    }
+  ],
+  "design_checks_pass": true
+}

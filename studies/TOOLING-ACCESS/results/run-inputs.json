@@ -104,8 +104,11 @@
       }
     },
     "project/process.yaml": {
-      "version": "PROCESS-1.0",
-      "authority": "焊接工艺与填丝参数的唯一权威配置",
+      "version": "PROCESS-HISTORICAL-SINGLEPASS-1",
+      "state": "historical_only",
+      "authority": "历史诊断输入；非当前参赛工艺权威源",
+      "current_authority": "project/process-r3.yaml",
+      "current_design_ref": "project/competition-design.yaml",
       "process": {
         "nominal": {
           "method": "automatic_TIG",

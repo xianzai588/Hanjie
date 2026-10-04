@@ -1,0 +1,509 @@
+{
+  "scope": "declared rigid tools, seat, shell and upper fixture; wire tip bead contact intentional",
+  "rows": [
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 0.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 5.0,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 6.636080451784585,
+        "wire_peener": 2.3165948858545136,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 1.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 0.0,
+        "wire_peener": 1.4254156828833717e-14,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999992,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 5.674912703734863,
+        "wire_peener": 0.7023145482943172,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 2.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 4.440892098500626e-15,
+        "wire_peener": 1.2073675392798577e-15,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 3.068956839483424,
+        "wire_peener": 0.018353748835531127,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 3.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 1.3877787807814457e-15,
+        "wire_peener": 0.4953001159100928,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.5575001682708237,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 4.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 0.3487252179808379,
+        "wire_peener": 1.2646959403573792,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 5.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 1.2230695999178807,
+        "wire_peener": 2.0980429976742982,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999996,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 6.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 2.12405397325027,
+        "wire_peener": 2.968619508949387,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 7.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 3.0412361795206433,
+        "wire_peener": 3.8622305262248773,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 5.0,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 2.8,
+      "lag_mm": 8.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 3.968792245498034,
+        "wire_peener": 4.770862428318464,
+        "peener_shell": 0.5213203435596512,
+        "peener_seat": 0.521320343559637,
+        "peener_upper": 4.999999999999991,
+        "torch_shell": 0.8839745962155661,
+        "torch_seat": 3.965063509461089,
+        "wire_shell": 1.0500776748839087,
+        "wire_seat": 0.20505597681345478
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 0.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 7.771561172376096e-16,
+        "wire_peener": 0.0,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 5.0,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 5.94153921810234,
+        "wire_peener": 2.475969912915283,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 1.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 0.0,
+        "wire_peener": 1.4219634040908775e-14,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999992,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 4.997306200717226,
+        "wire_peener": 0.7781082693403009,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 2.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 1.1102230246251565e-15,
+        "wire_peener": 5.551115123125783e-16,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 2.616025728539889,
+        "wire_peener": 0.02824594653277005,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 3.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 5.440092820663267e-15,
+        "wire_peener": 0.46016615213332474,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.412881194225648,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 4.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 0.38816531090719414,
+        "wire_peener": 1.2236268066961464,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 5.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 1.244062997120968,
+        "wire_peener": 2.0507881451801664,
+        "peener_shell": 1.1213203435596597,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999996,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 6.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 2.1295410972707716,
+        "wire_peener": 2.914976373992584,
+        "peener_shell": 1.1213203435596313,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999995,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 7.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 3.0332161220576612,
+        "wire_peener": 3.8020425106195708,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 5.0,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    },
+    {
+      "leg_mm": 4.0,
+      "lag_mm": 8.0,
+      "clearances_mm": {
+        "torch_wire": 2.168704991344306,
+        "torch_peener": 3.9486542281550325,
+        "wire_peener": 4.704009121606428,
+        "peener_shell": 1.1213203435596455,
+        "peener_seat": 1.1213203435596455,
+        "peener_upper": 4.999999999999991,
+        "torch_shell": 1.383974596215566,
+        "torch_seat": 4.665063509461092,
+        "wire_shell": 1.5500741170019268,
+        "wire_seat": 0.9050559768134576
+      },
+      "intersections_mm3": {
+        "torch_wire": 0.0,
+        "torch_peener": 0.0,
+        "wire_peener": 0.0,
+        "peener_shell": 0.0,
+        "peener_seat": 0.0,
+        "peener_upper": 0.0,
+        "torch_shell": 0.0,
+        "torch_seat": 0.0,
+        "wire_shell": 0.0,
+        "wire_seat": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "layout": 8,
+  "h_mm": 2.0,
+  "dt_s": 0.5,
+  "nodes": 22321,
+  "tetrahedra": 77162,
+  "peak_C": 1567.8111367936795,
+  "final_max_C": 20.49107934101024,
+  "released": true,
+  "max_newton_iterations": 8,
+  "max_equilibrium_residual_N": 0.04987570522387404,
+  "max_mandrel_reaction_N": 2967.330161500993,
+  "input_J": 86940.0000000001,
+  "loss_J": 86078.96204335315,
+  "stored_J": 861.0921736304533,
+  "energy_balance_relative": -6.236137969191127e-07,
+  "copper_max_C": 22.98792279315899,
+  "seal_band_max_C": 113.9625367381161,
+  "seal_thermal_limits_pass": true,
+  "elapsed_s": 10273.059107700003,
+  "linear_solver": "CG/AMG with checked sparse-direct fallback",
+  "linear_solver_fallbacks": 68,
+  "fit": {
+    "position_diameter_mm": 0.014000876923038415,
+    "bore_radius_mm": 20.007409667813107,
+    "bore_axis_slopes": [
+      -1.0762552677439014e-05,
+      4.2809645245050136e-05
+    ],
+    "bore_fit_rms_mm": 0.0018805340929466342,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false,
+    "straight_fitted_axis_position_mm": 0.013985855277260829,
+    "section_axis_envelope_diameter_mm": 0.014000876923038415,
+    "section_centres_relative_B_mm": [
+      [
+        -0.00648318550200253,
+        -0.002640917340649196
+      ],
+      [
+        -0.006547401429024693,
+        -0.002300476958922104
+      ],
+      [
+        -0.006644636106552768,
+        -0.001998770879680478
+      ]
+    ],
+    "sampled_bore_two_point_diameter_min_mm": 40.00862150226362,
+    "sampled_bore_two_point_diameter_max_mm": 40.01982299713684,
+    "sampled_section_diameter_spreads_mm": [
+      0.003883346279700106,
+      0.0022483166196209936,
+      0.0014009746655219146
+    ]
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "peak_nodal_C": 1787.7242413919032,
+  "filler_volume_above_1200C_mm3": 309.5459761033717,
+  "max_von_mises_MPa": 369.51499336420704,
+  "fit_mesh_nodes": {
+    "position_diameter_mm": 0.014164461551836401,
+    "bore_radius_mm": 20.007410217927823,
+    "bore_axis_slopes": [
+      -2.0280150168416668e-05,
+      4.123896184756039e-05
+    ],
+    "bore_fit_rms_mm": 0.0016153832660623613,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "measurement_protocol": "36 bore and 48 shell samples, identical across all runs; maximum of fitted straight axis and three extracted section-centre envelope; initial bore 40.014 mm",
+  "bore_wall_peak_C": 51.66759652573635,
+  "final_time_s": 2624.5454545454545,
+  "release_time_s": 574.5454545454545,
+  "contact_area_mm2": 1651.7990261113496,
+  "structural_step_s": 1.0
+}

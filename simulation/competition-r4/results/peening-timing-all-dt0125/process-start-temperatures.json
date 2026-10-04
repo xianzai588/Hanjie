@@ -1,0 +1,242 @@
+[
+  {
+    "t_s": 0.0,
+    "pass_index": 0,
+    "segment_number": 1,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      20.0,
+      20.0,
+      20.000000000000004
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 20.000000000000004,
+    "temperature_limit_C": 35,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 28.90909090909091,
+    "pass_index": 0,
+    "segment_number": 5,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      20.000000160702506,
+      20.000000138195155,
+      20.000000165514457
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 20.000000165514457,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 57.81818181818182,
+    "pass_index": 0,
+    "segment_number": 3,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      20.068640632428654,
+      20.061514539883657,
+      20.059942893619706
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 20.068640632428654,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 86.72727272727273,
+    "pass_index": 0,
+    "segment_number": 7,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      20.37590491483892,
+      20.371358405657006,
+      20.38524116265185
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 20.38524116265185,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 115.63636363636364,
+    "pass_index": 0,
+    "segment_number": 2,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      23.18167948473962,
+      23.15440327397953,
+      23.19789769818953
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 23.19789769818953,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 144.54545454545456,
+    "pass_index": 0,
+    "segment_number": 6,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      23.369909267093234,
+      23.342794091157614,
+      23.391854242072668
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 23.391854242072668,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 173.45454545454547,
+    "pass_index": 0,
+    "segment_number": 4,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      25.71848820593449,
+      25.67690569484493,
+      25.692103434732438
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 25.71848820593449,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 202.36363636363637,
+    "pass_index": 0,
+    "segment_number": 8,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      26.56095003623986,
+      26.528339765663063,
+      26.54753770230427
+    ],
+    "previous_root_max_C": null,
+    "start_max_C": 26.56095003623986,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 231.27272727272728,
+    "pass_index": 1,
+    "segment_number": 1,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      31.125168727428594,
+      31.134995429810644,
+      31.134197063652884
+    ],
+    "previous_root_max_C": 35.155162153991995,
+    "start_max_C": 35.155162153991995,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 260.1818181818182,
+    "pass_index": 1,
+    "segment_number": 5,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      34.22685820668369,
+      34.21167302053865,
+      34.19180200044396
+    ],
+    "previous_root_max_C": 36.76125589631643,
+    "start_max_C": 36.76125589631643,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 289.0909090909091,
+    "pass_index": 1,
+    "segment_number": 3,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      35.524896316526494,
+      35.54598303131791,
+      35.55209559798787
+    ],
+    "previous_root_max_C": 35.58046135186022,
+    "start_max_C": 35.58046135186022,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 318.0,
+    "pass_index": 1,
+    "segment_number": 7,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      36.481747105592675,
+      36.50285202985612,
+      36.52828882965852
+    ],
+    "previous_root_max_C": 36.343385495809876,
+    "start_max_C": 36.52828882965852,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 346.90909090909093,
+    "pass_index": 1,
+    "segment_number": 2,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      38.90733001005326,
+      38.93300882116856,
+      38.957351038405406
+    ],
+    "previous_root_max_C": 42.37067683001931,
+    "start_max_C": 42.37067683001931,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 375.8181818181818,
+    "pass_index": 1,
+    "segment_number": 6,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      39.667181285379314,
+      39.696603662323824,
+      39.733655774553434
+    ],
+    "previous_root_max_C": 42.70682902307734,
+    "start_max_C": 42.70682902307734,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 404.72727272727275,
+    "pass_index": 1,
+    "segment_number": 4,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      41.758727967191284,
+      41.741589919855436,
+      41.72334614196422
+    ],
+    "previous_root_max_C": 40.928586647438564,
+    "start_max_C": 41.758727967191284,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  },
+  {
+    "t_s": 433.6363636363636,
+    "pass_index": 1,
+    "segment_number": 8,
+    "QT_marker_radius_mm": 61,
+    "QT_marker_temperatures_C": [
+      42.1603596365198,
+      42.14002361208051,
+      42.124801734507244
+    ],
+    "previous_root_max_C": 41.06084734511539,
+    "start_max_C": 42.1603596365198,
+    "temperature_limit_C": 100,
+    "process_temperature_pass": true
+  }
+]

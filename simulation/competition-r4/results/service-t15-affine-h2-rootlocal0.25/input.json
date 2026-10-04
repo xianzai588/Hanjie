@@ -1,0 +1,19 @@
+{
+  "h_mm": 2.0,
+  "weld_mesh_mm": 1,
+  "scope": "cold static service model only; no welding history calculated",
+  "interface_patch": {
+    "method": "16-neighbour distance-weighted least-norm interpolation with exact constant and linear reproduction; planar QT and curved steel patches",
+    "maximum_affine_coordinate_error_mm": 2.767282056657881e-13,
+    "maximum_host_weight_L1": 1.364643321186103,
+    "rigid_translation_and_rotation_patch_pass": true
+  },
+  "initial_bore_diameter_mm": 40.014,
+  "geometry_candidate": true,
+  "central_pad": false,
+  "revised_geometry": true,
+  "seat_geometry": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\geometry\\8P-R2-t15.step",
+  "geometry_representation": "parametric solid with cylindrical faces and post-union R2 fillets",
+  "root_mesh_mm": 0.25,
+  "seat_thickness_mm": 15.0
+}

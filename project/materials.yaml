@@ -1,17 +1,26 @@
 # 材料参数与物性数据 - Hanjie Engineering Materials
 # 版本: V4.1
-# 关联规范: GB/T 700 (Q235B), GB/T 1348 (QT450-10), GB/T 10044 / AWS A5.15 (ERNiFe-CI)
+# 关联规范: GB/T 700 (Q235B), GB/T 1348 (QT450-10), EN ISO 1071 (实心镍铁填充棒)
 
 materials:
   q235b:
+    fusion_enthalpy:
+      solidus_C: 1474.85
+      liquidus_C: 1519.85
+      latent_heat_J_kg: 264000
+      basis: "Q235连铸研究Table2：1748/1793 K、264 kJ/kg；10.3390/ma16093361；设计借用，不是本批次DSC"
     name: "碳素结构钢 Q235B"
     standard: "GB/T 700-2006"
+    composition_basis: "工程名义成分；Cr/Ni/Mo为当量核算的残余元素假设，按来料化学分析替换"
     composition_nominal_wt_pct:
       C: 0.17
       Mn: 0.45
       Si: 0.20
       S: 0.035
       P: 0.035
+      Cr: 0.05
+      Ni: 0.05
+      Mo: 0.01
     nominal_properties_20c:
       density_kg_m3: 7850.0
       specific_heat_j_kgk: 470.0
@@ -30,8 +39,14 @@ materials:
       alpha_per_k: [1.20e-5, 1.28e-5, 1.36e-5, 1.44e-5, 1.48e-5, 1.50e-5, 1.52e-5]
 
   qt450_10:
+    fusion_enthalpy:
+      solidus_C: 1100
+      liquidus_C: 1180
+      latent_heat_J_kg: 250000
+      basis: "球铁冷却曲线10.3390/cryst15070614/Table7及推荐范围；按组元差异取1100～1180设计区间；潜热250 kJ/kg工程估值，批次热分析复核"
     name: "球墨铸铁 QT450-10"
     standard: "GB/T 1348-2019"
+    composition_basis: "工程名义成分；Cr/Ni为当量核算的残余元素假设，按来料化学分析替换"
     composition_nominal_wt_pct:
       C: 3.65
       Si: 2.60
@@ -39,6 +54,8 @@ materials:
       Mg: 0.045
       P: 0.04
       S: 0.015
+      Cr: 0.05
+      Ni: 0.05
     nominal_properties_20c:
       density_kg_m3: 7200.0
       specific_heat_j_kgk: 460.0
@@ -58,14 +75,21 @@ materials:
       alpha_per_k: [1.05e-5, 1.12e-5, 1.20e-5, 1.30e-5, 1.35e-5, 1.38e-5, 1.40e-5]
 
   ernife_ci:
-    name: "镍铁铸铁焊丝 ERNiFe-CI"
-    standard: "AWS A5.15 / GB/T 10044"
+    fusion_enthalpy:
+      solidus_C: 1420
+      liquidus_C: 1460
+      latent_heat_J_kg: 275000
+      basis: "Paek等JOM2021 Fig2/10.1007/s11837-020-04487-9，Fe-Ni二元边界；55～58%Ni低碳实际配混，考虑C/Si/Mn与读图差异取1420～1460设计包络；潜热275 kJ/kg工程估值"
+    name: "NiFe-55型镍铁铸铁实心填充棒"
+    standard: "EN ISO 1071 / GB/T 10044；具体实心棒分类按供货证书"
+    composition_basis: "CEWELD NiFe 55 TIG供方典型成分；https://certilas.com/en/product/nife-55-tig；批次证书复核"
     composition_nominal_wt_pct:
       Ni: 55.0
       Fe: "Balance"
-      C: 0.5
-      Mn: 1.0
-      Si: 0.5
+      C: 0.01
+      Mn: 0.70
+      Si: 0.13
+    property_basis: "名义物性为保守工程输入，不作为供方实測接头性能；历史结果以各运行input.json为准"
     nominal_properties_20c:
       density_kg_m3: 8200.0
       specific_heat_j_kgk: 480.0
@@ -74,4 +98,4 @@ materials:
       poisson_ratio: 0.30
       alpha_per_k: 1.10e-5
       yield_strength_mpa: 290.0
-      tensile_strength_mpa: 480.0
+      tensile_strength_mpa: 450.0

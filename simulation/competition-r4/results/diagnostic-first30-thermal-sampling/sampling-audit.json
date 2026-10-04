@@ -1,0 +1,95 @@
+{
+  "scope": "same actual first-30-second thermal field; endpoint-sampling diagnosis only, no mechanics or cold position claim",
+  "thermal_step_s": 0.0625,
+  "end_s": 30.0,
+  "records": [
+    {
+      "structural_cadence_s": 0.5,
+      "samples": 59,
+      "maximum_active_element_temperature_jump_C": 1433.9094945978084,
+      "hot_event_sampling": [
+        {
+          "material": "steel",
+          "actually_above_annealing_mm3": 12.725152652985445,
+          "missed_hot_volume_mm3": 2.2732312762074596
+        },
+        {
+          "material": "QT",
+          "actually_above_annealing_mm3": 0.0,
+          "missed_hot_volume_mm3": 0.0
+        },
+        {
+          "material": "NiFe",
+          "actually_above_annealing_mm3": 40.612627567507616,
+          "missed_hot_volume_mm3": 4.229379443002367
+        }
+      ]
+    },
+    {
+      "structural_cadence_s": 0.25,
+      "samples": 119,
+      "maximum_active_element_temperature_jump_C": 1110.1739037759232,
+      "hot_event_sampling": [
+        {
+          "material": "steel",
+          "actually_above_annealing_mm3": 12.725152652985445,
+          "missed_hot_volume_mm3": 1.1992633904364816
+        },
+        {
+          "material": "QT",
+          "actually_above_annealing_mm3": 0.0,
+          "missed_hot_volume_mm3": 0.0
+        },
+        {
+          "material": "NiFe",
+          "actually_above_annealing_mm3": 40.612627567507616,
+          "missed_hot_volume_mm3": 1.6480504137892529
+        }
+      ]
+    },
+    {
+      "structural_cadence_s": 0.125,
+      "samples": 239,
+      "maximum_active_element_temperature_jump_C": 855.1635434493782,
+      "hot_event_sampling": [
+        {
+          "material": "steel",
+          "actually_above_annealing_mm3": 12.725152652985445,
+          "missed_hot_volume_mm3": 0.20706761723513692
+        },
+        {
+          "material": "QT",
+          "actually_above_annealing_mm3": 0.0,
+          "missed_hot_volume_mm3": 0.0
+        },
+        {
+          "material": "NiFe",
+          "actually_above_annealing_mm3": 40.612627567507616,
+          "missed_hot_volume_mm3": 0.7001085278095645
+        }
+      ]
+    },
+    {
+      "structural_cadence_s": 0.0625,
+      "samples": 479,
+      "maximum_active_element_temperature_jump_C": 855.1635434493782,
+      "hot_event_sampling": [
+        {
+          "material": "steel",
+          "actually_above_annealing_mm3": 12.725152652985445,
+          "missed_hot_volume_mm3": 0.0
+        },
+        {
+          "material": "QT",
+          "actually_above_annealing_mm3": 0.0,
+          "missed_hot_volume_mm3": 0.0
+        },
+        {
+          "material": "NiFe",
+          "actually_above_annealing_mm3": 40.612627567507616,
+          "missed_hot_volume_mm3": 0.2607609914868476
+        }
+      ]
+    }
+  ]
+}

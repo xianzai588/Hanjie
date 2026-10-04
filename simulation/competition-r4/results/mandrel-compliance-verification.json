@@ -1,0 +1,55 @@
+{
+  "scope": "engineering prediction and fixture qualification targets; no measured fixture curve",
+  "cone": {
+    "half_angle_deg": 10,
+    "effective_length_mm": 14.6,
+    "minor_radius_mm": 16.5,
+    "major_radius_mm": 19.07437391834359,
+    "internal_radius_mm": 0.0,
+    "terminal_minimum_nominal_wall_mm": 0.8956260816564101
+  },
+  "contact_area_adverse_mm2": 1646.9030424562893,
+  "hot_modulus_lower_MPa": 180000,
+  "friction_upper": 0.2,
+  "upper_stop_tube_length_mm": 244.6,
+  "upper_axial_load_including_pressure_N": 2460.47853384832,
+  "upper_stop_axial_compliance_components_mm": {
+    "tube": 0.0009853846054312227,
+    "portal_plate": 0.0011957925674502834,
+    "portal_columns": 0.00034264765590427703,
+    "keeper": 0.0002252363057860316,
+    "stop_head": 0.00034600479382242
+  },
+  "axial_hard_stop_z_mm": 155.4,
+  "cone_end_margin_mm": 0.40000000000000036,
+  "maximum_setting_axial_stroke_mm": 0.2835640909808895,
+  "axial_load_at_5000N_radial_N": 1960.4785338483198,
+  "radial_compliance_components_mm_at5000N": {
+    "core_lame": 0.0002361632100600242,
+    "locked_stem": 0.0005513152115115027,
+    "terminal_block": 5.970802821924059e-05,
+    "cone_and_shoulder_faces": 0.00025
+  },
+  "total_radial_compression_mm_at5000N": 0.0010971864497907676,
+  "equivalent_density_N_mm3": 2767.07886381171,
+  "FE_density_N_mm3": 2000,
+  "free_neck_radial_stiffness_N_mm": 54.097640457561035,
+  "free_setting_force_at_maximum_gap_N": 2.299149719446344,
+  "qualification": [
+    "full contact band from z100.2 to114.8; neck length30 above the band, thickness0.80, width>=19",
+    "mating cone and shoulder Ra<=0.2; incremental radial face compliance <=0.05 um/kN from seated100 to5000 N",
+    "solid fixed reverse cone; sleeve shoulder, Ø70/Ø24 tube and portal carry axial reaction; M12 sets/returns only",
+    "fixture test separates elastic compression, rigid-axis shift and six-finger setting repeatability",
+    "equivalent uniform compression density>=2000 N/mm3 over the stated temperature range; no claim of measured data"
+  ],
+  "checks": {
+    "full_band_cone_support": true,
+    "matching_nominal_cone": true,
+    "stem_length_covers_load_path": true,
+    "model_density_is_conservative": true,
+    "force_within_stop_capacity": true,
+    "keeper_and_head_strength_pass": true,
+    "free_setting_force_below_preload_limit": true
+  },
+  "mandrel_compliance_design_pass": true
+}

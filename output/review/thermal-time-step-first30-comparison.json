@@ -1,0 +1,19 @@
+{
+  "scope": "first30s held-fixture diagnosis; same structural0.125, thermal0.125 versus0.0625; not cold position",
+  "temperature_maximum_absolute_difference_C": 46.62106862196333,
+  "bore_displacement_maximum_difference_um": 0.13450359993269045,
+  "all_node_displacement_maximum_difference_um": 8.509620950109925,
+  "plastic_equivalent_strain_maxima": [
+    0.07379057727648151,
+    0.07409178739478212
+  ],
+  "final_mandrel_reaction_N": [
+    2860.8532854137616,
+    2888.316968067008
+  ],
+  "time_steps": [
+    0.125,
+    0.0625
+  ],
+  "structural_step_s": 0.125
+}

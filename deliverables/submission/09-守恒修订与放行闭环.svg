@@ -1,25 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
-  <rect width="1400" height="900" fill="#f7f8fa"/>
-  <style>text{font-family:'Microsoft YaHei',Arial,sans-serif;fill:#17202a} .title{font-size:34px;font-weight:700}.h{font-size:22px;font-weight:700}.b{font-size:18px}.s{font-size:16px}.box{fill:white;stroke:#263746;stroke-width:2}.good{fill:#e8f5e9;stroke:#2e7d32}.warn{fill:#fff8e1;stroke:#a66b00}</style>
-  <text x="60" y="60" class="title">COMPETITION-R3：守恒修订与三项放行闭环</text>
-  <text x="60" y="95" class="s">数字设计证据图｜6P-FAIR_B 两道 TIG 为当前设计推荐路线，试制阶段按说明书 §9.2 完成 A 类实物工程确认</text>
-  <text x="60" y="150" class="h">一、3.5 mm 设计目标的守恒修订</text>
-  <rect x="60" y="180" width="360" height="180" rx="12" class="box warn"/>
-  <text x="85" y="220" class="h">旧单道基线</text><text x="85" y="255" class="b">Ø1.2 mm，送丝 2.0 mm/s</text><text x="85" y="285" class="b">等效焊脚约 1.737 mm</text><text x="85" y="325" class="s">该截面不足以支撑 3.5 mm 目标</text>
-  <path d="M440 270 H540" stroke="#546e7a" stroke-width="5" marker-end="url(#a)"/>
-  <rect x="560" y="180" width="360" height="180" rx="12" class="box"/>
-  <text x="585" y="220" class="h">守恒重算</text><text x="585" y="255" class="b">两道沉积，η=0.85 下界</text><text x="585" y="285" class="b">A = 6.125 mm²</text><text x="585" y="325" class="s">固定送丝反算：1.343967 mm/s</text>
-  <path d="M940 270 H1040" stroke="#546e7a" stroke-width="5" marker-end="url(#a)"/>
-  <rect x="1060" y="180" width="280" height="180" rx="12" class="box good"/>
-  <text x="1085" y="220" class="h">当前路线</text><text x="1085" y="255" class="b">Ø1.6 mm + 两道 TIG</text><text x="1085" y="285" class="b">等效焊脚 3.50–3.80 mm</text><text x="1085" y="325" class="s">成形与熔合由宏观截面确认</text>
-  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#546e7a"/></marker></defs>
-  <text x="60" y="430" class="h">二、三项放行闭环</text>
-  <rect x="60" y="460" width="1280" height="330" rx="10" class="box"/>
-  <line x1="60" y1="520" x2="1340" y2="520" stroke="#263746" stroke-width="2"/><line x1="360" y1="460" x2="360" y2="790" stroke="#263746" stroke-width="2"/><line x1="760" y1="460" x2="760" y2="790" stroke="#263746" stroke-width="2"/><line x1="1080" y1="460" x2="1080" y2="790" stroke="#263746" stroke-width="2"/>
-  <text x="85" y="500" class="h">目标</text><text x="385" y="500" class="h">设计证据</text><text x="785" y="500" class="h">试制阶段工程确认</text><text x="1105" y="500" class="h">设计状态</text>
-  <text x="85" y="565" class="b">焊得住</text><text x="385" y="565" class="s">Schaeffler相图映射、冷焊热制度、锤击规范、条件承载筛查</text><text x="785" y="565" class="s">宏观截面、硬度线扫、裂纹/NDT、WPS/PQR</text><text x="1105" y="565" class="b">工艺卡冻结</text>
-  <text x="85" y="655" class="b">位置度</text><text x="385" y="655" class="s">A/B基准、公差分配、热残余上限0.0102 mm、CMM判定规则</text><text x="785" y="655" class="s">松夹后 CMM、测量不确定度、重复装夹</text><text x="1105" y="655" class="b">预算闭合</text>
-  <text x="85" y="745" class="b">洁净度</text><text x="385" y="745" class="s">紫铜衬环屏障、朝上回收、几何退出与互锁</text><text x="785" y="745" class="s">热态贴壁、颗粒清点、内窥与盲区检查</text><text x="1105" y="745" class="b">逻辑冻结</text>
-  <text x="60" y="850" class="s">结论：三项指标各具独立拒绝条件；经理论计算与数值仿真验证，在设定工况下满足设计指标要求。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<style>text{font-family:'Microsoft YaHei',sans-serif;fill:#183247}.title{font-size:30px;font-weight:700}.h{font-size:23px;font-weight:700}.b{font-size:18px}</style>
+<rect width="1200" height="700" fill="#f8fafc"/>
+<text x="55" y="65" class="title">8P两道脉冲TIG：工艺设计与验证闭环</text>
+<rect x="55" y="110" width="1090" height="135" rx="10" fill="#e7f1f5" stroke="#176b7b"/>
+<text x="80" y="150" class="h">工艺与守恒</text>
+<text x="80" y="190" class="b">8×18 mm、两道；Ø1.60±0.01；送丝3.50±0.05 mm/s；焊速1.65±2%</text>
+<text x="80" y="220" class="b">面积7.326～8.760 mm²；等效焊脚3.828～4.186；名义净热86.40 kJ；弧燃174.5 s</text>
+<rect x="55" y="275" width="1090" height="160" rx="10" fill="#fff1c7" stroke="#b7791f"/>
+<text x="80" y="315" class="h">焊接本身控形</text>
+<text x="80" y="355" class="b">柔顺槽＋对称焊序＋胀套／压环＋低热量；冷却卸夹后使用独立A/B基准拟合孔轴</text>
+<text x="80" y="388" class="b">空间与时间复核分别要求≤5%；预算=2×0.0140＋已验证热残余＋0.002≤0.05 mm</text>
+<text x="80" y="418" class="b">任何微珩前测位置度；仅39.995～40.000欠尺寸孔恢复，直径增量≤0.005 mm</text>
+<rect x="55" y="465" width="1090" height="160" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+<text x="80" y="505" class="h">界面与洁净检验</text>
+<text x="80" y="545" class="b">Ni99两层逐层配混；加工后表面第二层≥0.50 mm；最终熔深≤0.40 mm</text>
+<text x="80" y="578" class="b">宏观截面／HV／裂纹检查；铜环≤45℃、挡唇静密封、气幕＋补氩＋腔压闭环</text>
+<text x="80" y="608" class="b">后续试制：界面金相、CMM、见证片与颗粒检验、载荷与疲劳资格目标确认（说明书§7）</text>
 </svg>
-

@@ -1,10 +1,10 @@
 version: REPORT-1.0
 pdf:
   font_candidates:
-  - regular: C:/Windows/Fonts/Deng.ttf
-    bold: C:/Windows/Fonts/Dengb.ttf
   - regular: C:/Windows/Fonts/msyh.ttc
     bold: C:/Windows/Fonts/msyhbd.ttc
+  - regular: C:/Windows/Fonts/Deng.ttf
+    bold: C:/Windows/Fonts/Dengb.ttf
   - regular: /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc
     bold: /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc
   environment_overrides:

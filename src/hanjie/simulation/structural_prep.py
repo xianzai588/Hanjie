@@ -95,6 +95,10 @@ def fit_position_diameter(datum_a_points, datum_b_points, bore_points):
     local_hole[:,:2] -= center
     if np.ptp(local_hole[:,2])<1e-6:
         raise ValueError("孔测点缺少轴向跨度，不能拟合轴线倾斜")
+    # Fit at the measured span's centre. An intercept at the remote datum
+    # plane unnecessarily correlates centre and tilt for a short bearing bore.
+    z_reference = float(np.mean(local_hole[:,2]))
+    local_hole[:,2] -= z_reference
     def residual(params):
         axis = np.array([params[2],params[3],1.])
         axis /= np.linalg.norm(axis)
@@ -102,13 +106,17 @@ def fit_position_diameter(datum_a_points, datum_b_points, bore_points):
         radial = delta-np.outer(delta@axis,axis)
         return np.linalg.norm(radial,axis=1)-params[4]
     radius = np.median(np.linalg.norm(local_hole[:,:2],axis=1))
-    fit = least_squares(residual,[0.,0.,0.,0.,radius],xtol=1e-12,ftol=1e-12,gtol=1e-12)
+    fit = least_squares(residual,[0.,0.,0.,0.,radius],x_scale="jac",max_nfev=2000,
+                        xtol=1e-12,ftol=1e-12,gtol=1e-12)
     if not fit.success or np.linalg.matrix_rank(fit.jac)<5:
-        raise ValueError("孔圆柱拟合失败或欠约束")
+        raise ValueError(f"孔圆柱拟合失败或欠约束：status={fit.status}, rank={np.linalg.matrix_rank(fit.jac)}, residual={np.linalg.norm(fit.fun):.6g}")
     ends = np.array([local_hole[:,2].min(),local_hole[:,2].max()])
     offsets = fit.x[:2]+ends[:,None]*fit.x[2:4]
     return dict(position_diameter_mm=float(2*np.linalg.norm(offsets,axis=1).max()),
         bore_radius_mm=float(fit.x[4]),bore_axis_slopes=fit.x[2:4].tolist(),
+        bore_axis_center_in_datum_frame_mm=fit.x[:2].tolist(),
+        bore_axis_z_reference_mm=z_reference,datum_A_origin_mm=origin.tolist(),
+        datum_frame=frame.tolist(),datum_B_center_in_A_frame_mm=center.tolist(),
         bore_fit_rms_mm=float(np.sqrt(np.mean(fit.fun**2))),
         datum_a_fit_rms_mm=float(np.sqrt(np.mean(((a-origin)@normal)**2))),
         evidence_level="solver_verified_measurement_scenario",official_cmm_equivalence_confirmed=False)

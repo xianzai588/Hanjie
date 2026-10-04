@@ -1,0 +1,150 @@
+{
+  "cases": [
+    "service-t15-affine-h2-rootlocal0.35",
+    "service-t15-affine-h2-rootlocal0.25"
+  ],
+  "records": [
+    {
+      "mesh_h_mm": 2.0,
+      "nodes": 78840,
+      "tetrahedra": 339701,
+      "load_conditions": {
+        "Fr_N": 5000,
+        "Fa_N": 5000,
+        "Mx_Nmm": 250000,
+        "continuous_amplitudes_N_N_Nmm": [
+          500,
+          200,
+          25000
+        ]
+      },
+      "boundary": "cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support",
+      "load_distribution": "area-weighted bore-wall tractions, each prescribed resultant normalized exactly; moment is a zero-resultant force couple about weighted centre; this is a design load-transfer envelope, not a measured bearing contact distribution",
+      "stress_method": "linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class",
+      "elastic_yield_screen": {
+        "safety_factor": 1.5,
+        "allowable_MPa": {
+          "QT": 206.66666666666666,
+          "NiFe": 193.33333333333334,
+          "Q235": 156.66666666666666
+        },
+        "scope": "incremental cold service stress, separate from weld residual stress; local metal yield checks do not determine PMZ brittle fracture"
+      },
+      "zones": {
+        "QT_slot_root": {
+          "peak_service_VM_MPa": 189.42277601619577,
+          "continuous_peak_range_MPa": 27.366314855111973,
+          "p95_service_VM_MPa": 66.73085462641757
+        },
+        "QT_body": {
+          "peak_service_VM_MPa": 189.42277601619577,
+          "continuous_peak_range_MPa": 27.366314855111973,
+          "p95_service_VM_MPa": 65.75156672917473
+        },
+        "NiFe_weld": {
+          "peak_service_VM_MPa": 112.74364134910327,
+          "continuous_peak_range_MPa": 19.41750331819649,
+          "p95_service_VM_MPa": 75.38531343890713
+        },
+        "Q235_shell": {
+          "peak_service_VM_MPa": 58.13438949755023,
+          "continuous_peak_range_MPa": 8.274238949068014,
+          "p95_service_VM_MPa": 23.7375881530939
+        }
+      },
+      "combined_service_axis_fit": {
+        "position_diameter_mm": 0.020469670000199724,
+        "bore_radius_mm": 20.00641586544565,
+        "bore_axis_slopes": [
+          -4.871741164131837e-05,
+          0.00024318429462359735
+        ],
+        "bore_fit_rms_mm": 0.003941080990959625,
+        "datum_a_fit_rms_mm": 0.0,
+        "evidence_level": "solver_verified_measurement_scenario",
+        "official_cmm_equivalence_confirmed": false
+      },
+      "maximum_combined_displacement_mm": 0.07533752589702834,
+      "axis_fit_scope": "elastic service deflection relative to deformed shell, separate from the unloaded welding position tolerance"
+    },
+    {
+      "mesh_h_mm": 2.0,
+      "nodes": 144854,
+      "tetrahedra": 679439,
+      "load_conditions": {
+        "Fr_N": 5000,
+        "Fa_N": 5000,
+        "Mx_Nmm": 250000,
+        "continuous_amplitudes_N_N_Nmm": [
+          500,
+          200,
+          25000
+        ]
+      },
+      "boundary": "cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support",
+      "load_distribution": "area-weighted bore-wall tractions, each prescribed resultant normalized exactly; moment is a zero-resultant force couple about weighted centre; this is a design load-transfer envelope, not a measured bearing contact distribution",
+      "stress_method": "linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class",
+      "elastic_yield_screen": {
+        "safety_factor": 1.5,
+        "allowable_MPa": {
+          "QT": 206.66666666666666,
+          "NiFe": 193.33333333333334,
+          "Q235": 156.66666666666666
+        },
+        "scope": "incremental cold service stress, separate from weld residual stress; local metal yield checks do not determine PMZ brittle fracture"
+      },
+      "zones": {
+        "QT_slot_root": {
+          "peak_service_VM_MPa": 188.2777358586692,
+          "continuous_peak_range_MPa": 27.64297251430407,
+          "p95_service_VM_MPa": 67.23865334561125
+        },
+        "QT_body": {
+          "peak_service_VM_MPa": 188.2777358586692,
+          "continuous_peak_range_MPa": 27.64297251430407,
+          "p95_service_VM_MPa": 66.72912095343723
+        },
+        "NiFe_weld": {
+          "peak_service_VM_MPa": 112.4990934356317,
+          "continuous_peak_range_MPa": 19.316861305750272,
+          "p95_service_VM_MPa": 75.18089620905137
+        },
+        "Q235_shell": {
+          "peak_service_VM_MPa": 57.89623087135744,
+          "continuous_peak_range_MPa": 8.235005405356993,
+          "p95_service_VM_MPa": 23.70449610331577
+        }
+      },
+      "combined_service_axis_fit": {
+        "position_diameter_mm": 0.0204684995529368,
+        "bore_radius_mm": 20.006398275624285,
+        "bore_axis_slopes": [
+          -5.516736686572238e-05,
+          0.00024427424722772375
+        ],
+        "bore_fit_rms_mm": 0.003919541864965353,
+        "datum_a_fit_rms_mm": 0.0,
+        "evidence_level": "solver_verified_measurement_scenario",
+        "official_cmm_equivalence_confirmed": false
+      },
+      "maximum_combined_displacement_mm": 0.07511552798643625,
+      "axis_fit_scope": "elastic service deflection relative to deformed shell, separate from the unloaded welding position tolerance"
+    }
+  ],
+  "peak_response_relative_errors": {
+    "QT_slot_root": 0.006044891652462523,
+    "QT_body": 0.006044891652462523,
+    "NiFe_weld": 0.002169061692041128,
+    "Q235_shell": 0.004096690930293989
+  },
+  "same_geometry_and_load": true,
+  "discretization_verified": true,
+  "worst_zone_peaks_MPa": {
+    "QT_slot_root": 189.42277601619577,
+    "QT_body": 189.42277601619577,
+    "NiFe_weld": 112.74364134910327,
+    "Q235_shell": 58.13438949755023
+  },
+  "static_service_design_pass": true,
+  "scope": "cold incremental service envelope; separate from welding residual stresses, PMZ fracture and fatigue qualification"
+}

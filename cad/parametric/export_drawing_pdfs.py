@@ -122,6 +122,10 @@ def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float,
             canvas.line(X(float(attrib["x1"])), Y(float(attrib["y1"])), X(float(attrib["x2"])), Y(float(attrib["y2"])))
         elif tag == "circle":
             canvas.circle(X(float(attrib["cx"])), Y(float(attrib["cy"])), float(attrib["r"]) * scale, stroke=1, fill=1 if fill else 0)
+        elif tag == "ellipse":
+            cx, cy = float(attrib["cx"]), float(attrib["cy"])
+            rx, ry = float(attrib["rx"]), float(attrib["ry"])
+            canvas.ellipse(X(cx-rx), Y(cy+ry), X(cx+rx), Y(cy-ry), stroke=1, fill=1 if fill else 0)
         elif tag == "rect":
             rx = float(attrib.get("rx", "0")) * scale
             x = X(float(attrib.get("x", "0")))
@@ -150,7 +154,7 @@ def main() -> None:
     svg_paths = [SVG_DIR / name for name in manifest["drawings"] + manifest.get("supplemental_drawings", [])]
     # 合并图集页序按图号 HJ-001..008 排列；补充详图不再整体垫底。
     def hj_number(path):
-        match = re.search(r"HJ-(\d{3})", path.read_text(encoding="utf-8"))
+        match = re.search(r">HJ-(\d{3})</text>", path.read_text(encoding="utf-8"))
         return int(match.group(1)) if match else 999
     svg_paths.sort(key=hj_number)
     if not svg_paths:
@@ -171,7 +175,7 @@ def main() -> None:
         canvas.setFillColor(HexColor("#475569"))
         canvas.drawCentredString(
             page_pw / 2, 10,
-            f"HJ 数字工程图集 · {today} · 第 {index}/{len(svg_paths)} 页 · 状态 design-review（未完成制造签审）",
+            f"HJ 参赛工艺设计图集 · {today} · 第 {index}/{len(svg_paths)} 页",
         )
         canvas.showPage()
         canvas.save()
@@ -192,7 +196,7 @@ def main() -> None:
         position = sheets.index(sheet) + 1
         combined.drawCentredString(
             page_pw / 2, 10,
-            f"HJ 数字工程图集 · {today} · 第 {position}/{len(sheets)} 页 · 状态 design-review（未完成制造签审）",
+            f"HJ 参赛工艺设计图集 · {today} · 第 {position}/{len(sheets)} 页",
         )
         combined.showPage()
     combined.save()

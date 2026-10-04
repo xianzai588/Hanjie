@@ -1,0 +1,16 @@
+{
+  "status": "stopped incomplete, no cold result",
+  "reason": "common 1100-1400 C latent-heat interval superseded; avoid refining that thermal model",
+  "last_progress": {
+    "t_s": 9.875,
+    "arc_end_s": 213.27272727272728,
+    "elapsed_s": 597.1126344999939,
+    "max_C": 1584.2197842521837,
+    "copper_max_C": 22.00477286295868,
+    "seal_band_max_C": 77.69149896244694,
+    "released": false,
+    "energy_balance_relative": -7.281512974063785e-09,
+    "max_equilibrium_residual_N": 0.038105669235654456,
+    "linear_fallbacks": 0
+  }
+}

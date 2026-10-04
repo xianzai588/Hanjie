@@ -1,0 +1,344 @@
+{
+  "materials": [
+    {
+      "name": "碳素结构钢 Q235B",
+      "standard": "GB/T 700-2006",
+      "composition_basis": "工程名义成分；Cr/Ni/Mo为当量核算的残余元素假设，按来料化学分析替换",
+      "composition_nominal_wt_pct": {
+        "C": 0.17,
+        "Mn": 0.45,
+        "Si": 0.2,
+        "S": 0.035,
+        "P": 0.035,
+        "Cr": 0.05,
+        "Ni": 0.05,
+        "Mo": 0.01
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7850.0,
+        "specific_heat_j_kgk": 470.0,
+        "thermal_conductivity_w_mk": 45.0,
+        "elastic_modulus_gpa": 210.0,
+        "poisson_ratio": 0.28,
+        "alpha_per_k": 1.2e-05,
+        "yield_strength_mpa": 235.0,
+        "tensile_strength_mpa": 420.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          45.0,
+          43.0,
+          38.0,
+          31.0,
+          26.0,
+          28.0,
+          32.0
+        ],
+        "specific_heat_j_kgk": [
+          470.0,
+          520.0,
+          610.0,
+          760.0,
+          800.0,
+          650.0,
+          700.0
+        ],
+        "elastic_modulus_gpa": [
+          210.0,
+          195.0,
+          165.0,
+          85.0,
+          25.0,
+          10.0,
+          2.0
+        ],
+        "yield_strength_mpa": [
+          235.0,
+          210.0,
+          160.0,
+          60.0,
+          20.0,
+          8.0,
+          2.0
+        ],
+        "alpha_per_k": [
+          1.2e-05,
+          1.28e-05,
+          1.36e-05,
+          1.44e-05,
+          1.48e-05,
+          1.5e-05,
+          1.52e-05
+        ]
+      }
+    },
+    {
+      "name": "球墨铸铁 QT450-10",
+      "standard": "GB/T 1348-2019",
+      "composition_basis": "工程名义成分；Cr/Ni为当量核算的残余元素假设，按来料化学分析替换",
+      "composition_nominal_wt_pct": {
+        "C": 3.65,
+        "Si": 2.6,
+        "Mn": 0.3,
+        "Mg": 0.045,
+        "P": 0.04,
+        "S": 0.015,
+        "Cr": 0.05,
+        "Ni": 0.05
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7200.0,
+        "specific_heat_j_kgk": 460.0,
+        "thermal_conductivity_w_mk": 35.0,
+        "elastic_modulus_gpa": 170.0,
+        "poisson_ratio": 0.27,
+        "alpha_per_k": 1.05e-05,
+        "yield_strength_mpa": 310.0,
+        "tensile_strength_mpa": 450.0,
+        "elongation_pct": 10.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          750,
+          900,
+          1200
+        ],
+        "thermal_conductivity_w_mk": [
+          35.0,
+          34.0,
+          32.0,
+          28.0,
+          24.0,
+          25.0,
+          28.0
+        ],
+        "specific_heat_j_kgk": [
+          460.0,
+          510.0,
+          580.0,
+          710.0,
+          850.0,
+          720.0,
+          750.0
+        ],
+        "elastic_modulus_gpa": [
+          170.0,
+          158.0,
+          135.0,
+          70.0,
+          20.0,
+          8.0,
+          1.5
+        ],
+        "yield_strength_mpa": [
+          310.0,
+          280.0,
+          210.0,
+          50.0,
+          15.0,
+          5.0,
+          1.0
+        ],
+        "alpha_per_k": [
+          1.05e-05,
+          1.12e-05,
+          1.2e-05,
+          1.3e-05,
+          1.35e-05,
+          1.38e-05,
+          1.4e-05
+        ]
+      }
+    },
+    {
+      "name": "NiFe-55型镍铁铸铁实心填充棒",
+      "standard": "EN ISO 1071 / GB/T 10044；具体实心棒分类按供货证书",
+      "composition_basis": "CEWELD NiFe 55 TIG供方典型成分；https://certilas.com/en/product/nife-55-tig；批次证书复核",
+      "composition_nominal_wt_pct": {
+        "Ni": 55.0,
+        "Fe": "Balance",
+        "C": 0.01,
+        "Mn": 0.7,
+        "Si": 0.13
+      },
+      "property_basis": "名义物性为保守工程输入，不作为供方实測接头性能；历史结果以各运行input.json为准",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8200.0,
+        "specific_heat_j_kgk": 480.0,
+        "thermal_conductivity_w_mk": 22.0,
+        "elastic_modulus_gpa": 160.0,
+        "poisson_ratio": 0.3,
+        "alpha_per_k": 1.1e-05,
+        "yield_strength_mpa": 290.0,
+        "tensile_strength_mpa": 450.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          35
+        ],
+        "specific_heat_j_kgk": [
+          480,
+          520,
+          570,
+          630,
+          710,
+          760,
+          800
+        ],
+        "elastic_modulus_gpa": [
+          160,
+          150,
+          130,
+          90,
+          50,
+          15,
+          2
+        ],
+        "yield_strength_mpa": [
+          290,
+          260,
+          210,
+          150,
+          70,
+          15,
+          2
+        ],
+        "alpha_per_k": [
+          1.1e-05,
+          1.1e-05,
+          1.1e-05,
+          1.1e-05,
+          1.1e-05,
+          1.1e-05,
+          1.1e-05
+        ]
+      }
+    }
+  ],
+  "sequence": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      6
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      7
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      7
+    ]
+  ],
+  "travel_mm_s": 1.65,
+  "net_W": 495,
+  "leg_mm": 4,
+  "weld_base_z_mm": 114.0,
+  "seat_thickness_mm": 14.0,
+  "root_leg_mm": 2.8,
+  "root_mesh_mm": null,
+  "idle_s": 18.0,
+  "h_air_W_m2K": 15,
+  "emissivity": 0.7,
+  "copper_contact_W_m2K": 500.0,
+  "mandrel_penalty_N_mm3": 2000.0,
+  "contact_area_mm2": 1538.662106514682,
+  "initial_bore_diameter_mm": 40.014,
+  "structural_step_s": 0.5,
+  "weld_mesh_mm": 1.0,
+  "h_mm": 2.0,
+  "dt_s": 0.25,
+  "annealing_C": 1200,
+  "latent_heat_J_kg": 250000,
+  "source_radius_mm": 1.270170592,
+  "source_depth_mm": 0.923760431,
+  "source_r_mm": 74.8,
+  "Ni99_thin_layer_mm": 1.2,
+  "Ni99_conductivity_W_mK": 40,
+  "mechanical_interface_N_mm3": "Ni side 62500, steel side 160000/h",
+  "cold_structural_step_s": 5.0,
+  "seat_geometry": "simulation\\competition-r4\\geometry\\8P-R2-t14.step",
+  "initial_radial_preload_N": 100,
+  "stress_free_interface_birth": true,
+  "stress_free_birth": "16-neighbour dimensionless affine continuation, SVD rcond 0.02, L1 weight cap 4 with inverse-distance fallback; cold fixture preload equilibrated before arc",
+  "support": "shell annular axial seat; QT three pads at R30; separate 500 N pressure ring; pads and pressure released with mandrel"
+}

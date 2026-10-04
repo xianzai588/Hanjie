@@ -1,0 +1,10 @@
+{
+  "scope": "service geometry candidate; welding validation pending",
+  "root_transition_mm": 2,
+  "central_pad_OD_mm": 76,
+  "central_pad_height_mm": 1,
+  "central_thickness_mm": 13,
+  "pad_transition_radius_mm": 0.3,
+  "seat_volume_mm3": 113973.05246014707,
+  "seat_mass_g": 820.6059777130589
+}

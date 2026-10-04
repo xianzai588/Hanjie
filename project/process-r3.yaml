@@ -1,4 +1,10 @@
 version: PROCESS-R3
+authority: current_competition_process_source
+state: current_frozen_design
+used_by:
+- project/competition-design.yaml
+- deliverables/build_submission.py
+- scripts/competition_submission_lint.py
 process:
   nominal:
     method: automatic_TIG

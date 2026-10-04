@@ -40,8 +40,8 @@ position=np.array([coarse['fit']['position_diameter_mm'],fine['fit']['position_d
 delta=abs(position[1]-position[0]);relative=delta/max(position[1],1e-9);limit_relative=delta/.05
 fields={'position_diameter_mm':fine['fit']['position_diameter_mm'],'mesh_difference_absolute_mm':delta,
  'mesh_difference_relative_to_response':relative,'mesh_difference_fraction_of_design_limit':limit_relative,
- 'engineering_mesh_acceptance':'absolute difference ≤ 0.0025 mm (5% of design limit); also report response-relative difference, never hide it',
- 'engineering_mesh_pass':bool(delta<=.0025),'max_stress_MPa':float(vm.max()),'max_displacement_mm':float(disp.max()/1000),
+ 'engineering_mesh_acceptance':'response-relative difference ≤ 5%, with identical thermal and structural time steps; absolute tolerance margin is reported separately',
+ 'engineering_mesh_pass':bool(relative<=.05 and coarse['dt_s']==fine['dt_s']),'max_stress_MPa':float(vm.max()),'max_displacement_mm':float(disp.max()/1000),
  'cold_measurement_temperature_pass':bool(fine['final_max_C']<=21),
  'full_part_result_valid':bool(fine['released'] and fine['max_equilibrium_residual_N']<.05 and abs(fine['energy_balance_relative'])<1e-5),
  'hotspot_QT_slot_root_residual_VM_MPa':float(vm[(m==1)&(np.linalg.norm(c[:,:2],axis=1)>35)&(np.linalg.norm(c[:,:2],axis=1)<47)].max())}

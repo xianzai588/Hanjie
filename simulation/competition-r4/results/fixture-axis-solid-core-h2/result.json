@@ -1,0 +1,26 @@
+{
+  "h_local_mm": 2.0,
+  "nodes": 28108,
+  "tetrahedra": 158838,
+  "lateral_core_load_N": 5000,
+  "adverse_pad_and_peening_moment_N_mm": 232825.47254100043,
+  "lateral_peening_force_N": 400,
+  "axis_section_centres_mm": [
+    [
+      0.0015990452575380305,
+      -5.272224778908643e-07
+    ],
+    [
+      0.0025510399851625593,
+      -6.6017895575248e-06
+    ],
+    [
+      0.0036949552877260593,
+      3.6565306131213443e-06
+    ]
+  ],
+  "maximum_radial_axis_shift_mm": 0.003694957096978379,
+  "linear_equilibrium_residual_N": 1.0017444606591054e-10,
+  "max_von_mises_MPa": 26.63715265373544,
+  "scope": "integral solid reverse cone, fixed column root; flange/bolts and microscopic contact added separately; E180 GPa"
+}

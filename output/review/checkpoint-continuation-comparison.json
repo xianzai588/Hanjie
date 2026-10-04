@@ -1,0 +1,12 @@
+{
+  "scope": "0.25 to0.5 s actual partial FE continuation vs uninterrupted; not cold proof",
+  "maximum_absolute_differences": {
+    "u": 7.090682208055199e-17,
+    "stress": 5.087485988042317e-12,
+    "plastic": 5.681219383824043e-17,
+    "eqp": 5.941427905220564e-17,
+    "temperature": 4.661160346586257e-12,
+    "peak_nodal_temperature": 4.661160346586257e-12
+  },
+  "pass_check": true
+}

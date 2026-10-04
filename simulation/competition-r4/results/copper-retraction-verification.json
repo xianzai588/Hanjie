@@ -1,0 +1,225 @@
+{
+  "scope": "four sectors including two port bosses each, stationary backing ring, four welded water blocks, sixteen unions/L-port blocks and eight screw envelopes; each matching union/nipple is an intentional assembly overlap; hoses detailed in water-route-verification.json",
+  "rows": [
+    {
+      "stroke_mm": 0.0,
+      "maximum_intersection_mm3": 0.0,
+      "minimum_clearance_mm": 0.09999999999999432,
+      "union_maximum_intersection_mm3": 0.0,
+      "union_minimum_clearance_mm": 0.49999999999999833,
+      "screw_maximum_intersection_mm3": 0.0,
+      "screw_minimum_clearance_mm": 0.10999999999999943,
+      "elbow_maximum_intersection_mm3": 0.0,
+      "elbow_minimum_clearance_mm": 0.4999999999999984
+    },
+    {
+      "stroke_mm": 0.55,
+      "maximum_intersection_mm3": 0.0,
+      "minimum_clearance_mm": 0.09999999999999432,
+      "union_maximum_intersection_mm3": 0.0,
+      "union_minimum_clearance_mm": 0.49999999999999206,
+      "screw_maximum_intersection_mm3": 0.0,
+      "screw_minimum_clearance_mm": 0.10999999999999943,
+      "elbow_maximum_intersection_mm3": 0.0,
+      "elbow_minimum_clearance_mm": 0.4999999999999984
+    },
+    {
+      "stroke_mm": 1.15,
+      "maximum_intersection_mm3": 0.0,
+      "minimum_clearance_mm": 0.09999999999999432,
+      "union_maximum_intersection_mm3": 0.0,
+      "union_minimum_clearance_mm": 0.49999999999999833,
+      "screw_maximum_intersection_mm3": 0.0,
+      "screw_minimum_clearance_mm": 0.10999999999999943,
+      "elbow_maximum_intersection_mm3": 0.0,
+      "elbow_minimum_clearance_mm": 0.4999999999999984
+    }
+  ],
+  "continuous_sector_separation_lower_mm": 0.32365440327094097,
+  "backing_ring_axial_clearance_nominal_mm": 0.1,
+  "backing_ring_axial_clearance_with_position_tolerance_mm": 0.06,
+  "upper_bridge_overlap_initial_mm": 4,
+  "upper_bridge_pocket_length_mm": 6,
+  "upper_bridge_max_sliding_mm": 1.626345596729059,
+  "upper_bridge_overlap_remaining_mm": 2.3736544032709412,
+  "fixed_backing_ring_hot_outer_radius_mm": 74.833460416,
+  "seal_water_and_capacity": {
+    "copper_mass_kg": 0.07191537881783833,
+    "copper_heat_capacity_J_K": 26.024342078170516,
+    "copper_height_mm": 9.0,
+    "copper_bottom_z_mm": 90.5,
+    "copper_top_z_mm": 99.5,
+    "minimum_copper_mass_kg": 0.0675956937095338,
+    "lower_face_seal_cord_mm": 1.0,
+    "lower_face_groove_depth_mm": 0.4,
+    "lower_face_groove_width_mm": 1.4,
+    "lower_face_seal_radius_mm": 72.8,
+    "plate_top_z_mm": 88.59,
+    "metal_slide_gap_mm": 0.31,
+    "copper_to_backing_ring_clearance_mm": 0.1,
+    "lower_backing_ring_thickness_mm": 1.5,
+    "lower_backing_ring_top_z_mm": 90.4,
+    "lower_backing_ring_bottom_z_mm": 88.9,
+    "lower_face_temperature_limit_C": 48,
+    "backing_ring_material": "17-4PH H900; continuous lower gland, 8 inner tabs and blind M3 screws",
+    "pan_under_rim_thickness_mm": 6,
+    "pan_under_rim_inner_radius_mm": 66.5,
+    "retention_screw_radius_mm": 69,
+    "retention_screw_radius_tolerance_mm": 0.05,
+    "retention_screw": "M3x6 ISO10642 stainless; maximum head diameter6.72 and height1.86; fitted flush or recessed0..0.02 mm",
+    "screw_blind_drill_depth_maximum_from_pan_top_mm": 5.5,
+    "screw_blind_hole_bottom_ligament_minimum_mm": 1.4600000000000009,
+    "screw_inner_side_ligament_minimum_mm": 0.9000000000000057,
+    "screw_to_lower_gland_ligament_minimum_mm": 0.6839732135474321,
+    "pan_countersink_relief_depth_maximum_mm": 0.15,
+    "lower_stop_radii_mm": [
+      73.7,
+      74
+    ],
+    "lower_stop_nominal_height_mm": 0.31,
+    "lower_stop_average_pressure_MPa": 7.183703141137313,
+    "lower_gland_local_bending_MPa": 5.246866255776769,
+    "copper_sector_gap_mm": 2,
+    "sector_gap_tolerance_mm": 0.05,
+    "upper_bridge_material": "316L; 0.50 +/-0.02 mm radial thickness; one end fixed, other end slides in a 6 mm pocket; pocket radial depth 0.53 +0.01/0 from actual gland floor",
+    "upper_bridge_minimum_copper_inner_wall_mm": 0.5099999999999909,
+    "upper_bridge_pocket_removed_volume_mm3": 111.3,
+    "minimum_sector_gap_during_retraction_mm": 0.32365440327094097,
+    "port_boss_count": 8,
+    "port_boss_dimensions_mm": [
+      2,
+      4,
+      6
+    ],
+    "port_boss_angle_from_seam_deg": 3,
+    "port_tube_outer_diameter_mm": 1.8,
+    "port_tube_insertion_mm": 3,
+    "water_bulkheads": "4 welded sealed 316L blocks at R55/45+90i deg, 12 radial x16 tangential, z83.59..99; 4 hose ports per block and independent down-facing supply/return",
+    "microtube_design": "PFA TLM0201 or equivalent, OD2/ID1; manufacturer recommended static bend R10, design installed R>=12 with 1.15 mm stroke qualification; each hose <=100 mm",
+    "copper_water_port_radial_stagger_mm": 10,
+    "water_port_local_xyz_mm": [
+      [
+        58,
+        -8,
+        92
+      ],
+      [
+        52,
+        -8,
+        94
+      ],
+      [
+        58,
+        8,
+        92
+      ],
+      [
+        52,
+        8,
+        94
+      ]
+    ],
+    "water_port_union": "custom 316L M4x0.5 compression union, OD<=5 and length<=8; PFA insertion >=4, low-outgassing ferrule; machined Cu5x5x5 L-port block and integral M4 nipple, no cyclic metal bending; round nut OD5 with flats4.5, engagement>=2; installed PFA outside envelope<=2.20 mm",
+    "microtube_Re_upper": 2273.6420441699333,
+    "microtube_pair_pressure_drop_Pa": 10725.769924849008,
+    "hydraulic_design_upper_Pa": 53452.381642712004,
+    "pump_differential_design_minimum_Pa": 80000,
+    "microtube_hydraulic_envelope": "effective bore >=0.95 mm; each circuit two hoses <=105 mm each; per-channel 0.075..0.07875 L/min; Darcy f=0.06 and local K=15 design bounds cover microtube transition; water channel laminar check uses maximum flow",
+    "channel_arc_angle_deg": 84,
+    "channel_straight_length_each_end_mm": 3.5,
+    "actual_copper_minimum_with_ports_kg": 0.06929384537701755,
+    "lower_ring_incident_heat_limit_W": 2,
+    "lower_ring_copper_link_W_K": 0.75,
+    "lower_ring_temperature_bound_C": 47.666666666666664,
+    "shell_copper_heat_transfer_reference": "effective conductance normalized to nominal full circumference; actual copper gap area is not presented as a meshed contact surface",
+    "lower_face_cold_compression_mm": 0.29,
+    "lower_face_retained_compression_mm": 0.2243586,
+    "lower_face_hot_max_compression_fraction": 0.298819211552254,
+    "lower_face_hot_gland_fill_fraction": 0.8102182250572685,
+    "lower_face_worst_hot_gland_fill_fraction": 0.8268363423033757,
+    "lower_face_cord_acceptance_mm": [
+      0.99,
+      1.01
+    ],
+    "copper_temperature_limit_C": 45,
+    "shell_seal_band_temperature_limit_C": 180,
+    "seal_material": "low-outgassing FFKM, Kalrez 7075UP or qualified equivalent",
+    "cord_diameter_mm": 2.5,
+    "groove_radial_depth_mm": 1.875,
+    "groove_axial_width_mm": 3.75,
+    "groove_center_z_mm": 97.125,
+    "elastomer_CTE_upper_per_K": 0.0003,
+    "cold_squeeze_mm": [
+      0.41499999999999204,
+      0.42499999999999716
+    ],
+    "hot_squeeze_min_mm": 0.270999999999992,
+    "hot_squeeze_max_mm": 0.5782342499999972,
+    "hot_squeeze_fraction": [
+      0.10711462450592571,
+      0.2341029352226709
+    ],
+    "retained_squeeze_with_set_and_wear_allowance_mm": 0.21034999999999324,
+    "cold_gland_fill_fraction": 0.6981317007977318,
+    "hot_gland_fill_fraction": 0.8035653598095738,
+    "worst_hot_gland_fill_fraction": 0.8454148483911633,
+    "upper_cord_acceptance_mm": [
+      2.47,
+      2.53
+    ],
+    "upper_groove_matched_depth_range_mm": [
+      1.835,
+      1.915
+    ],
+    "sector_count": 4,
+    "sector_angle_deg": 90,
+    "radial_retraction_mm": 1.1,
+    "retraction_tolerance_mm": 0.05,
+    "withdrawn_max_radius_mm": 74.84945461190135,
+    "minimum_withdrawal_clearance_mm": 0.15054538809864937,
+    "water_channels_per_sector": 2,
+    "channel_diameters_mm": [
+      1.1,
+      1.4
+    ],
+    "channel_diameter_upper_tolerance_mm": 0.02,
+    "channel_center_tolerance_mm": 0.02,
+    "minimum_copper_ligaments_with_tolerance_mm": [
+      0.9199999999999999,
+      0.5000000000000009,
+      0.69
+    ],
+    "channel_reynolds": [
+      2170.2946785258455,
+      1705.2315331274501
+    ],
+    "water_conductivity_lower_W_mK": 0.59,
+    "water_viscosity_lower_Pa_s": 0.0007,
+    "channel_center_radius_mm": 73.3,
+    "channel_center_z_mm": [
+      92,
+      94
+    ],
+    "water_flow_L_min": 0.6,
+    "water_inlet_C": [
+      18,
+      22
+    ],
+    "water_outlet_limit_C": 35,
+    "water_channel_UA_W_K": 6.212117288744427,
+    "water_effective_W_K": 5.772551963934611,
+    "water_lumped_design_W_K": 5.6,
+    "copper_upper_bound_C": 44.53229150946162,
+    "copper_upper_bound_scope": "single isolated quarter, shell 180C, inlet 22C, h 150 W/m2K, all 10 W incident heat in this quarter",
+    "copper_upper_bound_incident_radiation_W": 10,
+    "copper_upper_bound_water_heat_W": 31.545208113246268,
+    "steel_copper_effective_h_W_m2K": [
+      50,
+      150
+    ],
+    "copper_effective_area_mm2": 4241.150082346221,
+    "seal_radial_force_design_limit_N": 1500,
+    "checks_pass": true
+  },
+  "design_checks_pass": true
+}

@@ -1,5 +1,5 @@
 {
-  "version": "SCHAEFFLER-R3",
+  "version": "SCHAEFFLER-R4",
   "formula": {
     "cr_eq": "Cr+Mo+1.5Si+0.5Nb",
     "ni_eq": "Ni+30C+0.5Mn"
@@ -22,15 +22,15 @@
       "material": "Q235B",
       "composition_wt_pct": {
         "C": 0.17,
-        "Si": 0.22,
-        "Mn": 0.5,
+        "Si": 0.2,
+        "Mn": 0.45,
         "Cr": 0.05,
         "Ni": 0.05,
         "Mo": 0.01,
-        "Nb": 0
+        "Nb": 0.0
       },
-      "cr_eq": 0.39,
-      "ni_eq": 5.4,
+      "cr_eq": 0.36000000000000004,
+      "ni_eq": 5.375,
       "source": "工程成分假设，按来料化学分析替换；牌号不等于固定化学成分"
     },
     {
@@ -41,8 +41,8 @@
         "Mn": 0.3,
         "Cr": 0.05,
         "Ni": 0.05,
-        "Mo": 0,
-        "Nb": 0
+        "Mo": 0.0,
+        "Nb": 0.0
       },
       "cr_eq": 3.95,
       "ni_eq": 109.7,
@@ -54,29 +54,29 @@
         "C": 0.01,
         "Si": 0.13,
         "Mn": 0.7,
-        "Cr": 0,
-        "Ni": 55,
-        "Mo": 0,
-        "Nb": 0
+        "Cr": 0.0,
+        "Ni": 55.0,
+        "Mo": 0.0,
+        "Nb": 0.0
       },
       "cr_eq": 0.195,
       "ni_eq": 55.65,
-      "source": "供方典型成分"
+      "source": "供方典型成分，按批次证书复核"
     },
     {
       "material": "Ni99",
       "composition_wt_pct": {
-        "C": 0.02,
-        "Si": 0.1,
-        "Mn": 0.1,
+        "C": 0.01,
+        "Si": 0.05,
+        "Mn": 0.17,
         "Cr": 0,
-        "Ni": 99,
+        "Ni": 99.62,
         "Mo": 0,
         "Nb": 0
       },
-      "cr_eq": 0.15000000000000002,
-      "ni_eq": 99.64999999999999,
-      "source": "工程成分假设，按来料化学分析替换；牌号不等于固定化学成分"
+      "cr_eq": 0.07500000000000001,
+      "ni_eq": 100.005,
+      "source": "供方典型成分，按批次证书复核"
     }
   ],
   "dilution_sweep": {
@@ -86,15 +86,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.1304,
-          "Si": 0.2104,
-          "Mn": 0.674,
+          "Si": 0.20900000000000002,
+          "Mn": 0.6705,
           "Cr": 0.004999999999999999,
           "Ni": 49.505,
           "Mo": 0.0007,
           "Nb": 0.0
         },
-        "cr_eq": 0.3213,
-        "ni_eq": 53.754000000000005,
+        "cr_eq": 0.3192,
+        "ni_eq": 53.752250000000004,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -103,15 +103,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.1906,
-          "Si": 0.2506,
-          "Mn": 0.6609999999999999,
+          "Si": 0.24849999999999997,
+          "Mn": 0.6557499999999999,
           "Cr": 0.0075,
           "Ni": 46.75749999999999,
           "Mo": 0.00105,
           "Nb": 0.0
         },
-        "cr_eq": 0.38445,
-        "ni_eq": 52.806,
+        "cr_eq": 0.3813,
+        "ni_eq": 52.803374999999996,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -120,15 +120,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.2508,
-          "Si": 0.2908,
-          "Mn": 0.6479999999999999,
+          "Si": 0.28800000000000003,
+          "Mn": 0.641,
           "Cr": 0.009999999999999998,
           "Ni": 44.01,
           "Mo": 0.0014,
           "Nb": 0.0
         },
-        "cr_eq": 0.44760000000000005,
-        "ni_eq": 51.858,
+        "cr_eq": 0.44340000000000007,
+        "ni_eq": 51.8545,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -137,15 +137,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.311,
-          "Si": 0.33099999999999996,
-          "Mn": 0.6349999999999999,
+          "Si": 0.32749999999999996,
+          "Mn": 0.6262499999999999,
           "Cr": 0.012499999999999999,
           "Ni": 41.262499999999996,
           "Mo": 0.0017499999999999998,
           "Nb": 0.0
         },
-        "cr_eq": 0.5107499999999999,
-        "ni_eq": 50.91,
+        "cr_eq": 0.5055,
+        "ni_eq": 50.90562499999999,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -154,15 +154,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.3712,
-          "Si": 0.3712,
-          "Mn": 0.6219999999999999,
+          "Si": 0.36699999999999994,
+          "Mn": 0.6114999999999999,
           "Cr": 0.015,
           "Ni": 38.515,
           "Mo": 0.0021,
           "Nb": 0.0
         },
-        "cr_eq": 0.5739,
-        "ni_eq": 49.961999999999996,
+        "cr_eq": 0.5675999999999999,
+        "ni_eq": 49.95675,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -171,15 +171,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.4916,
-          "Si": 0.4516,
-          "Mn": 0.596,
+          "Si": 0.446,
+          "Mn": 0.582,
           "Cr": 0.019999999999999997,
           "Ni": 33.02,
           "Mo": 0.0028,
           "Nb": 0.0
         },
-        "cr_eq": 0.7002,
-        "ni_eq": 48.066,
+        "cr_eq": 0.6918000000000001,
+        "ni_eq": 48.059,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -188,15 +188,15 @@
         "cast_iron_share": 0.3,
         "composition_wt_pct": {
           "C": 0.612,
-          "Si": 0.532,
-          "Mn": 0.57,
+          "Si": 0.525,
+          "Mn": 0.5525,
           "Cr": 0.024999999999999998,
           "Ni": 27.525,
           "Mo": 0.0034999999999999996,
           "Nb": 0.0
         },
-        "cr_eq": 0.8265,
-        "ni_eq": 46.169999999999995,
+        "cr_eq": 0.8160000000000001,
+        "ni_eq": 46.161249999999995,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       }
@@ -207,15 +207,15 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.1652,
-          "Si": 0.23420000000000002,
-          "Mn": 0.672,
+          "Si": 0.23300000000000004,
+          "Mn": 0.669,
           "Cr": 0.005000000000000001,
           "Ni": 49.505,
           "Mo": 0.0006,
           "Nb": 0.0
         },
-        "cr_eq": 0.35690000000000005,
-        "ni_eq": 54.797000000000004,
+        "cr_eq": 0.3551,
+        "ni_eq": 54.795500000000004,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -224,15 +224,15 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.24280000000000002,
-          "Si": 0.2863,
-          "Mn": 0.658,
+          "Si": 0.28450000000000003,
+          "Mn": 0.6535,
           "Cr": 0.0075,
           "Ni": 46.7575,
           "Mo": 0.0009,
           "Nb": 0.0
         },
-        "cr_eq": 0.43785,
-        "ni_eq": 54.3705,
+        "cr_eq": 0.4351500000000001,
+        "ni_eq": 54.368249999999996,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -241,15 +241,15 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.3204,
-          "Si": 0.33840000000000003,
-          "Mn": 0.6439999999999999,
+          "Si": 0.3360000000000001,
+          "Mn": 0.638,
           "Cr": 0.010000000000000002,
           "Ni": 44.01,
           "Mo": 0.0012,
           "Nb": 0.0
         },
-        "cr_eq": 0.5188,
-        "ni_eq": 53.944,
+        "cr_eq": 0.5152000000000001,
+        "ni_eq": 53.941,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -258,15 +258,15 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.398,
-          "Si": 0.39050000000000007,
-          "Mn": 0.6299999999999999,
+          "Si": 0.38750000000000007,
+          "Mn": 0.6224999999999999,
           "Cr": 0.0125,
           "Ni": 41.2625,
           "Mo": 0.0015,
           "Nb": 0.0
         },
-        "cr_eq": 0.5997500000000001,
-        "ni_eq": 53.5175,
+        "cr_eq": 0.5952500000000001,
+        "ni_eq": 53.51375,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -275,15 +275,15 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.4756,
-          "Si": 0.4426,
-          "Mn": 0.6159999999999999,
+          "Si": 0.439,
+          "Mn": 0.6069999999999999,
           "Cr": 0.015,
           "Ni": 38.515,
           "Mo": 0.0018,
           "Nb": 0.0
         },
-        "cr_eq": 0.6807,
-        "ni_eq": 53.091,
+        "cr_eq": 0.6753,
+        "ni_eq": 53.0865,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -292,15 +292,15 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.6308,
-          "Si": 0.5468000000000001,
-          "Mn": 0.588,
+          "Si": 0.5420000000000001,
+          "Mn": 0.576,
           "Cr": 0.020000000000000004,
           "Ni": 33.02,
           "Mo": 0.0024,
           "Nb": 0.0
         },
-        "cr_eq": 0.8426,
-        "ni_eq": 52.238,
+        "cr_eq": 0.8354000000000001,
+        "ni_eq": 52.232,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       },
@@ -309,18 +309,1001 @@
         "cast_iron_share": 0.4,
         "composition_wt_pct": {
           "C": 0.786,
-          "Si": 0.651,
-          "Mn": 0.5599999999999999,
+          "Si": 0.645,
+          "Mn": 0.5449999999999999,
           "Cr": 0.025,
           "Ni": 27.525000000000002,
           "Mo": 0.003,
           "Nb": 0.0
         },
-        "cr_eq": 1.0045,
-        "ni_eq": 51.385000000000005,
+        "cr_eq": 0.9955,
+        "ni_eq": 51.377500000000005,
         "within_schaeffler_plot": false,
         "constitution": "图外；Ni-Fe体系文献支持奥氏体主枝晶，同时单独控制碳化物/HAZ"
       }
+    ]
+  },
+  "transition_layer_sweep": [
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.046400000000000004,
+        "Si": 0.07550000000000001,
+        "Mn": 0.17130000000000004,
+        "Cr": 0.0005000000000000001,
+        "Ni": 98.6243,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.021640000000000003,
+        "Si": 0.12805,
+        "Mn": 0.63463,
+        "Cr": 0.0025500000000000006,
+        "Ni": 56.61493,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.195125,
+      "final_ni_eq": 57.581445,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.046400000000000004,
+        "Si": 0.07550000000000001,
+        "Mn": 0.17130000000000004,
+        "Cr": 0.0005000000000000001,
+        "Ni": 98.6243,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03146,
+        "Si": 0.12882500000000002,
+        "Mn": 0.595695,
+        "Cr": 0.005075000000000001,
+        "Ni": 56.048645,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.19931250000000003,
+      "final_ni_eq": 57.29029250000001,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.046400000000000004,
+        "Si": 0.07550000000000001,
+        "Mn": 0.17130000000000004,
+        "Cr": 0.0005000000000000001,
+        "Ni": 98.6243,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.033280000000000004,
+        "Si": 0.12610000000000002,
+        "Mn": 0.56926,
+        "Cr": 0.005100000000000001,
+        "Ni": 58.22986000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.19525000000000003,
+      "final_ni_eq": 59.512890000000006,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.06459999999999999,
+        "Si": 0.08825,
+        "Mn": 0.17195000000000002,
+        "Cr": 0.0007500000000000001,
+        "Ni": 98.12645,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.02346,
+        "Si": 0.129325,
+        "Mn": 0.634695,
+        "Cr": 0.0025750000000000005,
+        "Ni": 56.565145,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.19706249999999997,
+      "final_ni_eq": 57.5862925,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.06459999999999999,
+        "Si": 0.08825,
+        "Mn": 0.17195000000000002,
+        "Cr": 0.0007500000000000001,
+        "Ni": 98.12645,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03419,
+        "Si": 0.1307375,
+        "Mn": 0.5957925,
+        "Cr": 0.005112500000000001,
+        "Ni": 55.9739675,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.20221875,
+      "final_ni_eq": 57.29756375,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.06459999999999999,
+        "Si": 0.08825,
+        "Mn": 0.17195000000000002,
+        "Cr": 0.0007500000000000001,
+        "Ni": 98.12645,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03692,
+        "Si": 0.12865000000000001,
+        "Mn": 0.56939,
+        "Cr": 0.005150000000000001,
+        "Ni": 58.13029000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.199125,
+      "final_ni_eq": 59.52258500000001,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.08280000000000001,
+        "Si": 0.101,
+        "Mn": 0.17260000000000003,
+        "Cr": 0.0010000000000000002,
+        "Ni": 97.6286,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.025280000000000004,
+        "Si": 0.1306,
+        "Mn": 0.63476,
+        "Cr": 0.0026000000000000003,
+        "Ni": 56.51536,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.19899999999999998,
+      "final_ni_eq": 57.59114,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.08280000000000001,
+        "Si": 0.101,
+        "Mn": 0.17260000000000003,
+        "Cr": 0.0010000000000000002,
+        "Ni": 97.6286,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03692,
+        "Si": 0.13265000000000002,
+        "Mn": 0.5958899999999999,
+        "Cr": 0.005150000000000001,
+        "Ni": 55.89929,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.205125,
+      "final_ni_eq": 57.304835,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.1,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.08280000000000001,
+        "Si": 0.101,
+        "Mn": 0.17260000000000003,
+        "Cr": 0.0010000000000000002,
+        "Ni": 97.6286,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.040560000000000006,
+        "Si": 0.1312,
+        "Mn": 0.56952,
+        "Cr": 0.005200000000000001,
+        "Ni": 58.03072000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.20300000000000004,
+      "final_ni_eq": 59.53228000000001,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.08280000000000001,
+        "Si": 0.101,
+        "Mn": 0.17260000000000003,
+        "Cr": 0.0010000000000000002,
+        "Ni": 97.6286,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.025280000000000004,
+        "Si": 0.1306,
+        "Mn": 0.63476,
+        "Cr": 0.0026000000000000003,
+        "Ni": 56.51536,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.19899999999999998,
+      "final_ni_eq": 57.59114,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.08280000000000001,
+        "Si": 0.101,
+        "Mn": 0.17260000000000003,
+        "Cr": 0.0010000000000000002,
+        "Ni": 97.6286,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03692,
+        "Si": 0.13265000000000002,
+        "Mn": 0.5958899999999999,
+        "Cr": 0.005150000000000001,
+        "Ni": 55.89929,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.205125,
+      "final_ni_eq": 57.304835,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.08280000000000001,
+        "Si": 0.101,
+        "Mn": 0.17260000000000003,
+        "Cr": 0.0010000000000000002,
+        "Ni": 97.6286,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.040560000000000006,
+        "Si": 0.1312,
+        "Mn": 0.56952,
+        "Cr": 0.005200000000000001,
+        "Ni": 58.03072000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.20300000000000004,
+      "final_ni_eq": 59.53228000000001,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.1265,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015000000000000002,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.02892,
+        "Si": 0.13315,
+        "Mn": 0.63489,
+        "Cr": 0.0026500000000000004,
+        "Ni": 56.41579,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.202875,
+      "final_ni_eq": 57.600835000000004,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.1265,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015000000000000002,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.04238,
+        "Si": 0.136475,
+        "Mn": 0.596085,
+        "Cr": 0.005225000000000001,
+        "Ni": 55.749935,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21093750000000003,
+      "final_ni_eq": 57.3193775,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.1265,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015000000000000002,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.04784,
+        "Si": 0.13630000000000003,
+        "Mn": 0.56978,
+        "Cr": 0.005300000000000001,
+        "Ni": 57.83158000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21075000000000005,
+      "final_ni_eq": 59.55167000000001,
+      "meets_selected_dilution_envelope": true
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.15560000000000002,
+        "Si": 0.15200000000000002,
+        "Mn": 0.17520000000000002,
+        "Cr": 0.0020000000000000005,
+        "Ni": 95.63720000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.032560000000000006,
+        "Si": 0.13570000000000002,
+        "Mn": 0.63502,
+        "Cr": 0.0027000000000000006,
+        "Ni": 56.31622,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.20675000000000002,
+      "final_ni_eq": 57.61053,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.15560000000000002,
+        "Si": 0.15200000000000002,
+        "Mn": 0.17520000000000002,
+        "Cr": 0.0020000000000000005,
+        "Ni": 95.63720000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.04784000000000001,
+        "Si": 0.1403,
+        "Mn": 0.5962799999999999,
+        "Cr": 0.005300000000000001,
+        "Ni": 55.60058,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21675000000000003,
+      "final_ni_eq": 57.33392,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.2,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.15560000000000002,
+        "Si": 0.15200000000000002,
+        "Mn": 0.17520000000000002,
+        "Cr": 0.0020000000000000005,
+        "Ni": 95.63720000000002,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.05512000000000001,
+        "Si": 0.14140000000000003,
+        "Mn": 0.57004,
+        "Cr": 0.005400000000000001,
+        "Ni": 57.63244000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21850000000000003,
+      "final_ni_eq": 59.57106000000001,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.12650000000000003,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.02892,
+        "Si": 0.13315000000000002,
+        "Mn": 0.63489,
+        "Cr": 0.0026500000000000004,
+        "Ni": 56.41579,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.20287500000000006,
+      "final_ni_eq": 57.600835000000004,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.12650000000000003,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.04238,
+        "Si": 0.136475,
+        "Mn": 0.596085,
+        "Cr": 0.005225000000000001,
+        "Ni": 55.749935,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21093750000000003,
+      "final_ni_eq": 57.3193775,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.1,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.12650000000000003,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.04784,
+        "Si": 0.13630000000000003,
+        "Mn": 0.56978,
+        "Cr": 0.005300000000000001,
+        "Ni": 57.83158000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21075000000000005,
+      "final_ni_eq": 59.55167000000001,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.17379999999999998,
+        "Si": 0.16475,
+        "Mn": 0.17585,
+        "Cr": 0.00225,
+        "Ni": 95.13935000000001,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03438,
+        "Si": 0.136975,
+        "Mn": 0.635085,
+        "Cr": 0.0027250000000000004,
+        "Ni": 56.266435,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.20868750000000003,
+      "final_ni_eq": 57.6153775,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.17379999999999998,
+        "Si": 0.16475,
+        "Mn": 0.17585,
+        "Cr": 0.00225,
+        "Ni": 95.13935000000001,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.05057,
+        "Si": 0.14221250000000002,
+        "Mn": 0.5963774999999999,
+        "Cr": 0.005337500000000001,
+        "Ni": 55.5259025,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.21965625000000003,
+      "final_ni_eq": 57.34119125,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.15,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.17379999999999998,
+        "Si": 0.16475,
+        "Mn": 0.17585,
+        "Cr": 0.00225,
+        "Ni": 95.13935000000001,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.05876,
+        "Si": 0.14395000000000002,
+        "Mn": 0.57017,
+        "Cr": 0.005450000000000001,
+        "Ni": 57.53287000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.22237500000000004,
+      "final_ni_eq": 59.58075500000001,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.1,
+      "final_steel_dilution": 0.05,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.2284,
+        "Si": 0.20300000000000004,
+        "Mn": 0.1778,
+        "Cr": 0.003,
+        "Ni": 93.64580000000001,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03984,
+        "Si": 0.1408,
+        "Mn": 0.63528,
+        "Cr": 0.0028000000000000004,
+        "Ni": 56.11708,
+        "Mo": 0.0005,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.2145,
+      "final_ni_eq": 57.62992,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.15,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.2284,
+        "Si": 0.20300000000000004,
+        "Mn": 0.1778,
+        "Cr": 0.003,
+        "Ni": 93.64580000000001,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.05876,
+        "Si": 0.14795000000000003,
+        "Mn": 0.5966699999999999,
+        "Cr": 0.005450000000000001,
+        "Ni": 55.30187,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.22837500000000005,
+      "final_ni_eq": 57.363005,
+      "meets_selected_dilution_envelope": false
+    },
+    {
+      "first_QT_dilution": 0.3,
+      "second_first_layer_remelt": 0.2,
+      "final_Ni_layer_dilution": 0.2,
+      "final_steel_dilution": 0.1,
+      "first_composition_wt_pct": {
+        "C": 1.1019999999999999,
+        "Si": 0.8150000000000001,
+        "Mn": 0.209,
+        "Cr": 0.015,
+        "Ni": 69.749,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "second_composition_wt_pct": {
+        "C": 0.2284,
+        "Si": 0.20300000000000004,
+        "Mn": 0.1778,
+        "Cr": 0.003,
+        "Ni": 93.64580000000001,
+        "Mo": 0.0,
+        "Nb": 0.0
+      },
+      "final_composition_wt_pct": {
+        "C": 0.06968,
+        "Si": 0.1516,
+        "Mn": 0.57056,
+        "Cr": 0.005600000000000001,
+        "Ni": 57.23416000000001,
+        "Mo": 0.001,
+        "Nb": 0.0
+      },
+      "final_cr_eq": 0.234,
+      "final_ni_eq": 59.60984000000001,
+      "meets_selected_dilution_envelope": false
+    }
+  ],
+  "Ni99_source": {
+    "url": "https://www.weldwire.net/wp-content/uploads/2013/08/ERNi-CI.pdf",
+    "product": "WWNA99 / ERNi-CI",
+    "basis": "typical deposited chemistry, not a batch certificate",
+    "processes": [
+      "GTAW",
+      "GMAW"
     ]
   },
   "metallurgy_reference": {
@@ -328,5 +1311,5 @@
     "scope": "EN-GJS-500-14 / GMAW-MCAW；机理参考，非本件合格评定",
     "conclusion": "NiFe与纯Ni均有奥氏体主枝晶；NiFe枝晶间可析出渗碳体，纯Ni促进石墨，HAZ仍可出现马氏体"
   },
-  "design_decision": "QT侧预制Ni99隔离层，接头主体NiFe55；保证最终焊接不穿透隔离层，镍层制作在精加工孔之前完成；宏观金相确认剩余层厚≥0.8 mm"
+  "design_decision": "QT侧两层Ni99过渡层，QT稀释≤20%、第二层重熔首层≤15%；加工后第二层≥0.5 mm，最终熔深≤0.4 mm只重熔第二层；最终Ni层稀释≤20%、钢侧≤10%；厚度与稀释独立控制，总残层≥0.8 mm；首次QT/Ni99界面的PMZ与HAZ仍按冷焊裂纹控制程序管理"
 }

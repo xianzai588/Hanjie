@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from html import escape
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -11,6 +12,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image
+from reportlab.platypus.tableofcontents import TableOfContents
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "deliverables/report/technical-report-v4-unified.md"
@@ -26,6 +28,34 @@ REGULAR_FONT = "HanjieCN"
 BOLD_FONT = "HanjieCN-Bold"
 
 
+class ManualDocTemplate(SimpleDocTemplate):
+    def afterFlowable(self, flowable):
+        if isinstance(flowable, Paragraph):
+            title = flowable.getPlainText()
+            if flowable.style.name == "H2" or (flowable.style.name == "H1" and
+                    title.startswith(("主轴承座—", "HJ-W-00", "HJ-W-02", "HJ-C-01", "HJ-Q-01", "HJ-Q-02", "HJ-Q-03", "HJ-F-01"))):
+                self.notify("TOCEntry", (0, title, self.page))
+
+
+def cover_and_contents():
+    center = ParagraphStyle("CoverCN", fontName=REGULAR_FONT, fontSize=16,
+                            leading=26, alignment=1, wordWrap="CJK")
+    title = ParagraphStyle("CoverTitle", parent=center, fontName=BOLD_FONT,
+                           fontSize=24, leading=37, spaceAfter=16)
+    toc = TableOfContents()
+    toc.levelStyles = [ParagraphStyle("ContentsCN", fontName=REGULAR_FONT,
+                                     fontSize=11, leading=23, wordWrap="CJK")]
+    review = [Spacer(1, 8*mm), Paragraph('修订审阅稿<br/>孔轴精度与焊前孔径补偿正在验证',
+                ParagraphStyle('ReviewCover',parent=center,fontSize=11,leading=18,textColor=colors.HexColor('#9a3412')))] if '--review' in sys.argv else []
+    return [Spacer(1, 35*mm),
+            Paragraph("第一届辽宁省大学生材料焊接与铸造<br/>工艺设计大赛", center),
+            Spacer(1, 19*mm), Paragraph("QT450-10 主轴承座<br/>— Q235B 壳体<br/>焊接工艺设计说明书", title),
+            Spacer(1, 14*mm), Paragraph("中铁山桥杯 · 焊接固定命题", center),
+            Paragraph("含设计工艺规程及工程图纸", center),
+            Spacer(1, 33*mm), Paragraph("2026 年 10 月", center),
+            *review, PageBreak(), Paragraph("目录", title), toc, PageBreak()]
+
+
 SUPERSCRIPT = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5",
                "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-", "⁺": "+"}
 SUBSCRIPT = {"₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5",
@@ -38,7 +68,15 @@ def inline(text: str) -> str:
     # ReportLab 不解析 LaTeX；将本报告使用的有限命令显式转为可读 Unicode。
     text = text.replace("✅", "[记录]").replace("⚠️", "[注意]").replace("🔄", "[进行中]").replace("⏳", "[待验证]").replace("❌", "[撤回]")
     text = text.replace("📋", "[计划]").replace("≈", "约等于 ")
-    text = re.sub(r"\[([^]]+)\]\([^)]+\)", r"\1", text)
+    links=[]
+    def keep_link(match):
+        label,url=match.groups()
+        if not url.startswith(('https://','http://')):
+            return label
+        token=f'\x00LINK{len(links)}\x00'
+        links.append((token,f'<link href="{escape(url,{chr(34):"&quot;"})}" color="#176b7b">{escape(label)}</link>'))
+        return token
+    text=re.sub(r"\[([^]]+)\]\(([^)]+)\)",keep_link,text)
     # 上标/下标区间在中文字体子集中缺字形，统一转为 <super>/<sub> 标签。
     for table, token, tag in ((SUPERSCRIPT, _SUP_TOKEN, "super"), (SUBSCRIPT, _SUB_TOKEN, "sub")):
         text = re.sub("[%s]+" % "".join(table),
@@ -57,7 +95,10 @@ def inline(text: str) -> str:
     for token, tag in ((_SUP_TOKEN, "super"), (_SUB_TOKEN, "sub")):
         text = re.sub(re.escape(token) + r"(.*?)" + re.escape(token),
                       r"<%s>\1</%s>" % (tag, tag), text)
-    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
+    text=re.sub(r"\*\*(.+?)\*\*",r"<b>\1</b>",text)
+    for token,link in links:
+        text=text.replace(token,link)
+    return text
 
 
 def build_story(source: Path = SOURCE) -> list:
@@ -120,6 +161,7 @@ def build_story(source: Path = SOURCE) -> list:
 def on_page(canvas, doc) -> None:
     canvas.setFont(REGULAR_FONT,8)
     footer = yaml.safe_load((ROOT/"project/report.yaml").read_text(encoding="utf-8"))["pdf"]["page_footer"]
+    if '--review' in sys.argv:footer='修订审阅稿 · 位置度验证状态见§4'
     canvas.drawString(20*mm,12*mm,footer)
     canvas.drawRightString(A4[0] - 20 * mm, 12 * mm, str(doc.page))
 
@@ -128,16 +170,29 @@ def validate_report_numbers(result, source=SOURCE):
     """计算变更后禁止悄悄发布旧摘要；正文论证需要随数字共同修订。"""
     body = source.read_text(encoding="utf-8")
     p = result["process"]
-    required = ["8P-FAIR_B", "两道脉冲 TIG",
+    required = ["8P-R2-t15", "两道脉冲 TIG",
                 f"净热 {p['total_net_heat_j']/1000:.2f} kJ",
                 f"弧燃 {p['arc_on_time_s']:.1f} s",
                 f"送丝 {p['fixed_feed_mm_s']:.2f}",
                 "冷却至20±1℃", "热残余允许上限"]
-    if any(value not in body for value in required):
+    compact = re.sub(r"\s+", "", body)
+    if any(re.sub(r"\s+", "", value) not in compact for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")
 
 
 def main() -> int:
+    global OUT
+    if '--review' in sys.argv:
+        OUT=ROOT/'output/pdf/工艺设计说明书-修订审阅稿.pdf'
+    else:
+        verification=ROOT/'simulation/competition-r4/results/verification.json'
+        if not verification.exists() or not json.loads(verification.read_text(encoding='utf8')).get('position_design_pass',False):
+            raise ValueError('位置度或空间/时间精度未通过；用--review生成明确标识的修订审阅稿')
+        if not json.loads(verification.read_text(encoding='utf8')).get('bore_size_design_pass',False):
+            raise ValueError('焊后孔径与微珩尺寸链未通过；用--review生成修订审阅稿')
+        current=json.loads(verification.read_text(encoding='utf8'))
+        if any(not json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('fixture_thermal') for case in current['cases']):
+            raise ValueError('正式稿须采用芯/胀套及托垫热耦合的完整冷态结果')
     validate_report_numbers(current_assessment(ROOT))
     graph = yaml.safe_load((ROOT / "evidence/evidence_graph.yaml").read_text(encoding="utf-8"))
     errors = validate_evidence_graph(graph, ROOT)
@@ -145,15 +200,18 @@ def main() -> int:
         raise ValueError("证据登记校验失败：" + "; ".join(errors))
     register_project_fonts(ROOT)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm,
+    doc = ManualDocTemplate(str(OUT), pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm,
                             topMargin=18 * mm, bottomMargin=22 * mm,
-                            title="QT450-10/Q235B Welding Fixed Topic R3 Design Report",author="")
-    generated_status = write_status_artifacts(ROOT)
+                            title="QT450-10/Q235B 焊接固定题工艺设计说明书",author="")
     # 研究状态独立保留，正文只呈现比赛论证所需证据。
-    story = build_story()
+    story = cover_and_contents() + build_story()
+    # The workshop cards belong in the readable manual, not only in loose attachments.
+    for card in ("joint-process-card.md", "Ni99-transition-pWPS.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md"):
+        story += [PageBreak()] + build_story(ROOT / "deliverables/process" / card)
     if "--include-research-status" in sys.argv:
+        generated_status = write_status_artifacts(ROOT)
         story += [PageBreak()]+build_story(generated_status)
-    doc.build(story,onFirstPage=on_page,onLaterPages=on_page)
+    doc.multiBuild(story,onFirstPage=on_page,onLaterPages=on_page)
     print(f"工艺设计说明书已生成：{OUT}")
     return 0
 

@@ -1,0 +1,6 @@
+{
+  "status": "superseded for discretization verification",
+  "reason": "h2 cold measured position 14.0008769 um differs 25.3808212% from h2 dt0.25/struct0.5/cold5 position18.7631078 um; retain raw result as a coarse-time diagnostic; verify dt0.25 versus0.125 without further mother mesh refinement",
+  "geometry": "unchanged 8P-R2-t15",
+  "physical_result_retained": true
+}

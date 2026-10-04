@@ -1,0 +1,134 @@
+{
+  "layout": 8,
+  "h_mm": 2.0,
+  "dt_s": 0.25,
+  "nodes": 22321,
+  "tetrahedra": 77162,
+  "peak_C": 1518.901563218509,
+  "final_max_C": 20.49570204021595,
+  "released": true,
+  "max_newton_iterations": 6,
+  "max_equilibrium_residual_N": 0.04997604001141807,
+  "max_mandrel_reaction_N": 3434.533395820514,
+  "input_J": 86940.00000000012,
+  "loss_J": 86070.84119742624,
+  "stored_J": 869.2627213273563,
+  "energy_balance_relative": -1.1952927706647528e-06,
+  "copper_max_C": 22.988592094687785,
+  "seal_band_max_C": 115.0030382175768,
+  "seal_thermal_limits_pass": true,
+  "elapsed_s": 9912.515425599995,
+  "linear_solver": "Intel MKL PARDISO Cholesky mtype=2, upper-triangular CSR",
+  "linear_solver_fallbacks": 0,
+  "fit": {
+    "position_diameter_mm": 0.018793450536401378,
+    "bore_radius_mm": 20.007545632406824,
+    "bore_axis_slopes": [
+      7.965853762122237e-06,
+      5.228472746838769e-05
+    ],
+    "bore_fit_rms_mm": 0.0021486670573812833,
+    "datum_a_fit_rms_mm": 0.0002612235021505681,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false,
+    "straight_fitted_axis_position_mm": 0.018768015568390188,
+    "section_axis_envelope_diameter_mm": 0.018793450536401378,
+    "section_centres_relative_B_mm": [
+      [
+        -0.007653473020340377,
+        0.005451861745584097
+      ],
+      [
+        -0.007689111110897596,
+        0.005027590824028039
+      ],
+      [
+        -0.007772956993715234,
+        0.004667593895305799
+      ]
+    ],
+    "sampled_bore_two_point_diameter_min_mm": 40.007787422717236,
+    "sampled_bore_two_point_diameter_max_mm": 40.02069948977985,
+    "sampled_section_diameter_spreads_mm": [
+      0.005015207082912809,
+      0.002721462610864478,
+      0.0015430604414561344
+    ]
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "peak_nodal_C": 1616.8075274113603,
+  "filler_volume_above_1200C_mm3": 340.6280850347928,
+  "max_von_mises_MPa": 379.9162612133229,
+  "cold_shell_clamp_release": {
+    "source_fields": "fields.npz",
+    "source_temperature_max_C": 20.49570204021595,
+    "scope": "shell annular axial datum clamp retained during ambient cooling, removed before CMM; six coordinate gauges only",
+    "original_bottom_axially_fixed_nodes": 189,
+    "remaining_gauge_dofs": [
+      3,
+      4,
+      5,
+      448,
+      449,
+      533
+    ],
+    "gauge_nodes": [
+      1,
+      149,
+      177
+    ],
+    "recovered_interface_equilibrium_residual_N": 0.014571151734839237,
+    "link_force_recovery": [
+      {
+        "axis": 0,
+        "iterations": 52,
+        "residual_N": 0.009525195088340953
+      },
+      {
+        "axis": 1,
+        "iterations": 52,
+        "residual_N": 0.009382483881331281
+      },
+      {
+        "axis": 2,
+        "iterations": 52,
+        "residual_N": 0.0057929368739278175
+      }
+    ],
+    "release_equilibrium_residual_N": 0.0004565942694179392,
+    "release_iterations": 4,
+    "residual_history_N": [
+      111.8109476031734,
+      1.8363688084011514,
+      0.04055355524060298,
+      0.0004565942694179392
+    ],
+    "maximum_incremental_displacement_mm": 0.0026484323436244267,
+    "maximum_incremental_equivalent_plastic_strain": 1.8404184618834108e-06,
+    "bottom_face_displacement_range_mm": 0.0012181068476225594,
+    "retained_gauge_reaction_norm_N": 4.43834907354207e-12,
+    "elapsed_s": 9.324702300000354,
+    "free_shell_release_pass": true
+  },
+  "fit_mesh_nodes": {
+    "position_diameter_mm": 0.018842492710044487,
+    "bore_radius_mm": 20.007548699399496,
+    "bore_axis_slopes": [
+      -1.9476103163956254e-05,
+      5.046333193087623e-05
+    ],
+    "bore_fit_rms_mm": 0.001852268179279016,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "measurement_protocol": "36 bore and 48 shell samples, identical across all runs; maximum of fitted straight axis and three extracted section-centre envelope; initial bore 40.014 mm",
+  "bore_wall_peak_C": 51.59791193419679,
+  "final_time_s": 2609.5454545454545,
+  "release_time_s": 569.5454545454545,
+  "contact_area_mm2": 1651.7990261113496,
+  "structural_step_s": 0.5
+}

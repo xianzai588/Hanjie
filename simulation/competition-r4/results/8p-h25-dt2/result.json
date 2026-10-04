@@ -1,0 +1,39 @@
+{
+  "layout": 8,
+  "h_mm": 2.5,
+  "dt_s": 2.0,
+  "nodes": 12675,
+  "tetrahedra": 41539,
+  "peak_C": 1228.1213673039058,
+  "final_max_C": 20.499315072583265,
+  "released": true,
+  "max_newton_iterations": 10,
+  "max_equilibrium_residual_N": 0.04952480092600226,
+  "max_mandrel_reaction_N": 0.0,
+  "input_J": 86940.0000000001,
+  "loss_J": 86134.51595516872,
+  "stored_J": 805.4983409004634,
+  "energy_balance_relative": -1.6443603733953525e-07,
+  "elapsed_s": 999.7146769000001,
+  "fit": {
+    "position_diameter_mm": 0.0005680075428889096,
+    "bore_radius_mm": 20.006916790921757,
+    "bore_axis_slopes": [
+      -9.84993469408667e-07,
+      -9.197187319950897e-07
+    ],
+    "bore_fit_rms_mm": 0.00015022557955470716,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "peak_nodal_C": 1285.6201205142459,
+  "filler_volume_above_1200C_mm3": 0.42030089719411745,
+  "max_von_mises_MPa": 326.1370822340972,
+  "status": "diagnostic only: contact face selection failed, zero contact area; excluded from verification",
+  "design_verified": false
+}

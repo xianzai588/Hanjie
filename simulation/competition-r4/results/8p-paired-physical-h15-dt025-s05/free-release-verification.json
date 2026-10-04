@@ -1,0 +1,52 @@
+{
+  "source_fields": "fields.npz",
+  "source_temperature_max_C": 20.496061772260866,
+  "scope": "shell annular axial datum clamp retained during ambient cooling, removed before CMM; six coordinate gauges only",
+  "original_bottom_axially_fixed_nodes": 245,
+  "remaining_gauge_dofs": [
+    1234,
+    1235,
+    1340,
+    21447,
+    21448,
+    21449
+  ],
+  "gauge_nodes": [
+    7149,
+    411,
+    446
+  ],
+  "recovered_interface_equilibrium_residual_N": 0.019313529039224536,
+  "link_force_recovery": [
+    {
+      "axis": 0,
+      "iterations": 50,
+      "residual_N": 0.012645859266322194
+    },
+    {
+      "axis": 1,
+      "iterations": 50,
+      "residual_N": 0.012798853606339372
+    },
+    {
+      "axis": 2,
+      "iterations": 51,
+      "residual_N": 0.00702025595892602
+    }
+  ],
+  "release_equilibrium_residual_N": 3.3719332235293156e-09,
+  "release_iterations": 5,
+  "residual_history_N": [
+    135.04310016914576,
+    5.77426259285795,
+    0.13956352534223412,
+    0.004231749617367911,
+    3.3719332235293156e-09
+  ],
+  "maximum_incremental_displacement_mm": 0.007862833647653106,
+  "maximum_incremental_equivalent_plastic_strain": 4.36913266116927e-06,
+  "bottom_face_displacement_range_mm": 0.0031664811033341672,
+  "retained_gauge_reaction_norm_N": 1.2074857963847216e-11,
+  "elapsed_s": 15.90784369999892,
+  "free_shell_release_pass": true
+}

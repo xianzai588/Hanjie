@@ -1,5 +1,5 @@
 {
-  "version": "COMPETITION-R3",
+  "version": "COMPETITION-R4",
   "source": "project/competition-design.yaml",
   "status": "competition design; not manufacturing release",
   "drawings": [
@@ -9,9 +9,15 @@
     "protected-process-assembly.svg",
     "inspection-and-release.svg",
     "gas-water-detail.svg",
-    "workstation.svg"
+    "workstation.svg",
+    "following-peener.svg",
+    "copper-retreat.svg",
+    "water-route.svg",
+    "carrier-detail.svg",
+    "portal-transfer.svg",
+    "datum-holder-detail.svg"
   ],
-  "drawing_count": 7,
+  "drawing_count": 13,
   "supplemental_drawings": [
     "sleeve-detail.svg"
   ],

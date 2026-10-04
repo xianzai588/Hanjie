@@ -1,0 +1,63 @@
+{
+  "mesh_h_mm": 2.0,
+  "nodes": 78840,
+  "tetrahedra": 339701,
+  "load_conditions": {
+    "Fr_N": 5000,
+    "Fa_N": 5000,
+    "Mx_Nmm": 250000,
+    "continuous_amplitudes_N_N_Nmm": [
+      500,
+      200,
+      25000
+    ]
+  },
+  "boundary": "cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support",
+  "load_distribution": "area-weighted bore-wall tractions, each prescribed resultant normalized exactly; moment is a zero-resultant force couple about weighted centre; this is a design load-transfer envelope, not a measured bearing contact distribution",
+  "stress_method": "linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class",
+  "elastic_yield_screen": {
+    "safety_factor": 1.5,
+    "allowable_MPa": {
+      "QT": 206.66666666666666,
+      "NiFe": 193.33333333333334,
+      "Q235": 156.66666666666666
+    },
+    "scope": "incremental cold service stress, separate from weld residual stress; local metal yield checks do not determine PMZ brittle fracture"
+  },
+  "zones": {
+    "QT_slot_root": {
+      "peak_service_VM_MPa": 189.42277601619577,
+      "continuous_peak_range_MPa": 27.366314855111973,
+      "p95_service_VM_MPa": 66.73085462641757
+    },
+    "QT_body": {
+      "peak_service_VM_MPa": 189.42277601619577,
+      "continuous_peak_range_MPa": 27.366314855111973,
+      "p95_service_VM_MPa": 65.75156672917473
+    },
+    "NiFe_weld": {
+      "peak_service_VM_MPa": 112.74364134910327,
+      "continuous_peak_range_MPa": 19.41750331819649,
+      "p95_service_VM_MPa": 75.38531343890713
+    },
+    "Q235_shell": {
+      "peak_service_VM_MPa": 58.13438949755023,
+      "continuous_peak_range_MPa": 8.274238949068014,
+      "p95_service_VM_MPa": 23.7375881530939
+    }
+  },
+  "combined_service_axis_fit": {
+    "position_diameter_mm": 0.020469670000199724,
+    "bore_radius_mm": 20.00641586544565,
+    "bore_axis_slopes": [
+      -4.871741164131837e-05,
+      0.00024318429462359735
+    ],
+    "bore_fit_rms_mm": 0.003941080990959625,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "maximum_combined_displacement_mm": 0.07533752589702834,
+  "axis_fit_scope": "elastic service deflection relative to deformed shell, separate from the unloaded welding position tolerance"
+}

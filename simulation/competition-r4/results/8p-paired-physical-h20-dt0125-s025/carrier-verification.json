@@ -1,0 +1,55 @@
+{
+  "scope": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-paired-physical-h20-dt0125-s025",
+  "units": "N, mm, MPa",
+  "post_diameter_mm": 96,
+  "effective_column_length_mm": 106.0,
+  "post_second_moment_mm4": 4169156.5596983936,
+  "base_flange_diameter_mm": 208,
+  "base_flange_thickness_mm": 60,
+  "bolts": {
+    "count": 8,
+    "grade": "8.8",
+    "diameter_mm": 24,
+    "PCD_mm": 160,
+    "tensile_area_mm2": 353,
+    "elastic_grip_mm": 100,
+    "preload_per_bolt_N": 40000
+  },
+  "pad_moment_N_mm": 3437.8484222611714,
+  "peening_peak_moment_N_mm": 62825.47254100044,
+  "peening_force_lever_bound_mm": 157.0636813525011,
+  "combined_adverse_moment_N_mm": 66263.3209632616,
+  "total_pad_force_N": 753.1367029022267,
+  "radial_axis_deflection_components_mm": {
+    "post_end_translation": 0.0004464540151480116,
+    "post_rotation": 0.00012635490994755046,
+    "post_transverse_shear": 8.494427947930545e-05,
+    "bolt_root": 0.00044362284417905973,
+    "flange_bending": 0.00014847892289916026,
+    "flange_transverse_shear": 0.0002714380309250274
+  },
+  "total_radial_axis_deflection_mm": 0.001521293002578115,
+  "radial_clamp_allocation_mm": 0.002,
+  "post_maximum_combined_normal_MPa": 0.9228343070350188,
+  "post_maximum_von_mises_bound_MPa": 0.9316859117793445,
+  "flange_strip_root_bending_MPa": 0.4601619511337611,
+  "largest_adverse_bolt_load_increment_N": 351.2149658729709,
+  "assumptions": [
+    "post auxiliary hole no larger than Ø6; integral column/flange",
+    "full post end translation and rotation included; no credit for pad tangential slip",
+    "flange per-bolt bending strip conservatively 24 mm wide; other plate sectors omitted",
+    "Timoshenko shear flexibility: flange kappa=5/6, circular post kappa=.9, nu=.30; radial peening force bounded by its full resultant",
+    "all eight bolts remain preloaded; rigid machine table; table motion checked during fixture-axis acceptance",
+    "peak 200 N per peener, arbitrary force direction; full 3D root lever and simultaneous adverse bounds; no peening benefit in welding FE"
+  ],
+  "checks": {
+    "column_covers_pad_radial_envelope": true,
+    "radial_clamp_allocation_pass": true,
+    "post_strength_pass": true,
+    "flange_strength_pass": true,
+    "preloaded_joint_remains_closed": true,
+    "bolt_strength_pass": true,
+    "bolt_head_post_clearance_pass": true
+  },
+  "carrier_design_pass": true
+}

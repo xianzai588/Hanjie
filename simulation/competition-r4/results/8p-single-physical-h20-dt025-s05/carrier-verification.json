@@ -1,0 +1,55 @@
+{
+  "scope": "simulation\\competition-r4\\results\\8p-single-physical-h20-dt025-s05",
+  "units": "N, mm, MPa",
+  "post_diameter_mm": 96,
+  "effective_column_length_mm": 106.0,
+  "post_second_moment_mm4": 4169156.5596983936,
+  "base_flange_diameter_mm": 208,
+  "base_flange_thickness_mm": 60,
+  "bolts": {
+    "count": 8,
+    "grade": "8.8",
+    "diameter_mm": 24,
+    "PCD_mm": 160,
+    "tensile_area_mm2": 353,
+    "elastic_grip_mm": 100,
+    "preload_per_bolt_N": 40000
+  },
+  "pad_moment_N_mm": 9717.060423781213,
+  "peening_peak_moment_N_mm": 31412.73627050022,
+  "peening_force_lever_bound_mm": 157.0636813525011,
+  "combined_adverse_moment_N_mm": 41129.79669428143,
+  "total_pad_force_N": 643.2954685421771,
+  "radial_axis_deflection_components_mm": {
+    "post_end_translation": 0.00027711504056013314,
+    "post_rotation": 7.842878506418863e-05,
+    "post_transverse_shear": 4.247213973965273e-05,
+    "bolt_root": 0.0002753577261867062,
+    "flange_bending": 9.216121111126024e-05,
+    "flange_transverse_shear": 0.00016848221406277263
+  },
+  "total_radial_axis_deflection_mm": 0.0009340171167247135,
+  "radial_clamp_allocation_mm": 0.002,
+  "post_maximum_combined_normal_MPa": 0.5904949384266154,
+  "post_maximum_von_mises_bound_MPa": 0.5939597143740294,
+  "flange_strip_root_bending_MPa": 0.28562358815473216,
+  "largest_adverse_bolt_load_increment_N": 233.9425482374016,
+  "assumptions": [
+    "post auxiliary hole no larger than Ø6; integral column/flange",
+    "full post end translation and rotation included; no credit for pad tangential slip",
+    "flange per-bolt bending strip conservatively 24 mm wide; other plate sectors omitted",
+    "Timoshenko shear flexibility: flange kappa=5/6, circular post kappa=.9, nu=.30; radial peening force bounded by its full resultant",
+    "all eight bolts remain preloaded; rigid machine table; table motion checked during fixture-axis acceptance",
+    "peak 200 N per peener, arbitrary force direction; full 3D root lever and simultaneous adverse bounds; no peening benefit in welding FE"
+  ],
+  "checks": {
+    "column_covers_pad_radial_envelope": true,
+    "radial_clamp_allocation_pass": true,
+    "post_strength_pass": true,
+    "flange_strength_pass": true,
+    "preloaded_joint_remains_closed": true,
+    "bolt_strength_pass": true,
+    "bolt_head_post_clearance_pass": true
+  },
+  "carrier_design_pass": true
+}

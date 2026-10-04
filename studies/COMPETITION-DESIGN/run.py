@@ -33,12 +33,47 @@ def fixed(value):
 
 def main():
     result, bodies, _ = run_design(ROOT)
+    # 公差分配本身不是残余变形证据；仅将完整三算例通过后的
+    # 数值结果绑定到当前设计，实物工艺评定仍单列。
+    numerical_dir = ROOT / "simulation/competition-r4/results"
+    verification_files = {
+        "position": "verification.json",
+        "static_service": "service-verification.json",
+        "process_temperature": "process-temperature-verification.json",
+    }
+    if all((numerical_dir/name).exists() for name in verification_files.values()):
+        verification = {key: json.loads((numerical_dir/name).read_text(encoding="utf-8"))
+                        for key, name in verification_files.items()}
+        accepted = (verification["position"]["position_design_pass"]
+                    and verification["position"].get("bore_size_design_pass",False)
+                    and verification["static_service"]["static_service_design_pass"]
+                    and verification["process_temperature"]["process_temperature_design_pass"])
+        current_geometry = all(
+            Path(json.loads((numerical_dir/case/"input.json").read_text(encoding="utf-8"))["seat_geometry"]).name
+            == "8P-R2-t15.step" for case in verification["position"]["cases"])
+        thermal_fixture=all(json.loads((numerical_dir/case/"input.json").read_text(encoding="utf8")).get('fixture_thermal')
+                            for case in verification["position"]["cases"])
+        if accepted and current_geometry and thermal_fixture:
+            result["precision"].update({
+                "thermal_residual_design_verified": True,
+                "verified_thermal_position_mm": verification["position"]["thermal_position_worst_mm"],
+                "verified_position_budget_mm": verification["position"]["position_budget_mm"],
+            })
+            result["release"].update({
+                "design_verified": True,
+                "design_verification_scope": "current 15 mm CAD; cold residual position, incremental static service envelope and segment-start temperature under declared numerical inputs",
+                "physical_validation_recommended": True,
+                "product_conformity_claimed": False,
+            })
+            result["numerical_verification"] = verification
     g = result["geometry"]
     checks = [all(g["shape_validity"].values()), g["bottom_route_allowed"],
               all(row["clear"] for row in g["poses"]), g["torch_feed_intersection_mm3"] < 1e-6,
               g["torch_feed_clearance_mm"] >= 1.5,
               max(g["cartridge_intersections_mm3"].values()) < 1e-6,
-              result["precision"]["design_budget_closes"]]
+              result["precision"]["design_budget_closes"],
+              max(g["witness_intersections_mm3"].values())<1e-6,
+              g["witness_minimum_clearance_mm"]>=.2]
     if not all(checks):
         raise ValueError("参赛设计内部检查未通过："+json.dumps(result, ensure_ascii=False))
     out = ROOT / "studies/COMPETITION-DESIGN/results"
@@ -49,7 +84,7 @@ def main():
     for shape in bodies.values():
         if writer.Transfer(shape, STEPControl_AsIs) != IFSelect_RetDone:
             raise ValueError("STEP转换失败")
-    assembly = cad / "competition-assembly.step"
+    assembly = cad / "competition-assembly-r4.step"
     staging = assembly.with_name('competition-assembly-new.step')
     if writer.Write(str(staging)) != IFSelect_RetDone:
         raise ValueError("STEP写入失败")

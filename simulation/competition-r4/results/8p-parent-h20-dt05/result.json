@@ -1,0 +1,39 @@
+{
+  "layout": 8,
+  "h_mm": 2.0,
+  "dt_s": 0.5,
+  "nodes": 21397,
+  "tetrahedra": 74192,
+  "peak_C": 1575.1918874887613,
+  "final_max_C": 20.49785523358598,
+  "released": true,
+  "max_newton_iterations": 10,
+  "max_equilibrium_residual_N": 0.049929828390896845,
+  "max_mandrel_reaction_N": 1821.086035309095,
+  "input_J": 86940.00000000012,
+  "loss_J": 86135.92592032801,
+  "stored_J": 804.176362342664,
+  "energy_balance_relative": -1.1764742415058577e-06,
+  "elapsed_s": 3153.1862237999994,
+  "linear_solver": "CG/AMG with checked sparse-direct fallback",
+  "linear_solver_fallbacks": 0,
+  "fit": {
+    "position_diameter_mm": 0.0010297256793538908,
+    "bore_radius_mm": 20.007193515505616,
+    "bore_axis_slopes": [
+      -3.85002648091543e-06,
+      5.311604274697107e-06
+    ],
+    "bore_fit_rms_mm": 0.0007775950493680949,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "peak_nodal_C": 1796.9023350986522,
+  "filler_volume_above_1200C_mm3": 344.8055571830291,
+  "max_von_mises_MPa": 334.19359187764877
+}

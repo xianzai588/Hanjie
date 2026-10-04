@@ -1,0 +1,17 @@
+{
+  "excluded_from_final_gate": true,
+  "reason": "superseded incomplete run by compiled Cholesky solver after identical-equation short comparison; no geometry, heat source or physical BC changes",
+  "replacement": "8p-affine-pardiso-h15-dt025-s05",
+  "partial_progress": {
+    "t_s": 59.81818181818182,
+    "arc_end_s": 444.54545454545456,
+    "elapsed_s": 2592.715905699999,
+    "max_C": 1395.4880629357888,
+    "copper_max_C": 22.241268283635936,
+    "seal_band_max_C": 106.56103356807176,
+    "released": false,
+    "energy_balance_relative": -1.776204419852841e-08,
+    "max_equilibrium_residual_N": 0.0491608023060111,
+    "linear_fallbacks": 13
+  }
+}

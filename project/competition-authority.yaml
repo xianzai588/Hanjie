@@ -1,6 +1,8 @@
-version: COMPETITION-R3-AUTHORITY
+version: COMPETITION-R4-AUTHORITY
 scope: 固定题焊接设计说明书与答辩统一引用的当前冻结口径
 selected_candidate: 8P-FAIR_B/2pass
+selected_geometry: 8P-R2-t15
+geometry_basis: 15 mm座体＋32处合并后真实R2过渡；FAIR_B为名义焊缝组比较布局，实际整件静载另由service-verification给出
 assumptions:
   deposition_efficiency: 0.9
   load_scale: 1.0
@@ -12,9 +14,9 @@ results:
   weld_length_mm: 144.0
   net_heat_input_kj: 86.4
   arc_on_time_s: 174.545
-  fallback_candidate: 6P-FAIR_B/2pass
-  fallback_required_allowable_mpa: 52.17319678607985
+  comparison_candidate: 6P-FAIR_B/2pass
+  comparison_required_allowable_mpa: 52.17319678607985
 endpoints:
   current_efficiency_0_90_required_allowable_mpa: 39.12989758955982
-  interpretation: 当前 COMPETITION-R3 两道比较按固定送丝与效率窗口闭合；此值用于条件承载筛查。
-decision_rule: 8P两道作为当前数字推荐；首件热残余、熔合、裂纹或疲劳门失败时按说明书切换或返修评审
+  interpretation: 当前 COMPETITION-R4 两道比较按固定送丝与效率窗口闭合；此值用于条件承载筛查。
+decision_rule: 8P两道为综合设计推荐；6P和连续焊为同条件布局比较。若热残余、熔合、裂纹或疲劳评定不合格，重新设计对应工艺，不自动切换至承载更弱的6P。

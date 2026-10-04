@@ -1,18 +1,11 @@
-# 焊接工艺规范与窗口参数 - Hanjie Process Specification
-# 版本: V4.4
-# 本文件是历史 Ø1.2 单道局部热诊断基线与基础电参数的权威配置，其预热/层间字段
-# 服务于 simulation/thermal-v5 的历史准入窗口，与 project/g-inputs-v5.2.yaml 保持
-# SSOT 一致（见 src/hanjie/domain/baseline.py 校验）。
-# 参赛设计的棒径、道数、送丝策略与热制度由 project/competition-design.yaml 的
-# process / thermal_regime / peening 显式覆盖：Ø1.6 mm、四道、固定送丝、
-# 铸铁冷焊（不预热、层间 ≤ 100 ℃）＋ 焊后半热态锤击。
-
-version: "PROCESS-1.0"
-authority: "焊接工艺与填丝参数的唯一权威配置"
-
+version: PROCESS-HISTORICAL-SINGLEPASS-1
+state: historical_only
+authority: 历史诊断输入；非当前参赛工艺权威源
+current_authority: project/process-r3.yaml
+current_design_ref: project/competition-design.yaml
 process:
   nominal:
-    method: "automatic_TIG"
+    method: automatic_TIG
     current_a: 75.0
     voltage_v: 12.0
     travel_speed_mm_s: 1.5
@@ -22,31 +15,31 @@ process:
     interpass_limit_c: 200.0
     filler_feed_rate_mm_s: 2.0
     filler_diameter_mm: 1.2
-    shielding_gas: "99.999% Ar"
+    shielding_gas: 99.999% Ar
     gas_flow_rate_l_min: 10.0
-    tungsten_electrode: "W-La20 (Ø2.0 mm)"
+    tungsten_electrode: W-La20 (Ø2.0 mm)
     nozzle_diameter_mm: 10.0
     standoff_distance_mm: 2.5
-
   joint_consistency:
     design_fillet_leg_mm: 3.5
-    design_basis: "角焊缝设计焊脚尺寸；经理论计算与有限元仿真验证满足设计载荷与疲劳寿命要求，建议试制阶段通过宏观金相与力学试验完成工程确认"
+    design_basis: 角焊缝设计焊脚尺寸；经理论计算与有限元仿真验证满足设计载荷与疲劳寿命要求，建议试制阶段通过宏观金相与力学试验完成工程确认
     deposition_efficiency_nominal: 1.0
-    deposition_efficiency_range: [0.85, 1.0]
-    closure_status: "design_verified_pending_physical_validation"
-    rule: "设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；母材熔化体积不计入填充金属沉积量"
+    deposition_efficiency_range:
+    - 0.85
+    - 1.0
+    closure_status: design_verified_pending_physical_validation
+    rule: 设计焊脚、实测成形截面、耗丝/增重和仿真沉积几何必须联合确认；母材熔化体积不计入填充金属沉积量
     scenarios:
       current_single_pass_diagnostic:
         pass_count: 1
-        identity: "当前 1.737 mm 等效焊脚局部热诊断基线"
-        disposition: "diagnostic_only"
+        identity: 当前 1.737 mm 等效焊脚局部热诊断基线
+        disposition: diagnostic_only
       target_3p5_four_pass_candidate:
         pass_count: 4
-        identity: "3.5 mm 理想三角截面的等面积四道设计候选"
-        disposition: "candidate_pending_load_basis_macrosection_and_thermal_revalidation"
-        feed_policy: "每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值"
-        thermal_policy: "四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论"
-
+        identity: 3.5 mm 理想三角截面的等面积四道设计候选
+        disposition: candidate_pending_load_basis_macrosection_and_thermal_revalidation
+        feed_policy: 每道按相同目标沉积面积反算送丝；效率 0.85~1.0 作为边界，不取单一 WPS 值
+        thermal_policy: 四道总弧能与层间温度历史必须建立新输入版本重算，不继承单道收敛结论
   acceptable_window:
     current_a:
       min: 65.0
@@ -69,17 +62,16 @@ process:
       max: 180.0
     interpass_limit_c:
       max: 200.0
-
   sequence_strategies:
-    - name: "S1"
-      type: "continuous_sequential"
-      description: "顺次焊接，热累积极高，非对称变形大"
-    - name: "S2"
-      type: "fixed_diagonal"
-      description: "固定对角跳焊，热对称性较好"
-    - name: "S3"
-      type: "fixed_intermittent"
-      description: "固定六点跳焊序列 1->4->3->6->2->5"
-    - name: "ADAPTIVE"
-      type: "temperature_state_driven"
-      description: "在线测温反馈 + 动态加权选段跳焊，受邻段道温门限与温差约束"
+  - name: S1
+    type: continuous_sequential
+    description: 顺次焊接，热累积极高，非对称变形大
+  - name: S2
+    type: fixed_diagonal
+    description: 固定对角跳焊，热对称性较好
+  - name: S3
+    type: fixed_intermittent
+    description: 固定六点跳焊序列 1->4->3->6->2->5
+  - name: ADAPTIVE
+    type: temperature_state_driven
+    description: 在线测温反馈 + 动态加权选段跳焊，受邻段道温门限与温差约束

@@ -1,0 +1,26 @@
+[
+  {
+    "case": "8p-bore006-h15-dt025-s05",
+    "checkpoint_t_s": 187.86363636363637,
+    "maximum_equilibrium_residual_N": 0.04982501594520555,
+    "scope": "converged partial cold-tool reference; retained for possible exact-input continuation"
+  },
+  {
+    "case": "8p-bore008-h15-dt025-s05",
+    "checkpoint_t_s": 187.86363636363637,
+    "maximum_equilibrium_residual_N": 0.04982508984347339,
+    "scope": "converged partial cold-tool reference; retained for possible exact-input continuation"
+  },
+  {
+    "case": "8p-bore008-h1125-dt025-s05",
+    "checkpoint_t_s": 116.38636363636364,
+    "maximum_equilibrium_residual_N": 0.04888044287268452,
+    "scope": "converged partial cold-tool reference; retained for possible exact-input continuation"
+  },
+  {
+    "case": "8p-bore008-h15-dt0125-s025",
+    "checkpoint_t_s": 98.88636363636364,
+    "maximum_equilibrium_residual_N": 0.04917356957957393,
+    "scope": "converged partial cold-tool reference; retained for possible exact-input continuation"
+  }
+]

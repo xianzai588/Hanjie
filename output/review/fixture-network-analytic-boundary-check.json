@@ -1,0 +1,34 @@
+{
+  "scope": "analytic boundary verification only: actual contact geometry, uniform prescribed55 C, full contact; not a production thermal history or experiment",
+  "records": [
+    {
+      "refinement": 1,
+      "cells": 243,
+      "steady_temperature_range_C": [
+        20.04552412206415,
+        47.631287209300034
+      ],
+      "maximum_radial_growth_mm": 0.006949974465806819,
+      "row_sum_max_W_K": 5.329070518200751e-15,
+      "reference_isothermal_error_C": 3.232969447708456e-13,
+      "heat_balance_error_W": 5.4143356464919634e-12,
+      "total_part_to_fixture_W": 35.556467995965704
+    },
+    {
+      "refinement": 2,
+      "cells": 483,
+      "steady_temperature_range_C": [
+        20.02317208825455,
+        47.14022342051157
+      ],
+      "maximum_radial_growth_mm": 0.00694044955898886,
+      "row_sum_max_W_K": 7.105427357601002e-15,
+      "reference_isothermal_error_C": 1.623590151211829e-12,
+      "heat_balance_error_W": -2.1614710021822248e-11,
+      "total_part_to_fixture_W": 36.03971800648549
+    }
+  ],
+  "axial_refinement_relative_growth_error": 0.0013704952248127424,
+  "implementation_checks_pass": true,
+  "actual_history_convergence_still_required": true
+}

@@ -1,0 +1,263 @@
+{
+  "source": "paired-physical-peening-all-dt0125",
+  "scope": "trajectory-only interim calculation; fine time-step and final space certificate still required",
+  "rows": [
+    {
+      "pass": 0,
+      "segment": 1,
+      "T_range_C": [
+        423.31566123603756,
+        463.8621861359274
+      ],
+      "speed_max": 16.229211178508105,
+      "acceleration_max": 178.14352249564809,
+      "lag_range_mm": [
+        4.791949379429291,
+        5.748297180094966
+      ],
+      "tail_after_arc_s": 0.9443349645113077,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 2,
+      "T_range_C": [
+        422.52339173678985,
+        461.05974918508383
+      ],
+      "speed_max": 16.0906098112543,
+      "acceleration_max": 178.57424506962528,
+      "lag_range_mm": [
+        4.6686105479264155,
+        5.55097316799133
+      ],
+      "tail_after_arc_s": 0.8923364623802001,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 3,
+      "T_range_C": [
+        423.45167343573013,
+        463.9775601772333
+      ],
+      "speed_max": 16.26557088028282,
+      "acceleration_max": 173.87543204041643,
+      "lag_range_mm": [
+        4.560216301108539,
+        5.419039972515165
+      ],
+      "tail_after_arc_s": 0.8629133769515107,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 4,
+      "T_range_C": [
+        422.44603135926695,
+        461.29585146203397
+      ],
+      "speed_max": 16.077474849262813,
+      "acceleration_max": 192.75690979064686,
+      "lag_range_mm": [
+        4.691744587966387,
+        5.536283521461289
+      ],
+      "tail_after_arc_s": 0.8926651843844837,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 5,
+      "T_range_C": [
+        424.43157628830863,
+        461.7926873458287
+      ],
+      "speed_max": 16.28658618952373,
+      "acceleration_max": 222.1505519327636,
+      "lag_range_mm": [
+        4.5890766343503975,
+        5.430916461499168
+      ],
+      "tail_after_arc_s": 0.8495636745628303,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 6,
+      "T_range_C": [
+        422.6168283187593,
+        463.6118465733168
+      ],
+      "speed_max": 16.124820187186316,
+      "acceleration_max": 184.93443961794765,
+      "lag_range_mm": [
+        4.616468167133556,
+        5.500444567524044
+      ],
+      "tail_after_arc_s": 0.8963329953455599,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 7,
+      "T_range_C": [
+        424.4487375394572,
+        464.3921939128817
+      ],
+      "speed_max": 16.055513993081505,
+      "acceleration_max": 204.24750455666685,
+      "lag_range_mm": [
+        4.5893474568917565,
+        5.412561391192968
+      ],
+      "tail_after_arc_s": 0.8486773057983044,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 0,
+      "segment": 8,
+      "T_range_C": [
+        422.2489663742616,
+        461.41532469330946
+      ],
+      "speed_max": 16.288554360870886,
+      "acceleration_max": 203.7653335547127,
+      "lag_range_mm": [
+        4.685842731081677,
+        5.553812898343763
+      ],
+      "tail_after_arc_s": 0.8858941950484223,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 1,
+      "T_range_C": [
+        429.1980181121653,
+        460.0104641664119
+      ],
+      "speed_max": 16.113464957979513,
+      "acceleration_max": 162.19393964422483,
+      "lag_range_mm": [
+        4.9550721139196385,
+        5.9746821154338665
+      ],
+      "tail_after_arc_s": 1.1157176756744036,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 2,
+      "T_range_C": [
+        429.5855533223675,
+        460.8684503532244
+      ],
+      "speed_max": 16.197480338900405,
+      "acceleration_max": 156.43274030784204,
+      "lag_range_mm": [
+        4.751009353542802,
+        5.740633649794196
+      ],
+      "tail_after_arc_s": 1.0414704301532254,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 3,
+      "T_range_C": [
+        430.6464531139503,
+        460.89416454054424
+      ],
+      "speed_max": 16.057757502687586,
+      "acceleration_max": 155.20299244817195,
+      "lag_range_mm": [
+        4.638942396505687,
+        5.692023744869143
+      ],
+      "tail_after_arc_s": 1.0282355077565626,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 4,
+      "T_range_C": [
+        429.98981983844374,
+        461.05408355423003
+      ],
+      "speed_max": 16.154563751737772,
+      "acceleration_max": 156.9422664051565,
+      "lag_range_mm": [
+        4.802816746433889,
+        5.843930761553258
+      ],
+      "tail_after_arc_s": 1.05856511471913,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 5,
+      "T_range_C": [
+        428.4729670464408,
+        461.22862555666643
+      ],
+      "speed_max": 16.246210269929996,
+      "acceleration_max": 163.02646948853024,
+      "lag_range_mm": [
+        4.658558161959064,
+        5.646690473839561
+      ],
+      "tail_after_arc_s": 1.0212756085871177,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 6,
+      "T_range_C": [
+        430.3687053442987,
+        461.44321385830796
+      ],
+      "speed_max": 16.195101955668502,
+      "acceleration_max": 154.91635844726588,
+      "lag_range_mm": [
+        4.722311936221794,
+        5.787510885557801
+      ],
+      "tail_after_arc_s": 1.0570298070877868,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 7,
+      "T_range_C": [
+        428.961986135235,
+        462.080783663812
+      ],
+      "speed_max": 16.2023477044707,
+      "acceleration_max": 156.79356940432547,
+      "lag_range_mm": [
+        4.677385648345397,
+        5.709529677374006
+      ],
+      "tail_after_arc_s": 1.0166581400603718,
+      "path_limits_pass": true
+    },
+    {
+      "pass": 1,
+      "segment": 8,
+      "T_range_C": [
+        429.5814509863316,
+        462.0345288532071
+      ],
+      "speed_max": 16.10583514060414,
+      "acceleration_max": 164.39778802995602,
+      "lag_range_mm": [
+        4.7682278401583265,
+        5.840609779972466
+      ],
+      "tail_after_arc_s": 1.051525428220856,
+      "path_limits_pass": true
+    }
+  ],
+  "all_16_path_limits_pass": true
+}

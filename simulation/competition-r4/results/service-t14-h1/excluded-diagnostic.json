@@ -1,0 +1,4 @@
+{
+  "scope": "excluded from design verification",
+  "reason": "geometry thickness changed but interface plane or weld-node selection still used original 112 mm; physical seat/weld connection not represented"
+}

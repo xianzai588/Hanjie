@@ -1,0 +1,13 @@
+{
+  "h_mm": 2.0,
+  "weld_mesh_mm": 1,
+  "scope": "cold static service model only; no welding history calculated",
+  "initial_bore_diameter_mm": 40.014,
+  "geometry_candidate": true,
+  "central_pad": false,
+  "revised_geometry": true,
+  "seat_geometry": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\geometry\\8P-R2-t15.step",
+  "geometry_representation": "parametric solid with cylindrical faces and post-union R2 fillets",
+  "root_mesh_mm": 0.45,
+  "seat_thickness_mm": 15.0
+}

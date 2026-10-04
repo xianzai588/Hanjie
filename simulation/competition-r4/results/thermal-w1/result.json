@@ -1,0 +1,16 @@
+{
+  "h_mm": 2.5,
+  "dt_s": 0.5,
+  "nodes": 12675,
+  "tetrahedra": 41539,
+  "peak_nodal_C": 2963.8776941041983,
+  "peak_element_C": 2812.6856154423485,
+  "input_J": 5715.0,
+  "filler_volume_above_1200C_mm3": 8.900294650115049,
+  "thermal_only": true,
+  "end_s": 29.0,
+  "elapsed_s": 15.445512499999495,
+  "source_radius_mm": 1.8,
+  "source_depth_mm": 1.2,
+  "copper_contact_W_m2K": 500.0
+}

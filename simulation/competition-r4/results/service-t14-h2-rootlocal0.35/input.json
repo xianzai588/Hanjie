@@ -1,0 +1,10 @@
+{
+  "h_mm": 2.0,
+  "weld_mesh_mm": 1,
+  "scope": "cold static service model only; no welding history calculated",
+  "initial_bore_diameter_mm": 40.014,
+  "geometry_candidate": false,
+  "central_pad": true,
+  "revised_geometry": true,
+  "root_mesh_mm": 0.35
+}

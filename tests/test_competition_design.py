@@ -74,30 +74,61 @@ def test_internal_cone_has_positive_return_even_if_self_locking(design):
 
 def test_weld_interlocks_fail_closed():
     ready = dict(shield_present=True, bottom_open=True, fixture_locked=True, path_checked=True,
-                 temperature_min=20, temperature_max=35, gas_flow_l_min=10, curtain_flow_l_min=10)
+                 temperature_min=20, temperature_max=35, gas_flow_l_min=10, curtain_flow_l_min=10,
+                 curtain_manifold_pressure_pa=1000,copper_temperature_c=30,lower_ring_temperature_c=30,seal_band_temperature_c=120,coolant_flow_l_min=.6,
+                 coolant_branch_flows_l_min=[.075]*8,
+                 water_leak_free=True,energy_in_range=True,guard_closed=True)
     assert cycle_permission("weld", **ready)
     for field, value in (("shield_present",False),("bottom_open",False),("fixture_locked",False),
                          ("path_checked",False),("temperature_max",101),("gas_flow_l_min",None),
-                         ("temperature_min",float("nan")),("temperature_min",10)):
+                         ("temperature_min",float("nan")),("temperature_min",10),
+                         ("curtain_manifold_pressure_pa",200),("curtain_manifold_pressure_pa",3000),("curtain_manifold_pressure_pa",None),
+                         ("copper_temperature_c",46),("lower_ring_temperature_c",49),("lower_ring_temperature_c",None),("seal_band_temperature_c",181),("coolant_flow_l_min",.5),
+                         ("water_leak_free",False),("energy_in_range",None),("guard_closed",False)):
         assert not cycle_permission("weld", **{**ready, field:value})
+    # An unchanged total flow cannot hide one blocked circuit.
+    assert not cycle_permission("weld", **{**ready,"coolant_branch_flows_l_min":[0]+[.086]*7})
+    assert not cycle_permission("weld", **{**ready,"coolant_branch_flows_l_min":None})
+    assert not cycle_permission("first_weld", **{**ready,"temperature_max":60})
+    dual = {**ready, "simultaneous_heads":2, "head_gas_flows_l_min":[10,10],
+            "head_energy_in_range":[True,True], "head_path_checked":[True,True]}
+    assert cycle_permission("weld", **dual)
+    for field, value in (("head_gas_flows_l_min",None),("head_gas_flows_l_min",[10,7]),
+                         ("head_gas_flows_l_min",[10,float("nan")]),
+                         ("head_energy_in_range",[True,False]),("head_path_checked",[True,None]),
+                         ("simultaneous_heads",3)):
+        assert not cycle_permission("weld", **{**dual,field:value})
 
 
 def test_withdraw_requires_cooling_and_positive_return():
     ready = dict(shield_present=True, bottom_open=True, return_confirmed=True,
-                 clamp_released=True, temperature_max=50, time_after_arc=120)
+                 clamp_released=True, temperature_max=50, time_after_arc=120,
+                 seal_retracted=True,water_leak_free=True,upper_stop_open=True,
+                 upper_lift_mm=260,datum_holder_locked=True,transfer_support_locked=[True]*6,nest_lock_released=True)
     assert cycle_permission("withdraw", **ready)
     for field, value in (("return_confirmed",False),("clamp_released",False),
-                         ("temperature_max",55),("time_after_arc",119),("bottom_open",False)):
+                         ("temperature_max",55),("time_after_arc",119),("bottom_open",False),
+                         ("seal_retracted",None),("water_leak_free",False),("upper_stop_open",False),
+                         ("upper_lift_mm",None),("upper_lift_mm",259),("datum_holder_locked",False),
+                         ("transfer_support_locked",None),("transfer_support_locked",[True]*5),
+                         ("transfer_support_locked",[True]*5+[False]),("nest_lock_released",False)):
         assert not cycle_permission("withdraw", **{**ready, field:value})
 
 
 def test_acceptance_uses_diameter_uncertainty_and_measurement_temperature():
     ready = dict(shield_present=False, bottom_open=True, return_confirmed=True, clamp_released=True,
-                 inspection_passed=True, measurement_diameter=.048, uncertainty_diameter=.002, temperature_max=20)
+                 shell_base_released=True, inspection_passed=True, measurement_diameter=.048, uncertainty_diameter=.002, temperature_max=20,
+                 bore_diameter_min_mm=40.001,bore_diameter_max_mm=40.024,bore_uncertainty_mm=.0005,bore_temperature_c=20)
     assert cycle_permission("accept", **ready)
     for field, value in (("measurement_diameter",.049),("uncertainty_diameter",None),
-                         ("temperature_max",50),("inspection_passed",False)):
+                         ("temperature_max",50),("inspection_passed",False),("shell_base_released",False),
+                         ("bore_diameter_max_mm",40.025),("bore_diameter_min_mm",40.0),
+                         ("bore_uncertainty_mm",None),("bore_temperature_c",21)):
         assert not cycle_permission("accept", **{**ready, field:value})
+    finished={**ready,'finish_applied':True,'pre_finish_position_mm':.045,'finish_radial_stock_mm':.0025}
+    assert cycle_permission('accept',**finished)
+    assert not cycle_permission('accept',**{**finished,'pre_finish_position_mm':.049})
+    assert not cycle_permission('accept',**{**finished,'finish_radial_stock_mm':.004})
 
 
 def test_release_threshold_matches_baseline_band():
@@ -118,8 +149,9 @@ def test_report_rejects_stale_inputs(monkeypatch):
 def test_current_drawing_manifest_excludes_legacy_fixture():
     import json
     manifest = json.loads((ROOT/"cad/generated/engineering-drawings/drawing-manifest.json").read_text(encoding="utf-8"))
-    assert manifest["version"] == "COMPETITION-R3"
-    assert len(manifest["drawings"]) == 7
+    design = yaml.safe_load((ROOT/"project/competition-design.yaml").read_text(encoding="utf-8"))
+    assert manifest["version"] == design["version"]
+    assert "following-peener.svg" in manifest["drawings"]
     assert "sleeve-detail.svg" in manifest["supplemental_drawings"]
     assert "inspection-and-release.svg" in manifest["drawings"]
     assert "fixture-part.svg" not in manifest["drawings"]

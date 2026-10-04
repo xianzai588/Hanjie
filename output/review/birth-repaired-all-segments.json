@@ -1,0 +1,4903 @@
+{
+  "scope": "actual full 16-segment new-node sets and analytic rigid translation/rotation; no replayed final position claim",
+  "maximum_coordinate_error_mm": 1.703081465288681e-14,
+  "maximum_host_count": 32,
+  "maximum_L1": 3.907896832911506,
+  "new_node_count": 3683,
+  "pass_check": true,
+  "records": [
+    {
+      "t_s": 0.25,
+      "maximum_coordinate_error_mm": 1.703081465288681e-14,
+      "maximum_host_weight_L1": 2.5518571829033165,
+      "maximum_host_count": 16,
+      "new_node_count": 23
+    },
+    {
+      "t_s": 0.5,
+      "maximum_coordinate_error_mm": 3.8886397086168085e-16,
+      "maximum_host_weight_L1": 1.2976492456855282,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 0.75,
+      "maximum_coordinate_error_mm": 7.617739919364568e-16,
+      "maximum_host_weight_L1": 1.7282645944731017,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 1.0,
+      "maximum_coordinate_error_mm": 1.138405017522858e-15,
+      "maximum_host_weight_L1": 1.7498460397862727,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 1.25,
+      "maximum_coordinate_error_mm": 4.472746986196041e-16,
+      "maximum_host_weight_L1": 1.9329967508850245,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 1.5,
+      "maximum_coordinate_error_mm": 5.005626406555103e-16,
+      "maximum_host_weight_L1": 1.8360185030930263,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 1.75,
+      "maximum_coordinate_error_mm": 6.784739477227014e-16,
+      "maximum_host_weight_L1": 1.3859934883440417,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 2.0,
+      "maximum_coordinate_error_mm": 4.256419758177234e-16,
+      "maximum_host_weight_L1": 1.373691162133368,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 2.25,
+      "maximum_coordinate_error_mm": 7.276711417295873e-16,
+      "maximum_host_weight_L1": 1.902814996723706,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 2.5,
+      "maximum_coordinate_error_mm": 7.087086224473629e-16,
+      "maximum_host_weight_L1": 1.6321936905293148,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 2.75,
+      "maximum_coordinate_error_mm": 1.037379287772286e-15,
+      "maximum_host_weight_L1": 1.8822299361732846,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 3.0,
+      "maximum_coordinate_error_mm": 5.540475412647302e-16,
+      "maximum_host_weight_L1": 1.2467308266903387,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 3.25,
+      "maximum_coordinate_error_mm": 1.636840769245806e-15,
+      "maximum_host_weight_L1": 1.8774103524942034,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 3.5,
+      "maximum_coordinate_error_mm": 4.311390346099863e-16,
+      "maximum_host_weight_L1": 1.0679338649780805,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 3.75,
+      "maximum_coordinate_error_mm": 3.643197222826097e-15,
+      "maximum_host_weight_L1": 1.8277570697448158,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 4.0,
+      "maximum_coordinate_error_mm": 8.149483930951366e-16,
+      "maximum_host_weight_L1": 1.8149326289990513,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 4.25,
+      "maximum_coordinate_error_mm": 1.3279899285517126e-15,
+      "maximum_host_weight_L1": 1.8424749960375701,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 4.5,
+      "maximum_coordinate_error_mm": 1.251796481027975e-15,
+      "maximum_host_weight_L1": 1.7067257133091556,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 4.75,
+      "maximum_coordinate_error_mm": 4.372051048228345e-16,
+      "maximum_host_weight_L1": 1.0757224372609109,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 5.0,
+      "maximum_coordinate_error_mm": 9.411905175374345e-16,
+      "maximum_host_weight_L1": 1.727029690312664,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 5.25,
+      "maximum_coordinate_error_mm": 9.011707595448873e-16,
+      "maximum_host_weight_L1": 1.8781956747123627,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 5.5,
+      "maximum_coordinate_error_mm": 6.774828940775727e-16,
+      "maximum_host_weight_L1": 1.6335593261708294,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 5.75,
+      "maximum_coordinate_error_mm": 1.4682282609061441e-15,
+      "maximum_host_weight_L1": 1.7385613979336072,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 6.0,
+      "maximum_coordinate_error_mm": 6.914900742280165e-16,
+      "maximum_host_weight_L1": 1.434437414965701,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 6.25,
+      "maximum_coordinate_error_mm": 9.89964285713223e-15,
+      "maximum_host_weight_L1": 1.4118740189010397,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 6.5,
+      "maximum_coordinate_error_mm": 1.0649110654175395e-15,
+      "maximum_host_weight_L1": 2.0112325724492184,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 6.75,
+      "maximum_coordinate_error_mm": 1.0697214222496612e-15,
+      "maximum_host_weight_L1": 1.8637856723169623,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 7.0,
+      "maximum_coordinate_error_mm": 2.4289208792952473e-15,
+      "maximum_host_weight_L1": 1.664182365927911,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 7.25,
+      "maximum_coordinate_error_mm": 7.782785860246637e-16,
+      "maximum_host_weight_L1": 1.6338574471682146,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 7.5,
+      "maximum_coordinate_error_mm": 6.006821340231821e-16,
+      "maximum_host_weight_L1": 1.7527868907468642,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 7.75,
+      "maximum_coordinate_error_mm": 5.498231729798782e-16,
+      "maximum_host_weight_L1": 1.3079385286733156,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 8.0,
+      "maximum_coordinate_error_mm": 4.324563890649579e-16,
+      "maximum_host_weight_L1": 1.8329714488989794,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 8.25,
+      "maximum_coordinate_error_mm": 9.42518646326838e-16,
+      "maximum_host_weight_L1": 1.585658317255231,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 8.5,
+      "maximum_coordinate_error_mm": 1.7684893098775437e-15,
+      "maximum_host_weight_L1": 1.7680807563329308,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 8.75,
+      "maximum_coordinate_error_mm": 6.624768823788787e-16,
+      "maximum_host_weight_L1": 1.7643998193854387,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 9.0,
+      "maximum_coordinate_error_mm": 7.514184873092936e-16,
+      "maximum_host_weight_L1": 1.2093296273348462,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 9.25,
+      "maximum_coordinate_error_mm": 7.652257435832572e-16,
+      "maximum_host_weight_L1": 1.8447706340840324,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 9.5,
+      "maximum_coordinate_error_mm": 9.855347405205293e-16,
+      "maximum_host_weight_L1": 1.7709742233654282,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 9.75,
+      "maximum_coordinate_error_mm": 8.013912305089354e-16,
+      "maximum_host_weight_L1": 1.4359956853629854,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 10.0,
+      "maximum_coordinate_error_mm": 1.167930225413473e-15,
+      "maximum_host_weight_L1": 1.715128281511265,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 10.25,
+      "maximum_coordinate_error_mm": 1.2413156183470574e-15,
+      "maximum_host_weight_L1": 1.4878985074556341,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 10.5,
+      "maximum_coordinate_error_mm": 7.493361573646296e-16,
+      "maximum_host_weight_L1": 1.5688173479554015,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 10.75,
+      "maximum_coordinate_error_mm": 1.880968258123474e-15,
+      "maximum_host_weight_L1": 2.0184833062607415,
+      "maximum_host_count": 16,
+      "new_node_count": 13
+    },
+    {
+      "t_s": 29.03409090909091,
+      "maximum_coordinate_error_mm": 2.2656602865462464e-15,
+      "maximum_host_weight_L1": 3.3377423420364885,
+      "maximum_host_count": 16,
+      "new_node_count": 20
+    },
+    {
+      "t_s": 29.28409090909091,
+      "maximum_coordinate_error_mm": 4.560052901491328e-16,
+      "maximum_host_weight_L1": 1.6997230791820113,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 29.53409090909091,
+      "maximum_coordinate_error_mm": 1.057829347677202e-15,
+      "maximum_host_weight_L1": 2.0132977499443188,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 29.78409090909091,
+      "maximum_coordinate_error_mm": 7.795318242866445e-16,
+      "maximum_host_weight_L1": 1.5066471621852262,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 30.03409090909091,
+      "maximum_coordinate_error_mm": 7.342291303293879e-16,
+      "maximum_host_weight_L1": 1.5820001314854042,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 30.28409090909091,
+      "maximum_coordinate_error_mm": 4.829052314372356e-16,
+      "maximum_host_weight_L1": 1.6289093590001815,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 30.53409090909091,
+      "maximum_coordinate_error_mm": 6.635606678441692e-16,
+      "maximum_host_weight_L1": 1.8962251833319141,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 30.78409090909091,
+      "maximum_coordinate_error_mm": 4.1523743243533016e-16,
+      "maximum_host_weight_L1": 2.009935271037567,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 31.03409090909091,
+      "maximum_coordinate_error_mm": 4.661576823855874e-16,
+      "maximum_host_weight_L1": 1.7933088434472775,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 31.28409090909091,
+      "maximum_coordinate_error_mm": 5.979359463634095e-16,
+      "maximum_host_weight_L1": 1.579589155899035,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 31.53409090909091,
+      "maximum_coordinate_error_mm": 5.0327293027415e-16,
+      "maximum_host_weight_L1": 1.2237500228128382,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 31.78409090909091,
+      "maximum_coordinate_error_mm": 1.297257795284268e-15,
+      "maximum_host_weight_L1": 1.6681366758021432,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 32.03409090909091,
+      "maximum_coordinate_error_mm": 7.722765605129834e-16,
+      "maximum_host_weight_L1": 1.7613535605789075,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 32.28409090909091,
+      "maximum_coordinate_error_mm": 1.2160521829880725e-15,
+      "maximum_host_weight_L1": 1.9302233647540654,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 32.53409090909091,
+      "maximum_coordinate_error_mm": 8.674252956934932e-16,
+      "maximum_host_weight_L1": 1.684130023006635,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 32.78409090909091,
+      "maximum_coordinate_error_mm": 5.646585313513476e-16,
+      "maximum_host_weight_L1": 1.3067114833562938,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 33.03409090909091,
+      "maximum_coordinate_error_mm": 6.844815567875434e-16,
+      "maximum_host_weight_L1": 1.6745371935276183,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 33.28409090909091,
+      "maximum_coordinate_error_mm": 9.270017497070164e-16,
+      "maximum_host_weight_L1": 1.9118353406652866,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 33.53409090909091,
+      "maximum_coordinate_error_mm": 1.085973993230234e-15,
+      "maximum_host_weight_L1": 1.5729615866598363,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 33.78409090909091,
+      "maximum_coordinate_error_mm": 6.472094787392017e-16,
+      "maximum_host_weight_L1": 1.47666576144284,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 34.03409090909091,
+      "maximum_coordinate_error_mm": 1.5932269143653656e-15,
+      "maximum_host_weight_L1": 1.6809682216240567,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 34.28409090909091,
+      "maximum_coordinate_error_mm": 2.9074491529792793e-16,
+      "maximum_host_weight_L1": 1.0746221499319122,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 34.53409090909091,
+      "maximum_coordinate_error_mm": 1.0387605008669826e-15,
+      "maximum_host_weight_L1": 1.7638404595380557,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 34.78409090909091,
+      "maximum_coordinate_error_mm": 4.9518306413619815e-15,
+      "maximum_host_weight_L1": 1.318693453542576,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 35.03409090909091,
+      "maximum_coordinate_error_mm": 6.247741486400948e-15,
+      "maximum_host_weight_L1": 2.03972305195716,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 35.28409090909091,
+      "maximum_coordinate_error_mm": 4.0785814790668124e-16,
+      "maximum_host_weight_L1": 1.712063679814257,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 35.53409090909091,
+      "maximum_coordinate_error_mm": 7.179622220927121e-16,
+      "maximum_host_weight_L1": 1.7627531489140535,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 35.78409090909091,
+      "maximum_coordinate_error_mm": 5.693062793671873e-16,
+      "maximum_host_weight_L1": 1.399783966972913,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 36.03409090909091,
+      "maximum_coordinate_error_mm": 6.421920664179205e-16,
+      "maximum_host_weight_L1": 1.9120799895995055,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 36.28409090909091,
+      "maximum_coordinate_error_mm": 1.2205325709582223e-15,
+      "maximum_host_weight_L1": 1.8547678344116854,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 36.53409090909091,
+      "maximum_coordinate_error_mm": 7.686159147855099e-16,
+      "maximum_host_weight_L1": 1.6956594083948053,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 36.78409090909091,
+      "maximum_coordinate_error_mm": 1.0872916007911674e-15,
+      "maximum_host_weight_L1": 1.7281864138606096,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 37.03409090909091,
+      "maximum_coordinate_error_mm": 2.769553258183049e-16,
+      "maximum_host_weight_L1": 1.0000000000000002,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 37.28409090909091,
+      "maximum_coordinate_error_mm": 8.017078312430563e-16,
+      "maximum_host_weight_L1": 1.9483450205883122,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 37.53409090909091,
+      "maximum_coordinate_error_mm": 5.679362272522936e-16,
+      "maximum_host_weight_L1": 1.2447220369398788,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 37.78409090909091,
+      "maximum_coordinate_error_mm": 1.283879368943101e-15,
+      "maximum_host_weight_L1": 1.6395738093523589,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 38.03409090909091,
+      "maximum_coordinate_error_mm": 6.8451100369804106e-15,
+      "maximum_host_weight_L1": 1.7994638340375335,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 38.28409090909091,
+      "maximum_coordinate_error_mm": 3.87870706825376e-16,
+      "maximum_host_weight_L1": 1.166482035189765,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 38.53409090909091,
+      "maximum_coordinate_error_mm": 1.4554087146463744e-14,
+      "maximum_host_weight_L1": 2.097488350307416,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 38.78409090909091,
+      "maximum_coordinate_error_mm": 8.903547622181931e-16,
+      "maximum_host_weight_L1": 1.6456328696417568,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 39.03409090909091,
+      "maximum_coordinate_error_mm": 7.318699774643177e-16,
+      "maximum_host_weight_L1": 1.7433801892653698,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 39.28409090909091,
+      "maximum_coordinate_error_mm": 7.36397547111591e-16,
+      "maximum_host_weight_L1": 1.673776746300975,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 39.53409090909091,
+      "maximum_coordinate_error_mm": 2.7006309803931033e-15,
+      "maximum_host_weight_L1": 1.2180963527811164,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 39.78409090909091,
+      "maximum_coordinate_error_mm": 5.757716462257507e-16,
+      "maximum_host_weight_L1": 2.2728315205952994,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 58.06818181818182,
+      "maximum_coordinate_error_mm": 1.0194818744975772e-14,
+      "maximum_host_weight_L1": 2.865104090742542,
+      "maximum_host_count": 16,
+      "new_node_count": 23
+    },
+    {
+      "t_s": 58.31818181818182,
+      "maximum_coordinate_error_mm": 9.400276910794031e-16,
+      "maximum_host_weight_L1": 1.406842673698621,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 58.56818181818182,
+      "maximum_coordinate_error_mm": 8.37785050198179e-16,
+      "maximum_host_weight_L1": 1.7403278707375696,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 58.81818181818182,
+      "maximum_coordinate_error_mm": 6.877498610741152e-16,
+      "maximum_host_weight_L1": 1.8415747744724387,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 59.06818181818182,
+      "maximum_coordinate_error_mm": 1.1134405694276218e-15,
+      "maximum_host_weight_L1": 1.6125728084190998,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 59.31818181818182,
+      "maximum_coordinate_error_mm": 1.2893028711914442e-16,
+      "maximum_host_weight_L1": 1.0,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 59.56818181818182,
+      "maximum_coordinate_error_mm": 1.8601829602840065e-15,
+      "maximum_host_weight_L1": 1.9615264627195659,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 59.81818181818182,
+      "maximum_coordinate_error_mm": 6.412493440499349e-16,
+      "maximum_host_weight_L1": 1.3998167218129687,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 60.06818181818182,
+      "maximum_coordinate_error_mm": 5.766491871867231e-16,
+      "maximum_host_weight_L1": 1.8380806161409708,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 60.31818181818182,
+      "maximum_coordinate_error_mm": 3.9453232314534024e-16,
+      "maximum_host_weight_L1": 1.5976112243576832,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 60.56818181818182,
+      "maximum_coordinate_error_mm": 4.265347958125921e-16,
+      "maximum_host_weight_L1": 1.5103507699526897,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 60.81818181818182,
+      "maximum_coordinate_error_mm": 4.504004482127818e-16,
+      "maximum_host_weight_L1": 1.638151594629555,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 61.06818181818182,
+      "maximum_coordinate_error_mm": 1.1762029207343184e-15,
+      "maximum_host_weight_L1": 1.8161212452920432,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 61.31818181818182,
+      "maximum_coordinate_error_mm": 4.1618476090066485e-16,
+      "maximum_host_weight_L1": 1.0337288192869514,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 61.56818181818182,
+      "maximum_coordinate_error_mm": 5.486761409107788e-16,
+      "maximum_host_weight_L1": 1.8589804211694763,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 61.81818181818182,
+      "maximum_coordinate_error_mm": 1.0756853226018557e-15,
+      "maximum_host_weight_L1": 1.7819906746011622,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 62.06818181818182,
+      "maximum_coordinate_error_mm": 9.203279313225362e-16,
+      "maximum_host_weight_L1": 1.762423251521474,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 62.31818181818182,
+      "maximum_coordinate_error_mm": 3.158102715950491e-16,
+      "maximum_host_weight_L1": 1.205772737525865,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 62.56818181818182,
+      "maximum_coordinate_error_mm": 1.0475369322991854e-15,
+      "maximum_host_weight_L1": 1.4378727969815004,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 62.81818181818182,
+      "maximum_coordinate_error_mm": 6.157784835601852e-16,
+      "maximum_host_weight_L1": 2.0672038316072134,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 63.06818181818182,
+      "maximum_coordinate_error_mm": 9.47597657392982e-16,
+      "maximum_host_weight_L1": 1.6148540405644234,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 63.31818181818182,
+      "maximum_coordinate_error_mm": 3.5748270191118756e-16,
+      "maximum_host_weight_L1": 1.857967845330867,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 63.56818181818182,
+      "maximum_coordinate_error_mm": 7.312414031847386e-16,
+      "maximum_host_weight_L1": 1.0413070860193505,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 63.81818181818182,
+      "maximum_coordinate_error_mm": 8.517291786964354e-16,
+      "maximum_host_weight_L1": 1.9481227954654314,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 64.06818181818181,
+      "maximum_coordinate_error_mm": 8.264403312789068e-16,
+      "maximum_host_weight_L1": 1.4908577384857011,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 64.31818181818181,
+      "maximum_coordinate_error_mm": 5.703143638692378e-15,
+      "maximum_host_weight_L1": 1.6958848617975857,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 64.56818181818181,
+      "maximum_coordinate_error_mm": 5.799632756795258e-16,
+      "maximum_host_weight_L1": 1.646584165088139,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 64.81818181818181,
+      "maximum_coordinate_error_mm": 8.025706666964732e-16,
+      "maximum_host_weight_L1": 1.8676705093358739,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 65.06818181818181,
+      "maximum_coordinate_error_mm": 1.7433575961262015e-15,
+      "maximum_host_weight_L1": 1.1368581244144453,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 65.31818181818181,
+      "maximum_coordinate_error_mm": 9.127513018252112e-16,
+      "maximum_host_weight_L1": 1.9255489556915977,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 65.56818181818181,
+      "maximum_coordinate_error_mm": 4.1250207108413136e-16,
+      "maximum_host_weight_L1": 1.071702486024627,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 65.81818181818181,
+      "maximum_coordinate_error_mm": 8.390699188887145e-16,
+      "maximum_host_weight_L1": 1.9123121467550306,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 66.06818181818181,
+      "maximum_coordinate_error_mm": 1.0902339893431542e-15,
+      "maximum_host_weight_L1": 1.8803018340903974,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 66.31818181818181,
+      "maximum_coordinate_error_mm": 9.61896910655549e-16,
+      "maximum_host_weight_L1": 1.6500911012249144,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 66.56818181818181,
+      "maximum_coordinate_error_mm": 4.680783180722489e-16,
+      "maximum_host_weight_L1": 1.5222067921989897,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 66.81818181818181,
+      "maximum_coordinate_error_mm": 8.156676522929002e-16,
+      "maximum_host_weight_L1": 1.2539759410206326,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 67.06818181818181,
+      "maximum_coordinate_error_mm": 8.945986913998422e-16,
+      "maximum_host_weight_L1": 1.9504447041862172,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 67.31818181818181,
+      "maximum_coordinate_error_mm": 3.2953444333037337e-16,
+      "maximum_host_weight_L1": 1.9957183817660427,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 67.56818181818181,
+      "maximum_coordinate_error_mm": 5.218045974110871e-16,
+      "maximum_host_weight_L1": 1.4194724030502996,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 67.81818181818181,
+      "maximum_coordinate_error_mm": 3.2971173472139708e-15,
+      "maximum_host_weight_L1": 1.7838921399249874,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 68.06818181818181,
+      "maximum_coordinate_error_mm": 4.374829456462777e-16,
+      "maximum_host_weight_L1": 1.1350560607981384,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 68.31818181818181,
+      "maximum_coordinate_error_mm": 5.417313721545106e-16,
+      "maximum_host_weight_L1": 1.8736750891302065,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 68.56818181818181,
+      "maximum_coordinate_error_mm": 1.1185387872096817e-15,
+      "maximum_host_weight_L1": 2.085900987327939,
+      "maximum_host_count": 16,
+      "new_node_count": 13
+    },
+    {
+      "t_s": 86.85227272727273,
+      "maximum_coordinate_error_mm": 5.417594656425687e-15,
+      "maximum_host_weight_L1": 2.5014938007631993,
+      "maximum_host_count": 16,
+      "new_node_count": 19
+    },
+    {
+      "t_s": 87.10227272727273,
+      "maximum_coordinate_error_mm": 5.713050987775198e-16,
+      "maximum_host_weight_L1": 1.8092447075364548,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 87.35227272727273,
+      "maximum_coordinate_error_mm": 1.6218584739495498e-15,
+      "maximum_host_weight_L1": 1.6988916644351821,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 87.60227272727273,
+      "maximum_coordinate_error_mm": 8.758927150776399e-16,
+      "maximum_host_weight_L1": 1.6683106276263862,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 87.85227272727273,
+      "maximum_coordinate_error_mm": 3.3480442909291076e-16,
+      "maximum_host_weight_L1": 1.0,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 88.10227272727273,
+      "maximum_coordinate_error_mm": 6.971096542527798e-16,
+      "maximum_host_weight_L1": 1.815580979850602,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 88.35227272727273,
+      "maximum_coordinate_error_mm": 1.1816370125850774e-15,
+      "maximum_host_weight_L1": 1.8181447074874648,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 88.60227272727273,
+      "maximum_coordinate_error_mm": 9.302592707255637e-16,
+      "maximum_host_weight_L1": 2.0019267648374224,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 88.85227272727273,
+      "maximum_coordinate_error_mm": 7.804662558505873e-16,
+      "maximum_host_weight_L1": 1.8868404696792789,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 89.10227272727273,
+      "maximum_coordinate_error_mm": 6.924548272410755e-16,
+      "maximum_host_weight_L1": 1.64685456866617,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 89.35227272727273,
+      "maximum_coordinate_error_mm": 5.396159713398301e-16,
+      "maximum_host_weight_L1": 1.001464193752495,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 89.60227272727273,
+      "maximum_coordinate_error_mm": 1.902883147921475e-15,
+      "maximum_host_weight_L1": 1.9650771158428997,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 89.85227272727273,
+      "maximum_coordinate_error_mm": 6.055047751366631e-16,
+      "maximum_host_weight_L1": 1.7280815147655288,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 90.10227272727273,
+      "maximum_coordinate_error_mm": 7.074292299700134e-16,
+      "maximum_host_weight_L1": 1.8501467616450282,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 90.35227272727273,
+      "maximum_coordinate_error_mm": 7.487549116750355e-16,
+      "maximum_host_weight_L1": 1.6674891324882544,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 90.60227272727273,
+      "maximum_coordinate_error_mm": 4.3487338091614917e-16,
+      "maximum_host_weight_L1": 1.3222495183341656,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 90.85227272727273,
+      "maximum_coordinate_error_mm": 8.012148947524235e-16,
+      "maximum_host_weight_L1": 1.7946728610776104,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 91.10227272727273,
+      "maximum_coordinate_error_mm": 6.431093561930098e-16,
+      "maximum_host_weight_L1": 1.9075010014348923,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 91.35227272727273,
+      "maximum_coordinate_error_mm": 5.403151220229237e-16,
+      "maximum_host_weight_L1": 1.6443315078690866,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 91.60227272727273,
+      "maximum_coordinate_error_mm": 1.3588938027055734e-15,
+      "maximum_host_weight_L1": 1.8616454149228447,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 91.85227272727273,
+      "maximum_coordinate_error_mm": 5.296037187319407e-16,
+      "maximum_host_weight_L1": 1.582308644108751,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 92.10227272727273,
+      "maximum_coordinate_error_mm": 7.469337212628794e-16,
+      "maximum_host_weight_L1": 1.9061302094194905,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 92.35227272727273,
+      "maximum_coordinate_error_mm": 3.642360377724874e-16,
+      "maximum_host_weight_L1": 1.1695313575273942,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 92.60227272727273,
+      "maximum_coordinate_error_mm": 2.0974338810016316e-15,
+      "maximum_host_weight_L1": 1.5338037850334412,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 92.85227272727273,
+      "maximum_coordinate_error_mm": 8.886851508905742e-16,
+      "maximum_host_weight_L1": 1.838332467329566,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 93.10227272727273,
+      "maximum_coordinate_error_mm": 7.606521112880806e-16,
+      "maximum_host_weight_L1": 1.8741845686062575,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 93.35227272727273,
+      "maximum_coordinate_error_mm": 6.420036977753e-16,
+      "maximum_host_weight_L1": 1.3760527826569402,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 93.60227272727273,
+      "maximum_coordinate_error_mm": 1.492542318565849e-15,
+      "maximum_host_weight_L1": 1.9203725573581907,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 93.85227272727273,
+      "maximum_coordinate_error_mm": 2.4600346265624737e-15,
+      "maximum_host_weight_L1": 1.724821310904045,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 94.10227272727273,
+      "maximum_coordinate_error_mm": 2.7020074965487935e-15,
+      "maximum_host_weight_L1": 1.6738133629423477,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 94.35227272727273,
+      "maximum_coordinate_error_mm": 2.6771851161911395e-15,
+      "maximum_host_weight_L1": 1.7814400053556598,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 94.60227272727273,
+      "maximum_coordinate_error_mm": 9.971352591319039e-16,
+      "maximum_host_weight_L1": 1.9995655047855319,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 94.85227272727273,
+      "maximum_coordinate_error_mm": 1.169857726122913e-15,
+      "maximum_host_weight_L1": 1.5961501654299075,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 95.10227272727273,
+      "maximum_coordinate_error_mm": 4.0178538738604387e-16,
+      "maximum_host_weight_L1": 1.327209139749006,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 95.35227272727273,
+      "maximum_coordinate_error_mm": 1.1113607762014076e-15,
+      "maximum_host_weight_L1": 1.6396454806447571,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 95.60227272727273,
+      "maximum_coordinate_error_mm": 5.357890173658971e-16,
+      "maximum_host_weight_L1": 1.8227314062692581,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 95.85227272727273,
+      "maximum_coordinate_error_mm": 1.467032891773513e-15,
+      "maximum_host_weight_L1": 2.0910585168661164,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 96.10227272727273,
+      "maximum_coordinate_error_mm": 6.374667437408353e-16,
+      "maximum_host_weight_L1": 2.029724832862638,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 96.35227272727273,
+      "maximum_coordinate_error_mm": 6.813784351105225e-15,
+      "maximum_host_weight_L1": 1.4290669383460988,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 96.60227272727273,
+      "maximum_coordinate_error_mm": 3.836325439760797e-16,
+      "maximum_host_weight_L1": 1.0664586954526853,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 96.85227272727273,
+      "maximum_coordinate_error_mm": 7.603042439420852e-16,
+      "maximum_host_weight_L1": 2.001909222975574,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 97.10227272727273,
+      "maximum_coordinate_error_mm": 1.5743054990845434e-15,
+      "maximum_host_weight_L1": 1.7372940204684795,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 97.35227272727273,
+      "maximum_coordinate_error_mm": 7.803427207998222e-16,
+      "maximum_host_weight_L1": 1.1584156534667995,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 97.60227272727273,
+      "maximum_coordinate_error_mm": 6.400237780285974e-16,
+      "maximum_host_weight_L1": 2.3368689375594536,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 115.88636363636364,
+      "maximum_coordinate_error_mm": 1.139404303560414e-15,
+      "maximum_host_weight_L1": 2.865101593856851,
+      "maximum_host_count": 16,
+      "new_node_count": 23
+    },
+    {
+      "t_s": 116.13636363636364,
+      "maximum_coordinate_error_mm": 7.41044116043277e-16,
+      "maximum_host_weight_L1": 1.5378266633570552,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 116.38636363636364,
+      "maximum_coordinate_error_mm": 6.652504509528898e-16,
+      "maximum_host_weight_L1": 2.000727208048369,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 116.63636363636364,
+      "maximum_coordinate_error_mm": 4.902155634161967e-16,
+      "maximum_host_weight_L1": 1.890770118378446,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 116.88636363636364,
+      "maximum_coordinate_error_mm": 6.016542136966025e-16,
+      "maximum_host_weight_L1": 1.532407752570635,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 117.13636363636364,
+      "maximum_coordinate_error_mm": 3.605114168213119e-16,
+      "maximum_host_weight_L1": 1.3959788912307678,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 117.38636363636364,
+      "maximum_coordinate_error_mm": 2.1707708624078427e-15,
+      "maximum_host_weight_L1": 1.8646011598988013,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 117.63636363636364,
+      "maximum_coordinate_error_mm": 2.334686664019906e-15,
+      "maximum_host_weight_L1": 1.2189866971178351,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 117.88636363636364,
+      "maximum_coordinate_error_mm": 4.182628140094885e-16,
+      "maximum_host_weight_L1": 1.933513442552976,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 118.13636363636364,
+      "maximum_coordinate_error_mm": 5.666352453771554e-16,
+      "maximum_host_weight_L1": 1.9911949633695072,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 118.38636363636364,
+      "maximum_coordinate_error_mm": 1.1550729632917216e-15,
+      "maximum_host_weight_L1": 1.6105078506509467,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 118.63636363636364,
+      "maximum_coordinate_error_mm": 4.0377583864346225e-16,
+      "maximum_host_weight_L1": 1.6099266397928595,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 118.88636363636364,
+      "maximum_coordinate_error_mm": 7.194898765411595e-16,
+      "maximum_host_weight_L1": 1.4503085834549752,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 119.13636363636364,
+      "maximum_coordinate_error_mm": 7.081289872708525e-16,
+      "maximum_host_weight_L1": 1.918341040461235,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 119.38636363636364,
+      "maximum_coordinate_error_mm": 3.7669457111067023e-16,
+      "maximum_host_weight_L1": 1.8434437146039322,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 119.63636363636364,
+      "maximum_coordinate_error_mm": 8.475202195573776e-16,
+      "maximum_host_weight_L1": 1.7937310133037756,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 119.88636363636364,
+      "maximum_coordinate_error_mm": 7.251098389542238e-16,
+      "maximum_host_weight_L1": 1.9200386311204254,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 120.13636363636364,
+      "maximum_coordinate_error_mm": 3.9058615510607404e-16,
+      "maximum_host_weight_L1": 1.555531247634915,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 120.38636363636364,
+      "maximum_coordinate_error_mm": 5.383502166781489e-16,
+      "maximum_host_weight_L1": 1.7155897743329316,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 120.63636363636364,
+      "maximum_coordinate_error_mm": 3.8428746423681064e-16,
+      "maximum_host_weight_L1": 1.1363404440368328,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 120.88636363636364,
+      "maximum_coordinate_error_mm": 7.908939812448711e-16,
+      "maximum_host_weight_L1": 1.8647072011771044,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 121.13636363636364,
+      "maximum_coordinate_error_mm": 1.2539813704941343e-15,
+      "maximum_host_weight_L1": 1.9330086494374432,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 121.38636363636364,
+      "maximum_coordinate_error_mm": 1.8276720523924945e-16,
+      "maximum_host_weight_L1": 1.005999247022999,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 121.63636363636364,
+      "maximum_coordinate_error_mm": 2.46825843816096e-15,
+      "maximum_host_weight_L1": 1.8203459782260392,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 121.88636363636364,
+      "maximum_coordinate_error_mm": 3.545644925596925e-16,
+      "maximum_host_weight_L1": 1.138771724773743,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 122.13636363636364,
+      "maximum_coordinate_error_mm": 7.10367209860311e-16,
+      "maximum_host_weight_L1": 1.89622683686457,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 122.38636363636364,
+      "maximum_coordinate_error_mm": 5.495407007535255e-16,
+      "maximum_host_weight_L1": 1.8806355126032928,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 122.63636363636364,
+      "maximum_coordinate_error_mm": 6.835572545679529e-16,
+      "maximum_host_weight_L1": 1.7391612911002183,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 122.88636363636364,
+      "maximum_coordinate_error_mm": 6.064377725930329e-16,
+      "maximum_host_weight_L1": 1.6233245449564724,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 123.13636363636364,
+      "maximum_coordinate_error_mm": 4.980592562044433e-16,
+      "maximum_host_weight_L1": 1.1731071941266684,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 123.38636363636364,
+      "maximum_coordinate_error_mm": 8.330809419645974e-16,
+      "maximum_host_weight_L1": 1.8183650085151841,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 123.63636363636364,
+      "maximum_coordinate_error_mm": 4.610331169964548e-16,
+      "maximum_host_weight_L1": 1.793739789428495,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 123.88636363636364,
+      "maximum_coordinate_error_mm": 3.5284863369263315e-16,
+      "maximum_host_weight_L1": 1.8629441645193467,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 124.13636363636364,
+      "maximum_coordinate_error_mm": 1.0035923956418446e-15,
+      "maximum_host_weight_L1": 1.5267111189933096,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 124.38636363636364,
+      "maximum_coordinate_error_mm": 1.6287783372777344e-16,
+      "maximum_host_weight_L1": 1.54771502869036,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 124.63636363636364,
+      "maximum_coordinate_error_mm": 6.070245366075105e-16,
+      "maximum_host_weight_L1": 1.0970223348826265,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 124.88636363636364,
+      "maximum_coordinate_error_mm": 8.6069739609388e-16,
+      "maximum_host_weight_L1": 1.793490985170289,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 125.13636363636364,
+      "maximum_coordinate_error_mm": 5.852787486025977e-16,
+      "maximum_host_weight_L1": 1.9314801238446488,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 125.38636363636364,
+      "maximum_coordinate_error_mm": 4.56789759686424e-16,
+      "maximum_host_weight_L1": 1.4631138513046786,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 125.63636363636364,
+      "maximum_coordinate_error_mm": 8.552406825094254e-16,
+      "maximum_host_weight_L1": 1.6982903140522607,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 125.88636363636364,
+      "maximum_coordinate_error_mm": 5.83098417475731e-16,
+      "maximum_host_weight_L1": 1.1351487315409934,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 126.13636363636364,
+      "maximum_coordinate_error_mm": 4.080637092476692e-16,
+      "maximum_host_weight_L1": 1.5054339823222305,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 126.38636363636364,
+      "maximum_coordinate_error_mm": 6.617970825319675e-16,
+      "maximum_host_weight_L1": 1.9204364321763898,
+      "maximum_host_count": 16,
+      "new_node_count": 13
+    },
+    {
+      "t_s": 144.67045454545456,
+      "maximum_coordinate_error_mm": 3.888306078163494e-15,
+      "maximum_host_weight_L1": 2.5750956029835708,
+      "maximum_host_count": 16,
+      "new_node_count": 20
+    },
+    {
+      "t_s": 144.92045454545456,
+      "maximum_coordinate_error_mm": 1.1518648198187792e-15,
+      "maximum_host_weight_L1": 1.6942109682766313,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 145.17045454545456,
+      "maximum_coordinate_error_mm": 8.76006047953514e-16,
+      "maximum_host_weight_L1": 1.7195216417544632,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 145.42045454545456,
+      "maximum_coordinate_error_mm": 9.61490347927532e-16,
+      "maximum_host_weight_L1": 1.6820667195885664,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 145.67045454545456,
+      "maximum_coordinate_error_mm": 7.054221913675724e-16,
+      "maximum_host_weight_L1": 1.5190764709823952,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 145.92045454545456,
+      "maximum_coordinate_error_mm": 1.1619232605245288e-15,
+      "maximum_host_weight_L1": 1.5265750037472903,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 146.17045454545456,
+      "maximum_coordinate_error_mm": 6.817636246362476e-16,
+      "maximum_host_weight_L1": 1.6964337145285255,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 146.42045454545456,
+      "maximum_coordinate_error_mm": 7.480011035153316e-16,
+      "maximum_host_weight_L1": 1.8230155640736183,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 146.67045454545456,
+      "maximum_coordinate_error_mm": 6.031215999675924e-16,
+      "maximum_host_weight_L1": 1.7275306168261946,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 146.92045454545456,
+      "maximum_coordinate_error_mm": 1.5099915954620396e-15,
+      "maximum_host_weight_L1": 1.742453105066486,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 147.17045454545456,
+      "maximum_coordinate_error_mm": 1.1959680452324599e-15,
+      "maximum_host_weight_L1": 1.3178674186877006,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 147.42045454545456,
+      "maximum_coordinate_error_mm": 3.9357382264865167e-16,
+      "maximum_host_weight_L1": 1.758338873000643,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 147.67045454545456,
+      "maximum_coordinate_error_mm": 5.659218410164884e-16,
+      "maximum_host_weight_L1": 2.024235653461328,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 147.92045454545456,
+      "maximum_coordinate_error_mm": 6.596820697199532e-16,
+      "maximum_host_weight_L1": 1.0439787987095202,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 148.17045454545456,
+      "maximum_coordinate_error_mm": 7.487820379022978e-16,
+      "maximum_host_weight_L1": 1.933398561421257,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 148.42045454545456,
+      "maximum_coordinate_error_mm": 7.960347126538368e-16,
+      "maximum_host_weight_L1": 1.0,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 148.67045454545456,
+      "maximum_coordinate_error_mm": 6.070856475024112e-16,
+      "maximum_host_weight_L1": 1.765742244846934,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 148.92045454545456,
+      "maximum_coordinate_error_mm": 8.22159275206252e-16,
+      "maximum_host_weight_L1": 1.888635153082838,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 149.17045454545456,
+      "maximum_coordinate_error_mm": 5.691473559515101e-16,
+      "maximum_host_weight_L1": 1.7873372071702374,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 149.42045454545456,
+      "maximum_coordinate_error_mm": 1.1023395233094945e-15,
+      "maximum_host_weight_L1": 1.7133331992485696,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 149.67045454545456,
+      "maximum_coordinate_error_mm": 7.832320757629252e-16,
+      "maximum_host_weight_L1": 1.7519786233202677,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 149.92045454545456,
+      "maximum_coordinate_error_mm": 6.471188980979033e-16,
+      "maximum_host_weight_L1": 1.182802371520123,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 150.17045454545456,
+      "maximum_coordinate_error_mm": 6.361387879494197e-16,
+      "maximum_host_weight_L1": 1.7954630879290425,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 150.42045454545456,
+      "maximum_coordinate_error_mm": 1.1726322967934785e-15,
+      "maximum_host_weight_L1": 1.7073951713470146,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 150.67045454545456,
+      "maximum_coordinate_error_mm": 6.785120527476019e-16,
+      "maximum_host_weight_L1": 1.7295154246044855,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 150.92045454545456,
+      "maximum_coordinate_error_mm": 6.076677827612092e-16,
+      "maximum_host_weight_L1": 1.6785717867467393,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 151.17045454545456,
+      "maximum_coordinate_error_mm": 5.905608351048357e-16,
+      "maximum_host_weight_L1": 1.4646772426773575,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 151.42045454545456,
+      "maximum_coordinate_error_mm": 7.379407121174162e-16,
+      "maximum_host_weight_L1": 1.5565207644588688,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 151.67045454545456,
+      "maximum_coordinate_error_mm": 2.1559646513257663e-15,
+      "maximum_host_weight_L1": 1.5375683564443414,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 151.92045454545456,
+      "maximum_coordinate_error_mm": 7.124133031210061e-16,
+      "maximum_host_weight_L1": 1.7975889450482554,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 152.17045454545456,
+      "maximum_coordinate_error_mm": 7.203136994174814e-16,
+      "maximum_host_weight_L1": 1.6842527673668966,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 152.42045454545456,
+      "maximum_coordinate_error_mm": 8.128521824776338e-15,
+      "maximum_host_weight_L1": 1.6746152316791,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 152.67045454545456,
+      "maximum_coordinate_error_mm": 6.961273677541713e-16,
+      "maximum_host_weight_L1": 1.2537257413378577,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 152.92045454545456,
+      "maximum_coordinate_error_mm": 7.116924357019228e-16,
+      "maximum_host_weight_L1": 1.6721961771841631,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 153.17045454545456,
+      "maximum_coordinate_error_mm": 1.2606234744090058e-15,
+      "maximum_host_weight_L1": 1.716272931271929,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 153.42045454545456,
+      "maximum_coordinate_error_mm": 4.958441005817511e-16,
+      "maximum_host_weight_L1": 1.56501709713488,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 153.67045454545456,
+      "maximum_coordinate_error_mm": 5.729234123489555e-16,
+      "maximum_host_weight_L1": 1.6934597146735673,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 153.92045454545456,
+      "maximum_coordinate_error_mm": 4.559194493644342e-16,
+      "maximum_host_weight_L1": 1.1788709539246023,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 154.17045454545456,
+      "maximum_coordinate_error_mm": 1.2275524718824952e-15,
+      "maximum_host_weight_L1": 1.8968237847918257,
+      "maximum_host_count": 16,
+      "new_node_count": 10
+    },
+    {
+      "t_s": 154.42045454545456,
+      "maximum_coordinate_error_mm": 8.018053504013612e-16,
+      "maximum_host_weight_L1": 1.8410233422958533,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 154.67045454545456,
+      "maximum_coordinate_error_mm": 7.06703944547202e-16,
+      "maximum_host_weight_L1": 1.7024297260133312,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 154.92045454545456,
+      "maximum_coordinate_error_mm": 3.821423098215644e-15,
+      "maximum_host_weight_L1": 1.6774316991571734,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 155.17045454545456,
+      "maximum_coordinate_error_mm": 9.976303493997194e-16,
+      "maximum_host_weight_L1": 1.206602961465154,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 155.42045454545456,
+      "maximum_coordinate_error_mm": 5.481757486145099e-16,
+      "maximum_host_weight_L1": 2.0955038099813015,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 173.70454545454547,
+      "maximum_coordinate_error_mm": 5.0344284555971996e-15,
+      "maximum_host_weight_L1": 2.5518614158591175,
+      "maximum_host_count": 16,
+      "new_node_count": 23
+    },
+    {
+      "t_s": 173.95454545454547,
+      "maximum_coordinate_error_mm": 8.811832620089155e-16,
+      "maximum_host_weight_L1": 1.6297346719714065,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 174.20454545454547,
+      "maximum_coordinate_error_mm": 1.183876065213353e-15,
+      "maximum_host_weight_L1": 1.95582113824346,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 174.45454545454547,
+      "maximum_coordinate_error_mm": 8.692901644360548e-16,
+      "maximum_host_weight_L1": 1.8410421539080333,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 174.70454545454547,
+      "maximum_coordinate_error_mm": 5.825107786909493e-16,
+      "maximum_host_weight_L1": 1.324361749825532,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 174.95454545454547,
+      "maximum_coordinate_error_mm": 1.2348227067743007e-15,
+      "maximum_host_weight_L1": 1.794340815863173,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 175.20454545454547,
+      "maximum_coordinate_error_mm": 1.227559669333298e-15,
+      "maximum_host_weight_L1": 1.6914780681672807,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 175.45454545454547,
+      "maximum_coordinate_error_mm": 4.194201637634593e-16,
+      "maximum_host_weight_L1": 1.461045856242825,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 175.70454545454547,
+      "maximum_coordinate_error_mm": 1.3246469508599993e-15,
+      "maximum_host_weight_L1": 1.9389546597485556,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 175.95454545454547,
+      "maximum_coordinate_error_mm": 5.156716035455538e-16,
+      "maximum_host_weight_L1": 1.7034206854863398,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 176.20454545454547,
+      "maximum_coordinate_error_mm": 7.928343772980226e-16,
+      "maximum_host_weight_L1": 1.953309919368238,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 176.45454545454547,
+      "maximum_coordinate_error_mm": 1.1803490181700047e-15,
+      "maximum_host_weight_L1": 1.255780327001177,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 176.70454545454547,
+      "maximum_coordinate_error_mm": 5.93940294322387e-16,
+      "maximum_host_weight_L1": 1.758881701249796,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 176.95454545454547,
+      "maximum_coordinate_error_mm": 4.748968707670704e-16,
+      "maximum_host_weight_L1": 1.0667985319802424,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 177.20454545454547,
+      "maximum_coordinate_error_mm": 5.102957463626712e-16,
+      "maximum_host_weight_L1": 1.8682561547042507,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 177.45454545454547,
+      "maximum_coordinate_error_mm": 5.196805914530895e-16,
+      "maximum_host_weight_L1": 1.5642695730078457,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 177.70454545454547,
+      "maximum_coordinate_error_mm": 6.034517669525592e-16,
+      "maximum_host_weight_L1": 1.562371588956144,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 177.95454545454547,
+      "maximum_coordinate_error_mm": 3.2936477464360757e-15,
+      "maximum_host_weight_L1": 1.8522581347818419,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 178.20454545454547,
+      "maximum_coordinate_error_mm": 4.688515706284386e-16,
+      "maximum_host_weight_L1": 1.043745251614361,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 178.45454545454547,
+      "maximum_coordinate_error_mm": 8.760773797856671e-16,
+      "maximum_host_weight_L1": 2.18761376398926,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 178.70454545454547,
+      "maximum_coordinate_error_mm": 8.660106642785616e-16,
+      "maximum_host_weight_L1": 1.7236269951134304,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 178.95454545454547,
+      "maximum_coordinate_error_mm": 7.025716239225732e-16,
+      "maximum_host_weight_L1": 1.716282679340613,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 179.20454545454547,
+      "maximum_coordinate_error_mm": 1.0300550787798697e-15,
+      "maximum_host_weight_L1": 1.943359565224863,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 179.45454545454547,
+      "maximum_coordinate_error_mm": 1.2329009531793157e-15,
+      "maximum_host_weight_L1": 1.4925950811224538,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 179.70454545454547,
+      "maximum_coordinate_error_mm": 8.164446500322938e-16,
+      "maximum_host_weight_L1": 1.5397326606666368,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 179.95454545454547,
+      "maximum_coordinate_error_mm": 1.5523654525418322e-15,
+      "maximum_host_weight_L1": 1.9217106443445895,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 180.20454545454547,
+      "maximum_coordinate_error_mm": 7.222853910001761e-16,
+      "maximum_host_weight_L1": 1.7388016643001374,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 180.45454545454547,
+      "maximum_coordinate_error_mm": 3.1104024609792657e-15,
+      "maximum_host_weight_L1": 1.6717982302126362,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 180.70454545454547,
+      "maximum_coordinate_error_mm": 4.627339823512626e-16,
+      "maximum_host_weight_L1": 1.3466005624022557,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 180.95454545454547,
+      "maximum_coordinate_error_mm": 5.509144918137706e-16,
+      "maximum_host_weight_L1": 1.8237206044064878,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 181.20454545454547,
+      "maximum_coordinate_error_mm": 7.616253121059513e-16,
+      "maximum_host_weight_L1": 1.0718867802711218,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 181.45454545454547,
+      "maximum_coordinate_error_mm": 2.5878672306650694e-15,
+      "maximum_host_weight_L1": 1.837206377522969,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 181.70454545454547,
+      "maximum_coordinate_error_mm": 9.240615314675824e-16,
+      "maximum_host_weight_L1": 1.7539610751868142,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 181.95454545454547,
+      "maximum_coordinate_error_mm": 6.44596405997025e-16,
+      "maximum_host_weight_L1": 2.1096166280269815,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 182.20454545454547,
+      "maximum_coordinate_error_mm": 7.163319671233619e-16,
+      "maximum_host_weight_L1": 1.0150072363508786,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 182.45454545454547,
+      "maximum_coordinate_error_mm": 8.190270110332326e-15,
+      "maximum_host_weight_L1": 1.5619488552946303,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 182.70454545454547,
+      "maximum_coordinate_error_mm": 5.576658130453783e-16,
+      "maximum_host_weight_L1": 1.592564715725143,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 182.95454545454547,
+      "maximum_coordinate_error_mm": 6.767641071577032e-16,
+      "maximum_host_weight_L1": 1.7349216858121932,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 183.20454545454547,
+      "maximum_coordinate_error_mm": 5.788971589768682e-16,
+      "maximum_host_weight_L1": 2.0518241551564635,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 183.45454545454547,
+      "maximum_coordinate_error_mm": 8.372173379132747e-16,
+      "maximum_host_weight_L1": 1.7851069842615273,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 183.70454545454547,
+      "maximum_coordinate_error_mm": 2.172032330012543e-15,
+      "maximum_host_weight_L1": 1.33235101933247,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 183.95454545454547,
+      "maximum_coordinate_error_mm": 1.3785991962830244e-15,
+      "maximum_host_weight_L1": 1.5229636429944249,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 184.20454545454547,
+      "maximum_coordinate_error_mm": 6.550320417708095e-16,
+      "maximum_host_weight_L1": 1.9688709784514404,
+      "maximum_host_count": 16,
+      "new_node_count": 13
+    },
+    {
+      "t_s": 202.48863636363637,
+      "maximum_coordinate_error_mm": 1.4009061585739347e-15,
+      "maximum_host_weight_L1": 2.8651015938507256,
+      "maximum_host_count": 16,
+      "new_node_count": 19
+    },
+    {
+      "t_s": 202.73863636363637,
+      "maximum_coordinate_error_mm": 5.718540947676336e-16,
+      "maximum_host_weight_L1": 1.7259379252344391,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 202.98863636363637,
+      "maximum_coordinate_error_mm": 6.088493291487233e-16,
+      "maximum_host_weight_L1": 1.8661238944626006,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 203.23863636363637,
+      "maximum_coordinate_error_mm": 2.701002718638256e-16,
+      "maximum_host_weight_L1": 1.8921473051227617,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 203.48863636363637,
+      "maximum_coordinate_error_mm": 6.442159355284867e-16,
+      "maximum_host_weight_L1": 1.3091453981643073,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 203.73863636363637,
+      "maximum_coordinate_error_mm": 1.6715303512727e-15,
+      "maximum_host_weight_L1": 1.6998105763131766,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 203.98863636363637,
+      "maximum_coordinate_error_mm": 7.189615688921106e-16,
+      "maximum_host_weight_L1": 1.772569252298538,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 204.23863636363637,
+      "maximum_coordinate_error_mm": 1.146137814749294e-15,
+      "maximum_host_weight_L1": 1.9038465272785219,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 204.48863636363637,
+      "maximum_coordinate_error_mm": 1.0630002338296044e-15,
+      "maximum_host_weight_L1": 1.8391133602712904,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 204.73863636363637,
+      "maximum_coordinate_error_mm": 8.022781001927604e-16,
+      "maximum_host_weight_L1": 1.61739113050167,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 204.98863636363637,
+      "maximum_coordinate_error_mm": 2.7138290530790745e-16,
+      "maximum_host_weight_L1": 1.1622250257895463,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 205.23863636363637,
+      "maximum_coordinate_error_mm": 1.050124794911758e-15,
+      "maximum_host_weight_L1": 1.51621422238124,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 205.48863636363637,
+      "maximum_coordinate_error_mm": 1.3664474065406876e-15,
+      "maximum_host_weight_L1": 1.9147233770360965,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 205.73863636363637,
+      "maximum_coordinate_error_mm": 3.480213689567539e-15,
+      "maximum_host_weight_L1": 1.8593532690329058,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 205.98863636363637,
+      "maximum_coordinate_error_mm": 4.002957497323293e-16,
+      "maximum_host_weight_L1": 1.7597813180220994,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 206.23863636363637,
+      "maximum_coordinate_error_mm": 5.217698712079128e-16,
+      "maximum_host_weight_L1": 1.7124218631775183,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 206.48863636363637,
+      "maximum_coordinate_error_mm": 2.393183045518942e-16,
+      "maximum_host_weight_L1": 1.2124983254421302,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 206.73863636363637,
+      "maximum_coordinate_error_mm": 5.084414586479648e-16,
+      "maximum_host_weight_L1": 2.093498673513725,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 206.98863636363637,
+      "maximum_coordinate_error_mm": 3.695962078439439e-16,
+      "maximum_host_weight_L1": 1.524423606318313,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 207.23863636363637,
+      "maximum_coordinate_error_mm": 6.86279741119385e-16,
+      "maximum_host_weight_L1": 1.5871737879154673,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 207.48863636363637,
+      "maximum_coordinate_error_mm": 6.480208699598643e-16,
+      "maximum_host_weight_L1": 1.0671255874899364,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 207.73863636363637,
+      "maximum_coordinate_error_mm": 6.687357285259239e-16,
+      "maximum_host_weight_L1": 1.9421272766157645,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 207.98863636363637,
+      "maximum_coordinate_error_mm": 7.420104635873761e-16,
+      "maximum_host_weight_L1": 1.2218411241138392,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 208.23863636363637,
+      "maximum_coordinate_error_mm": 5.640931294280276e-16,
+      "maximum_host_weight_L1": 1.5794214927350607,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 208.48863636363637,
+      "maximum_coordinate_error_mm": 4.779788700835228e-16,
+      "maximum_host_weight_L1": 1.6931555167381187,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 208.73863636363637,
+      "maximum_coordinate_error_mm": 5.757804206180243e-16,
+      "maximum_host_weight_L1": 1.9515498816458,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 208.98863636363637,
+      "maximum_coordinate_error_mm": 3.0218353479480975e-16,
+      "maximum_host_weight_L1": 1.3631589389692071,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 209.23863636363637,
+      "maximum_coordinate_error_mm": 7.932269312238004e-16,
+      "maximum_host_weight_L1": 1.8333628148536845,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 209.48863636363637,
+      "maximum_coordinate_error_mm": 5.145942306710716e-16,
+      "maximum_host_weight_L1": 1.6860054997323637,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 209.73863636363637,
+      "maximum_coordinate_error_mm": 5.689563012990967e-16,
+      "maximum_host_weight_L1": 1.6402749798711138,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 209.98863636363637,
+      "maximum_coordinate_error_mm": 3.371983200808706e-16,
+      "maximum_host_weight_L1": 1.9118558371176346,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 210.23863636363637,
+      "maximum_coordinate_error_mm": 6.254722813396039e-16,
+      "maximum_host_weight_L1": 1.0919935086034798,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 210.48863636363637,
+      "maximum_coordinate_error_mm": 6.240197051025303e-15,
+      "maximum_host_weight_L1": 1.8118061549826248,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 210.73863636363637,
+      "maximum_coordinate_error_mm": 8.116989242109161e-16,
+      "maximum_host_weight_L1": 1.8630841204853987,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 210.98863636363637,
+      "maximum_coordinate_error_mm": 1.1368481654326114e-15,
+      "maximum_host_weight_L1": 1.5826595342612118,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 211.23863636363637,
+      "maximum_coordinate_error_mm": 7.6374663957611e-16,
+      "maximum_host_weight_L1": 1.6075588935248954,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 211.48863636363637,
+      "maximum_coordinate_error_mm": 7.471364499825633e-15,
+      "maximum_host_weight_L1": 1.9507756894694084,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 211.73863636363637,
+      "maximum_coordinate_error_mm": 2.865795256846513e-16,
+      "maximum_host_weight_L1": 1.1371843935437849,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 211.98863636363637,
+      "maximum_coordinate_error_mm": 6.052376249287614e-16,
+      "maximum_host_weight_L1": 2.027653794901931,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 212.23863636363637,
+      "maximum_coordinate_error_mm": 5.719451317581947e-16,
+      "maximum_host_weight_L1": 1.0,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 212.48863636363637,
+      "maximum_coordinate_error_mm": 8.494764177988221e-16,
+      "maximum_host_weight_L1": 1.9240837478184076,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 212.73863636363637,
+      "maximum_coordinate_error_mm": 9.836010176269566e-16,
+      "maximum_host_weight_L1": 1.6385897035296222,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 212.98863636363637,
+      "maximum_coordinate_error_mm": 3.4819723635185027e-15,
+      "maximum_host_weight_L1": 1.3084135485292285,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 213.23863636363637,
+      "maximum_coordinate_error_mm": 7.531089583522327e-16,
+      "maximum_host_weight_L1": 2.0798658380773567,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 231.52272727272728,
+      "maximum_coordinate_error_mm": 6.995475912401937e-15,
+      "maximum_host_weight_L1": 3.725570217279035,
+      "maximum_host_count": 16,
+      "new_node_count": 21
+    },
+    {
+      "t_s": 231.77272727272728,
+      "maximum_coordinate_error_mm": 5.636273388581893e-16,
+      "maximum_host_weight_L1": 1.34915269028755,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 232.02272727272728,
+      "maximum_coordinate_error_mm": 1.0290144092999289e-14,
+      "maximum_host_weight_L1": 2.1389634186814934,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 232.27272727272728,
+      "maximum_coordinate_error_mm": 1.3213756108188745e-15,
+      "maximum_host_weight_L1": 1.6937220035045657,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 232.52272727272728,
+      "maximum_coordinate_error_mm": 8.335298101389884e-16,
+      "maximum_host_weight_L1": 2.1751178124225348,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 232.77272727272728,
+      "maximum_coordinate_error_mm": 1.0176775170379169e-15,
+      "maximum_host_weight_L1": 1.7692528908086007,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 233.02272727272728,
+      "maximum_coordinate_error_mm": 5.6866517192044384e-15,
+      "maximum_host_weight_L1": 2.033748622155753,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 233.27272727272728,
+      "maximum_coordinate_error_mm": 7.946600190343029e-16,
+      "maximum_host_weight_L1": 1.2500821328815233,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 233.52272727272728,
+      "maximum_coordinate_error_mm": 6.397471253697606e-16,
+      "maximum_host_weight_L1": 1.9136677178393136,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 233.77272727272728,
+      "maximum_coordinate_error_mm": 4.056332037298179e-15,
+      "maximum_host_weight_L1": 1.9518252161728882,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 234.02272727272728,
+      "maximum_coordinate_error_mm": 6.856739024419253e-16,
+      "maximum_host_weight_L1": 1.8929791178544133,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 234.27272727272728,
+      "maximum_coordinate_error_mm": 6.12641532932154e-16,
+      "maximum_host_weight_L1": 1.0719575311483955,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 234.52272727272728,
+      "maximum_coordinate_error_mm": 7.01806186991917e-16,
+      "maximum_host_weight_L1": 2.3595275214191926,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 234.77272727272728,
+      "maximum_coordinate_error_mm": 5.167811914739303e-16,
+      "maximum_host_weight_L1": 1.7377679481766084,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 235.02272727272728,
+      "maximum_coordinate_error_mm": 5.814417476432878e-16,
+      "maximum_host_weight_L1": 2.0889711798230484,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 235.27272727272728,
+      "maximum_coordinate_error_mm": 9.831716445746303e-16,
+      "maximum_host_weight_L1": 1.9344828030211052,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 235.52272727272728,
+      "maximum_coordinate_error_mm": 5.070720748093775e-16,
+      "maximum_host_weight_L1": 1.904622842203097,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 236.02272727272728,
+      "maximum_coordinate_error_mm": 9.456168431437282e-16,
+      "maximum_host_weight_L1": 2.0371349772500444,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 236.27272727272728,
+      "maximum_coordinate_error_mm": 4.371811051938395e-16,
+      "maximum_host_weight_L1": 2.108918361445079,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 236.52272727272728,
+      "maximum_coordinate_error_mm": 5.089173964853539e-16,
+      "maximum_host_weight_L1": 1.799589592360658,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 236.77272727272728,
+      "maximum_coordinate_error_mm": 6.176642934082622e-16,
+      "maximum_host_weight_L1": 1.7600054489085708,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 237.02272727272728,
+      "maximum_coordinate_error_mm": 4.641603461518402e-16,
+      "maximum_host_weight_L1": 1.5585964434755835,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 237.27272727272728,
+      "maximum_coordinate_error_mm": 2.1500905564288224e-15,
+      "maximum_host_weight_L1": 2.3408796562803706,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 237.52272727272728,
+      "maximum_coordinate_error_mm": 5.069463467349825e-16,
+      "maximum_host_weight_L1": 1.5158348427628203,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 237.77272727272728,
+      "maximum_coordinate_error_mm": 8.740920832389909e-16,
+      "maximum_host_weight_L1": 1.841030103128716,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 238.02272727272728,
+      "maximum_coordinate_error_mm": 6.628275951464112e-16,
+      "maximum_host_weight_L1": 1.9992830636903185,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 238.27272727272728,
+      "maximum_coordinate_error_mm": 7.377078127823467e-16,
+      "maximum_host_weight_L1": 1.7176881979426497,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 238.52272727272728,
+      "maximum_coordinate_error_mm": 6.987080892503278e-16,
+      "maximum_host_weight_L1": 1.9086719571632926,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 238.77272727272728,
+      "maximum_coordinate_error_mm": 4.153311753048004e-16,
+      "maximum_host_weight_L1": 1.5193032332631187,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 239.02272727272728,
+      "maximum_coordinate_error_mm": 5.070158064404119e-16,
+      "maximum_host_weight_L1": 1.9020572745637265,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 239.27272727272728,
+      "maximum_coordinate_error_mm": 8.269599559202628e-16,
+      "maximum_host_weight_L1": 2.1810995059923277,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 239.52272727272728,
+      "maximum_coordinate_error_mm": 1.26947631048241e-15,
+      "maximum_host_weight_L1": 1.855887086429212,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 239.77272727272728,
+      "maximum_coordinate_error_mm": 7.614496361071673e-16,
+      "maximum_host_weight_L1": 1.817449793749109,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 240.02272727272728,
+      "maximum_coordinate_error_mm": 7.129855209380049e-16,
+      "maximum_host_weight_L1": 1.5411508859937912,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 240.27272727272728,
+      "maximum_coordinate_error_mm": 1.090684077655856e-15,
+      "maximum_host_weight_L1": 1.890788843788367,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 240.52272727272728,
+      "maximum_coordinate_error_mm": 4.84522439938429e-15,
+      "maximum_host_weight_L1": 1.9053347896976545,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 240.77272727272728,
+      "maximum_coordinate_error_mm": 5.5875139424963835e-15,
+      "maximum_host_weight_L1": 1.8668806527331037,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 241.02272727272728,
+      "maximum_coordinate_error_mm": 7.112927657324192e-15,
+      "maximum_host_weight_L1": 1.980482014638771,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 241.27272727272728,
+      "maximum_coordinate_error_mm": 7.346236207331034e-16,
+      "maximum_host_weight_L1": 2.0638343605990013,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 241.52272727272728,
+      "maximum_coordinate_error_mm": 1.0416695552596105e-15,
+      "maximum_host_weight_L1": 2.1767077949137157,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 241.77272727272728,
+      "maximum_coordinate_error_mm": 7.32101053065172e-16,
+      "maximum_host_weight_L1": 2.494394762870586,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 242.02272727272728,
+      "maximum_coordinate_error_mm": 1.4154775180090465e-15,
+      "maximum_host_weight_L1": 2.342552855641075,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 242.3068181818182,
+      "maximum_coordinate_error_mm": 6.959708873632737e-16,
+      "maximum_host_weight_L1": 1.3236694446684636,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 260.3068181818182,
+      "maximum_coordinate_error_mm": 1.6547489068466267e-15,
+      "maximum_host_weight_L1": 3.5806196605162777,
+      "maximum_host_count": 16,
+      "new_node_count": 17
+    },
+    {
+      "t_s": 260.5568181818182,
+      "maximum_coordinate_error_mm": 5.550112689061305e-16,
+      "maximum_host_weight_L1": 2.060040182156536,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 260.8068181818182,
+      "maximum_coordinate_error_mm": 8.558300025015982e-15,
+      "maximum_host_weight_L1": 2.107640081185254,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 261.0568181818182,
+      "maximum_coordinate_error_mm": 7.170315753096416e-16,
+      "maximum_host_weight_L1": 1.6848521463122885,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 261.3068181818182,
+      "maximum_coordinate_error_mm": 8.7666576978502e-16,
+      "maximum_host_weight_L1": 2.2028657330675903,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 261.5568181818182,
+      "maximum_coordinate_error_mm": 4.88204559552833e-15,
+      "maximum_host_weight_L1": 1.8302260574164233,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 261.8068181818182,
+      "maximum_coordinate_error_mm": 8.181817818567172e-16,
+      "maximum_host_weight_L1": 2.1720139930696494,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 262.0568181818182,
+      "maximum_coordinate_error_mm": 5.673108026868717e-16,
+      "maximum_host_weight_L1": 1.6513802593197802,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 262.3068181818182,
+      "maximum_coordinate_error_mm": 6.388583948934135e-16,
+      "maximum_host_weight_L1": 1.7752025130518123,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 262.5568181818182,
+      "maximum_coordinate_error_mm": 9.482846769090409e-16,
+      "maximum_host_weight_L1": 2.019037037633061,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 262.8068181818182,
+      "maximum_coordinate_error_mm": 3.96186696198503e-16,
+      "maximum_host_weight_L1": 1.0914109314779434,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 263.0568181818182,
+      "maximum_coordinate_error_mm": 9.447370192767766e-16,
+      "maximum_host_weight_L1": 1.777655619292256,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 263.3068181818182,
+      "maximum_coordinate_error_mm": 7.513491377399732e-16,
+      "maximum_host_weight_L1": 1.8259326852086568,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 263.5568181818182,
+      "maximum_coordinate_error_mm": 6.62013387490122e-16,
+      "maximum_host_weight_L1": 1.8879463409993051,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 263.8068181818182,
+      "maximum_coordinate_error_mm": 7.965828169117292e-16,
+      "maximum_host_weight_L1": 0.9999999999999999,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 264.0568181818182,
+      "maximum_coordinate_error_mm": 1.2227622674968406e-15,
+      "maximum_host_weight_L1": 2.0484533982487285,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 264.3068181818182,
+      "maximum_coordinate_error_mm": 7.9169142513659e-15,
+      "maximum_host_weight_L1": 1.873368433483603,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 264.5568181818182,
+      "maximum_coordinate_error_mm": 1.8757307460808567e-15,
+      "maximum_host_weight_L1": 1.8468247422387687,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 264.8068181818182,
+      "maximum_coordinate_error_mm": 1.3433137562744812e-15,
+      "maximum_host_weight_L1": 2.27194842099862,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 265.0568181818182,
+      "maximum_coordinate_error_mm": 4.512637885734819e-16,
+      "maximum_host_weight_L1": 1.9065274625765305,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 265.3068181818182,
+      "maximum_coordinate_error_mm": 7.244474864080008e-16,
+      "maximum_host_weight_L1": 1.5942893890335235,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 265.5568181818182,
+      "maximum_coordinate_error_mm": 9.643807170668256e-16,
+      "maximum_host_weight_L1": 1.8931929218592378,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 265.8068181818182,
+      "maximum_coordinate_error_mm": 1.0284064645445795e-15,
+      "maximum_host_weight_L1": 1.9416932105117017,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 266.0568181818182,
+      "maximum_coordinate_error_mm": 4.661294929590241e-15,
+      "maximum_host_weight_L1": 1.980283932493863,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 266.3068181818182,
+      "maximum_coordinate_error_mm": 9.935442643344653e-16,
+      "maximum_host_weight_L1": 1.8502785610002497,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 266.5568181818182,
+      "maximum_coordinate_error_mm": 3.710386590438807e-15,
+      "maximum_host_weight_L1": 1.797381252794973,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 266.8068181818182,
+      "maximum_coordinate_error_mm": 2.1883695610571823e-15,
+      "maximum_host_weight_L1": 2.1242142829581496,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 267.0568181818182,
+      "maximum_coordinate_error_mm": 5.702312078155561e-16,
+      "maximum_host_weight_L1": 1.7164506931781371,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 267.3068181818182,
+      "maximum_coordinate_error_mm": 1.3395412384540167e-15,
+      "maximum_host_weight_L1": 1.9819198941362335,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 267.5568181818182,
+      "maximum_coordinate_error_mm": 7.816036629938408e-16,
+      "maximum_host_weight_L1": 2.0955529181580363,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 267.8068181818182,
+      "maximum_coordinate_error_mm": 1.1585499425397086e-15,
+      "maximum_host_weight_L1": 1.876036945042939,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 268.0568181818182,
+      "maximum_coordinate_error_mm": 4.797242729546728e-15,
+      "maximum_host_weight_L1": 1.8514779587812507,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 268.3068181818182,
+      "maximum_coordinate_error_mm": 5.743958177741765e-16,
+      "maximum_host_weight_L1": 1.7463443845445499,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 268.5568181818182,
+      "maximum_coordinate_error_mm": 1.0183519649382128e-15,
+      "maximum_host_weight_L1": 1.8586013486415096,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 268.8068181818182,
+      "maximum_coordinate_error_mm": 1.1474135458712824e-14,
+      "maximum_host_weight_L1": 1.911360072217834,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 269.0568181818182,
+      "maximum_coordinate_error_mm": 4.481637957390089e-15,
+      "maximum_host_weight_L1": 1.8235724268650544,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 269.3068181818182,
+      "maximum_coordinate_error_mm": 8.25504261409037e-16,
+      "maximum_host_weight_L1": 2.179260198938418,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 269.5568181818182,
+      "maximum_coordinate_error_mm": 8.129604135230652e-16,
+      "maximum_host_weight_L1": 1.709936314527497,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 269.8068181818182,
+      "maximum_coordinate_error_mm": 6.14243264157792e-16,
+      "maximum_host_weight_L1": 1.700569831366681,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 270.0568181818182,
+      "maximum_coordinate_error_mm": 1.7574826083918797e-15,
+      "maximum_host_weight_L1": 1.950709679390473,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 270.3068181818182,
+      "maximum_coordinate_error_mm": 1.3776554263121425e-15,
+      "maximum_host_weight_L1": 2.192622597154468,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 270.5568181818182,
+      "maximum_coordinate_error_mm": 9.219929568588364e-16,
+      "maximum_host_weight_L1": 1.8126163234118247,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 270.8068181818182,
+      "maximum_coordinate_error_mm": 1.1491055288638151e-15,
+      "maximum_host_weight_L1": 2.9999386356613673,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 271.0568181818182,
+      "maximum_coordinate_error_mm": 1.6088138485164543e-15,
+      "maximum_host_weight_L1": 1.6071314440569033,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 289.3409090909091,
+      "maximum_coordinate_error_mm": 1.3333524136379764e-14,
+      "maximum_host_weight_L1": 3.63292231300304,
+      "maximum_host_count": 32,
+      "new_node_count": 21
+    },
+    {
+      "t_s": 289.5909090909091,
+      "maximum_coordinate_error_mm": 4.2210060784237205e-15,
+      "maximum_host_weight_L1": 1.8090631485053315,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 289.8409090909091,
+      "maximum_coordinate_error_mm": 4.631953795641884e-16,
+      "maximum_host_weight_L1": 2.139110124827579,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 290.0909090909091,
+      "maximum_coordinate_error_mm": 6.341626616918893e-16,
+      "maximum_host_weight_L1": 1.6385169860093285,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 290.3409090909091,
+      "maximum_coordinate_error_mm": 8.121192180176224e-16,
+      "maximum_host_weight_L1": 1.9797223094109326,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 290.5909090909091,
+      "maximum_coordinate_error_mm": 4.786168266452435e-16,
+      "maximum_host_weight_L1": 1.7190586666807994,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 290.8409090909091,
+      "maximum_coordinate_error_mm": 1.9046590145233508e-15,
+      "maximum_host_weight_L1": 2.0973806876614747,
+      "maximum_host_count": 16,
+      "new_node_count": 8
+    },
+    {
+      "t_s": 291.0909090909091,
+      "maximum_coordinate_error_mm": 2.625041088877594e-15,
+      "maximum_host_weight_L1": 1.5348961319149206,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 291.3409090909091,
+      "maximum_coordinate_error_mm": 5.366723465361302e-16,
+      "maximum_host_weight_L1": 1.9074634979685086,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 291.5909090909091,
+      "maximum_coordinate_error_mm": 1.0381193214500113e-14,
+      "maximum_host_weight_L1": 1.9315090259235517,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 291.8409090909091,
+      "maximum_coordinate_error_mm": 1.239093061081664e-15,
+      "maximum_host_weight_L1": 1.865542843148743,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 292.0909090909091,
+      "maximum_coordinate_error_mm": 5.570642638040349e-16,
+      "maximum_host_weight_L1": 2.032557265250901,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 292.3409090909091,
+      "maximum_coordinate_error_mm": 3.380117723505179e-16,
+      "maximum_host_weight_L1": 1.4981199672595036,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 292.5909090909091,
+      "maximum_coordinate_error_mm": 6.4631509840796935e-16,
+      "maximum_host_weight_L1": 1.8446163351573392,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 292.8409090909091,
+      "maximum_coordinate_error_mm": 7.04448280408658e-16,
+      "maximum_host_weight_L1": 2.0188953931606695,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 293.0909090909091,
+      "maximum_coordinate_error_mm": 7.941936084293509e-15,
+      "maximum_host_weight_L1": 1.8846662487445058,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 293.3409090909091,
+      "maximum_coordinate_error_mm": 5.748125916693153e-15,
+      "maximum_host_weight_L1": 1.873810934877648,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 293.5909090909091,
+      "maximum_coordinate_error_mm": 4.642337551016349e-16,
+      "maximum_host_weight_L1": 1.1495051649851753,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 293.8409090909091,
+      "maximum_coordinate_error_mm": 8.72205471769747e-16,
+      "maximum_host_weight_L1": 1.8260690592039892,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 294.0909090909091,
+      "maximum_coordinate_error_mm": 5.813583984406762e-16,
+      "maximum_host_weight_L1": 1.9591973308659185,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 294.3409090909091,
+      "maximum_coordinate_error_mm": 8.555665875217809e-16,
+      "maximum_host_weight_L1": 1.8460638937422897,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 294.5909090909091,
+      "maximum_coordinate_error_mm": 5.176782076117231e-16,
+      "maximum_host_weight_L1": 1.8556803191773954,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 294.8409090909091,
+      "maximum_coordinate_error_mm": 4.0924031293467657e-16,
+      "maximum_host_weight_L1": 1.7237180105226426,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 295.0909090909091,
+      "maximum_coordinate_error_mm": 5.843758058867266e-16,
+      "maximum_host_weight_L1": 2.0300977750772775,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 295.3409090909091,
+      "maximum_coordinate_error_mm": 9.801290068199086e-16,
+      "maximum_host_weight_L1": 1.8324505091489436,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 295.5909090909091,
+      "maximum_coordinate_error_mm": 6.891051812316936e-16,
+      "maximum_host_weight_L1": 1.828193535349097,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 295.8409090909091,
+      "maximum_coordinate_error_mm": 9.258369338577673e-16,
+      "maximum_host_weight_L1": 1.901471284315602,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 296.0909090909091,
+      "maximum_coordinate_error_mm": 6.193230727733038e-16,
+      "maximum_host_weight_L1": 1.9509640495995029,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 296.3409090909091,
+      "maximum_coordinate_error_mm": 8.363081855882205e-16,
+      "maximum_host_weight_L1": 1.9344405634998492,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 296.5909090909091,
+      "maximum_coordinate_error_mm": 7.837010606297313e-16,
+      "maximum_host_weight_L1": 1.540330321138331,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 296.8409090909091,
+      "maximum_coordinate_error_mm": 1.0105272754696428e-15,
+      "maximum_host_weight_L1": 1.9630814199232653,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 297.0909090909091,
+      "maximum_coordinate_error_mm": 1.148349131765952e-15,
+      "maximum_host_weight_L1": 2.070072010875142,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 297.3409090909091,
+      "maximum_coordinate_error_mm": 1.3056324957547245e-15,
+      "maximum_host_weight_L1": 1.8666226382511868,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 297.5909090909091,
+      "maximum_coordinate_error_mm": 5.896063463462555e-16,
+      "maximum_host_weight_L1": 1.938510497228878,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 297.8409090909091,
+      "maximum_coordinate_error_mm": 4.3301856422436e-16,
+      "maximum_host_weight_L1": 1.8110119393004183,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 298.0909090909091,
+      "maximum_coordinate_error_mm": 4.558874617401513e-15,
+      "maximum_host_weight_L1": 2.1583456145747624,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 298.3409090909091,
+      "maximum_coordinate_error_mm": 9.522062221355082e-16,
+      "maximum_host_weight_L1": 1.7205549512695524,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 298.5909090909091,
+      "maximum_coordinate_error_mm": 1.3146592437997668e-15,
+      "maximum_host_weight_L1": 1.9685586805982394,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 298.8409090909091,
+      "maximum_coordinate_error_mm": 3.737048398535399e-15,
+      "maximum_host_weight_L1": 2.095583567898567,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 299.0909090909091,
+      "maximum_coordinate_error_mm": 8.73826780539615e-16,
+      "maximum_host_weight_L1": 1.918481240111462,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 299.3409090909091,
+      "maximum_coordinate_error_mm": 5.236224421722121e-16,
+      "maximum_host_weight_L1": 2.1536601970613822,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 299.5909090909091,
+      "maximum_coordinate_error_mm": 6.114705432679566e-16,
+      "maximum_host_weight_L1": 2.3471354708761893,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 299.8409090909091,
+      "maximum_coordinate_error_mm": 9.479922844614865e-15,
+      "maximum_host_weight_L1": 2.4730704012874285,
+      "maximum_host_count": 16,
+      "new_node_count": 10
+    },
+    {
+      "t_s": 300.12500000000006,
+      "maximum_coordinate_error_mm": 3.3893075968819176e-16,
+      "maximum_host_weight_L1": 1.1462254352247887,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 318.125,
+      "maximum_coordinate_error_mm": 5.4516775310051586e-15,
+      "maximum_host_weight_L1": 3.793604571509854,
+      "maximum_host_count": 16,
+      "new_node_count": 16
+    },
+    {
+      "t_s": 318.375,
+      "maximum_coordinate_error_mm": 7.67563665259474e-16,
+      "maximum_host_weight_L1": 2.4916164998876633,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 318.625,
+      "maximum_coordinate_error_mm": 2.939237523306456e-15,
+      "maximum_host_weight_L1": 1.9412418331447712,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 318.875,
+      "maximum_coordinate_error_mm": 4.654788444114582e-16,
+      "maximum_host_weight_L1": 2.0164232742923316,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 319.125,
+      "maximum_coordinate_error_mm": 4.352331534899325e-16,
+      "maximum_host_weight_L1": 2.0709410128163452,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 319.375,
+      "maximum_coordinate_error_mm": 7.63339904273535e-15,
+      "maximum_host_weight_L1": 2.015579529883376,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 319.625,
+      "maximum_coordinate_error_mm": 3.6705340818368636e-15,
+      "maximum_host_weight_L1": 1.9043457480318944,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 319.875,
+      "maximum_coordinate_error_mm": 9.205898273700102e-16,
+      "maximum_host_weight_L1": 2.065521072649932,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 320.125,
+      "maximum_coordinate_error_mm": 4.925200163784574e-16,
+      "maximum_host_weight_L1": 1.889615998865498,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 320.375,
+      "maximum_coordinate_error_mm": 7.849545875967511e-16,
+      "maximum_host_weight_L1": 2.0447084913886493,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 320.625,
+      "maximum_coordinate_error_mm": 9.799436412664545e-16,
+      "maximum_host_weight_L1": 1.5252588544699701,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 320.875,
+      "maximum_coordinate_error_mm": 1.105780167452697e-15,
+      "maximum_host_weight_L1": 1.8576907121926733,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 321.125,
+      "maximum_coordinate_error_mm": 8.742491829521127e-16,
+      "maximum_host_weight_L1": 2.010756965449877,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 321.375,
+      "maximum_coordinate_error_mm": 7.432662622697689e-16,
+      "maximum_host_weight_L1": 1.8700410107620495,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 321.625,
+      "maximum_coordinate_error_mm": 5.837135208365235e-16,
+      "maximum_host_weight_L1": 1.768508480267412,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 321.875,
+      "maximum_coordinate_error_mm": 8.863199880208202e-16,
+      "maximum_host_weight_L1": 1.500452861433743,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 322.125,
+      "maximum_coordinate_error_mm": 9.955113379046863e-16,
+      "maximum_host_weight_L1": 2.0889033169127917,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 322.375,
+      "maximum_coordinate_error_mm": 1.0836375482307183e-15,
+      "maximum_host_weight_L1": 1.7245468247064375,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 322.625,
+      "maximum_coordinate_error_mm": 3.110360901889459e-15,
+      "maximum_host_weight_L1": 1.8585383167204423,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 322.875,
+      "maximum_coordinate_error_mm": 8.372173904533617e-16,
+      "maximum_host_weight_L1": 2.0796238313181417,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 323.125,
+      "maximum_coordinate_error_mm": 1.048950716873505e-15,
+      "maximum_host_weight_L1": 1.8142240484279384,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 323.375,
+      "maximum_coordinate_error_mm": 1.4522169439150397e-15,
+      "maximum_host_weight_L1": 1.7428747460783236,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 323.625,
+      "maximum_coordinate_error_mm": 7.811597106451619e-16,
+      "maximum_host_weight_L1": 1.607852447221945,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 323.875,
+      "maximum_coordinate_error_mm": 7.667785955653541e-16,
+      "maximum_host_weight_L1": 1.8473192924996384,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 324.125,
+      "maximum_coordinate_error_mm": 5.673306056076397e-16,
+      "maximum_host_weight_L1": 1.9445768149773817,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 324.375,
+      "maximum_coordinate_error_mm": 5.035454472379616e-15,
+      "maximum_host_weight_L1": 1.8290477978604154,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 324.625,
+      "maximum_coordinate_error_mm": 1.6935574150976747e-15,
+      "maximum_host_weight_L1": 1.6775718708457608,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 324.875,
+      "maximum_coordinate_error_mm": 1.0594085811513926e-15,
+      "maximum_host_weight_L1": 1.7551993706671265,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 325.125,
+      "maximum_coordinate_error_mm": 5.385818379794182e-16,
+      "maximum_host_weight_L1": 1.8956852522340455,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 325.375,
+      "maximum_coordinate_error_mm": 5.331520728145706e-16,
+      "maximum_host_weight_L1": 2.1176259126322106,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 325.625,
+      "maximum_coordinate_error_mm": 1.0632127504964993e-15,
+      "maximum_host_weight_L1": 1.7925712648858156,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 325.875,
+      "maximum_coordinate_error_mm": 7.578084418693342e-16,
+      "maximum_host_weight_L1": 1.8987920145350394,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 326.125,
+      "maximum_coordinate_error_mm": 8.387178309438218e-16,
+      "maximum_host_weight_L1": 1.7040699710106875,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 326.375,
+      "maximum_coordinate_error_mm": 4.5017244463479054e-15,
+      "maximum_host_weight_L1": 2.031309984670405,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 326.625,
+      "maximum_coordinate_error_mm": 8.124939430539071e-16,
+      "maximum_host_weight_L1": 2.071933939486246,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 326.875,
+      "maximum_coordinate_error_mm": 3.1592966626431673e-15,
+      "maximum_host_weight_L1": 2.023618893065769,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 327.125,
+      "maximum_coordinate_error_mm": 9.285917679762577e-16,
+      "maximum_host_weight_L1": 1.8444978469918516,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 327.375,
+      "maximum_coordinate_error_mm": 1.1812569290664243e-15,
+      "maximum_host_weight_L1": 1.7882340608742173,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 327.625,
+      "maximum_coordinate_error_mm": 8.121333699299128e-16,
+      "maximum_host_weight_L1": 1.8499440101171132,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 327.875,
+      "maximum_coordinate_error_mm": 6.886701673573427e-16,
+      "maximum_host_weight_L1": 1.9135623057225801,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 328.125,
+      "maximum_coordinate_error_mm": 5.813490958811682e-16,
+      "maximum_host_weight_L1": 1.9138668184333762,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 328.375,
+      "maximum_coordinate_error_mm": 5.371212008732702e-16,
+      "maximum_host_weight_L1": 1.7703388921886574,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 328.625,
+      "maximum_coordinate_error_mm": 1.0371232426814944e-15,
+      "maximum_host_weight_L1": 2.550171262318936,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 328.875,
+      "maximum_coordinate_error_mm": 2.1204408042125528e-15,
+      "maximum_host_weight_L1": 1.5753011511380726,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 347.15909090909093,
+      "maximum_coordinate_error_mm": 1.3026577744414129e-15,
+      "maximum_host_weight_L1": 3.896634137366445,
+      "maximum_host_count": 32,
+      "new_node_count": 21
+    },
+    {
+      "t_s": 347.40909090909093,
+      "maximum_coordinate_error_mm": 7.272814532088578e-16,
+      "maximum_host_weight_L1": 1.5284093711146394,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 347.65909090909093,
+      "maximum_coordinate_error_mm": 6.447418651681725e-15,
+      "maximum_host_weight_L1": 2.0602135288137413,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 347.90909090909093,
+      "maximum_coordinate_error_mm": 6.491938686363233e-16,
+      "maximum_host_weight_L1": 1.8668946534438475,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 348.15909090909093,
+      "maximum_coordinate_error_mm": 9.428881295296308e-16,
+      "maximum_host_weight_L1": 2.156884071688368,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 348.40909090909093,
+      "maximum_coordinate_error_mm": 1.5368991047502878e-15,
+      "maximum_host_weight_L1": 1.8684563660598335,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 348.65909090909093,
+      "maximum_coordinate_error_mm": 9.199000035752521e-16,
+      "maximum_host_weight_L1": 1.8561234516579326,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 348.90909090909093,
+      "maximum_coordinate_error_mm": 4.535756150665053e-16,
+      "maximum_host_weight_L1": 1.8011142775367044,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 349.15909090909093,
+      "maximum_coordinate_error_mm": 1.0939651891422467e-15,
+      "maximum_host_weight_L1": 1.8585737560187925,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 349.40909090909093,
+      "maximum_coordinate_error_mm": 5.5525685311917145e-16,
+      "maximum_host_weight_L1": 1.9316884995224515,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 349.65909090909093,
+      "maximum_coordinate_error_mm": 1.9878993147473724e-15,
+      "maximum_host_weight_L1": 1.9219725020003353,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 349.90909090909093,
+      "maximum_coordinate_error_mm": 8.945871649476645e-16,
+      "maximum_host_weight_L1": 2.2696692572249484,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 350.15909090909093,
+      "maximum_coordinate_error_mm": 8.117373966808478e-16,
+      "maximum_host_weight_L1": 1.8773397285158355,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 350.40909090909093,
+      "maximum_coordinate_error_mm": 1.1224858635093384e-15,
+      "maximum_host_weight_L1": 1.68697398138475,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 350.65909090909093,
+      "maximum_coordinate_error_mm": 1.2459367914530836e-15,
+      "maximum_host_weight_L1": 1.880554206999828,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 350.90909090909093,
+      "maximum_coordinate_error_mm": 3.5983214349158595e-15,
+      "maximum_host_weight_L1": 1.88757407829182,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 351.15909090909093,
+      "maximum_coordinate_error_mm": 1.0418717596000073e-15,
+      "maximum_host_weight_L1": 1.810050786685322,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 351.40909090909093,
+      "maximum_coordinate_error_mm": 3.190853172144772e-16,
+      "maximum_host_weight_L1": 1.9417142494318334,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 351.65909090909093,
+      "maximum_coordinate_error_mm": 5.119821348015635e-16,
+      "maximum_host_weight_L1": 1.8073976371239104,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 351.90909090909093,
+      "maximum_coordinate_error_mm": 3.107630894019985e-15,
+      "maximum_host_weight_L1": 1.82954143411325,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 352.15909090909093,
+      "maximum_coordinate_error_mm": 8.940427982796887e-15,
+      "maximum_host_weight_L1": 1.8313710860168855,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 352.40909090909093,
+      "maximum_coordinate_error_mm": 6.525116923478197e-16,
+      "maximum_host_weight_L1": 1.9649131287376032,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 352.65909090909093,
+      "maximum_coordinate_error_mm": 4.989181971641231e-16,
+      "maximum_host_weight_L1": 1.1378670747186526,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 352.90909090909093,
+      "maximum_coordinate_error_mm": 1.8777941911508184e-15,
+      "maximum_host_weight_L1": 2.0622743559479804,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 353.15909090909093,
+      "maximum_coordinate_error_mm": 1.0850900677357282e-15,
+      "maximum_host_weight_L1": 1.7284829333467342,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 353.40909090909093,
+      "maximum_coordinate_error_mm": 1.1807242898920373e-15,
+      "maximum_host_weight_L1": 1.89864839887042,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 353.65909090909093,
+      "maximum_coordinate_error_mm": 7.389324409986747e-16,
+      "maximum_host_weight_L1": 1.8808755286222527,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 353.90909090909093,
+      "maximum_coordinate_error_mm": 1.2596500037886416e-15,
+      "maximum_host_weight_L1": 1.872362645080636,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 354.15909090909093,
+      "maximum_coordinate_error_mm": 7.472559252262539e-16,
+      "maximum_host_weight_L1": 1.9211070004597341,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 354.40909090909093,
+      "maximum_coordinate_error_mm": 4.1295012056410414e-16,
+      "maximum_host_weight_L1": 1.708625896982411,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 354.65909090909093,
+      "maximum_coordinate_error_mm": 1.3623725166210295e-15,
+      "maximum_host_weight_L1": 1.807921031530199,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 354.90909090909093,
+      "maximum_coordinate_error_mm": 6.3792965480834884e-15,
+      "maximum_host_weight_L1": 1.930072484804,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 355.15909090909093,
+      "maximum_coordinate_error_mm": 6.722939400803388e-16,
+      "maximum_host_weight_L1": 1.8414592342775251,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 355.40909090909093,
+      "maximum_coordinate_error_mm": 9.599524397724179e-16,
+      "maximum_host_weight_L1": 1.7917572798744983,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 355.65909090909093,
+      "maximum_coordinate_error_mm": 5.17463241531798e-16,
+      "maximum_host_weight_L1": 1.8128261242027581,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 355.90909090909093,
+      "maximum_coordinate_error_mm": 7.661857373992887e-16,
+      "maximum_host_weight_L1": 1.824418822243751,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 356.15909090909093,
+      "maximum_coordinate_error_mm": 8.141693992491872e-16,
+      "maximum_host_weight_L1": 1.945584315638748,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 356.40909090909093,
+      "maximum_coordinate_error_mm": 6.726527909635084e-16,
+      "maximum_host_weight_L1": 1.7142529516940035,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 356.65909090909093,
+      "maximum_coordinate_error_mm": 9.123885784230872e-16,
+      "maximum_host_weight_L1": 2.282980976026461,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 356.90909090909093,
+      "maximum_coordinate_error_mm": 1.262535644404275e-15,
+      "maximum_host_weight_L1": 1.586123570634703,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 357.15909090909093,
+      "maximum_coordinate_error_mm": 3.6901570243489165e-15,
+      "maximum_host_weight_L1": 2.209376178552755,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 357.40909090909093,
+      "maximum_coordinate_error_mm": 6.319422857651277e-16,
+      "maximum_host_weight_L1": 1.2237311888795743,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 357.65909090909093,
+      "maximum_coordinate_error_mm": 1.468837932156106e-15,
+      "maximum_host_weight_L1": 2.755729274626259,
+      "maximum_host_count": 16,
+      "new_node_count": 12
+    },
+    {
+      "t_s": 357.94318181818187,
+      "maximum_coordinate_error_mm": 1.1569702222771717e-16,
+      "maximum_host_weight_L1": 1.0174689014744864,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 375.9431818181818,
+      "maximum_coordinate_error_mm": 1.3528020702733867e-15,
+      "maximum_host_weight_L1": 3.907896832911506,
+      "maximum_host_count": 16,
+      "new_node_count": 16
+    },
+    {
+      "t_s": 376.1931818181818,
+      "maximum_coordinate_error_mm": 7.756872094863248e-16,
+      "maximum_host_weight_L1": 2.2199893895933607,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 376.4431818181818,
+      "maximum_coordinate_error_mm": 2.3110644479798654e-15,
+      "maximum_host_weight_L1": 1.9540106812253542,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 376.6931818181818,
+      "maximum_coordinate_error_mm": 9.608210000306255e-16,
+      "maximum_host_weight_L1": 2.0536889686188546,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 376.9431818181818,
+      "maximum_coordinate_error_mm": 5.815806769166425e-16,
+      "maximum_host_weight_L1": 1.905488519204236,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 377.1931818181818,
+      "maximum_coordinate_error_mm": 7.495406294028971e-16,
+      "maximum_host_weight_L1": 1.9510498833935093,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 377.4431818181818,
+      "maximum_coordinate_error_mm": 8.054259141885184e-16,
+      "maximum_host_weight_L1": 1.8192427414885346,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 377.6931818181818,
+      "maximum_coordinate_error_mm": 6.054120405419755e-16,
+      "maximum_host_weight_L1": 1.8361845943757678,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 377.9431818181818,
+      "maximum_coordinate_error_mm": 4.275716039265155e-15,
+      "maximum_host_weight_L1": 1.832285946387116,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 378.1931818181818,
+      "maximum_coordinate_error_mm": 8.313654221636958e-16,
+      "maximum_host_weight_L1": 1.8817656997043497,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 378.4431818181818,
+      "maximum_coordinate_error_mm": 3.524069304050212e-16,
+      "maximum_host_weight_L1": 1.4893797591987563,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 378.6931818181818,
+      "maximum_coordinate_error_mm": 2.4356507224005967e-15,
+      "maximum_host_weight_L1": 2.2179444267097175,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 378.9431818181818,
+      "maximum_coordinate_error_mm": 1.3887184972514042e-15,
+      "maximum_host_weight_L1": 1.7662689248963446,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 379.1931818181818,
+      "maximum_coordinate_error_mm": 6.43560215561446e-16,
+      "maximum_host_weight_L1": 1.8500932772722676,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 379.4431818181818,
+      "maximum_coordinate_error_mm": 9.571001125223746e-16,
+      "maximum_host_weight_L1": 1.816857905887273,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 379.6931818181818,
+      "maximum_coordinate_error_mm": 4.781716231815962e-16,
+      "maximum_host_weight_L1": 1.1344847898166035,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 379.9431818181818,
+      "maximum_coordinate_error_mm": 3.1072380525758047e-15,
+      "maximum_host_weight_L1": 1.8524471581579547,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 380.1931818181818,
+      "maximum_coordinate_error_mm": 5.091067633279127e-16,
+      "maximum_host_weight_L1": 1.883827768010199,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 380.4431818181818,
+      "maximum_coordinate_error_mm": 9.553242208237031e-15,
+      "maximum_host_weight_L1": 1.808674745867751,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 380.6931818181818,
+      "maximum_coordinate_error_mm": 1.6506934570411584e-15,
+      "maximum_host_weight_L1": 1.9079463931769016,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 380.9431818181818,
+      "maximum_coordinate_error_mm": 3.4343043298147737e-15,
+      "maximum_host_weight_L1": 1.814515733736995,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 381.1931818181818,
+      "maximum_coordinate_error_mm": 5.53569069543638e-16,
+      "maximum_host_weight_L1": 2.022516652994923,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 381.4431818181818,
+      "maximum_coordinate_error_mm": 1.2191386036372893e-15,
+      "maximum_host_weight_L1": 1.6583957270064906,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 381.6931818181818,
+      "maximum_coordinate_error_mm": 8.32211730664758e-16,
+      "maximum_host_weight_L1": 1.816090945913702,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 381.9431818181818,
+      "maximum_coordinate_error_mm": 1.0073945320946294e-15,
+      "maximum_host_weight_L1": 2.072406443458189,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 382.1931818181818,
+      "maximum_coordinate_error_mm": 2.053900693238889e-15,
+      "maximum_host_weight_L1": 1.8897514724873274,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 382.4431818181818,
+      "maximum_coordinate_error_mm": 3.5990180803807553e-16,
+      "maximum_host_weight_L1": 1.8198291741796981,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 382.6931818181818,
+      "maximum_coordinate_error_mm": 8.450954332152184e-16,
+      "maximum_host_weight_L1": 1.8190112523005828,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 382.9431818181818,
+      "maximum_coordinate_error_mm": 1.062937447425307e-15,
+      "maximum_host_weight_L1": 1.968196087288169,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 383.1931818181818,
+      "maximum_coordinate_error_mm": 1.9938544316168484e-15,
+      "maximum_host_weight_L1": 1.7588098705888096,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 383.4431818181818,
+      "maximum_coordinate_error_mm": 1.1494050941346487e-15,
+      "maximum_host_weight_L1": 1.9193202550543407,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 383.6931818181818,
+      "maximum_coordinate_error_mm": 6.329789709015574e-15,
+      "maximum_host_weight_L1": 1.793256349572519,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 383.9431818181818,
+      "maximum_coordinate_error_mm": 4.994233171519372e-16,
+      "maximum_host_weight_L1": 1.9028155805378564,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 384.1931818181818,
+      "maximum_coordinate_error_mm": 1.071168760346738e-15,
+      "maximum_host_weight_L1": 1.9875477397836816,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 384.4431818181818,
+      "maximum_coordinate_error_mm": 9.15547025372327e-16,
+      "maximum_host_weight_L1": 1.9552479114213805,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 384.6931818181818,
+      "maximum_coordinate_error_mm": 8.370843049777239e-16,
+      "maximum_host_weight_L1": 2.0210636775794066,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 384.9431818181818,
+      "maximum_coordinate_error_mm": 2.828532410917154e-15,
+      "maximum_host_weight_L1": 1.9261071913484251,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 385.1931818181818,
+      "maximum_coordinate_error_mm": 6.109932071802754e-16,
+      "maximum_host_weight_L1": 1.8272224074730603,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 385.4431818181818,
+      "maximum_coordinate_error_mm": 1.1225462464742272e-15,
+      "maximum_host_weight_L1": 1.9664376323471633,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 385.6931818181818,
+      "maximum_coordinate_error_mm": 1.196105835555536e-15,
+      "maximum_host_weight_L1": 1.7305268923787331,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 385.9431818181818,
+      "maximum_coordinate_error_mm": 9.849975843049927e-16,
+      "maximum_host_weight_L1": 2.0428290962080986,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 386.1931818181818,
+      "maximum_coordinate_error_mm": 5.221042229034652e-15,
+      "maximum_host_weight_L1": 1.8716979045427133,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 386.4431818181818,
+      "maximum_coordinate_error_mm": 1.3819083412229248e-15,
+      "maximum_host_weight_L1": 2.581804139243027,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 386.6931818181818,
+      "maximum_coordinate_error_mm": 6.753336844630473e-16,
+      "maximum_host_weight_L1": 1.6472010724083856,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 404.97727272727275,
+      "maximum_coordinate_error_mm": 2.1933804695880944e-15,
+      "maximum_host_weight_L1": 3.857719002369322,
+      "maximum_host_count": 32,
+      "new_node_count": 21
+    },
+    {
+      "t_s": 405.22727272727275,
+      "maximum_coordinate_error_mm": 8.752095668549104e-16,
+      "maximum_host_weight_L1": 1.7468682741917119,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 405.47727272727275,
+      "maximum_coordinate_error_mm": 9.318840632644687e-16,
+      "maximum_host_weight_L1": 2.1553171092554075,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 405.72727272727275,
+      "maximum_coordinate_error_mm": 1.0592244595993625e-15,
+      "maximum_host_weight_L1": 1.698568665373279,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 405.97727272727275,
+      "maximum_coordinate_error_mm": 4.653304288141433e-15,
+      "maximum_host_weight_L1": 2.0078491632026108,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 406.22727272727275,
+      "maximum_coordinate_error_mm": 7.331415599646753e-16,
+      "maximum_host_weight_L1": 1.7743598990351064,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 406.47727272727275,
+      "maximum_coordinate_error_mm": 8.614521080989896e-16,
+      "maximum_host_weight_L1": 1.8699808511797726,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 406.72727272727275,
+      "maximum_coordinate_error_mm": 9.321055881940456e-16,
+      "maximum_host_weight_L1": 1.8054087542894353,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 406.97727272727275,
+      "maximum_coordinate_error_mm": 6.5965104065070315e-16,
+      "maximum_host_weight_L1": 1.9195502273464582,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 407.22727272727275,
+      "maximum_coordinate_error_mm": 7.142395324427422e-16,
+      "maximum_host_weight_L1": 1.9642446792809016,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 407.47727272727275,
+      "maximum_coordinate_error_mm": 7.169897494051081e-16,
+      "maximum_host_weight_L1": 1.8301941161714432,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 407.72727272727275,
+      "maximum_coordinate_error_mm": 8.707745901286549e-16,
+      "maximum_host_weight_L1": 1.7492668896463248,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 407.97727272727275,
+      "maximum_coordinate_error_mm": 3.7991766237098436e-16,
+      "maximum_host_weight_L1": 1.5441520334892749,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 408.22727272727275,
+      "maximum_coordinate_error_mm": 1.0082867209266984e-15,
+      "maximum_host_weight_L1": 1.879154892242164,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 408.47727272727275,
+      "maximum_coordinate_error_mm": 8.903109722629312e-16,
+      "maximum_host_weight_L1": 1.9624429235542205,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 408.72727272727275,
+      "maximum_coordinate_error_mm": 7.104218328859191e-16,
+      "maximum_host_weight_L1": 1.9225446155048789,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 408.97727272727275,
+      "maximum_coordinate_error_mm": 7.832608483589622e-16,
+      "maximum_host_weight_L1": 2.117126029776866,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 409.22727272727275,
+      "maximum_coordinate_error_mm": 3.0047404831156126e-16,
+      "maximum_host_weight_L1": 1.0948102909340287,
+      "maximum_host_count": 16,
+      "new_node_count": 1
+    },
+    {
+      "t_s": 409.47727272727275,
+      "maximum_coordinate_error_mm": 1.0880549080164596e-15,
+      "maximum_host_weight_L1": 2.045970043659048,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 409.72727272727275,
+      "maximum_coordinate_error_mm": 9.202518455526773e-16,
+      "maximum_host_weight_L1": 1.6367338573075731,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 409.97727272727275,
+      "maximum_coordinate_error_mm": 9.849549674854552e-16,
+      "maximum_host_weight_L1": 1.816320905898698,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 410.22727272727275,
+      "maximum_coordinate_error_mm": 7.207267487949831e-16,
+      "maximum_host_weight_L1": 1.8609067169356668,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 410.47727272727275,
+      "maximum_coordinate_error_mm": 6.084906627777625e-16,
+      "maximum_host_weight_L1": 1.9168114313536782,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 410.72727272727275,
+      "maximum_coordinate_error_mm": 8.13343876290022e-16,
+      "maximum_host_weight_L1": 1.8700389817126237,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 410.97727272727275,
+      "maximum_coordinate_error_mm": 2.621007649825833e-15,
+      "maximum_host_weight_L1": 1.7771361101888548,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 411.22727272727275,
+      "maximum_coordinate_error_mm": 1.2167512085135154e-15,
+      "maximum_host_weight_L1": 1.858706388840704,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 411.47727272727275,
+      "maximum_coordinate_error_mm": 6.787289271400379e-16,
+      "maximum_host_weight_L1": 1.8266330618974707,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 411.72727272727275,
+      "maximum_coordinate_error_mm": 9.013156719661017e-16,
+      "maximum_host_weight_L1": 1.869524070473753,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 411.97727272727275,
+      "maximum_coordinate_error_mm": 4.216167051080157e-16,
+      "maximum_host_weight_L1": 1.8163143883043917,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 412.22727272727275,
+      "maximum_coordinate_error_mm": 4.214482422517687e-16,
+      "maximum_host_weight_L1": 1.7215768730289742,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 412.47727272727275,
+      "maximum_coordinate_error_mm": 1.030325934507073e-15,
+      "maximum_host_weight_L1": 1.9182806205354739,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 412.72727272727275,
+      "maximum_coordinate_error_mm": 8.710696295851256e-16,
+      "maximum_host_weight_L1": 1.9192822957797522,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 412.97727272727275,
+      "maximum_coordinate_error_mm": 9.77332066612332e-16,
+      "maximum_host_weight_L1": 1.9170862578140357,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 413.22727272727275,
+      "maximum_coordinate_error_mm": 2.5055570461937613e-15,
+      "maximum_host_weight_L1": 1.7956421944375691,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 413.47727272727275,
+      "maximum_coordinate_error_mm": 9.854987186571404e-16,
+      "maximum_host_weight_L1": 1.5453661562188712,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 413.72727272727275,
+      "maximum_coordinate_error_mm": 9.835807604330639e-16,
+      "maximum_host_weight_L1": 2.1470058735566697,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 413.97727272727275,
+      "maximum_coordinate_error_mm": 6.00575036999882e-16,
+      "maximum_host_weight_L1": 2.059908045393173,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 414.22727272727275,
+      "maximum_coordinate_error_mm": 5.798834102102644e-15,
+      "maximum_host_weight_L1": 1.9903820480015921,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 414.47727272727275,
+      "maximum_coordinate_error_mm": 8.433473162312146e-16,
+      "maximum_host_weight_L1": 1.9899794632078878,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 414.72727272727275,
+      "maximum_coordinate_error_mm": 7.049074992842438e-16,
+      "maximum_host_weight_L1": 1.9669607681959056,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 414.97727272727275,
+      "maximum_coordinate_error_mm": 4.956199255110119e-15,
+      "maximum_host_weight_L1": 1.86127362456887,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 415.22727272727275,
+      "maximum_coordinate_error_mm": 2.4163310889460015e-16,
+      "maximum_host_weight_L1": 1.0999581624534063,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 415.47727272727275,
+      "maximum_coordinate_error_mm": 1.838840645666151e-15,
+      "maximum_host_weight_L1": 2.6814883349472907,
+      "maximum_host_count": 16,
+      "new_node_count": 11
+    },
+    {
+      "t_s": 415.7613636363637,
+      "maximum_coordinate_error_mm": 5.476325333127945e-16,
+      "maximum_host_weight_L1": 1.2500608375824227,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 433.7613636363636,
+      "maximum_coordinate_error_mm": 5.499247897656616e-15,
+      "maximum_host_weight_L1": 3.8965644012167453,
+      "maximum_host_count": 32,
+      "new_node_count": 16
+    },
+    {
+      "t_s": 434.0113636363636,
+      "maximum_coordinate_error_mm": 8.485892713059468e-16,
+      "maximum_host_weight_L1": 2.530938540916335,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 434.2613636363636,
+      "maximum_coordinate_error_mm": 1.2855551867030336e-15,
+      "maximum_host_weight_L1": 1.9380862388400102,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 434.5113636363636,
+      "maximum_coordinate_error_mm": 6.884818628380895e-16,
+      "maximum_host_weight_L1": 2.0077999232738843,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 434.7613636363636,
+      "maximum_coordinate_error_mm": 6.052205396813583e-16,
+      "maximum_host_weight_L1": 1.8386080098443551,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 435.0113636363636,
+      "maximum_coordinate_error_mm": 5.406699790789988e-16,
+      "maximum_host_weight_L1": 1.907709529490947,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 435.2613636363636,
+      "maximum_coordinate_error_mm": 1.2693245578327593e-15,
+      "maximum_host_weight_L1": 1.8383446392986773,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 435.5113636363636,
+      "maximum_coordinate_error_mm": 7.673814106969602e-16,
+      "maximum_host_weight_L1": 2.0322365847203043,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 435.7613636363636,
+      "maximum_coordinate_error_mm": 6.511651737019985e-16,
+      "maximum_host_weight_L1": 1.8312518836502134,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 436.0113636363636,
+      "maximum_coordinate_error_mm": 2.5521201238495577e-15,
+      "maximum_host_weight_L1": 1.9308011894182795,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 436.2613636363636,
+      "maximum_coordinate_error_mm": 3.254254053934413e-16,
+      "maximum_host_weight_L1": 1.4329885891656806,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 436.5113636363636,
+      "maximum_coordinate_error_mm": 1.4957815755352395e-15,
+      "maximum_host_weight_L1": 1.8626473214047037,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 436.7613636363636,
+      "maximum_coordinate_error_mm": 3.0264085457154847e-15,
+      "maximum_host_weight_L1": 1.9256922297490373,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 437.0113636363636,
+      "maximum_coordinate_error_mm": 2.1436472864583286e-15,
+      "maximum_host_weight_L1": 1.8758347375866766,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 437.2613636363636,
+      "maximum_coordinate_error_mm": 4.677645676974873e-16,
+      "maximum_host_weight_L1": 2.0029108819365575,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 437.5113636363636,
+      "maximum_coordinate_error_mm": 5.156154363696625e-16,
+      "maximum_host_weight_L1": 1.523919295483961,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 437.7613636363636,
+      "maximum_coordinate_error_mm": 6.63414825490691e-16,
+      "maximum_host_weight_L1": 1.8321065872880287,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 438.0113636363636,
+      "maximum_coordinate_error_mm": 1.248586895887002e-15,
+      "maximum_host_weight_L1": 2.0808163323845923,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 438.2613636363636,
+      "maximum_coordinate_error_mm": 8.345489979673999e-16,
+      "maximum_host_weight_L1": 1.8683127490399305,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 438.5113636363636,
+      "maximum_coordinate_error_mm": 5.809183742130582e-16,
+      "maximum_host_weight_L1": 1.9393371926061818,
+      "maximum_host_count": 16,
+      "new_node_count": 5
+    },
+    {
+      "t_s": 438.7613636363636,
+      "maximum_coordinate_error_mm": 8.159037513095958e-16,
+      "maximum_host_weight_L1": 1.7921631157039688,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 439.0113636363636,
+      "maximum_coordinate_error_mm": 1.2388844548213746e-15,
+      "maximum_host_weight_L1": 1.8057285928190396,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 439.2613636363636,
+      "maximum_coordinate_error_mm": 1.039577292932728e-15,
+      "maximum_host_weight_L1": 2.021354041349393,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 439.5113636363636,
+      "maximum_coordinate_error_mm": 7.570184159876574e-16,
+      "maximum_host_weight_L1": 1.8507825120279606,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 439.7613636363636,
+      "maximum_coordinate_error_mm": 5.695969925239495e-16,
+      "maximum_host_weight_L1": 1.8100171980514017,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 440.0113636363636,
+      "maximum_coordinate_error_mm": 1.2391066209757392e-15,
+      "maximum_host_weight_L1": 1.852435793502619,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 440.2613636363636,
+      "maximum_coordinate_error_mm": 6.00643472226327e-16,
+      "maximum_host_weight_L1": 1.5706514116197137,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 440.5113636363636,
+      "maximum_coordinate_error_mm": 7.901236279488026e-16,
+      "maximum_host_weight_L1": 1.8947220498412543,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 440.7613636363636,
+      "maximum_coordinate_error_mm": 1.1514583215886981e-15,
+      "maximum_host_weight_L1": 1.9556000708661925,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 441.0113636363636,
+      "maximum_coordinate_error_mm": 7.873203592331799e-16,
+      "maximum_host_weight_L1": 1.9123483015458531,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 441.2613636363636,
+      "maximum_coordinate_error_mm": 1.3375966201059987e-15,
+      "maximum_host_weight_L1": 2.0040015957728823,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 441.5113636363636,
+      "maximum_coordinate_error_mm": 4.693316809028484e-16,
+      "maximum_host_weight_L1": 1.870317665103978,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 441.7613636363636,
+      "maximum_coordinate_error_mm": 3.7817992954459457e-16,
+      "maximum_host_weight_L1": 1.7719318329735976,
+      "maximum_host_count": 16,
+      "new_node_count": 2
+    },
+    {
+      "t_s": 442.0113636363636,
+      "maximum_coordinate_error_mm": 8.121199398159084e-16,
+      "maximum_host_weight_L1": 1.8205461734979613,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 442.2613636363636,
+      "maximum_coordinate_error_mm": 7.274292908801593e-15,
+      "maximum_host_weight_L1": 2.0812822637198254,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 442.5113636363636,
+      "maximum_coordinate_error_mm": 1.1316516176048211e-15,
+      "maximum_host_weight_L1": 1.9036657740434348,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 442.7613636363636,
+      "maximum_coordinate_error_mm": 7.2917171228346e-16,
+      "maximum_host_weight_L1": 1.9435280371565062,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 443.0113636363636,
+      "maximum_coordinate_error_mm": 3.800792736148597e-15,
+      "maximum_host_weight_L1": 1.8874177118348368,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 443.2613636363636,
+      "maximum_coordinate_error_mm": 7.371754979550476e-15,
+      "maximum_host_weight_L1": 1.923059658481298,
+      "maximum_host_count": 16,
+      "new_node_count": 6
+    },
+    {
+      "t_s": 443.5113636363636,
+      "maximum_coordinate_error_mm": 1.002816010787871e-15,
+      "maximum_host_weight_L1": 1.7126606585189725,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    },
+    {
+      "t_s": 443.7613636363636,
+      "maximum_coordinate_error_mm": 2.7971872107103686e-15,
+      "maximum_host_weight_L1": 2.1116459765405633,
+      "maximum_host_count": 16,
+      "new_node_count": 3
+    },
+    {
+      "t_s": 444.0113636363636,
+      "maximum_coordinate_error_mm": 1.4807690698750957e-15,
+      "maximum_host_weight_L1": 2.0042291482608183,
+      "maximum_host_count": 16,
+      "new_node_count": 7
+    },
+    {
+      "t_s": 444.2613636363636,
+      "maximum_coordinate_error_mm": 1.10250954219606e-15,
+      "maximum_host_weight_L1": 2.683293688342057,
+      "maximum_host_count": 16,
+      "new_node_count": 9
+    },
+    {
+      "t_s": 444.5113636363636,
+      "maximum_coordinate_error_mm": 8.736626421646768e-16,
+      "maximum_host_weight_L1": 1.6391538636253444,
+      "maximum_host_count": 16,
+      "new_node_count": 4
+    }
+  ]
+}

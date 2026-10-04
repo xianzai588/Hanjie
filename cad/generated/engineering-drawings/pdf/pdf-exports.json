@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-03",
+  "generated_at": "2026-10-04",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 8,
+  "sheet_count": 14,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -33,18 +33,48 @@
     },
     {
       "pdf": "pdf/sleeve-detail.pdf",
-      "title": "胀套—锥芯—拉杆—压环局部剖视详图",
+      "title": "固定反向锥—上退六指胀套制造详图",
       "source": "sleeve-detail.svg"
     },
     {
       "pdf": "pdf/gas-water-detail.pdf",
-      "title": "铜环分体、静态密封与独立气水路",
+      "title": "四瓣铜环、闭合密封与独立气水路",
       "source": "gas-water-detail.svg"
     },
     {
       "pdf": "pdf/workstation.pdf",
       "title": "自动焊接工作站与工装资源配置",
       "source": "workstation.svg"
+    },
+    {
+      "pdf": "pdf/following-peener.pdf",
+      "title": "随动热态轻击、前侧送丝与退位时序",
+      "source": "following-peener.svg"
+    },
+    {
+      "pdf": "pdf/copper-retreat.pdf",
+      "title": "铜瓣接缝、滑动桥及整环下密封座",
+      "source": "copper-retreat.svg"
+    },
+    {
+      "pdf": "pdf/water-route.pdf",
+      "title": "密封穿盘分配块与铜瓣运动水路",
+      "source": "water-route.svg"
+    },
+    {
+      "pdf": "pdf/carrier-detail.pdf",
+      "title": "下托承力柱、整体法兰与预紧连接",
+      "source": "carrier-detail.svg"
+    },
+    {
+      "pdf": "pdf/portal-transfer.pdf",
+      "title": "固定反锥、上止挡门架与A基准保持转运",
+      "source": "portal-transfer.svg"
+    },
+    {
+      "pdf": "pdf/datum-holder-detail.pdf",
+      "title": "A基准托环与六点正向转运详图",
+      "source": "datum-holder-detail.svg"
     }
   ]
 }

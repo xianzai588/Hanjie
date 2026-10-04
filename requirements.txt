@@ -3,6 +3,8 @@ numpy>=1.26
 numba>=0.63
 threadpoolctl>=3.0
 scipy>=1.11
+# 整件热结构计算可选的多重网格预条件器；不改变力学模型
+pyamg>=5.3
 matplotlib>=3.8
 PyYAML>=6.0
 jsonschema>=4.20

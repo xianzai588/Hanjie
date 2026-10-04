@@ -1,0 +1,20 @@
+[
+  {
+    "case": "8p-affine-h20-dt025-s05",
+    "maximum_coordinate_patch_error_mm": 1.0772079707493956,
+    "fallback_count": 7,
+    "new_node_count": 3683
+  },
+  {
+    "case": "8p-affine-pardiso-h15-dt025-s05",
+    "maximum_coordinate_patch_error_mm": 0.9595527822120337,
+    "fallback_count": 6,
+    "new_node_count": 3683
+  },
+  {
+    "case": "8p-affine-pardiso-h20-dt0125-s025",
+    "maximum_coordinate_patch_error_mm": 1.0772079707493956,
+    "fallback_count": 5,
+    "new_node_count": 3683
+  }
+]

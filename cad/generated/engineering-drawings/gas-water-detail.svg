@@ -2,55 +2,82 @@
 <style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
-<text x="50" y="68" class="title">铜环分体、静态密封与独立气水路</text>
-<text x="50" y="99" class="small">铜环两半；接料盘朝上；气水互不相通；全部工具在装配进入内腔前清洗清点</text>
+<text x="50" y="68" class="title">四瓣铜环、闭合密封与独立气水路</text>
+<text x="50" y="99" class="small">接缝2.00±0.05；上圈滑动桥；下圈独立整环座；铜瓣先径向回缩；盘固定朝上，壳体上提回收</text>
 <text x="1020" y="65" class="section">HJ-007</text>
-<circle cx="300" cy="355" r="230" fill="#d9ad83" stroke="#334155"/>
-<circle cx="300" cy="355" r="221" fill="#ffffff" stroke="#334155"/>
-<circle cx="300" cy="355" r="225" fill="none" stroke="#2563eb"/>
-<line x1="60" y1="355" x2="540" y2="355" stroke="#475569" stroke-width="2"/>
-<text x="80" y="155" class="small">俯视：分体缝0.20，两端搭接密封宽5</text>
-<text x="100" y="635" class="small">铜环 OD149.60±0.05 / ID143.60±0.05 / 高5.00±0.05</text>
-<text x="95" y="666" class="small">外缘可更换石英密封0.30厚；安装压缩0.10；最高100℃</text>
-<circle cx="510.0" cy="355.0" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="481.8653347947321" cy="460.0" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="405.0" cy="536.8653347947321" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="300.0" cy="565.0" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="195.00000000000006" cy="536.8653347947321" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="118.13466520526788" cy="460.0" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="90.0" cy="355.0" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="118.13466520526785" cy="250.00000000000006" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="194.9999999999999" cy="173.1346652052679" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="299.99999999999994" cy="145.0" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="405.0" cy="173.1346652052679" r="3" fill="#059669" stroke="#334155"/>
-<circle cx="481.86533479473206" cy="249.9999999999999" r="3" fill="#059669" stroke="#334155"/>
-<line x1="75" y1="395" x2="170" y2="465" stroke="#2563eb" stroke-width="2"/>
-<text x="75" y="488" class="small">水入口/出口 M5；Ø2水道</text>
-<line x1="450" y1="230" x2="540" y2="190" stroke="#059669" stroke-width="2"/>
-<text x="340" y="174" class="small">12×Ø1.0喷孔，等分30°</text>
-<text x="640" y="167" class="small">铜环C11000；两半以定位销Ø3、M3螺栓连盘</text>
-<text x="640" y="205" class="small">分体缝0.20；上下错层搭接5宽，防直通落屑</text>
-<text x="640" y="243" class="small">铜环z94～99；离座底面1.00，禁止顶压翼片</text>
-<text x="640" y="281" class="small">气道3×2；出口向上并朝缝下缘偏15°</text>
-<text x="640" y="319" class="small">喷孔12×Ø1.0，分配公差±0.05；不吹熔池</text>
-<text x="640" y="357" class="small">环水道Ø2.0，轴心R73.3，z96.5；最小壁0.5</text>
-<text x="640" y="395" class="small">气/水接口分别标色；0.3 MPa水路保压无泄漏</text>
-<text x="640" y="433" class="small">水0.20 L/min；入口20±5℃；出口≤35℃</text>
-<text x="640" y="471" class="small">气幕10～15 L/min；保护气8～12 L/min</text>
-<text x="640" y="509" class="small">顶罩抽吸22～28 L/min；腔内压差0～+20 Pa</text>
-<text x="640" y="547" class="small">取流量、压力、漏水、铜环回缩位信号入PLC</text>
-<text x="640" y="585" class="small">停弧冷却→密封径向回缩0.5→盘面朝上下撤</text>
-<text x="640" y="623" class="small">盘面与焊缝下方抽吸采样；不得在内腔清洗</text>
+<circle cx="275" cy="325" r="180" fill="#d9ad83" stroke="#334155"/>
+<circle cx="275" cy="325" r="172.8" fill="#ffffff" stroke="#334155"/>
+<circle cx="275" cy="325" r="181.5" fill="none" stroke="#059669"/>
+<circle cx="275" cy="325" r="176.4" fill="none" stroke="#2563eb"/>
+<line x1="80" y1="325" x2="470" y2="325" stroke="#475569" stroke-width="2"/>
+<line x1="275" y1="135" x2="275" y2="515" stroke="#475569" stroke-width="2"/>
+<text x="75" y="120" class="small">俯视：四瓣水路各独立；外圈为闭合FFKM</text>
+<text x="75" y="708" class="small">OD149.60±0.02；ID143.60±0.05</text>
+<text x="75" y="545" class="small">剖面B-B：双水道与双静密封</text>
+<circle cx="438.0" cy="325.0" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="416.1621408168635" cy="406.5" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="356.5" cy="466.1621408168635" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="275.0" cy="488.0" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="193.50000000000006" cy="466.1621408168635" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="133.8378591831365" cy="406.5" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="112.0" cy="325.0" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="133.83785918313646" cy="243.50000000000006" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="193.49999999999994" cy="183.83785918313652" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="274.99999999999994" cy="162.0" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="356.5" cy="183.83785918313652" r="3" fill="#059669" stroke="#334155"/>
+<circle cx="416.1621408168635" cy="243.49999999999994" r="3" fill="#059669" stroke="#334155"/>
+<line x1="373.99494936611666" y1="423.99494936611666" x2="352.78174593052023" y2="402.78174593052023" stroke="#dc2626" stroke-width="2"/>
+<line x1="176.00505063388334" y1="423.99494936611666" x2="197.21825406947977" y2="402.78174593052023" stroke="#dc2626" stroke-width="2"/>
+<line x1="176.00505063388334" y1="226.00505063388334" x2="197.21825406947977" y2="247.21825406947977" stroke="#dc2626" stroke-width="2"/>
+<line x1="373.99494936611666" y1="226.00505063388334" x2="352.7817459305202" y2="247.21825406947977" stroke="#dc2626" stroke-width="2"/>
+<text x="145" y="350" class="small">八路等流量并联</text>
+<text x="75" y="578" class="small">上圈封钢壳；整环下圈封盘</text>
+<text x="75" y="607" class="small">12×Ø1.0气孔，等分30°</text>
+<text x="75" y="638" class="small">圈自由内径：上145.85/下144.60±0.10</text>
+<text x="75" y="674" class="small">四瓣先回缩1.10±0.05，盘固定，壳体上提</text>
+<rect x="430" y="525" width="30" height="90" fill="#d9ad83" stroke="#334155"/>
+<rect x="462" y="525" width="50" height="140" fill="#cbd5e1" stroke="#334155"/>
+<rect x="441.25" y="530" width="18.75" height="37.5" fill="#ffffff" stroke="#334155"/>
+<ellipse cx="451.6" cy="548.75" rx="10.4" ry="15.1" fill="#059669" stroke="#334155"/>
+<circle cx="445" cy="600" r="5.5" fill="#ffffff" stroke="#2563eb"/>
+<circle cx="445" cy="580" r="7" fill="#ffffff" stroke="#2563eb"/>
+<rect x="430" y="616" width="30" height="15" fill="#8cb6ae" stroke="#334155"/>
+<rect x="433" y="627" width="14" height="4" fill="#ffffff" stroke="#334155"/>
+<ellipse cx="440" cy="631.5" rx="7" ry="3.55" fill="#059669" stroke="#334155"/>
+<rect x="377" y="634.1" width="75" height="10" fill="#4f9ea3" stroke="#334155"/>
+<rect x="377" y="644.1" width="75" height="60" fill="#4f9ea3" stroke="#334155"/>
+<rect x="449" y="631" width="3" height="3.1" fill="#4f9ea3" stroke="#334155"/>
+<text x="620" y="145" class="small">铜环C11000；4×90°径向导轨＋正向回退</text>
+<text x="620" y="172" class="small">上圈2.47～2.53；候选Kalrez 7075UP</text>
+<text x="620" y="199" class="small">冷态实测压缩0.415～0.425；按圈配槽</text>
+<text x="620" y="226" class="small">上槽深1.835～1.915按圈配作，宽3.75±0.02</text>
+<text x="620" y="253" class="small">上圈滑动桥及铜瓣退位详见HJ-010</text>
+<text x="620" y="280" class="small">下圈0.99～1.01；槽0.40±0.01×1.40±0.02</text>
+<text x="620" y="307" class="small">下槽在连续密封座；实测压缩0.28～0.29</text>
+<text x="620" y="334" class="small">水道下Ø1.10/上Ø1.40，+0.02/0</text>
+<text x="620" y="361" class="small">水道距铜底1.50/3.50±0.02，R73.3</text>
+<text x="620" y="388" class="small">上槽中心距铜底6.625±0.01</text>
+<text x="620" y="415" class="small">最小铜壁0.50；每道84°＋两端3.5直道</text>
+<text x="620" y="442" class="small">水≥0.60 L/min；入口20±2℃；出口≤35℃</text>
+<text x="620" y="469" class="small">铜≤45℃；下座≤48℃；钢壳带≤180℃</text>
+<text x="620" y="496" class="small">0.3 MPa水路检漏；密封装夹力≤1500 N</text>
+<text x="620" y="523" class="small">气幕10～15；保护8～12；补氩0～12</text>
+<text x="620" y="550" class="small">抽吸22～28 L/min；开口腔近大气压</text>
+<text x="620" y="577" class="small">气幕歧管0.25～2.8 kPa；流量10～15</text>
+<text x="620" y="604" class="small">四瓣径向退1.10±0.05，全周净隙≥0.10</text>
+<text x="620" y="631" class="small">退位确认→上部上提→壳体托环上提→冷态测量</text>
+<text x="620" y="658" class="small">水道在z92/z94分型加工半圆槽</text>
+<text x="620" y="685" class="small">真空级Ag-Cu钎焊封道后精加工</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
 <line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="742" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
-<text x="50" y="764" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书§7放行顺序执行</text>
-<text x="572" y="742" class="small">比例 1:1.35（俯视投影）</text>
-<text x="572" y="764" class="small">其余视图示意（NTS）</text>
-<text x="772" y="742" class="small">材料：QT450-10＋Q235B</text>
-<text x="772" y="764" class="small">焊材：NiFe-55；隔离层Ni99</text>
-<text x="962" y="742" class="small">设计／审核／批准：＿＿＿＿</text>
-<text x="962" y="764" class="small">状态：未完成制造签审</text>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：C11000 / FFKM</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
 </svg>

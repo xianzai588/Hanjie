@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">随动热态轻击、前侧送丝与退位时序</text>
+<text x="50" y="99" class="small">根道/盖面使用独立Z高度；轻击跟随已凝固焊道，停弧后快速扫尾</text>
+<text x="1020" y="65" class="section">HJ-009</text>
+<text x="65" y="145" class="small">两剖面叠加示意，枪—锤周向错开</text>
+<rect x="445" y="195" width="55" height="500" fill="#dbe5ed" stroke="#334155"/>
+<rect x="60" y="565" width="385" height="130" fill="#f2e5cc" stroke="#334155"/>
+<polygon points="414.20,565.00 445.00,565.00 445.00,537.00" fill="#eabe78" stroke="#334155"/>
+<rect x="87.5" y="504.78700000000003" width="318.76570000000004" height="50" fill="#bdd2e2" stroke="#334155"/>
+<rect x="87.5" y="485" width="55" height="44.787000000000035" fill="#bdd2e2" stroke="#334155"/>
+<rect x="60" y="365" width="110" height="120" fill="#c4dce0" stroke="#334155"/>
+<circle cx="406.26570000000004" cy="529.787" r="33" fill="#b7d9d1" stroke="#334155"/>
+<line x1="425.75" y1="520.3499999999999" x2="381.75" y2="451.05999999999995" stroke="#b16c37" stroke-width="5"/>
+<polygon points="429.38,426.06 334.12,476.06 196.62,259.56 291.88,209.56" fill="#efe7dd" stroke="#334155"/>
+<text x="66" y="346" class="small">远置Ø10竖向气动驱动</text>
+<text x="73" y="455" class="small">R45；z123～135</text>
+<text x="75" y="495" class="small">Ø5 H13横臂，45±1 HRC</text>
+<text x="290" y="605" class="small">根道接触R73.6/z116.4</text>
+<text x="65" y="652" class="small">Ø6圆头；热态许用600 MPa，峰值≤200 N</text>
+<text x="65" y="683" class="small">退位：先升枪丝120，再升轻击头，禁止交叉抬升</text>
+<text x="635" y="145" class="section">俯视运动与段尾覆盖（NTS）</text>
+<line x1="665" y1="340" x2="1010" y2="340" stroke="#b16c37" stroke-width="4"/>
+<circle cx="790" cy="310" r="18" fill="#b7d9d1" stroke="#334155"/>
+<rect x="850" y="270" width="35" height="60" fill="#efe7dd" stroke="#334155"/>
+<line x1="985" y1="250" x2="860" y2="318" stroke="#6688a3" stroke-width="4"/>
+<line x1="860" y1="215" x2="1030" y2="215" stroke="#176b7b" stroke-width="3"/>
+<text x="875" y="200" class="small">焊接/送丝前侧 →</text>
+<line x1="790" y1="372" x2="868" y2="372" stroke="#334155" stroke-width="1"/>
+<text x="730" y="400" class="small">未上提前枪—锤间距4.5～7.0</text>
+<text x="669" y="368" class="small">焊道</text>
+<text x="625" y="447" class="small">根道枪74.5/117.3；丝73.2/116.0</text>
+<text x="625" y="475" class="small">盖面枪74.0/118.0；丝72.7/116.7</text>
+<text x="625" y="503" class="small">丝沿(-0.35,+0.93,+0.11225)延伸15后转竖直</text>
+<text x="625" y="531" class="small">100 Hz；实测接触宽≥0.72，压痕深≤0.05</text>
+<text x="625" y="559" class="small">扫尾≤18 mm/s、≤300 mm/s²，搭接≥75%</text>
+<text x="625" y="587" class="small">表面400～500℃；测温/指令总延迟≤20 ms</text>
+<text x="625" y="615" class="small">停弧0.20 s内枪丝升40，轻击轴继续扫尾</text>
+<text x="625" y="643" class="small">气压0.2～0.4 MPa；驱动行程≤2，力另校准</text>
+<text x="625" y="671" class="small">段两端各0.5及QT/焊趾/熔合线不施击</text>
+<text x="625" y="699" class="small">坐标为热态R/z；枪/丝/锤各落点误差≤0.05</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：H13 / 气动驱动</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
+</svg>

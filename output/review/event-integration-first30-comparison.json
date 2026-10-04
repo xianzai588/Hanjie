@@ -1,0 +1,20 @@
+{
+  "temperature_max_difference_C": 1.0118128557223827e-11,
+  "bore_u_max_difference_um": 0.02029822202646247,
+  "whole_u_max_difference_um": 2.5951974718640196,
+  "event_audit": {
+    "event_temperature_increment_C": 25.0,
+    "event_trigger_counts": {
+      "birth": 96,
+      "annealing": 94,
+      "temperature_jump": 111,
+      "arc_boundary": 4
+    },
+    "mechanical_samples": 143,
+    "missed_above_annealing_mm3": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+    }
+  }
+}

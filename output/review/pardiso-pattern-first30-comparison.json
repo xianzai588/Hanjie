@@ -1,0 +1,22 @@
+{
+  "temperature": 7.958078640513122e-12,
+  "u": 1.986844315873121e-06,
+  "stress": 0.05013113626236532,
+  "plastic": 2.202988587766963e-06,
+  "eqp": 2.9870953015681545e-06,
+  "new_diagnostic": {
+    "status": "partial mechanical diagnostic; not cold release",
+    "elapsed_s": 1072.7804542999947,
+    "linear_fallbacks": 0,
+    "use_amg": false,
+    "max_equilibrium_residual_N": 0.04940374022323277
+  },
+  "old_diagnostic": {
+    "status": "partial mechanical diagnostic; not cold release",
+    "elapsed_s": 892.439661700002,
+    "linear_fallbacks": 0,
+    "use_amg": false,
+    "max_equilibrium_residual_N": 0.04940360883570323
+  },
+  "patch": true
+}

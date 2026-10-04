@@ -1,0 +1,8 @@
+{
+  "comparison": "same paired thermal first30, common melting interval versus material-specific fusion enthalpy",
+  "mesh_same": true,
+  "old_peak_node_C": 1637.7747968517597,
+  "new_peak_node_C": 1628.998641271486,
+  "maximum_final_temperature_difference_C": 51.62905317992954,
+  "scope": "thermal short run, not final cold deformation"
+}

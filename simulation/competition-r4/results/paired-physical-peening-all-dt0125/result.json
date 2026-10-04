@@ -1,0 +1,19 @@
+{
+  "h_mm": 2.0,
+  "dt_s": 0.125,
+  "nodes": 22321,
+  "tetrahedra": 77162,
+  "peak_nodal_C": 1628.9986412714934,
+  "peak_element_C": 1532.3463740143359,
+  "input_J": 86940.00000000001,
+  "filler_volume_above_1200C_mm3": 399.12289239511705,
+  "thermal_only": true,
+  "end_s": 232.0,
+  "elapsed_s": 1697.3454281000013,
+  "source_radius_mm": 1.270170592,
+  "source_depth_mm": 0.923760431,
+  "source_r_mm": 74.8,
+  "copper_contact_W_m2K": 50.0,
+  "active_filler_volume_above_1200C_mm3": 399.06574000374565,
+  "active_peak_scope": "element-mean temperature observed only after deposition activation; 1200 C is the constitutive annealing threshold"
+}

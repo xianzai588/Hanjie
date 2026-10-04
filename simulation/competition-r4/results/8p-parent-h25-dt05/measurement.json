@@ -1,0 +1,57 @@
+{
+  "layout": 8,
+  "h_mm": 2.5,
+  "dt_s": 0.5,
+  "nodes": 17154,
+  "tetrahedra": 58866,
+  "peak_C": 1581.7335386716913,
+  "final_max_C": 20.498658280933782,
+  "released": true,
+  "max_newton_iterations": 11,
+  "max_equilibrium_residual_N": 0.04970865330271279,
+  "max_mandrel_reaction_N": 1789.9855519400332,
+  "input_J": 86940.00000000012,
+  "loss_J": 86135.4851464515,
+  "stored_J": 804.5937839682139,
+  "energy_balance_relative": -9.078723210435833e-07,
+  "elapsed_s": 2567.7790010999997,
+  "linear_solver": "CG/AMG with checked sparse-direct fallback",
+  "linear_solver_fallbacks": 0,
+  "fit": {
+    "position_diameter_mm": 0.001329149381358018,
+    "bore_radius_mm": 20.00713209330363,
+    "bore_axis_slopes": [
+      1.279783373001254e-05,
+      -3.1656471249325677e-06
+    ],
+    "bore_fit_rms_mm": 0.0008000519056474147,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "peak_nodal_C": 1800.5159424934393,
+  "filler_volume_above_1200C_mm3": 325.80280364797477,
+  "max_von_mises_MPa": 347.0601104259308,
+  "fit_mesh_nodes": {
+    "position_diameter_mm": 0.001417514256712727,
+    "bore_radius_mm": 20.00714003711362,
+    "bore_axis_slopes": [
+      1.3046330517366606e-05,
+      5.107601688091863e-07
+    ],
+    "bore_fit_rms_mm": 0.0007350546788776509,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "measurement_protocol": "36 bore and 48 shell samples, identical across all runs; initial bore 40.014 mm",
+  "bore_wall_peak_C": 52.74559079759715,
+  "final_time_s": 2127.0454545454545,
+  "release_time_s": 567.0454545454545,
+  "contact_area_mm2": 1312.3882673213463,
+  "structural_step_s": 5.0
+}

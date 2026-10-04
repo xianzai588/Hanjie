@@ -2,55 +2,57 @@
 <style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
-<text x="50" y="68" class="title">胀套—锥芯—拉杆—压环局部剖视详图</text>
-<text x="50" y="99" class="small">局部制造定义 / SECTION B-B / 尺寸为设计冻结值，未作制造签审</text>
+<text x="50" y="68" class="title">固定反向锥—上退六指胀套制造详图</text>
+<text x="50" y="99" class="small">反向锥实心、下大上小，与承力柱整体加工；胀套上退释放；上部止挡/门架见HJ-013</text>
 <text x="1020" y="65" class="section">HJ-006</text>
-<text x="70" y="155" class="section">轴向剖面 B-B</text>
-<rect x="90" y="260" width="300" height="86" fill="#dbe7ee" stroke="#334155"/>
-<rect x="90" y="346" width="300" height="38" fill="#94a3b8" stroke="#334155"/>
-<polygon points="155.00,260.00 325.00,260.00 300.00,220.00 180.00,220.00" fill="#f2c94c" stroke="#334155"/>
-<polygon points="205.00,220.00 275.00,220.00 260.00,155.00 220.00,155.00" fill="#64748b" stroke="#334155"/>
-<rect x="130" y="384" width="220" height="26" fill="#475569" stroke="#334155"/>
-<rect x="178" y="410" width="124" height="55" fill="#cbd5e1" stroke="#334155"/>
-<line x1="240" y1="145" x2="240" y2="470" stroke="#64748b" stroke-width="1"/>
-<text x="104" y="245" class="small">胀套 OD 39.94 收拢 / 40.04 最大</text>
-<text x="300" y="210" class="dim">10°</text>
-<text x="308" y="178" class="note">锥芯</text>
-<text x="102" y="435" class="note">回退肩</text>
-<text x="307" y="435" class="note">拉杆 M12×1.5</text>
-<text x="70" y="520" class="section">端视图：6 槽等分60°</text>
-<circle cx="240" cy="625" r="105" fill="#dbe7ee" stroke="#334155"/>
-<circle cx="240" cy="625" r="76" fill="#f8fafc" stroke="#334155"/>
-<circle cx="240" cy="625" r="28" fill="#64748b" stroke="#334155"/>
-<line x1="316.0" y1="625.0" x2="345.0" y2="625.0" stroke="#dc2626" stroke-width="3"/>
-<line x1="278.0" y1="559.1820693123826" x2="292.5" y2="534.067332602634" stroke="#dc2626" stroke-width="3"/>
-<line x1="202.0" y1="559.1820693123826" x2="187.50000000000003" y2="534.067332602634" stroke="#dc2626" stroke-width="3"/>
-<line x1="164.0" y1="625.0" x2="135.0" y2="625.0" stroke="#dc2626" stroke-width="3"/>
-<line x1="201.99999999999997" y1="690.8179306876173" x2="187.49999999999994" y2="715.932667397366" stroke="#dc2626" stroke-width="3"/>
-<line x1="278.0" y1="690.8179306876174" x2="292.5" y2="715.932667397366" stroke="#dc2626" stroke-width="3"/>
-<text x="620" y="170" class="small">胀套：17-4PH；弹性指壁厚0.80±0.03，长度30</text>
-<text x="620" y="206" class="small">槽数6；槽宽0.80；槽底R1.00；槽深贯穿至内孔但不延伸出接</text>
-<text x="620" y="222" class="small">触带</text>
-<text x="620" y="242" class="small">连续接触带 z100.2～111.8；开槽后覆盖率90%</text>
-<text x="620" y="278" class="small">锥芯半角10°；有效驱动长度8；锥面Ra1.6</text>
-<text x="620" y="314" class="small">拉杆接口 M12×1.5；压环端面承担500 N轴向力</text>
-<text x="620" y="350" class="small">回退肩＋机械止挡：正向行程1.00，收拢确认后才允许下撤</text>
-<text x="620" y="386" class="small">防转：拉杆端键宽4×4，胀套外圆导向键槽；不靠摩擦传扭</text>
-<text x="620" y="422" class="small">预载≤100 N；机械止挡承受热收缩反力；强制回退</text>
-<text x="620" y="458" class="small">配合：锥芯/拉杆 H7/g6；胀套外圆与孔为功能接触，不作过盈配</text>
-<text x="620" y="474" class="small">合</text>
-<text x="620" y="494" class="small">关键表面：接触带Ra0.8，槽口去毛刺R0.2，边缘不得划伤孔壁</text>
-<text x="620" y="530" class="small">详图用于工程评审；材料批次、热处理和弹性回程仍需验证</text>
+<text x="70" y="155" class="section">轴向剖面 B-B（局部，门架省略）</text>
+<polygon points="60.00,576.00 420.00,576.00 420.00,541.20 354.87,541.20 338.58,448.80 141.42,448.80 125.13,541.20 60.00,541.20" fill="#64748b" stroke="#334155"/>
+<text x="385" y="453.79999999999995" class="small">固定锥上端</text>
+<text x="385" y="543.8" class="small">接触段下端</text>
+<polygon points="102.00,207.60 102.00,267.60 119.40,267.60 124.20,267.60 124.20,207.60" fill="#f2c94c" stroke="#334155"/>
+<polygon points="119.40,267.60 119.40,447.60 120.00,448.80 120.00,538.80 125.55,538.80 141.00,451.20 124.20,447.60 124.20,267.60" fill="#f2c94c" stroke="#334155"/>
+<polygon points="378.00,207.60 378.00,267.60 360.60,267.60 355.80,267.60 355.80,207.60" fill="#f2c94c" stroke="#334155"/>
+<polygon points="360.60,267.60 360.60,447.60 360.00,448.80 360.00,538.80 354.45,538.80 339.00,451.20 355.80,447.60 355.80,267.60" fill="#f2c94c" stroke="#334155"/>
+<rect x="30" y="183.59999999999997" width="420" height="24" fill="#94a3b8" stroke="#334155"/>
+<text x="390" y="211.59999999999997" class="small">根部正向止挡</text>
+<line x1="240" y1="175" x2="240" y2="560" stroke="#64748b" stroke-width="1"/>
+<text x="75" y="594" class="small">自由胀套上退1.00 → 收拢39.94 → 上提260</text>
+<text x="75" y="623" class="small">端视图：6指等分60°；固定锥位于中心</text>
+<circle cx="240" cy="674" r="42" fill="#dbe7ee" stroke="#334155"/>
+<circle cx="240" cy="674" r="35" fill="#f2c94c" stroke="#334155"/>
+<circle cx="240" cy="674" r="24" fill="#64748b" stroke="#334155"/>
+<line x1="275.0" y1="674.0" x2="282.0" y2="674.0" stroke="#dc2626" stroke-width="2"/>
+<line x1="257.5" y1="643.6891108675446" x2="261.0" y2="637.6269330410536" stroke="#dc2626" stroke-width="2"/>
+<line x1="222.5" y1="643.6891108675446" x2="219.0" y2="637.6269330410536" stroke="#dc2626" stroke-width="2"/>
+<line x1="205.0" y1="674.0" x2="198.0" y2="674.0" stroke="#dc2626" stroke-width="2"/>
+<line x1="222.5" y1="704.3108891324554" x2="218.99999999999997" y2="710.3730669589464" stroke="#dc2626" stroke-width="2"/>
+<line x1="257.5" y1="704.3108891324554" x2="261.0" y2="710.3730669589464" stroke="#dc2626" stroke-width="2"/>
+<text x="620" y="170" class="small">胀套17-4PH H900；外接触带Ra0.8</text>
+<text x="620" y="202" class="small">6槽宽0.80，末端R1；根部不切穿</text>
+<text x="620" y="234" class="small">弹性颈Ø40.20、t0.80±0.03、L30、宽≥19</text>
+<text x="620" y="266" class="small">接触带z100.2～114.8，覆盖率90%</text>
+<text x="620" y="298" class="small">固定锥10°±0.1°；下R19.074、上R16.50</text>
+<text x="620" y="330" class="small">两端各延0.4，机加工z99.8～115.2</text>
+<text x="620" y="362" class="small">实心锥与Ø60承力颈、柱及法兰整体加工</text>
+<text x="620" y="394" class="small">锥/肩精研Ra≤0.2；根过渡R0.2</text>
+<text x="620" y="426" class="small">胀套根环Ø46/Ø38.6×10，z145.4～155.4</text>
+<text x="620" y="458" class="small">胀套向下设置；预载≤100 N；止挡承热反力</text>
+<text x="620" y="490" class="small">M12只设置及回退；压环球铰独立500 N</text>
+<text x="620" y="522" class="small">开上止挡→胀套上退1→上提260</text>
+<text x="620" y="554" class="small">上承力筒Ø70/Ø24、长244.6，连接z400门架</text>
+<text x="620" y="586" class="small">凝固轻击与变形检查不省略；不得依靠加工纠轴</text>
+<text x="620" y="618" class="small">固定锥局部压缩及门架柔度见53号核算</text>
+<text x="620" y="650" class="small">外圆同轴≤0.003，回程/重复性按HJ-F-01</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
 <line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
-<text x="50" y="742" class="small">中铁山桥杯 · 焊接固定题 | 单位 mm | 未注公差±0.10；关键配合按标注执行</text>
-<text x="50" y="764" class="small">来源：当前设计参数、真实座体BREP与计算；试制按说明书§7放行顺序执行</text>
-<text x="572" y="742" class="small">比例 1:1.35（俯视投影）</text>
-<text x="572" y="764" class="small">其余视图示意（NTS）</text>
-<text x="772" y="742" class="small">材料：QT450-10＋Q235B</text>
-<text x="772" y="764" class="small">焊材：NiFe-55；隔离层Ni99</text>
-<text x="962" y="742" class="small">设计／审核／批准：＿＿＿＿</text>
-<text x="962" y="764" class="small">状态：未完成制造签审</text>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：17-4PH胀套 / 45钢整体芯柱</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
 </svg>
