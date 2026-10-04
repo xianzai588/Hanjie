@@ -15,6 +15,8 @@
 
 依据：ISO 3452/GB/T 18851；ISO 22825:2017用于镍基与异种焊缝方法开发，标准不包含验收等级。PT材料步骤参考Magnaflux SKL-SP2 2025-07及SKD-S2 2023-11原始TDS；15～30/10～30 min和照度为本设计工位窗口。TWI 2008双晶纵波研究针对奥氏体不锈钢，支持降低晶粒噪声的方向，不把其检出性能移植成QT/NiFe接头实测结果。
 
+专用UT资格通过后逐件执行内部缺陷检查；600 s/件仅为工位容量规划输入，实际声束覆盖、检出能力和计时确认后冻结。首件宏观/金相/HV验证冶金与工艺，PT检查开口缺陷，两者不能逐件替代内部检测。对比块或覆盖不满足要求时，调整检测程序、可达性或接头并重新资格，覆盖缺口不得直接判合格。
+
 - ISO：https://www.iso.org/standard/69428.html
 - SKL-SP2：https://magnaflux.com/EU-Files/Product-Data-Sheets/Chemical-Consumables/SKL-SP2-PDS.pdf
 - SKD-S2：https://www.magnaflux.eu/EU-Files/Product-Data-Sheets/Chemical-Consumables/SKD-S2-PDS.pdf

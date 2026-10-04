@@ -107,7 +107,9 @@
         "qualification_required": true
       },
       "heat_kJ": 64.8,
-      "arc_s": 130.9090909090909
+      "arc_s": 130.9090909090909,
+      "required_reference_range_MPa_at_2e6": 31.642861824535835,
+      "fatigue_decision_role": "same-spectrum qualification demand; not a measured life or a candidate elimination gate"
     },
     {
       "n": 8,
@@ -156,7 +158,9 @@
         "qualification_required": true
       },
       "heat_kJ": 86.39999999999999,
-      "arc_s": 174.54545454545456
+      "arc_s": 174.54545454545456,
+      "required_reference_range_MPa_at_2e6": 23.732146368401878,
+      "fatigue_decision_role": "same-spectrum qualification demand; not a measured life or a candidate elimination gate"
     },
     {
       "n": null,
@@ -206,7 +210,9 @@
       },
       "heat_kJ": 282.66794059939525,
       "arc_s": 571.0463446452429,
-      "role": "qualification comparison for weld layout and service stiffness; metallurgy uses the same independently assessed Ni99 transition; its weld thermal distortion has no FE evidence and must not inherit the 8P 31.34 um synthesis"
+      "role": "qualification comparison for weld layout and service stiffness; metallurgy uses the same independently assessed Ni99 transition; its weld thermal distortion has no FE evidence and must not inherit the 8P 31.34 um synthesis",
+      "required_reference_range_MPa_at_2e6": 7.253944122145381,
+      "fatigue_decision_role": "same-spectrum qualification demand; not a measured life or a candidate elimination gate"
     }
   ],
   "tooling": {
@@ -713,79 +719,24 @@
     },
     "interpretation": "Historical geometry and seat-only boundary comparison; preserve its relative trend, but use competition-r4/results/service-verification.json for current 15 mm assembly strength and stiffness"
   },
-  "scoring": {
-    "weights": [
-      0.2,
-      0.2,
-      0.2,
-      0.15,
-      0.1,
-      0.1,
-      0.05
+  "method_selection": {
+    "comparison_basis": "method capabilities and conditions of use; no arbitrary weighted scores",
+    "hard_requirements": [
+      "released bore axis position diameter <=0.05 mm",
+      "physical exclusion of slag and spatter from interior",
+      "controlled Ni99/QT first interface and final dilution",
+      "accessible tools and adequate deposited section"
     ],
-    "cells": [
-      [
-        6,
-        7,
-        10,
-        5,
-        6,
-        7,
-        3
-      ],
-      [
-        9,
-        3,
-        9,
-        2,
-        4,
-        9,
-        7
-      ],
-      [
-        8,
-        8,
-        9,
-        4,
-        5,
-        6,
-        8
-      ],
-      [
-        8,
-        5,
-        9,
-        9,
-        7,
-        7,
-        9
-      ],
-      [
-        9,
-        10,
-        2,
-        3,
-        3,
-        5,
-        5
-      ]
-    ],
-    "candidates": [
-      "GMAW-plug",
-      "laser",
+    "selected_baseline": "pulsed-GTAW with two-layer Ni99 transition",
+    "reason": "controlled filler addition, no flux slag, independent transition-layer fabrication and compatible physical shielding",
+    "alternatives": [
+      "external GMAW plug weld",
+      "laser fusion weld",
       "micro-plasma",
-      "pulsed-TIG",
-      "brazing-eliminated"
+      "brazing"
     ],
-    "weighted_scores": [
-      6.8,
-      6.15,
-      7.1,
-      7.6,
-      5.7
-    ],
-    "role": "subjective decision aid with explicit anchors, not official points or measured performance",
-    "notes": "scores are designer judgements on 1-10 scales: high score means better; quantitative cells need vendor trial data; brazing not selected for this design because of full-component heating, potential flux contamination and absent applicable creep/fatigue data for silver-brazed joints under compressor cycling"
+    "selection_status": "current engineering recommendation; complete thermal-mechanical checks remain required",
+    "global_optimum_proven": false
   },
   "fatigue_sensitivity": [
     {

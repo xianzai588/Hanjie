@@ -26,6 +26,10 @@ def main():
     if len(rows) != 3:
         raise ValueError('需要三组完整冷态记录')
     inputs = [json.loads((RESULTS/case/'input.json').read_text(encoding='utf8')) for case in verified['cases']]
+    for case in service['cases']:
+        service_input = json.loads((RESULTS/case/'input.json').read_text(encoding='utf8'))
+        if service_input.get('initial_bore_diameter_mm') != inputs[0]['initial_bore_diameter_mm']:
+            raise ValueError('服役算例孔径与已接受焊接制造窗口不一致，须按相同实体孔径重算并核验')
     if any(not inp.get('fixture_thermal') for inp in inputs):
         raise ValueError('冷态工具参考家族不能替代芯/胀套及托垫热耦合的最终家族')
     if not verified.get('fixture_thermal_model_pass',False):
@@ -103,7 +107,7 @@ NIST-JANAF在Ni/Fe各自熔点给出的固液焓差为17.155/13.807 kJ/mol，换
 
 下托接触在真实QT底面上对三个Ø8圆盘积分，E200 GPa、钢垫高6 mm，只受压且允许抬离。均匀压缩、整体抬离及半盘倾斜均经解析校核；三组反力全部非负。由实际支承矩叠加轻击峰值，校核柱端横移、柱转角及螺栓/法兰柔度；整体承力链按§3.1的6.5 μm径向夹紧分配验收，基准转移、工装轴线和胀套定心各分配2 μm。局部背承压缩用于面积归一化接触刚度，整体轴移另计，不混用这两种柔度。
 
-固定反锥、柱盘法兰、六指胀套、上承力筒及三个托垫采用六个周向分区的轴向有限体积传热域，按实际截面与热容量建模；工件—工具的换热包括接触热阻与脱离后的氩气间隙热阻。接触热导2000 W/(m²·K)为设计输入，试制通过热电偶资格确认。45钢及17-4PH热物性按供方资料选取，氩气热导按NIST数据插值。[31,46–48] 每个热增量保存真实工件温度与前一收敛位移边界，网络加密时使用相同边界重放；基准网络温度/膨胀先再现原耦合结果，再比较两倍轴向划分。三组工装径向膨胀响应离散差最大{max(r['relative_growth_error'] for r in fixture_checks)*100:.2f}%，满足≤5%；工件网格及时间精度另见§4.2。工具温升和托垫差胀在结构接触间隙中逐步反馈，不作为始终20℃的刚性冷源。
+固定反锥、柱盘法兰、六指胀套、上承力筒及三个托垫采用六个周向分区的轴向有限体积传热域，按实际截面与热容量建模；工件—工具的换热包括接触热阻与脱离后的氩气间隙热阻。接触热导2000 W/(m²·K)为设计输入，试制通过热电偶资格确认。45钢及17-4PH热物性按供方资料选取，氩气热导按NIST数据插值。[31,46–48] 每个热增量保存真实工件温度与前一收敛位移边界，网络加密时使用相同边界重放；基准网络温度/膨胀先再现原耦合结果，再比较两倍轴向及周向划分。三组工装径向膨胀响应离散差最大{max(r['relative_growth_error'] for r in fixture_checks)*100:.2f}%，满足≤5%；工件网格及时间精度另见§4.2。工具温升和托垫差胀在结构接触间隙中逐步反馈，不作为始终20℃的刚性冷源。
 
 QT测点按最终焊趾向内10 mm固定于R61、z115，盖面前另核对应根道温度。三组完整耦合运行直接记录全部16次起弧温度，段次及实际阶段时刻逐项核对；较大段前温度{process['maximum_start_C']:.2f}℃，满足首次15～35℃及后续≤100℃条件，名义18 s段间工序在该热模型下无需额外层间等待。热态轻击仍由焊道表面400～500℃信号触发，按WPS执行。
 
@@ -172,7 +176,21 @@ TWI铸铁指南支持镍/镍铁填充、短焊道与趁热轻击[4]。本件将N
 
 """
     pa=text.index('### 2.2 冷焊与');pb=text.index('## 3 接头、工装与洁净防护',pa)
+    condition_end=text.index('TWI铸铁指南支持',pa)
+    substrate_conditions=text[pa+len('### 2.2 冷焊与随动热态轻击\n\n'):condition_end]
+    peen_section=peen_section.replace('### 2.2 冷焊与随动热态轻击\n\n',
+        '### 2.2 冷焊与随动热态轻击\n\n'+substrate_conditions,1)
+    peen_section=peen_section.replace('400～500℃为设计轻击窗口。',
+        '400～500℃为本设计执行窗口，趁热轻击文献不等于已确定该材料组合的最佳温区。',1)
     text=text[:pa]+peen_section+text[pb:]
+    for label,zone,material in [('QT槽根与座体','QT_slot_root','QT'),('NiFe焊缝','NiFe_weld','NiFe'),('Q235壳体','Q235_shell','Q235')]:
+        row=(f"| {label} | {service['worst_zone_peaks_MPa'][zone]:.2f} | "
+             f"{service['records'][0]['elastic_yield_screen']['allowable_MPa'][material]:.2f} | "
+             f"{service['peak_response_relative_errors'][zone]*100:.2f}% |")
+        text,count=re.subn(r'\| '+re.escape(label)+r' \|[^\n]+',row,text,count=1)
+        if count!=1:raise ValueError('服役强度正文表未找到对应部位')
+    text=text.replace('此表为40.014 mm孔径的已完成参考，最终服役验证须与接受的制造窗口同步重算。',
+        f"此表按接受的制造孔径{inputs[0]['initial_bore_diameter_mm']:.3f} mm实际重算，并独立核验两级槽根网格。")
     window=bore['manufacturing_window_mm']
     size_paragraph=(f'主轴承孔焊前制造窗口为{window[0]:.3f}～{window[1]:.3f} mm，焊后目标40.000～40.025 mm。'
         '完全卸夹后先检焊后位置度，位置度不合格件不得用终镗纠正轴线。'
@@ -188,6 +206,8 @@ TWI铸铁指南支持镍/镍铁填充、短焊道与趁热轻击[4]。本件将N
         f'两级工具传热域的三托垫高度差上界{support_thermal*1000:.3f} μm，'
         f'计制造等高极差2.5 μm后合计{support_combined*1000:.3f} μm≤3 μm。')
     text=re.sub(r'热态支点差及胀套导热、热膨胀另按接触热历程复核。\s*(?:冷工具参考家族的)?三托垫全增量温差[^\n]+',support_text,text,count=1)
+    text=text.replace('完整工具热耦合家族正在核验，结果按§4固化，不以假定疲劳曲线单独裁决布局。',
+        '完整工具热耦合、冷态卸夹、孔轴/孔径及空间时间精度按§4核验通过；后续试制按§5完成A类实物工程确认，不以假定疲劳曲线单独裁决布局。')
     path.write_text(text,encoding='utf8')
     design_path = ROOT/'project/competition-design.yaml'
     design = yaml.safe_load(design_path.read_text(encoding='utf8'))

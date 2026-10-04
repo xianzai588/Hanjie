@@ -10,29 +10,51 @@
   },
   "ranking": [
     {
-      "candidate_id": "8P-FAIR_B/2pass",
-      "required_allowable_mpa": 39.12989758955982,
-      "capacity_margin": 1.5333543836314178,
-      "net_heat_input_kj": 86.40000000000005,
-      "weld_length_mm": 144.0,
-      "score": 0.3576348938064948,
-      "design_spectrum_damage": 0.4950479773400245
-    },
-    {
       "candidate_id": "Continuous/2pass",
       "required_allowable_mpa": 11.960405359620761,
       "capacity_margin": 5.016552382293376,
       "net_heat_input_kj": 282.6679405993953,
       "weld_length_mm": 471.1132343323254,
-      "score": 0.8799010133990519,
-      "design_spectrum_damage": 0.014137051932122918
+      "design_spectrum_damage": 0.014137051932122918,
+      "required_reference_range_mpa_at_2e6": 7.253944122145381,
+      "static_screening_pass": true
+    },
+    {
+      "candidate_id": "6P-FAIR_B/2pass",
+      "required_allowable_mpa": 52.17319678607985,
+      "capacity_margin": 1.1500157877235615,
+      "net_heat_input_kj": 64.79999999999994,
+      "weld_length_mm": 108.0,
+      "design_spectrum_damage": 1.1734470573985762,
+      "required_reference_range_mpa_at_2e6": 31.642861824535835,
+      "static_screening_pass": true
+    },
+    {
+      "candidate_id": "8P-FAIR_B/2pass",
+      "required_allowable_mpa": 39.12989758955982,
+      "capacity_margin": 1.5333543836314178,
+      "net_heat_input_kj": 86.40000000000005,
+      "weld_length_mm": 144.0,
+      "design_spectrum_damage": 0.4950479773400245,
+      "required_reference_range_mpa_at_2e6": 23.732146368401878,
+      "static_screening_pass": true
     }
   ],
+  "ranking_role": "compatibility field containing all comparison candidates; not a scored ranking",
   "recommended": "8P-FAIR_B/2pass",
   "comparison_candidates": [
     "6P-FAIR_B/2pass",
     "Continuous/2pass"
   ],
-  "screening_conditions": "60 MPa static design allowable; Miner <=1 under the common assumed spectrum and 30 MPa qualification target curve; heat and length break ties; physical qualification follows separately",
-  "interpretation": "统一条件筛查下的工程排序；8P结合控形、疲劳资格目标和洁净执行性作为当前推荐，分数不替代整件热-结构结果。"
+  "screening_conditions": "60 MPa is the nominal weld-group design allowable; fatigue calculations report qualification demand under the proposed spectrum and m=3, without eliminating candidates on an assumed 30 MPa curve",
+  "decision_requirements": [
+    "released bore axis position and numerical accuracy",
+    "Ni99/QT first interface and final weld metallurgy",
+    "physical cleanliness isolation",
+    "specified assembly static strength",
+    "station time and resources"
+  ],
+  "recommendation_status": "current engineering recommendation pending complete thermal-tool family",
+  "global_optimum_proven": false,
+  "interpretation": "8P比6P降低名义焊缝组应力与同谱资格需求；比全周焊降低热量与弧燃。结合柔顺结构、预制冶金与物理洁净控制推荐8P；完整位置度等检查决定最终采用，不以自设疲劳曲线或加权分裁决。"
 }

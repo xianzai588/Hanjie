@@ -1,97 +1,23 @@
-# Hanjie · 数字化异种材料焊接工艺设计 2026
+# Hanjie · 焊接固定题工艺设计
 
-**当前参赛版：COMPETITION-R3，焊接固定题。** 采用 8P 两道脉冲 TIG、QT侧Ni99预制隔离层＋NiFe55填充、Ø1.6 mm棒材鲁棒送丝、六指胀套机械止挡、分体式紫铜环独立气水路，并执行铸铁冷焊（不预热、层间≤100 ℃）与窗口受控热态轻击。数字结果区分全件热—结构计算、设计筛查和待实物评定项目。
+当前开发线为COMPETITION-R4，产物为修订审阅稿。主线为Ni99两层预制、NiFe55两道脉冲GTAW、8P-R2-t15柔顺座体、实心反锥/门架夹具及铜环—静密封—接料盘的颗粒隔离。
 
-- [工艺设计说明书](output/pdf/technical-report-v4.pdf)与[设计图集](cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf)（8张图）。
-- [提交技术包](deliverables/submission/)；报名表、学校盖章和推荐由参赛方办理。
-- 统一设计配置：`project/competition-design.yaml`（含 `thermal_regime` 与 `peening` 段）。
-- 复现入口：`python deliverables/build_submission.py`；相图与热制度计算：`python studies/SCHAEFFLER-MAP/run.py`。
+- [说明书与14张工程图审阅稿](output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf)
+- [说明书正文](deliverables/report/technical-report-v4-unified.md)、[车间工艺卡及工程展开](deliverables/process/)
+- [当前阶段账](project/stage-status.yaml)、[自动状态摘要](deliverables/report/generated/current-status.md)
+- [实际计算入口与结果用途](simulation/competition-r4/README.md)、[内部修复记录](docs/review/2026-10-03-报告复核与修复.md)
 
-## 设计要点
+完整工具热耦合四组正在计算，须完成冷却、完全卸夹、孔轴/孔径、空间时间精度、工具热域、支点差胀、段前温控及同源轻击核验。旧40.014 mm冷工具参考的空间差11.77%、孔径超限均真实保留；不作为当前达标证据。制造补偿核验窗口40.006～40.008 mm尚未冻结，配置中的旧40.010～40.014 mm须在有效结果通过后同步。服役参考目前也是40.014 mm，正式发布入口要求与接受的制造窗口统一。
 
-**焊得住。** Ni99预制层降低QT侧直接碳稀释，NiFe55承担最终连接。Schaeffler只在原图域内读图，图外Ni-Fe-C点不做相区外推；文献支持奥氏体主枝晶但同时提示NiFe枝晶间渗碳体与HAZ马氏体风险。热态轻击只在焊道400～500℃窗口执行，不把锤击假定成全熔合线压应力。
+推荐8P依据控形、冶金、洁净、静载和节拍的综合设计；6P为低热对照，全周焊为高承载参考。疲劳模型报告同谱资格需求，不以自设30 MPa曲线单独淘汰候选或证明寿命。Ø40 H7为压入式轴套座孔的装配设计输入，官方只给名义Ø40。
 
-**焊不歪。** 位置度预算保留0.002 mm测量扩展不确定度，热残余由全件模型实算并与0.0102 mm径向门比较；不再用均匀热胀直接代替孔轴偏移。A/B独立基准、冷却卸夹和微珩前测量写入pWPS。
-
-**焊得干净。** 铜环静态密封和接料盘承担颗粒截留，气幕仅辅助输运；水气分路、流量/漏水/回缩互锁，不能用“低飞溅”作为洁净保证。
-
-## 核心指标
-
-| 项目 | 要求 |
-| --- | --- |
-| 壳体 | Q235B，壁厚 5 mm，Ø160 × 200 mm |
-| 主轴承座 | QT450-10，环形盘状，轴承孔 Ø40 mm |
-| 焊后位置度 | 轴承孔轴线位置度偏差 ≤ Ø0.05 mm（预算闭合，余 0.0044 mm） |
-| 洁净度 | 不得产生可能落入压缩机内部的焊渣、飞溅物（四条件合取控制） |
-| 焊缝组织 | NiFe高镍奥氏体倾向；QT侧PMZ/HAZ的马氏体、碳化物与裂纹须由首件金相/HV/PT确认 |
-
-## 工程确认计划
-
-试制阶段按说明书 §9.2 的 V1～V10 完成 A 类实物工程确认：小试金相与宏观截面 → 锤击层残余应力 → 同件测量与重复装夹 → 热残余 CMM 回填 → 铜衬环热接触与颗粒清点 → 自动化联调。设计指标的统一表述为：**经理论计算与数值仿真验证，在设定工况下满足设计指标要求；建议在后续试制阶段通过 A 类实物试验完成最终工程验证。**
-
-## 工作包与分工
-
-| WP | 模块 | 回答的问题 |
-| --- | --- | --- |
-| WP0 | 项目定义与资料管理 | 我们到底要解决什么 |
-| WP1 | 材料与焊接性 | 为什么难焊 |
-| WP2 | 焊接工艺选型 | 用什么方法焊 |
-| WP3 | 接头结构与夹具 | 接头怎么设计 |
-| WP4 | 热-结构仿真 | 为什么这样设计 |
-| WP5 | 物理验证（可选） | 实物能不能焊好 |
-| WP6 | 自动化与智能监测 | 怎么稳定重复 |
-| WP7 | 检测评价与数值后处理 | 怎么证明真的好 |
-| WP8 | 作品集成与答辩 | 怎么形成参赛作品 |
-
-## 里程碑
-
-| 日期 | 节点 |
-| --- | --- |
-| 09-05 | 约束/假设/证据矩阵 + 材料参数基线 |
-| 09-10 | CAD V1、工艺候选与接头方案冻结 |
-| 09-18 | Process Freeze V1（基于文献与数字仿真） |
-| 09-25 | ≥9 组方案比较 + 结构优化 |
-| 10-02 | 网格/参数敏感性/鲁棒性 |
-| 10-08 | 自动化软件 MVP |
-| 10-13 | 技术说明书 V1 |
-| 10-17 | 工程图、流程图、结果图 |
-| 10-20 | 报名与内部技术审查截止 |
-| 10-25 | 学校统一提交截止（官方） |
-
-## 仓库结构
-
-```
-docs/          项目定义、路线图、研究、工艺、验证计划
-competition/   比赛官方文件（只读存档）
-cad/           壳体、轴承座、接头、夹具、总装
-simulation/    有限元模型、算例与结果
-studies/       竞赛设计计算、相图映射、鲁棒边界
-experiments/   实验方案、原始数据、金相、硬度、测量
-automation/    视觉定位、路径规划、仿真采集、异常检测、追溯
-data/          数据模式与样例数据
-deliverables/  最终提交物
-```
-
-## 文档索引
-
-- [项目定义](docs/00-project-definition.md)
-- [路线图](docs/01-roadmap.md)
-- [团队分工](docs/02-team.md)
-- [设备清单](docs/03-equipment-inventory.md)
-- [工艺设计说明书源文件](deliverables/report/technical-report-v4-unified.md)
-- [Schaeffler 相图与冷焊冶金设计](docs/process/schaeffler-diagram-analysis.md)
-- [协作规则](CONTRIBUTING.md)
-
-## 复现入口
-
-在仓库根目录执行：
+参数源为project/process-r3.yaml，project/process.yaml明确为historical_only。文件名R3为兼容已有入口，不意味着返回旧R3边界。修订审阅稿生成命令为：
 
 ```powershell
-python -m pytest -q
-python deliverables/build_submission.py
+python deliverables/report/build_technical_report_pdf.py --review
 ```
 
-构建链依次重算竞赛设计、候选排序、鲁棒边界、Schaeffler 相图映射、工装可达性、Route B 条件选型、工艺卡与工程图，随后生成说明书 PDF、提交包与 ZIP，并通过 `scripts/competition_submission_lint.py` 质量门。输出分别位于 `cad/generated/`、`simulation/results/`、`studies/*/results/` 与 `deliverables/submission/`。
+正式构建使用python deliverables/build_submission.py；它要求完整R4核验通过，并阻止历史参数和未完成结果进入正式包。现有deliverables/submission中的历史文件不应直接用于本轮比赛提交，待正式构建通过后整体更新。固定焊接题未要求自编代码，报名和盖章材料按官方附件办理；报名10月20日、校方统一作品提交10月25日（含当日）。
 
 ## 历史研究记录（按原日期保留）
 

@@ -32,20 +32,17 @@ def main() -> None:
     view["length_penalty"] = view["candidate_id"].map(
         {"Continuous/2pass": 471.1132343323254, "6P-FAIR_B/2pass": 108.0, "8P-FAIR_B/2pass": 144.0}
     )
-    # 只在满足条件承载筛查的方案中比较热输入和焊缝长度；分数是排序工具，
-    # 不是概率，也不替代热—结构正式求解。
-    # four_pass_comparison 已由当前设计计算的同一条件筛查生成。
-    feasible = view[(view["capacity_margin"] >= 1) & (view["design_spectrum_damage"] <= 1)].copy()
-    if feasible.empty:
-        raise ValueError("当前设计载荷谱和资格目标曲线下无候选满足筛查条件；须重新设计")
-    feasible["score"] = (
-        0.60 * feasible["heat_kj"] / feasible["heat_kj"].max()
-        + 0.25 * feasible["length_penalty"] / feasible["length_penalty"].max()
-        + 0.15 / feasible["capacity_margin"]
-    )
-    feasible = feasible.sort_values(["score", "heat_kj"]).reset_index(drop=True)
+    # 保留全部对照；假定疲劳曲线不作候选淘汰门，也不以任意权重总分决策。
+    # 当前几何来自独立工程设计，正式采用仍须完成各项物理与数值检查。
+    selected_layout = assessment["spec"]["layout"].split("-")[0]
+    selected_candidate = selected_layout + "-FAIR_B/2pass"
+    if selected_candidate not in set(view["candidate_id"]):
+        raise ValueError("当前实体几何没有对应的同条件布局比较")
+    selected_row = view.loc[view["candidate_id"] == selected_candidate].iloc[0]
+    if selected_row["capacity_margin"] < 1:
+        raise ValueError("当前推荐几何未满足设定静载筛查，须重新设计")
     ranking = []
-    for _, r in feasible.iterrows():
+    for _, r in view.iterrows():
         ranking.append(
             {
                 "candidate_id": r["candidate_id"],
@@ -53,8 +50,9 @@ def main() -> None:
                 "capacity_margin": float(r["capacity_margin"]),
                 "net_heat_input_kj": float(r["heat_kj"]),
                 "weld_length_mm": float(r["length_penalty"]),
-                "score": float(r["score"]),
                 "design_spectrum_damage": float(r["design_spectrum_damage"]),
+                "required_reference_range_mpa_at_2e6": 30 * float(r["design_spectrum_damage"]) ** (1 / 3),
+                "static_screening_pass": bool(r["capacity_margin"] >= 1),
             }
         )
     payload = {
@@ -68,10 +66,14 @@ def main() -> None:
             "assumed_allowable_mpa": 60.0,
         },
         "ranking": ranking,
-        "recommended": ranking[0]["candidate_id"],
+        "ranking_role": "compatibility field containing all comparison candidates; not a scored ranking",
+        "recommended": selected_candidate,
         "comparison_candidates": ["6P-FAIR_B/2pass", "Continuous/2pass"],
-        "screening_conditions": "60 MPa static design allowable; Miner <=1 under the common assumed spectrum and 30 MPa qualification target curve; heat and length break ties; physical qualification follows separately",
-        "interpretation": "统一条件筛查下的工程排序；8P结合控形、疲劳资格目标和洁净执行性作为当前推荐，分数不替代整件热-结构结果。",
+        "screening_conditions": "60 MPa is the nominal weld-group design allowable; fatigue calculations report qualification demand under the proposed spectrum and m=3, without eliminating candidates on an assumed 30 MPa curve",
+        "decision_requirements": ["released bore axis position and numerical accuracy", "Ni99/QT first interface and final weld metallurgy", "physical cleanliness isolation", "specified assembly static strength", "station time and resources"],
+        "recommendation_status": "current engineering recommendation pending complete thermal-tool family",
+        "global_optimum_proven": False,
+        "interpretation": "8P比6P降低名义焊缝组应力与同谱资格需求；比全周焊降低热量与弧燃。结合柔顺结构、预制冶金与物理洁净控制推荐8P；完整位置度等检查决定最终采用，不以自设疲劳曲线或加权分裁决。",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -79,9 +81,10 @@ def main() -> None:
     comparison = next(r for r in assessment["four_pass_comparison"] if r["layout"] == "6P-FAIR_B")
     authority = {
         "version": "COMPETITION-R4-AUTHORITY",
-        "scope": "固定题焊接设计说明书与答辩统一引用的当前冻结口径",
+        "scope": "固定题焊接设计说明书当前工程推荐；正式工艺冻结须完成R4完整核验",
         "selected_candidate": payload["recommended"],
         "selected_geometry": assessment["spec"]["layout"],
+        "recommendation_status": payload["recommendation_status"],
         "geometry_basis": "15 mm座体＋32处合并后真实R2过渡；FAIR_B为名义焊缝组比较布局，实际整件静载另由service-verification给出",
         "assumptions": {"deposition_efficiency": 0.90, "load_scale": 1.0,
                         "assumed_allowable_mpa": 60.0, "equivalent_leg_min_mm": 3.5},
@@ -94,7 +97,7 @@ def main() -> None:
                     "comparison_required_allowable_mpa": comparison["required_allowable_mpa"]},
         "endpoints": {"current_efficiency_0_90_required_allowable_mpa": recommended["required_allowable_mpa"],
                       "interpretation": "当前 COMPETITION-R4 两道比较按固定送丝与效率窗口闭合；此值用于条件承载筛查。"},
-        "decision_rule": "8P两道为综合设计推荐；6P和连续焊为同条件布局比较。若热残余、熔合、裂纹或疲劳评定不合格，重新设计对应工艺，不自动切换至承载更弱的6P。",
+        "decision_rule": "8P两道为当前综合推荐，6P为低热对照、全周焊为高承载参考；位置度及数值精度、冶金、洁净、静载和节拍共同决定最终采用。假定S-N曲线只报告资格需求，不单独淘汰候选或证明寿命。",
     }
     AUTHORITY.write_text(yaml.safe_dump(authority, allow_unicode=True, sort_keys=False), encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False, indent=2))

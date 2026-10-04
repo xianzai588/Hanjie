@@ -16,8 +16,9 @@ def run(folder,h_override=None):
  ke=np.einsum('eji,ejk,ekl,e->eil',B,D,B,vol,optimize=True)
  matrix=coo_matrix((ke.ravel(),(np.repeat(dof,12,axis=1).ravel(),np.tile(dof,(1,12)).ravel())),shape=(N,N)).tocsr()
  ln=data['link_nodes'];lw=data['link_weights']
- if (folder/'input.json').exists():h=json.loads((folder/'input.json').read_text(encoding='utf8'))['h_mm']
- elif h_override is not None:h=h_override
+ if (folder/'input.json').exists():
+  inp=json.loads((folder/'input.json').read_text(encoding='utf8'));h=inp['h_mm'];bore_radius=inp['initial_bore_diameter_mm']/2
+ elif h_override is not None:h=h_override;bore_radius=20.007
  else:raise ValueError('input.json or explicit mesh h is required')
  # Use the saved interface geometry and the same area-scaled mechanics.
  bd=data['boundary'];weld_faces=bd[np.isin(bd[:,0],np.unique(e[m==2]))]
@@ -30,8 +31,9 @@ def run(folder,h_override=None):
   ld=3*ln+ax;blocks=np.einsum('li,lj,l->lij',lw,lw,stiffness)
   matrix+=coo_matrix((blocks.ravel(),(np.repeat(ld,ln.shape[1],axis=1).ravel(),np.tile(ld,(1,ln.shape[1])).ravel())),shape=(N,N)).tocsr()
  bottom=np.flatnonzero(x[:,2]<1e-5);fixed=(3*bottom[:,None]+np.arange(3)).ravel();free=np.setdiff1d(np.arange(N),fixed)
- radius=np.linalg.norm(x[:,:2],axis=1);bn=np.flatnonzero((abs(radius-20.007)<1e-4)&(x[:,2]>=100)&(x[:,2]<=weld_top))
- bore_faces=bd[np.all(abs(np.linalg.norm(x[bd,:2],axis=2)-20.007)<1e-4,axis=1)]
+ radius=np.linalg.norm(x[:,:2],axis=1);bn=np.flatnonzero((abs(radius-bore_radius)<1e-4)&(x[:,2]>=100)&(x[:,2]<=weld_top))
+ bore_faces=bd[np.all(abs(np.linalg.norm(x[bd,:2],axis=2)-bore_radius)<1e-4,axis=1)]
+ if len(bn)==0 or len(bore_faces)==0:raise ValueError('输入孔径与实际载荷孔壁网格不一致')
  bore_area=np.linalg.norm(np.cross(x[bore_faces[:,1]]-x[bore_faces[:,0]],x[bore_faces[:,2]]-x[bore_faces[:,0]]),axis=1)/2
  weight=np.bincount(bore_faces.ravel(),weights=np.repeat(bore_area/3,3),minlength=len(x))[bn]
  weight/=weight.sum()
@@ -43,7 +45,7 @@ def run(folder,h_override=None):
  cyc=s[:,:,0]*.1+s[:,:,1]*.04+s[:,:,2]*.1;dr=2*np.sqrt(1.5*np.sum((cyc-cyc@pv)**2,axis=1))
  c=x[e].mean(axis=1);r=np.linalg.norm(c[:,:2],axis=1)
  zones={'QT_slot_root':(m==1)&(r>35)&(r<47),'QT_body':m==1,'NiFe_weld':m==2,'Q235_shell':m==0}
- res={'mesh_h_mm':h,'nodes':len(x),'tetrahedra':len(e),'load_conditions':{'Fr_N':5000,'Fa_N':5000,'Mx_Nmm':250000,'continuous_amplitudes_N_N_Nmm':[500,200,25000]},
+ res={'mesh_h_mm':h,'initial_bore_diameter_mm':2*bore_radius,'nodes':len(x),'tetrahedra':len(e),'load_conditions':{'Fr_N':5000,'Fa_N':5000,'Mx_Nmm':250000,'continuous_amplitudes_N_N_Nmm':[500,200,25000]},
   'boundary':'cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support',
   'load_distribution':'area-weighted bore-wall tractions, each prescribed resultant normalized exactly; moment is a zero-resultant force couple about weighted centre; this is a design load-transfer envelope, not a measured bearing contact distribution',
   'stress_method':'linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class',

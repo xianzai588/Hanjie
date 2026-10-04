@@ -1,7 +1,9 @@
 version: COMPETITION-R4-AUTHORITY
-scope: 固定题焊接设计说明书与答辩统一引用的当前冻结口径
+scope: 固定题焊接设计说明书当前工程推荐；正式工艺冻结须完成R4完整核验
 selected_candidate: 8P-FAIR_B/2pass
 selected_geometry: 8P-R2-t15
+recommendation_status: current engineering recommendation pending complete thermal-tool
+  family
 geometry_basis: 15 mm座体＋32处合并后真实R2过渡；FAIR_B为名义焊缝组比较布局，实际整件静载另由service-verification给出
 assumptions:
   deposition_efficiency: 0.9
@@ -19,4 +21,4 @@ results:
 endpoints:
   current_efficiency_0_90_required_allowable_mpa: 39.12989758955982
   interpretation: 当前 COMPETITION-R4 两道比较按固定送丝与效率窗口闭合；此值用于条件承载筛查。
-decision_rule: 8P两道为综合设计推荐；6P和连续焊为同条件布局比较。若热残余、熔合、裂纹或疲劳评定不合格，重新设计对应工艺，不自动切换至承载更弱的6P。
+decision_rule: 8P两道为当前综合推荐，6P为低热对照、全周焊为高承载参考；位置度及数值精度、冶金、洁净、静载和节拍共同决定最终采用。假定S-N曲线只报告资格需求，不单独淘汰候选或证明寿命。

@@ -33,7 +33,7 @@ class ManualDocTemplate(SimpleDocTemplate):
         if isinstance(flowable, Paragraph):
             title = flowable.getPlainText()
             if flowable.style.name == "H2" or (flowable.style.name == "H1" and
-                    title.startswith(("主轴承座—", "HJ-W-00", "HJ-W-02", "HJ-C-01", "HJ-Q-01", "HJ-Q-02", "HJ-Q-03", "HJ-F-01"))):
+                    title.startswith(("主轴承座—", "HJ-W-00", "HJ-W-02", "HJ-C-01", "HJ-C-02", "HJ-Q-01", "HJ-Q-02", "HJ-Q-03", "HJ-F-01"))):
                 self.notify("TOCEntry", (0, title, self.page))
 
 
@@ -171,11 +171,13 @@ def validate_report_numbers(result, source=SOURCE):
     body = source.read_text(encoding="utf-8")
     p = result["process"]
     required = ["8P-R2-t15", "两道脉冲 TIG",
-                f"净热 {p['total_net_heat_j']/1000:.2f} kJ",
                 f"弧燃 {p['arc_on_time_s']:.1f} s",
                 f"送丝 {p['fixed_feed_mm_s']:.2f}",
                 "冷却至20±1℃", "热残余允许上限"]
     compact = re.sub(r"\s+", "", body)
+    heat_values=[float(v) for v in re.findall(r'净热\s*([0-9.]+)\s*kJ',body)]
+    if not any(abs(v-p['total_net_heat_j']/1000)<0.005 for v in heat_values):
+        raise ValueError('正文名义总净热与计算不一致')
     if any(re.sub(r"\s+", "", value) not in compact for value in required):
         raise ValueError("当前正文关键数值与计算不一致，必须同步论证后再发布")
 
@@ -193,6 +195,10 @@ def main() -> int:
         current=json.loads(verification.read_text(encoding='utf8'))
         if any(not json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('fixture_thermal') for case in current['cases']):
             raise ValueError('正式稿须采用芯/胀套及托垫热耦合的完整冷态结果')
+        service=json.loads((verification.parent/'service-verification.json').read_text(encoding='utf8'))
+        current_bore=json.loads((verification.parent/current['cases'][0]/'input.json').read_text(encoding='utf8'))['initial_bore_diameter_mm']
+        if not service.get('static_service_design_pass',False) or any(json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('initial_bore_diameter_mm') != current_bore for case in service['cases']):
+            raise ValueError('正式稿须采用与已接受制造窗口同孔径的服役强度核验')
     validate_report_numbers(current_assessment(ROOT))
     graph = yaml.safe_load((ROOT / "evidence/evidence_graph.yaml").read_text(encoding="utf-8"))
     errors = validate_evidence_graph(graph, ROOT)
@@ -206,7 +212,7 @@ def main() -> int:
     # 研究状态独立保留，正文只呈现比赛论证所需证据。
     story = cover_and_contents() + build_story()
     # The workshop cards belong in the readable manual, not only in loose attachments.
-    for card in ("joint-process-card.md", "Ni99-transition-pWPS.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md"):
+    for card in ("joint-process-card.md", "Ni99-transition-pWPS.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md"):
         story += [PageBreak()] + build_story(ROOT / "deliverables/process" / card)
     if "--include-research-status" in sys.argv:
         generated_status = write_status_artifacts(ROOT)

@@ -152,6 +152,9 @@ derivation=dict(
    note='proposed fatigue spectra sit below the first-order derivation in the moment channel '
         '(0.19~0.58x); Miner damage is therefore a same-spectrum relative comparison between 6P '
         'and 8P, not an absolute life claim; damage scales with the cube of stress range if loads move up')))
+for row in rows:
+ row['required_reference_range_MPa_at_2e6']=30*row['miner_damage']**(1/3)
+ row['fatigue_decision_role']='same-spectrum qualification demand; not a measured life or a candidate elimination gate'
 result=dict(load_basis='proposed screening spectra for relative route comparison; official problem gives '
  'no measured spectrum, static columns use designer-selected 5000 N reference loads, first-order derivation in load_derivation',
  load_spectrum=cycles,load_derivation=derivation,
@@ -166,15 +169,17 @@ result=dict(load_basis='proposed screening spectra for relative route comparison
        'its cost is 3.27x heat and arc time, and its weld thermal distortion has no FE evidence, '
        'so it serves as a weld-layout qualification comparison, not a remedy for metallurgy' ),
  service_stiffness=_service_stiffness_summary(),
- scoring=dict(weights=[.2,.2,.2,.15,.1,.1,.05],
-  cells=[[6,7,10,5,6,7,3],[9,3,9,2,4,9,7],[8,8,9,4,5,6,8],[8,5,9,9,7,7,9],[9,10,2,3,3,5,5]],
-  candidates=['GMAW-plug','laser','micro-plasma','pulsed-TIG','brazing-eliminated'],
-  weighted_scores=[6.8,6.15,7.1,7.6,5.7],
-  role='subjective decision aid with explicit anchors, not official points or measured performance',
-  notes='scores are designer judgements on 1-10 scales: high score means better; quantitative cells need vendor trial data; brazing '
-        'not selected for this design because of full-component heating, potential flux contamination and absent applicable '
-        'creep/fatigue data for silver-brazed joints under compressor cycling'))
-result['scoring']['weighted_scores']=[round(sum(w*c for w,c in zip(result['scoring']['weights'],row)),2) for row in result['scoring']['cells']]
+ method_selection=dict(
+  comparison_basis='method capabilities and conditions of use; no arbitrary weighted scores',
+  hard_requirements=['released bore axis position diameter <=0.05 mm',
+    'physical exclusion of slag and spatter from interior',
+    'controlled Ni99/QT first interface and final dilution',
+    'accessible tools and adequate deposited section'],
+  selected_baseline='pulsed-GTAW with two-layer Ni99 transition',
+  reason='controlled filler addition, no flux slag, independent transition-layer fabrication and compatible physical shielding',
+  alternatives=['external GMAW plug weld', 'laser fusion weld', 'micro-plasma', 'brazing'],
+  selection_status='current engineering recommendation; complete thermal-mechanical checks remain required',
+  global_optimum_proven=False))
 result['fatigue_sensitivity']=[dict(layout=row['layout'],load_scale=scale,miner_damage=row['miner_damage']*scale**3,critical_scale=(1/row['miner_damage'])**(1/3)) for row in rows for scale in (0.8,1.,1.25,1.3,1.5)]
 OUT.mkdir(exist_ok=True);(OUT/'engineering-checks-r3.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
 print(json.dumps(result,ensure_ascii=False,indent=2))

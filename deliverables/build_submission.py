@@ -33,6 +33,13 @@ def main():
     peen_folder = 'simulation/competition-r4/results/' + peening['source_run']
     source_input = json.loads((ROOT/peen_folder/'input.json').read_text(encoding='utf8'))
     coupled_input = json.loads((ROOT/'simulation/competition-r4/results'/numerical['cases'][0]/'input.json').read_text(encoding='utf8'))
+    service = json.loads((ROOT/'simulation/competition-r4/results/service-verification.json').read_text(encoding='utf8'))
+    if not service.get('static_service_design_pass',False):
+        raise RuntimeError('实际座体服役强度及空间精度尚未通过')
+    for case in service['cases']:
+        service_input=json.loads((ROOT/'simulation/competition-r4/results'/case/'input.json').read_text(encoding='utf8'))
+        if service_input.get('initial_bore_diameter_mm') != coupled_input['initial_bore_diameter_mm']:
+            raise RuntimeError('服役算例孔径与有效制造窗口未对齐，禁止发布最终技术包')
     if not coupled_input.get('fixture_thermal') or not numerical.get('fixture_thermal_model_pass',False):
         raise RuntimeError('最终家族必须包含工具实际热耦合及传热域离散复核')
     for key in ('materials','fusion_enthalpy_model','stage_sequence','travel_mm_s','net_W',
@@ -130,6 +137,7 @@ def main():
         "48-材料热焓参数.yaml":"project/materials.yaml",
         "29-旧12mm座体独立刚度对比.json":"simulation/structural-v4/results/service-stiffness-8p.json",
     }
+    files['65-铜环密封与水路工程展开.md']='deliverables/process/clean-shield-engineering-detail.md'
     # 复核输入和实际历史随包，避免只有主网格的数字而没有比较依据。
     for i, case in enumerate(numerical["cases"], start=1):
         for suffix in ("input.json", "measurement.json", "thermal-history.csv", "equilibrium-history.csv", "process-start-temperatures.json", "birth-continuation-verification.json", "pad-contact-audit.json", "carrier-verification.json", "mechanical-integration-audit.json", "free-release-verification.json", "fixture-thermal-network-convergence.json", "fixture-thermal-history.csv", "mandrel-vector-history.csv"):

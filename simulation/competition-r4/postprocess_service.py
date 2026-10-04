@@ -1,6 +1,6 @@
 """The two final root meshes have the same actual CAD, load and boundary."""
 from pathlib import Path
-import json
+import json,sys
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -11,13 +11,19 @@ OUT=Path(__file__).parent/'results'
 CASES=['service-t15-affine-h2-rootlocal0.35','service-t15-affine-h2-rootlocal0.25']
 
 def main():
+    global CASES
+    if '--cases' in sys.argv:
+        CASES=sys.argv[sys.argv.index('--cases')+1:]
+    elif (OUT/'service-verification.json').exists():
+        CASES=json.loads((OUT/'service-verification.json').read_text(encoding='utf8'))['cases']
+    if len(CASES)!=2:raise ValueError('服役验证要求同孔径、同实体的两级槽根网格')
     records=[json.loads((OUT/c/'service-area-result.json').read_text(encoding='utf8')) for c in CASES]
     inputs=[json.loads((OUT/c/'input.json').read_text(encoding='utf8')) for c in CASES]
     errors={}
     for zone in records[0]['zones']:
         values=[r['zones'][zone]['peak_service_VM_MPa'] for r in records]
         errors[zone]=abs(values[1]-values[0])/max(values)
-    same_geometry=inputs[0]['seat_geometry']==inputs[1]['seat_geometry']
+    same_geometry=all(inputs[0].get(k)==inputs[1].get(k) for k in ['seat_geometry','seat_thickness_mm','initial_bore_diameter_mm','weld_mesh_mm','geometry_representation'])
     same_load=records[0]['load_conditions']==records[1]['load_conditions'] and records[0]['boundary']==records[1]['boundary']
     limits=records[0]['elastic_yield_screen']['allowable_MPa']
     peaks={zone:max(r['zones'][zone]['peak_service_VM_MPa'] for r in records) for zone in errors}

@@ -237,11 +237,46 @@ def render_markdown(status: Dict[str, Any]) -> str:
 
 
 def write_status_artifacts(root: Path) -> Path:
-    status = collect_current_status(root)
+    # 当前摘要只取R4有效链；旧collect/render保留给历史研究记录。
+    results=root/'simulation/competition-r4/results'
+    spec=yaml.safe_load((root/'project/competition-design.yaml').read_text(encoding='utf8'))
+    verification=_json(results/'verification.json')
+    service=_json(results/'service-verification.json')
+    family=['8p-thermal-tool-bore006-h15-dt025-s05','8p-thermal-tool-bore008-h15-dt025-s05',
+            '8p-thermal-tool-bore008-h1125-dt025-s05','8p-thermal-tool-bore008-h15-dt0125-s025']
+    workers={case: _json(results/case/'worker-status.json').get('stage','unknown')
+             if (results/case/'worker-status.json').exists() else 'not_recorded' for case in family}
+    actual_source=all(case in family[1:] for case in verification['cases']) and len(verification['cases'])==3
+    upper_bore=40.008
+    service_matches=all(_json(results/case/'input.json').get('initial_bore_diameter_mm')==upper_bore
+                        for case in service['cases'])
+    manifest=_json(root/'cad/generated/engineering-drawings/drawing-manifest.json')
+    status={'current_stage':'COMPETITION-R4', 'artifact_role':'revision_review',
+            'process_source':spec['process_source'], 'geometry':spec['layout'],
+            'manufacturing_window_in_configuration_mm':spec['fixture']['manufacturing_bore_window_mm'],
+            'manufacturing_window_under_verification_mm':[40.006,40.008],
+            'complete_family_workers':workers, 'position_result_source_cases':verification['cases'],
+            'position_actual_family_pass':actual_source and verification.get('position_design_pass',False),
+            'bore_actual_family_pass':actual_source and verification.get('bore_size_design_pass',False),
+            'service_static_reference_pass':service.get('static_service_design_pass',False),
+            'service_matches_current_family_bore':service_matches,
+            'drawing_count':len(manifest['drawings'])+len(manifest.get('supplemental_drawings',[])),
+            'next_action':'完整热耦合与卸夹核验后统一制造窗口、服役孔径、WPS、双头气路/资源及正式提交物',
+            'historical_results_current_design_evidence':False}
     output = root/"deliverables/report/generated"
     output.mkdir(parents=True,exist_ok=True)
     json_path = output/"current-status.json"
     markdown_path = output/"current-status.md"
     json_path.write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding="utf-8")
-    markdown_path.write_text(render_markdown(status),encoding="utf-8")
+    lines=['# 当前R4设计与核验状态','',
+           '当前产物为修订审阅稿。工艺主线为Ni99两层预制、NiFe55两道脉冲GTAW、柔顺座体、实际承力夹具和连续颗粒隔离。','',
+           f"工程图{status['drawing_count']}张；当前几何{status['geometry']}，最终制造窗口由完整家族核验后冻结。",'',
+           '| 算例 | 当前阶段 |','| --- | --- |']
+    lines += [f'| {case} | {stage} |' for case,stage in workers.items()]
+    lines += ['',f"当前孔轴结果来源：{', '.join(verification['cases'])}。旧冷工具家族保留实际失败，不替代完整工具热耦合家族。",'',
+              f"完整热耦合孔轴核验通过：{status['position_actual_family_pass']}；孔径核验通过：{status['bore_actual_family_pass']}。",'',
+              f"服役静载参考通过：{status['service_static_reference_pass']}；孔径与当前热耦合上界一致：{service_matches}。",'',
+              status['next_action']+'。','',
+              'R3、旧热诊断、旧12 mm服役刚度及历史ROUTE-B排序为历史研究材料。正式结论须引用当前实体、参数和完成状态。']
+    markdown_path.write_text('\n'.join(lines)+'\n',encoding="utf-8")
     return markdown_path
