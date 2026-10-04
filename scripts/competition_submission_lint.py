@@ -1,9 +1,10 @@
-"""COMPETITION-R3 提交包质量门：检查权威数字、清单、措辞和压缩包闭合。"""
+"""R4 技术包检查；候选目录与 ZIP 通过后才发布正式文件。"""
 from __future__ import annotations
 
 import json
 import re
 import zipfile
+import argparse
 from pathlib import Path
 
 import pymupdf
@@ -11,6 +12,11 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 SUB = ROOT / "deliverables/submission"
+
+
+def document_path(relative: str) -> Path:
+    prefix = 'deliverables/submission/'
+    return SUB / relative[len(prefix):] if relative.startswith(prefix) else ROOT / relative
 
 # 交付文档里硬编码的页数声明必须与 manifest 实际计数一致，防止口径漂移再次发生。
 PAGE_CLAIM_DOCS = [
@@ -65,7 +71,7 @@ def check_page_claims(manifest: dict) -> list[str]:
     actual = {"report": manifest["report_pages"], "drawing": manifest["drawing_pages"]}
     texts: list[tuple[str, str]] = []
     for rel in PAGE_CLAIM_DOCS:
-        path = ROOT / rel
+        path = document_path(rel)
         if path.exists():
             texts.append((rel, path.read_text(encoding="utf-8")))
     with pymupdf.open(SUB / "01-工艺设计说明书.pdf") as pdf:
@@ -102,7 +108,7 @@ def check_section_refs(report_text: str) -> list[str]:
         if re.sub(r"\s+", "", heading) not in collapsed:
             errors.append(f"说明书PDF缺少章节标题: {heading}")
     for rel in SECTION_REF_DOCS:
-        path = ROOT / rel
+        path = document_path(rel)
         if not path.exists():
             continue
         for ref in re.findall(r"§(\d+(?:\.\d+)?)", path.read_text(encoding="utf-8")):
@@ -111,7 +117,10 @@ def check_section_refs(report_text: str) -> list[str]:
     return errors
 
 
-def main() -> None:
+def main(submission_dir: Path | None = None, archive_path: Path | None = None) -> None:
+    global SUB
+    if submission_dir is not None:
+        SUB = submission_dir.resolve()
     manifest = json.loads((SUB / "manifest.json").read_text(encoding="utf-8"))
     authority = yaml.safe_load((ROOT / "project/competition-authority.yaml").read_text(encoding="utf-8"))
     assessment = json.loads((ROOT / "studies/COMPETITION-DESIGN/results/assessment.json").read_text(encoding="utf-8"))
@@ -156,8 +165,10 @@ def main() -> None:
         if token in text:
             errors.append(f"提交包含禁止回流/越级措辞: {token}")
     errors.extend(check_section_refs(report_text))
-    archive = ROOT / "deliverables/COMPETITION-R3-焊接固定题技术包.zip"
-    if archive.exists():
+    archive = archive_path or ROOT / "deliverables/COMPETITION-R4-焊接固定题技术包.zip"
+    if not archive.exists():
+        errors.append('待检技术包 ZIP 缺失')
+    else:
         expected = set(files) | {"提交说明.txt", "manifest.json"}
         with zipfile.ZipFile(archive) as z:
             actual = set(z.namelist())
@@ -170,4 +181,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--submission-dir', type=Path)
+    parser.add_argument('--archive', type=Path)
+    args = parser.parse_args()
+    main(args.submission_dir, args.archive)

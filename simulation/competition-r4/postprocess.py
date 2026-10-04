@@ -12,9 +12,11 @@ from hanjie.simulation.structural_prep import fit_position_diameter
 OUT=Path(__file__).parent/'results';FIG=ROOT/'docs/report/figures'
 plt.rcParams.update({'font.sans-serif':['Microsoft YaHei'],'axes.unicode_minus':False})
 CASES=['8p-birthpatch-h20-dt025-s05','8p-birthpatch-h15-dt025-s05','8p-birthpatch-h20-dt0125-s025']
-def section_axis_envelope(a,b,hole):
- # Retain the three extracted section centres as well as the straight cylinder
- # fit: a bowed median line must not disappear in an average fitted axis.
+def section_axis_envelope(a,b,hole,section_count=3,angular_count=12):
+ # Keep the section-centre envelope: a bowed median line must not disappear
+ # in the average cylinder. Samples are section-major, with antipodal pairs.
+ if angular_count<6 or angular_count%2 or len(hole)!=section_count*angular_count:
+  raise ValueError('section-major samples with an even angular count required')
  origin=a.mean(axis=0)
  _,_,basis=np.linalg.svd(a-origin,full_matrices=False)
  frame=basis.T
@@ -23,17 +25,18 @@ def section_axis_envelope(a,b,hole):
  shell_center=np.linalg.lstsq(design,np.sum(lb[:,:2]**2,axis=1),rcond=None)[0][:2]
  lh=(hole-origin)@frame;lh[:,:2]-=shell_center
  centres=[]
- for section in lh.reshape(3,12,3):
-  design=np.column_stack((2*section[:,0],2*section[:,1],np.ones(12)))
+ for section in lh.reshape(section_count,angular_count,3):
+  design=np.column_stack((2*section[:,0],2*section[:,1],np.ones(angular_count)))
   centre=np.linalg.lstsq(design,np.sum(section[:,:2]**2,axis=1),rcond=None)[0][:2]
   centres.append(centre)
  centres=np.asarray(centres)
- sections=lh.reshape(3,12,3)
- diameters=np.linalg.norm(sections[:,:6,:]-sections[:,6:,:],axis=2)
+ sections=lh.reshape(section_count,angular_count,3);half=angular_count//2
+ diameters=np.linalg.norm(sections[:,:half,:]-sections[:,half:,:],axis=2)
  return dict(section_axis_envelope_diameter_mm=float(2*np.linalg.norm(centres,axis=1).max()),section_centres_relative_B_mm=centres.tolist(),
      sampled_bore_two_point_diameter_min_mm=float(diameters.min()),
      sampled_bore_two_point_diameter_max_mm=float(diameters.max()),
-     sampled_section_diameter_spreads_mm=np.ptp(diameters,axis=1).tolist())
+     sampled_section_diameter_spreads_mm=np.ptp(diameters,axis=1).tolist(),
+     maximum_sampled_section_ovalization_mm=float(np.ptp(diameters,axis=1).max()))
 
 def measure(folder,free_shell=False):
  r=json.loads((folder/'result.json').read_text(encoding='utf8'));inp=json.loads((folder/'input.json').read_text(encoding='utf8'))
@@ -42,26 +45,49 @@ def measure(folder,free_shell=False):
   if not release['free_shell_release_pass']:raise RuntimeError('complete shell clamp release required')
   r['cold_shell_clamp_release']=release
  f=np.load(folder/('free-release-fields.npz' if free_shell else 'fields.npz'));x=f['x'];u=f['u'];rad=np.linalg.norm(x[:,:2],axis=1)
- def sample(radius,zs,count):
+ interpolants={}
+ def sample(radius,zs,count,phase=0.):
   mask=abs(rad-radius)<1e-5;theta=np.arctan2(x[mask,1],x[mask,0]);coords=np.column_stack((theta,x[mask,2]));vals=u[mask]
   coords=np.vstack((coords-[2*np.pi,0],coords,coords+[2*np.pi,0]));vals=np.vstack((vals,vals,vals))
-  interp=LinearNDInterpolator(coords,vals);tt=np.tile(np.arange(count)*2*np.pi/count,len(zs));zz=np.repeat(zs,count)
+  if radius not in interpolants:interpolants[radius]=LinearNDInterpolator(coords,vals)
+  interp=interpolants[radius];tt=np.tile((np.arange(count)+phase)*2*np.pi/count,len(zs));zz=np.repeat(zs,count)
   du=interp(np.column_stack((tt,zz)))
   if not np.all(np.isfinite(du)):raise RuntimeError('measurement samples outside triangulated surface')
   return np.column_stack((radius*np.cos(tt),radius*np.sin(tt),zz))+du
  bottom=x[:,2]<1e-5
- angles=np.arange(24)*2*np.pi/24;axy=np.column_stack((77.5*np.cos(angles),77.5*np.sin(angles)))
- adu=LinearNDInterpolator(x[bottom,:2],u[bottom])(axy)
- if not np.all(np.isfinite(adu)):raise RuntimeError('datum A samples outside lower annulus')
- a=np.column_stack((axy,np.zeros(24)))+adu
+ ainterp=LinearNDInterpolator(x[bottom,:2],u[bottom])
  bore_radius=inp['initial_bore_diameter_mm']/2
- b=sample(75,[20,180],24);hole=sample(bore_radius,np.linspace(100,100+inp['seat_thickness_mm'],3),12)
- r['fit_mesh_nodes']=r['fit'];r['fit']=fit_position_diameter(a,b,hole)
- r['fit']['straight_fitted_axis_position_mm']=r['fit']['position_diameter_mm']
- r['fit'].update(section_axis_envelope(a,b,hole))
- r['fit']['position_diameter_mm']=max(r['fit']['position_diameter_mm'],r['fit']['section_axis_envelope_diameter_mm'])
+ def extract(count,sections,phase=0.,datum_count=192):
+  angles=np.arange(datum_count)*2*np.pi/datum_count;axy=np.column_stack((77.5*np.cos(angles),77.5*np.sin(angles)))
+  adu=ainterp(axy)
+  if not np.all(np.isfinite(adu)):raise RuntimeError('datum A samples outside lower annulus')
+  a=np.column_stack((axy,np.zeros(datum_count)))+adu
+  b=sample(75,[20,180],datum_count)
+  hole=sample(bore_radius,np.linspace(100,100+inp['seat_thickness_mm'],sections),count,phase)
+  fit=fit_position_diameter(a,b,hole)
+  fit['straight_fitted_axis_position_mm']=fit['position_diameter_mm']
+  fit.update(section_axis_envelope(a,b,hole,sections,count))
+  fit['position_diameter_mm']=max(fit['position_diameter_mm'],fit['section_axis_envelope_diameter_mm'])
+  return dict(angular_count=count,section_count=sections,phase_fraction=phase,datum_angular_count=datum_count,fit=fit),a,b,hole
+ protocols=[(12,3,0.,24),(96,9,0.,96),(192,17,0.,192),(384,33,0.,192),(384,33,.5,192)]
+ extracted=[extract(*protocol) for protocol in protocols]
+ audit=[item[0] for item in extracted]
+ metrics=['position_diameter_mm','straight_fitted_axis_position_mm','section_axis_envelope_diameter_mm',
+          'sampled_bore_two_point_diameter_min_mm','sampled_bore_two_point_diameter_max_mm','maximum_sampled_section_ovalization_mm']
+ differences={key:max(abs(audit[i]['fit'][key]-audit[2]['fit'][key]) for i in (3,4)) for key in metrics}
+ phase_differences={key:abs(audit[3]['fit'][key]-audit[4]['fit'][key]) for key in metrics}
+ chosen=max((3,4),key=lambda i:audit[i]['fit']['position_diameter_mm'])
+ protocol,a,b,hole=extracted[chosen]
+ r['fit_mesh_nodes']=r['fit'];r['fit']=dict(protocol['fit'])
+ r['fit']['sampled_bore_two_point_diameter_min_mm']=min(audit[i]['fit']['sampled_bore_two_point_diameter_min_mm'] for i in (3,4))
+ r['fit']['sampled_bore_two_point_diameter_max_mm']=max(audit[i]['fit']['sampled_bore_two_point_diameter_max_mm'] for i in (3,4))
+ r['fit']['maximum_sampled_section_ovalization_mm']=max(audit[i]['fit']['maximum_sampled_section_ovalization_mm'] for i in (3,4))
+ r['measurement_sampling']=dict(protocols=audit,selected_protocol={k:v for k,v in protocol.items() if k!='fit'},
+    refined_response_differences_mm=differences,phase_response_differences_mm=phase_differences,
+    response_difference_limit_mm=.0001,sampling_stability_pass=all(v<=.0001 for v in differences.values()),
+    scope='refinement and phase stability of the same piecewise interpolated FE displacement field; no new FE solution or experimental data')
  r['measurement_samples_mm']=dict(datum_A=a.tolist(),datum_B=b.tolist(),bore=hole.tolist())
- r['measurement_protocol']=f"24 datum-A annulus points at R77.5, 36 bore and 48 shell samples, identical across all runs; maximum of fitted straight axis and three extracted section-centre envelope; initial bore {inp['initial_bore_diameter_mm']:g} mm"
+ r['measurement_protocol']=f"192 datum-A annulus points at R77.5, 384 shell points and 33 x384 bore points; two half-step angular phases, worst metrics retained; straight axis and section-centre envelope; initial bore {inp['initial_bore_diameter_mm']:g} mm"
  bore=abs(rad-bore_radius)<1e-5;r['bore_wall_peak_C']=float(f['peak_nodal_temperature'][bore].max());r['final_time_s']=float(np.loadtxt(folder/'thermal-history.csv',delimiter=',',skiprows=1)[-1,0])
  eq=np.loadtxt(folder/'equilibrium-history.csv',delimiter=',',skiprows=1);release=eq[eq[:,4]==1];r['release_time_s']=float(release[0,0]) if len(release) else None
  r['contact_area_mm2']=inp['contact_area_mm2'];r['structural_step_s']=inp['structural_step_s']
@@ -98,6 +124,7 @@ def main(cases=None):
    input_physics_same=input_physics_same and inp['copper_water_model'][k]==records[0][2]['copper_water_model'][k]
  numerical=all(r['released'] and r['final_max_C']<=21 and r['max_equilibrium_residual_N']<.05 and abs(r['energy_balance_relative'])<1e-5 and r['contact_area_mm2']>0 and r['seal_thermal_limits_pass'] and r['max_mandrel_reaction_N']<=5000 and inp['interface_patch']['rigid_translation_and_rotation_patch_pass'] for r,_,inp in records)
  numerical=numerical and all(r.get('cold_shell_clamp_release',{}).get('free_shell_release_pass',False) for r in rows)
+ sampling_verified=all(r['measurement_sampling']['sampling_stability_pass'] for r in rows)
  birth_verified=all((OUT/name/'birth-continuation-verification.json').exists() and json.loads((OUT/name/'birth-continuation-verification.json').read_text(encoding='utf8'))['rigid_motion_patch_pass'] for name in available)
  support_records=[];event_records=[]
  from check_carrier import evaluate as evaluate_carrier
@@ -128,11 +155,13 @@ def main(cases=None):
    if (OUT/name/'fixture-boundary-trace.npz').exists():fixture_records.append(evaluate_fixture_thermal(name))
    else:fixture_records.append(dict(source_case=name,fixture_thermal_discretization_pass=False,reason='actual fixture boundary trace absent'))
  fixture_verified=len(fixture_records)==len(records) and all(r['fixture_thermal_discretization_pass'] and r.get('support_thermal_height_budget_pass',False) for r in fixture_records)
- verified=bool(enthalpy_verified and numerical and birth_verified and support_verified and events_verified and input_physics_same and same_time and same_time_grid and spatial<=.05 and temporal<=.05)
+ verified=bool(sampling_verified and enthalpy_verified and numerical and birth_verified and support_verified and events_verified and input_physics_same and same_time and same_time_grid and spatial<=.05 and temporal<=.05)
  worst=max(r['fit']['position_diameter_mm'] for r in rows);budget=2*.014+worst+.002
  result=dict(cases=available,records=rows,spatial_comparison_cases=available[:2],temporal_comparison_cases=[available[0],available[2]],superseded_coarse_time_case='8p-affine-h20-dt05-s1',superseded_incomplete_birth_cases=['8p-affine-h20-dt025-s05','8p-affine-pardiso-h15-dt025-s05','8p-affine-pardiso-h20-dt0125-s025'],input_physics_identical=input_physics_same,spatial_response_relative_error=spatial,spatial_time_steps_identical=same_time,temporal_mesh_identical=same_time_grid,temporal_response_relative_error=temporal,relative_precision_limit=.05,numerical_equilibrium_and_cold_release_pass=numerical,birth_rigid_motion_patch_pass=birth_verified,discretization_verified=verified,thermal_position_worst_mm=worst,position_budget_mm=budget,design_limit_mm=.05,position_design_pass=bool(verified and budget<=.05),metallurgy_scope='full-part model supports residual shape under declared source assumptions; molten pool and PMZ use independent composition and qualification controls, not node-peak proof')
  result.update(material_specific_fusion_enthalpy_pass=enthalpy_verified,unilateral_support_and_carrier_pass=support_verified,support_records=support_records,mandatory_thermal_events_pass=events_verified,event_records=event_records,
-    fixture_thermal_model_pass=fixture_verified,fixture_thermal_records=fixture_records)
+    fixture_thermal_model_pass=fixture_verified,fixture_thermal_records=fixture_records,measurement_sampling_stability_pass=sampling_verified,
+    spatial_response_relative_difference=spatial,temporal_response_relative_difference=temporal,
+    discretization_scope='pairwise response differences satisfy the project 5% limit; not a true-solution error bound or a model-parameter uncertainty bound')
  result['position_design_pass']=result['position_design_pass'] and fixture_verified
  from check_bore_size import evaluate as evaluate_bore_size
  bore_size=evaluate_bore_size(result)
@@ -145,7 +174,7 @@ def main(cases=None):
  positions=[r['fit']['position_diameter_mm']*1000 for r in rows]
  axes[0].bar([f"h{r['h_mm']:g} / Δt{r['dt_s']:g}" for r in rows],positions,color=['#0284c7','#059669','#7c3aed'])
  for i,value in enumerate(positions):axes[0].text(i,value,f'{value:.3f}',ha='center',va='bottom',fontsize=9)
- axes[0].set(ylabel='位置度直径 μm',title='相同36/48测点的冷态位置度\n直轴与截面中心包络取大');axes[0].set_ylim(0,max(positions)*1.15)
+ axes[0].set(ylabel='位置度直径 μm',title='密集孔面采样及相位复核\n直轴与截面中心包络取大');axes[0].set_ylim(0,max(positions)*1.15)
  vals=[4,4,4,13,1,2,worst*1000,2];labels=['基准','工装轴','定心','夹紧','释放','支点','热残余','测量U']
  axes[1].barh(labels,vals,color='#0284c7');axes[1].set(xlabel='直径口径 μm',title=f'设计合成 {budget*1000:.2f} μm\n空间差 {spatial*100:.2f}% / 时间差 {temporal*100:.2f}%')
  fig.savefig(FIG/'r4-mesh-budget.png',dpi=220);plt.close(fig)

@@ -5,8 +5,30 @@ import shutil
 import subprocess
 import sys
 import zipfile
+import tempfile
+import os
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def publish_validated(candidate, candidate_archive, destination, archive):
+    """Replace both validated products, retaining the preceding set on failure."""
+    backup = candidate.parent/'previous-submission'
+    backup_archive = candidate.parent/'previous-package.zip'
+    moved_directory = installed_directory = moved_archive = installed_archive = False
+    try:
+        if destination.exists():
+            os.replace(destination, backup);moved_directory = True
+        os.replace(candidate, destination);installed_directory = True
+        if archive.exists():
+            os.replace(archive, backup_archive);moved_archive = True
+        os.replace(candidate_archive, archive);installed_archive = True
+    except BaseException:
+        if installed_archive:os.replace(archive, candidate_archive)
+        if moved_archive:os.replace(backup_archive, archive)
+        if installed_directory:os.replace(destination, candidate)
+        if moved_directory:os.replace(backup, destination)
+        raise
 
 
 def main():
@@ -36,6 +58,8 @@ def main():
     service = json.loads((ROOT/'simulation/competition-r4/results/service-verification.json').read_text(encoding='utf8'))
     if not service.get('static_service_design_pass',False):
         raise RuntimeError('实际座体服役强度及空间精度尚未通过')
+    if not service.get('complete_welded_strength_design_pass',False):
+        raise RuntimeError('完整强度尚缺残余张量合成与过渡层/界面承载依据；增量实体VM检查不能替代')
     for case in service['cases']:
         service_input=json.loads((ROOT/'simulation/competition-r4/results'/case/'input.json').read_text(encoding='utf8'))
         if service_input.get('initial_bore_diameter_mm') != coupled_input['initial_bore_diameter_mm']:
@@ -62,7 +86,11 @@ def main():
         elif script == 'simulation/competition-r4/postprocess.py':
             command += ['--cases', *numerical['cases']]
         subprocess.run(command, cwd=ROOT, check=True)
-    out = ROOT/"deliverables/submission"
+    # Rejected candidates live only in a temporary directory. The previous
+    # published directory/ZIP is untouched until all candidate checks pass.
+    staging = tempfile.TemporaryDirectory(prefix='submission-candidate-', dir=ROOT/'output')
+    stage = Path(staging.name)
+    out = stage/'submission'
     out.mkdir(parents=True, exist_ok=True)
     numerical = json.loads((ROOT/"simulation/competition-r4/results/verification.json").read_text(encoding="utf-8"))
     service = json.loads((ROOT/"simulation/competition-r4/results/service-verification.json").read_text(encoding="utf-8"))
@@ -201,13 +229,17 @@ def main():
               "design_verification_scope":"current 15 mm CAD; cold residual position, incremental static service envelope and segment-start temperature under declared numerical inputs; first QT/Ni99 interface and fatigue are confirmed by the prescribed A-class trial programme",
               "product_conformity_claimed":False}
     (out/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
-    archive=ROOT/"deliverables/COMPETITION-R3-焊接固定题技术包.zip"
+    archive=stage/"COMPETITION-R4-焊接固定题技术包.zip"
     # 只打包显式清单，目录中其他文件不自动混入提交物。
     with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as bundle:
         for name in [*files,"提交说明.txt","manifest.json"]:
             bundle.write(out/name,name)
-    subprocess.run([sys.executable, "-X", "utf8", str(ROOT/"scripts/competition_submission_lint.py")], cwd=ROOT, check=True)
-    print(f"已生成技术包：{archive}")
+    subprocess.run([sys.executable, "-X", "utf8", str(ROOT/"scripts/competition_submission_lint.py"),
+                    '--submission-dir',str(out),'--archive',str(archive)], cwd=ROOT, check=True)
+    final_archive=ROOT/'deliverables/COMPETITION-R4-焊接固定题技术包.zip'
+    publish_validated(out,archive,ROOT/'deliverables/submission',final_archive)
+    staging.cleanup()
+    print(f"已生成并通过检查：{final_archive}")
 
 
 if __name__ == "__main__":

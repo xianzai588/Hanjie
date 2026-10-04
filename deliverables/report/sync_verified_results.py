@@ -14,6 +14,8 @@ def main():
     service = json.loads((RESULTS/'service-verification.json').read_text(encoding='utf8'))
     if not verified['position_design_pass'] or not service['static_service_design_pass']:
         raise ValueError('须先完成位置度离散精度与整件静载验证，不能发布未通过的设计结论')
+    if not service.get('complete_welded_strength_design_pass',False):
+        raise ValueError('须完成残余张量合成及过渡层/界面承载核验，不能只凭三种实体增量应力同步完整强度结论')
     if not verified.get('bore_size_design_pass',False):
         raise ValueError('须先完成孔径尺寸链及有限微珩的孔轴预算')
     process = json.loads((RESULTS/'process-temperature-verification.json').read_text(encoding='utf8'))
@@ -73,14 +75,14 @@ def main():
         ('支承含根部径向弹性位移，μm', [f"{c['total_radial_axis_deflection_mm']*1000:.3f}" for c in carriers]),
         ('冷态解除壳底约束平衡残差，N', [f"{r['cold_shell_clamp_release']['release_equilibrium_residual_N']:.6f}" for r in rows]),
         ('冷态卸夹位置度直径，μm', [f"{r['fit']['position_diameter_mm']*1000:.3f}" for r in rows]),
-        ('36点两点孔径范围，mm', [f"{r['fit']['sampled_bore_two_point_diameter_min_mm']:.5f}～{r['fit']['sampled_bore_two_point_diameter_max_mm']:.5f}" for r in rows]),
+        ('密集采样两点孔径范围，mm', [f"{r['fit']['sampled_bore_two_point_diameter_min_mm']:.5f}～{r['fit']['sampled_bore_two_point_diameter_max_mm']:.5f}" for r in rows]),
         ('较大截面两点尺寸差，μm', [f"{max(r['fit']['sampled_section_diameter_spreads_mm'])*1000:.3f}" for r in rows]),
     ]
     table = header + ''.join('| '+name+' | '+' | '.join(values)+' |\n' for name, values in metrics)
     spatial = verified['spatial_response_relative_error']*100
     temporal = verified['temporal_response_relative_error']*100
-    worst = verified['thermal_position_worst_mm']
-    budget = verified['position_budget_mm']
+    worst = verified['bore_size_verification']['worst_welded_endpoint_axis_mm']
+    budget = .028 + .002 + worst
     bore = verified['bore_size_verification']
     after_finish = bore['post_finish_position_budget_mm']
     fixture_checks = verified['fixture_thermal_records']
@@ -111,7 +113,7 @@ NIST-JANAF在Ni/Fe各自熔点给出的固液焓差为17.155/13.807 kJ/mol，换
 
 QT测点按最终焊趾向内10 mm固定于R61、z115，盖面前另核对应根道温度。三组完整耦合运行直接记录全部16次起弧温度，段次及实际阶段时刻逐项核对；较大段前温度{process['maximum_start_C']:.2f}℃，满足首次15～35℃及后续≤100℃条件，名义18 s段间工序在该热模型下无需额外层间等待。热态轻击仍由焊道表面400～500℃信号触发，按WPS执行。
 
-最终冷态评价另解壳底轴向约束的释放平衡，继承实际残余应力、累计塑性与界面连接刚度；从保存应力恢复的原状态平衡残差≤0.05 N，释放求解残差<0.001 N。模型只保留六个刚体坐标规范，其约束反力<0.1 N，不约束底面翘曲；原夹持场与完全卸夹场分别保存。基准A为实际变形后的壳体下端安装面，B以壳体z20/z180两带各24点建立、按A法向定向。孔壁z100/107.5/115三截面各12点；直线拟合轴及三个提取截面中心的包络取大值，避免平均拟合掩盖弯曲。不同网格采用相同36/48测点，而非各自网格节点数量。
+最终冷态评价另解壳底轴向约束的释放平衡，继承实际残余应力、累计塑性与界面连接刚度；从保存应力恢复的原状态平衡残差≤0.05 N，释放求解残差<0.001 N。模型只保留六个刚体坐标规范，其约束反力<0.1 N，不约束底面翘曲；原夹持场与完全卸夹场分别保存。基准A为实际变形后的壳体下端安装面，B以壳体z20/z180两带各192点建立、按A法向定向。孔壁采用33截面×384点，另检查半步周向相位；基准A取192点、B两带各192点。直轴与截面中心包络取大；96×9、192×17及384×33采样的最终响应差须≤0.1 μm，各网格保持同一协议。
 
 ### 4.2 完整冷却卸夹与收敛结果
 
@@ -125,7 +127,7 @@ QT测点按最终焊趾向内10 mm固定于R61、z115，盖面前另核对应根
 
 ### 4.3 位置度预算与工程判定
 
-径向分项为基准转移0.002、工装轴线0.002、胀套定心0.002、夹紧0.0065、搬运永久偏移0.0005、支点倾斜0.0010 mm，合计0.0140 mm。热残余允许上限由官方公差扣除非热分项及测量不确定度后得到直径0.020 mm，内部裕量目标为0.016 mm；{target_statement}。采用线性直径叠加，取三组较大热残余、同口径测量扩展不确定度，并为可选的短孔微珩另保留6 μm位置度直径变化量：
+径向分项为基准转移0.002、工装轴线0.002、胀套定心0.002、夹紧0.0065、搬运永久偏移0.0005、支点倾斜0.0010 mm，合计0.0140 mm。热残余允许上限由官方公差扣除非热分项及测量不确定度后得到直径0.020 mm，内部裕量目标为0.016 mm；{target_statement}。采用线性直径叠加，取制造上下界及其离散复核的较大热残余、同口径测量扩展不确定度，并为可选的短孔微珩另保留6.5 μm位置度直径变化量：
 
 | 项目 | 直径口径 / μm |
 | --- | ---: |
@@ -137,7 +139,7 @@ QT测点按最终焊趾向内10 mm固定于R61、z115，盖面前另核对应根
 | 包含微珩的最终保守合成值 | **{after_finish*1000:.3f}** |
 | 官方位置度上限 | **50.000** |
 
-经理论计算与数值仿真验证，在设定工况及上述公差分配下满足焊后位置度≤Ø0.05 mm要求；建议后续试制通过A类实物试验完成最终工程验证。冷却至20±1℃、完全卸夹后先检位置度；孔径比较测量另在20±0.2℃执行，方法扩展不确定度≤0.5 μm。焊前制造窗口由40.006/40.008 mm两端实际实体及冷态结果确定，焊后孔径包络{bore['cold_diameter_envelope_before_finish_mm'][0]:.5f}～{bore['cold_diameter_envelope_before_finish_mm'][1]:.5f} mm。合格孔不精整；欠尺寸孔仅允许以现有孔轴稳向、Ø40.001定尺寸工具选择性微珩，局部单边去除≤3 μm、直径去除≤6 μm，精整后重新CMM和洁净检验，不以机加工纠正孔轴。[42,43]
+经理论计算与数值仿真验证，在设定工况及上述公差分配下满足焊后位置度≤Ø0.05 mm要求；建议后续试制通过A类实物试验完成最终工程验证。冷却至20±1℃、完全卸夹后先检位置度；孔径比较测量另在20±0.2℃执行，方法扩展不确定度≤0.5 μm。焊前制造窗口由40.006/40.008 mm两端实际实体及冷态结果确定，焊后孔径包络{bore['cold_diameter_envelope_before_finish_mm'][0]:.5f}～{bore['cold_diameter_envelope_before_finish_mm'][1]:.5f} mm。合格孔不精整；欠尺寸孔仅允许以现有孔轴稳向、Ø40.001定尺寸工具选择性微珩，局部单边去除≤3 μm、直径去除≤6 μm，精整后重新CMM并执行干态洁净检查，颗粒由合格局部隔离收集，内腔不冲洗补救，不以机加工纠正孔轴。[42,43]
 
 ### 4.4 冷却占用与工作站配置
 
@@ -195,8 +197,8 @@ TWI铸铁指南支持镍/镍铁填充、短焊道与趁热轻击[4]。本件将N
     size_paragraph=(f'主轴承孔焊前制造窗口为{window[0]:.3f}～{window[1]:.3f} mm，焊后目标40.000～40.025 mm。'
         '完全卸夹后先检焊后位置度，位置度不合格件不得用终镗纠正轴线。'
         '孔径在20±0.2℃以扩展U≤0.5 μm的方法判定，合格孔不精整；'
-        '局部欠尺寸仅允许单边去除≤3 μm的选择性微珩，另留6 μm位置度变化包络，精整前后均CMM及洁净复检。'
-        '制造两端由各自实际孔壁实体、完整热耦合和完全卸夹结果核验，尺寸链及空间/时间精度见§4。')
+        '局部欠尺寸仅允许单边去除≤3 μm的选择性微珩，另留6.5 μm位置度变化包络，精整前后均CMM及洁净复检。'
+        '制造两端及内部响应包络由各自实际孔壁实体、完整热耦合、独立离散精度和完全卸夹结果核验，尺寸链及空间/时间精度见§4。')
     text,count=re.subn(r'主轴承孔(?:当前)?焊前(?:制造)?窗口[^\n]+',size_paragraph,text,count=1)
     if count!=1:raise ValueError('制造孔径正文段落未找到；请先核对当前说明书')
     text=text.replace('孔40.010～40.014、座体外缘',f'孔{window[0]:.3f}～{window[1]:.3f}、座体外缘')
@@ -212,15 +214,17 @@ TWI铸铁指南支持镍/镍铁填充、短焊道与趁热轻击[4]。本件将N
     design_path = ROOT/'project/competition-design.yaml'
     design = yaml.safe_load(design_path.read_text(encoding='utf8'))
     design['fixture']['manufacturing_bore_window_mm'] = bore['manufacturing_window_mm']
+    design['fixture']['candidate_manufacturing_bore_window_mm'] = bore['manufacturing_window_mm']
+    design['fixture']['manufacturing_bore_window_state'] = 'verified_current_window'
     design['precision']['bore_finish_strategy'] = '焊前孔40.006～40.008；焊后先验位置度；孔径测量20±0.2℃、U≤0.0005；40.000～40.025合格孔不精整；欠尺寸孔以现有孔轴稳向、40.001定尺寸工具选择性微珩，局部单边去除≤0.003、直径去除≤0.006；精整前后均CMM及洁净验收，禁止修正孔轴'
-    design['precision']['post_weld_machining'] = '局部单边去除≤0.003、直径≤0.006；孔轴变化直径另分配0.006，精整前后独立CMM，不重镗、不修轴'
+    design['precision']['post_weld_machining'] = '局部单边去除≤0.003、直径≤0.006；孔轴变化直径另分配0.0065，精整前后独立CMM，不重镗、不修轴'
     design['precision']['finish_allowance_diameter_mm'] = [0,bore['maximum_allowed_diameter_stock_mm']]
     design['precision']['status'] = '公差设计分配及当前15 mm整件冷态位置度预算通过；空间/时间响应差分别≤5%；后续试制按CMM与重复装夹程序完成A类实物验证'
     design_path.write_text(yaml.safe_dump(design,allow_unicode=True,sort_keys=False),encoding='utf8')
     card_path=ROOT/'deliverables/process/bore-compensation-and-finish-card.md'
     card=card_path.read_text(encoding='utf8')
-    card=card.replace('焊前40.006～40.008 mm为当前尺寸补偿核验窗口；须以完整冷态三组及同网格制造上下界的实际结果冻结。',
-        '焊前40.006～40.008 mm制造窗口已经完整热耦合、冷态三组及同网格制造上下界计算核验；按本卡在后续试制完成A类实物工程验证。')
+    card=card.replace('焊前40.006～40.008 mm为当前尺寸补偿核验窗口；须以完整冷态三组及制造上下界、下界独立离散精度及内部响应包络冻结。',
+        '焊前40.006～40.008 mm制造窗口已经完整热耦合、冷态三组及制造上下界、下界独立离散精度及内部响应包络核验；按本卡在后续试制完成A类实物工程验证。')
     card_path.write_text(card,encoding='utf8')
     print(f'已同步三组有效冷态结果：空间{spatial:.2f}%，时间{temporal:.2f}%，位置度合成{budget*1000:.3f} μm')
 

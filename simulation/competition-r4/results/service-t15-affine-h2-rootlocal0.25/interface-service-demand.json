@@ -1,0 +1,83 @@
+{
+  "case": "service-t15-affine-h2-rootlocal0.25",
+  "initial_bore_diameter_mm": 40.014,
+  "interfaces": {
+    "QT_Ni99_transition": {
+      "area_mm2": 560.772919174332,
+      "maximum_absolute_normal_traction_MPa": 66.23617416144108,
+      "maximum_tangential_traction_MPa": 54.97785517042011,
+      "maximum_resultant_traction_MPa": 84.35357959074834,
+      "required_normal_capacity_with_SF1_5_MPa": 99.35426124216163,
+      "required_shear_capacity_with_SF1_5_MPa": 82.46678275563016,
+      "hotspot_xyz_mm": [
+        74.46036026496208,
+        -8.980798918362202,
+        115.0
+      ],
+      "hotspot_traction_vector_MPa": [
+        -54.554160776813674,
+        -6.812349159963426,
+        63.97625989875482
+      ],
+      "force_on_weld_N": [
+        4999.999999999326,
+        1.9632562242577478e-10,
+        4999.99999999838
+      ],
+      "moment_on_weld_about_origin_N_mm": [
+        250001.2621050736,
+        537535.0020166676,
+        -1.2621050650985524
+      ]
+    },
+    "Q235_NiFe": {
+      "area_mm2": 576.1512314346103,
+      "maximum_absolute_normal_traction_MPa": 146.24912756435785,
+      "maximum_tangential_traction_MPa": 65.52070659581607,
+      "maximum_resultant_traction_MPa": 152.2759724687346,
+      "required_normal_capacity_with_SF1_5_MPa": 219.37369134653676,
+      "required_shear_capacity_with_SF1_5_MPa": 98.28105989372409,
+      "hotspot_xyz_mm": [
+        74.46036026496208,
+        -8.980798918362202,
+        115.0
+      ],
+      "hotspot_traction_vector_MPa": [
+        144.9107587023972,
+        -19.884340992451683,
+        -42.349224159249275
+      ],
+      "force_on_weld_N": [
+        -4999.999999999212,
+        -2.0980106540946508e-10,
+        -4999.999999998399
+      ],
+      "moment_on_weld_about_origin_N_mm": [
+        -250001.26210507282,
+        -537535.0020166539,
+        1.2621050707935382
+      ]
+    }
+  },
+  "applied_hole_force_N": [
+    5000.0,
+    0.0,
+    5000.0
+  ],
+  "applied_hole_moment_about_origin_N_mm": [
+    250001.2621050818,
+    537535.0020167679,
+    -1.2621050819246875
+  ],
+  "applied_pure_couple_about_weighted_hole_centre_N_mm": [
+    249999.99999999988,
+    36.01581855455879,
+    3.481659405224491e-13
+  ],
+  "QT_force_balance_residual_N": 1.7653661237591512e-09,
+  "QT_moment_balance_residual_N_mm": 1.0196691255554507e-07,
+  "interpolation_coordinate_residual_mm": 2.767282056657881e-13,
+  "recovered_transfer_equilibrium_pass": true,
+  "scope": "current saved combined linear-elastic service increment; area-scaled isotropic interface spring demand, not interface strength or inherited-residual verification",
+  "strength_interaction": "normal/shear demands require a qualified mixed-mode criterion and QT/PMZ/transition metallurgy; separate SF1.5 demands do not certify their simultaneous interaction"
+}

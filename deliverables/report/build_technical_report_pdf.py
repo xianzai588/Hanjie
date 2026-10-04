@@ -196,6 +196,8 @@ def main() -> int:
         if any(not json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('fixture_thermal') for case in current['cases']):
             raise ValueError('正式稿须采用芯/胀套及托垫热耦合的完整冷态结果')
         service=json.loads((verification.parent/'service-verification.json').read_text(encoding='utf8'))
+        if not service.get('complete_welded_strength_design_pass',False):
+            raise ValueError('完整焊接件强度须补残余张量及过渡层/界面核验；当前仅可生成审阅稿')
         current_bore=json.loads((verification.parent/current['cases'][0]/'input.json').read_text(encoding='utf8'))['initial_bore_diameter_mm']
         if not service.get('static_service_design_pass',False) or any(json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('initial_bore_diameter_mm') != current_bore for case in service['cases']):
             raise ValueError('正式稿须采用与已接受制造窗口同孔径的服役强度核验')

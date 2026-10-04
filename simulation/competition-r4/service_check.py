@@ -38,7 +38,12 @@ def run(folder,h_override=None):
  weight=np.bincount(bore_faces.ravel(),weights=np.repeat(bore_area/3,3),minlength=len(x))[bn]
  weight/=weight.sum()
  F=np.zeros((N,3));F[3*bn,0]=5000*weight;F[3*bn+2,1]=5000*weight
- yy=x[bn,1]-np.dot(weight,x[bn,1]);F[3*bn+2,2]=250000*weight*yy/np.dot(weight,yy**2)
+ xy=x[bn,:2]-weight@x[bn,:2]
+ couple=np.c_[xy[:,1],-xy[:,0]]
+ # Normalize both moment components. An irregular mesh can otherwise add
+ # a small unintended y moment to the prescribed x-axis pure couple.
+ coefficient=np.linalg.solve(couple.T@(weight[:,None]*couple),[250000.,0.])
+ F[3*bn+2,2]=weight*(couple@coefficient)
  factor=splu(matrix[free][:,free].tocsc());U=np.zeros_like(F);U[free]=factor.solve(F[free])
  strain=np.einsum('eij,ejk->eik',B,U[dof]);s=np.einsum('eij,ejk->eik',D,strain)
  stress=np.sum(s,axis=2);vm=np.sqrt(1.5*np.sum((stress-stress@pv)**2,axis=1))
@@ -47,6 +52,7 @@ def run(folder,h_override=None):
  zones={'QT_slot_root':(m==1)&(r>35)&(r<47),'QT_body':m==1,'NiFe_weld':m==2,'Q235_shell':m==0}
  res={'mesh_h_mm':h,'initial_bore_diameter_mm':2*bore_radius,'nodes':len(x),'tetrahedra':len(e),'load_conditions':{'Fr_N':5000,'Fa_N':5000,'Mx_Nmm':250000,'continuous_amplitudes_N_N_Nmm':[500,200,25000]},
   'boundary':'cold service: shell lower rim rigidly attached to base; weld interfaces interpolated; no mandrel support',
+  'pure_couple_components_normalized':True,
   'load_distribution':'area-weighted bore-wall tractions, each prescribed resultant normalized exactly; moment is a zero-resultant force couple about weighted centre; this is a design load-transfer envelope, not a measured bearing contact distribution',
   'stress_method':'linear elastic geometric notch resolution; reported peak and element-count p95; no claim of a local weld-toe singularity fatigue class',
   'elastic_yield_screen':{'safety_factor':1.5,'allowable_MPa':{'QT':310/1.5,'NiFe':290/1.5,'Q235':235/1.5},'scope':'incremental cold service stress, separate from weld residual stress; local metal yield checks do not determine PMZ brittle fracture'},
@@ -54,10 +60,13 @@ def run(folder,h_override=None):
     'p95_service_VM_MPa':float(np.quantile(vm[z],.95))} for name,z in zones.items()}}
  bp=np.flatnonzero((abs(radius-75)<1e-4)&((x[:,2]<35)|(x[:,2]>165)))
  disp=U.sum(axis=1).reshape(-1,3)
- np.savez_compressed(folder/'service-area-fields.npz',service_VM=vm,continuous_range=dr,u_combined=disp)
+ np.savez_compressed(folder/'service-area-fields.npz',service_VM=vm,continuous_range=dr,u_combined=disp,
+     service_stress_Mandel_MPa=stress,continuous_amplitude_stress_Mandel_MPa=cyc)
  res['combined_service_axis_fit']=fit_position_diameter(x[bottom]+disp[bottom],x[bp]+disp[bp],x[bn]+disp[bn])
  res['maximum_combined_displacement_mm']=float(np.linalg.norm(disp,axis=1).max())
  res['axis_fit_scope']='elastic service deflection relative to deformed shell, separate from the unloaded welding position tolerance'
  (folder/'service-area-result.json').write_text(json.dumps(res,ensure_ascii=False,indent=2),encoding='utf8');print(json.dumps(res,ensure_ascii=False))
+ from extract_interface_demand import evaluate as interface_demand
+ interface_demand(folder.name)
 if __name__=='__main__':
  with threadpool_limits(limits=1):run(Path(sys.argv[1]),float(sys.argv[2]) if len(sys.argv)>2 else None)

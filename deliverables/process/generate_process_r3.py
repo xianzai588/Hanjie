@@ -2,7 +2,9 @@ from pathlib import Path
 import json,yaml
 ROOT=Path(__file__).resolve().parents[2]
 r=json.loads((ROOT/'studies/COMPETITION-DESIGN/results/assessment.json').read_text(encoding='utf8'));p=r['process']
-bore=r['spec']['fixture'].get('manufacturing_bore_window_mm',[40.010,40.014])
+fixture=r['spec']['fixture']
+bore=fixture.get('candidate_manufacturing_bore_window_mm',fixture.get('manufacturing_bore_window_mm',[40.010,40.014]))
+bore_state='' if fixture.get('manufacturing_bore_window_state')=='verified_current_window' else '（候选核验窗，未冻结）'
 finish_strategy=r['spec']['precision']['bore_finish_strategy']
 card=f'''# 主轴承座—壳体连接 pWPS 工艺规程卡
 
@@ -11,10 +13,10 @@ card=f'''# 主轴承座—壳体连接 pWPS 工艺规程卡
 | 项目 | 规定 |
 | --- | --- |
 | 接头与位置 | 内周上表面角焊缝，八段等分45°；壳体轴线竖直、工件固定，机器人绕轴移动，焊枪保持平/横角焊位置；焊脚≥3.50，最大几何包络4.30 |
-| QT预制过渡层 | 在八处18×6 mm连接面开深1.50±0.10、端部R1.5的浅槽，按HJ-W-00两层Ni99 TIG填充后加工至名义接头表面；加工后总层厚≥1.20 mm且表面第二层≥0.50 mm；组焊熔深≤0.40，剩余过渡层≥0.80；截面验证后冻结 |
+| QT预制过渡层 | 在八处18×6 mm连接面开深1.50±0.10、端部R1.5的浅槽，按HJ-W-00两层Ni99 TIG填充后加工至名义接头表面；加工后局部最小总层厚≥1.20、第二层≥0.50 mm；根道重熔深度候选≤0.30、两道累计重熔并集≤0.40 mm，均计厚度/识别不确定性；剩余过渡层≥0.80；局部热分析及截面资格后冻结 |
 | 前工序 | 镍层制作与最终Ø40孔加工分开：铸件→镍层→24 h表面裂纹检查→连接面及孔精加工→清洗干燥→组焊。隔离层不是假定“母材不再受热” |
 | 表面准备 | 铸皮、油污、氧化层去除；镍层、钢侧连接面露出洁净金属；脱脂剂完全挥发，不在封闭内腔内打磨；焊前入腔物料清点 |
-| 组装 | 孔{bore[0]:.3f}～{bore[1]:.3f}；座体底面z100；外缘149.94～149.98、壳体内径150.00～150.02；径向间隙0.01～0.04；胀套对独立壳体基准定心 |
+| 组装 | 孔{bore[0]:.3f}～{bore[1]:.3f}{bore_state}；座体底面z100；外缘149.94～149.98、壳体内径150.00～150.02；径向间隙0.01～0.04；胀套对独立壳体基准定心 |
 | 方法/极性 | 自动脉冲GTAW（TIG），DCEN；不使用焊剂，禁止以低飞溅替代颗粒防护 |
 | 焊材 | NiFe55 TIG实心棒Ø1.60±0.01；供方典型Ni55、C0.01、Si0.13、Mn0.70 wt%；按实际产品供货分类及证书订货，禁止把药皮焊条分类直接当作TIG牌号 |
 | 电极/气体 | W-La20 Ø2.0，尖端角60°，平顶0.3；喷嘴Ø10，弧长2.5±0.5；99.999% Ar 10 L/min，许可8～12 |

@@ -52,7 +52,9 @@ thermal_regime:
   method: 铸铁冷焊（不预热）
   design_basis: 室温短段为控形优先的GTAW设计热制度；Ni99首层限定铁素体主导来料，并独立检查PMZ/HAZ
   substrate_condition: QT450-10力学牌号合格；铁素体主导、珠光体面积分数≤20%、无原始白口/游离渗碳体网；20%为项目采购与方法资格窗口
-  bore_fit_basis: 压入式金属背衬轴套座孔Ø40 H7；20℃40.000～40.025为装配设计输入，非官方尺寸公差；SKF 6110 EN与17000/1 EN表格依据，轴套不在焊接时装入
+  bore_fit_basis: QT原有Ø40主轴承孔，不增加轴套；20℃40.000～40.025为设计尺寸控制等级H7，非官方尺寸公差；ISO 286-2表格支持公差数值，不推导机型轴承配合或产品寿命
+  candidate_manufacturing_bore_window_mm: [40.006, 40.008]
+  manufacturing_bore_window_state: historical_window_pending_candidate_verification
   start_temperature_c: 20.0
   start_temperature_min_c: 15.0
   preheat_policy: 组焊不预热；Ni99预制堆焊是独立前工序，之后完成精加工及来料检验
