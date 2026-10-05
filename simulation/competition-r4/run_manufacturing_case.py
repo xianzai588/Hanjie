@@ -67,6 +67,9 @@ def run(case,restore_saved_mesh=False,path_journal=False,reuse_symbolic=False,th
             raise ValueError('solver has not completed cooling and fixture release')
         status('complete_shell_clamp_release')
         command('release_cold_shell.py','--case',str(folder),'--threads','2')
+        release_audit=json.loads((folder/'free-release-verification.json').read_text(encoding='utf8'))
+        if not release_audit.get('free_shell_release_pass',False):
+            raise ValueError('cold shell release equilibrium/gauge-reaction verification did not pass')
         status('independent_metrology_samples')
         from postprocess import measure
         row,_,_=measure(folder,free_shell=True)

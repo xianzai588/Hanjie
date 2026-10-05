@@ -133,6 +133,20 @@ def release(folder, threads=1):
     # free shape needs the spatial fields, without duplicating those histories.
     final_fields={key:value for key,value in fields.items() if key not in ('temperature_snapshots','displacement_snapshots')}
     np.savez_compressed(folder/'free-release-fields.npz',**final_fields)
+    # A converged cold release is a distinct mechanical phase, not a new
+    # thermal-time increment. Keep its actual material-point updates explicit.
+    yielded=np.flatnonzero(dl>0)
+    cast_nodes=np.unique(e[m==1]);radius=np.linalg.norm(x[cast_nodes,:2],axis=1)
+    bore=cast_nodes[abs(radius-inp['initial_bore_diameter_mm']/2)<1e-4]
+    np.savez_compressed(folder/'free-release-path-increment.npz',
+        phase=np.array('complete_cold_shell_datum_release'),
+        plastic_element=yielded,delta_eqp=dl[yielded],
+        delta_plastic_Mandel=dl[yielded,None]*direction[yielded],
+        thermal_reset_element=np.array([],dtype=np.int64),
+        bore_nodes=bore,mandrel_active=np.zeros(len(bore),dtype=bool),
+        remaining_gauge_dofs=gauge,
+        equilibrium_residual_N=np.array(residual),
+        converged_free_release=np.array(audit['free_shell_release_pass']))
     (folder/'free-release-verification.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding='utf8')
     print(json.dumps(audit,ensure_ascii=False,indent=2),flush=True)
     return audit
