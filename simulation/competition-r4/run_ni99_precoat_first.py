@@ -69,8 +69,14 @@ def run(a):
     interface_face=face[interface];interface_area=area[interface]
     bary=np.array([[2/3,1/6,1/6],[1/6,2/3,1/6],[1/6,1/6,2/3]])
     tracks=[]
-    for strip,sr in enumerate([70.5,73.5]):
-        part=(m==3)&((radius<72) if strip==0 else (radius>=72))
+    layer_radius=np.linalg.norm(x[np.unique(e[m==3]),:2],axis=1)
+    radial_edges=np.linspace(layer_radius.min(),layer_radius.max(),a.radial_tracks+1)
+    if a.radial_tracks==2:radial_edges[1]=72.
+    strip_indices=list(range(a.radial_tracks))
+    if a.radial_order=='outer_first':strip_indices.reverse()
+    for strip in strip_indices:
+        sr=[70.5,73.5][strip] if a.radial_tracks==2 else float((radial_edges[strip]+radial_edges[strip+1])/2)
+        part=(m==3)&(radius>=radial_edges[strip]-1e-8)&(radius<=radial_edges[strip+1]+1e-8)
         nodes=np.unique(e[part]);theta=np.arctan2(x[nodes,1],x[nodes,0]);lo=float(theta.min());hi=float(theta.max())
         overlap=a.half_overlap/sr
         if not 0<=overlap<min(-lo,hi):raise ValueError('short-track overlap exceeds half-track length')
@@ -84,6 +90,8 @@ def run(a):
         arc_power_W=a.power,travel_mm_s=2.,source_width_mm=a.width,source_depth_mm=a.depth,
         source_z_mm=top-a.source_drop,entering_Ni99_C=a.deposition_temperature,dt_s=a.dt,cold_start_C=20.,interpass_C=90.,
         half_track_overlap_each_end_mm=a.half_overlap,
+        radial_tracks=a.radial_tracks,radial_order=a.radial_order,radial_strip_edges_mm=radial_edges.tolist(),
+        start_ramp_s=a.start_ramp,end_ramp_s=a.end_ramp,start_power_fraction=.5,end_power_fraction=.35,
         tracks=[{k:v for k,v in item.items() if k!='targets'} for item in tracks],
         boundary='actual complete QT seat; evolving free faces15 W/m2K plus radiation0.7; no shell and no adiabatic local truncation',
         power_policy='same net power partitioned into entering molten first-layer enthalpy and parent/pool heat',
@@ -115,6 +123,10 @@ def run(a):
             local=0.;wait=0.;start=time_s;duration=track['arc_duration_s'];initial_max=float(T[np.unique(e[active])].max())
             while local<duration-1e-8 or T[np.unique(e[active])].max()>90:
                 on=local<duration-1e-8;dt=min(a.dt,duration-local) if on else min(2.,1800-wait)
+                if on:
+                    if a.start_ramp+a.end_ramp>=duration:raise ValueError('arc ramps leave no steady interval')
+                    ramps=np.array([a.start_ramp,duration-a.end_ramp,duration]);future=ramps[ramps>local+1e-8]
+                    dt=min(dt,float(future.min()-local))
                 if dt<=1e-8:raise RuntimeError('whole-seat cooling did not reach90 C within1800 s')
                 old=T.copy();previous=active.copy()
                 if on:
@@ -129,7 +141,10 @@ def run(a):
                 cooling=(15e-6+radiation)*surface
                 entering=float(wire_energy[born].sum());q=np.zeros(n)
                 if on:
-                    remaining=a.power-entering/dt
+                    midpoint=local+dt/2;fraction=1.
+                    if a.start_ramp and midpoint<a.start_ramp:fraction=.5+.5*midpoint/a.start_ramp
+                    if a.end_ramp and duration-midpoint<a.end_ramp:fraction=min(fraction,.35+.65*(duration-midpoint)/a.end_ramp)
+                    remaining=a.power*fraction-entering/dt
                     if remaining<0:raise RuntimeError('hot first-layer birth exceeds the same net power budget')
                     theta=track['angle_begin']+2*(local+dt/2)/track['radius_mm'];source=[track['radius_mm']*np.cos(theta),track['radius_mm']*np.sin(theta),top-a.source_drop]
                     d=centre-source;w=np.exp(-(d[:,0]**2+d[:,1]**2)/a.width**2-(d[:,2]/a.depth)**2)*volume*active
@@ -186,6 +201,10 @@ if __name__=='__main__':
     p.add_argument('--source-drop',type=float,default=0.,help='heat-source centroid below first-layer top, mm')
     p.add_argument('--ni1-solidus',type=float,default=1300.);p.add_argument('--ni-k-scale',type=float,default=.75)
     p.add_argument('--half-overlap',type=float,default=0.,help='overlap about the two short tracks central split, per side in mm')
+    p.add_argument('--radial-tracks',type=int,choices=[2,3],default=2)
+    p.add_argument('--radial-order',choices=['inner_first','outer_first'],default='inner_first')
+    p.add_argument('--start-ramp',type=float,default=0.)
+    p.add_argument('--end-ramp',type=float,default=0.)
     p.add_argument('--phase-carbon-corner',choices=['min_C','max_C'])
     p.add_argument('--phase-graphite-limit',choices=['graphite_allowed','graphite_suppressed'],default='graphite_suppressed')
     p.add_argument('--phase-temperature-shift',type=float,default=0.)
