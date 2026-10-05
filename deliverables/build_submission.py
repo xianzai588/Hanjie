@@ -35,6 +35,8 @@ def main():
     import yaml
     spec = yaml.safe_load((ROOT/'project/competition-design.yaml').read_text(encoding='utf8'))
     sys.path.insert(0, str(ROOT/'simulation/competition-r4'))
+    from aggregate_strength import aggregate
+    aggregate()
     from check_mandrel import evaluate as evaluate_mandrel
     if not evaluate_mandrel()['mandrel_compliance_design_pass']:
         raise RuntimeError('锁止胀套的全长承压与柔度未满足数值边界；禁止发布最终技术包')
@@ -72,7 +74,7 @@ def main():
                 'fixture_thermal','fixture_thermal_coupling_policy'):
         if source_input.get(key) != coupled_input.get(key):
             raise RuntimeError(f'轻击与位置度使用不同物理输入：{key}')
-    for script in ("simulation/competition-r4/check_mandrel.py", "simulation/competition-r4/check_water_route.py", "simulation/competition-r4/check_copper_retraction.py", "simulation/competition-r4/postprocess_peening.py", "simulation/competition-r4/postprocess.py", "simulation/competition-r4/postprocess_service.py", "simulation/competition-r4/postprocess_process.py",
+    for script in ("simulation/competition-r4/check_mandrel.py", "simulation/competition-r4/check_water_route.py", "simulation/competition-r4/check_copper_retraction.py", "simulation/competition-r4/postprocess_peening.py", "simulation/competition-r4/postprocess.py", "simulation/competition-r4/postprocess_service.py", "simulation/competition-r4/aggregate_strength.py", "simulation/competition-r4/postprocess_process.py",
                    "deliverables/report/sync_verified_results.py", "studies/COMPETITION-DESIGN/run.py", "studies/SCHAEFFLER-MAP/run.py",
                    "studies/COMPETITION-DESIGN/engineering_checks_r3.py",
                    "studies/COMPETITION-DESIGN/robust_selection.py",
@@ -114,6 +116,9 @@ def main():
         "08f-空间时间精度复核.json":"simulation/competition-r4/results/verification.json",
         "08g-整件冷态服役应力.json":"simulation/competition-r4/results/service-verification.json",
         "08h-整件冷态应力云图.png":"docs/report/figures/r4-service-strength.png",
+        "08i-独立完整连接强度核验.json":"simulation/competition-r4/results/welded-strength-verification.json",
+        "08j-制造区间数值包络.json":"simulation/competition-r4/results/manufacturing-interval-verification.json",
+        "08k-后序闭合隔离核算.json":"studies/COMPETITION-DESIGN/results/postweld-isolation.json",
         "09-守恒修订与放行闭环.svg":"deliverables/submission/09-守恒修订与放行闭环.svg",
         "10-复现与版本冻结记录.md":"deliverables/submission/10-复现与版本冻结记录.md",
         "11-候选选择.json":"studies/COMPETITION-DESIGN/results/robust-selection.json",

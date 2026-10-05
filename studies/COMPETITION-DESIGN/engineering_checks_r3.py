@@ -2,6 +2,7 @@
 from pathlib import Path
 import json, math
 import numpy as np
+from inspection_capacity import evaluate as inspection_capacity
 ROOT=Path(__file__).resolve().parents[2];OUT=Path(__file__).parent/'results'
 rows=[]
 def _service_stiffness_summary():
@@ -118,16 +119,13 @@ for layout,n,passes,heads in [('8P-FAIR_B',8,2,1),('6P-FAIR_B',6,2,1),('6P-legac
  PT_elapsed_range_s=[1980,4080],PT_waiting_positions=math.ceil(4080/station),
  UT_station_time_s=600,UT_parallel_stations=math.ceil(600/station),
  CMM_station_time_s=120,CMM_parallel_stations=math.ceil(120/station),
- NDT_total_operator_work_s=1200,NDT_operator_equivalents=math.ceil(1200/station),
- cleanliness_inspection_elapsed_s=1800,cleanliness_inspection_operator_work_s=480,
- cleanliness_parallel_positions=math.ceil(1800/station),
- inspection_total_operator_work_s=1680,inspection_operator_equivalents=math.ceil(1680/station),
  shielding_Ar_per_head_L_min=[8,12],shielding_Ar_total_L_min=[8*heads,12*heads],
  independent_torch_and_wire_axes=heads,independent_peening_axes=heads,
  power_source_gross_nominal_W_per_head=900,
  role='candidate until full cold release and mesh/time checks pass' if heads==2 else 'single-head resource comparison',
  actual_cooling_s='read full-part thermal history; fixture remains occupied until release temperature',
  pipeline='precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required'))
+ process[-1].update(inspection_capacity(station))
 # First-order reciprocating-compressor load derivation, ported from origin/main
 # studies/LOAD-ESTIMATE (LOAD-ESTIMATE-4). Its inputs remain engineering assumptions,
 # so the outputs are a reference point, not a measured load spectrum.

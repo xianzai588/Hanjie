@@ -21,7 +21,7 @@
 <text x="505" y="320" class="small">保持胀套和压环</text>
 <text x="720" y="320" class="small">底座保持至20±1℃</text>
 <text x="935" y="320" class="small">CMM独立A/B</text>
-<text x="935" y="347" class="small">底座解除；CMM120 s</text>
+<text x="935" y="347" class="small">微珩前/后各CMM360 s</text>
 <text x="75" y="178" class="small">前工序：Ni99两层预制→24 h延迟PT→连接面与孔精加工→清洗封存→合格座体库存</text>
 <line x1="260" y1="310" x2="273" y2="310" stroke="#176b7b" stroke-width="3"/>
 <line x1="475" y1="310" x2="488" y2="310" stroke="#176b7b" stroke-width="3"/>
@@ -30,10 +30,10 @@
 <rect x="345" y="430" width="500" height="95" fill="#f8fafc" stroke="#334155"/>
 <text x="368" y="463" class="small">机器人沿线移位；固定定位窝，工件/水管不旋转</text>
 <text x="368" y="498" class="small">安全PLC：防护门、夹紧、气幕、保护气、漏水、轨迹</text>
-<text x="80" y="590" class="small">焊接站462.5 s；装配/CMM各120 s；PT与UT占用另计</text>
+<text x="80" y="590" class="small">焊接站462.5 s；装配120；需微珩时CMM2×360 s（≥2站）＋微珩200 s（≥1站）</text>
 <text x="80" y="625" class="small">固定定位窝数按 N≥ceil[(120＋工装释放时刻＋60)/462.5]；环境缓冲位另计</text>
-<text x="80" y="660" class="small">PT单件33～68 min：≥9等待位；UT600 s/件：≥2工位；检测人员≥4当量</text>
-<text x="80" y="691" class="small">洁净检验另计1800 s/件：≥4位置；单工位试制顺序完成全部检验</text>
+<text x="80" y="660" class="small">PT单件33～68 min：≥9等待位；UT600 s/件：≥2工位；检测人员≥5当量</text>
+<text x="80" y="691" class="small">逐件干态300 s：≥1位置；1800 s液体提取只用于牺牲样，独立实验室</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
 <line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>

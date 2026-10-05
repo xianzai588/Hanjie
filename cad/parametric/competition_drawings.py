@@ -95,7 +95,7 @@ def seat_sheet(spec):
                  "壳体内径150.00～150.02（设计限值）",
                  "径向装配间隙0.01～0.04，不能靠间隙定心",
                  "座体底面距壳体下端100（工序设计尺寸）",
-                 f"焊前孔{spec['fixture'].get('manufacturing_bore_window_mm',[40.010,40.014])[0]:.3f}～{spec['fixture'].get('manufacturing_bore_window_mm',[40.010,40.014])[1]:.3f}；最终40.000～40.025",
+                 '焊前候选孔40.006～40.008；最终40.000～40.025',
                  "A：壳体下端独立安装面",
                  "B：壳体内壁双测量带所建立的轴线",
                  "B定向按A法向约束；不以胀套轴冒充B",
@@ -391,11 +391,14 @@ def gas_water_detail_sheet(spec,result):
 
 
 def workstation_sheet(spec,result):
+    sys.path.insert(0,str(ROOT/'studies/COMPETITION-DESIGN'))
+    from inspection_capacity import evaluate as capacity_evaluate
     heads=spec['process'].get('simultaneous_heads',1)
     stages=len(spec['process']['sequence'])*spec['process']['pass_count']/heads
     station=result['process']['arc_on_time_s']/heads+stages*18
     pt_wait=math.ceil(4080/station);ut_stations=math.ceil(600/station)
-    operators=math.ceil(1680/station);clean_positions=math.ceil(1800/station)
+    capacity=capacity_evaluate(station)
+    operators=capacity['inspection_operator_equivalents'];clean_positions=capacity['cleanliness_parallel_positions']
     parts=sheet('自动焊接工作站与工装资源配置','HJ-008','孔内工装保持至温度释放门；上提转运后同一A托环保持至20±1℃，测量前再解除')
     positions=[60,275,490,705,920]
     for x,title in zip(positions,['装配','机器人焊接','带工装冷却','上提转运后冷却','独立检测']):
@@ -403,7 +406,7 @@ def workstation_sheet(spec,result):
     parts += [text(75,320,'清洗、装夹120 s','small'),text(290,320,'两道8段','small'),
               text(290,347,f'{heads}头，站占用{station:.1f} s','small'),text(505,320,'保持胀套和压环','small'),
               text(720,320,'底座保持至20±1℃','small'),text(935,320,'CMM独立A/B','small'),
-              text(935,347,'底座解除；CMM120 s','small'),
+              text(935,347,'微珩前/后各CMM360 s','small'),
               text(75,178,'前工序：Ni99两层预制→24 h延迟PT→连接面与孔精加工→清洗封存→合格座体库存','small')]
     for x in positions[:-1]:parts.append(line(x+200,310,x+213,310,'#176b7b',3))
     resource_text=f'固定定位窝数按 N≥ceil[(120＋工装释放时刻＋60)/{station:.1f}]；环境缓冲位另计'
@@ -416,10 +419,10 @@ def workstation_sheet(spec,result):
         resource_text=f'计算较长释放{release:.1f} s / 冷态{final:.1f} s；配置≥{pallets}个固定定位窝、≥{buffers}个底座冷却位'
     parts += [box(345,430,500,95,'#f8fafc'),text(368,463,'机器人沿线移位；固定定位窝，工件/水管不旋转','small'),
               text(368,498,'安全PLC：防护门、夹紧、气幕、保护气、漏水、轨迹','small'),
-              text(80,590,f'焊接站{station:.1f} s；装配/CMM各120 s；PT与UT占用另计','small'),
+              text(80,590,f'焊接站{station:.1f} s；装配120；需微珩时CMM2×360 s（≥{capacity["CMM_parallel_stations"]}站）＋微珩200 s（≥1站）','small'),
               text(80,625,resource_text,'small'),
               text(80,660,f'PT单件33～68 min：≥{pt_wait}等待位；UT600 s/件：≥{ut_stations}工位；检测人员≥{operators}当量','small'),
-              text(80,691,f'洁净检验另计1800 s/件：≥{clean_positions}位置；单工位试制顺序完成全部检验','small')]
+              text(80,691,f'逐件干态300 s：≥{clean_positions}位置；1800 s液体提取只用于牺牲样，独立实验室','small')]
     return finish(parts)
 
 
@@ -652,6 +655,43 @@ def datum_holder_sheet(spec,result):
     return finish(parts,'45钢调质')
 
 
+def postweld_isolation_sheet(spec,result):
+    parts=sheet('PT/UT独立接液盘与短孔微珩全收集装置','HJ-015',
+        '冷态后序工具；进入NDT/微珩前先闭合隔离，液体/磨屑与不可清洗下腔隔开')
+    # No seal is placed on fictitious wing land: the actual outer arc is 18 mm.
+    parts += [text(60,148,'A：PT/UT座下整盘（径向剖面NTS）','section'),
+        box(78,240,24,140,'#a9bdc9'),box(510,240,24,140,'#a9bdc9'),
+        box(122,264,165,60,'#dbe6eb'),box(325,264,165,60,'#dbe6eb'),
+        polygon([(110,338),(110,380),(502,380),(502,338),(484,338),(484,360),(128,360),(128,338)],'#eaf4f5'),
+        box(102,334,16,25,'#ddba7d'),box(502,334,16,25,'#ddba7d'),
+        line(306,380,306,439,'#176b7b',6),line(306,439,505,439,'#176b7b',3),
+        text(80,184,'外缘翼片仅18：不设跨槽的虚构封口台面','small'),
+        text(80,407,'整盘OD149.40±0.05；壁1/底2；盘面z96、唇z99','small'),
+        text(80,466,'缩态密封OD≤149.6；20～30 kPa充气后贴合钢壁','small'),
+        text(80,490,'无径向滑擦；膜应力界0.16 MPa，采购强度≥2 MPa','small'),
+        text(80,514,'内径147.4/液深3，有效容量48.19 mL；Ø4密闭回液','small')]
+    # Bore cup seals on the unbroken central annulus, with no sliding radial
+    # seal in the precision bore and no interference with the bore wall.
+    parts += [text(635,148,'B：微珩上下罩（轴向剖面NTS）','section'),
+        box(650,290,185,70,'#dbe6eb'),box(925,290,185,70,'#dbe6eb'),
+        box(715,210,330,60,'#eaf4f5'),box(828,205,104,80,'#ffffff'),
+        box(862,160,36,188,'#a9bdc9'),
+        polygon([(730,370),(730,435),(1030,435),(1030,370),(1005,370),(1005,410),(755,410),(755,370)],'#eaf4f5'),
+        box(735,360,22,10,'#ddba7d'),box(1003,360,22,10,'#ddba7d'),
+        line(880,435,880,483,'#176b7b',6),line(880,483,1060,483,'#176b7b',3),
+        text(655,515,'下杯OD60/ID44/液深10；密封R27，压紧≤120 N','small'),
+        text(655,541,'面圈Ø1.00±0.02；槽0.70±0.01/挡隙0.10±0.01','small'),
+        text(655,567,'杯内占位扣3 mL后容量12.21；故障需7.10 mL','small'),
+        text(655,593,'供液≤60 mL/min；Ø4下引排液；吸压−2～−5 kPa','small'),
+        text(655,619,'失吸0.10 s停进给/供液；管内可回流量≤5 mL','small')]
+    parts += [text(70,558,'整盘从壳底竖直装入：缩态→z96就位→充气→吸压/密封联锁','small'),
+        text(70,586,'抽尽并原位干燥→壳底接密闭收集筒→保持盘朝上/抽吸→泄压下撤','small'),
+        text(70,614,'PT/UT整盘与微珩下杯分工序装入，均从壳底撤出；禁止座下叠放','small'),
+        text(70,650,'荧光液及5/10/25 μm颗粒覆盖正常、失吸、停机和撤出；牺牲件下腔未清洗检查','small'),
+        text(70,680,'正常产品：过程记录＋干态内窥＋封存；过滤膜提取只用于退出产品流的牺牲件','small')]
+    return finish(parts,'316L / 低析出FFKM')
+
+
 def main():
     spec=read_spec(ROOT)
     result=current_assessment(ROOT)
@@ -670,7 +710,8 @@ def main():
               "water-route.svg":water_route_sheet(spec,result),
               "carrier-detail.svg":carrier_sheet(spec,result),
               "portal-transfer.svg":portal_sheet(spec,result),
-              "datum-holder-detail.svg":datum_holder_sheet(spec,result)}
+              "datum-holder-detail.svg":datum_holder_sheet(spec,result),
+              "postweld-isolation.svg":postweld_isolation_sheet(spec,result)}
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
     core = [name for name in drawings if name != "sleeve-detail.svg"]

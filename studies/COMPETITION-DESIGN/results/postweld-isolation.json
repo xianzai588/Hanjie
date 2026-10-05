@@ -1,0 +1,80 @@
+{
+  "PT_UT": {
+    "pan_outer_diameter_mm": 149.4,
+    "collapsed_seal_envelope_mm": 149.6,
+    "pan_wall_thickness_mm": 1.0,
+    "pan_inside_diameter_mm": 147.4,
+    "pan_outer_diameter_tolerance_mm": 0.05,
+    "pan_floor_thickness_mm": 2.0,
+    "pan_floor_top_z_mm": 96,
+    "pan_upper_lip_z_mm": 99,
+    "retained_liquid_depth_mm": 3.0,
+    "effective_hold_up_ml": 48.192472201731434,
+    "seal_inflation_pressure_kPa": [
+      20,
+      30
+    ],
+    "seal_axial_width_mm": 6,
+    "seal_wall_nominal_mm": 0.4,
+    "seal_wall_tolerance_mm": 0.02,
+    "seal_membrane_stress_bound_MPa": 0.15789473684210525,
+    "seal_minimum_procurement_tensile_MPa": 2,
+    "seal_total_distributed_radial_load_bound_N": 84.82300164692441,
+    "insertion": "after original fixed core/pan withdrawal; vertical from open shell bottom with seal collapsed; inflate only at z96..99 position",
+    "withdrawal": "drain and dry pan in place; cover bottom exit with closed collection cartridge; maintain upward pan and suction, deflate to OD<=149.6, lower without tilt or wall scrape",
+    "method": "continuous closed-bottom 316L under-seat pan, non-sliding inflatable low-outgassing FFKM seal, PT swab/UT metered gel above pan, separate sealed recovery bottle"
+  },
+  "honing": {
+    "lower_cup_outer_diameter_mm": 60,
+    "lower_cup_inside_diameter_mm": 44,
+    "liquid_depth_mm": 10,
+    "drain_bore_mm": 4,
+    "liquid_supply_limit_ml_min": 60.0,
+    "gravity_drain_at_5mm_head_ml_min": 141.69250179195444,
+    "effective_liquid_hold_up_ml": 12.2053084433746,
+    "required_fault_hold_up_ml": 7.1,
+    "maximum_line_drain_ml": 5.0,
+    "supply_shutdown_s": 0.1,
+    "suction_pressure_kPa": [
+      -5,
+      -2
+    ],
+    "axial_clamp_N": 120,
+    "average_seal_land_pressure_MPa": 0.7073553026306459,
+    "lower_face_seal_radius_mm": 27.0,
+    "face_seal_cord_mm": 1.0,
+    "lower_face_seal_groove_depth_mm": 0.7,
+    "metal_stop_gap_mm": 0.1,
+    "face_squeeze_mm": 0.20000000000000004,
+    "face_cord_tolerance_mm": 0.02,
+    "groove_depth_tolerance_mm": 0.01,
+    "stop_gap_tolerance_mm": 0.01,
+    "face_squeeze_extremes_mm": [
+      0.16000000000000003,
+      0.24000000000000005
+    ],
+    "face_squeeze_ratio_extremes": [
+      0.15686274509803924,
+      0.24489795918367352
+    ],
+    "procurement_squeeze_design_range": [
+      0.15,
+      0.3
+    ],
+    "lower_cup_removal": "drain, dry/wipe in place, close drain; lower vertically through open shell bottom; upper tool withdrawn upwards in closed capture sleeve"
+  },
+  "checks": {
+    "collapsed_pan_no_scrape_pass": true,
+    "under_seat_pan_clearance_pass": true,
+    "PT_seal_membrane_strength_pass": true,
+    "PT_fault_hold_up_pass": true,
+    "cup_below_hub_no_slot_pass": true,
+    "gravity_drain_capacity_pass": true,
+    "retained_liquid_capacity_pass": true,
+    "low_cold_face_clamp_pressure_pass": true,
+    "face_seal_extreme_squeeze_pass": true
+  },
+  "geometry_and_liquid_capacity_design_pass": true,
+  "physical_qualification": "fluorescent liquid and 5/10/25 um reference particles; normal, lost-suction, shutdown and full withdrawal; inspect untouched lower cavity on sacrificial unit",
+  "scope": "cold postweld isolation geometry and retained-volume design calculation; no measured leakage or cleanliness result"
+}

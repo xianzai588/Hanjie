@@ -496,15 +496,8 @@
       "PT_waiting_positions": 9,
       "UT_station_time_s": 600,
       "UT_parallel_stations": 2,
-      "CMM_station_time_s": 120,
-      "CMM_parallel_stations": 1,
-      "NDT_total_operator_work_s": 1200,
-      "NDT_operator_equivalents": 3,
-      "cleanliness_inspection_elapsed_s": 1800,
-      "cleanliness_inspection_operator_work_s": 480,
-      "cleanliness_parallel_positions": 4,
-      "inspection_total_operator_work_s": 1680,
-      "inspection_operator_equivalents": 4,
+      "CMM_station_time_s": 720,
+      "CMM_parallel_stations": 2,
       "shielding_Ar_per_head_L_min": [
         8,
         12
@@ -518,7 +511,61 @@
       "power_source_gross_nominal_W_per_head": 900,
       "role": "single-head resource comparison",
       "actual_cooling_s": "read full-part thermal history; fixture remains occupied until release temperature",
-      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required"
+      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required",
+      "basis": "design planning input; trial timing replaces these values before production",
+      "normal_product_flow": "local isolated PT/UT; independent CMM; dry endoscopy/record review/sealing; no cavity wash",
+      "dry_cleanliness_steps_s": {
+        "process_record_review": 30,
+        "ten_region_endoscopy": 200,
+        "loose_item_count": 30,
+        "clean_cover_and_seal": 40
+      },
+      "cleanliness_inspection_elapsed_s": 300,
+      "cleanliness_inspection_operator_work_s": 300,
+      "cleanliness_parallel_positions": 1,
+      "finishing_branch": "limited_honing_required",
+      "PT_steps_s": {
+        "pan_install_seal_check": 75,
+        "local_prepare": 30,
+        "apply_penetrant": 30,
+        "wipe_and_dry": 60,
+        "apply_developer": 30,
+        "read_and_record": 90,
+        "local_clean_and_dry": 90,
+        "controlled_handoff": 75
+      },
+      "UT_steps_s": {
+        "calibration": 60,
+        "scan": 300,
+        "read_and_record": 60,
+        "pan_drain_dry_and_withdraw": 100,
+        "probe_change": 50,
+        "handoff": 30
+      },
+      "CMM_steps_per_scan_s": {
+        "independent_A_B_datums": 90,
+        "five_continuous_rings": 126,
+        "four_axial_generatrices": 60,
+        "probe_repositioning": 24,
+        "fit_and_record": 60
+      },
+      "CMM_scan_count": 2,
+      "CMM_single_scan_time_s": 360,
+      "honing_steps_s": {
+        "cup_and_upper_cover_install_interlock": 75,
+        "selective_removal": 35,
+        "drain_dry_and_closed_withdrawal": 70,
+        "process_record": 20
+      },
+      "honing_station_time_s": 200,
+      "honing_parallel_stations": 1,
+      "NDT_total_operator_work_s": 1800,
+      "NDT_operator_equivalents": 4,
+      "inspection_total_operator_work_s": 2300,
+      "inspection_operator_equivalents": 5,
+      "sacrificial_extraction_elapsed_s": 1800,
+      "sacrificial_extraction_operator_work_s": 480,
+      "sacrificial_test_frequency": "first qualification, process change and designated lot sample; separate laboratory capacity, not each product"
     },
     {
       "layout": "6P-FAIR_B",
@@ -549,15 +596,8 @@
       "PT_waiting_positions": 12,
       "UT_station_time_s": 600,
       "UT_parallel_stations": 2,
-      "CMM_station_time_s": 120,
-      "CMM_parallel_stations": 1,
-      "NDT_total_operator_work_s": 1200,
-      "NDT_operator_equivalents": 4,
-      "cleanliness_inspection_elapsed_s": 1800,
-      "cleanliness_inspection_operator_work_s": 480,
-      "cleanliness_parallel_positions": 6,
-      "inspection_total_operator_work_s": 1680,
-      "inspection_operator_equivalents": 5,
+      "CMM_station_time_s": 720,
+      "CMM_parallel_stations": 3,
       "shielding_Ar_per_head_L_min": [
         8,
         12
@@ -571,7 +611,61 @@
       "power_source_gross_nominal_W_per_head": 900,
       "role": "single-head resource comparison",
       "actual_cooling_s": "read full-part thermal history; fixture remains occupied until release temperature",
-      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required"
+      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required",
+      "basis": "design planning input; trial timing replaces these values before production",
+      "normal_product_flow": "local isolated PT/UT; independent CMM; dry endoscopy/record review/sealing; no cavity wash",
+      "dry_cleanliness_steps_s": {
+        "process_record_review": 30,
+        "ten_region_endoscopy": 200,
+        "loose_item_count": 30,
+        "clean_cover_and_seal": 40
+      },
+      "cleanliness_inspection_elapsed_s": 300,
+      "cleanliness_inspection_operator_work_s": 300,
+      "cleanliness_parallel_positions": 1,
+      "finishing_branch": "limited_honing_required",
+      "PT_steps_s": {
+        "pan_install_seal_check": 75,
+        "local_prepare": 30,
+        "apply_penetrant": 30,
+        "wipe_and_dry": 60,
+        "apply_developer": 30,
+        "read_and_record": 90,
+        "local_clean_and_dry": 90,
+        "controlled_handoff": 75
+      },
+      "UT_steps_s": {
+        "calibration": 60,
+        "scan": 300,
+        "read_and_record": 60,
+        "pan_drain_dry_and_withdraw": 100,
+        "probe_change": 50,
+        "handoff": 30
+      },
+      "CMM_steps_per_scan_s": {
+        "independent_A_B_datums": 90,
+        "five_continuous_rings": 126,
+        "four_axial_generatrices": 60,
+        "probe_repositioning": 24,
+        "fit_and_record": 60
+      },
+      "CMM_scan_count": 2,
+      "CMM_single_scan_time_s": 360,
+      "honing_steps_s": {
+        "cup_and_upper_cover_install_interlock": 75,
+        "selective_removal": 35,
+        "drain_dry_and_closed_withdrawal": 70,
+        "process_record": 20
+      },
+      "honing_station_time_s": 200,
+      "honing_parallel_stations": 1,
+      "NDT_total_operator_work_s": 1800,
+      "NDT_operator_equivalents": 6,
+      "inspection_total_operator_work_s": 2300,
+      "inspection_operator_equivalents": 7,
+      "sacrificial_extraction_elapsed_s": 1800,
+      "sacrificial_extraction_operator_work_s": 480,
+      "sacrificial_test_frequency": "first qualification, process change and designated lot sample; separate laboratory capacity, not each product"
     },
     {
       "layout": "6P-legacy-fourpass",
@@ -602,15 +696,8 @@
       "PT_waiting_positions": 6,
       "UT_station_time_s": 600,
       "UT_parallel_stations": 1,
-      "CMM_station_time_s": 120,
-      "CMM_parallel_stations": 1,
-      "NDT_total_operator_work_s": 1200,
-      "NDT_operator_equivalents": 2,
-      "cleanliness_inspection_elapsed_s": 1800,
-      "cleanliness_inspection_operator_work_s": 480,
-      "cleanliness_parallel_positions": 3,
-      "inspection_total_operator_work_s": 1680,
-      "inspection_operator_equivalents": 3,
+      "CMM_station_time_s": 720,
+      "CMM_parallel_stations": 2,
       "shielding_Ar_per_head_L_min": [
         8,
         12
@@ -624,7 +711,61 @@
       "power_source_gross_nominal_W_per_head": 900,
       "role": "single-head resource comparison",
       "actual_cooling_s": "read full-part thermal history; fixture remains occupied until release temperature",
-      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required"
+      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required",
+      "basis": "design planning input; trial timing replaces these values before production",
+      "normal_product_flow": "local isolated PT/UT; independent CMM; dry endoscopy/record review/sealing; no cavity wash",
+      "dry_cleanliness_steps_s": {
+        "process_record_review": 30,
+        "ten_region_endoscopy": 200,
+        "loose_item_count": 30,
+        "clean_cover_and_seal": 40
+      },
+      "cleanliness_inspection_elapsed_s": 300,
+      "cleanliness_inspection_operator_work_s": 300,
+      "cleanliness_parallel_positions": 1,
+      "finishing_branch": "limited_honing_required",
+      "PT_steps_s": {
+        "pan_install_seal_check": 75,
+        "local_prepare": 30,
+        "apply_penetrant": 30,
+        "wipe_and_dry": 60,
+        "apply_developer": 30,
+        "read_and_record": 90,
+        "local_clean_and_dry": 90,
+        "controlled_handoff": 75
+      },
+      "UT_steps_s": {
+        "calibration": 60,
+        "scan": 300,
+        "read_and_record": 60,
+        "pan_drain_dry_and_withdraw": 100,
+        "probe_change": 50,
+        "handoff": 30
+      },
+      "CMM_steps_per_scan_s": {
+        "independent_A_B_datums": 90,
+        "five_continuous_rings": 126,
+        "four_axial_generatrices": 60,
+        "probe_repositioning": 24,
+        "fit_and_record": 60
+      },
+      "CMM_scan_count": 2,
+      "CMM_single_scan_time_s": 360,
+      "honing_steps_s": {
+        "cup_and_upper_cover_install_interlock": 75,
+        "selective_removal": 35,
+        "drain_dry_and_closed_withdrawal": 70,
+        "process_record": 20
+      },
+      "honing_station_time_s": 200,
+      "honing_parallel_stations": 1,
+      "NDT_total_operator_work_s": 1800,
+      "NDT_operator_equivalents": 3,
+      "inspection_total_operator_work_s": 2300,
+      "inspection_operator_equivalents": 4,
+      "sacrificial_extraction_elapsed_s": 1800,
+      "sacrificial_extraction_operator_work_s": 480,
+      "sacrificial_test_frequency": "first qualification, process change and designated lot sample; separate laboratory capacity, not each product"
     },
     {
       "layout": "8P-opposed-candidate",
@@ -655,15 +796,8 @@
       "PT_waiting_positions": 18,
       "UT_station_time_s": 600,
       "UT_parallel_stations": 3,
-      "CMM_station_time_s": 120,
-      "CMM_parallel_stations": 1,
-      "NDT_total_operator_work_s": 1200,
-      "NDT_operator_equivalents": 6,
-      "cleanliness_inspection_elapsed_s": 1800,
-      "cleanliness_inspection_operator_work_s": 480,
-      "cleanliness_parallel_positions": 8,
-      "inspection_total_operator_work_s": 1680,
-      "inspection_operator_equivalents": 8,
+      "CMM_station_time_s": 720,
+      "CMM_parallel_stations": 4,
       "shielding_Ar_per_head_L_min": [
         8,
         12
@@ -677,7 +811,61 @@
       "power_source_gross_nominal_W_per_head": 900,
       "role": "candidate until full cold release and mesh/time checks pass",
       "actual_cooling_s": "read full-part thermal history; fixture remains occupied until release temperature",
-      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required"
+      "pipeline": "precoat 432 s minimum excludes temperature waiting and separate 24 h delayed PT; precoat capacity and stock must match the chosen joining interval; dedicated cooling pallets required",
+      "basis": "design planning input; trial timing replaces these values before production",
+      "normal_product_flow": "local isolated PT/UT; independent CMM; dry endoscopy/record review/sealing; no cavity wash",
+      "dry_cleanliness_steps_s": {
+        "process_record_review": 30,
+        "ten_region_endoscopy": 200,
+        "loose_item_count": 30,
+        "clean_cover_and_seal": 40
+      },
+      "cleanliness_inspection_elapsed_s": 300,
+      "cleanliness_inspection_operator_work_s": 300,
+      "cleanliness_parallel_positions": 2,
+      "finishing_branch": "limited_honing_required",
+      "PT_steps_s": {
+        "pan_install_seal_check": 75,
+        "local_prepare": 30,
+        "apply_penetrant": 30,
+        "wipe_and_dry": 60,
+        "apply_developer": 30,
+        "read_and_record": 90,
+        "local_clean_and_dry": 90,
+        "controlled_handoff": 75
+      },
+      "UT_steps_s": {
+        "calibration": 60,
+        "scan": 300,
+        "read_and_record": 60,
+        "pan_drain_dry_and_withdraw": 100,
+        "probe_change": 50,
+        "handoff": 30
+      },
+      "CMM_steps_per_scan_s": {
+        "independent_A_B_datums": 90,
+        "five_continuous_rings": 126,
+        "four_axial_generatrices": 60,
+        "probe_repositioning": 24,
+        "fit_and_record": 60
+      },
+      "CMM_scan_count": 2,
+      "CMM_single_scan_time_s": 360,
+      "honing_steps_s": {
+        "cup_and_upper_cover_install_interlock": 75,
+        "selective_removal": 35,
+        "drain_dry_and_closed_withdrawal": 70,
+        "process_record": 20
+      },
+      "honing_station_time_s": 200,
+      "honing_parallel_stations": 1,
+      "NDT_total_operator_work_s": 1800,
+      "NDT_operator_equivalents": 8,
+      "inspection_total_operator_work_s": 2300,
+      "inspection_operator_equivalents": 10,
+      "sacrificial_extraction_elapsed_s": 1800,
+      "sacrificial_extraction_operator_work_s": 480,
+      "sacrificial_test_frequency": "first qualification, process change and designated lot sample; separate laboratory capacity, not each product"
     }
   ],
   "continuous_comparison": {

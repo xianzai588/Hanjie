@@ -45,7 +45,7 @@ def cover_and_contents():
     toc = TableOfContents()
     toc.levelStyles = [ParagraphStyle("ContentsCN", fontName=REGULAR_FONT,
                                      fontSize=11, leading=23, wordWrap="CJK")]
-    review = [Spacer(1, 8*mm), Paragraph('修订审阅稿<br/>孔轴精度与焊前孔径补偿正在验证',
+    review = [Spacer(1, 8*mm), Paragraph('修订审阅稿<br/>制造区间、离散精度与异材局部承载正在核验',
                 ParagraphStyle('ReviewCover',parent=center,fontSize=11,leading=18,textColor=colors.HexColor('#9a3412')))] if '--review' in sys.argv else []
     return [Spacer(1, 35*mm),
             Paragraph("第一届辽宁省大学生材料焊接与铸造<br/>工艺设计大赛", center),

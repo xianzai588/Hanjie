@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">PT/UT独立接液盘与短孔微珩全收集装置</text>
+<text x="50" y="99" class="small">冷态后序工具；进入NDT/微珩前先闭合隔离，液体/磨屑与不可清洗下腔隔开</text>
+<text x="1020" y="65" class="section">HJ-015</text>
+<text x="60" y="148" class="section">A：PT/UT座下整盘（径向剖面NTS）</text>
+<rect x="78" y="240" width="24" height="140" fill="#a9bdc9" stroke="#334155"/>
+<rect x="510" y="240" width="24" height="140" fill="#a9bdc9" stroke="#334155"/>
+<rect x="122" y="264" width="165" height="60" fill="#dbe6eb" stroke="#334155"/>
+<rect x="325" y="264" width="165" height="60" fill="#dbe6eb" stroke="#334155"/>
+<polygon points="110.00,338.00 110.00,380.00 502.00,380.00 502.00,338.00 484.00,338.00 484.00,360.00 128.00,360.00 128.00,338.00" fill="#eaf4f5" stroke="#334155"/>
+<rect x="102" y="334" width="16" height="25" fill="#ddba7d" stroke="#334155"/>
+<rect x="502" y="334" width="16" height="25" fill="#ddba7d" stroke="#334155"/>
+<line x1="306" y1="380" x2="306" y2="439" stroke="#176b7b" stroke-width="6"/>
+<line x1="306" y1="439" x2="505" y2="439" stroke="#176b7b" stroke-width="3"/>
+<text x="80" y="184" class="small">外缘翼片仅18：不设跨槽的虚构封口台面</text>
+<text x="80" y="407" class="small">整盘OD149.40±0.05；壁1/底2；盘面z96、唇z99</text>
+<text x="80" y="466" class="small">缩态密封OD≤149.6；20～30 kPa充气后贴合钢壁</text>
+<text x="80" y="490" class="small">无径向滑擦；膜应力界0.16 MPa，采购强度≥2 MPa</text>
+<text x="80" y="514" class="small">内径147.4/液深3，有效容量48.19 mL；Ø4密闭回液</text>
+<text x="635" y="148" class="section">B：微珩上下罩（轴向剖面NTS）</text>
+<rect x="650" y="290" width="185" height="70" fill="#dbe6eb" stroke="#334155"/>
+<rect x="925" y="290" width="185" height="70" fill="#dbe6eb" stroke="#334155"/>
+<rect x="715" y="210" width="330" height="60" fill="#eaf4f5" stroke="#334155"/>
+<rect x="828" y="205" width="104" height="80" fill="#ffffff" stroke="#334155"/>
+<rect x="862" y="160" width="36" height="188" fill="#a9bdc9" stroke="#334155"/>
+<polygon points="730.00,370.00 730.00,435.00 1030.00,435.00 1030.00,370.00 1005.00,370.00 1005.00,410.00 755.00,410.00 755.00,370.00" fill="#eaf4f5" stroke="#334155"/>
+<rect x="735" y="360" width="22" height="10" fill="#ddba7d" stroke="#334155"/>
+<rect x="1003" y="360" width="22" height="10" fill="#ddba7d" stroke="#334155"/>
+<line x1="880" y1="435" x2="880" y2="483" stroke="#176b7b" stroke-width="6"/>
+<line x1="880" y1="483" x2="1060" y2="483" stroke="#176b7b" stroke-width="3"/>
+<text x="655" y="515" class="small">下杯OD60/ID44/液深10；密封R27，压紧≤120 N</text>
+<text x="655" y="541" class="small">面圈Ø1.00±0.02；槽0.70±0.01/挡隙0.10±0.01</text>
+<text x="655" y="567" class="small">杯内占位扣3 mL后容量12.21；故障需7.10 mL</text>
+<text x="655" y="593" class="small">供液≤60 mL/min；Ø4下引排液；吸压−2～−5 kPa</text>
+<text x="655" y="619" class="small">失吸0.10 s停进给/供液；管内可回流量≤5 mL</text>
+<text x="70" y="558" class="small">整盘从壳底竖直装入：缩态→z96就位→充气→吸压/密封联锁</text>
+<text x="70" y="586" class="small">抽尽并原位干燥→壳底接密闭收集筒→保持盘朝上/抽吸→泄压下撤</text>
+<text x="70" y="614" class="small">PT/UT整盘与微珩下杯分工序装入，均从壳底撤出；禁止座下叠放</text>
+<text x="70" y="650" class="small">荧光液及5/10/25 μm颗粒覆盖正常、失吸、停机和撤出；牺牲件下腔未清洗检查</text>
+<text x="70" y="680" class="small">正常产品：过程记录＋干态内窥＋封存；过滤膜提取只用于退出产品流的牺牲件</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：316L / 低析出FFKM</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
+</svg>

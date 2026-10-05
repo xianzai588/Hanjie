@@ -120,6 +120,11 @@
         40.01,
         40.014
       ],
+      "candidate_manufacturing_bore_window_mm": [
+        40.006,
+        40.008
+      ],
+      "manufacturing_bore_window_state": "historical_window_pending_candidate_verification",
       "datum_holder_transfer_support_count": 6,
       "datum_holder_support_pitch_radius_mm": 82.5,
       "datum_holder_point_load_limit_N": 100.0,
@@ -455,12 +460,12 @@
       },
       "status": "径向非热分配14 μm，基准/轴线/定心各2、夹紧6.5、搬运0.5、支点1；固定锥/柱实体有限元与根部连接分别验证，局部压缩另用于2000接触密度匹配。",
       "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
-      "bore_finish_strategy": "焊前孔40.010～40.014；焊后先验位置度；40.000～40.025合格孔不精整；仅39.995～40.000欠尺寸孔允许定尺寸微珩至40.000～40.005，直径增量≤0.005；超出此恢复范围退回工艺评审，禁止用精整纠正孔轴",
+      "bore_finish_strategy": "焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；欠尺寸孔必须走有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴",
       "finish_allowance_diameter_mm": [
         0,
         0
       ],
-      "post_weld_machining": "不预留固定余量；不得以机加工修正孔轴；微珩尺寸增量≤min(0.005,40.025−实测孔径)",
+      "post_weld_machining": "不预留固定余量；局部单边去除≤0.003、直径≤0.006；含微珩位置度另计0.0065，预算28+2+6.5+P≤50 μm；无需微珩且禁止精整分支28+2+P≤50 μm；均不得以机加工修正孔轴",
       "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
     }
   },
@@ -585,6 +590,11 @@
             40.01,
             40.014
           ],
+          "candidate_manufacturing_bore_window_mm": [
+            40.006,
+            40.008
+          ],
+          "manufacturing_bore_window_state": "historical_window_pending_candidate_verification",
           "datum_holder_transfer_support_count": 6,
           "datum_holder_support_pitch_radius_mm": 82.5,
           "datum_holder_point_load_limit_N": 100.0,
@@ -920,12 +930,12 @@
           },
           "status": "径向非热分配14 μm，基准/轴线/定心各2、夹紧6.5、搬运0.5、支点1；固定锥/柱实体有限元与根部连接分别验证，局部压缩另用于2000接触密度匹配。",
           "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
-          "bore_finish_strategy": "焊前孔40.010～40.014；焊后先验位置度；40.000～40.025合格孔不精整；仅39.995～40.000欠尺寸孔允许定尺寸微珩至40.000～40.005，直径增量≤0.005；超出此恢复范围退回工艺评审，禁止用精整纠正孔轴",
+          "bore_finish_strategy": "焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；欠尺寸孔必须走有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴",
           "finish_allowance_diameter_mm": [
             0,
             0
           ],
-          "post_weld_machining": "不预留固定余量；不得以机加工修正孔轴；微珩尺寸增量≤min(0.005,40.025−实测孔径)",
+          "post_weld_machining": "不预留固定余量；局部单边去除≤0.003、直径≤0.006；含微珩位置度另计0.0065，预算28+2+6.5+P≤50 μm；无需微珩且禁止精整分支28+2+P≤50 μm；均不得以机加工修正孔轴",
           "conformity_rule": "测得位置度直径＋同口径扩展不确定度≤0.05 mm"
         }
       },

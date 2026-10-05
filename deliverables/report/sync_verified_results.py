@@ -92,7 +92,13 @@ def main():
     pallets = math.ceil((120+release+60)/station)
     ambient_buffers = math.ceil(max(0,measured-release)/station)
     steps = [f"{r['dt_s']:g}/{inp['structural_step_s']:g}/{inp['cold_structural_step_s']:g}" for r, inp in zip(rows, inputs)]
-    target_statement = ('当前结果达到0.016 mm内部目标' if worst <= .016 else '当前结果高于内部目标而仍满足0.020 mm允许上限')
+    branch=bore['finishing_branch']
+    finish_allowance=bore['selected_honing_position_allowance_mm']
+    limit=bore['selected_welding_position_limit_mm']
+    internal_target=.012 if branch=='limited_honing_required' else .016
+    target_statement=(f'当前结果达到{internal_target:.4f} mm内部目标' if worst<=internal_target else
+        f'当前结果高于{internal_target:.4f} mm内部目标，仍满足所选分支{limit:.4f} mm上限')
+    finish_label='有限微珩' if branch=='limited_honing_required' else '尺寸直接合格、不精整'
     section = f'''## 4 全件热—结构数值验证
 
 ### 4.1 模型、载荷与测量协议
@@ -127,7 +133,7 @@ QT测点按最终焊趾向内10 mm固定于R61、z115，盖面前另核对应根
 
 ### 4.3 位置度预算与工程判定
 
-径向分项为基准转移0.002、工装轴线0.002、胀套定心0.002、夹紧0.0065、搬运永久偏移0.0005、支点倾斜0.0010 mm，合计0.0140 mm。热残余允许上限由官方公差扣除非热分项及测量不确定度后得到直径0.020 mm，内部裕量目标为0.016 mm；{target_statement}。采用线性直径叠加，取制造上下界及其离散复核的较大热残余、同口径测量扩展不确定度，并为可选的短孔微珩另保留6.5 μm位置度直径变化量：
+径向分项为基准转移0.002、工装轴线0.002、胀套定心0.002、夹紧0.0065、搬运永久偏移0.0005、支点倾斜0.0010 mm，合计0.0140 mm。尺寸直接合格且不精整时，热残余允许上限为直径0.020 mm；需要恢复孔径时必须走有限微珩分支，另扣6.5 μm位置度变化额度，热残余上限降为0.0135 mm。本次选择“{finish_label}”，{target_statement}。采用线性直径叠加，制造区间数值包络直接进入孔径、孔轴和局部去除量判据：
 
 | 项目 | 直径口径 / μm |
 | --- | ---: |
@@ -135,8 +141,8 @@ QT测点按最终焊趾向内10 mm固定于R61、z115，盖面前另核对应根
 | 较大FE热残余 | {worst*1000:.3f} |
 | CMM扩展不确定度设计值 | 2.000 |
 | 焊后精整前合成设计值 | **{budget*1000:.3f}** |
-| 可选微珩的孔轴变化包络 | {bore['honing_position_allowance_mm']*1000:.3f} |
-| 包含微珩的最终保守合成值 | **{after_finish*1000:.3f}** |
+| 所选分支的精整孔轴额度 | {finish_allowance*1000:.3f} |
+| 所选分支的最终保守合成值 | **{after_finish*1000:.3f}** |
 | 官方位置度上限 | **50.000** |
 
 经理论计算与数值仿真验证，在设定工况及上述公差分配下满足焊后位置度≤Ø0.05 mm要求；建议后续试制通过A类实物试验完成最终工程验证。冷却至20±1℃、完全卸夹后先检位置度；孔径比较测量另在20±0.2℃执行，方法扩展不确定度≤0.5 μm。焊前制造窗口由40.006/40.008 mm两端实际实体及冷态结果确定，焊后孔径包络{bore['cold_diameter_envelope_before_finish_mm'][0]:.5f}～{bore['cold_diameter_envelope_before_finish_mm'][1]:.5f} mm。合格孔不精整；欠尺寸孔仅允许以现有孔轴稳向、Ø40.001定尺寸工具选择性微珩，局部单边去除≤3 μm、直径去除≤6 μm，精整后重新CMM并执行干态洁净检查，颗粒由合格局部隔离收集，内腔不冲洗补救，不以机加工纠正孔轴。[42,43]

@@ -1,54 +1,39 @@
 {
-  "records": [
-    {
-      "thermal_case": "process-temperature-h20-dt025",
-      "coupled_case": "8p-affine-h20-dt025-s05",
-      "input_physics_identical": true,
-      "full_arc_replay_completed": true,
-      "ordered_segment_starts": true,
-      "temperature_design_pass": true,
-      "maximum_start_C": 42.7015634937441,
-      "maximum_heat_history_difference_C": 1.0049916454590857e-10
-    },
-    {
-      "thermal_case": "process-temperature-h15-dt025",
-      "coupled_case": "8p-affine-pardiso-h15-dt025-s05",
-      "input_physics_identical": true,
-      "full_arc_replay_completed": true,
-      "ordered_segment_starts": true,
-      "temperature_design_pass": true,
-      "maximum_start_C": 42.67734575808644,
-      "maximum_heat_history_difference_C": 9.595169103704393e-11
-    }
-  ],
+  "records": [],
   "coupled_start_records": [
     {
-      "coupled_case": "8p-affine-h20-dt025-s05",
-      "start_record_source": "process-temperature-h20-dt025\\process-start-temperatures.json",
-      "start_record_provenance": "actual thermal replay matched against complete coupled heat history; original coupled run predates start-record instrumentation",
+      "coupled_case": "8p-thermal-tool-bore008-h15-dt025-s05",
+      "start_record_source": "8p-thermal-tool-bore008-h15-dt025-s05\\process-start-temperatures.json",
+      "start_record_provenance": "recorded within the actual coupled run",
       "ordered_segment_starts": true,
+      "source_stage_times_match": true,
       "temperature_design_pass": true,
-      "maximum_start_C": 42.7015634937441
+      "maximum_start_C": 50.39554095760489,
+      "simultaneous_heads": 2
     },
     {
-      "coupled_case": "8p-affine-pardiso-h15-dt025-s05",
-      "start_record_source": "process-temperature-h15-dt025\\process-start-temperatures.json",
-      "start_record_provenance": "actual thermal replay matched against complete coupled heat history; original coupled run predates start-record instrumentation",
+      "coupled_case": "8p-thermal-tool-bore008-h1125-dt025-s05",
+      "start_record_source": "8p-thermal-tool-bore008-h1125-dt025-s05\\process-start-temperatures.json",
+      "start_record_provenance": "recorded within the actual coupled run",
       "ordered_segment_starts": true,
+      "source_stage_times_match": true,
       "temperature_design_pass": true,
-      "maximum_start_C": 42.67734575808644
+      "maximum_start_C": 50.36935701105986,
+      "simultaneous_heads": 2
     },
     {
-      "coupled_case": "8p-affine-pardiso-h20-dt0125-s025",
-      "start_record_source": "8p-affine-pardiso-h20-dt0125-s025\\process-start-temperatures.json",
-      "start_record_provenance": "recorded within the coupled run",
+      "coupled_case": "8p-thermal-tool-bore008-h15-dt0125-s025",
+      "start_record_source": "8p-thermal-tool-bore008-h15-dt0125-s025\\process-start-temperatures.json",
+      "start_record_provenance": "recorded within the actual coupled run",
       "ordered_segment_starts": true,
+      "source_stage_times_match": true,
       "temperature_design_pass": true,
-      "maximum_start_C": 42.70682902307718
+      "maximum_start_C": 50.39781554418425,
+      "simultaneous_heads": 2
     }
   ],
   "process_temperature_design_pass": true,
-  "maximum_start_C": 42.70682902307718,
-  "measurement": "QT fixed R61 top-face points relative to final weld toe; cover also checks previous root node maximum",
-  "scope": "same one-way heat model replay under nominal 18 s intersegment operations; physical thermometry and the 400-500 C peening trigger remain WPS controls"
+  "maximum_start_C": 50.39781554418425,
+  "measurement": "actual QT fixed R61 top-face points relative to final weld toe; cover checks previous root node maximum",
+  "scope": "actual coupled temperature records at every source stage; nominal 18 s interstage operations; physical thermometry and 400-500 C peening remain WPS controls"
 }

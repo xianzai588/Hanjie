@@ -3,7 +3,8 @@ import json,yaml
 ROOT=Path(__file__).resolve().parents[2]
 r=json.loads((ROOT/'studies/COMPETITION-DESIGN/results/assessment.json').read_text(encoding='utf8'));p=r['process']
 fixture=r['spec']['fixture']
-bore=fixture.get('candidate_manufacturing_bore_window_mm',fixture.get('manufacturing_bore_window_mm',[40.010,40.014]))
+regime=r['spec']['thermal_regime']
+bore=fixture.get('candidate_manufacturing_bore_window_mm',regime['candidate_manufacturing_bore_window_mm'])
 bore_state='' if fixture.get('manufacturing_bore_window_state')=='verified_current_window' else '（候选核验窗，未冻结）'
 finish_strategy=r['spec']['precision']['bore_finish_strategy']
 card=f'''# 主轴承座—壳体连接 pWPS 工艺规程卡
@@ -30,7 +31,7 @@ card=f'''# 主轴承座—壳体连接 pWPS 工艺规程卡
 | 热态轻击 | 随动Ø6圆头，0.2～0.4 MPa、100 Hz，实测接触合力峰值≤200 N；100 Hz与实际接触宽≥0.72 mm约束扫尾速度≤18 mm/s，搭接≥75%、压痕≤0.05；沿程测温400～500℃才准施击，测温/指令总延迟≤20 ms；停弧后0.20 s内枪丝上提40 mm，轻击轴继续扫尾；段两端各0.5及QT母材/熔合线/焊趾不施击；温窗或覆盖信号异常停段复核，不二次加热 |
 | 清理与防护 | 层间用专用刷与顶部局部抽吸清理，禁止腔内磨削；刚性盘＋四瓣水冷铜环＋闭合上圈及独立整环下圈截留颗粒；铜瓣接缝2.00±0.05，滑动桥详图HJ-010；气幕10～15、顶部抽吸22～28、补氩0～12 L/min；开口腔近大气压，气幕歧管表压0.25～2.8 kPa/流量10～15 L/min双联锁，铜环≤45℃、下座≤48℃、壳体密封带≤180℃；水≥0.60 L/min，入口20±2℃，水路独立检漏 |
 | 装夹与卸夹 | 径向预载≤100 N；机械止挡承受热反力，额定5000 N；独立压环500 N；密封径向装夹力≤1500 N。最后停弧≥120 s且热区<55℃，压环卸载→胀套正向回退1 mm→四瓣铜环/密封径向回缩1.10±0.05，确认全周净隙≥0.10→上止挡打开→胀套上提260→A托环保持夹紧、壳体连托环上提140；盘原位朝上 |
-| 精度检查 | 20±1℃，孔内工装与壳体基准底座夹持全部解除；A为实际壳体下端面、B为壳体内壁两个独立测量带轴线；Ø40孔3截面各12点，直线拟合轴与三截面中心包络取大，测得位置度直径＋同口径扩展不确定度≤0.05 |
+| 精度检查 | 20±1℃、完全卸夹，A为壳底实际端面、B为内壁独立双带；3截面×12点只作快速找正。最终以5截面连续圆扫描＋4条轴向母线、独立基准拟合，直轴与截面中心包络取大；首件与密集/相移扫描比较差≤0.1 μm后冻结扫描步距，不能凭稀疏点排除高阶孔形；位置度＋扩展U≤0.05；容量规划360 s/件 |
 | 尺寸精整 | {finish_strategy}；细则及测量护栏见HJ-Q-03 |
 | 异常处理 | 断丝、能量越窗、温度/气流/夹紧缺信号、漏水立即停弧；保留工装和防护，故障件隔离；返修须有独立评定，禁止自动补焊掩盖裂纹 |
 

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-04",
+  "generated_at": "2026-10-05",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 14,
+  "sheet_count": 15,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -75,6 +75,11 @@
       "pdf": "pdf/datum-holder-detail.pdf",
       "title": "A基准托环与六点正向转运详图",
       "source": "datum-holder-detail.svg"
+    },
+    {
+      "pdf": "pdf/postweld-isolation.pdf",
+      "title": "PT/UT独立接液盘与短孔微珩全收集装置",
+      "source": "postweld-isolation.svg"
     }
   ]
 }

@@ -85,12 +85,15 @@ def endpoint_quality(case,row,inp):
         fixture=bool(fixture.get('fixture_thermal_discretization_pass') and fixture.get('support_thermal_height_budget_pass')))
 
 
-def lower_discretization(case,row,inp):
+def lower_discretization(case,row,inp,comparison_cases=None):
     """Recompute response differences from completed lower-bore fields."""
-    comparisons=[case.replace('h15-dt025-s05','h1125-dt025-s05'),
-                 case.replace('h15-dt025-s05','h15-dt0125-s025')]
+    comparisons=(comparison_cases[1:] if comparison_cases is not None else
+        [case.replace('h15-dt025-s05','h1125-dt025-s05'),
+         case.replace('h15-dt025-s05','h15-dt0125-s025')])
     pending=dict(comparison_cases=[case,*comparisons],spatial_and_time_response_difference_pass=False,
                  reason='completed manufacturing-lower spatial/time fields are required; upper-endpoint precision is not inherited')
+    if len(comparisons)!=2 or len(set([case,*comparisons]))!=3:
+        return {**pending,'reason':'three distinct actual lower-endpoint space/time cases are required; repeated base fields are not refinement'}
     if any(not (OUT/c/'free-release-fields.npz').exists() for c in comparisons):return pending
     from postprocess import measure
     rows=[row];inputs=[inp];quality=[]
@@ -157,7 +160,8 @@ def evaluate(verification):
     # Completed fields stop below20.5 C. Diameter inspection is at20±0.2 C;
     # bound the entire possible cooling to20 C using alpha<=12.5e-6/K.
     reference_temperature_allowance=40*12.5e-6*.5
-    lower_precision=lower_discretization(LOWER,lower,li)
+    lower_comparisons=[case.replace('bore008','bore006') for case in verification['cases']]
+    lower_precision=lower_discretization(LOWER,lower,li,lower_comparisons)
     endpoint_rows=[*lower_precision.get('records',[lower]),*upper_rows]
     minimum=min(r['fit'][fields[0]] for r in endpoint_rows)-allowance-reference_temperature_allowance
     maximum=max(r['fit'][fields[1]] for r in endpoint_rows)+allowance+reference_temperature_allowance
@@ -186,10 +190,42 @@ def evaluate(verification):
     # audit. A 0.1 um increment over two endpoint differences is not that audit.
     interval_path=OUT/'manufacturing-interval-verification.json'
     interval=json.loads(interval_path.read_text(encoding='utf8')) if interval_path.exists() else {}
+    numerical_bounds=interval.get('numerical_bounds',{})
+    bound_keys=('minimum_diameter_mm','maximum_diameter_mm','maximum_raw_position_mm',
+        'maximum_nominal_finished_position_mm','maximum_nominal_radial_stock_mm')
+    valid_numbers=all(isinstance(numerical_bounds.get(k),(int,float)) and
+        not isinstance(numerical_bounds.get(k),bool) and math.isfinite(numerical_bounds[k]) for k in bound_keys)
+    valid_numbers=bool(valid_numbers and numerical_bounds.get('minimum_diameter_mm',1)>0 and
+        numerical_bounds.get('minimum_diameter_mm',1)<=numerical_bounds.get('maximum_diameter_mm',0))
+    # Stored records are recomputed by the interval audit. Validate their actual
+    # inputs and metrology, rather than trusting nonempty names/booleans.
+    interior_rows=interval.get('records',[])
+    interval_inputs=interval.get('inputs',[])
+    interval_physics=bool(interval_inputs) and len(interior_rows)==len(interval_inputs) and all(
+        all(ii.get(k)==ui.get(k) for k in interval.get('physics_keys',[])) for ii in interval_inputs)
+    interval_physics=interval_physics and bool(interval.get('physics_keys')) and all(
+        r.get('cold_shell_clamp_release',{}).get('free_shell_release_pass') and
+        r.get('measurement_sampling',{}).get('sampling_stability_pass') for r in interior_rows)
     interval_pass=bool(interval.get('endpoint_cases')==[LOWER,UPPER]
         and interval.get('contact_and_plastic_path_checks_pass')
         and interval.get('response_envelope_validation_pass')
-        and interval.get('response_bound_basis') and interval.get('interior_cases'))
+        and interval.get('response_bound_basis') and interval.get('interior_cases')
+        and valid_numbers and interval_physics)
+    if valid_numbers:
+        minimum=min(minimum,numerical_bounds['minimum_diameter_mm']-reference_temperature_allowance)
+        maximum=max(maximum,numerical_bounds['maximum_diameter_mm']+reference_temperature_allowance)
+        raw_axis=max(raw_axis,numerical_bounds['maximum_raw_position_mm'])
+        nominal_finished_axis=max(nominal_finished_axis,numerical_bounds['maximum_nominal_finished_position_mm'])
+    required_stock=max(0,target_measured-(minimum-U))
+    no_honing_size_pass=minimum-U>=40.000 and maximum+U<=40.025
+    finishing_branch='direct_size_no_honing' if no_honing_size_pass else 'limited_honing_required'
+    # Optional stock removal is prohibited on the direct-size branch. A bore
+    # requiring size recovery can never use the looser 20 um axis allowance.
+    selected_honing_allowance=0. if no_honing_size_pass else honing_position_allowance
+    position_base=max(raw_axis,nominal_finished_axis-honing_position_allowance) if not no_honing_size_pass else raw_axis
+    post_position=.028+.002+position_base+selected_honing_allowance
+    interval_stock_pass=bool(valid_numbers and numerical_bounds['maximum_nominal_radial_stock_mm']+
+        reference_temperature_allowance/2<=removal_diameter_limit/2)
     def response_error(i,j,k):
         a=upper_rows[i]['fit'][k]-40.008;b=upper_rows[j]['fit'][k]-40.008
         return abs(a-b)/max(abs(a),abs(b),1e-12)
@@ -205,8 +241,8 @@ def evaluate(verification):
         declared_diameter_uncertainty_budget_pass=calculated_U<=U,
         upper_size_with_guard_pass=maximum+U<=40.025,
         limited_honing_stock_pass=required_stock<=removal_diameter_limit,
-        nominal_local_radial_stock_pass=all(item['maximum_local_radial_stock_mm']+(allowance+reference_temperature_allowance)/2<=removal_diameter_limit/2 for item in finishes),
-        nominal_selective_finish_size_pass=all(item['final_sampled_fit'][fields[0]]>=40.0005 and item['final_sampled_fit'][fields[1]]+U<=40.025 for item in finishes),
+        nominal_local_radial_stock_pass=no_honing_size_pass or (interval_stock_pass and all(item['maximum_local_radial_stock_mm']+(allowance+reference_temperature_allowance)/2<=removal_diameter_limit/2 for item in finishes)),
+        nominal_selective_finish_size_pass=no_honing_size_pass or all(item['final_sampled_fit'][fields[0]]>=40.0005 and item['final_sampled_fit'][fields[1]]+U<=40.025 for item in finishes),
         short_bore_axis_change_bound_pass=endpoint_position_bound+.0002<=honing_position_allowance,
         nominal_finish_within_axis_bound_pass=nominal_finished_axis<=raw_axis+honing_position_allowance,
         welded_endpoints_position_budget_pass=.028+.002+raw_axis<=.05,
@@ -221,6 +257,10 @@ def evaluate(verification):
         nominal_selective_finish=finish,nominal_selective_finish_all_endpoints=finishes,
         lower_endpoint_quality=lower_quality,lower_endpoint_discretization=lower_precision,
         manufacturing_interval_verification=interval,
+        interval_numerical_bounds_consumed=numerical_bounds if valid_numbers else {},
+        finishing_branch=finishing_branch,direct_size_no_honing_pass=no_honing_size_pass,
+        selected_honing_position_allowance_mm=selected_honing_allowance,
+        selected_welding_position_limit_mm=.020-selected_honing_allowance,
         diameter_uncertainty_components_standard_um=u_components_um,
         calculated_expanded_diameter_uncertainty_mm=calculated_U,
         diameter_method_expanded_uncertainty_limit_mm=U,

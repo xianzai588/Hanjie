@@ -1,0 +1,19 @@
+{
+  "endpoint_cases": [
+    "8p-thermal-tool-bore006-h15-dt025-s05",
+    "8p-thermal-tool-bore008-h15-dt025-s05"
+  ],
+  "interior_cases": [
+    "8p-thermal-tool-bore0065-h15-dt025-s05",
+    "8p-thermal-tool-bore007-h15-dt025-s05",
+    "8p-thermal-tool-bore0075-h15-dt025-s05"
+  ],
+  "response_envelope_validation_pass": false,
+  "contact_and_plastic_path_checks_pass": false,
+  "pending_cases": [
+    "8p-thermal-tool-bore0065-h15-dt025-s05",
+    "8p-thermal-tool-bore007-h15-dt025-s05",
+    "8p-thermal-tool-bore0075-h15-dt025-s05"
+  ],
+  "response_bound_basis": "five completed geometries; nested 3/5-point envelopes, twice the largest adjacent response change plus 0.1 um; contact/plastic-path audit required"
+}

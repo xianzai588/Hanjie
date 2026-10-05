@@ -9,8 +9,13 @@ from run_verified import operators,fit_position_diameter
 ROOT=Path(__file__).resolve().parents[2]
 def run(folder,h_override=None):
  data=np.load(folder/'mesh.npz');x=data['x'];e=data['e'];m=data['material'];weld_top=float(x[np.unique(e[m==2]),2].min())
+ inp=json.loads((folder/'input.json').read_text(encoding='utf8')) if (folder/'input.json').exists() else {}
  g,vol,B,dof=operators(x,e);N=3*len(x)
  E=np.array([210000,170000,160000])[m];nu=np.array([.28,.27,.3])[m]
+ if inp.get('materials'):
+  # Same cold constitutive constants as the retained manufacturing state.
+  E=np.array([np.interp(20,t['temperature_dependent']['temperatures_c'],t['temperature_dependent']['elastic_modulus_gpa'])*1000 for t in inp['materials']])[m]
+  nu=np.array([t['nominal_properties_20c']['poisson_ratio'] for t in inp['materials']])[m]
  pv=np.outer([1,1,1,0,0,0],[1,1,1,0,0,0])/3;pd=np.eye(6)-pv
  G=E/(2*(1+nu));K=E/(3*(1-2*nu));D=3*K[:,None,None]*pv+2*G[:,None,None]*pd
  ke=np.einsum('eji,ejk,ekl,e->eil',B,D,B,vol,optimize=True)

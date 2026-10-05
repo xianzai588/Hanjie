@@ -1,0 +1,13 @@
+{
+  "case": "8p-thermal-tool-bore008-h15-dt025-s05",
+  "source_fields": [
+    "free-release-fields.npz",
+    "stateful-service-fields.npz"
+  ],
+  "section_plane": "y=0; displacement interpolated along tetrahedron edges, cell stress held constant",
+  "maximum_unloaded_increment_displacement_mm": 0.0012448561041829716,
+  "maximum_loaded_body_VM_MPa": 378.6638246942513,
+  "maximum_added_eqp": 0.0019321780351169646,
+  "maximum_equilibrium_residual_N": 0.000718574740607668,
+  "scope": "bulk load/unload response on inherited state; original elastic ties do not certify Ni99/PMZ capacity"
+}
