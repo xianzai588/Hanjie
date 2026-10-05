@@ -1,0 +1,11 @@
+{
+  "case": "8p-E285-k2500-f2-bore008-h1125-dt00625-s0125",
+  "stage": "stopped_for_cloud_handoff",
+  "stopped_at_utc": "2026-10-05T02:36:16.122645+00:00",
+  "checkpoint_model_time_s": 8.6875,
+  "solver_pid": 60764,
+  "wrapper_pid": 52148,
+  "reason": "explicit user pause and transfer to cloud; no graceful stop hook in running solver, exact processes stopped after stable complete-checkpoint preflight",
+  "completed": false,
+  "design_pass": false
+}

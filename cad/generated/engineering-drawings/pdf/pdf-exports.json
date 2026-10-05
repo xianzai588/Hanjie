@@ -3,7 +3,7 @@
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 15,
+  "sheet_count": 16,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -80,6 +80,11 @@
       "pdf": "pdf/postweld-isolation.pdf",
       "title": "PT/UT独立接液盘与短孔微珩全收集装置",
       "source": "postweld-isolation.svg"
+    },
+    {
+      "pdf": "pdf/postweld-cartridge.pdf",
+      "title": "接液盘充气密封槽、支架与密闭撤出筒",
+      "source": "postweld-cartridge.svg"
     }
   ]
 }

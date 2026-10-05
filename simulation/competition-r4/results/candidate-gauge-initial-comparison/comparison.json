@@ -1,0 +1,13 @@
+{
+  "source_case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+  "comparison_case": "candidate-gauge-initial-comparison",
+  "comparison_time_s": 1.125,
+  "identical_mesh": true,
+  "maximum_nodal_u_component_difference_mm": 3.2500602664686795e-07,
+  "maximum_element_mean_temperature_difference_C": 6.03654591486702e-05,
+  "comparison_displacement_limit_mm": 0.0001,
+  "scope": "actual saved float32 early state versus independently solved corrected-gauge state at1.125s; first-stage comparison, not complete manufacturing precision",
+  "strict_0_1nm_roundoff_comparison_pass": false,
+  "criterion_basis": "existing0.1um metrology-response difference limit; displacement difference is0.000325um and reflects nonlinear solve/snapshot precision",
+  "initial_guess_response_equivalence_pass": true
+}

@@ -1,0 +1,36 @@
+{
+  "case": "8p-thermal-tool-bore006-h15-dt025-s05",
+  "initial_bore_diameter_mm": 40.006,
+  "missing_files": [],
+  "observed_histories": {
+    "mechanical_history_times_identical": true,
+    "mechanical_steps": 1297,
+    "pad_area_transition_steps": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "maximum_equilibrium_residual_N": 0.049978052703099504,
+    "minimum_pad_reaction_N": 0.0,
+    "maximum_compression_sum_N": 2724.930464837957,
+    "history_coverage": "per-step pad areas and reaction resultants exist; per-node mandrel active sets and per-element plastic increments/reset events were not saved"
+  },
+  "checks": {
+    "contact_active_set_resolved": false,
+    "plastic_loading_unloading_resolved": false,
+    "no_unresolved_path_transition": false,
+    "actual_cold_release_and_metrology": true
+  },
+  "required_additional_evidence": [
+    "actual mandrel nodal gap/active mask at every mechanical increment",
+    "actual material-point plastic increment, yield and thermal-reset events at every mechanical increment",
+    "refined parameter brackets around changes of contact/plastic branch; a quantified interior response bound"
+  ],
+  "contact_and_plastic_path_checks_pass": false
+}

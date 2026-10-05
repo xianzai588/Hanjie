@@ -1,0 +1,22 @@
+{
+  "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+  "wrapper_pid": 11068,
+  "solver_pid": 60492,
+  "model_time_s": 30.40909090909091,
+  "current_maximum_temperature_C": 1401.5352358041528,
+  "peak_nodal_temperature_C": 1571.607932645543,
+  "current_tool_maximum_C": 20.919935930281262,
+  "checkpoint_bytes": 39395006,
+  "checkpoint_mtime_ns": 1791167601717670900,
+  "checks": {
+    "all_npz_members_readable": true,
+    "metadata_matches_input": true,
+    "saved_geometry_matches_mesh": true,
+    "all_numeric_members_finite": true,
+    "file_unchanged_during_read": true,
+    "converged_structural_checkpoint": true
+  },
+  "resumable_file_state": true,
+  "completion": false,
+  "design_pass": false
+}

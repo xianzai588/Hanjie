@@ -1,0 +1,100 @@
+{
+  "scope": "engineering prediction and fixture qualification targets; no measured fixture curve",
+  "cone": {
+    "half_angle_deg": 10,
+    "effective_length_mm": 14.6,
+    "minor_radius_mm": 16.5,
+    "major_radius_mm": 19.07437391834359,
+    "internal_radius_mm": 0.0,
+    "terminal_minimum_nominal_wall_mm": 0.8956260816564101
+  },
+  "contact_area_adverse_mm2": 1646.9030424562893,
+  "hot_modulus_lower_MPa": 180000,
+  "friction_upper": 0.2,
+  "upper_stop_tube_length_mm": 244.6,
+  "upper_axial_load_including_pressure_N": 2460.47853384832,
+  "upper_stop_axial_compliance_components_mm": {
+    "tube": 0.0009853846054312227,
+    "portal_plate": 0.0011957925674502834,
+    "portal_columns": 0.00034264765590427703,
+    "keeper": 0.0002252363057860316,
+    "stop_head": 0.00034600479382242
+  },
+  "axial_hard_stop_z_mm": 155.4,
+  "cone_end_margin_mm": 0.40000000000000036,
+  "maximum_setting_axial_stroke_mm": 0.2835640909808895,
+  "axial_load_at_5000N_radial_N": 1960.4785338483198,
+  "radial_compliance_components_mm_at5000N": {
+    "core_lame": 0.0002361632100600242,
+    "locked_stem": 0.0005513152115115027,
+    "terminal_block": 5.970802821924059e-05,
+    "cone_and_shoulder_faces": 0.00025
+  },
+  "total_radial_compression_mm_at5000N": 0.0010971864497907676,
+  "equivalent_density_N_mm3": 2767.07886381171,
+  "FE_density_N_mm3": 2500.0,
+  "actual_case_evidence": [
+    {
+      "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+      "completed": false,
+      "observed_until_s": 30.40909090909091,
+      "actual_FE_density_N_mm3": 2500.0,
+      "actual_contact_area_mm2": 1651.5513429465407,
+      "actual_initial_bore_mm": 40.008,
+      "maximum_compression_sum_N": 2843.291363239843,
+      "maximum_fixture_temperature_C": 20.919935930281262,
+      "fixture_refinement": 2,
+      "source": "partial continuation checkpoint; not final maxima"
+    },
+    {
+      "case": "8p-E285-k2500-f2-bore008-h085-dt0125-s025",
+      "completed": false,
+      "observed_until_s": 7.375,
+      "actual_FE_density_N_mm3": 2500.0,
+      "actual_contact_area_mm2": 1651.5513429465404,
+      "actual_initial_bore_mm": 40.008,
+      "maximum_compression_sum_N": 1656.5209991042418,
+      "maximum_fixture_temperature_C": 20.000221845436904,
+      "fixture_refinement": 2,
+      "source": "partial continuation checkpoint; not final maxima"
+    },
+    {
+      "case": "8p-E285-k2500-f2-bore008-h1125-dt00625-s0125",
+      "completed": false,
+      "observed_until_s": 8.6875,
+      "actual_FE_density_N_mm3": 2500.0,
+      "actual_contact_area_mm2": 1651.5513429465407,
+      "actual_initial_bore_mm": 40.008,
+      "maximum_compression_sum_N": 1981.4807114079895,
+      "maximum_fixture_temperature_C": 20.00044504671107,
+      "fixture_refinement": 2,
+      "source": "partial continuation checkpoint; not final maxima"
+    }
+  ],
+  "hot_modulus_design_temperature_range_C": [
+    20,
+    200
+  ],
+  "hot_modulus_basis": "180 GPa lower engineering bound required for the 45-steel core and H900 sleeve over20..200C; ARMCO17-4PH Tables7/8 support sleeve modulus; core property is a procurement qualification input",
+  "free_neck_radial_stiffness_N_mm": 54.097640457561035,
+  "free_setting_force_at_maximum_gap_N": 2.299149719446344,
+  "qualification": [
+    "full contact band from z100.2 to114.8; neck length30 above the band, thickness0.80, width>=19",
+    "mating cone and shoulder Ra<=0.2; incremental radial face compliance <=0.05 um/kN from seated100 to5000 N",
+    "solid fixed reverse cone; sleeve shoulder, Ø70/Ø24 tube and portal carry axial reaction; M12 sets/returns only",
+    "fixture test separates elastic compression, rigid-axis shift and six-finger setting repeatability",
+    "equivalent uniform compression density >= actual FE maximum 2500 N/mm3 over20..200C; actual full-cycle force <=5000N"
+  ],
+  "checks": {
+    "full_band_cone_support": true,
+    "matching_nominal_cone": true,
+    "stem_length_covers_load_path": true,
+    "model_density_is_conservative": true,
+    "force_within_stop_capacity": false,
+    "actual_temperature_within_hot_modulus_design_range": false,
+    "actual_contact_area_covers_adverse_area": true,
+    "keeper_and_head_strength_pass": true,
+    "free_setting_force_below_preload_limit": true
+  },
+  "mandrel_compliance_design_pass": false
+}

@@ -1,0 +1,22 @@
+{
+  "case": "8p-E285-k2500-f2-bore008-h1125-dt00625-s0125",
+  "first_steps": [
+    {
+      "time_s": 0,
+      "QT_active_links": 0,
+      "steel_active_links": 0,
+      "original_policy_gauge": true,
+      "corrected_policy_gauge": true
+    },
+    {
+      "time_s": 0.0625,
+      "QT_active_links": 0,
+      "steel_active_links": 0,
+      "original_policy_gauge": false,
+      "corrected_policy_gauge": true
+    }
+  ],
+  "gauge_schedules_identical_for_this_mesh_and_step": false,
+  "monotonic_connection_basis": "deposition is cumulative; mechanical links follow occupied master nodes",
+  "initial_seating_guess_correction_scope": "the added uniform1e-8mm seat translation changes the Newton initial guess, not constraints or the converged equilibrium; its effect on nonlinear solution selection is not asserted by this schedule audit"
+}

@@ -9,7 +9,7 @@
     "pan_floor_top_z_mm": 96,
     "pan_upper_lip_z_mm": 99,
     "retained_liquid_depth_mm": 3.0,
-    "effective_hold_up_ml": 48.192472201731434,
+    "effective_hold_up_ml": 47.73254303724589,
     "seal_inflation_pressure_kPa": [
       20,
       30
@@ -20,7 +20,55 @@
     "seal_membrane_stress_bound_MPa": 0.15789473684210525,
     "seal_minimum_procurement_tensile_MPa": 2,
     "seal_total_distributed_radial_load_bound_N": 84.82300164692441,
-    "insertion": "after original fixed core/pan withdrawal; vertical from open shell bottom with seal collapsed; inflate only at z96..99 position",
+    "seal_gland": {
+      "collar_z_mm": [
+        88,
+        97
+      ],
+      "collar_wall_mm": 2.0,
+      "groove_center_z_mm": 93.0,
+      "groove_axial_width_mm": 6.2,
+      "groove_axial_width_tolerance_mm": 0.05,
+      "groove_radial_depth_mm": 0.75,
+      "groove_depth_tolerance_mm": 0.02,
+      "minimum_remaining_metal_wall_mm": 1.18,
+      "seal_captive_heel": "moulded twin base heels in continuous dovetail lips; replaceable split clamp belowz88; no adhesive in the cavity",
+      "port": "one radialØ1 inflation hole atz93 connected to weldedØ2 stainless tube below the pan; separate fromØ4 liquid drain",
+      "maximum_collapsed_radius_mm": 74.795,
+      "minimum_entry_clearance_mm": 0.09540068667726431,
+      "inflated_profile_radial_reach_mm": 1.25,
+      "shell_inside_diameter_design_mm": [
+        150,
+        150.02
+      ]
+    },
+    "support_and_cartridge": {
+      "station": "separate cold NDT nest after shell is lifted off the fixed welding core; empty open bottom",
+      "pan_stem_diameter_mm": 12,
+      "nominal_stem_length_mm": 258,
+      "stem_top_z_mm": 88,
+      "cartridge_floor_z_mm": -170,
+      "lift_capacity_N": 200,
+      "pressure_and_weight_design_load_N": 146.47777312777404,
+      "dual_guide_spacing_mm": 50,
+      "entry_center_error_limit_mm": 0.1,
+      "entry_tilt_limit_deg": 0.05,
+      "cartridge_inside_diameter_mm": 152,
+      "cartridge_inside_diameter_tolerance_mm": 0.05,
+      "cartridge_upper_interface_z_mm": -20,
+      "cartridge_flange_outer_diameter_mm": 174,
+      "flange_face_seal_radius_mm": 83,
+      "flange_face_cord_mm": 2,
+      "flange_groove_depth_mm": 1.5,
+      "flange_stop_gap_mm": 0.1,
+      "withdrawal_stroke_mm": 125.0,
+      "stroke_tolerance_mm": 0.1,
+      "withdrawn_pan_lip_maximum_z_mm": -25.80000000000001,
+      "minimum_cartridge_radial_clearance_mm": 1.0799999999999925,
+      "feedthrough": "welded metal bellows with130mm rated travel; drive and guide below closed cartridge; bottle and vacuum remain connected",
+      "closure": "clamped flange mates with underside of independentOD180/ID150.20 datum nest; external face seal, product wall untouched"
+    },
+    "insertion": "transfer shell off fixed welding core to independent NDT nest; vertical from open bottom with seal collapsed; inflate only atz90..96 afterpanfacez96 is positioned",
     "withdrawal": "drain and dry pan in place; cover bottom exit with closed collection cartridge; maintain upward pan and suction, deflate to OD<=149.6, lower without tilt or wall scrape",
     "method": "continuous closed-bottom 316L under-seat pan, non-sliding inflatable low-outgassing FFKM seal, PT swab/UT metered gel above pan, separate sealed recovery bottle"
   },
@@ -65,6 +113,10 @@
   },
   "checks": {
     "collapsed_pan_no_scrape_pass": true,
+    "seal_gland_ligament_pass": true,
+    "cartridge_no_scrape_pass": true,
+    "entire_pan_inside_cartridge_pass": true,
+    "vertical_support_capacity_pass": true,
     "under_seat_pan_clearance_pass": true,
     "PT_seal_membrane_strength_pass": true,
     "PT_fault_hold_up_pass": true,

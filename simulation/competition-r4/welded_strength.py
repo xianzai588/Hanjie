@@ -31,7 +31,7 @@ def mixed_mode(traction,normal,tensile_capacity,shear_capacity,compression_capac
     return interaction,compression/compression_capacity,normal_value,shear
 
 
-def recover_residual_interface(fields,folder):
+def recover_equilibrium_interface(fields,folder):
     from run_verified import operators
     x,e=fields['x'],fields['e'];nn=len(x)
     _,vol,B,dof=operators(x,e)
@@ -47,6 +47,15 @@ def recover_residual_interface(fields,folder):
         sol=lsmr(A,rhs,atol=1e-13,btol=1e-13,maxiter=8000)
         recovered[:,axis]=sol[0];errors.append(float(np.linalg.norm(A@sol[0]-rhs)))
     return recovered,errors
+
+
+def recover_residual_interface(fields,folder):
+    from interface_state import actual_force
+    direct,_=actual_force(fields,folder)
+    inferred,errors=recover_equilibrium_interface(fields,folder)
+    if np.max(np.linalg.norm(direct-inferred,axis=1))>.001:
+        raise ValueError('saved birth-reference spring force differs from equilibrium recovery')
+    return direct,errors
 
 
 def evaluate_case(case,basis):
@@ -108,13 +117,17 @@ def evaluate_case(case,basis):
                 mixed_mode_design_pass=bool(interaction.max()<=1 and compression.max()<=1))
         outputs[name]=output
     thermal=measure.get('final_max_C',999)<=20.5 and release.get('free_shell_release_pass') is True
+    from stateful_service_verifier import evaluate as stateful_evaluate
+    nonlinear=stateful_evaluate(case)
+    elastic_pass=all(z['elastic_admissibility_pass'] for z in zones.values())
     return dict(case=case,complete=True,input=inp,initial_bore_diameter_mm=inp['initial_bore_diameter_mm'],
         tensor_method='same element Mandel tensor; residual + 1.5 service; residual + service +/- cyclic amplitude; no scalar VM addition',
         cold_residual_state_pass=bool(thermal),same_mesh_tensor_combination_pass=bool(same),
         retained_plastic_state=dict(maximum_eqp=float(fields['eqp'].max()),
             maximum_plastic_tensor_norm=float(np.linalg.norm(fields['plastic'],axis=1).max())),
         interface_force_recovery_residual_N=recovery_errors,interface_recovery_pass=max(recovery_errors)<.05,
-        bulk_zones=zones,combined_bulk_strength_pass=all(z['elastic_admissibility_pass'] for z in zones.values()),
+        bulk_zones=zones,stateful_bulk_verification=nonlinear,
+        combined_bulk_strength_pass=elastic_pass or nonlinear.get('combined_bulk_strength_pass',False),
         interfaces=outputs,both_interfaces_mixed_mode_pass=all(o['mixed_mode_design_pass'] for o in outputs.values()),
         nonlinear_service_required=any(not z['elastic_admissibility_pass'] for z in zones.values()),
         scope='elastic trial on inherited cold stress/plastic state; explicit Ni99/PMZ assessment and local fusion evidence remain separate')

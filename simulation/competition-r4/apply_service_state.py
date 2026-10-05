@@ -51,7 +51,7 @@ def run(case):
     import pypardiso
     solver=pypardiso.PyPardisoSolver(mtype=2)
     stress=f['stress'].copy();eqp=f['eqp'].copy();plastic=f['plastic'].copy()
-    u=np.zeros(nd);current_force=residual_force.copy();history=[];loaded={}
+    u=np.zeros(nd);current_force=residual_force.copy();history=[];loaded={};operating={}
     for load in np.r_[np.linspace(.1,1.5,15),np.linspace(1.4,0,15)]:
         old_stress=stress.copy();old_eqp=eqp.copy();delta=np.zeros(nd)
         base=body(old_stress)
@@ -92,15 +92,21 @@ def run(case):
         print(case,'service load',round(load,2),'iterations',iteration+1,'residual',residual,flush=True)
         if abs(load-1.5)<1e-8:
             loaded=dict(stress=stress.copy(),eqp=eqp.copy(),plastic=plastic.copy(),u=u.copy(),interface_force=current_force.copy())
+        if abs(load-1.)<1e-8 and not operating:
+            operating=dict(stress=stress.copy(),eqp=eqp.copy(),plastic=plastic.copy(),u=u.copy(),interface_force=current_force.copy())
     np.savez_compressed(folder/'stateful-service-fields.npz',
         loaded_stress_Mandel_MPa=loaded['stress'],loaded_eqp=loaded['eqp'],loaded_plastic=loaded['plastic'],
         loaded_u_increment_mm=loaded['u'].reshape(nn,3),loaded_interface_force_N=loaded['interface_force'],
-        unloaded_stress_Mandel_MPa=stress,unloaded_eqp=eqp,unloaded_u_increment_mm=u.reshape(nn,3))
+        unloaded_stress_Mandel_MPa=stress,unloaded_eqp=eqp,unloaded_plastic=plastic,unloaded_u_increment_mm=u.reshape(nn,3),
+        unloaded_interface_force_N=current_force,initial_interface_force_N=residual_force,
+        operating_stress_Mandel_MPa=operating['stress'],operating_eqp=operating['eqp'],operating_plastic=operating['plastic'],
+        operating_u_increment_mm=operating['u'].reshape(nn,3),operating_interface_force_N=operating['interface_force'])
     result=dict(case=case,input_snapshot=inp,load_factor=1.5,history=history,
         bulk_material_model='same cold J2 isotropic hardening H=0.005E as manufacturing solve; retained eqp and plastic tensor',
         mounting='clamp actual deformed lower rim; zero incremental motion at mount; free manufacturing shape is not reset',
         maximum_added_eqp=float((eqp-f['eqp']).max()),interface_force_recovery_residual_N=recovery,
         equilibrium_design_pass=max(h['residual_N'] for h in history)<.001,
+        interface_initial_force_method='actual k*A*(L*u - saved stress-free birth reference), cross-checked against equilibrium recovery',
         elapsed_s=time.perf_counter()-started,
         scope='bulk load/unload response on inherited state; original elastic ties do not certify Ni99/PMZ capacity')
     (folder/'stateful-service-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')

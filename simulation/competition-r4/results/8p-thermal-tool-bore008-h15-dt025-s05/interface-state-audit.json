@@ -1,0 +1,23 @@
+{
+  "case": "8p-thermal-tool-bore008-h15-dt025-s05",
+  "method": "actual k*A*(L*u - saved birth reference), including free-shell release displacement",
+  "maximum_force_difference_from_LSMR_N": 0.000485467457686304,
+  "force_difference_norm_N": 0.0041053490804275495,
+  "LSMR_equilibrium_residual_N": [
+    2.567172909050455e-09,
+    2.7640343253027375e-09,
+    2.7793117042026653e-09
+  ],
+  "minimum_gauge_restricted_row_gram_eigenvalues": [
+    0.42834929793356274,
+    0.4283492979335628,
+    0.42834929793356286
+  ],
+  "equilibrium_inverse_is_unique": true,
+  "actual_spring_law_matches_recovery": true,
+  "maximum_actual_traction_MPa": {
+    "QT_Ni99": 1687.0433045674122,
+    "steel_NiFe": 1553.3033289207506
+  },
+  "scope": "verification of forces in the present elastic spring model; local plastic load transfer and Ni99/PMZ capacity require resolved material states"
+}

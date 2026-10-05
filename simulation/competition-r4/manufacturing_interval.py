@@ -30,8 +30,9 @@ def evaluate(upper, out=OUT):
     cases = interval_cases(upper)
     result = dict(endpoint_cases=[cases[0], cases[-1]], interior_cases=cases[1:-1],
         response_envelope_validation_pass=False, contact_and_plastic_path_checks_pass=False,
+        nonlinear_interior_bound_verified=False,
         pending_cases=[c for c in cases if not (out/c/'free-release-fields.npz').exists()],
-        response_bound_basis='five completed geometries; nested 3/5-point envelopes, twice the largest adjacent response change plus 0.1 um; contact/plastic-path audit required')
+        response_bound_basis='sampled five-geometry engineering envelope; twice adjacent change plus0.1um is not a nonlinear interior guarantee; a resolved branch/bracket bound remains required')
     if result['pending_cases']:
         return result
     from postprocess import measure
@@ -73,7 +74,7 @@ def evaluate(upper, out=OUT):
         nested_response_relative_differences=dict(zip(metrics,nested_relative.tolist())),
         endpoint_and_interior_quality=quality, contact_plastic_path_records=path_checks,
         contact_and_plastic_path_checks_pass=path_pass,
-        response_envelope_validation_pass=bool(identical and ordered and path_pass
+        response_envelope_validation_pass=bool(result['nonlinear_interior_bound_verified'] and identical and ordered and path_pass
             and all(all(q.values()) for q in quality) and np.all(nested_relative<=.05)))
     return result
 

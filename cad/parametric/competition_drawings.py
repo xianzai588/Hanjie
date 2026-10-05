@@ -669,7 +669,7 @@ def postweld_isolation_sheet(spec,result):
         text(80,407,'整盘OD149.40±0.05；壁1/底2；盘面z96、唇z99','small'),
         text(80,466,'缩态密封OD≤149.6；20～30 kPa充气后贴合钢壁','small'),
         text(80,490,'无径向滑擦；膜应力界0.16 MPa，采购强度≥2 MPa','small'),
-        text(80,514,'内径147.4/液深3，有效容量48.19 mL；Ø4密闭回液','small')]
+        text(80,514,'加厚圈扣占位后容量47.73 mL；Ø4密闭回液','small')]
     # Bore cup seals on the unbroken central annulus, with no sliding radial
     # seal in the precision bore and no interference with the bore wall.
     parts += [text(635,148,'B：微珩上下罩（轴向剖面NTS）','section'),
@@ -692,6 +692,37 @@ def postweld_isolation_sheet(spec,result):
     return finish(parts,'316L / 低析出FFKM')
 
 
+def postweld_cartridge_sheet(spec,result):
+    parts=sheet('接液盘充气密封槽、支架与密闭撤出筒','HJ-016',
+        '冷态独立NDT工位；壳体先脱离固定焊接芯轴；关键配合按本图单独公差')
+    parts += [text(65,145,'A：外缘密封槽放大剖面（NTS）','section'),
+        box(370,202,22,280,'#a9bdc9'),
+        polygon([(110,250),(270,250),(270,330),(242,330),(242,392),(270,392),(270,470),(110,470)],'#eaf4f5'),
+        box(242,332,118,58,'#ddba7d'),
+        line(170,360,242,360,'#176b7b',4),line(170,360,170,495,'#176b7b',4),
+        text(75,187,'环裙z88～97，壁2；上缘至z99，盘面z96','small'),
+        text(72,523,'槽中心z93；宽6.20±0.05/径向深0.75±0.02','small'),
+        text(72,549,'槽底剩余壁≥1.18；缩态径向高度≤0.80','small'),
+        text(72,575,'模压双底脚扣入连续燕尾唇；下方分瓣压圈锁持','small'),
+        text(72,601,'Ø1充气口＋焊接Ø2管；独立于Ø4回液路','small'),
+        text(72,627,'充态径向伸出1.25；20～30 kPa，贴壁后禁止滑移','small')]
+    parts += [text(610,145,'B：独立支架与收集筒（NTS）','section'),
+        box(644,195,20,120,'#a9bdc9'),box(1074,195,20,120,'#a9bdc9'),
+        polygon([(678,245),(678,280),(1060,280),(1060,245),(1046,245),(1046,268),(692,268),(692,245)],'#eaf4f5'),
+        box(615,317,91,24,'#dbe6eb'),box(1032,317,91,24,'#dbe6eb'),
+        polygon([(659,345),(659,466),(1078,466),(1078,345),(1062,345),(1062,449),(675,449),(675,345)],'#eaf4f5'),
+        line(869,280,869,500,'#176b7b',7),box(829,478,80,26,'#a9bdc9'),
+        text(615,535,'托环OD180/ID150.20；筒法兰OD174接托环底面','small'),
+        text(615,561,'筒ID152.00±0.05；顶口z−20/底z−170','small'),
+        text(615,587,'端面圈R83/线径2；槽深1.50，金属挡隙0.10','small'),
+        text(615,613,'中央Ø12×258支杆；双导向距50；升降额定200 N','small'),
+        text(615,639,'焊接金属波纹管贯穿密闭筒底；额定行程130','small')]
+    parts += [text(70,665,'装入偏心≤0.10、倾角≤0.05°：最小入壳间隙0.095；先对中再上升，不靠刮壁导向','small'),
+        text(70,688,'撤出行程125±0.10：最高唇口z≤−25.8；筒内径向余量≥1.08；保抽吸、排尽/干燥后泄压下撤','small'),
+        text(70,711,'筒内全收纳后封口脱开；回液瓶独立、所有充气/回液接头在盘底；正常产品下腔不作整腔清洗','small')]
+    return finish(parts,'316L / FFKM')
+
+
 def main():
     spec=read_spec(ROOT)
     result=current_assessment(ROOT)
@@ -711,7 +742,8 @@ def main():
               "carrier-detail.svg":carrier_sheet(spec,result),
               "portal-transfer.svg":portal_sheet(spec,result),
               "datum-holder-detail.svg":datum_holder_sheet(spec,result),
-              "postweld-isolation.svg":postweld_isolation_sheet(spec,result)}
+              "postweld-isolation.svg":postweld_isolation_sheet(spec,result),
+              "postweld-cartridge.svg":postweld_cartridge_sheet(spec,result)}
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
     core = [name for name in drawings if name != "sleeve-detail.svg"]
