@@ -1,0 +1,90 @@
+{
+  "thermal_run_partial": true,
+  "converged_end_s": 33.67159427077024,
+  "floor_z_mm": 113.6,
+  "both_solidus_threshold_C": 1353.5,
+  "footprints": {
+    "root": {
+      "physical_quadrature_area_mm2": 49.17290559048123,
+      "above_both_solidus_area_mm2": 28.41794725867993,
+      "minimum_point_peak_C": 20.0,
+      "bins_without_any_molten_point": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "all_sampled_points_reach_both_solidus": false,
+      "actually_deposited_portion": {
+        "area_mm2": 28.64391466269175,
+        "above_selected_alloy_solidus_mm2": 28.41794725867993,
+        "above_pure_Ni_upper_melting_bound_1458p85C_mm2": 26.689911192326814,
+        "minimum_point_peak_C": 1249.086226283709,
+        "all_points_above_selected_alloy_solidus": false
+      }
+    },
+    "cap": {
+      "physical_quadrature_area_mm2": 69.58445723505787,
+      "above_both_solidus_area_mm2": 29.897418798561247,
+      "minimum_point_peak_C": 20.0,
+      "bins_without_any_molten_point": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "all_sampled_points_reach_both_solidus": false,
+      "actually_deposited_portion": {
+        "area_mm2": 30.445455840873272,
+        "above_selected_alloy_solidus_mm2": 29.897418798561247,
+        "above_pure_Ni_upper_melting_bound_1458p85C_mm2": 26.97858632694861,
+        "minimum_point_peak_C": 1177.212509637187,
+        "all_points_above_selected_alloy_solidus": false
+      }
+    },
+    "full_radial_band": {
+      "physical_quadrature_area_mm2": 103.53139204098872,
+      "above_both_solidus_area_mm2": 29.897418798561247,
+      "minimum_point_peak_C": 20.0,
+      "bins_without_any_molten_point": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "all_sampled_points_reach_both_solidus": false,
+      "actually_deposited_portion": {
+        "area_mm2": 30.445455840873272,
+        "above_selected_alloy_solidus_mm2": 29.897418798561247,
+        "above_pure_Ni_upper_melting_bound_1458p85C_mm2": 26.97858632694861,
+        "minimum_point_peak_C": 1177.212509637187,
+        "all_points_above_selected_alloy_solidus": false
+      }
+    }
+  },
+  "QT_molten_volume_screen": {
+    "fully_liquid_quadrature_union_mm3": 26.750862620530206,
+    "any_liquid_quadrature_union_mm3": 33.9386921764265,
+    "deposited_first_layer_volume_mm3": 23.002509691365113,
+    "conditional_complete_mixing_QT_mass_fraction": [
+      0.48503381449541333,
+      0.5444092603730292
+    ],
+    "scope": "4-point tetrahedron quadrature and each point temporal peak; conditional complete mixing of the spatial union, not actual transported dilution",
+    "decision": "upper screen<=20% may support conservative selection after temperature/space/time qualification; upper screen>20% cannot certify<=20%, and does not prove transported dilution>20%",
+    "maximum_QT_entrained_volume_mm3_for_20pct_at_actual_born_mass": 7.100427470702633,
+    "maximum_fraction_of_any_liquid_union_allowed_to_entrain_for_20pct": 0.20921334958317941
+  },
+  "mesh_time_convergence_verified": false,
+  "actual_dilution_verified": false,
+  "PMZ_capacity_assigned": false
+}

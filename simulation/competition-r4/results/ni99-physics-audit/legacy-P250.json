@@ -1,0 +1,77 @@
+{
+  "case": "simulation\\competition-r4\\results\\ni99-first-whole-seat-P250-three-strips-outerfirst-overlap15-ramp03-fenic-minC-p55-w14-d06-z1140-firsttrack-h15-lh05-dt01-hot1450",
+  "first_short_track_born_alloy_volume_mm3": 15.45939307735792,
+  "modeled_as_deposited_thickness_mm": 0.7000000000000028,
+  "modeled_retained_same_as_deposited": true,
+  "entering_alloy_enthalpy_J_kg": 1195060.0,
+  "first_short_wire_J": 156.877360817734,
+  "command_J": 1367.148649329912,
+  "wire_fraction_command": 0.1147478446433935,
+  "equivalent_1p20mm_filler_feed_mm_s_at_efficiency_0p94": 2.4622105823300484,
+  "pure_Ni_JANAF_fusion_J_kg": 292213.3242460385,
+  "pure_Ni_JANAF_liquid_cp_J_kgK": 662.9925029817686,
+  "pure_Ni_boiling_C": 2883.4339999999997,
+  "pure_Ni_crystal_cp_integral_298p15_to_1728_J_kg": 812177.8101039359,
+  "pure_Ni_tabulated_H_1728_minus_298p15_J_kg": 806968.8192196286,
+  "cp_trapezoid_relative_difference": 0.006455008868055907,
+  "source_samples": [
+    {
+      "t_s": 0.1,
+      "dt_s": 0.1,
+      "born_volume_mm3": 0.06266614736453682,
+      "fullspace_gaussian_capture": 0.06986278799479151,
+      "legacy_normalization_multiplier": 14.313771733165776,
+      "legacy_arc_fraction_to_QT": 0.9034293457822323,
+      "wire_J": 0.6359175785213865
+    },
+    {
+      "t_s": 2.9000000000000004,
+      "dt_s": 0.10000000000000009,
+      "born_volume_mm3": 0.26117439980093793,
+      "fullspace_gaussian_capture": 0.3676981170342923,
+      "legacy_normalization_multiplier": 2.719622303387368,
+      "legacy_arc_fraction_to_QT": 0.3711757136361733,
+      "wire_J": 2.6503207693150403
+    },
+    {
+      "t_s": 5.641094597319648,
+      "dt_s": 0.04109459731964815,
+      "born_volume_mm3": 0.11217668850771273,
+      "fullspace_gaussian_capture": 0.35355048982671106,
+      "legacy_normalization_multiplier": 2.8284503310690905,
+      "legacy_arc_fraction_to_QT": 0.3854003677410198,
+      "wire_J": 1.1383359456806426
+    }
+  ],
+  "maximum_legacy_multiplier": 14.313771733165776,
+  "thermal_scales": [
+    {
+      "k_W_mK": 20.0,
+      "alpha_mm2_s": 3.6199095022624435,
+      "residence_s": 0.7,
+      "diffusion_length_sqrt4alpha_tau_mm": 3.1836687337621736,
+      "layer_diffusion_time_s": 0.1353625000000011,
+      "stationary_semiinfinite_surface_centre_rise_K": 2518.703497981055
+    },
+    {
+      "k_W_mK": 30.0,
+      "alpha_mm2_s": 5.429864253393665,
+      "residence_s": 0.7,
+      "diffusion_length_sqrt4alpha_tau_mm": 3.8991819538849763,
+      "layer_diffusion_time_s": 0.0902416666666674,
+      "stationary_semiinfinite_surface_centre_rise_K": 1679.1356653207038
+    },
+    {
+      "k_W_mK": 55.0,
+      "alpha_mm2_s": 9.95475113122172,
+      "residence_s": 0.7,
+      "diffusion_length_sqrt4alpha_tau_mm": 5.2795173233375055,
+      "layer_diffusion_time_s": 0.049222727272727675,
+      "stationary_semiinfinite_surface_centre_rise_K": 915.8921810840202
+    }
+  ],
+  "source_domain_note": "full-space multiplier includes missing air and substrate geometry; size alone is not proof of model invalidity. Time-dependence and parent/pool share need physical boundary comparison.",
+  "deposition_note": "born-alloy geometry and diluted density do not independently establish actual filler addition or precoat contour; reconstructed feed must be checked against WPS",
+  "model_applicability_verified": false,
+  "transported_dilution_computed": false
+}

@@ -1,0 +1,8 @@
+{
+  "reference_gaussian_integral": 0.9999999695936942,
+  "intercepted_fraction": 0.8427969869734622,
+  "incident_plane_samples": 12544,
+  "visible_samples": 7314,
+  "grid_step_mm": 0.1,
+  "normalization": "fixed analytic pi*w^2; first upward ray/metal hit only; no edge redistribution"
+}
