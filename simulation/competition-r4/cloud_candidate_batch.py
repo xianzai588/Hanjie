@@ -26,7 +26,9 @@ def run(threads=2,upload_helper=None):
         if old.get('outcome_unknown'):return
         folder=ROOT/'simulation/competition-r4/results'/case
         stamp=(folder/'continuation-checkpoint.npz').stat().st_mtime_ns
-        if old.get('checkpoint_mtime_ns')==stamp:return
+        worker=json.loads((folder/'worker-status.json').read_text()) if (folder/'worker-status.json').exists() else {}
+        complete=worker.get('stage')=='complete'
+        if old.get('checkpoint_mtime_ns')==stamp and old.get('complete_worker_fields',False)==complete:return
         from cloud_checkpoint_archive import build
         path,manifest=build(case)
         request=dict(local_path=str(path),purpose='create_library_file',library_artifact_type='other')
@@ -41,7 +43,8 @@ def run(threads=2,upload_helper=None):
             try:
                 saved=json.loads(result.stdout)['results'][0]
                 if saved['status']!='succeeded':raise ValueError('upload not successful')
-                durability[case]=dict(saved,checkpoint_mtime_ns=stamp,committed_t_s=manifest['committed_t_s'])
+                durability[case]=dict(saved,checkpoint_mtime_ns=stamp,committed_t_s=manifest['committed_t_s'],
+                    complete_worker_fields=manifest['completed_worker_fields_included'])
             except (ValueError,KeyError,IndexError):
                 durability[case]=dict(**old,outcome_unknown=True,error='upload outcome not confirmed; no automatic retry')
         durability_path.write_text(json.dumps(durability,indent=2),encoding='utf8')

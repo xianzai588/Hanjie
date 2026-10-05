@@ -26,9 +26,21 @@ def build(case):
             records.append(p);files.append((p,p))
         for name in ('anchor.npz','anchor-provenance.json'):
             if (journal/name).exists():files.append((journal/name,journal/name))
+        worker=json.loads((folder/'worker-status.json').read_text()) if (folder/'worker-status.json').exists() else {}
+        completed=worker.get('stage')=='complete'
+        if completed:
+            # The complete worker has finished writing its cold free-shell
+            # fields and dense metrology. Preserve these separate states too,
+            # rather than only the constrained manufacturing checkpoint.
+            existing={name for _,name in files}
+            for p in folder.iterdir():
+                if p.is_file() and p.suffix in ('.npz','.csv','.json') and p.name!='continuation-next.npz' and p not in existing:
+                    files.append((p,p))
         manifest=dict(case=case,committed_t_s=t,current_max_C=endpoint_temperature,
             maximum_eqp=eqp,mechanical_equilibrium_residual_N=meta['struct'][-1][2],
-            mandrel_released=bool(meta['rel']),shell_free_release_included=False,
+            mandrel_released=bool(meta['rel']),
+            shell_free_release_included=completed and (folder/'free-release-fields.npz').is_file(),
+            completed_worker_fields_included=completed,
             recorded_path_steps=len(records),complete_path_from_zero=bool(records and float(np.load(records[0])['t_s'])==0),
             original_checkpoint_metadata_preserved=True,
             scope='recoverable compute snapshot; not complete welding-design qualification')
