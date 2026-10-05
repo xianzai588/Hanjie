@@ -15,6 +15,8 @@ from run_candidate_solver import operators
 
 def run(a):
     out=a.output;out.mkdir(parents=True,exist_ok=True);started=time.perf_counter()
+    if (out/'input.json').exists() or (out/'thermal-fields.npz').exists():
+        raise ValueError('use a fresh output directory; saved physical evidence must not be overwritten')
     with np.load(a.mesh/'mesh.npz',allow_pickle=False) as f:x,e,m=f['x'],f['e'],f['material']
     centre=x[e].mean(axis=1);angle=np.arctan2(centre[:,1],centre[:,0])
     sector=np.round(angle/(np.pi/4)).astype(int)%8
@@ -97,13 +99,18 @@ def run(a):
     input_data=dict(mesh=str(a.mesh),nodes=n,tetrahedra=len(e),QT_volume_mm3=float(volume[m==1].sum()),
         first_layer_volume_mm3=float(volume[m==3].sum()),materials=tab,
         arc_power_W=a.power,travel_mm_s=a.travel,source_width_mm=a.width,source_depth_mm=a.depth,
-        source_z_mm=top-a.source_drop,entering_Ni99_C=a.deposition_temperature,dt_s=a.dt,cold_start_C=20.,interpass_C=90.,
+        source_z_mm=top-a.source_drop,
+        source_depth_mm_effective=a.depth if a.source_model=='volume' else None,
+        inactive_source_parameters=[] if a.source_model=='volume' else ['source_drop','depth'],
+        source_parameter_scope='volume centroid/depth only; surface models use xy and planar width, not gun standoff or focal depth',
+        entering_Ni99_C=a.deposition_temperature,dt_s=a.dt,cold_start_C=a.initial_temperature,interpass_C=90.,
+        preheat_scope='uniform initial QT temperature, no shell; one-track comparison, no maintained furnace or stress relaxation assumed',
         half_track_overlap_each_end_mm=a.half_overlap,
         radial_tracks=a.radial_tracks,radial_order=a.radial_order,radial_strip_edges_mm=radial_edges.tolist(),
         start_ramp_s=a.start_ramp,end_ramp_s=a.end_ramp,start_power_fraction=a.start_fraction,end_power_fraction=.35,
         heat_source_model=a.source_model,thermal_bounds_case=a.thermal_bounds,
         surface_grid_step_mm=a.surface_grid_step if a.source_model=='visible_surface' else None,
-        surface_normalization='fixed pi*width^2 projected reference plane; missed edge flux retained as uncaptured, never redistributed' if a.source_model!='volume' else 'legacy active-volume Gaussian normalization',
+        surface_normalization=('fixed pi*width^2; first upward ray/metal hit only; missed flux not redistributed' if a.source_model=='visible_surface' else 'fixed pi*width^2 upward facets; historical overlapping-projection model' if a.source_model=='surface' else 'legacy active-volume Gaussian normalization'),
         deposition_geometry='actual selected conforming coating volume born along track; deposited shape hypothesis, not measured contour',
         first_geometry=a.first_geometry,first_as_deposited_thickness_mm=top-float(x[np.unique(e[m==3]),2].min()),
         first_followup='remove top half to0.70 mm before second coating and before bearing-bore finishing; transfer surviving precoat state required' if a.first_geometry=='full_pocket' else 'retained first-layer geometry comparison',
@@ -115,7 +122,8 @@ def run(a):
         scope='first-layer thermal candidate on one actual wing; no invented precoat stress or PMZ capacity')
     if a.resume_from:
         old_input=json.loads((a.resume_from/'input.json').read_text(encoding='utf8'))
-        ignore={'scope','boundary','deposition_geometry','surface_normalization','active_temperature_guard_C','temperature_guard_basis'}
+        ignore={'scope','boundary','deposition_geometry','surface_normalization','active_temperature_guard_C','temperature_guard_basis',
+                'source_depth_mm_effective','inactive_source_parameters','source_parameter_scope','preheat_scope'}
         for key in input_data:
             if key not in ignore and input_data[key]!=old_input.get(key):raise ValueError('resume thermal input differs: '+key)
         input_data['resume_from']=str(a.resume_from)
@@ -125,7 +133,8 @@ def run(a):
     tetra_bary=np.full((4,4),.1381966011250105);np.fill_diagonal(tetra_bary,.5854101966249685)
     quadrature_peak=np.full((len(e),4),20.)
     engine=pypardiso.PyPardisoSolver(mtype=2)
-    T=np.full(n,20.);active=m==1;time_s=0.;history=[];peak=T.copy();stage_rows=[];source_history=[]
+    T=np.full(n,20.);T[np.unique(e[m==1])]=a.initial_temperature
+    active=m==1;time_s=0.;history=[];peak=T.copy();stage_rows=[];source_history=[]
     incoming=np.full((len(e),1),a.deposition_temperature);wire_energy=rho*volume*integral(incoming)[:,0]
     if a.pure_filler_birth:
         from ni99_physics_bounds import NI_MOLAR_KG
@@ -280,6 +289,7 @@ if __name__=='__main__':
     p.add_argument('--power',type=float,default=300.);p.add_argument('--width',type=float,default=1.4);p.add_argument('--depth',type=float,default=.4)
     p.add_argument('--dt',type=float,default=.2);p.add_argument('--deposition-temperature',type=float,default=1450.)
     p.add_argument('--travel',type=float,default=2.)
+    p.add_argument('--initial-temperature',type=float,default=20.,help='uniform QT preheat before the first track; no held furnace temperature')
     p.add_argument('--source-drop',type=float,default=0.,help='heat-source centroid below first-layer top, mm')
     p.add_argument('--ni1-solidus',type=float,default=1300.);p.add_argument('--ni-k-scale',type=float,default=.75)
     p.add_argument('--half-overlap',type=float,default=0.,help='overlap about the two short tracks central split, per side in mm')
@@ -290,7 +300,7 @@ if __name__=='__main__':
     p.add_argument('--end-ramp',type=float,default=0.)
     p.add_argument('--source-model',choices=['volume','surface','visible_surface'],default='volume')
     p.add_argument('--surface-grid-step',type=float,default=.1)
-    p.add_argument('--thermal-bounds',choices=['legacy','nominal','low_k','high_k'],default='legacy')
+    p.add_argument('--thermal-bounds',choices=['legacy','nominal','low_k','high_k','pure_Ni_endmember'],default='legacy')
     p.add_argument('--first-geometry',choices=['retained','full_pocket'],default='retained')
     p.add_argument('--pure-filler-birth',action='store_true')
     p.add_argument('--resume-from',type=Path,help='continue an unchanged real cooled short-track state in a new output directory')
@@ -299,5 +309,7 @@ if __name__=='__main__':
     p.add_argument('--phase-temperature-shift',type=float,default=0.)
     p.add_argument('--stop-after-tracks',type=int,choices=[1,2,3],help='save an actual partial candidate after the specified completed short tracks')
     args=p.parse_args()
-    if not 0<=args.start_fraction<=1 or args.travel<=0:raise ValueError('invalid initial power fraction or travel')
+    if not 0<=args.start_fraction<=1 or args.travel<=0 or not 20<=args.initial_temperature<=600:raise ValueError('invalid initial power fraction, travel or preheat')
+    if args.initial_temperature!=20 and (args.stop_after_tracks!=1 or args.resume_from):
+        raise ValueError('preheat comparison currently covers one track; maintained interpass heating requires its own boundary and energy history')
     with threadpool_limits(limits=1):run(args)

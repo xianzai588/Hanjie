@@ -1,0 +1,26 @@
+{
+  "partial": true,
+  "error": null,
+  "time_s": 1017.8803648657732,
+  "stages": [
+    {
+      "track": 1,
+      "start_s": 0.0,
+      "initial_max_C": 350.0,
+      "arc_s": 1.880364865773216,
+      "cool_wait_s": 1016.0,
+      "end_s": 1017.8803648657732,
+      "end_active_max_C": 89.97043896051937,
+      "born_volume_mm3": 15.45939307735792
+    }
+  ],
+  "maximum_temperature_C": 2256.9020926440835,
+  "maximum_QT_C": 1493.5077110146979,
+  "elapsed_s": 953.9971875000047,
+  "nominal_interface_area_mm2": 128.66934190298252,
+  "actual_area_above_both_solidus_mm2": 7.51218393417016,
+  "both_solidus_threshold_C": 1450.85,
+  "active_temperature_range_check_pass": true,
+  "mesh_time_convergence_verified": false,
+  "PMZ_capacity_assigned": false
+}

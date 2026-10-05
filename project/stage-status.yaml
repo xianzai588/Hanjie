@@ -288,12 +288,14 @@ stages:
     - EXP-FINAL
     next_action: 竞赛提交采用8P-FAIR_B两道；工程放行仍需焊缝成形、夹具重复性、洁净度和独立位置度证据
   COMPETITION-R4:
-    execution_status: actual_tool_thermal_family_running
-    acceptance_result: awaiting_complete_cold_release_and_discretization_checks
+    execution_status: old_family_failed_three_preheat_tracks_and_one_refinement_completed_joint_unqualified
+    acceptance_result: not_accepted_connection_and_full_state_verification_required
     evidence_level: numerical_design_verification_in_progress
-    evidence: simulation/competition-r4/results/actual-family-worker-status.json
-    allowed_use: 当前R4计算输入、已完成子项与真实参考结果；最终控形以同源完整家族核验冻结
+    evidence:
+    - simulation/competition-r4/results/design-repair-status-20261005.json
+    - simulation/competition-r4/results/route4-reselection/route4-audit.json
+    allowed_use: 已完成控形失败场及子项、分工序接头候选；有效接头后的完整状态链才可冻结
     upstream_dependencies:
     - COMPETITION-DESIGN
     - SCHAEFFLER-MAP
-    next_action: 完成四组工具热耦合，独立卸夹核验孔轴/孔径/空间时间精度/热域/支点/温控轻击；再统一服役孔径与双头资源
+    next_action: 当前预热候选未采用；HJ-W-00B已完成成分和备料核算，先建立连续有效接头与适用PMZ容量，再计算完整残余状态链；保留原失败场与68.443s检查点

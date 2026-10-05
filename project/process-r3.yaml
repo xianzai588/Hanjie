@@ -1,6 +1,6 @@
 version: PROCESS-R3
 authority: current_competition_process_source
-state: current_frozen_design
+state: current_candidate_design_pending_effective_joint_and_full_state_verification
 used_by:
 - project/competition-design.yaml
 - deliverables/build_submission.py

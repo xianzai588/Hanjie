@@ -61,7 +61,7 @@ def audit(case,allow_partial=False):
         deposited_first_layer_volume_mm3=ni_volume,
         conditional_complete_mixing_QT_mass_fraction=[full*qt_rho/(ni_mass+full*qt_rho),any_melt*qt_rho/(ni_mass+any_melt*qt_rho)],
         scope='4-point tetrahedron quadrature and each point temporal peak; conditional complete mixing of the spatial union, not actual transported dilution')
-    screen['decision']='upper screen<=20% may support conservative selection after temperature/space/time qualification; upper screen>20% cannot certify<=20%, and does not prove transported dilution>20%'
+    screen['decision']='Conditional complete mixing of sampled liquid union only. Neither end is a transported dilution bound. A20% comparison requires independently justified mass-transfer containment and composition/property consistency; exceeding20% does not prove actual dilution exceeds20%.'
     screen['maximum_QT_entrained_volume_mm3_for_20pct_at_actual_born_mass']=ni_mass/4/qt_rho
     screen['maximum_fraction_of_any_liquid_union_allowed_to_entrain_for_20pct']=ni_mass/4/(any_melt*qt_rho) if any_melt else None
     output=dict(thermal_run_partial=result['partial'],thermal_run_error=result.get('error'),summary_source=summary.name,converged_end_s=result['time_s'],floor_z_mm=floor,both_solidus_threshold_C=threshold,footprints=footprints,QT_molten_volume_screen=screen,

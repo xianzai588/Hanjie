@@ -45,7 +45,7 @@ def cover_and_contents():
     toc = TableOfContents()
     toc.levelStyles = [ParagraphStyle("ContentsCN", fontName=REGULAR_FONT,
                                      fontSize=11, leading=23, wordWrap="CJK")]
-    review = [Spacer(1, 8*mm), Paragraph('修订审阅稿<br/>制造区间、离散精度与异材局部承载正在核验',
+    review = [Spacer(1, 8*mm), Paragraph('修订审阅稿<br/>有效接头与分工序工艺窗口重选；旧控形家族未通过',
                 ParagraphStyle('ReviewCover',parent=center,fontSize=11,leading=18,textColor=colors.HexColor('#9a3412')))] if '--review' in sys.argv else []
     return [Spacer(1, 35*mm),
             Paragraph("第一届辽宁省大学生材料焊接与铸造<br/>工艺设计大赛", center),
@@ -214,7 +214,7 @@ def main() -> int:
     # 研究状态独立保留，正文只呈现比赛论证所需证据。
     story = cover_and_contents() + build_story()
     # The workshop cards belong in the readable manual, not only in loose attachments.
-    for card in ("joint-process-card.md", "Ni99-transition-pWPS.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md"):
+    for card in ("joint-process-card.md", "Ni99-transition-pWPS.md", "independent-prebutter-route-card.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md"):
         story += [PageBreak()] + build_story(ROOT / "deliverables/process" / card)
     if "--include-research-status" in sys.argv:
         generated_status = write_status_artifacts(ROOT)

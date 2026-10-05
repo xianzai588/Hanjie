@@ -1,0 +1,504 @@
+{
+  "cases": [
+    {
+      "case": "ni99-physics-L350-v6-3strip-ramp05-f20-visible-q01",
+      "result_source": "result.json",
+      "partial": true,
+      "error": null,
+      "initial_QT_C": 20.0,
+      "QT_peak_C": 1350.624484178984,
+      "metal_peak_C": 2159.8648624128577,
+      "end_s": 7.880364865773216,
+      "arc_s": 1.8803648657732153,
+      "preheat_stored_sensible_J": 0.0,
+      "modeled_born_volume_mm3": 15.45939307735792,
+      "modeled_born_mass_kg": 0.00013743400445771192,
+      "source_command_J": 565.3777030206254,
+      "wire_entering_J": 152.74970495481935,
+      "intercepted_surface_J": 342.35042418767307,
+      "uncaptured_J": 70.27757387813291,
+      "source_partition_error_J": 9.947598300641403e-14,
+      "maximum_step_energy_balance_error_J": 7.976919691898843e-06,
+      "average_equivalent_wire_feed_mm_s_eta098_to090": [
+        7.417744373906325,
+        8.077099429364663
+      ],
+      "maximum_instantaneous_wire_power_W": 96.66223313065845,
+      "steady_GTAW_equivalent_I_A_at_12V_eta055": 53.030303030303024,
+      "Gaussian95pct_diameter_mm": 4.846291471286399,
+      "deposited_root_area_mm2": 20.384845881262123,
+      "minimum_deposited_root_point_peak_C": 678.3987186149512,
+      "threshold_response": [
+        {
+          "threshold_C": 1232.0,
+          "root_area_mm2": 9.67852680262902
+        },
+        {
+          "threshold_C": 1234.0,
+          "root_area_mm2": 9.605196431160403
+        },
+        {
+          "threshold_C": 1300.0,
+          "root_area_mm2": 5.299321457631849
+        },
+        {
+          "threshold_C": 1348.0,
+          "root_area_mm2": 0.03552864032589428
+        },
+        {
+          "threshold_C": 1353.5,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1359.0,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1450.85,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1454.85,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1458.85,
+          "root_area_mm2": 0.0
+        }
+      ],
+      "QT_liquid_union_mm3": [
+        1.7393188276568612,
+        3.2513917853060885
+      ],
+      "conditional_union_complete_mixing_QT_mass_fraction": [
+        0.0835111879178976,
+        0.1455448581867191
+      ],
+      "actual_transport_dilution_computed": false,
+      "thermal_property_envelope_verified": false,
+      "phase_and_contour_note": "phase composition, liquid k and deposited contour are input scenarios, not solved dilution or calibrated footprint"
+    },
+    {
+      "case": "route4-P20-Ni0-GTAW-equivalent-first",
+      "result_source": "result.json",
+      "partial": true,
+      "error": null,
+      "initial_QT_C": 20.0,
+      "QT_peak_C": 1381.4380133781963,
+      "metal_peak_C": 2130.8012520175744,
+      "end_s": 7.880364865773215,
+      "arc_s": 1.8803648657732173,
+      "preheat_stored_sensible_J": 0.0,
+      "modeled_born_volume_mm3": 15.45939307735792,
+      "modeled_born_mass_kg": 0.00013743400445771192,
+      "source_command_J": 565.3777030206263,
+      "wire_entering_J": 152.74970495481938,
+      "intercepted_surface_J": 342.34936653966355,
+      "uncaptured_J": 70.27863152614333,
+      "source_partition_error_J": 5.684341886080802e-14,
+      "maximum_step_energy_balance_error_J": 0.00025024937342355,
+      "average_equivalent_wire_feed_mm_s_eta098_to090": [
+        7.417744373906317,
+        8.077099429364656
+      ],
+      "maximum_instantaneous_wire_power_W": 127.58985574594594,
+      "steady_GTAW_equivalent_I_A_at_12V_eta055": 53.030303030303024,
+      "Gaussian95pct_diameter_mm": 4.846291471286399,
+      "deposited_root_area_mm2": 20.384845881262123,
+      "minimum_deposited_root_point_peak_C": 734.3393996720331,
+      "threshold_response": [
+        {
+          "threshold_C": 1232.0,
+          "root_area_mm2": 11.658978310285903
+        },
+        {
+          "threshold_C": 1234.0,
+          "root_area_mm2": 11.514912819781483
+        },
+        {
+          "threshold_C": 1300.0,
+          "root_area_mm2": 7.031974864619881
+        },
+        {
+          "threshold_C": 1348.0,
+          "root_area_mm2": 1.9794305703768638
+        },
+        {
+          "threshold_C": 1353.5,
+          "root_area_mm2": 1.28996898460145
+        },
+        {
+          "threshold_C": 1359.0,
+          "root_area_mm2": 0.8204448069359055
+        },
+        {
+          "threshold_C": 1450.85,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1454.85,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1458.85,
+          "root_area_mm2": 0.0
+        }
+      ],
+      "QT_liquid_union_mm3": [
+        2.0550618301414514,
+        3.8109330929988694
+      ],
+      "conditional_union_complete_mixing_QT_mass_fraction": [
+        0.09719767111324841,
+        0.1664236376745895
+      ],
+      "actual_transport_dilution_computed": false,
+      "thermal_property_envelope_verified": false,
+      "phase_and_contour_note": "phase composition, liquid k and deposited contour are input scenarios, not solved dilution or calibrated footprint"
+    },
+    {
+      "case": "route4-P150-Ni0-GTAW-equivalent-first",
+      "result_source": "result.json",
+      "partial": true,
+      "error": null,
+      "initial_QT_C": 150.0,
+      "QT_peak_C": 1442.7929396216584,
+      "metal_peak_C": 2211.26459443417,
+      "end_s": 445.88036486577323,
+      "arc_s": 1.8803648657732173,
+      "preheat_stored_sensible_J": 61380.19337240274,
+      "modeled_born_volume_mm3": 15.45939307735792,
+      "modeled_born_mass_kg": 0.00013743400445771192,
+      "source_command_J": 565.3777030206263,
+      "wire_entering_J": 152.74970495481938,
+      "intercepted_surface_J": 342.34936653966355,
+      "uncaptured_J": 70.27863152614333,
+      "source_partition_error_J": 5.684341886080802e-14,
+      "maximum_step_energy_balance_error_J": 0.00019022827501657957,
+      "average_equivalent_wire_feed_mm_s_eta098_to090": [
+        7.417744373906317,
+        8.077099429364656
+      ],
+      "maximum_instantaneous_wire_power_W": 127.58985574594594,
+      "steady_GTAW_equivalent_I_A_at_12V_eta055": 53.030303030303024,
+      "Gaussian95pct_diameter_mm": 4.846291471286399,
+      "deposited_root_area_mm2": 20.384845881262123,
+      "minimum_deposited_root_point_peak_C": 848.7658428532194,
+      "threshold_response": [
+        {
+          "threshold_C": 1232.0,
+          "root_area_mm2": 15.204027360149878
+        },
+        {
+          "threshold_C": 1234.0,
+          "root_area_mm2": 15.095569869951214
+        },
+        {
+          "threshold_C": 1300.0,
+          "root_area_mm2": 11.612399931086
+        },
+        {
+          "threshold_C": 1348.0,
+          "root_area_mm2": 8.591321991001074
+        },
+        {
+          "threshold_C": 1353.5,
+          "root_area_mm2": 8.266116092728552
+        },
+        {
+          "threshold_C": 1359.0,
+          "root_area_mm2": 7.937244720076512
+        },
+        {
+          "threshold_C": 1450.85,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1454.85,
+          "root_area_mm2": 0.0
+        },
+        {
+          "threshold_C": 1458.85,
+          "root_area_mm2": 0.0
+        }
+      ],
+      "QT_liquid_union_mm3": [
+        3.7287222425928968,
+        6.014950585462261
+      ],
+      "conditional_union_complete_mixing_QT_mass_fraction": [
+        0.1634201890556905,
+        0.23961076228573844
+      ],
+      "actual_transport_dilution_computed": false,
+      "thermal_property_envelope_verified": false,
+      "phase_and_contour_note": "phase composition, liquid k and deposited contour are input scenarios, not solved dilution or calibrated footprint"
+    },
+    {
+      "case": "route4-P350-Ni0-GTAW-equivalent-first",
+      "result_source": "result.json",
+      "partial": true,
+      "error": null,
+      "initial_QT_C": 350.0,
+      "QT_peak_C": 1493.5077110146979,
+      "metal_peak_C": 2256.9020926440835,
+      "end_s": 1017.8803648657732,
+      "arc_s": 1.8803648657732173,
+      "preheat_stored_sensible_J": 165667.26263304992,
+      "modeled_born_volume_mm3": 15.45939307735792,
+      "modeled_born_mass_kg": 0.00013743400445771192,
+      "source_command_J": 565.3777030206263,
+      "wire_entering_J": 152.74970495481938,
+      "intercepted_surface_J": 342.34936653966355,
+      "uncaptured_J": 70.27863152614333,
+      "source_partition_error_J": 5.684341886080802e-14,
+      "maximum_step_energy_balance_error_J": 1.690672225596046e-05,
+      "average_equivalent_wire_feed_mm_s_eta098_to090": [
+        7.417744373906317,
+        8.077099429364656
+      ],
+      "maximum_instantaneous_wire_power_W": 127.58985574594594,
+      "steady_GTAW_equivalent_I_A_at_12V_eta055": 53.030303030303024,
+      "Gaussian95pct_diameter_mm": 4.846291471286399,
+      "deposited_root_area_mm2": 20.384845881262123,
+      "minimum_deposited_root_point_peak_C": 999.020309944252,
+      "threshold_response": [
+        {
+          "threshold_C": 1232.0,
+          "root_area_mm2": 17.93373228859144
+        },
+        {
+          "threshold_C": 1234.0,
+          "root_area_mm2": 17.93373228859144
+        },
+        {
+          "threshold_C": 1300.0,
+          "root_area_mm2": 16.362475820939665
+        },
+        {
+          "threshold_C": 1348.0,
+          "root_area_mm2": 14.410077964216168
+        },
+        {
+          "threshold_C": 1353.5,
+          "root_area_mm2": 14.238181849570793
+        },
+        {
+          "threshold_C": 1359.0,
+          "root_area_mm2": 14.021813330093032
+        },
+        {
+          "threshold_C": 1450.85,
+          "root_area_mm2": 7.512183934170158
+        },
+        {
+          "threshold_C": 1454.85,
+          "root_area_mm2": 6.799445916373761
+        },
+        {
+          "threshold_C": 1458.85,
+          "root_area_mm2": 6.043636675477204
+        }
+      ],
+      "QT_liquid_union_mm3": [
+        7.306048800754528,
+        10.68164182469852
+      ],
+      "conditional_union_complete_mixing_QT_mass_fraction": [
+        0.27680608255342576,
+        0.35880921012100025
+      ],
+      "actual_transport_dilution_computed": false,
+      "thermal_property_envelope_verified": false,
+      "phase_and_contour_note": "phase composition, liquid k and deposited contour are input scenarios, not solved dilution or calibrated footprint"
+    },
+    {
+      "case": "route4-P350-Ni0-GTAW-equivalent-first-dt0125-q005",
+      "result_source": "result.json",
+      "partial": true,
+      "error": null,
+      "initial_QT_C": 350.0,
+      "QT_peak_C": 1499.690758301646,
+      "metal_peak_C": 2249.289225077124,
+      "end_s": 1017.8803648657732,
+      "arc_s": 1.8803648657732195,
+      "preheat_stored_sensible_J": 165667.26263304992,
+      "modeled_born_volume_mm3": 15.45939307735792,
+      "modeled_born_mass_kg": 0.00013743400445771192,
+      "source_command_J": 565.377703020627,
+      "wire_entering_J": 152.74970495481938,
+      "intercepted_surface_J": 342.31528383879635,
+      "uncaptured_J": 70.31271422701136,
+      "source_partition_error_J": -8.526512829121202e-14,
+      "maximum_step_energy_balance_error_J": 1.560035527958803e-05,
+      "average_equivalent_wire_feed_mm_s_eta098_to090": [
+        7.417744373906309,
+        8.077099429364646
+      ],
+      "maximum_instantaneous_wire_power_W": 192.8616429774245,
+      "steady_GTAW_equivalent_I_A_at_12V_eta055": 53.030303030303024,
+      "Gaussian95pct_diameter_mm": 4.846291471286399,
+      "deposited_root_area_mm2": 20.384845881262123,
+      "minimum_deposited_root_point_peak_C": 1000.0487697816652,
+      "threshold_response": [
+        {
+          "threshold_C": 1232.0,
+          "root_area_mm2": 18.041740215123614
+        },
+        {
+          "threshold_C": 1234.0,
+          "root_area_mm2": 17.969807423396993
+        },
+        {
+          "threshold_C": 1300.0,
+          "root_area_mm2": 16.398550955745215
+        },
+        {
+          "threshold_C": 1348.0,
+          "root_area_mm2": 14.59676975905011
+        },
+        {
+          "threshold_C": 1353.5,
+          "root_area_mm2": 14.309789722977733
+        },
+        {
+          "threshold_C": 1359.0,
+          "root_area_mm2": 14.137180493445113
+        },
+        {
+          "threshold_C": 1450.85,
+          "root_area_mm2": 8.119352791844555
+        },
+        {
+          "threshold_C": 1454.85,
+          "root_area_mm2": 7.325630962205362
+        },
+        {
+          "threshold_C": 1458.85,
+          "root_area_mm2": 6.522613220185466
+        }
+      ],
+      "QT_liquid_union_mm3": [
+        7.495525528347608,
+        10.836084711242965
+      ],
+      "conditional_union_complete_mixing_QT_mass_fraction": [
+        0.2819607083831491,
+        0.3621184899694052
+      ],
+      "actual_transport_dilution_computed": false,
+      "thermal_property_envelope_verified": false,
+      "phase_and_contour_note": "phase composition, liquid k and deposited contour are input scenarios, not solved dilution or calibrated footprint"
+    }
+  ],
+  "source_controls": {
+    "controls": [
+      {
+        "step_mm": 0.1,
+        "source_z_mm": -100.0,
+        "total_W": 99.9999969593696,
+        "lower_W": 0.0,
+        "upper_W": 99.99999695936947,
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          45.951466655506245,
+          2.5485318697879435,
+          48.45146657949061,
+          3.048531854584804
+        ]
+      },
+      {
+        "step_mm": 0.1,
+        "source_z_mm": 100.0,
+        "total_W": 99.9999969593696,
+        "lower_W": 0.0,
+        "upper_W": 99.99999695936947,
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          45.951466655506245,
+          2.5485318697879435,
+          48.45146657949061,
+          3.048531854584804
+        ]
+      },
+      {
+        "step_mm": 0.05,
+        "source_z_mm": -100.0,
+        "total_W": 99.99999692732291,
+        "lower_W": 0.0,
+        "upper_W": 99.99999692732347,
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          45.9505781348805,
+          2.5494203748709015,
+          48.45057805806399,
+          3.0494203595075122
+        ]
+      },
+      {
+        "step_mm": 0.05,
+        "source_z_mm": 100.0,
+        "total_W": 99.99999692732291,
+        "lower_W": 0.0,
+        "upper_W": 99.99999692732347,
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          45.9505781348805,
+          2.5494203748709015,
+          48.45057805806399,
+          3.0494203595075122
+        ]
+      }
+    ],
+    "maximum_source_z_response_W": 0.0,
+    "sampling_response_difference": 3.20466862901225e-10,
+    "scope": "shadowing/planar source invariant only; not FE field or welding-footprint qualification"
+  },
+  "fallback_budget": {
+    "route": "independent Ni SMAW prebutter before final bore machining",
+    "surface_area_mm2": 921.3494651907852,
+    "nominal_stock_height_mm": 1.7,
+    "pure_Ni_stock_mass_kg": 0.013924354467428336,
+    "minimum_rod_core_length_mm_at_d2p5_eta1": 319.08281201960824,
+    "rod_count_lower_bound_at_250mm_usable_core": 2,
+    "mass_scope": "100% pure-Ni core recovery theoretical minimum, not electrode consumption or deposition-rate claim; actual loss and alloy composition required",
+    "preheat_candidate_C": 350.0,
+    "preheat_source": "Pascual2009 SMAW ductile iron350C; not currentQT450/rod product qualification",
+    "available_product_current_A": [
+      50,
+      100
+    ],
+    "available_product_diameter_mm": 2.5,
+    "product_composition_note": "RepTec Cast1 Ni97/C0.7/Fe2 differs from bare Ni99 C0.01 and Pascual97.6Ni/C0.30; must rerun phase/PMZ evidence, cannot inherit old ternary corner",
+    "unresolved_inputs": [
+      "selected electrode composition and applicable hot-preheat guidance",
+      "actual deposition contour, arc voltage/travel and heat-transfer bounds",
+      "QT/first-Ni PMZ normal/shear/cyclic capacity for stated microstructure and defect class"
+    ],
+    "effective_connection_certified": false
+  },
+  "old_worst_position_budget_um": 52.08394718196788,
+  "position_limit_um": 50.0,
+  "old_family_accepted": false,
+  "complete_joint_process_adopted": false,
+  "decision": "Local thermal/preheat comparison; full-chain use requires continuous effective connection and applicable PMZ capacity; no acceptance flags overridden",
+  "joint_time_source_refinement": {
+    "QT_peak_relative_difference": 0.004122881502550686,
+    "metal_peak_relative_difference": 0.003373149234861506,
+    "fusion_area_relative_difference": 0.07478045026991127,
+    "coldest_root_point_relative_difference": 0.0010284096820976074,
+    "scope": "combined dt/2 and source-plane step/2; not independent spatial convergence or separate time/source validation"
+  }
+}
