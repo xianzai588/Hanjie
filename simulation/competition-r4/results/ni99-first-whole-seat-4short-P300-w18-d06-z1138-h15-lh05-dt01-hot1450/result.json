@@ -1,0 +1,55 @@
+{
+  "partial": false,
+  "error": null,
+  "time_s": 169.7150922925718,
+  "stages": [
+    {
+      "track": 1,
+      "start_s": 0.0,
+      "initial_max_C": 20.0,
+      "arc_s": 4.927963222393295,
+      "cool_wait_s": 14.0,
+      "end_s": 18.927963222393295,
+      "end_active_max_C": 86.19951157205811,
+      "born_volume_mm3": 20.457858929806232
+    },
+    {
+      "track": 2,
+      "start_s": 18.927963222393295,
+      "initial_max_C": 86.19951157205811,
+      "arc_s": 4.92796322239328,
+      "cool_wait_s": 36.0,
+      "end_s": 59.85592644478665,
+      "end_active_max_C": 89.1697328729735,
+      "born_volume_mm3": 40.81233017273122
+    },
+    {
+      "track": 3,
+      "start_s": 59.85592644478665,
+      "initial_max_C": 89.1697328729735,
+      "arc_s": 4.921594270770249,
+      "cool_wait_s": 48.0,
+      "end_s": 112.77752071555692,
+      "end_active_max_C": 89.03927108029775,
+      "born_volume_mm3": 60.65197819139021
+    },
+    {
+      "track": 4,
+      "start_s": 112.77752071555692,
+      "initial_max_C": 89.03927108029775,
+      "arc_s": 4.93757157701516,
+      "cool_wait_s": 52.0,
+      "end_s": 169.7150922925718,
+      "end_active_max_C": 89.34961740268676,
+      "born_volume_mm3": 80.61309754807667
+    }
+  ],
+  "maximum_temperature_C": 1978.3457444193264,
+  "maximum_QT_C": 1918.7504908668334,
+  "elapsed_s": 468.65265880001243,
+  "nominal_interface_area_mm2": 128.66934190298252,
+  "actual_area_above_both_solidus_mm2": 30.420154855540307,
+  "thermal_physics_valid": true,
+  "mesh_time_convergence_verified": false,
+  "PMZ_capacity_assigned": false
+}

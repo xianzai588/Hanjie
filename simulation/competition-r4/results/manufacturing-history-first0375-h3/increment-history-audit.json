@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "all_mechanical_steps_recorded": true,
+    "contact_mask_matches_actual_gap": true,
+    "pad_nodal_support_matches_quadrature": true,
+    "thermal_reset_and_plastic_replay_matches_state": true,
+    "deviatoric_J2_plastic_increment": true
+  },
+  "record_integrity_pass": true,
+  "mechanical_steps": 17,
+  "thermal_reset_steps": 13,
+  "plastic_return_steps": 15,
+  "contact_transition_times_s": [
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    1.125,
+    1.25,
+    1.375,
+    1.5,
+    1.75
+  ],
+  "maximum_plastic_increment_trace": 4.0657581468206416e-19,
+  "replay_maximum_absolute_error": {
+    "plastic": 0.0,
+    "eqp": 0.0,
+    "ref": 0.0
+  },
+  "completed_cold_release": false,
+  "interval_branch_refinement_verified": false
+}

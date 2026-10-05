@@ -23,15 +23,27 @@ def evaluate(case):
         # Pad areas and total mandrel force are insufficient to recover which
         # bore nodes opened, or when each material point yielded/annealed.
         records['history_coverage']='per-step pad areas and reaction resultants exist; per-node mandrel active sets and per-element plastic increments/reset events were not saved'
+    if (folder/'increment-history/manifest.json').exists():
+        from audit_increment_history import audit
+        replay=audit(folder)
+        records['actual_increment_replay']=replay
+        checks['contact_active_set_resolved']=bool(replay['checks']['all_mechanical_steps_recorded'] and
+            replay['checks']['contact_mask_matches_actual_gap'] and replay['checks']['pad_nodal_support_matches_quadrature'])
+        checks['plastic_loading_unloading_resolved']=bool(replay['checks']['all_mechanical_steps_recorded'] and
+            replay['checks']['thermal_reset_and_plastic_replay_matches_state'] and replay['checks']['deviatoric_J2_plastic_increment'] and replay['completed_cold_release'])
+        records['history_coverage']='actual per-increment nodal/quadrature contact gaps and masks, thermal resets and sparse float64 plastic increments; replayed against saved state'
     release_path=folder/'free-release-verification.json';measure_path=folder/'measurement.json'
     if release_path.exists() and measure_path.exists():
         release=json.loads(release_path.read_text(encoding='utf8'));measure=json.loads(measure_path.read_text(encoding='utf8'))
         checks['actual_cold_release_and_metrology']=bool(release.get('free_shell_release_pass') and measure.get('measurement_sampling',{}).get('sampling_stability_pass'))
     result=dict(case=case,initial_bore_diameter_mm=inp['initial_bore_diameter_mm'],missing_files=missing,
         observed_histories=records,checks=checks,
-        required_additional_evidence=['actual mandrel nodal gap/active mask at every mechanical increment',
-            'actual material-point plastic increment, yield and thermal-reset events at every mechanical increment',
-            'refined parameter brackets around changes of contact/plastic branch; a quantified interior response bound'],
+        required_additional_evidence=([] if checks['contact_active_set_resolved'] else ['actual mandrel nodal gap/active mask at every mechanical increment'])+
+            ([] if checks['plastic_loading_unloading_resolved'] else
+             ['complete the cold loading/unloading chain with retained per-increment material state']
+             if 'actual_increment_replay' in records and records['actual_increment_replay']['record_integrity_pass'] else
+             ['actual material-point plastic increment, yield and thermal-reset events at every mechanical increment'])+
+            ['refined parameter brackets around changes of contact/plastic branch; a quantified interior response bound'],
         contact_and_plastic_path_checks_pass=all(checks.values()))
     (folder/'manufacturing-path-audit.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
     return result

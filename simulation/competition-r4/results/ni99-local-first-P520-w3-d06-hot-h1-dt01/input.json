@@ -1,0 +1,370 @@
+{
+  "output": "simulation/competition-r4/results/ni99-local-first-P520-w3-d06-hot-h1-dt01",
+  "h": 1.0,
+  "dt": 0.1,
+  "pocket": 1.5,
+  "first": 0.656,
+  "second": 1.002,
+  "extent": 15.0,
+  "precoat_width": 3.0,
+  "precoat_power": 520.0,
+  "deposition_temperature": 1450.0,
+  "precoat_depth": 0.6,
+  "ni1_solidus": 1300.0,
+  "ni_k_scale": 0.75,
+  "stages": 1,
+  "max_stage_time": 1800.0,
+  "arc_only": true,
+  "materials": [
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1474.85,
+        "liquidus_C": 1519.85,
+        "latent_heat_J_kg": 264000,
+        "basis": "Q235连铸研究Table2：1748/1793 K、264 kJ/kg；10.3390/ma16093361；设计借用，不是本批次DSC"
+      },
+      "name": "碳素结构钢 Q235B",
+      "standard": "GB/T 700-2006",
+      "composition_basis": "工程名义成分；Cr/Ni/Mo为当量核算的残余元素假设，按来料化学分析替换",
+      "composition_nominal_wt_pct": {
+        "C": 0.17,
+        "Mn": 0.45,
+        "Si": 0.2,
+        "S": 0.035,
+        "P": 0.035,
+        "Cr": 0.05,
+        "Ni": 0.05,
+        "Mo": 0.01
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7850.0,
+        "specific_heat_j_kgk": 470.0,
+        "thermal_conductivity_w_mk": 45.0,
+        "elastic_modulus_gpa": 210.0,
+        "poisson_ratio": 0.28,
+        "alpha_per_k": 1.2e-05,
+        "yield_strength_mpa": 235.0,
+        "tensile_strength_mpa": 420.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          45.0,
+          43.0,
+          38.0,
+          31.0,
+          26.0,
+          28.0,
+          32.0
+        ],
+        "specific_heat_j_kgk": [
+          470.0,
+          520.0,
+          610.0,
+          760.0,
+          800.0,
+          650.0,
+          700.0
+        ],
+        "elastic_modulus_gpa": [
+          210.0,
+          195.0,
+          165.0,
+          85.0,
+          25.0,
+          10.0,
+          2.0
+        ],
+        "yield_strength_mpa": [
+          235.0,
+          210.0,
+          160.0,
+          60.0,
+          20.0,
+          8.0,
+          2.0
+        ],
+        "alpha_per_k": [
+          1.2e-05,
+          1.28e-05,
+          1.36e-05,
+          1.44e-05,
+          1.48e-05,
+          1.5e-05,
+          1.52e-05
+        ]
+      }
+    },
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1100,
+        "liquidus_C": 1180,
+        "latent_heat_J_kg": 250000,
+        "basis": "球铁冷却曲线10.3390/cryst15070614/Table7及推荐范围；按组元差异取1100～1180设计区间；潜热250 kJ/kg工程估值，批次热分析复核"
+      },
+      "name": "球墨铸铁 QT450-10",
+      "standard": "GB/T 1348-2019",
+      "composition_basis": "工程名义成分；Cr/Ni为当量核算的残余元素假设，按来料化学分析替换",
+      "composition_nominal_wt_pct": {
+        "C": 3.65,
+        "Si": 2.6,
+        "Mn": 0.3,
+        "Mg": 0.045,
+        "P": 0.04,
+        "S": 0.015,
+        "Cr": 0.05,
+        "Ni": 0.05
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7200.0,
+        "specific_heat_j_kgk": 460.0,
+        "thermal_conductivity_w_mk": 35.0,
+        "elastic_modulus_gpa": 170.0,
+        "poisson_ratio": 0.27,
+        "alpha_per_k": 1.05e-05,
+        "yield_strength_mpa": 310.0,
+        "tensile_strength_mpa": 450.0,
+        "elongation_pct": 10.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          750,
+          900,
+          1200
+        ],
+        "thermal_conductivity_w_mk": [
+          35.0,
+          34.0,
+          32.0,
+          28.0,
+          24.0,
+          25.0,
+          28.0
+        ],
+        "specific_heat_j_kgk": [
+          460.0,
+          510.0,
+          580.0,
+          710.0,
+          850.0,
+          720.0,
+          750.0
+        ],
+        "elastic_modulus_gpa": [
+          170.0,
+          158.0,
+          135.0,
+          70.0,
+          20.0,
+          8.0,
+          1.5
+        ],
+        "yield_strength_mpa": [
+          310.0,
+          280.0,
+          210.0,
+          50.0,
+          15.0,
+          5.0,
+          1.0
+        ],
+        "alpha_per_k": [
+          1.05e-05,
+          1.12e-05,
+          1.2e-05,
+          1.3e-05,
+          1.35e-05,
+          1.38e-05,
+          1.4e-05
+        ]
+      }
+    },
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1420,
+        "liquidus_C": 1460,
+        "latent_heat_J_kg": 275000,
+        "basis": "Paek等JOM2021 Fig2/10.1007/s11837-020-04487-9，Fe-Ni二元边界；55～58%Ni低碳实际配混，考虑C/Si/Mn与读图差异取1420～1460设计包络；潜热275 kJ/kg工程估值"
+      },
+      "name": "NiFe-55型镍铁铸铁实心填充棒",
+      "standard": "EN ISO 1071 / GB/T 10044；具体实心棒分类按供货证书",
+      "composition_basis": "CEWELD NiFe 55 TIG供方典型成分；https://certilas.com/en/product/nife-55-tig；批次证书复核",
+      "composition_nominal_wt_pct": {
+        "Ni": 55.0,
+        "Fe": "Balance",
+        "C": 0.01,
+        "Mn": 0.7,
+        "Si": 0.13
+      },
+      "property_basis": "名义物性为保守工程输入，不作为供方实測接头性能；历史结果以各运行input.json为准",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8200.0,
+        "specific_heat_j_kgk": 480.0,
+        "thermal_conductivity_w_mk": 22.0,
+        "elastic_modulus_gpa": 160.0,
+        "poisson_ratio": 0.3,
+        "alpha_per_k": 1.1e-05,
+        "yield_strength_mpa": 290.0,
+        "tensile_strength_mpa": 450.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          35
+        ],
+        "specific_heat_j_kgk": [
+          480,
+          520,
+          570,
+          630,
+          710,
+          760,
+          800
+        ]
+      }
+    },
+    {
+      "name": "Ni99 first, diluted",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8491.377023083045
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1446
+        ],
+        "thermal_conductivity_w_mk": [
+          52.724999999999994,
+          49.875,
+          46.2,
+          42.599999999999994,
+          41.55,
+          43.2,
+          44.775000000000006,
+          46.349999999999994,
+          48.0,
+          49.574999999999996,
+          51.150000000000006,
+          51.150000000000006
+        ],
+        "specific_heat_j_kgk": [
+          456,
+          480,
+          510,
+          550,
+          570,
+          590,
+          610,
+          630,
+          650,
+          670,
+          690,
+          750
+        ]
+      },
+      "fusion_enthalpy": {
+        "solidus_C": 1300.0,
+        "liquidus_C": 1446,
+        "latent_heat_J_kg": 297000
+      },
+      "basis": "k: Special Metals Nickel 200 Table3, scaled sensitivity; cp(T) and latent engineering inputs; first-layer solidus parameter, not CALPHAD or observed PMZ"
+    },
+    {
+      "name": "Ni99 second",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8827.837312259506
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1446
+        ],
+        "thermal_conductivity_w_mk": [
+          52.724999999999994,
+          49.875,
+          46.2,
+          42.599999999999994,
+          41.55,
+          43.2,
+          44.775000000000006,
+          46.349999999999994,
+          48.0,
+          49.574999999999996,
+          51.150000000000006,
+          51.150000000000006
+        ],
+        "specific_heat_j_kgk": [
+          456,
+          480,
+          510,
+          550,
+          570,
+          590,
+          610,
+          630,
+          650,
+          670,
+          690,
+          750
+        ]
+      },
+      "fusion_enthalpy": {
+        "solidus_C": 1435,
+        "liquidus_C": 1446,
+        "latent_heat_J_kg": 297000
+      },
+      "basis": "k: Special Metals Nickel 200 Table3, scaled sensitivity; cp(T) and latent engineering inputs; first-layer solidus parameter, not CALPHAD or observed PMZ"
+    }
+  ],
+  "cells": 39312,
+  "coordinates": "cylindrical r,z,s=75theta",
+  "remote_boundary": "adiabatic truncations, free faces convection15 W/m2K plus radiation0.7; domain check required",
+  "power_policy": "net power is partitioned into entering filler enthalpy and Gaussian parent/pool heating; total power conserved",
+  "mechanical_or_failure_capacity_assigned": false
+}

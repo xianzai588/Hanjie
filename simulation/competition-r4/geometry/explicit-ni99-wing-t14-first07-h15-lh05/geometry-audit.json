@@ -1,0 +1,31 @@
+{
+  "material_ids": {
+    "0": "Q235B",
+    "1": "QT450-10",
+    "2": "NiFe55",
+    "3": "first Ni99",
+    "4": "second Ni99"
+  },
+  "solid_volumes_mm3": {
+    "0": 486946.8613064361,
+    "1": 137076.62757183003,
+    "2": 1131.8218191518404,
+    "3": 644.9446256335564,
+    "4": 644.9446256335489
+  },
+  "Ni99_replacement_volume_error_mm3": 1.3969838619232178e-09,
+  "expected_Ni99_volume_mm3": 1289.889251267099,
+  "original_QT_volume_mm3": 138366.51682309574,
+  "original_shell_volume_mm3": 486946.861306428,
+  "total_layer_mm": 1.4,
+  "first_layer_mm": 0.7,
+  "finished_top_z_mm": 115.0,
+  "layer_mesh_mm": 0.5,
+  "pocket_inner_radius_mm": 68.98,
+  "pocket_outer_radius_mm": 74.98,
+  "pocket_coverage": "actual entire wing radial band",
+  "nodes": 128963,
+  "tetrahedra": 548260,
+  "constitutive_interface": "shared conforming nodes; no penalty springs",
+  "PMZ_state_or_capacity_assigned": false
+}

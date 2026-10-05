@@ -1,0 +1,60 @@
+"""Actual first-layer floor coverage and quadrature molten-volume screening.
+
+Molten volume is a temporal union at fixed tetrahedral quadrature points.
+It is not a melt-flow solution or an observed first-layer dilution fraction.
+"""
+from pathlib import Path
+import argparse,csv,json
+import numpy as np
+
+
+def audit(case):
+    inp=json.loads((case/'input.json').read_text(encoding='utf8'))
+    result=json.loads((case/'result.json').read_text(encoding='utf8'))
+    if result['partial']:raise ValueError('completed first-layer field required')
+    with np.load(case/'thermal-fields.npz',allow_pickle=False) as f:
+        x,e,m=f['x'],f['e'],f['material'];volume=f['volume_mm3']
+        qp=f['peak_element_quadrature_C'];faces=f['interface_nodes']
+        face_peak=f['interface_peak_C'];area=f['interface_area_mm2']
+    ni=inp['materials'][3];qt=inp['materials'][1]
+    floor=float(x[np.unique(e[m==3]),2].min())
+    threshold=max(qt['fusion_enthalpy']['solidus_C'],ni['fusion_enthalpy']['solidus_C'])
+    xyz=np.einsum('qj,fjk->fqk',np.array([[2/3,1/6,1/6],[1/6,2/3,1/6],[1/6,1/6,2/3]]),x[faces])
+    r=np.linalg.norm(xyz[:,:,:2],axis=2);s=74.98*np.arctan2(xyz[:,:,1],xyz[:,:,0])
+    point_area=np.broadcast_to(area[:,None]/3,face_peak.shape)
+    footprints={};rows=[]
+    for leg,name in [(2.8,'root'),(4.,'cap'),(6.02,'full_radial_band')]:
+        select=(abs(xyz[:,:,2]-floor)<1e-5)&(r>=75-leg)&(abs(s)<=9)
+        if not select.any():raise RuntimeError('no physical interface floor quadrature')
+        per=[]
+        for b in range(18):
+            points=select&(s>=b-9)&(s<b-8)
+            total=float(point_area[points].sum());hot=float(point_area[points&(face_peak>=threshold)].sum())
+            row=dict(footprint=name,arc_begin_mm=b-9,area_mm2=total,above_both_solidus_mm2=hot,
+                minimum_point_peak_C=float(face_peak[points].min()) if points.any() else None)
+            rows.append(row);per.append(row)
+        footprints[name]=dict(physical_quadrature_area_mm2=float(point_area[select].sum()),
+            above_both_solidus_area_mm2=float(point_area[select&(face_peak>=threshold)].sum()),
+            minimum_point_peak_C=float(face_peak[select].min()),
+            bins_without_any_molten_point=[row['arc_begin_mm'] for row in per if row['above_both_solidus_mm2']==0],
+            all_sampled_points_reach_both_solidus=bool(np.all(face_peak[select]>=threshold)))
+    qt_q=qp[m==1];qt_v=volume[m==1,None]/4
+    full=float((qt_v*(qt_q>=qt['fusion_enthalpy']['liquidus_C'])).sum())
+    any_melt=float((qt_v*(qt_q>=qt['fusion_enthalpy']['solidus_C'])).sum())
+    ni_volume=float(volume[m==3].sum());ni_mass=ni_volume*ni['nominal_properties_20c']['density_kg_m3']*1e-9
+    qt_rho=qt['nominal_properties_20c']['density_kg_m3']*1e-9
+    screen=dict(fully_liquid_quadrature_union_mm3=full,any_liquid_quadrature_union_mm3=any_melt,
+        deposited_first_layer_volume_mm3=ni_volume,
+        conditional_complete_mixing_QT_mass_fraction=[full*qt_rho/(ni_mass+full*qt_rho),any_melt*qt_rho/(ni_mass+any_melt)],
+        scope='4-point tetrahedron quadrature and each point temporal peak; conditional complete mixing of the spatial union, not actual transported dilution')
+    output=dict(floor_z_mm=floor,both_solidus_threshold_C=threshold,footprints=footprints,QT_molten_volume_screen=screen,
+        mesh_time_convergence_verified=False,actual_dilution_verified=False,PMZ_capacity_assigned=False)
+    with (case/'precoat-floor-footprint.csv').open('w',newline='',encoding='utf8') as stream:
+        writer=csv.DictWriter(stream,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
+    (case/'precoat-floor-footprint.json').write_text(json.dumps(output,indent=2),encoding='utf8')
+    return output
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--case',type=Path,required=True)
+    print(json.dumps(audit(p.parse_args().case),indent=2))

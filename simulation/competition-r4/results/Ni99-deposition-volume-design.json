@@ -1,0 +1,28 @@
+{
+  "geometry": "explicit-ni99-wing-t14-first07-h15-lh05",
+  "pocket_plan_area_per_wing_mm2": 115.16868314884815,
+  "wire_diameter_mm": 1.2,
+  "deposition_efficiency_range": [
+    0.9,
+    0.98
+  ],
+  "nominal_total_arc_time_s": 144.0,
+  "nominal_precoat_net_power_W": 616.0,
+  "nominal_precoat_heat_J": 88704,
+  "local_minimum_positive_stock_mm": 0.1,
+  "maximum_pocket_depth_mm": 1.6,
+  "first_feed_mm_s": 7.9,
+  "second_feed_mm_s": 13.55,
+  "first_added_thickness_mm": [
+    0.6283911826240216,
+    0.6842481766350457
+  ],
+  "second_added_thickness_mm": [
+    1.0778101929817079,
+    1.1736155434689708
+  ],
+  "minimum_total_added_thickness_mm": 1.7062013756057295,
+  "nominal_minimum_positive_stock_mm": 0.1062013756057294,
+  "scope": "volume design closure at nominal wire diameter and planned total9 s arc per wing/layer; actual contour, wire tolerance and modified short-track schedule require corresponding feed/time adjustment",
+  "actual_fusion_or_dilution_verified": false
+}

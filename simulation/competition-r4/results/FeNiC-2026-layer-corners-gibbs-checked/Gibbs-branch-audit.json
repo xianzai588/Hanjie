@@ -1,0 +1,36 @@
+{
+  "replaced_higher_energy_states": [
+    {
+      "case": "first_max_C",
+      "T_C": 1342.0,
+      "original_higher_Gibbs_energy_J_mol": 23.347788151702844,
+      "selected_source": "first_max_C-graphite_suppressed.nc",
+      "sampled_phase_stability": {
+        "LIQUID": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 183.11712893618096,
+          "samples": 112005
+        },
+        "BCC_A2": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 1904.976016350949,
+          "samples": 64004
+        },
+        "CEMENTITE": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 5573.170469118166,
+          "samples": 16002
+        },
+        "FCC_A1": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 2.554554538393859,
+          "samples": 64004
+        },
+        "GRAPHITE": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 1295.5137843284538,
+          "samples": 1
+        }
+      }
+    }
+  ],
+  "source_directory": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\FeNiC-2026-layer-corners-25C",
+  "maximum_corrected_nested_Gibbs_excess_J_mol": 6.661648512817919e-06,
+  "nested_phase_feasibility_pass": true,
+  "scope": "same actual composition and temperature; independently converged lower-energy subset state; graphite exact and all phases sampled tangent-plane checks, not a proof over every continuous site fraction"
+}

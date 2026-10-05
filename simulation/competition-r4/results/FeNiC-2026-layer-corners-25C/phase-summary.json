@@ -1,0 +1,373 @@
+{
+  "source_DOI": "10.2355/tetsutohagane.TETSU-2025-072",
+  "engine": "pycalphad",
+  "binary_validation": [
+    {
+      "Ni_wt_pct": 9.85,
+      "literature_DSC_solidus_C": 1498,
+      "literature_DSC_liquidus_C": 1504,
+      "calculated_solidus_grid_C": 1503.5,
+      "calculated_liquidus_grid_C": 1506.25,
+      "solidus_difference_C": 5.5,
+      "liquidus_difference_C": 2.25
+    },
+    {
+      "Ni_wt_pct": 19.74,
+      "literature_DSC_solidus_C": 1479,
+      "literature_DSC_liquidus_C": 1489,
+      "calculated_solidus_grid_C": 1480.5,
+      "calculated_liquidus_grid_C": 1484.5,
+      "solidus_difference_C": 1.5,
+      "liquidus_difference_C": -4.5
+    },
+    {
+      "Ni_wt_pct": 39.61,
+      "literature_DSC_solidus_C": 1445,
+      "literature_DSC_liquidus_C": 1452,
+      "calculated_solidus_grid_C": 1448.0,
+      "calculated_liquidus_grid_C": 1449.75,
+      "solidus_difference_C": 3.0,
+      "liquidus_difference_C": -2.25
+    },
+    {
+      "Ni_wt_pct": 59.61,
+      "literature_DSC_solidus_C": 1437,
+      "literature_DSC_liquidus_C": 1439,
+      "calculated_solidus_grid_C": 1438.0,
+      "calculated_liquidus_grid_C": 1438.0,
+      "solidus_difference_C": 1.0,
+      "liquidus_difference_C": -1.0
+    },
+    {
+      "Ni_wt_pct": 79.74,
+      "literature_DSC_solidus_C": 1443,
+      "literature_DSC_liquidus_C": 1445,
+      "calculated_solidus_grid_C": 1444.75,
+      "calculated_liquidus_grid_C": 1445.0,
+      "solidus_difference_C": 1.75,
+      "liquidus_difference_C": 0.0
+    },
+    {
+      "Ni_wt_pct": 89.85,
+      "literature_DSC_solidus_C": 1448,
+      "literature_DSC_liquidus_C": 1450,
+      "calculated_solidus_grid_C": 1450.5,
+      "calculated_liquidus_grid_C": 1450.75,
+      "solidus_difference_C": 2.5,
+      "liquidus_difference_C": 0.75
+    }
+  ],
+  "maximum_binary_transition_difference_C": 5.5,
+  "cases": [
+    {
+      "name": "first_min_C",
+      "full_composition_wt_pct": {
+        "C": 0.374,
+        "Si": 0.305,
+        "Mn": 0.18300000000000002,
+        "Cr": 0.005000000000000001,
+        "Ni": 89.663,
+        "Mo": 0.0,
+        "Nb": 0.0,
+        "Fe": 9.469999999999999
+      },
+      "omitted_constituents_wt_pct": 0.4930000000000092,
+      "ternary_normalized_wt_pct": {
+        "C": 0.37585295506848765,
+        "Fe": 9.516918407750207,
+        "Ni": 90.10722863718131
+      },
+      "dilution": {
+        "first_QT_dilution": 0.1,
+        "second_first_layer_remelt": 0.1,
+        "final_Ni_layer_dilution": 0.1,
+        "final_steel_dilution": 0.05
+      },
+      "limits": {
+        "graphite_allowed": {
+          "maximum_atomic_balance_error": 3.7703085098428346e-10,
+          "maximum_phase_sum_error": 5.171867378805928e-10,
+          "solidus_grid_bracket_C": [
+            1346.0,
+            1348.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1428.0,
+            1430.0
+          ]
+        },
+        "graphite_suppressed": {
+          "maximum_atomic_balance_error": 8.307066146073794e-11,
+          "maximum_phase_sum_error": 9.3556828950625e-11,
+          "solidus_grid_bracket_C": [
+            1346.0,
+            1348.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1428.0,
+            1430.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "first_max_C",
+      "full_composition_wt_pct": {
+        "C": 0.738,
+        "Si": 0.56,
+        "Mn": 0.196,
+        "Cr": 0.010000000000000002,
+        "Ni": 79.70600000000002,
+        "Mo": 0.0,
+        "Nb": 0.0,
+        "Fe": 18.789999999999978
+      },
+      "omitted_constituents_wt_pct": 0.7660000000000053,
+      "ternary_normalized_wt_pct": {
+        "C": 0.7436967168510793,
+        "Fe": 18.93504242497529,
+        "Ni": 80.32126085817363
+      },
+      "dilution": {
+        "first_QT_dilution": 0.2,
+        "second_first_layer_remelt": 0.1,
+        "final_Ni_layer_dilution": 0.1,
+        "final_steel_dilution": 0.05
+      },
+      "limits": {
+        "graphite_allowed": {
+          "maximum_atomic_balance_error": 2.747334582053895e-10,
+          "maximum_phase_sum_error": 2.0149004686942362e-10,
+          "solidus_grid_bracket_C": [
+            1334.0,
+            1336.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1400.0,
+            1402.0
+          ]
+        },
+        "graphite_suppressed": {
+          "maximum_atomic_balance_error": 1.6464896113177474e-10,
+          "maximum_phase_sum_error": 2.0457124882966582e-10,
+          "solidus_grid_bracket_C": [
+            1232.0,
+            1234.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1400.0,
+            1402.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "second_min_C",
+      "full_composition_wt_pct": {
+        "C": 0.046400000000000004,
+        "Si": 0.07550000000000001,
+        "Mn": 0.17130000000000004,
+        "Cr": 0.0005000000000000001,
+        "Ni": 98.6243,
+        "Mo": 0.0,
+        "Nb": 0.0,
+        "Fe": 1.0819999999999936
+      },
+      "omitted_constituents_wt_pct": 0.24729999999999563,
+      "ternary_normalized_wt_pct": {
+        "C": 0.04651503167332814,
+        "Fe": 1.084682419623723,
+        "Ni": 98.86880254870294
+      },
+      "dilution": {
+        "first_QT_dilution": 0.1,
+        "second_first_layer_remelt": 0.1,
+        "final_Ni_layer_dilution": 0.1,
+        "final_steel_dilution": 0.05
+      },
+      "limits": {
+        "graphite_allowed": {
+          "maximum_atomic_balance_error": 8.669243101167012e-11,
+          "maximum_phase_sum_error": 4.869316061473228e-11,
+          "solidus_grid_bracket_C": [
+            1440.0,
+            1442.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1452.0,
+            1454.0
+          ]
+        },
+        "graphite_suppressed": {
+          "maximum_atomic_balance_error": 4.818756504931798e-11,
+          "maximum_phase_sum_error": 4.869316061473228e-11,
+          "solidus_grid_bracket_C": [
+            1440.0,
+            1442.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1452.0,
+            1454.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "second_max_C",
+      "full_composition_wt_pct": {
+        "C": 0.1192,
+        "Si": 0.1265,
+        "Mn": 0.17390000000000003,
+        "Cr": 0.0015000000000000002,
+        "Ni": 96.6329,
+        "Mo": 0.0,
+        "Nb": 0.0,
+        "Fe": 2.945999999999998
+      },
+      "omitted_constituents_wt_pct": 0.3018999999999892,
+      "ternary_normalized_wt_pct": {
+        "C": 0.119560954521701,
+        "Fe": 2.9549209062158632,
+        "Ni": 96.92551813926242
+      },
+      "dilution": {
+        "first_QT_dilution": 0.2,
+        "second_first_layer_remelt": 0.15,
+        "final_Ni_layer_dilution": 0.1,
+        "final_steel_dilution": 0.05
+      },
+      "limits": {
+        "graphite_allowed": {
+          "maximum_atomic_balance_error": 2.9149849201104416e-10,
+          "maximum_phase_sum_error": 9.851763849155759e-11,
+          "solidus_grid_bracket_C": [
+            1420.0,
+            1422.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1446.0,
+            1448.0
+          ]
+        },
+        "graphite_suppressed": {
+          "maximum_atomic_balance_error": 5.6019411331931224e-11,
+          "maximum_phase_sum_error": 5.726741303391236e-11,
+          "solidus_grid_bracket_C": [
+            1420.0,
+            1422.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1446.0,
+            1448.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "final_min_C",
+      "full_composition_wt_pct": {
+        "C": 0.021640000000000003,
+        "Si": 0.12805,
+        "Mn": 0.63463,
+        "Cr": 0.0025500000000000006,
+        "Ni": 56.61493,
+        "Mo": 0.0005,
+        "Nb": 0.0,
+        "Fe": 42.597699999999996
+      },
+      "omitted_constituents_wt_pct": 0.7657300000000049,
+      "ternary_normalized_wt_pct": {
+        "C": 0.02180698260792366,
+        "Fe": 42.92640032521023,
+        "Ni": 57.051792692181856
+      },
+      "dilution": {
+        "first_QT_dilution": 0.1,
+        "second_first_layer_remelt": 0.1,
+        "final_Ni_layer_dilution": 0.1,
+        "final_steel_dilution": 0.05
+      },
+      "limits": {
+        "graphite_allowed": {
+          "maximum_atomic_balance_error": 3.761273514868435e-10,
+          "maximum_phase_sum_error": 6.758741344370378e-10,
+          "solidus_grid_bracket_C": [
+            1430.0,
+            1432.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1436.0,
+            1438.0
+          ]
+        },
+        "graphite_suppressed": {
+          "maximum_atomic_balance_error": 3.761273514868435e-10,
+          "maximum_phase_sum_error": 6.758741344370378e-10,
+          "solidus_grid_bracket_C": [
+            1430.0,
+            1432.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1436.0,
+            1438.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "final_max_C",
+      "full_composition_wt_pct": {
+        "C": 0.04784,
+        "Si": 0.13630000000000003,
+        "Mn": 0.56978,
+        "Cr": 0.005300000000000001,
+        "Ni": 57.83158000000001,
+        "Mo": 0.001,
+        "Nb": 0.0,
+        "Fe": 41.408199999999994
+      },
+      "omitted_constituents_wt_pct": 0.712379999999996,
+      "ternary_normalized_wt_pct": {
+        "C": 0.048183247820825996,
+        "Fe": 41.70530021769078,
+        "Ni": 58.24651653448839
+      },
+      "dilution": {
+        "first_QT_dilution": 0.2,
+        "second_first_layer_remelt": 0.15,
+        "final_Ni_layer_dilution": 0.2,
+        "final_steel_dilution": 0.1
+      },
+      "limits": {
+        "graphite_allowed": {
+          "maximum_atomic_balance_error": 4.383586826861574e-10,
+          "maximum_phase_sum_error": 7.706559834730342e-10,
+          "solidus_grid_bracket_C": [
+            1422.0,
+            1424.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1434.0,
+            1436.0
+          ]
+        },
+        "graphite_suppressed": {
+          "maximum_atomic_balance_error": 4.383586826861574e-10,
+          "maximum_phase_sum_error": 7.706559834730342e-10,
+          "solidus_grid_bracket_C": [
+            1422.0,
+            1424.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1434.0,
+            1436.0
+          ]
+        }
+      }
+    }
+  ],
+  "elapsed_s": 69.98199549999845,
+  "scope": "Fe-Ni-C ternary equilibrium and graphite-suppressed limits; no Si/Mn kinetics, Scheil path, PMZ spatial state or fracture capacity",
+  "mechanical_capacity_assigned": false,
+  "thermal_tables_updated": false
+}

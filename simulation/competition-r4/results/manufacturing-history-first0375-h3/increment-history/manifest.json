@@ -1,0 +1,22 @@
+{
+  "format_version": 1,
+  "nodes": 8164,
+  "elements": 24751,
+  "bore_contact_points": 88,
+  "pad_surface_nodes": 39,
+  "scope": "every converged mechanical increment; reset_reference and temperature recorded separately from return-map increments; no missing earlier steps reconstructed",
+  "chunks": [
+    {
+      "file": "chunk-00000.npz",
+      "count": 4,
+      "first_s": 0.0,
+      "last_s": 0.375
+    },
+    {
+      "file": "chunk-00001.npz",
+      "count": 13,
+      "first_s": 0.5,
+      "last_s": 2.0
+    }
+  ]
+}

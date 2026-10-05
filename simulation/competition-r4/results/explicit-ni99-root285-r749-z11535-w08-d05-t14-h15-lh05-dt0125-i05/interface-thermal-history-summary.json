@@ -1,0 +1,54 @@
+{
+  "t_s": 10.90909090909091,
+  "steps": 88,
+  "partial": false,
+  "interfaces": {
+    "Ni99_NiFe": {
+      "solidus_threshold_C": 1435.0,
+      "liquidus_threshold_C": 1460.0,
+      "maximum_observed_quadrature_C": 1842.6404929996554,
+      "area_above_both_solidus_mm2": 13.762226174630918,
+      "area_above_both_liquidus_mm2": 11.282084854837176,
+      "by_segment_above_solidus_mm2": {
+        "1": 8.179169229990316,
+        "5": 5.583056944640603
+      }
+    },
+    "steel_NiFe": {
+      "solidus_threshold_C": 1474.85,
+      "liquidus_threshold_C": 1519.85,
+      "maximum_observed_quadrature_C": 2049.7609185623182,
+      "area_above_both_solidus_mm2": 34.776435265349576,
+      "area_above_both_liquidus_mm2": 32.12753685509593,
+      "by_segment_above_solidus_mm2": {
+        "1": 18.18634448195509,
+        "5": 16.590090783394487
+      }
+    },
+    "QT_first_Ni99": {
+      "solidus_threshold_C": 1300.0,
+      "liquidus_threshold_C": 1446.0,
+      "maximum_observed_quadrature_C": 1275.7870652465951,
+      "area_above_both_solidus_mm2": 0.0,
+      "area_above_both_liquidus_mm2": 0.0,
+      "by_segment_above_solidus_mm2": {
+        "1": 0.0,
+        "5": 0.0
+      }
+    },
+    "Ni99_layers": {
+      "solidus_threshold_C": 1435.0,
+      "liquidus_threshold_C": 1446.0,
+      "maximum_observed_quadrature_C": 1284.4942726316494,
+      "area_above_both_solidus_mm2": 0.0,
+      "area_above_both_liquidus_mm2": 0.0,
+      "by_segment_above_solidus_mm2": {
+        "1": 0.0,
+        "5": 0.0
+      }
+    }
+  },
+  "scope": "actual per-time-step P1 face quadrature; only when both adjacent solids thermally active; union of melting events",
+  "spatial_time_convergence_verified": false,
+  "precoat_state_verified": false
+}

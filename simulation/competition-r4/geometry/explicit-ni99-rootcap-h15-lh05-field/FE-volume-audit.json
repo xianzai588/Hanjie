@@ -1,0 +1,27 @@
+{
+  "0": {
+    "FE_volume_mm3": 486939.7937117348,
+    "CAD_volume_mm3": 486946.8613064361,
+    "relative_difference": 1.4514098483631166e-05
+  },
+  "1": {
+    "FE_volume_mm3": 137227.07649727137,
+    "CAD_volume_mm3": 137128.5053907125,
+    "relative_difference": 0.0007188228755066195
+  },
+  "2": {
+    "FE_volume_mm3": 1131.837371109819,
+    "CAD_volume_mm3": 1131.8218191518242,
+    "relative_difference": 1.3740641620074712e-05
+  },
+  "3": {
+    "FE_volume_mm3": 541.4226803841105,
+    "CAD_volume_mm3": 541.4236664283784,
+    "relative_difference": 1.8212064395450867e-06
+  },
+  "4": {
+    "FE_volume_mm3": 696.5864898581915,
+    "CAD_volume_mm3": 696.5877659535898,
+    "relative_difference": 1.831923356565568e-06
+  }
+}

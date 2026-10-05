@@ -1,0 +1,15 @@
+{
+  "replay_errors": {
+    "u": 0.0,
+    "plastic": 0.0,
+    "eqp": 0.0
+  },
+  "maximum_plastic_trace": 2.117582368135751e-21,
+  "all_thermal_reset_false": true,
+  "delta_from_preceding_release": {
+    "maximum_u_difference_mm": 7.550102331527198e-09,
+    "maximum_stress_difference_MPa": 0.0007671487583138514
+  },
+  "scope": "direct birth-reference initial forces; actual completed cold shell release and saved increment replay; no inverse-force uniqueness rerun",
+  "replay_pass": true
+}

@@ -1,0 +1,35 @@
+{
+  "witness_rows": 113,
+  "maximum_LP_minimum_z_difference_mm": 2.842170943040401e-14,
+  "deepest": {
+    "4:1": {
+      "minimum_z_mm": 114.70620454082015,
+      "depth_below_z115_mm": 0.2937954591798473,
+      "time_s": 10.90909090909091,
+      "element": 518507,
+      "barycentric": [
+        0.0,
+        0.0,
+        0.33941605303041067,
+        0.6605839469695893
+      ],
+      "temperature_C": 1435.0
+    },
+    "4:5": {
+      "minimum_z_mm": 114.80220255382919,
+      "depth_below_z115_mm": 0.19779744617081008,
+      "time_s": 10.90909090909091,
+      "element": 547234,
+      "barycentric": [
+        0.06513546819757403,
+        0.0,
+        0.934864531802426,
+        0.0
+      ],
+      "temperature_C": 1435.0
+    }
+  },
+  "independent_witness_replay_pass": true,
+  "thermal_run_partial": false,
+  "scope": "independent constrained affine-temperature minimization on saved actual-temperature tetrahedra; not mesh/time convergence or joint capacity"
+}

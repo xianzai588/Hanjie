@@ -1,0 +1,58 @@
+{
+  "case": "manufacturing-history-first0375-h3",
+  "initial_bore_diameter_mm": 40.008,
+  "missing_files": [],
+  "observed_histories": {
+    "mechanical_history_times_identical": true,
+    "mechanical_steps": 17,
+    "pad_area_transition_steps": [],
+    "maximum_equilibrium_residual_N": 0.03204308569069336,
+    "minimum_pad_reaction_N": 157.31541150489434,
+    "maximum_compression_sum_N": 556.1695418778152,
+    "history_coverage": "actual per-increment nodal/quadrature contact gaps and masks, thermal resets and sparse float64 plastic increments; replayed against saved state",
+    "actual_increment_replay": {
+      "checks": {
+        "all_mechanical_steps_recorded": true,
+        "contact_mask_matches_actual_gap": true,
+        "pad_nodal_support_matches_quadrature": true,
+        "thermal_reset_and_plastic_replay_matches_state": true,
+        "deviatoric_J2_plastic_increment": true
+      },
+      "record_integrity_pass": true,
+      "mechanical_steps": 17,
+      "thermal_reset_steps": 13,
+      "plastic_return_steps": 15,
+      "contact_transition_times_s": [
+        0.25,
+        0.375,
+        0.5,
+        0.625,
+        0.75,
+        1.125,
+        1.25,
+        1.375,
+        1.5,
+        1.75
+      ],
+      "maximum_plastic_increment_trace": 4.0657581468206416e-19,
+      "replay_maximum_absolute_error": {
+        "plastic": 0.0,
+        "eqp": 0.0,
+        "ref": 0.0
+      },
+      "completed_cold_release": false,
+      "interval_branch_refinement_verified": false
+    }
+  },
+  "checks": {
+    "contact_active_set_resolved": true,
+    "plastic_loading_unloading_resolved": false,
+    "no_unresolved_path_transition": false,
+    "actual_cold_release_and_metrology": false
+  },
+  "required_additional_evidence": [
+    "complete the cold loading/unloading chain with retained per-increment material state",
+    "refined parameter brackets around changes of contact/plastic branch; a quantified interior response bound"
+  ],
+  "contact_and_plastic_path_checks_pass": false
+}

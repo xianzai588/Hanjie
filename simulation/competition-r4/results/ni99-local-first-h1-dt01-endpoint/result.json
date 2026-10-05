@@ -1,0 +1,20 @@
+{
+  "stages": [
+    {
+      "stage": "precoat1",
+      "time_s": 9.0,
+      "input_J": 5544.000000000005,
+      "loss_J": 123.0675824254485,
+      "maximum_step_energy_error_J": 1.369713231724745e-10,
+      "nonlinear_iterations": 948,
+      "cooled_to_target": false,
+      "QT_peak_C": 1572.193723955107,
+      "first_layer_peak_C": 1618.3222788102619,
+      "second_layer_peak_C": null
+    }
+  ],
+  "elapsed_s": 35.505689199999324,
+  "completed": true,
+  "full_assembly_verification": false,
+  "material_state_strength_verified": false
+}

@@ -179,11 +179,12 @@ def mesh(n,h,weld_h=1.,seat_path=None,root_h=None):
         links.extend(interface_links(x,target,pick,planar=part==1))
     return x,e,m,bd,links
 
-def operators(x,e):
+def operators(x,e,mechanical=True):
     xe=x[e]
     a=np.concatenate((np.ones((len(e),4,1)),xe),axis=2)
     g=np.linalg.inv(a)[:,1:,:].transpose(0,2,1)
     vol=np.abs(np.linalg.det((xe[:,1:]-xe[:,:1]).transpose(0,2,1)))/6
+    if not mechanical:return g,vol,None,None
     b=np.zeros((len(e),6,12))
     for j in range(4):
         gx,gy,gz=g[:,j,:].T; k=3*j
@@ -194,9 +195,16 @@ def operators(x,e):
     dof=(3*e[:,:,None]+np.arange(3)).reshape(-1,12)
     return g,vol,b,dof
 
-def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False,struct_dt=5.,contact_density=2000.,copper_h=50.,source_radius=2.2,source_depth=1.6,weld_h=1.,source_r=73.8,use_amg=False,cold_struct_dt=None,seat_path=None,root_h=None,peening_trace=False,peening_all=False,thermal_observer=None,event_dT=None,paired=False,unilateral_pads=False,material_enthalpy=False,initial_bore_diameter=40.014,resume=False,checkpoint=False,fixture_contact_h=None,fixture_refinement=1,net_power=495.):
+def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False,struct_dt=5.,contact_density=2000.,copper_h=50.,source_radius=2.2,source_depth=1.6,weld_h=1.,source_r=73.8,use_amg=False,cold_struct_dt=None,seat_path=None,root_h=None,peening_trace=False,peening_all=False,thermal_observer=None,event_dT=None,paired=False,unilateral_pads=False,material_enthalpy=False,initial_bore_diameter=40.014,resume=False,checkpoint=False,fixture_contact_h=None,fixture_refinement=1,net_power=495.,manufacturing_history=False,explicit_mesh_path=None,additional_material_tables=None,source_root_rise=1.2,source_cap_rise=2.,nodal_thermal_observer=None,deposition_temperature=None,source_root_rise_end=None,material_table_overrides=None,source_root_start_dwell=0.):
     output.mkdir(parents=True,exist_ok=True)
-    clock=time.perf_counter(); x,e,m,bd,links=mesh(n,h,weld_h,seat_path,root_h)
+    clock=time.perf_counter()
+    if explicit_mesh_path is None:x,e,m,bd,links=mesh(n,h,weld_h,seat_path,root_h)
+    else:
+        with np.load(Path(explicit_mesh_path)/'mesh.npz',allow_pickle=False) as data:
+            x=data['x'].copy();e=data['e'].copy();m=data['material'].copy();bd=data['boundary'].copy()
+        links=[]
+        explicit_audit=json.loads((Path(explicit_mesh_path)/'geometry-audit.json').read_text(encoding='utf8'))
+        if not thermal_only:raise ValueError('explicit mechanical run requires precoat retained-state and material-state integration')
     # Morph the nominal CAD bore to the declared manufacturing verification point.
     # Reassemble geometry, thermal capacity/conductivity and contact for that point.
     bore_radius=initial_bore_diameter/2
@@ -204,9 +212,19 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
     x[bore_geom,:2]*=bore_radius/20
     np.savez_compressed(output/'mesh.npz',x=x,e=e,material=m,boundary=bd,link_nodes=np.array([[z[0],*z[1]] for z in links]),link_weights=np.array([[1.,*[-v for v in z[2]]] for z in links]))
     from affine_interface import audit as interface_audit
-    interface_patch=interface_audit(x,links)
+    g,vol,b,dof=operators(x,e,mechanical=not thermal_only); c=x[e].mean(axis=1)
+    if links:interface_patch=interface_audit(x,links)
+    else:
+        affine_error=float(abs(np.einsum('eik,eil->ekl',x[e],g)-np.eye(3)).max())
+        translation_error=float(abs(g.sum(axis=1)).max())
+        rigid=np.cross(np.array([.23,-.17,.31]),x[e])
+        gradient=np.einsum('eik,eil->ekl',rigid,g)
+        rotation_error=float(abs(gradient+gradient.transpose(0,2,1)).max())
+        interface_patch=dict(method='shared conforming material-interface nodes; actual tetrahedral affine/rigid patch',
+            maximum_affine_gradient_error=affine_error,maximum_translation_gradient_error=translation_error,
+            maximum_rotation_symmetric_gradient_error=rotation_error,
+            rigid_translation_and_rotation_patch_pass=bool(max(affine_error,translation_error,rotation_error)<1e-8))
     print('mesh',n,h,len(x),len(e),interface_patch,flush=True)
-    g,vol,b,dof=operators(x,e); c=x[e].mean(axis=1)
     weld_top=float(np.min(x[np.unique(e[m==2]),2]))
     radius=np.linalg.norm(c[:,:2],axis=1); theta=np.arctan2(c[:,1],c[:,0])%(2*np.pi)
     segment=np.round(theta/(2*np.pi/n)).astype(int)%n
@@ -222,8 +240,14 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         raise ValueError('paired stages must contain diametrically opposed segments of one pass')
     stage_index={tuple(item):i for i,stage in enumerate(stages) for item in stage}
     v=1.65; duration=18/v; idle=18.; interval=duration+idle
+    if not 0<=source_root_start_dwell<duration:raise ValueError('root start dwell must be shorter than the unchanged arc interval')
+    if source_root_start_dwell and not thermal_only:raise ValueError('root dwell mechanical birth integration requires retained precoat/solidification state')
+    root_v=18/(duration-source_root_start_dwell)
     starts=np.array([stage_index[(int(layer[k]),int(segment[k]))]*interval if m[k]==2 else -1e6 for k in range(len(e))])
     birth=starts+np.clip(along/v,0,duration)
+    if source_root_start_dwell:
+        root=(m==2)&(layer==0)
+        birth[root]=starts[root]+source_root_start_dwell+np.clip(along[root]/root_v,0,duration-source_root_start_dwell)
     # Physical surface areas supply convection, radiation and fixture cooling.
     area=np.linalg.norm(np.cross(x[bd[:,1]]-x[bd[:,0]],x[bd[:,2]]-x[bd[:,0]]),axis=1)/2
     surface=np.bincount(bd.ravel(),weights=np.repeat(area/3,3),minlength=len(x))
@@ -252,6 +276,10 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         'elastic_modulus_gpa':[160,150,130,90,50,15,2],
         'yield_strength_mpa':[290,260,210,150,70,15,2],
         'alpha_per_k':[1.1e-5]*7}
+    if additional_material_tables:tables.extend(additional_material_tables)
+    if material_table_overrides:
+        if not thermal_only:raise ValueError('phase thermal overrides do not define mechanical capacity')
+        for index,table in material_table_overrides.items():tables[int(index)]=table
     rho=np.array([t['nominal_properties_20c']['density_kg_m3'] for t in tables])[m]*1e-9
     nu=np.array([t['nominal_properties_20c']['poisson_ratio'] for t in tables])[m]
     fusion=[t['fusion_enthalpy'] for t in tables] if material_enthalpy else [dict(solidus_C=1100.,liquidus_C=1400.,latent_heat_J_kg=250000.,basis='superseded common broad melting interval') for t in tables]
@@ -259,7 +287,25 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
     liquidus=np.array([t['liquidus_C'] for t in fusion])[m,None]
     latent=np.array([t['latent_heat_J_kg'] for t in fusion])[m,None]
     if np.any(liquidus<=solidus) or np.any(latent<=0):raise ValueError('invalid material fusion enthalpy data')
-    def latent_enthalpy(local):return latent*np.clip((local-solidus)/(liquidus-solidus),0,1)
+    phase_curves={}
+    for j,row in enumerate(fusion):
+        if 'liquid_fraction_curve' not in row:continue
+        curve=row['liquid_fraction_curve'];knots=np.asarray(curve['temperature_C'],float);fraction=np.asarray(curve['liquid_mass_fraction'],float)
+        if len(knots)!=len(fraction) or np.any(np.diff(knots)<=0) or np.min(np.diff(fraction)) < -1e-7:
+            raise ValueError('invalid CALPHAD liquid-fraction curve; no smoothing or monotonic repair is permitted')
+        if np.min(fraction)<-1e-7 or np.max(fraction)>1+1e-7:raise ValueError('liquid fraction outside numerical mass-fraction tolerance')
+        phase_curves[j]=(knots,fraction,np.diff(fraction)/np.diff(knots))
+    def latent_state(local,derivative=False):
+        result=latent/(liquidus-solidus)*((local>solidus)&(local<liquidus)) if derivative else latent*np.clip((local-solidus)/(liquidus-solidus),0,1)
+        for j,(knots,fraction,slope) in phase_curves.items():
+            select=m==j;query=local[select]
+            if derivative:
+                pos=np.clip(np.searchsorted(knots,query,side='right')-1,0,len(slope)-1)
+                value=np.where((query>knots[0])&(query<knots[-1]),slope[pos],0.)
+            else:value=np.interp(query,knots,fraction)
+            result[select]=latent[select]*value
+        return result
+    def latent_enthalpy(local):return latent_state(local)
     def prop(te,key):
         out=np.empty_like(te,dtype=float)
         for j,t in enumerate(tables):
@@ -278,7 +324,8 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             out[m==j]=val
         return out
     rr=np.repeat(e,4,axis=1).ravel(); cc=np.tile(e,(1,4)).ravel()
-    srr=np.repeat(dof,12,axis=1).ravel(); scc=np.tile(dof,(1,12)).ravel()
+    srr=np.repeat(dof,12,axis=1).ravel() if not thermal_only else None
+    scc=np.tile(dof,(1,12)).ravel() if not thermal_only else None
     nn=len(x); nd=3*nn; u=np.zeros(nd); plastic=np.zeros((len(e),6)); eqp=np.zeros(len(e)); ref=np.zeros((len(e),6))
     temp=np.full(nn,preheat);active=m!=2;thermal_active=active.copy(); history=[];struct=[]; saved_t=[];saved_u=[];energy=0.; loss_total=0.;input_total=0.
     pv=np.outer([1,1,1,0,0,0],[1,1,1,0,0,0])/3; pd=np.eye(6)-pv
@@ -365,7 +412,7 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
                 pass_index=0 if leg==2.8 else 1
                 trace_meta.append(dict(pass_index=pass_index,segment=sector+1,leg_mm=leg,contact_radius_mm=contact_radius,start_s=stage_index[(pass_index,sector)]*interval))
         (output/'peening-trace-sites.json').write_text(json.dumps(dict(interface_arc_coordinate_mm=peening_sites.tolist(),traces=trace_meta,root_contact_radius_mm=73.6,cover_contact_radius_mm=73.0,root_start_s=0.,cover_start_s=stage_index[(1,order[0])]*interval,travel_mm_s=v,measurement='interpolated nodal temperature on actual root/cover conical free surfaces'),indent=2),encoding='utf8')
-    lnodes=np.array([[z[0],*z[1]] for z in links]);lweights=np.array([[1.,*[-v for v in z[2]]] for z in links])
+    lnodes=np.array([[z[0],*z[1]] for z in links],dtype=int).reshape(-1,17);lweights=np.array([[1.,*[-v for v in z[2]]] for z in links]).reshape(-1,17)
     # Area-scaled interface: QT-side 1.2 mm Ni layer is a thin-layer Robin path.
     weld_faces=bd[np.isin(bd[:,0],np.unique(e[m==2]))]
     weld_face_area=np.linalg.norm(np.cross(x[weld_faces[:,1]]-x[weld_faces[:,0]],x[weld_faces[:,2]]-x[weld_faces[:,0]]),axis=1)/2
@@ -392,6 +439,36 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
         inputs['fixture_thermal']=tool.audit
         inputs['fixture_thermal_coupling_policy']='previous converged displacement and gap; current implicit part temperature' if not thermal_only else 'continuous initial setting contact thermal diagnostic'
+        (output/'input.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2),encoding='utf8')
+    if manufacturing_history:
+        inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
+        inputs['manufacturing_increment_history']='actual per-increment contact gaps/masks, thermal resets and float64 plastic return increments'
+        (output/'input.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2),encoding='utf8')
+    if explicit_mesh_path is not None:
+        inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
+        inputs.pop('Ni99_thin_layer_mm');inputs.pop('Ni99_conductivity_W_mK')
+        inputs['mechanical_interface_N_mm3']='no penalty links; conforming geometry'
+        inputs['explicit_layer_geometry']=explicit_audit
+        inputs['precoat_initial_state']='cold thermal-only geometry screen; precoat residual state is not reconstructed'
+        inputs['source_root_z_mm']=weld_top+source_root_rise
+        if source_root_rise_end is not None:
+            inputs['source_root_end_z_mm']=weld_top+source_root_rise_end
+            inputs['root_source_height_policy']='linear height progression along each18 mm root; constant net line energy'
+        inputs['source_cap_z_mm']=weld_top+source_cap_rise
+        inputs['imbalance_fraction']=imbalance
+        (output/'input.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2),encoding='utf8')
+    if deposition_temperature is not None:
+        if deposition_temperature < fusion[2]['liquidus_C']:raise ValueError('specified entering wire temperature must exceed NiFe liquidus')
+        if not thermal_only:raise ValueError('molten-wire manufacturing requires resolved solidification reference integration')
+        inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
+        inputs['deposition_temperature_C']=deposition_temperature
+        inputs['wire_energy_policy']='entering molten NiFe enthalpy is deducted from the same total per-head net heat; no extra heat'
+        (output/'input.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2),encoding='utf8')
+    if source_root_start_dwell:
+        inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
+        inputs['root_start_dwell_s']=source_root_start_dwell
+        inputs['root_actual_travel_mm_s']=root_v
+        inputs['root_dwell_policy']='same 18mm and total arc duration/net heat; stationary source at start without filler birth, then faster travel and delayed element birth'
         (output/'input.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2),encoding='utf8')
     checkpoint_path=output/'continuation-checkpoint.npz'
     if resume:
@@ -450,8 +527,17 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         clock-=meta['elapsed_s']
         print('resumed converged state',t,flush=True)
         cp.close()
+    recorder=None
+    if manufacturing_history and not thermal_only:
+        from manufacturing_history import ManufacturingHistory
+        recorder=ManufacturingHistory(output,x,e,bore,pads,resume_time=t if resume else None)
+    wire_history=[]
+    if deposition_temperature is not None:
+        incoming=np.full((len(e),1),deposition_temperature)
+        incoming_energy_J=rho*vol*(integrated(incoming,'specific_heat_j_kgk')[:,0]+latent_enthalpy(incoming)[:,0])
     def save_continuation(state):
         if not checkpoint or thermal_only:return
+        if recorder is not None:recorder.flush()
         meta=dict(version=1,inputs=json.loads((output/'input.json').read_text(encoding='utf8')),
                   recorded_starts=sorted(recorded_starts),elapsed_s=time.perf_counter()-clock)
         for key in ['copper_temp', 'max_copper_temp', 'max_seal_band_temp', 'energy', 'loss_total', 'input_total', 'last_struct_t', 'newton_max', 'max_res', 'max_contact', 'rel', 't', 'linear_fallbacks', 'max_pad_pressure', 'max_pad_moment', 'max_pad_total', 'history', 'struct', 'process_starts', 'peening_rows', 'birth_audits', 'pad_history', 'event_counts']:meta[key]=state[key]
@@ -471,6 +557,7 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         stepdt=0. if initial_step else (dt if t<endarc+120 else min(10.,cold_struct_dt if cold_struct_dt is not None else dt*20))
         # Integrate the real on/off duration; never straddle an arc boundary.
         event_times=np.r_[np.arange(len(stages))*interval,np.arange(len(stages))*interval+duration,end]
+        if source_root_start_dwell:event_times=np.r_[event_times,[i*interval+source_root_start_dwell for i,stage in enumerate(stages) if stage[0][0]==0]]
         future=event_times[event_times>t+1e-8]
         stepdt=min(stepdt,float(future.min()-t),end-t)
         t+=stepdt
@@ -488,16 +575,34 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         hrad=.7*5.670374419e-14*((np.maximum(temp,20)+273.15)**2+293.15**2)*(np.maximum(temp,20)+566.3)
         cool=(15e-6+hrad)*surface
         copper_k=np.zeros(nn) if rel else copper_h*1e-6*copper_area
-        q=np.zeros(len(e)); st=int((t-stepdt/2)//interval)
+        born=(m==2)&newactive&~thermal_active
+        q=np.zeros(len(e)); wire_nodal_power=np.zeros(nn); st=int((t-stepdt/2)//interval)
         on=st<len(stages) and 0<=(t-stepdt/2-st*interval)<duration
         if on:
             for p,j in stages[st]:
-                ang=(j*2*np.pi/n+(v*(t-stepdt/2-st*interval)-9)/74.98)
-                source=np.array([source_r*np.cos(ang),source_r*np.sin(ang),weld_top+1.2 if p==0 else weld_top+2.0])
+                head_power=net_power*(1+imbalance if j==0 else 1)
+                if deposition_temperature is not None:
+                    wire=born&(segment==j)&(layer==p)
+                    wire_J=incoming_energy_J[wire]
+                    wire_power=float(wire_J.sum()/stepdt)
+                    if wire_power>head_power:raise RuntimeError('entering filler enthalpy exceeds available net arc power; refine birth/time resolution')
+                    wire_nodal_power+=np.bincount(e[wire].ravel(),weights=np.repeat(wire_J/(4*stepdt),4),minlength=nn)
+                    head_power-=wire_power
+                elapsed=t-stepdt/2-st*interval
+                progress=np.clip((elapsed-source_root_start_dwell)/(duration-source_root_start_dwell),0,1) if p==0 else np.clip(elapsed/duration,0,1)
+                ang=(j*2*np.pi/n+(18*progress-9)/74.98)
+                rise=source_root_rise
+                if p==0 and source_root_rise_end is not None:
+                    rise+=(source_root_rise_end-source_root_rise)*progress
+                source=np.array([source_r*np.cos(ang),source_r*np.sin(ang),weld_top+rise if p==0 else weld_top+source_cap_rise])
                 d=c-source; norm=np.exp(-((d[:,0]**2+d[:,1]**2)/source_radius**2+(d[:,2]/source_depth)**2))
                 norm*=vol*newactive
-                q+=norm/max(norm.sum(),1e-30)*net_power*(1+imbalance if j==0 else 1)
-        nodal_q=np.bincount(e.ravel(),weights=np.repeat(q/4,4),minlength=nn)
+                q+=norm/max(norm.sum(),1e-30)*head_power
+        nodal_q=np.bincount(e.ravel(),weights=np.repeat(q/4,4),minlength=nn)+wire_nodal_power
+        total_net_power=float(q.sum()+wire_nodal_power.sum())
+        if deposition_temperature is not None:
+            if born.any() and not on:raise RuntimeError('filler birth outside a powered deposition interval')
+            wire_history.append([t,stepdt,float(vol[born].sum()),float(wire_nodal_power.sum()*stepdt),float(q.sum()*stepdt),float(total_net_power*stepdt)])
         old=temp.copy();old_copper_temp=copper_temp
         if tool is not None:
             old_tool=tool.temperature.copy()
@@ -516,13 +621,12 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         def enthalpy_nodes(tv):
             local=tv[e]
             hh=integrated(local,'specific_heat_j_kgk')+latent_enthalpy(local)
-            cap=prop(local,'specific_heat_j_kgk')+latent/(liquidus-solidus)*((local>solidus)&(local<liquidus))
+            cap=prop(local,'specific_heat_j_kgk')+latent_state(local,derivative=True)
             H=np.bincount(e.ravel(),weights=(mass_e[:,None]*hh/4).ravel(),minlength=nn)
             C=np.bincount(e.ravel(),weights=(mass_e[:,None]*cap/4).ravel(),minlength=nn)
             return H,C
         # New cold filler enters at 20 C. Its enthalpy is zero before deposition.
         old_H,_=enthalpy_nodes(old)
-        born=(m==2)&newactive&~thermal_active
         if np.any(born):
             bh=integrated(old[e],'specific_heat_j_kgk')+latent_enthalpy(old[e])
             old_H-=np.bincount(e[born].ravel(),weights=(mass_e[born,None]*bh[born]/4).ravel(),minlength=nn)
@@ -562,6 +666,14 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             else:raise RuntimeError('enthalpy Newton stagnation')
         else:raise RuntimeError('enthalpy Newton failure')
         thermal_active=newactive.copy()
+        if explicit_mesh_path is not None and temp[occupied].max()>3000:
+            np.savez_compressed(output/'thermal-domain-rejection.npz',temperature=temp,thermal_active=newactive,time_s=t)
+            (output/'engineering-rejection.json').write_text(json.dumps(dict(t_s=t,
+                maximum_active_node_C=float(temp[occupied].max()),active_temperature_limit_C=3000,
+                reason='active metal temperature exceeds vapour-free thermal model domain; raw state retained without clipping'),indent=2),encoding='utf8')
+            if nodal_thermal_observer is not None:
+                nodal_thermal_observer(t,temp,newactive);nodal_thermal_observer.save(partial=True)
+            raise RuntimeError('active metal temperature exceeds3000 C; raw field saved')
         if not np.all(np.isfinite(temp)) or temp.max()>5000:raise RuntimeError('invalid thermal state')
         if peening_trace:
             values=[np.sum(temp[nodes]*weights,axis=1) for nodes,weights in surface_interpolators]
@@ -574,12 +686,14 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             tool_history.append([t,float(tool.temperature.max()),float(tool.offset().min()),float(tool.offset().max()),*tool.temperature.tolist()])
             tool_boundary_trace.append(np.r_[t,stepdt,int(rel),old[tool.boundary_nodes],temp[tool.boundary_nodes],
                 u.reshape(-1,3)[tool.boundary_nodes,2],(u.reshape(-1,3)[bore,:2]*normals).sum(axis=1)])
-        balance=delta_H+stepdt*external_loss-stepdt*q.sum()
-        energy+=delta_H;loss_total+=stepdt*external_loss;input_total+=stepdt*q.sum()
+        balance=delta_H+stepdt*external_loss-stepdt*total_net_power
+        energy+=delta_H;loss_total+=stepdt*external_loss;input_total+=stepdt*total_net_power
         te=temp[e].mean(axis=1);peak=np.maximum(peak,te);peaknode=np.maximum(peaknode,temp)
         peak_active=np.maximum(peak_active,np.where(newactive,te,preheat))
         if thermal_observer is not None:
             thermal_observer(t,te,newactive,m,vol)
+        if nodal_thermal_observer is not None:
+            nodal_thermal_observer(t,temp,newactive)
         band_temp=float(temp[shell_copper_nodes].max())
         if not rel:
             max_copper_temp=max(max_copper_temp,float(copper_temp));max_seal_band_temp=max(max_seal_band_temp,band_temp)
@@ -734,7 +848,14 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
                     if np.linalg.norm(ff[free])<res:trial=candidate;accepted=True;break
                 if not accepted:raise RuntimeError(f'Newton stagnation t={t} residual={res}')
             if not converged:raise RuntimeError(f'Newton failed t={t} residual={res}')
-            u=trial;plastic+=dl[:,None]*direction;eqp+=dl
+            u=trial;plastic_increment=dl[:,None]*direction
+            plastic+=plastic_increment;eqp+=dl
+            if recorder is not None:
+                bgap=(u.reshape(-1,3)[bore,:2]*normals).sum(axis=1)-mandrel_intrusion
+                if tool is not None:bgap-=tool.offset()
+                pgap=np.sum(u[pads.dof]*pads.weights,axis=1) if pads is not None else np.array([])
+                if pads is not None and tool is not None:pgap-=tool.pad_offset()[pads.pad]
+                recorder.append(t,rel,reset,ref,te,plastic_increment,dl,bgap,pgap,float(res))
             newton_max=max(newton_max,it);max_res=max(max_res,float(res));max_contact=max(max_contact,reaction)
             if pads is not None:
                 pr=pad_state['reaction'];pa=pad_state['area'];moment=pad_state['moment_N_mm']
@@ -754,6 +875,9 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             if len(struct)%20==0:save_continuation(locals())
         if rel and temp.max()<20.5:break
         if thermal_only and len(history)%50==0:print('thermal',round(t,2),round(temp.max(),1),round(peak.max(),1),flush=True)
+    if recorder is not None:recorder.flush()
+    if deposition_temperature is not None:
+        np.savetxt(output/'wire-enthalpy-history.csv',wire_history,delimiter=',',header='t_s,dt_s,born_volume_mm3,entering_wire_enthalpy_J,parent_pool_heat_J,total_net_heat_J',comments='')
     if not thermal_only:save_continuation(locals())
     if tool is not None:
         np.savez_compressed(output/'fixture-boundary-trace.npz',trace=np.asarray(tool_boundary_trace),
@@ -776,7 +900,7 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         (output/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8');print(json.dumps(result),flush=True);return
     (output/'mechanical-integration-audit.json').write_text(json.dumps(dict(event_temperature_increment_C=event_dT,
         event_trigger_counts=event_counts,mechanical_samples=len(struct),
-        missed_above_annealing_mm3={str(i):float(vol[(m==i)&observed_hot&~sampled_hot].sum()) for i in range(3)}),indent=2),encoding='utf8')
+        missed_above_annealing_mm3={str(i):float(vol[(m==i)&observed_hot&~sampled_hot].sum()) for i in range(len(tables))}),indent=2),encoding='utf8')
     if pads is not None:
         np.savetxt(output/'pad-contact-history.csv',pad_history,delimiter=',',header='t_s,released,pad1_N,pad2_N,pad3_N,pad1_active_mm2,pad2_active_mm2,pad3_active_mm2,max_pressure_MPa,max_lift_mm,Mx_N_mm,My_N_mm',comments='')
         (output/'pad-contact-audit.json').write_text(json.dumps(dict(**pads.audit,
@@ -816,6 +940,7 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--n',type=int,default=6);p.add_argument('--h',type=float,default=2.0)
+    p.add_argument('--manufacturing-history',action='store_true')
     p.add_argument('--initial-bore',type=float,default=40.014)
     p.add_argument('--fixture-contact-h',type=float);p.add_argument('--fixture-refinement',type=int,default=1)
     p.add_argument('--dt',type=float,default=2);p.add_argument('--imbalance',type=float,default=.05);p.add_argument('--preheat',type=float,default=20)
@@ -856,4 +981,4 @@ if __name__=='__main__':
         thermal_spsolve=SymmetricPatternSolver();structural_spsolve=SymmetricPatternSolver()
         DIRECT_SOLVER_NAME='Intel MKL PARDISO Cholesky mtype=2; independent thermal/mechanical symbolic graphs, phases 13/23'
     SOLVER_THREADS=a.threads
-    with threadpool_limits(limits=a.threads):run(a.n,a.h,a.dt,a.output,a.imbalance,a.preheat,a.stop_time,a.thermal_only,a.struct_dt,a.contact_density,a.copper_h,a.source_radius,a.source_depth,a.weld_h,a.source_r,a.amg,a.cold_struct_dt,a.seat_path,a.root_h,a.peening_trace,a.peening_all,event_dT=a.event_dT,paired=a.paired_opposed,unilateral_pads=a.unilateral_pads,material_enthalpy=a.material_enthalpy,initial_bore_diameter=a.initial_bore,resume=a.resume,checkpoint=a.checkpoint,fixture_contact_h=a.fixture_contact_h,fixture_refinement=a.fixture_refinement,net_power=a.net_power)
+    with threadpool_limits(limits=a.threads):run(a.n,a.h,a.dt,a.output,a.imbalance,a.preheat,a.stop_time,a.thermal_only,a.struct_dt,a.contact_density,a.copper_h,a.source_radius,a.source_depth,a.weld_h,a.source_r,a.amg,a.cold_struct_dt,a.seat_path,a.root_h,a.peening_trace,a.peening_all,event_dT=a.event_dT,paired=a.paired_opposed,unilateral_pads=a.unilateral_pads,material_enthalpy=a.material_enthalpy,initial_bore_diameter=a.initial_bore,resume=a.resume,checkpoint=a.checkpoint,fixture_contact_h=a.fixture_contact_h,fixture_refinement=a.fixture_refinement,net_power=a.net_power,manufacturing_history=a.manufacturing_history)

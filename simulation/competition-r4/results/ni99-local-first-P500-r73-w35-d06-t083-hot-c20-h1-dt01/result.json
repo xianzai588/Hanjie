@@ -1,0 +1,21 @@
+{
+  "stages": [
+    {
+      "stage": "precoat1",
+      "time_s": 29.099999999999987,
+      "input_J": 4500.0,
+      "loss_J": 200.7084828224892,
+      "filler_enthalpy_share_J": 868.7073755690338,
+      "maximum_step_energy_error_J": 0.0006312543695345951,
+      "nonlinear_iterations": 905,
+      "cooled_to_target": false,
+      "QT_peak_C": 1251.2075264676778,
+      "first_layer_peak_C": 1458.2004227169969,
+      "second_layer_peak_C": null
+    }
+  ],
+  "elapsed_s": 25.585798699990846,
+  "completed": true,
+  "full_assembly_verification": false,
+  "material_state_strength_verified": false
+}

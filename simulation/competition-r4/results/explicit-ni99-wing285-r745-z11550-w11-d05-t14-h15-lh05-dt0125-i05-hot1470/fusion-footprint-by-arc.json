@@ -1,0 +1,91 @@
+{
+  "interfaces": {
+    "Ni99_NiFe": {
+      "1": {
+        "observed_active_area_mm2": 49.11224941226416,
+        "both_solidus_area_mm2": 0.46634242641261625,
+        "bins_without_observed_fusion": [
+          -9,
+          -8,
+          -7,
+          -6,
+          -5,
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "bin_width_mm": 1.0
+      },
+      "5": {
+        "observed_active_area_mm2": 49.11224941226338,
+        "both_solidus_area_mm2": 0.0,
+        "bins_without_observed_fusion": [
+          -9,
+          -8,
+          -7,
+          -6,
+          -5,
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "bin_width_mm": 1.0
+      }
+    },
+    "steel_NiFe": {
+      "1": {
+        "observed_active_area_mm2": 50.413316743065195,
+        "both_solidus_area_mm2": 6.46501039184696,
+        "bins_without_observed_fusion": [
+          -9,
+          -8,
+          -7
+        ],
+        "bin_width_mm": 1.0
+      },
+      "5": {
+        "observed_active_area_mm2": 50.41331892439659,
+        "both_solidus_area_mm2": 0.8151597486587623,
+        "bins_without_observed_fusion": [
+          -9,
+          -8,
+          -7,
+          -6,
+          -5,
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "bin_width_mm": 1.0
+      }
+    }
+  },
+  "scope": "actual fixed face quadrature points; temporal union at each point; 1mm arc bins and three-point area integration",
+  "spatial_time_convergence_verified": false,
+  "metallurgical_bond_capacity_verified": false
+}

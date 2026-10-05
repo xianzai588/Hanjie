@@ -7,8 +7,8 @@
 <text x="1020" y="65" class="section">HJ-002</text>
 <rect x="435" y="175" width="100" height="445" fill="#cbd5e1" stroke="#334155"/>
 <rect x="115" y="320" width="320" height="300" fill="#efd18b" stroke="#334155"/>
-<rect x="315" y="320" width="120" height="24" fill="#bccfcb" stroke="#334155"/>
-<rect x="315" y="320" width="120" height="10" fill="#8cb6ae" stroke="#334155"/>
+<rect x="315" y="320" width="120" height="30" fill="#bccfcb" stroke="#334155"/>
+<rect x="315" y="320" width="120" height="15" fill="#8cb6ae" stroke="#334155"/>
 <polygon points="435.00,320.00 355.00,320.00 435.00,240.00" fill="#e2a18b" stroke="#334155"/>
 <text x="145" y="580" class="note">QT450-10，t15</text>
 <text x="410" y="165" class="note">Q235B，t5</text>
@@ -18,8 +18,8 @@
 <polygon points="130.00,242.00 146.00,242.00 130.00,258.00" fill="#183247" stroke="#334155"/>
 <text x="100" y="256" class="note">z4.0</text>
 <text x="154" y="256" class="note">8×18(41)</text>
-<text x="95" y="665" class="small">焊缝符号按GB/T 324；段间净距≈41；浅槽宽6</text>
-<text x="95" y="630" class="small">QT侧双层Ni99：总厚≥1.2；表层≥0.5；熔深≤0.4</text>
+<text x="95" y="665" class="small">GB/T 324；段间净距≈41；槽宽6、翼片全宽覆盖、贯通至R74.98翼端</text>
+<text x="95" y="645" class="small">Ni99齐平：总厚1.50±0.10；表层≥0.50；根道≤0.30/累计≤0.40</text>
 <text x="95" y="688" class="small">总面积7.326～8.760 mm²；高镍过渡残层≥0.8</text>
 <text x="640" y="167" class="small">方法：自动TIG；直流正接（电极负极）</text>
 <text x="640" y="205" class="small">NiFe55 TIG Ø1.6；第二镍层加工后≥0.50</text>

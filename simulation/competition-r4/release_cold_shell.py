@@ -1,14 +1,13 @@
 """Release the remaining shell datum clamp at the actual cold measurement state.
 
-The weld history is retained. Reconstruct interface force resultants from the
-saved equilibrated stress, then perform an incremental J2 equilibrium solve.
+The weld history is retained. Evaluate the interface spring law from the
+saved birth reference, then perform an incremental J2 equilibrium solve.
 Only six rigid-body coordinate gauges remain; no bottom-face shape is prescribed.
 """
 from pathlib import Path
 import argparse, json, time
 import numpy as np
 from scipy.sparse import coo_matrix, diags, triu
-from scipy.sparse.linalg import lsmr
 from threadpoolctl import threadpool_limits
 from run_verified import operators
 
@@ -49,16 +48,17 @@ def release(folder, threads=1):
     old_free=np.setdiff1d(np.arange(nd),old_fixed);free=np.setdiff1d(np.arange(nd),gauge)
     ln,lw=fields['link_nodes'],fields['link_weights']
     L=coo_matrix((lw.ravel(),(np.repeat(np.arange(len(ln)),ln.shape[1]),ln.ravel())),shape=(len(ln),nn)).tocsr()
-    # A corner slave can have two interface rows. Recover all link resultants
-    # together; assigning its entire force to each row would double-count it.
-    initial=fint.copy();link_force=np.empty((len(ln),3));recovery=[]
+    # Use the actual converged spring law with its saved birth reference.
+    # The equilibrium inverse was independently verified earlier; no need to
+    # resolve that inverse on each cold release.
+    from interface_state import actual_force
+    link_force,link_state=actual_force(fields,folder)
+    initial=fint.copy();recovery=[]
     for axis in range(3):
         nodes=old_free[old_free%3==axis]//3
-        A=L[:,nodes].T.tocsr();rhs=-fint.reshape(nn,3)[nodes,axis]
-        answer=lsmr(A,rhs,atol=1e-13,btol=1e-13,maxiter=8000)
-        link_force[:,axis]=answer[0]
-        initial.reshape(nn,3)[:,axis]+=L.T@answer[0]
-        recovery.append(dict(axis=axis,iterations=int(answer[2]),residual_N=float(np.linalg.norm(A@answer[0]-rhs))))
+        initial.reshape(nn,3)[:,axis]+=L.T@link_force[:,axis]
+        recovery.append(dict(axis=axis,method='actual k*A*(L*u - saved birth reference)',
+            residual_N=float(np.linalg.norm(initial.reshape(nn,3)[nodes,axis]))))
     initial_residual=float(np.linalg.norm(initial[old_free]))
     if initial_residual>.050001:
         raise RuntimeError(f'saved-state equilibrium recovery failed: {initial_residual} N')
@@ -127,8 +127,13 @@ def release(folder, threads=1):
         retained_gauge_reaction_norm_N=float(np.linalg.norm(force[gauge])),
         elapsed_s=time.perf_counter()-started,
         free_shell_release_pass=bool(residual<.001 and initial_residual<=.050001 and np.linalg.norm(force[gauge])<.1))
+    plastic_increment=dl[:,None]*direction
+    np.savez_compressed(folder/'cold-shell-release-increment.npz',u_increment_mm=delta.reshape(nn,3),
+        plastic_increment=plastic_increment,eqp_increment=dl,temperature_C=te,
+        thermal_reset=np.zeros(len(e),bool),initial_link_force_N=link_force,
+        released_link_force_N=link_force+(density*link_area)[:,None]*(L@delta.reshape(nn,3)))
     fields['u']=fields['u']+delta.reshape(nn,3);fields['stress']=stress
-    fields['plastic']=fields['plastic']+dl[:,None]*direction;fields['eqp']=old_eqp+dl
+    fields['plastic']=fields['plastic']+plastic_increment;fields['eqp']=old_eqp+dl
     # The original file retains the complete time-history snapshots. The final
     # free shape needs the spatial fields, without duplicating those histories.
     final_fields={key:value for key,value in fields.items() if key not in ('temperature_snapshots','displacement_snapshots')}

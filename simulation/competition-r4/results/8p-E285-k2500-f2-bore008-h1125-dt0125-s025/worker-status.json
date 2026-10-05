@@ -1,11 +1,8 @@
 {
   "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
-  "stage": "stopped_for_cloud_handoff",
-  "stopped_at_utc": "2026-10-05T02:36:16.112128+00:00",
-  "checkpoint_model_time_s": 30.40909090909091,
-  "solver_pid": 60492,
-  "wrapper_pid": 11068,
-  "reason": "explicit user pause and transfer to cloud; no graceful stop hook in running solver, exact processes stopped after stable complete-checkpoint preflight",
-  "completed": false,
-  "design_pass": false
+  "stage": "held_for_explicit_fusion_revision",
+  "checkpoint_t_s": 68.44318181818181,
+  "checkpoint": "fusion-revision-checkpoint-20261005.npz",
+  "reason": "Explicit Ni99/NiFe root interface has nodal peak upper bound960.707C, below1435C solidus; revise source aiming and validate bilateral fusion before complete shape recomputation",
+  "evidence_case": "explicit-ni99-root285-h15-lh05-dt0125"
 }

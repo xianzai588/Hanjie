@@ -1,0 +1,404 @@
+{
+  "mesh": "simulation\\competition-r4\\geometry\\explicit-ni99-wing-t14-first07-h15-lh05",
+  "nodes": 43347,
+  "tetrahedra": 176819,
+  "QT_volume_mm3": 137174.70471640537,
+  "first_layer_volume_mm3": 80.61309754807667,
+  "materials": [
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1474.85,
+        "liquidus_C": 1519.85,
+        "latent_heat_J_kg": 264000,
+        "basis": "Q235\u8fde\u94f8\u7814\u7a76Table2\uff1a1748/1793 K\u3001264 kJ/kg\uff1b10.3390/ma16093361\uff1b\u8bbe\u8ba1\u501f\u7528\uff0c\u4e0d\u662f\u672c\u6279\u6b21DSC"
+      },
+      "name": "\u78b3\u7d20\u7ed3\u6784\u94a2 Q235B",
+      "standard": "GB/T 700-2006",
+      "composition_basis": "\u5de5\u7a0b\u540d\u4e49\u6210\u5206\uff1bCr/Ni/Mo\u4e3a\u5f53\u91cf\u6838\u7b97\u7684\u6b8b\u4f59\u5143\u7d20\u5047\u8bbe\uff0c\u6309\u6765\u6599\u5316\u5b66\u5206\u6790\u66ff\u6362",
+      "composition_nominal_wt_pct": {
+        "C": 0.17,
+        "Mn": 0.45,
+        "Si": 0.2,
+        "S": 0.035,
+        "P": 0.035,
+        "Cr": 0.05,
+        "Ni": 0.05,
+        "Mo": 0.01
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7850.0,
+        "specific_heat_j_kgk": 470.0,
+        "thermal_conductivity_w_mk": 45.0,
+        "elastic_modulus_gpa": 210.0,
+        "poisson_ratio": 0.28,
+        "alpha_per_k": 1.2e-05,
+        "yield_strength_mpa": 235.0,
+        "tensile_strength_mpa": 420.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          45.0,
+          43.0,
+          38.0,
+          31.0,
+          26.0,
+          28.0,
+          32.0
+        ],
+        "specific_heat_j_kgk": [
+          470.0,
+          520.0,
+          610.0,
+          760.0,
+          800.0,
+          650.0,
+          700.0
+        ],
+        "elastic_modulus_gpa": [
+          210.0,
+          195.0,
+          165.0,
+          85.0,
+          25.0,
+          10.0,
+          2.0
+        ],
+        "yield_strength_mpa": [
+          235.0,
+          210.0,
+          160.0,
+          60.0,
+          20.0,
+          8.0,
+          2.0
+        ],
+        "alpha_per_k": [
+          1.2e-05,
+          1.28e-05,
+          1.36e-05,
+          1.44e-05,
+          1.48e-05,
+          1.5e-05,
+          1.52e-05
+        ]
+      }
+    },
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1100,
+        "liquidus_C": 1180,
+        "latent_heat_J_kg": 250000,
+        "basis": "\u7403\u94c1\u51b7\u5374\u66f2\u7ebf10.3390/cryst15070614/Table7\u53ca\u63a8\u8350\u8303\u56f4\uff1b\u6309\u7ec4\u5143\u5dee\u5f02\u53d61100\uff5e1180\u8bbe\u8ba1\u533a\u95f4\uff1b\u6f5c\u70ed250 kJ/kg\u5de5\u7a0b\u4f30\u503c\uff0c\u6279\u6b21\u70ed\u5206\u6790\u590d\u6838"
+      },
+      "name": "\u7403\u58a8\u94f8\u94c1 QT450-10",
+      "standard": "GB/T 1348-2019",
+      "composition_basis": "\u5de5\u7a0b\u540d\u4e49\u6210\u5206\uff1bCr/Ni\u4e3a\u5f53\u91cf\u6838\u7b97\u7684\u6b8b\u4f59\u5143\u7d20\u5047\u8bbe\uff0c\u6309\u6765\u6599\u5316\u5b66\u5206\u6790\u66ff\u6362",
+      "composition_nominal_wt_pct": {
+        "C": 3.65,
+        "Si": 2.6,
+        "Mn": 0.3,
+        "Mg": 0.045,
+        "P": 0.04,
+        "S": 0.015,
+        "Cr": 0.05,
+        "Ni": 0.05
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7200.0,
+        "specific_heat_j_kgk": 460.0,
+        "thermal_conductivity_w_mk": 35.0,
+        "elastic_modulus_gpa": 170.0,
+        "poisson_ratio": 0.27,
+        "alpha_per_k": 1.05e-05,
+        "yield_strength_mpa": 310.0,
+        "tensile_strength_mpa": 450.0,
+        "elongation_pct": 10.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          750,
+          900,
+          1200
+        ],
+        "thermal_conductivity_w_mk": [
+          35.0,
+          34.0,
+          32.0,
+          28.0,
+          24.0,
+          25.0,
+          28.0
+        ],
+        "specific_heat_j_kgk": [
+          460.0,
+          510.0,
+          580.0,
+          710.0,
+          850.0,
+          720.0,
+          750.0
+        ],
+        "elastic_modulus_gpa": [
+          170.0,
+          158.0,
+          135.0,
+          70.0,
+          20.0,
+          8.0,
+          1.5
+        ],
+        "yield_strength_mpa": [
+          310.0,
+          280.0,
+          210.0,
+          50.0,
+          15.0,
+          5.0,
+          1.0
+        ],
+        "alpha_per_k": [
+          1.05e-05,
+          1.12e-05,
+          1.2e-05,
+          1.3e-05,
+          1.35e-05,
+          1.38e-05,
+          1.4e-05
+        ]
+      }
+    },
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1420,
+        "liquidus_C": 1460,
+        "latent_heat_J_kg": 275000,
+        "basis": "Paek\u7b49JOM2021 Fig2/10.1007/s11837-020-04487-9\uff0cFe-Ni\u4e8c\u5143\u8fb9\u754c\uff1b55\uff5e58%Ni\u4f4e\u78b3\u5b9e\u9645\u914d\u6df7\uff0c\u8003\u8651C/Si/Mn\u4e0e\u8bfb\u56fe\u5dee\u5f02\u53d61420\uff5e1460\u8bbe\u8ba1\u5305\u7edc\uff1b\u6f5c\u70ed275 kJ/kg\u5de5\u7a0b\u4f30\u503c"
+      },
+      "name": "NiFe-55\u578b\u954d\u94c1\u94f8\u94c1\u5b9e\u5fc3\u586b\u5145\u68d2",
+      "standard": "EN ISO 1071 / GB/T 10044\uff1b\u5177\u4f53\u5b9e\u5fc3\u68d2\u5206\u7c7b\u6309\u4f9b\u8d27\u8bc1\u4e66",
+      "composition_basis": "CEWELD NiFe 55 TIG\u4f9b\u65b9\u5178\u578b\u6210\u5206\uff1bhttps://certilas.com/en/product/nife-55-tig\uff1b\u6279\u6b21\u8bc1\u4e66\u590d\u6838",
+      "composition_nominal_wt_pct": {
+        "Ni": 55.0,
+        "Fe": "Balance",
+        "C": 0.01,
+        "Mn": 0.7,
+        "Si": 0.13
+      },
+      "property_basis": "\u540d\u4e49\u7269\u6027\u4e3a\u4fdd\u5b88\u5de5\u7a0b\u8f93\u5165\uff0c\u4e0d\u4f5c\u4e3a\u4f9b\u65b9\u5b9e\u6e2c\u63a5\u5934\u6027\u80fd\uff1b\u5386\u53f2\u7ed3\u679c\u4ee5\u5404\u8fd0\u884cinput.json\u4e3a\u51c6",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8200.0,
+        "specific_heat_j_kgk": 480.0,
+        "thermal_conductivity_w_mk": 22.0,
+        "elastic_modulus_gpa": 160.0,
+        "poisson_ratio": 0.3,
+        "alpha_per_k": 1.1e-05,
+        "yield_strength_mpa": 290.0,
+        "tensile_strength_mpa": 450.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          35
+        ],
+        "specific_heat_j_kgk": [
+          480,
+          520,
+          570,
+          630,
+          710,
+          760,
+          800
+        ]
+      }
+    },
+    {
+      "name": "Ni99 first, diluted",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8491.377023083045
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1446
+        ],
+        "thermal_conductivity_w_mk": [
+          52.724999999999994,
+          49.875,
+          46.2,
+          42.599999999999994,
+          41.55,
+          43.2,
+          44.775000000000006,
+          46.349999999999994,
+          48.0,
+          49.574999999999996,
+          51.150000000000006,
+          51.150000000000006
+        ],
+        "specific_heat_j_kgk": [
+          456,
+          480,
+          510,
+          550,
+          570,
+          590,
+          610,
+          630,
+          650,
+          670,
+          690,
+          750
+        ]
+      },
+      "fusion_enthalpy": {
+        "solidus_C": 1300.0,
+        "liquidus_C": 1446,
+        "latent_heat_J_kg": 297000
+      },
+      "basis": "k: Special Metals Nickel 200 Table3, scaled sensitivity; cp(T) and latent engineering inputs; first-layer solidus parameter, not CALPHAD or observed PMZ"
+    },
+    {
+      "name": "Ni99 second",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8827.837312259506
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1446
+        ],
+        "thermal_conductivity_w_mk": [
+          52.724999999999994,
+          49.875,
+          46.2,
+          42.599999999999994,
+          41.55,
+          43.2,
+          44.775000000000006,
+          46.349999999999994,
+          48.0,
+          49.574999999999996,
+          51.150000000000006,
+          51.150000000000006
+        ],
+        "specific_heat_j_kgk": [
+          456,
+          480,
+          510,
+          550,
+          570,
+          590,
+          610,
+          630,
+          650,
+          670,
+          690,
+          750
+        ]
+      },
+      "fusion_enthalpy": {
+        "solidus_C": 1435,
+        "liquidus_C": 1446,
+        "latent_heat_J_kg": 297000
+      },
+      "basis": "k: Special Metals Nickel 200 Table3, scaled sensitivity; cp(T) and latent engineering inputs; first-layer solidus parameter, not CALPHAD or observed PMZ"
+    }
+  ],
+  "arc_power_W": 300.0,
+  "travel_mm_s": 2.0,
+  "source_width_mm": 1.4,
+  "source_depth_mm": 0.4,
+  "source_z_mm": 114.3,
+  "entering_Ni99_C": 1450.0,
+  "dt_s": 0.2,
+  "cold_start_C": 20.0,
+  "interpass_C": 90.0,
+  "tracks": [
+    {
+      "strip": 1,
+      "half": 1,
+      "radius_mm": 70.5,
+      "angle_begin": -0.13980037510335588,
+      "angle_end": 0,
+      "length_mm": 9.85592644478659,
+      "arc_duration_s": 4.927963222393295
+    },
+    {
+      "strip": 1,
+      "half": 2,
+      "radius_mm": 70.5,
+      "angle_begin": 0,
+      "angle_end": 0.13980037510335547,
+      "length_mm": 9.85592644478656,
+      "arc_duration_s": 4.92796322239328
+    },
+    {
+      "strip": 2,
+      "half": 1,
+      "radius_mm": 73.5,
+      "angle_begin": -0.13392093253796594,
+      "angle_end": 0,
+      "length_mm": 9.843188541540497,
+      "arc_duration_s": 4.921594270770249
+    },
+    {
+      "strip": 2,
+      "half": 2,
+      "radius_mm": 73.5,
+      "angle_begin": 0,
+      "angle_end": 0.13435568917048055,
+      "length_mm": 9.87514315403032,
+      "arc_duration_s": 4.93757157701516
+    }
+  ],
+  "boundary": "actual complete QT seat; evolving free faces15 W/m2K plus radiation0.7; no shell and no adiabatic local truncation",
+  "power_policy": "same net power partitioned into entering molten first-layer enthalpy and parent/pool heat",
+  "scope": "first-layer thermal candidate on one actual wing; no invented precoat stress or PMZ capacity"
+}
