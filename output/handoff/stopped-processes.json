@@ -1,0 +1,32 @@
+[
+  {
+    "ProcessId": 11068,
+    "ParentProcessId": 44732,
+    "CommandLine": "\"C:\\Program Files\\Python312\\python.exe\" -X utf8 simulation/competition-r4/run_manufacturing_case.py --case 8p-E285-k2500-f2-bore008-h1125-dt0125-s025"
+  },
+  {
+    "ProcessId": 53020,
+    "ParentProcessId": 44732,
+    "CommandLine": "\"C:\\Program Files\\Python312\\python.exe\" -X utf8 simulation/competition-r4/run_manufacturing_case.py --case 8p-E285-k2500-f2-bore008-h085-dt0125-s025"
+  },
+  {
+    "ProcessId": 60492,
+    "ParentProcessId": 11068,
+    "CommandLine": "\"C:\\Program Files\\Python312\\python.exe\" -X utf8 E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\run_candidate_solver.py --n 8 --initial-bore 40.008 --h 1.125 --dt 0.125 --struct-dt 0.25 --cold-struct-dt 2.5 --event-dT 12.5 --imbalance .05 --preheat 20 --seat-path simulation/competition-r4/geometry/8P-R2-t15.step --contact-density 2500 --copper-h 50 --source-r 74.8 --source-radius 1.270170592 --source-depth .923760431 --weld-h 1 --unilateral-pads --material-enthalpy --paired-opposed --pardiso-symmetric --threads 2 --checkpoint --output E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-E285-k2500-f2-bore008-h1125-dt0125-s025 --fixture-contact-h 2000 --fixture-refinement 2 --net-power 470.25"
+  },
+  {
+    "ProcessId": 40856,
+    "ParentProcessId": 53020,
+    "CommandLine": "\"C:\\Program Files\\Python312\\python.exe\" -X utf8 E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\run_candidate_solver.py --n 8 --initial-bore 40.008 --h 0.85 --dt 0.125 --struct-dt 0.25 --cold-struct-dt 2.5 --event-dT 12.5 --imbalance .05 --preheat 20 --seat-path simulation/competition-r4/geometry/8P-R2-t15.step --contact-density 2500 --copper-h 50 --source-r 74.8 --source-radius 1.270170592 --source-depth .923760431 --weld-h 1 --unilateral-pads --material-enthalpy --paired-opposed --pardiso-symmetric --threads 2 --checkpoint --output E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-E285-k2500-f2-bore008-h085-dt0125-s025 --fixture-contact-h 2000 --fixture-refinement 2 --net-power 470.25"
+  },
+  {
+    "ProcessId": 52148,
+    "ParentProcessId": 18732,
+    "CommandLine": "\"C:\\Program Files\\Python312\\python.exe\" -X utf8 simulation/competition-r4/run_manufacturing_case.py --case 8p-E285-k2500-f2-bore008-h1125-dt00625-s0125"
+  },
+  {
+    "ProcessId": 60764,
+    "ParentProcessId": 52148,
+    "CommandLine": "\"C:\\Program Files\\Python312\\python.exe\" -X utf8 E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\run_candidate_solver.py --n 8 --initial-bore 40.008 --h 1.125 --dt 0.0625 --struct-dt 0.125 --cold-struct-dt 1.25 --event-dT 6.25 --imbalance .05 --preheat 20 --seat-path simulation/competition-r4/geometry/8P-R2-t15.step --contact-density 2500 --copper-h 50 --source-r 74.8 --source-radius 1.270170592 --source-depth .923760431 --weld-h 1 --unilateral-pads --material-enthalpy --paired-opposed --pardiso-symmetric --threads 2 --checkpoint --output E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-E285-k2500-f2-bore008-h1125-dt00625-s0125 --fixture-contact-h 2000 --fixture-refinement 2 --net-power 470.25"
+  }
+]

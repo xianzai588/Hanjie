@@ -1,0 +1,71 @@
+{
+  "cases": [
+    {
+      "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+      "wrapper_pid": 11068,
+      "solver_pid": 60492,
+      "model_time_s": 30.40909090909091,
+      "current_maximum_temperature_C": 1401.5352358041528,
+      "peak_nodal_temperature_C": 1571.607932645543,
+      "current_tool_maximum_C": 20.919935930281262,
+      "checkpoint_bytes": 39395006,
+      "checkpoint_mtime_ns": 1791167601717670900,
+      "checks": {
+        "all_npz_members_readable": true,
+        "metadata_matches_input": true,
+        "saved_geometry_matches_mesh": true,
+        "all_numeric_members_finite": true,
+        "file_unchanged_during_read": true,
+        "converged_structural_checkpoint": true
+      },
+      "resumable_file_state": true,
+      "completion": false,
+      "design_pass": false
+    },
+    {
+      "case": "8p-E285-k2500-f2-bore008-h085-dt0125-s025",
+      "wrapper_pid": 53020,
+      "solver_pid": 40856,
+      "model_time_s": 7.375,
+      "current_maximum_temperature_C": 1521.3900974335193,
+      "peak_nodal_temperature_C": 1536.9709202158112,
+      "current_tool_maximum_C": 20.000221845436904,
+      "checkpoint_bytes": 44215734,
+      "checkpoint_mtime_ns": 1791166893664574900,
+      "checks": {
+        "all_npz_members_readable": true,
+        "metadata_matches_input": true,
+        "saved_geometry_matches_mesh": true,
+        "all_numeric_members_finite": true,
+        "file_unchanged_during_read": true,
+        "converged_structural_checkpoint": true
+      },
+      "resumable_file_state": true,
+      "completion": false,
+      "design_pass": false
+    },
+    {
+      "case": "8p-E285-k2500-f2-bore008-h1125-dt00625-s0125",
+      "wrapper_pid": 52148,
+      "solver_pid": 60764,
+      "model_time_s": 8.6875,
+      "current_maximum_temperature_C": 1500.2660547372625,
+      "peak_nodal_temperature_C": 1572.2936701058427,
+      "current_tool_maximum_C": 20.00044504671107,
+      "checkpoint_bytes": 30106687,
+      "checkpoint_mtime_ns": 1791167495468058200,
+      "checks": {
+        "all_npz_members_readable": true,
+        "metadata_matches_input": true,
+        "saved_geometry_matches_mesh": true,
+        "all_numeric_members_finite": true,
+        "file_unchanged_during_read": true,
+        "converged_structural_checkpoint": true
+      },
+      "resumable_file_state": true,
+      "completion": false,
+      "design_pass": false
+    }
+  ],
+  "all_checkpoints_valid": true
+}
