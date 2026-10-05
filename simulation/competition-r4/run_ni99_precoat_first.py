@@ -171,6 +171,8 @@ def run(a):
             stage_rows.append(dict(track=k+1,start_s=start,initial_max_C=initial_max,arc_s=duration,cool_wait_s=wait,end_s=time_s,
                 end_active_max_C=float(T[np.unique(e[active])].max()),born_volume_mm3=float(volume[active&(m==3)].sum())))
             save(True)
+            if a.stop_after_tracks is not None and k+1>=a.stop_after_tracks:
+                result=save(True);print(json.dumps(result,indent=2),flush=True);return result
         if not active.all():raise RuntimeError('first-layer tracks did not cover all actual wing elements')
         result=save(False);print(json.dumps(result,indent=2),flush=True);return result
     except Exception as exc:
@@ -187,5 +189,6 @@ if __name__=='__main__':
     p.add_argument('--phase-carbon-corner',choices=['min_C','max_C'])
     p.add_argument('--phase-graphite-limit',choices=['graphite_allowed','graphite_suppressed'],default='graphite_suppressed')
     p.add_argument('--phase-temperature-shift',type=float,default=0.)
+    p.add_argument('--stop-after-tracks',type=int,choices=[1,2,3],help='save an actual partial candidate after the specified completed short tracks')
     args=p.parse_args()
     with threadpool_limits(limits=1):run(args)

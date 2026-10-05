@@ -1,0 +1,42 @@
+{
+  "thermal_run_partial": false,
+  "converged_end_s": 260.7150922925714,
+  "floor_z_mm": 113.6,
+  "both_solidus_threshold_C": 1353.5,
+  "footprints": {
+    "root": {
+      "physical_quadrature_area_mm2": 49.17290559048123,
+      "above_both_solidus_area_mm2": 46.07066717926314,
+      "minimum_point_peak_C": 1191.6176070285644,
+      "bins_without_any_molten_point": [],
+      "all_sampled_points_reach_both_solidus": false
+    },
+    "cap": {
+      "physical_quadrature_area_mm2": 69.58445723505787,
+      "above_both_solidus_area_mm2": 49.0253325409493,
+      "minimum_point_peak_C": 1062.5448024632897,
+      "bins_without_any_molten_point": [],
+      "all_sampled_points_reach_both_solidus": false
+    },
+    "full_radial_band": {
+      "physical_quadrature_area_mm2": 103.53139204098872,
+      "above_both_solidus_area_mm2": 56.66404420209827,
+      "minimum_point_peak_C": 951.4717288997249,
+      "bins_without_any_molten_point": [],
+      "all_sampled_points_reach_both_solidus": false
+    }
+  },
+  "QT_molten_volume_screen": {
+    "fully_liquid_quadrature_union_mm3": 70.8658847279467,
+    "any_liquid_quadrature_union_mm3": 91.98001874104361,
+    "deposited_first_layer_volume_mm3": 80.61309754807667,
+    "conditional_complete_mixing_QT_mass_fraction": [
+      0.42706350681723093,
+      0.4917357712600652
+    ],
+    "scope": "4-point tetrahedron quadrature and each point temporal peak; conditional complete mixing of the spatial union, not actual transported dilution"
+  },
+  "mesh_time_convergence_verified": false,
+  "actual_dilution_verified": false,
+  "PMZ_capacity_assigned": false
+}

@@ -1,0 +1,24 @@
+{
+  "mesh_file": "simulation\\competition-r4\\results\\explicit-ni99-wing285-r745-z11525to50-w11-d05-dwell02-fenic-minC-p55-h15-lh05-dt0125-i05-hot1470\\mesh.npz",
+  "witness_rows": 5,
+  "maximum_LP_minimum_z_difference_mm": 1.4210854715202004e-14,
+  "deepest": {
+    "4:1": {
+      "minimum_z_mm": 114.96025087252131,
+      "depth_below_z115_mm": 0.039749127478685864,
+      "time_s": 10.90909090909091,
+      "element": 517510,
+      "barycentric": [
+        0.056784467826678946,
+        0.943215532173321,
+        0.0,
+        0.0
+      ],
+      "temperature_C": 1445.5
+    }
+  },
+  "standalone_witness_geometry": "melting-depth-witness-geometry.npz",
+  "independent_witness_replay_pass": true,
+  "thermal_run_partial": false,
+  "scope": "independent constrained affine-temperature minimization on saved actual-temperature tetrahedra; not mesh/time convergence or joint capacity"
+}

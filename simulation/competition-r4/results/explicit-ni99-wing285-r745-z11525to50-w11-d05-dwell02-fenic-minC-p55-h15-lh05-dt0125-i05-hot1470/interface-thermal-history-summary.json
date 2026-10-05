@@ -1,0 +1,84 @@
+{
+  "t_s": 10.90909090909091,
+  "steps": 88,
+  "partial": false,
+  "interfaces": {
+    "Ni99_NiFe": {
+      "solidus_threshold_C": 1447.5,
+      "liquidus_threshold_C": 1459.5,
+      "physical_face_area_mm2": 557.9071042425153,
+      "maximum_observed_quadrature_C": 1462.4287508215773,
+      "area_above_both_solidus_mm2": 0.2012750383629014,
+      "area_above_both_liquidus_mm2": 0.05121345903338138,
+      "by_segment_above_solidus_mm2": {
+        "1": 0.2012750383629014,
+        "5": 0.0
+      }
+    },
+    "steel_NiFe": {
+      "solidus_threshold_C": 1474.85,
+      "liquidus_threshold_C": 1519.85,
+      "physical_face_area_mm2": 576.151986366497,
+      "maximum_observed_quadrature_C": 1598.1399034068313,
+      "area_above_both_solidus_mm2": 3.780091482848021,
+      "area_above_both_liquidus_mm2": 0.8906406390342583,
+      "by_segment_above_solidus_mm2": {
+        "1": 3.3581798418661393,
+        "5": 0.4219116409818819
+      }
+    },
+    "QT_first_Ni99": {
+      "solidus_threshold_C": 1353.5,
+      "liquidus_threshold_C": 1435.5,
+      "physical_face_area_mm2": 1029.3567015522972,
+      "maximum_observed_quadrature_C": 945.6551026601569,
+      "area_above_both_solidus_mm2": 0.0,
+      "area_above_both_liquidus_mm2": 0.0,
+      "by_segment_above_solidus_mm2": {
+        "1": 0.0,
+        "5": 0.0
+      }
+    },
+    "Ni99_layers": {
+      "solidus_threshold_C": 1447.5,
+      "liquidus_threshold_C": 1459.5,
+      "physical_face_area_mm2": 921.3504310984908,
+      "maximum_observed_quadrature_C": 1130.736495078448,
+      "area_above_both_solidus_mm2": 0.0,
+      "area_above_both_liquidus_mm2": 0.0,
+      "by_segment_above_solidus_mm2": {
+        "1": 0.0,
+        "5": 0.0
+      }
+    },
+    "bare_QT_NiFe": {
+      "solidus_threshold_C": 1437.5,
+      "liquidus_threshold_C": 1443.5,
+      "physical_face_area_mm2": 0.0,
+      "maximum_observed_quadrature_C": null,
+      "area_above_both_solidus_mm2": 0.0,
+      "area_above_both_liquidus_mm2": 0.0,
+      "by_segment_above_solidus_mm2": {
+        "1": 0.0,
+        "5": 0.0
+      }
+    }
+  },
+  "actual_P1_melting_depth_below_z115_mm": {
+    "1": {
+      "1": null,
+      "5": null
+    },
+    "3": {
+      "1": null,
+      "5": null
+    },
+    "4": {
+      "1": 0.03974912747867165,
+      "5": null
+    }
+  },
+  "scope": "actual per-time-step P1 face quadrature; only when both adjacent solids thermally active; union of melting events",
+  "spatial_time_convergence_verified": false,
+  "precoat_state_verified": false
+}

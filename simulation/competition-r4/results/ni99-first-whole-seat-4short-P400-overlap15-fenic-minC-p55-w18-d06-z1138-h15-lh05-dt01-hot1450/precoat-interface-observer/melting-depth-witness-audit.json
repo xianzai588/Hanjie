@@ -1,0 +1,37 @@
+{
+  "mesh_file": "simulation\\competition-r4\\results\\ni99-first-whole-seat-4short-P400-overlap15-fenic-minC-p55-w18-d06-z1138-h15-lh05-dt01-hot1450\\thermal-fields.npz",
+  "witness_rows": 417,
+  "maximum_LP_minimum_z_difference_mm": 1.0766143532237038e-10,
+  "deepest": {
+    "1:1": {
+      "minimum_z_mm": 111.53158368262943,
+      "depth_below_z115_mm": 3.4684163173705684,
+      "time_s": 184.71509229257143,
+      "element": 124679,
+      "barycentric": [
+        0.5865125963024311,
+        0.4134874036975689,
+        0.0,
+        0.0
+      ],
+      "temperature_C": 1100.0
+    },
+    "3:1": {
+      "minimum_z_mm": 113.59999999999688,
+      "depth_below_z115_mm": 1.4000000000031179,
+      "time_s": 2.400000000000001,
+      "element": 172862,
+      "barycentric": [
+        0.0,
+        0.0,
+        0.0,
+        0.9999999999999726
+      ],
+      "temperature_C": 1361.8366460997117
+    }
+  },
+  "standalone_witness_geometry": "melting-depth-witness-geometry.npz",
+  "independent_witness_replay_pass": true,
+  "thermal_run_partial": false,
+  "scope": "independent constrained affine-temperature minimization on saved actual-temperature tetrahedra; not mesh/time convergence or joint capacity"
+}
