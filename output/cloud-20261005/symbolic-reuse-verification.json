@@ -1,0 +1,23 @@
+{
+  "end_t_s": 1.625,
+  "differences": {
+    "u": 2.981123178348588e-08,
+    "stress": 0.000314704558226353,
+    "plastic": 1.306939595565812e-08,
+    "eqp": 1.8018226546206995e-08,
+    "ref": 5.1952151941536684e-08,
+    "temp": 3.888089850079268e-11,
+    "link_reference": 4.626183476227896e-09,
+    "tool_temperature": 3.552713678800501e-15
+  },
+  "engine": "same Intel MKL PARDISO Cholesky mtype2; numerical refactor every changed matrix",
+  "resume_initial_states_note": "initial short trajectories already differ within recorded 0.1 nm criterion",
+  "direct_additional_wall_s": 46.61066089399995,
+  "symbolic_additional_wall_s": 37.69832035900072,
+  "equivalence_with_existing_displacement_criterion": true,
+  "constitutive_difference_max": 5.1952151941536684e-08,
+  "mechanical_end_residual_N": [
+    0.002020829384086418,
+    0.0015189113966941868
+  ]
+}

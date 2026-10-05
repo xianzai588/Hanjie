@@ -16,7 +16,7 @@ from pad_contact import PadContact
 
 OUT=Path(__file__).parent/'results'
 
-def evaluate(case):
+def evaluate(case,extra_refinement=False):
     folder=OUT/case
     inp=json.loads((folder/'input.json').read_text(encoding='utf8'))
     source=inp.get('fixture_thermal')
@@ -28,11 +28,13 @@ def evaluate(case):
     x=mesh['x'];bore=record['bore'];nodes=record['boundary_nodes'];trace=record['trace'];nb=len(nodes)
     pads=PadContact(x,mesh['boundary'])
     h=source['contact_conductance_W_m2K'];ref=source['axial_refinement']
-    models=[FixtureThermal(x,bore,record['bore_area'],h,r,pads) for r in (ref,ref*2)]
+    levels=(ref,ref*2,ref*4) if extra_refinement else (ref,ref*2)
+    models=[FixtureThermal(x,bore,record['bore_area'],h,r,pads) for r in levels]
     if models[0].audit!=source:raise ValueError('fixture source model differs; preserve/replay its declared model version')
     assert all(np.array_equal(m.boundary_nodes,nodes) for m in models)
     normals=x[bore,:2]/np.linalg.norm(x[bore,:2],axis=1)[:,None]
-    histories=[[],[]];growth_errors=[];flux_errors=[];pad_spreads=[[],[]]
+    histories=[[] for _ in models];growth_errors=[];flux_errors=[];pad_spreads=[[] for _ in models]
+    extra_growth_errors=[]
     for row in trace:
         t,dt,released=row[:3]
         if dt==0:
@@ -57,8 +59,9 @@ def evaluate(case):
         if not released:
             growth_errors.append(float(np.max(abs(models[0].offset()-models[1].offset()))))
             flux_errors.append(abs(flux[0]-flux[1]))
+            if extra_refinement:extra_growth_errors.append(float(np.max(abs(models[1].offset()-models[2].offset()))))
     actual=np.loadtxt(folder/'fixture-thermal-history.csv',delimiter=',',skiprows=1)
-    a,b=map(np.asarray,histories)
+    a,b=map(np.asarray,histories[:2])
     reproduction=float(np.max(abs(a[:,1]-actual[:,1])))
     reproduction_growth=float(np.max(abs(a[:,2:4]-actual[:,2:4])))
     amplitude=float(abs(a[:,2:4]).max())
@@ -68,6 +71,9 @@ def evaluate(case):
     precision=spec['precision']
     support_spread=max(max(s,default=0.) for s in pad_spreads)
     support_combined=support_spread+precision['support_manufacturing_height_spread_limit_mm']
+    final=json.loads((folder/'result.json').read_text(encoding='utf8')) if (folder/'result.json').exists() else {}
+    full_cycle=bool(final.get('released') is True and final.get('final_max_C',999)<=20.5 and trace[-1,0]>=inp['arc_end_s'])
+    observed_precision=bool(reproduction<=1e-4 and reproduction_growth<=1e-8 and meaningful_response and relative<=.05)
     result=dict(source_case=case,scope='fixture-domain axial and angular refinement under the same actual part temperature/displacement boundary; part discretization checked separately',
         baseline_refinement=ref,fine_refinement=ref*2,baseline_angular_sectors=models[0].sectors,fine_angular_sectors=models[1].sectors,
         baseline_temperature_reproduction_error_C=float(reproduction),baseline_growth_reproduction_error_mm=reproduction_growth,
@@ -78,7 +84,20 @@ def evaluate(case):
         support_manufacturing_height_spread_mm=precision['support_manufacturing_height_spread_limit_mm'],
         combined_support_height_spread_mm=support_combined,
         support_thermal_height_budget_pass=support_combined<=precision['support_height_spread_limit_mm'],
-        fixture_thermal_discretization_pass=bool(reproduction<=1e-4 and reproduction_growth<=1e-8 and meaningful_response and relative<=.05))
+        recorded_boundary_end_s=float(trace[-1,0]),full_thermal_cycle=full_cycle,
+        observed_boundary_precision_pass=observed_precision,
+        fixture_thermal_discretization_pass=observed_precision and full_cycle)
+    if extra_refinement:
+        fine=np.asarray(histories[2]);amp=float(abs(b[:,2:4]).max())
+        relative_extra=max(extra_growth_errors)/amp if amp>=1e-8 else None
+        result['additional_pair']=dict(baseline_refinement=ref*2,fine_refinement=ref*4,
+            maximum_radial_growth_difference_mm=max(extra_growth_errors),
+            maximum_radial_growth_response_mm=amp,relative_growth_error=relative_extra,
+            observed_boundary_precision_pass=relative_extra is not None and relative_extra<=.05,
+            full_cycle_precision_pass=relative_extra is not None and relative_extra<=.05 and full_cycle,
+            whole_part_feedback_verified=False)
+        np.savetxt(folder/'fixture-extra-refinement-history.csv',np.c_[b,fine[:,1:]],delimiter=',',
+            header='t_s,refined_max_C,refined_min_growth_mm,refined_max_growth_mm,extra_max_C,extra_min_growth_mm,extra_max_growth_mm',comments='')
     target=folder/'fixture-thermal-network-convergence.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
     np.savetxt(folder/'fixture-network-refinement-history.csv',np.c_[a,b[:,1:]],delimiter=',',
@@ -87,4 +106,5 @@ def evaluate(case):
     return result
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--case',required=True);a=p.parse_args();evaluate(a.case)
+    p=argparse.ArgumentParser();p.add_argument('--case',required=True);p.add_argument('--extra-refinement',action='store_true')
+    a=p.parse_args();evaluate(a.case,a.extra_refinement)

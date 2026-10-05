@@ -1,0 +1,41 @@
+{
+  "end_t_s": 1.25,
+  "equal_members": {
+    "x": true,
+    "e": true,
+    "u": false,
+    "stress": false,
+    "plastic": false,
+    "eqp": false,
+    "ref": false,
+    "temp": false,
+    "active": true,
+    "thermal_active": true,
+    "link_reference": false,
+    "mechanical_link_active": true,
+    "tool_temperature": false
+  },
+  "maximum_absolute_member_difference": {
+    "x": 0.0,
+    "u": 1.85105692692214e-08,
+    "stress": 0.0001120677466133202,
+    "plastic": 1.2267682472297259e-08,
+    "eqp": 1.496513169635394e-08,
+    "ref": 3.311041909745405e-08,
+    "temp": 2.3078428057488054e-11,
+    "link_reference": 2.269020268549915e-09,
+    "tool_temperature": 3.552713678800501e-15
+  },
+  "saved_mesh_resume_equivalence_pass": false,
+  "scope": "Linux short continuation versus independently computed uninterrupted trajectory, physical candidate inputs unchanged; not whole manufacturing accuracy",
+  "bitwise_state_reproduction_pass": false,
+  "displacement_response_limit_mm": 0.0001,
+  "displacement_response_limit_basis": "handoff candidate-gauge-initial-comparison existing 0.1 micrometre response criterion",
+  "strict_0_1nm_displacement_response_pass": true,
+  "structural_residuals_N": [
+    0.00018681413290620724,
+    0.00027072635758914823
+  ],
+  "maximum_relative_stress_difference": 1.5408389481062385e-07,
+  "saved_mesh_resume_engineering_pass": true
+}

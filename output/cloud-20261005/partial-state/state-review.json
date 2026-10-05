@@ -1,0 +1,90 @@
+{
+  "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+  "checkpoint_t_s": 32.90909090909091,
+  "released": false,
+  "complete_cold_release": false,
+  "maximum_temperature_C": 1408.1246271309808,
+  "maximum_eqp": 0.08664310539510733,
+  "current_equilibrium_residual_N": 0.002080942281433429,
+  "actual_QT_active_link_count": 268,
+  "maximum_actual_elastic_QT_traction_MPa": 1149.0821429537878,
+  "local_comparison": {
+    "material": "wrought Ni200 comparison E205GPa nu.29 Y105MPa H1025MPa; not Ni99/PMZ properties",
+    "thickness_mm": 1.2,
+    "loading": "121 monotonic proportional jump steps to this current manufacturing state; no inherited local plastic state",
+    "sample_rule": "maximum vector jump, maximum and minimum normal jump, maximum shear jump; not an exhaustive local FE search",
+    "paths": [
+      {
+        "link": 1104,
+        "constraint": "free_lateral_stress",
+        "target_jump_mm": [
+          -0.013360342015250016,
+          0.005222142987292789,
+          -0.011500011534653468
+        ],
+        "legacy_traction_MPa": [
+          -835.0213759531259,
+          326.38393670579933,
+          -718.7507209158417
+        ],
+        "final_normal_traction_MPa": -94.55508483377318,
+        "maximum_principal_MPa": 15.68921333610164,
+        "final_eqp": 0.011269063239223075
+      },
+      {
+        "link": 1104,
+        "constraint": "restrained_lateral_strain",
+        "target_jump_mm": [
+          -0.013360342015250016,
+          0.005222142987292789,
+          -0.011500011534653468
+        ],
+        "legacy_traction_MPa": [
+          -835.0213759531259,
+          326.38393670579933,
+          -718.7507209158417
+        ],
+        "final_normal_traction_MPa": -1610.8908551572827,
+        "maximum_principal_MPa": 0.0,
+        "final_eqp": 0.008925907004842179
+      },
+      {
+        "link": 1751,
+        "constraint": "free_lateral_stress",
+        "target_jump_mm": [
+          0.0017267240938868625,
+          0.00037217374932106695,
+          0.0029514545425377873
+        ],
+        "legacy_traction_MPa": [
+          107.9202558679289,
+          23.260859332566685,
+          184.4659089086117
+        ],
+        "final_normal_traction_MPa": 101.23896265012567,
+        "maximum_principal_MPa": 105.13743516345565,
+        "final_eqp": 0.0020876872373518994
+      },
+      {
+        "link": 1751,
+        "constraint": "restrained_lateral_strain",
+        "target_jump_mm": [
+          0.0017267240938868625,
+          0.00037217374932106695,
+          0.0029514545425377873
+        ],
+        "legacy_traction_MPa": [
+          107.9202558679289,
+          23.260859332566685,
+          184.4659089086117
+        ],
+        "final_normal_traction_MPa": 463.1621707132591,
+        "maximum_principal_MPa": 470.97743075626806,
+        "final_eqp": 0.0014003391503928275
+      }
+    ]
+  },
+  "connection_strength_pass": false,
+  "global_connection_feedback_complete": false,
+  "plot": "top nodal values interpolated only on actual QT boundary triangles; QT midplane section uses constant saved element values; no fabricated measurements"
+}

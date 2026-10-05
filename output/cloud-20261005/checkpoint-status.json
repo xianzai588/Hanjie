@@ -1,0 +1,51 @@
+{
+  "scope": "immutable downloadable snapshot; latest running status is separate",
+  "cases": [
+    {
+      "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+      "committed_t_s": 46.94318181818182,
+      "current_max_C": 129.0708398933486,
+      "maximum_eqp": 0.08705507903727308,
+      "mechanical_equilibrium_residual_N": 2.030898301179777e-06,
+      "mandrel_released": false,
+      "shell_free_release_included": false,
+      "recorded_path_steps": 111,
+      "complete_path_from_zero": false,
+      "original_checkpoint_metadata_preserved": true,
+      "scope": "recoverable compute snapshot; not complete welding-design qualification",
+      "checkpoint_mtime_ns": 1791172290093485327,
+      "archive": "/workspace/scratch/1b908e613c81/Hanjie/output/cloud-20261005/durable-checkpoints/8p-E285-k2500-f2-bore008-h1125-dt0125-s025.zip"
+    },
+    {
+      "case": "8p-E285-k2500-f2-bore008-h085-dt0125-s025",
+      "committed_t_s": 7.375,
+      "current_max_C": 1521.3900974335193,
+      "maximum_eqp": 0.06842093961412667,
+      "mechanical_equilibrium_residual_N": 0.005812418843385015,
+      "mandrel_released": false,
+      "shell_free_release_included": false,
+      "recorded_path_steps": 0,
+      "complete_path_from_zero": false,
+      "original_checkpoint_metadata_preserved": true,
+      "scope": "recoverable compute snapshot; not complete welding-design qualification",
+      "checkpoint_mtime_ns": 1791169248734390563,
+      "archive": "/workspace/scratch/1b908e613c81/Hanjie/output/cloud-20261005/durable-checkpoints/8p-E285-k2500-f2-bore008-h085-dt0125-s025.zip"
+    },
+    {
+      "case": "8p-E285-k2500-f2-bore008-h1125-dt00625-s0125",
+      "committed_t_s": 8.6875,
+      "current_max_C": 1500.2660547372625,
+      "maximum_eqp": 0.08431541900351791,
+      "mechanical_equilibrium_residual_N": 0.0015785680163825024,
+      "mandrel_released": false,
+      "shell_free_release_included": false,
+      "recorded_path_steps": 0,
+      "complete_path_from_zero": false,
+      "original_checkpoint_metadata_preserved": true,
+      "scope": "recoverable compute snapshot; not complete welding-design qualification",
+      "checkpoint_mtime_ns": 1791169248790388078,
+      "archive": "/workspace/scratch/1b908e613c81/Hanjie/output/cloud-20261005/durable-checkpoints/8p-E285-k2500-f2-bore008-h1125-dt00625-s0125.zip"
+    }
+  ],
+  "complete_engineering_design_pass": false
+}

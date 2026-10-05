@@ -63,3 +63,16 @@ output/tmp/*.txt
 # OS
 .DS_Store
 Thumbs.db
+
+# Cloud virtual environment; recoverable raw fields are packaged separately.
+.venv-cloud/
+.cloud-deps/
+simulation/competition-r4/results/cloud-*/**/*.npz
+simulation/competition-r4/results/8p-E285*/**/*.npz
+simulation/competition-r4/results/8p-E285*/**/*.log
+output/cloud-20261005/**/*.npz
+output/cloud-20261005/**/*.zip
+output/cloud-20261005/**/*.png
+output/cloud-20261005/**/*.pdf
+output/cloud-20261005/**/*.log
+output/cloud-20261005/*upload*.json

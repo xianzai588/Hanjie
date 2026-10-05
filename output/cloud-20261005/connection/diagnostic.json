@@ -1,0 +1,377 @@
+{
+  "scope": "cold material-point constitutive comparison, not actual weld/service load or failure qualification",
+  "thickness_mm": 1.2,
+  "E_MPa": 205000.0,
+  "nu": 0.29,
+  "normal_free_lateral_stiffness_N_mm3": 170833.33333333334,
+  "normal_restrained_lateral_stiffness_N_mm3": 223867.9709609942,
+  "shear_stiffness_N_mm3": 66214.47028423773,
+  "legacy_scalar_stiffness_N_mm3": 62500.0,
+  "source": {
+    "url": "https://www.specialmetals.com/documents/technical-bulletins/nickel-200.pdf",
+    "elastic": "Table4, annealed wrought Ni200, 26C E205GPa/nu0.29",
+    "yield_basis": "Table5 annealed tubing85..210MPa and rod/bar105..210MPa; comparison only",
+    "applicability": "wrought material differs from first-layer79.71..89.66%Ni,0.374..0.738%C weld deposit"
+  },
+  "hardening_basis": "0,0.005E,0.02E explicit engineering sensitivity; not measured or supplier-qualified",
+  "imposed_jump_history": {
+    "normal_max_mm": 0.03,
+    "shear_max_mm": 0.01,
+    "return_condition": "prescribed jumps return to zero; this is not unloading to zero traction"
+  },
+  "tangent_relative_error": 2.511125691735785e-11,
+  "constitutive_implementation_pass": true,
+  "cases": [
+    {
+      "name": "free_lateral_stress-Y85-H0",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 85.0,
+      "hardening_MPa": 0.0,
+      "peak_VM_MPa": 85.00000000000003,
+      "peak_principal_MPa": 84.48639924129073,
+      "maximum_eqp": 0.04968014598394785,
+      "maximum_yield_consistency_error_MPa": 2.842170943040401e-14,
+      "maximum_free_lateral_stress_residual_MPa": 3.974218031420371e-12,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -3.552713678800501e-15,
+        7.105427357601002e-15,
+        -83.46834301526707,
+        -13.115784746777809,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y85-H0.005",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 85.0,
+      "hardening_MPa": 1025.0,
+      "peak_VM_MPa": 135.4172439750746,
+      "peak_principal_MPa": 109.87646100241437,
+      "maximum_eqp": 0.04918755509763373,
+      "maximum_yield_consistency_error_MPa": 5.684341886080802e-14,
+      "maximum_free_lateral_stress_residual_MPa": 4.446501842992451e-13,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -1.4210854715202004e-14,
+        -1.4210854715202004e-14,
+        -132.9737825447229,
+        -20.90937782517086,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y85-H0.02",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 85.0,
+      "hardening_MPa": 4100.0,
+      "peak_VM_MPa": 280.7868663090546,
+      "peak_principal_MPa": 184.5580362026149,
+      "maximum_eqp": 0.047752894221720625,
+      "maximum_yield_consistency_error_MPa": 1.4210854715202004e-13,
+      "maximum_free_lateral_stress_residual_MPa": 9.980000048389117e-09,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -1.9489192482069484e-09,
+        -1.9489192482069484e-09,
+        -275.7000892837229,
+        -43.44134023163297,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y105-H0",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 105.0,
+      "hardening_MPa": 0.0,
+      "peak_VM_MPa": 105.00000000000006,
+      "peak_principal_MPa": 104.36555200394741,
+      "maximum_eqp": 0.04938902103901572,
+      "maximum_yield_consistency_error_MPa": 5.684341886080802e-14,
+      "maximum_free_lateral_stress_residual_MPa": 1.51884472393349e-11,
+      "zero_jump_return_stress_Mandel_MPa": [
+        1.4210854715202004e-14,
+        7.105427357601002e-15,
+        -103.1079531365064,
+        -16.20185174601965,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y105-H0.005",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 105.0,
+      "hardening_MPa": 1025.0,
+      "peak_VM_MPa": 155.12129851840038,
+      "peak_principal_MPa": 129.65706089733342,
+      "maximum_eqp": 0.048898827822829644,
+      "maximum_yield_consistency_error_MPa": 5.917488721252084e-14,
+      "maximum_free_lateral_stress_residual_MPa": 4.0194366942304643e-13,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -2.1316282072803006e-14,
+        -1.4210854715202004e-14,
+        -152.3222981929651,
+        -23.95182285683913,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y105-H0.02",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 105.0,
+      "hardening_MPa": 4100.0,
+      "peak_VM_MPa": 299.6317730563117,
+      "peak_principal_MPa": 204.048758984548,
+      "maximum_eqp": 0.04747116416007604,
+      "maximum_yield_consistency_error_MPa": 9.947598300641403e-14,
+      "maximum_free_lateral_stress_residual_MPa": 9.980773789952757e-09,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -1.6740813180149416e-09,
+        -1.6740955288696568e-09,
+        -294.20359886639113,
+        -46.356889742645905,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y210-H0",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 210.0,
+      "hardening_MPa": 0.0,
+      "peak_VM_MPa": 210.00000000000009,
+      "peak_principal_MPa": 208.731104011859,
+      "maximum_eqp": 0.047860604944277345,
+      "maximum_yield_consistency_error_MPa": 8.526512829121202e-14,
+      "maximum_free_lateral_stress_residual_MPa": 9.579402890258638e-09,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -3.971948103753675e-09,
+        -3.971948103753675e-09,
+        -206.21590627686342,
+        -32.403703492554044,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y210-H0.005",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 210.0,
+      "hardening_MPa": 1025.0,
+      "peak_VM_MPa": 258.56758379509455,
+      "peak_principal_MPa": 233.5052033059742,
+      "maximum_eqp": 0.047383008580580026,
+      "maximum_yield_consistency_error_MPa": 1.1368683772161603e-13,
+      "maximum_free_lateral_stress_residual_MPa": 9.438260370762132e-09,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -2.4746640292505617e-09,
+        -2.474692450959992e-09,
+        -253.9020042877757,
+        -39.92465912641127,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "free_lateral_stress-Y210-H0.02",
+      "constraint": "free_lateral_stress",
+      "yield_MPa": 210.0,
+      "hardening_MPa": 4100.0,
+      "peak_VM_MPa": 398.567520114393,
+      "peak_principal_MPa": 306.3750267594592,
+      "maximum_eqp": 0.045992078076681216,
+      "maximum_yield_consistency_error_MPa": 1.4210854715202004e-13,
+      "maximum_free_lateral_stress_residual_MPa": 9.866862954043383e-09,
+      "zero_jump_return_stress_Mandel_MPa": [
+        -8.355698355444474e-10,
+        -8.355698355444474e-10,
+        -391.34700784835144,
+        -61.663536167027445,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y85-H0",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 85.0,
+      "hardening_MPa": 0.0,
+      "peak_VM_MPa": 85.00000000000038,
+      "peak_principal_MPa": 4124.112633634795,
+      "maximum_eqp": 0.033624677226874566,
+      "maximum_yield_consistency_error_MPa": 3.836930773104541e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        27.22178614684756,
+        27.22178614684756,
+        -54.443572293746875,
+        -19.248709580458126,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y85-H0.005",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 85.0,
+      "hardening_MPa": 1025.0,
+      "peak_VM_MPa": 119.16923529485013,
+      "peak_principal_MPa": 4135.670260329551,
+      "maximum_eqp": 0.033335839312048886,
+      "maximum_yield_consistency_error_MPa": 6.785683126508957e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        38.164699276242864,
+        38.164699276242864,
+        -76.32939855252741,
+        -26.986517660186465,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y85-H0.02",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 85.0,
+      "hardening_MPa": 4100.0,
+      "peak_VM_MPa": 218.2140566354127,
+      "peak_principal_MPa": 4169.756851053361,
+      "maximum_eqp": 0.032491233325710404,
+      "maximum_yield_consistency_error_MPa": 6.394884621840902e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        69.88442804668556,
+        69.88442804668556,
+        -139.76885609339857,
+        -49.41575297116118,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y105-H0",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 105.0,
+      "hardening_MPa": 0.0,
+      "peak_VM_MPa": 105.0000000000005,
+      "peak_principal_MPa": 4137.442590381737,
+      "maximum_eqp": 0.03337296990980138,
+      "maximum_yield_consistency_error_MPa": 4.973799150320701e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        33.626912299056734,
+        33.626912299056734,
+        -67.25382459814816,
+        -23.77781771703651,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y105-H0.005",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 105.0,
+      "hardening_MPa": 1025.0,
+      "peak_VM_MPa": 138.91307322508675,
+      "peak_principal_MPa": 4148.9431436780915,
+      "maximum_eqp": 0.0330859250976456,
+      "maximum_yield_consistency_error_MPa": 5.968558980384842e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        44.48778790983726,
+        44.48778790983727,
+        -88.97557581970686,
+        -31.457616511042456,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y105-H0.02",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 105.0,
+      "hardening_MPa": 4100.0,
+      "peak_VM_MPa": 237.21094368194798,
+      "peak_principal_MPa": 4182.861409396792,
+      "maximum_eqp": 0.032246571629743405,
+      "maximum_yield_consistency_error_MPa": 8.810729923425242e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        75.96830094829646,
+        75.96830094829646,
+        -151.93660189662046,
+        -53.71770075576735,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y210-H0",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 210.0,
+      "hardening_MPa": 0.0,
+      "peak_VM_MPa": 210.00000000000068,
+      "peak_principal_MPa": 4207.424863303166,
+      "maximum_eqp": 0.03205150649516726,
+      "maximum_yield_consistency_error_MPa": 6.821210263296962e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        67.25382459812852,
+        67.25382459812852,
+        -134.50764919628125,
+        -47.555635434073004,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y210-H0.005",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 210.0,
+      "hardening_MPa": 1025.0,
+      "peak_VM_MPa": 242.56822235882908,
+      "peak_principal_MPa": 4218.625781257928,
+      "maximum_eqp": 0.03177387547202835,
+      "maximum_yield_consistency_error_MPa": 5.293543381412746e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        77.68400323619638,
+        77.68400323619639,
+        -155.36800647241057,
+        -54.930885478036345,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "restrained_lateral_strain-Y210-H0.02",
+      "constraint": "restrained_lateral_strain",
+      "yield_MPa": 210.0,
+      "hardening_MPa": 4100.0,
+      "peak_VM_MPa": 336.94460067625846,
+      "peak_principal_MPa": 4251.660340699809,
+      "maximum_eqp": 0.03096209772591669,
+      "maximum_yield_consistency_error_MPa": 5.968558980384842e-13,
+      "maximum_free_lateral_stress_residual_MPa": 0.0,
+      "zero_jump_return_stress_Mandel_MPa": [
+        107.90863368175805,
+        107.90863368175808,
+        -215.81726736353139,
+        -76.30292662494979,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "connection_strength_pass": false,
+  "global_stiffness_feedback_complete": false,
+  "missing": [
+    "same-process diluted Ni99 temperature-dependent plastic law",
+    "first QT/Ni PMZ geometry and tensile/fracture properties",
+    "root Ni99 remelting and both-side fused geometry",
+    "local model driven by actual manufacturing-state boundary displacements",
+    "global re-equilibration of the revised nonlinear connection law"
+  ]
+}

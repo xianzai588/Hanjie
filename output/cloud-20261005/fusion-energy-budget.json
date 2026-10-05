@@ -1,0 +1,43 @@
+{
+  "source_input": "simulation/competition-r4/results/8p-E285-k2500-f2-bore008-h1125-dt0125-s025/input.json",
+  "scope": "necessary enthalpy balance using the exact whole-part input curves; not a melt-pool prediction",
+  "filler_specific_melting_enthalpy_J_kg": 1235000.0,
+  "passes": [
+    {
+      "pass_index": 1,
+      "deposited_area_mm2": 3.9199999999999995,
+      "added_filler_mass_kg_per_mm": 3.2144e-05,
+      "minimum_filler_heating_and_melting_J_mm": 39.69784000000001,
+      "net_energy_J_mm": 285.0,
+      "remaining_energy_for_parent_remelt_conduction_and_loss_J_mm": 245.30216,
+      "necessary_filler_energy_fraction": 0.1392906666666667
+    },
+    {
+      "pass_index": 2,
+      "deposited_area_mm2": 4.08,
+      "added_filler_mass_kg_per_mm": 3.3456000000000006e-05,
+      "minimum_filler_heating_and_melting_J_mm": 41.318160000000006,
+      "net_energy_J_mm": 285.0,
+      "remaining_energy_for_parent_remelt_conduction_and_loss_J_mm": 243.68184,
+      "necessary_filler_energy_fraction": 0.14497600000000002
+    }
+  ],
+  "layer_inventory": {
+    "finished_total_min_mm": 1.2,
+    "finished_second_min_mm": 0.5,
+    "root_remelt_design_max_mm": 0.3,
+    "union_remelt_design_max_mm": 0.4,
+    "total_remaining_design_min_mm": 0.8,
+    "second_remaining_design_min_mm": 0.1
+  },
+  "necessary_filler_energy_condition_pass": true,
+  "both_side_fusion_verified": false,
+  "Ni99_remaining_thickness_verified": false,
+  "first_QT_PMZ_verified": false,
+  "missing_local_evidence": [
+    "Ni99 first/second-layer composition-dependent solidus/liquidus and enthalpy",
+    "resolved local heat source and melt depth on Ni99 and steel",
+    "cumulative remelting union referenced to the same finished surface",
+    "QT first-layer PMZ and second-layer reheating thermal path"
+  ]
+}

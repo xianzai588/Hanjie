@@ -1,0 +1,15 @@
+{
+  "available": true,
+  "complete_prefix": false,
+  "recorded_steps": 111,
+  "checkpoint_t_s": 46.94318181818182,
+  "maximum_plastic_tensor_reconstruction_error": 0.0,
+  "maximum_eqp_reconstruction_error": 0.0,
+  "state_reconstruction_pass": false,
+  "anchor_t_s": 30.40909090909091,
+  "recorded_suffix_state_reconstruction_pass": true,
+  "interval_interior_guarantee": false,
+  "contact_transition_steps": 94,
+  "yield_transition_steps": 110,
+  "thermal_reset_steps": 76
+}

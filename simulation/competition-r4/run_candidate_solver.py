@@ -16,6 +16,17 @@ DIRECT_SOLVER_NAME="SciPy SuperLU"
 SOLVER_THREADS=1
 thermal_spsolve=spsolve
 structural_spsolve=spsolve
+PAUSE_REQUESTED=False
+CHECKPOINT_EVERY=20
+
+
+class ComputationPaused(RuntimeError):
+    pass
+
+
+def request_pause(signum,frame):
+    global PAUSE_REQUESTED
+    PAUSE_REQUESTED=True
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'src'))
@@ -194,15 +205,20 @@ def operators(x,e):
     dof=(3*e[:,:,None]+np.arange(3)).reshape(-1,12)
     return g,vol,b,dof
 
-def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False,struct_dt=5.,contact_density=2000.,copper_h=50.,source_radius=2.2,source_depth=1.6,weld_h=1.,source_r=73.8,use_amg=False,cold_struct_dt=None,seat_path=None,root_h=None,peening_trace=False,peening_all=False,thermal_observer=None,event_dT=None,paired=False,unilateral_pads=False,material_enthalpy=False,initial_bore_diameter=40.014,resume=False,checkpoint=False,fixture_contact_h=None,fixture_refinement=1,net_power=495.):
+def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False,struct_dt=5.,contact_density=2000.,copper_h=50.,source_radius=2.2,source_depth=1.6,weld_h=1.,source_r=73.8,use_amg=False,cold_struct_dt=None,seat_path=None,root_h=None,peening_trace=False,peening_all=False,thermal_observer=None,event_dT=None,paired=False,unilateral_pads=False,material_enthalpy=False,initial_bore_diameter=40.014,resume=False,checkpoint=False,fixture_contact_h=None,fixture_refinement=1,net_power=495.,saved_mesh=None,path_journal=False):
     output.mkdir(parents=True,exist_ok=True)
-    clock=time.perf_counter(); x,e,m,bd,links=mesh(n,h,weld_h,seat_path,root_h)
+    clock=time.perf_counter()
+    if saved_mesh is not None:
+        if not resume:raise ValueError('saved mesh is permitted only for committed-state resume')
+        from saved_mesh import load_saved_mesh
+        x,e,m,bd,links=load_saved_mesh(saved_mesh,output/'continuation-checkpoint.npz',initial_bore_diameter,seat_path)
+    else:
+        x,e,m,bd,links=mesh(n,h,weld_h,seat_path,root_h)
     # Morph the nominal CAD bore to the declared manufacturing verification point.
     # Reassemble geometry, thermal capacity/conductivity and contact for that point.
     bore_radius=initial_bore_diameter/2
     radii=np.linalg.norm(x[:,:2],axis=1); bore_geom=np.abs(radii-20)<1e-4
-    x[bore_geom,:2]*=bore_radius/20
-    np.savez_compressed(output/'mesh.npz',x=x,e=e,material=m,boundary=bd,link_nodes=np.array([[z[0],*z[1]] for z in links]),link_weights=np.array([[1.,*[-v for v in z[2]]] for z in links]))
+    if saved_mesh is None:x[bore_geom,:2]*=bore_radius/20
     from affine_interface import audit as interface_audit
     interface_patch=interface_audit(x,links)
     print('mesh',n,h,len(x),len(e),interface_patch,flush=True)
@@ -379,7 +395,7 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
     if np.any(link_area<=0):raise RuntimeError('empty interface tributary area')
     thermal_link_density=np.where(link_cast,.040/1.2,10.)
     mechanical_link_density=np.where(link_cast,75000/1.2,160000/h)
-    (output/'input.json').write_text(json.dumps({'materials':tables,'interface_patch':interface_patch,'linear_direct_solver':DIRECT_SOLVER_NAME,'solver_threads':SOLVER_THREADS,'sequence':seq,'travel_mm_s':v,'net_W':net_power,'leg_mm':4,
+    current_input=json.dumps({'materials':tables,'interface_patch':interface_patch,'linear_direct_solver':DIRECT_SOLVER_NAME,'solver_threads':SOLVER_THREADS,'sequence':seq,'travel_mm_s':v,'net_W':net_power,'leg_mm':4,
         'weld_base_z_mm':weld_top,'seat_thickness_mm':weld_top-100,'root_leg_mm':2.8,'root_mesh_mm':root_h,'idle_s':idle,'h_air_W_m2K':15,'emissivity':.7,'copper_contact_W_m2K':copper_h,'copper_water_model':seal,'copper_water_inlet_C':water_inlet,'fixture_cooling_removed_on_release':True,
         'mandrel_penalty_N_mm3':contact_density,'contact_area_mm2':float(bore_area.sum()),'initial_bore_diameter_mm':initial_bore_diameter,'structural_step_s':struct_dt,'weld_mesh_mm':weld_h,'h_mm':h,'dt_s':dt,'annealing_C':1200,'latent_heat_J_kg':[t['latent_heat_J_kg'] for t in fusion] if material_enthalpy else 250000,
         'source_radius_mm':source_radius,'source_depth_mm':source_depth,'source_r_mm':source_r,'Ni99_thin_layer_mm':1.2,'Ni99_conductivity_W_mK':40,'mechanical_interface_N_mm3':'Ni side 62500, steel side 160000/h','cold_structural_step_s':cold_struct_dt,'seat_geometry':str(seat_path) if seat_path else 'original 8P-FAIR_B','initial_radial_preload_N':100,'stress_free_interface_birth':True,'stress_free_birth':'distance-weighted complete affine continuation; adaptive 16/32/64/128 hosts, exact coordinate patch and L1 <=4, no inverse-distance fallback; cold fixture preload equilibrated before arc','support':('shell annular axial seat; QT three unilateral distributed Ø8 steel pads at R30, E200 GPa/H6 mm; separate 500 N pressure ring over R20.007..35; pads and pressure released with mandrel' if unilateral_pads else 'shell annular axial seat; QT three pads at R30; separate 500 N pressure ring; pads and pressure released with mandrel'),
@@ -387,18 +403,28 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         'material_specific_fusion_enthalpy':material_enthalpy,'fusion_enthalpy_model':fusion,
         'mechanical_event_policy':'mandatory birth, every observed >1200 C state, arc on/off boundaries and active temperature jump' if event_dT is not None else 'fixed mechanical cadence',
         'mechanical_event_temperature_increment_C':event_dT,'paired_opposed_sources':paired,'stage_sequence':stages,
-        'maximum_simultaneous_heads':2 if paired else 1,'net_W_per_head':net_power,'arc_end_s':endarc},ensure_ascii=False,indent=2),encoding='utf8')
+        'maximum_simultaneous_heads':2 if paired else 1,'net_W_per_head':net_power,'arc_end_s':endarc},ensure_ascii=False,indent=2)
     if tool is not None:
-        inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
+        inputs=json.loads(current_input)
         inputs['fixture_thermal']=tool.audit
         inputs['fixture_thermal_coupling_policy']='previous converged displacement and gap; current implicit part temperature' if not thermal_only else 'continuous initial setting contact thermal diagnostic'
-        (output/'input.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2),encoding='utf8')
+        current_input=json.dumps(inputs,ensure_ascii=False,indent=2)
+    if resume:
+        # Preserve the original input bytes/label. Translate only the verified
+        # Windows separator spelling used to reach that same repository STEP.
+        from saved_mesh import same_relative_geometry
+        paired_input=json.loads((output/'input.json').read_text(encoding='utf8'))
+        same_relative_geometry(paired_input['seat_geometry'],seat_path)
+        inputs=json.loads(current_input)
+        inputs['seat_geometry']=paired_input['seat_geometry']
+        current_input=json.dumps(inputs,ensure_ascii=False,indent=2)
     checkpoint_path=output/'continuation-checkpoint.npz'
     if resume:
         if not checkpoint_path.exists():raise ValueError('no continuation checkpoint exists')
         cp=np.load(checkpoint_path,allow_pickle=False)
-        meta=json.loads(str(cp['metadata']))
-        if meta['version']!=1 or meta['inputs']!=json.loads((output/'input.json').read_text(encoding='utf8')):
+        from saved_mesh import validate_state
+        meta=validate_state(cp,nn,len(e),len(lnodes),len(tool.cells) if tool is not None else None)
+        if meta['version']!=1 or meta['inputs']!=json.loads(current_input):
             raise ValueError('checkpoint physics/parameters do not match the current run')
         if not np.array_equal(cp['x'],x) or not np.array_equal(cp['e'],e):
             raise ValueError('checkpoint mesh differs')
@@ -417,6 +443,10 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         sampled_hot=cp['sampled_hot'].copy()
         link_reference=cp['link_reference'].copy()
         mechanical_link_active=cp['mechanical_link_active'].copy()
+        expected_active=(m!=2)|(meta['t']>=birth)
+        expected_links=np.isin(lnodes[:,0],np.unique(e[expected_active]))
+        if not np.array_equal(active,expected_active) or not np.array_equal(thermal_active,expected_active) or not np.array_equal(mechanical_link_active,expected_links):
+            raise ValueError('checkpoint material/interface birth state differs from physical schedule')
         stress=cp['stress'].copy()
         copper_temp=meta['copper_temp']
         max_copper_temp=meta['max_copper_temp']
@@ -450,6 +480,20 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         clock-=meta['elapsed_s']
         print('resumed converged state',t,flush=True)
         cp.close()
+    # Never overwrite the paired evidence before strict compatibility checks.
+    if not resume:
+        np.savez_compressed(output/'mesh.npz',x=x,e=e,material=m,boundary=bd,link_nodes=lnodes,link_weights=lweights)
+        (output/'input.json').write_text(current_input,encoding='utf8')
+    else:
+        if not (output/'input.json').exists() or json.loads((output/'input.json').read_text(encoding='utf8'))!=json.loads(current_input):
+            raise ValueError('paired input file differs from checkpoint/current input')
+        with np.load(output/'mesh.npz',allow_pickle=False) as paired_mesh:
+            if any(not np.array_equal(paired_mesh[k],value) for k,value in dict(x=x,e=e,material=m,boundary=bd,link_nodes=lnodes,link_weights=lweights).items()):
+                raise ValueError('paired mesh/interface file differs from restored discretisation')
+    journal=None
+    if path_journal:
+        from nonlinear_path import PathJournal
+        journal=PathJournal(output,bore,len(e),t if resume else None,plastic,eqp)
     def save_continuation(state):
         if not checkpoint or thermal_only:return
         meta=dict(version=1,inputs=json.loads((output/'input.json').read_text(encoding='utf8')),
@@ -614,6 +658,7 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             strains=np.einsum('eij,ej->ei',b,u[dof])
             # New deposition / material above annealing temperature is stress free.
             reset=newly|(te>1200)
+            reset_eqp=eqp[reset].copy() if journal is not None else None
             sampled_hot |= newactive & (te>1200)
             ref[reset]=strains[reset];ref[reset,:3]-=al[reset,None]
             plastic[reset]=0.;eqp[reset]=0.
@@ -735,6 +780,10 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
                 if not accepted:raise RuntimeError(f'Newton stagnation t={t} residual={res}')
             if not converged:raise RuntimeError(f'Newton failed t={t} residual={res}')
             u=trial;plastic+=dl[:,None]*direction;eqp+=dl
+            if journal is not None:
+                gap=(u.reshape(-1,3)[bore,:2]*normals).sum(axis=1)-mandrel_intrusion
+                if tool is not None:gap-=tool.offset()
+                journal.append(t,gap,(gap<0)&(not rel),dl,direction,reset,reset_eqp,active,rel)
             newton_max=max(newton_max,it);max_res=max(max_res,float(res));max_contact=max(max_contact,reaction)
             if pads is not None:
                 pr=pad_state['reaction'];pa=pad_state['area'];moment=pad_state['moment_N_mm']
@@ -751,7 +800,14 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             last_struct_t=t
             last_mechanical_temperature=te.copy()
             if len(struct)%10==0:saved_t.append(te.astype(np.float32));saved_u.append(u.astype(np.float32))
-            if len(struct)%20==0:save_continuation(locals())
+            if len(struct)%CHECKPOINT_EVERY==0:save_continuation(locals())
+            if PAUSE_REQUESTED or (output/'pause-requested').exists():
+                if not checkpoint:raise RuntimeError('safe pause requires checkpoint recording')
+                save_continuation(locals())
+                (output/'cloud-pause-status.json').write_text(json.dumps(dict(
+                    status='paused_after_converged_increment',t_s=t,fully_cooled_and_released=False,
+                    checkpoint='continuation-checkpoint.npz',design_pass=False)),encoding='utf8')
+                raise ComputationPaused(f'committed pause at t={t}')
         if rel and temp.max()<20.5:break
         if thermal_only and len(history)%50==0:print('thermal',round(t,2),round(temp.max(),1),round(peak.max(),1),flush=True)
     if not thermal_only:save_continuation(locals())
@@ -815,17 +871,23 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
     print(json.dumps(result,ensure_ascii=False),flush=True)
 
 if __name__=='__main__':
+    import signal
+    signal.signal(signal.SIGTERM,request_pause)
+    signal.signal(signal.SIGINT,request_pause)
     p=argparse.ArgumentParser();p.add_argument('--n',type=int,default=6);p.add_argument('--h',type=float,default=2.0)
     p.add_argument('--initial-bore',type=float,default=40.014)
+    p.add_argument('--checkpoint-every',type=int,default=20)
     p.add_argument('--fixture-contact-h',type=float);p.add_argument('--fixture-refinement',type=int,default=1)
     p.add_argument('--dt',type=float,default=2);p.add_argument('--imbalance',type=float,default=.05);p.add_argument('--preheat',type=float,default=20)
-    p.add_argument('--resume',action='store_true');p.add_argument('--checkpoint',action='store_true');p.add_argument('--pardiso-symmetric',action='store_true');p.add_argument('--pardiso',action='store_true');p.add_argument('--pardiso-pattern',action='store_true');p.add_argument('--event-dT',type=float);p.add_argument('--paired-opposed',action='store_true');p.add_argument('--unilateral-pads',action='store_true');p.add_argument('--material-enthalpy',action='store_true');p.add_argument('--threads',type=int,default=1)
-    p.add_argument('--output',type=Path,required=True);p.add_argument('--amg',action='store_true');p.add_argument('--source-r',type=float,default=73.8);p.add_argument('--weld-h',type=float,default=1.);p.add_argument('--stop-time',type=float);p.add_argument('--thermal-only',action='store_true');p.add_argument('--struct-dt',type=float,default=5.);p.add_argument('--cold-struct-dt',type=float);p.add_argument('--seat-path',type=Path);p.add_argument('--root-h',type=float);p.add_argument('--contact-density',type=float,default=2000.);p.add_argument('--copper-h',type=float,default=50.);p.add_argument('--source-radius',type=float,default=2.2);p.add_argument('--source-depth',type=float,default=1.6);p.add_argument('--peening-trace',action='store_true');p.add_argument('--peening-all',action='store_true');p.add_argument('--net-power',type=float,default=495.);a=p.parse_args()
+    p.add_argument('--resume',action='store_true');p.add_argument('--checkpoint',action='store_true');p.add_argument('--saved-mesh',type=Path);p.add_argument('--path-journal',action='store_true');p.add_argument('--pardiso-symmetric',action='store_true');p.add_argument('--pardiso',action='store_true');p.add_argument('--pardiso-pattern',action='store_true');p.add_argument('--event-dT',type=float);p.add_argument('--paired-opposed',action='store_true');p.add_argument('--unilateral-pads',action='store_true');p.add_argument('--material-enthalpy',action='store_true');p.add_argument('--threads',type=int,default=1)
+    p.add_argument('--output',type=Path,required=True);p.add_argument('--reuse-symbolic',action='store_true');p.add_argument('--amg',action='store_true');p.add_argument('--source-r',type=float,default=73.8);p.add_argument('--weld-h',type=float,default=1.);p.add_argument('--stop-time',type=float);p.add_argument('--thermal-only',action='store_true');p.add_argument('--struct-dt',type=float,default=5.);p.add_argument('--cold-struct-dt',type=float);p.add_argument('--seat-path',type=Path);p.add_argument('--root-h',type=float);p.add_argument('--contact-density',type=float,default=2000.);p.add_argument('--copper-h',type=float,default=50.);p.add_argument('--source-radius',type=float,default=2.2);p.add_argument('--source-depth',type=float,default=1.6);p.add_argument('--peening-trace',action='store_true');p.add_argument('--peening-all',action='store_true');p.add_argument('--net-power',type=float,default=495.);a=p.parse_args()
     if not 412.5<=a.net_power<=577.5:p.error('net power must keep the 1.65 mm/s design within 250..350 J/mm')
     if not 1<=a.threads<=8:p.error('--threads must be between 1 and 8')
+    if not 1<=a.checkpoint_every<=20:p.error('--checkpoint-every must be between 1 and 20')
+    CHECKPOINT_EVERY=a.checkpoint_every
     if not 39.98<=a.initial_bore<=40.04:p.error('--initial-bore must stay within the declared near-nominal design range')
-    if a.fixture_contact_h is not None and (a.fixture_contact_h<=0 or a.fixture_refinement not in (1,2)):
-        p.error('positive fixture conductance and refinement1/2 required')
+    if a.fixture_contact_h is not None and (a.fixture_contact_h<=0 or a.fixture_refinement not in (1,2,4)):
+        p.error('positive fixture conductance and refinement1/2/4 required')
     if a.event_dT is not None and a.event_dT<=0:p.error('--event-dT must be positive')
     if a.pardiso_pattern and (a.pardiso or a.pardiso_symmetric or a.amg):p.error('choose one direct solver mode')
     if (a.pardiso or a.pardiso_symmetric) and a.amg:p.error('choose --pardiso or --amg')
@@ -855,5 +917,22 @@ if __name__=='__main__':
         from pardiso_pattern import SymmetricPatternSolver
         thermal_spsolve=SymmetricPatternSolver();structural_spsolve=SymmetricPatternSolver()
         DIRECT_SOLVER_NAME='Intel MKL PARDISO Cholesky mtype=2; independent thermal/mechanical symbolic graphs, phases 13/23'
+    if a.reuse_symbolic:
+        if not a.pardiso_symmetric or a.pardiso_pattern:p.error('--reuse-symbolic requires the same symmetric Cholesky engine')
+        from pardiso_pattern import SymmetricPatternSolver
+        # Same Cholesky engine, actual matrices and residual checks; numerical
+        # factorisation is repeated on every call. Only graph analysis is reused.
+        thermal_spsolve=SymmetricPatternSolver();structural_spsolve=SymmetricPatternSolver()
     SOLVER_THREADS=a.threads
-    with threadpool_limits(limits=a.threads):run(a.n,a.h,a.dt,a.output,a.imbalance,a.preheat,a.stop_time,a.thermal_only,a.struct_dt,a.contact_density,a.copper_h,a.source_radius,a.source_depth,a.weld_h,a.source_r,a.amg,a.cold_struct_dt,a.seat_path,a.root_h,a.peening_trace,a.peening_all,event_dT=a.event_dT,paired=a.paired_opposed,unilateral_pads=a.unilateral_pads,material_enthalpy=a.material_enthalpy,initial_bore_diameter=a.initial_bore,resume=a.resume,checkpoint=a.checkpoint,fixture_contact_h=a.fixture_contact_h,fixture_refinement=a.fixture_refinement,net_power=a.net_power)
+    try:
+        with threadpool_limits(limits=a.threads):run(a.n,a.h,a.dt,a.output,a.imbalance,a.preheat,a.stop_time,a.thermal_only,a.struct_dt,a.contact_density,a.copper_h,a.source_radius,a.source_depth,a.weld_h,a.source_r,a.amg,a.cold_struct_dt,a.seat_path,a.root_h,a.peening_trace,a.peening_all,event_dT=a.event_dT,paired=a.paired_opposed,unilateral_pads=a.unilateral_pads,material_enthalpy=a.material_enthalpy,initial_bore_diameter=a.initial_bore,resume=a.resume,checkpoint=a.checkpoint,fixture_contact_h=a.fixture_contact_h,fixture_refinement=a.fixture_refinement,net_power=a.net_power,saved_mesh=a.saved_mesh,path_journal=a.path_journal)
+    except ComputationPaused as pause:
+        print(str(pause),flush=True);sys.exit(75)
+    finally:
+        if a.reuse_symbolic:
+            a.output.mkdir(parents=True,exist_ok=True)
+            (a.output/'solver-runtime.json').write_text(json.dumps(dict(
+                graph_reuse=True,numerical_refactor_every_changed_matrix=True,
+                thermal_analysis=thermal_spsolve.analysis_calls,thermal_refactors=thermal_spsolve.refactor_calls,
+                structural_analysis=structural_spsolve.analysis_calls,structural_refactors=structural_spsolve.refactor_calls,
+                engine=DIRECT_SOLVER_NAME,threads=SOLVER_THREADS)),encoding='utf8')

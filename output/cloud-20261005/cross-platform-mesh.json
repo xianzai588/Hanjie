@@ -1,0 +1,8 @@
+{
+  "same_mesh": false,
+  "linux_nodes": 50982,
+  "windows_nodes": 50975,
+  "linux_tetrahedra": 188390,
+  "windows_tetrahedra": 188351,
+  "decision": "re-meshed Linux solve is not a compatible resume; use exact saved mesh after independent state validation"
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "case": "8p-E285-k2500-f2-bore008-h085-dt0125-s025",
+    "t_s": 7.375,
+    "nodes": 93883,
+    "elements": 385288,
+    "links": 2144,
+    "max_eqp": 0.06842093961412667,
+    "plastic_max_norm": 0.05363454496728872,
+    "maximum_temperature_C": 1521.3900974335193,
+    "maximum_birth_reference_norm_mm": 0.02920318363934481,
+    "all_saved_state_and_pairing_checks_pass": true,
+    "completed": false
+  },
+  {
+    "case": "8p-E285-k2500-f2-bore008-h1125-dt00625-s0125",
+    "t_s": 8.6875,
+    "nodes": 50975,
+    "elements": 188351,
+    "links": 2144,
+    "max_eqp": 0.08431541900351791,
+    "plastic_max_norm": 0.05191249619517082,
+    "maximum_temperature_C": 1500.2660547372625,
+    "maximum_birth_reference_norm_mm": 0.03498139243712879,
+    "all_saved_state_and_pairing_checks_pass": true,
+    "completed": false
+  },
+  {
+    "case": "8p-E285-k2500-f2-bore008-h1125-dt0125-s025",
+    "t_s": 30.40909090909091,
+    "nodes": 50975,
+    "elements": 188351,
+    "links": 2144,
+    "max_eqp": 0.08657443864395106,
+    "plastic_max_norm": 0.04696453547654183,
+    "maximum_temperature_C": 1401.5352358041528,
+    "maximum_birth_reference_norm_mm": 0.05024449002852709,
+    "all_saved_state_and_pairing_checks_pass": true,
+    "completed": false
+  }
+]

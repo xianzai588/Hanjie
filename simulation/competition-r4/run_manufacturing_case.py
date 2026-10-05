@@ -21,7 +21,7 @@ CANDIDATE_CASES={
 SETTINGS.update(CANDIDATE_CASES)
 
 
-def run(case):
+def run(case,restore_saved_mesh=False,path_journal=False,reuse_symbolic=False,threads=2,checkpoint_every=20):
     os.chdir(ROOT);folder=ROOT/'simulation/competition-r4/results'/case
     folder.mkdir(parents=True,exist_ok=True)
     def status(stage,**extra):
@@ -33,7 +33,7 @@ def run(case):
         '--contact-density','2000','--copper-h','50','--source-r','74.8',
         '--source-radius','1.270170592','--source-depth','.923760431',
         '--weld-h','1','--unilateral-pads','--material-enthalpy','--paired-opposed',
-        '--pardiso-symmetric','--threads','2','--checkpoint','--output',str(folder),
+        '--pardiso-symmetric','--threads',str(threads),'--checkpoint','--output',str(folder),
         '--fixture-contact-h','2000','--fixture-refinement','1']
     script='run_verified.py'
     if case in CANDIDATE_CASES:
@@ -45,12 +45,26 @@ def run(case):
         args[args.index('--contact-density')+1]='2500'
         args[args.index('--fixture-refinement')+1]='2'
         args+=['--net-power','470.25']
-    if (folder/'continuation-checkpoint.npz').exists():args+=['--resume']
+        args+=['--checkpoint-every',str(checkpoint_every)]
+    if (folder/'continuation-checkpoint.npz').exists():
+        args+=['--resume']
+        if restore_saved_mesh:
+            if case not in CANDIDATE_CASES:raise ValueError('saved mesh resume is implemented only in the candidate solver')
+            args+=['--saved-mesh',str(folder/'mesh.npz')]
+    if path_journal:
+        if case not in CANDIDATE_CASES:raise ValueError('path journaling is implemented only in the candidate solver')
+        args+=['--path-journal']
+    if reuse_symbolic:
+        if case not in CANDIDATE_CASES:raise ValueError('symbolic reuse is verified only for the candidate solver')
+        args+=['--reuse-symbolic']
     def command(script,*params):
         subprocess.run([sys.executable,'-X','utf8',str(ROOT/'simulation/competition-r4'/script),*params],cwd=ROOT,check=True)
     try:
         status('cold_thermal_mechanical_solve',solver=script,arguments=args)
         command(script,*args)
+        completed=json.loads((folder/'result.json').read_text(encoding='utf8'))
+        if not completed.get('released') or completed.get('final_max_C',999)>20.5:
+            raise ValueError('solver has not completed cooling and fixture release')
         status('complete_shell_clamp_release')
         command('release_cold_shell.py','--case',str(folder),'--threads','2')
         status('independent_metrology_samples')
@@ -59,10 +73,19 @@ def run(case):
         status('complete',position_mm=row['fit']['position_diameter_mm'],
             bore_min_mm=row['fit']['sampled_bore_two_point_diameter_min_mm'],
             bore_max_mm=row['fit']['sampled_bore_two_point_diameter_max_mm'])
+    except subprocess.CalledProcessError as error:
+        if error.returncode==75:
+            status('paused_after_converged_increment');return
+        status('failed',error=str(error));traceback.print_exc();raise
     except BaseException as error:
         status('failed',error=str(error));traceback.print_exc();raise
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--case',choices=SETTINGS,required=True)
-    run(p.parse_args().case)
+    p.add_argument('--restore-saved-mesh',action='store_true')
+    p.add_argument('--path-journal',action='store_true')
+    p.add_argument('--reuse-symbolic',action='store_true')
+    p.add_argument('--threads',type=int,choices=(1,2,4,8),default=2)
+    p.add_argument('--checkpoint-every',type=int,default=20)
+    a=p.parse_args();run(a.case,a.restore_saved_mesh,a.path_journal,a.reuse_symbolic,a.threads,a.checkpoint_every)
