@@ -3,88 +3,116 @@
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
   "page_size": "A4 landscape, vector",
-  "sheet_count": 16,
+  "sheet_count": 18,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
       "pdf": "pdf/bearing-seat.pdf",
       "title": "接头布局、座体尺寸与独立基准",
-      "source": "bearing-seat.svg"
+      "source": "bearing-seat.svg",
+      "number": 1
     },
     {
       "pdf": "pdf/joint-detail.pdf",
       "title": "两道脉冲TIG截面与候选pWPS",
-      "source": "joint-detail.svg"
+      "source": "joint-detail.svg",
+      "number": 2
     },
     {
       "pdf": "pdf/fixture-assembly.pdf",
       "title": "胀套定位、端面夹紧与主动回退",
-      "source": "fixture-assembly.svg"
+      "source": "fixture-assembly.svg",
+      "number": 3
     },
     {
       "pdf": "pdf/protected-process-assembly.pdf",
       "title": "连续防护、承力组件与退出路径",
-      "source": "protected-process-assembly.svg"
+      "source": "protected-process-assembly.svg",
+      "number": 4
     },
     {
       "pdf": "pdf/inspection-and-release.pdf",
       "title": "焊接顺序、测量基准与放行卡",
-      "source": "inspection-and-release.svg"
+      "source": "inspection-and-release.svg",
+      "number": 5
     },
     {
       "pdf": "pdf/sleeve-detail.pdf",
       "title": "固定反向锥—上退六指胀套制造详图",
-      "source": "sleeve-detail.svg"
+      "source": "sleeve-detail.svg",
+      "number": 6
     },
     {
       "pdf": "pdf/gas-water-detail.pdf",
       "title": "四瓣铜环、闭合密封与独立气水路",
-      "source": "gas-water-detail.svg"
+      "source": "gas-water-detail.svg",
+      "number": 7
     },
     {
       "pdf": "pdf/workstation.pdf",
       "title": "自动焊接工作站与工装资源配置",
-      "source": "workstation.svg"
+      "source": "workstation.svg",
+      "number": 8
     },
     {
       "pdf": "pdf/following-peener.pdf",
       "title": "随动热态轻击、前侧送丝与退位时序",
-      "source": "following-peener.svg"
+      "source": "following-peener.svg",
+      "number": 9
     },
     {
       "pdf": "pdf/copper-retreat.pdf",
       "title": "铜瓣接缝、滑动桥及整环下密封座",
-      "source": "copper-retreat.svg"
+      "source": "copper-retreat.svg",
+      "number": 10
     },
     {
       "pdf": "pdf/water-route.pdf",
       "title": "密封穿盘分配块与铜瓣运动水路",
-      "source": "water-route.svg"
+      "source": "water-route.svg",
+      "number": 11
     },
     {
       "pdf": "pdf/carrier-detail.pdf",
       "title": "下托承力柱、整体法兰与预紧连接",
-      "source": "carrier-detail.svg"
+      "source": "carrier-detail.svg",
+      "number": 12
     },
     {
       "pdf": "pdf/portal-transfer.pdf",
       "title": "固定反锥、上止挡门架与A基准保持转运",
-      "source": "portal-transfer.svg"
+      "source": "portal-transfer.svg",
+      "number": 13
     },
     {
       "pdf": "pdf/datum-holder-detail.pdf",
       "title": "A基准托环与六点正向转运详图",
-      "source": "datum-holder-detail.svg"
+      "source": "datum-holder-detail.svg",
+      "number": 14
     },
     {
       "pdf": "pdf/postweld-isolation.pdf",
       "title": "PT/UT独立接液盘与短孔微珩全收集装置",
-      "source": "postweld-isolation.svg"
+      "source": "postweld-isolation.svg",
+      "number": 15
     },
     {
       "pdf": "pdf/postweld-cartridge.pdf",
       "title": "接液盘充气密封槽、支架与密闭撤出筒",
-      "source": "postweld-cartridge.svg"
+      "source": "postweld-cartridge.svg",
+      "number": 16
+    },
+    {
+      "pdf": "pdf/HJ-DRW-017-precoat-section.pdf",
+      "title": "HJ-017 名义曲面预制与法向修整断面",
+      "source": "cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf",
+      "number": 17
+    },
+    {
+      "pdf": "pdf/postweld-drain-return.pdf",
+      "title": "微珩回液、失吸容量与回收瓶接口",
+      "source": "postweld-drain-return.svg",
+      "number": 18
     }
   ]
 }

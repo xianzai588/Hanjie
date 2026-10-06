@@ -164,6 +164,7 @@ def main() -> None:
     today = _dt.date.today().isoformat()
     sheets: list[dict[str, str]] = []
 
+    total_count=len(svg_paths)+len(manifest.get('external_pdf_sheets',[]))
     for index, svg_path in enumerate(svg_paths, start=1):
         root = ET.parse(svg_path).getroot()
         style_element = root.find(f"{NS}style")
@@ -175,7 +176,7 @@ def main() -> None:
         canvas.setFillColor(HexColor("#475569"))
         canvas.drawCentredString(
             page_pw / 2, 10,
-            f"HJ 参赛工艺设计图集 · {today} · 第 {index}/{len(svg_paths)} 页",
+            f"HJ 参赛工艺设计图集 · {today} · 第 {hj_number(svg_path)}/{total_count} 页",
         )
         canvas.showPage()
         canvas.save()
@@ -183,23 +184,26 @@ def main() -> None:
         import pymupdf
         with pymupdf.open(pdf_path) as preview:
             preview[0].get_pixmap(dpi=150).save(str(svg_path.with_suffix(".png")))
-        sheets.append({"pdf": f"pdf/{pdf_path.name}", "title": title, "source": svg_path.name})
+        sheets.append({"pdf": f"pdf/{pdf_path.name}", "title": title, "source": svg_path.name,
+                       "number":hj_number(svg_path)})
 
-    combined = Canvas(str(PDF_DIR / COMBINED_NAME), pagesize=landscape(A4))
-    for sheet in sheets:
-        root = ET.parse(SVG_DIR / sheet["source"]).getroot()
-        style_element = root.find(f"{NS}style")
-        rules = parse_css(style_element.text or "") if style_element is not None else {}
-        title = export_sheet(SVG_DIR / sheet["source"], combined, page_pw, page_ph, rules)
-        combined.setFont("HanjieCN",7)
-        combined.setFillColor(HexColor("#475569"))
-        position = sheets.index(sheet) + 1
-        combined.drawCentredString(
-            page_pw / 2, 10,
-            f"HJ 参赛工艺设计图集 · {today} · 第 {position}/{len(sheets)} 页",
-        )
-        combined.showPage()
-    combined.save()
+    # HJ-017 is a validated vector PDF from the curved CAD workflow. Keep
+    # its paths and text intact rather than feeding its complex SVG into
+    # the simple five-element drawing renderer.
+    from pypdf import PdfWriter
+    for external in manifest.get('external_pdf_sheets',[]):
+        source_pdf=ROOT/external['pdf']
+        destination=PDF_DIR/source_pdf.name
+        import shutil
+        shutil.copyfile(source_pdf,destination)
+        sheets.append(dict(pdf=f'pdf/{destination.name}',title=external['title'],
+                           source=external['pdf'],number=external['number']))
+    sheets.sort(key=lambda item:item['number'])
+    combined=PdfWriter()
+    for drawing in sheets:combined.append(SVG_DIR/drawing['pdf'])
+    combined.add_metadata({'/Title':'QT450-10/Q235B 工艺设计工程图集','/Author':'',
+                           '/Subject':'当前候选几何与后序液路设计；焊接采用状态见说明书'})
+    with (PDF_DIR/COMBINED_NAME).open('wb') as stream:combined.write(stream)
 
     manifest = {
         "generated_at": today,

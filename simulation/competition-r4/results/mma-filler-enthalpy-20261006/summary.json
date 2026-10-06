@@ -1,0 +1,213 @@
+{
+  "source_DOI": "10.2355/tetsutohagane.TETSU-2025-072",
+  "cases": [
+    {
+      "product": "CI-A1",
+      "graphite_allowed": true,
+      "ternary_normalized_wt_pct": {
+        "C": 1.0121457489878543,
+        "Fe": 1.8218623481781377,
+        "Ni": 97.16599190283401
+      },
+      "omitted_constituents_wt_pct": 1.2000000000000028,
+      "mean_molar_mass_kg_mol": 0.0564184237092197,
+      "solid_reference": "25 C equilibrium in the same stated phase collection",
+      "full_liquid_first_sample_C": 1400.0,
+      "full_liquid_delta_H_J_kg": 1111309.880976754,
+      "maximum_atomic_balance_error": 7.048495120898224e-11,
+      "current_engineering_enthalpy_checks": [
+        {
+          "requested_delta_H_J_kg": 800000.0,
+          "interpolated_temperature_C": 1332.56630533268,
+          "interpolated_liquid_mass_fraction": 0.10924980740949264,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1000000.0,
+          "interpolated_temperature_C": 1371.4805608509862,
+          "interpolated_liquid_mass_fraction": 0.6840677526669582,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1300000.0,
+          "interpolated_temperature_C": 1650.1380689069506,
+          "interpolated_liquid_mass_fraction": 0.9999999999740561,
+          "complete_liquid_in_this_ternary_branch": true
+        }
+      ]
+    },
+    {
+      "product": "CI-A1",
+      "graphite_allowed": false,
+      "ternary_normalized_wt_pct": {
+        "C": 1.0121457489878543,
+        "Fe": 1.8218623481781377,
+        "Ni": 97.16599190283401
+      },
+      "omitted_constituents_wt_pct": 1.2000000000000028,
+      "mean_molar_mass_kg_mol": 0.0564184237092197,
+      "solid_reference": "25 C equilibrium in the same stated phase collection",
+      "full_liquid_first_sample_C": 1400.0,
+      "full_liquid_delta_H_J_kg": 1083251.4484560124,
+      "maximum_atomic_balance_error": 5.474776187952557e-11,
+      "current_engineering_enthalpy_checks": [
+        {
+          "requested_delta_H_J_kg": 800000.0,
+          "interpolated_temperature_C": 1300.6436242463146,
+          "interpolated_liquid_mass_fraction": 0.23851181247446002,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1000000.0,
+          "interpolated_temperature_C": 1378.3005516749593,
+          "interpolated_liquid_mass_fraction": 0.7653983250467196,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1300000.0,
+          "interpolated_temperature_C": 1687.1711465111957,
+          "interpolated_liquid_mass_fraction": 0.9999999999746984,
+          "complete_liquid_in_this_ternary_branch": true
+        }
+      ]
+    },
+    {
+      "product": "CI-A2",
+      "graphite_allowed": true,
+      "ternary_normalized_wt_pct": {
+        "C": 1.2232415902140674,
+        "Fe": 43.11926605504588,
+        "Ni": 55.657492354740064
+      },
+      "omitted_constituents_wt_pct": 1.9000000000000057,
+      "mean_molar_mass_kg_mol": 0.05487661315176896,
+      "solid_reference": "25 C equilibrium in the same stated phase collection",
+      "full_liquid_first_sample_C": 1360.0,
+      "full_liquid_delta_H_J_kg": 1144249.7669634733,
+      "maximum_atomic_balance_error": 1.4321910324355258e-10,
+      "current_engineering_enthalpy_checks": [
+        {
+          "requested_delta_H_J_kg": 800000.0,
+          "interpolated_temperature_C": 1253.3369727011836,
+          "interpolated_liquid_mass_fraction": 0.0,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1000000.0,
+          "interpolated_temperature_C": 1312.7853653334032,
+          "interpolated_liquid_mass_fraction": 0.5686573517902445,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1300000.0,
+          "interpolated_temperature_C": 1562.9804837670092,
+          "interpolated_liquid_mass_fraction": 0.9999999999792778,
+          "complete_liquid_in_this_ternary_branch": true
+        }
+      ]
+    },
+    {
+      "product": "CI-A2",
+      "graphite_allowed": false,
+      "ternary_normalized_wt_pct": {
+        "C": 1.2232415902140674,
+        "Fe": 43.11926605504588,
+        "Ni": 55.657492354740064
+      },
+      "omitted_constituents_wt_pct": 1.9000000000000057,
+      "mean_molar_mass_kg_mol": 0.05487661315176896,
+      "solid_reference": "25 C equilibrium in the same stated phase collection",
+      "full_liquid_first_sample_C": 1360.0,
+      "full_liquid_delta_H_J_kg": 1114609.8161148396,
+      "maximum_atomic_balance_error": 1.4321910324355258e-10,
+      "current_engineering_enthalpy_checks": [
+        {
+          "requested_delta_H_J_kg": 800000.0,
+          "interpolated_temperature_C": 1189.6887215807212,
+          "interpolated_liquid_mass_fraction": 0.18869574016564206,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1000000.0,
+          "interpolated_temperature_C": 1325.298051088397,
+          "interpolated_liquid_mass_fraction": 0.6520912002446875,
+          "complete_liquid_in_this_ternary_branch": false
+        },
+        {
+          "requested_delta_H_J_kg": 1300000.0,
+          "interpolated_temperature_C": 1600.586398166531,
+          "interpolated_liquid_mass_fraction": 0.999999999908618,
+          "complete_liquid_in_this_ternary_branch": true
+        }
+      ]
+    }
+  ],
+  "Gibbs_branch_audit": {
+    "replaced_higher_energy_states": [
+      {
+        "case": "CI-A1",
+        "T_C": 1340.0,
+        "original_higher_Gibbs_energy_J_mol": 39.38408004035591,
+        "selected_source": "CI-A1-graphite_suppressed.nc",
+        "sampled_phase_stability": {
+          "LIQUID": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 512.6710473392595,
+            "samples": 112005
+          },
+          "BCC_A2": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 3076.2371059467696,
+            "samples": 64004
+          },
+          "CEMENTITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 4978.3286038872175,
+            "samples": 16002
+          },
+          "FCC_A1": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 1.0328319317050045,
+            "samples": 64004
+          },
+          "GRAPHITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 1503.4419425177002,
+            "samples": 1
+          }
+        }
+      },
+      {
+        "case": "CI-A1",
+        "T_C": 1360.0,
+        "original_higher_Gibbs_energy_J_mol": 147.44227230129763,
+        "selected_source": "CI-A1-graphite_suppressed.nc",
+        "sampled_phase_stability": {
+          "LIQUID": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 593.7713270634849,
+            "samples": 112005
+          },
+          "BCC_A2": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 2937.1006680245773,
+            "samples": 64004
+          },
+          "CEMENTITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 5854.770231772272,
+            "samples": 16002
+          },
+          "FCC_A1": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 0.8082381456333678,
+            "samples": 64004
+          },
+          "GRAPHITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 5324.639836435377,
+            "samples": 1
+          }
+        }
+      }
+    ],
+    "source_directory": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-filler-enthalpy-20261006\\raw",
+    "maximum_corrected_nested_Gibbs_excess_J_mol": 2.1927262423560023e-06,
+    "nested_phase_feasibility_pass": true,
+    "scope": "same actual composition and temperature; independently converged lower-energy subset state; graphite exact and all phases sampled tangent-plane checks, not a proof over every continuous site fraction"
+  },
+  "scope": "Fe-Ni-C projection from undiluted typical deposited chemistry; 25 C equilibrium branch reference. Not actual coating chemistry, full Si/Mn alloy enthalpy, droplet measurement, transport dilution or welding qualification.",
+  "requires_full_melting_inlet_check": true,
+  "full_multicomponent_thermal_table_validated": false,
+  "first_interface_continuous_fusion_pass": false
+}

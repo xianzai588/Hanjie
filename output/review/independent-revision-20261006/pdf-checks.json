@@ -1,0 +1,23 @@
+{
+  "pages": 65,
+  "report_pages": 47,
+  "drawing_pages": 18,
+  "metadata": {
+    "format": "PDF 1.4",
+    "title": "QT450-10/Q235B 工艺设计说明书与工程图（修订审阅稿）",
+    "author": "",
+    "subject": "当前MMA首层候选、工艺规程与18张工程图",
+    "keywords": "",
+    "creator": "",
+    "producer": "pypdf",
+    "creationDate": "",
+    "modDate": "",
+    "trapped": "",
+    "encryption": null
+  },
+  "text_page_boundary_issues": [],
+  "missing_project_font_characters": [],
+  "font_mass_flow_fix": true,
+  "first_connection_qualification_complete": false,
+  "font_check_scope": "All report/card text spans, compared against the selected project CJK font cmap"
+}

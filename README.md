@@ -1,31 +1,25 @@
 # Hanjie · 焊接固定题工艺设计
 
-当前开发线为COMPETITION-R4，产物为修订审阅稿。现处于有效接头与工艺窗口重选阶段。Ni基独立预制、NiFe最终连接及8P为候选；保留柔顺座体、实心反锥/门架夹具和铜环—静密封—接料盘的设计成果，按实际连接条件复用。
+本轮只推进一条工程路线：**独立高镍预制解决铸铁首次连接，8P低热输入GTAW解决最终控形，铜环实体屏障解决内腔洁净。** CI-A1高镍首层和低碳Ni99第二层在壳外完成，修整及最终孔加工后入壳组焊；铜环、静密封和接料盘保持至冷却及受控退工具完成。
 
-本轮执行入口：[最小修复与参赛路线](deliverables/competition-route.md)、[当前提交检查](deliverables/submission-checklist.md)。先取得有效接头，再验证制造后孔形与同状态承载；旧submission目录不作为本轮最终稿。排液计算已采用实际全长管路，不再以短孔流量认证容量。
+当前工作顺序：关闭CI-A1一翼有效接头与保留层接口 → 验证8P完整制造精度和同状态承载 → 完成全周期屏障接口及说明书/WPS/工程图。CI-A2、6P及其他方法保留已有对照，停止并行研究。历史任务记录不作为当前待办。
 
-2026-10-06已按用户确定的无实物路线执行商品焊材相平衡及真实浅槽座体升温设计，新增首次MMA与首层中间修整接口，保留低碳第二层。见[无实物设计执行稿](deliverables/report/design-only-execution-rendered.md)、[预制修订PDF](output/pdf/无实物设计路线-预制修订审阅稿.pdf)、[独立预制设计卡HJ-W-00C](deliverables/process/independent-precoat-design-card.md)。升温核验不代替有效接头和制造后控形。
+- [主线整改计划](deliverables/competition-route.md)
+- [统一接口与验证状态](deliverables/process/current-candidate-state.md)
+- [说明书正文](deliverables/report/technical-report-v4-unified.md)
+- [说明书与18张工程图审阅稿](output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf)
+- [独立预制卡HJ-W-00C](deliverables/process/independent-precoat-design-card.md)与[首层输入卡HJ-W-00D](deliverables/process/first-layer-input-card.md)
+- [独立审核及修订记录](docs/review/2026-10-06-独立审核与整改结果.md)
 
-- [说明书与16张工程图审阅稿](output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf)
-- [说明书正文](deliverables/report/technical-report-v4-unified.md)、[车间工艺卡及工程展开](deliverables/process/)
-- [当前阶段账](project/stage-status.yaml)、[自动状态摘要](deliverables/report/generated/current-status.md)
-- [实际计算入口与结果用途](simulation/competition-r4/README.md)、[内部修复记录](docs/review/2026-10-03-报告复核与修复.md)
+新主线尚待首次连续连接与完整制造验证。旧制造家族约52.084 μm超过50 μm，保留为修订依据。位置度预算仍为28+2+6.5+13.5=50 μm，微珩径向去除上限3 μm，禁止焊后精镗修正轴线。
 
-旧完整工具热耦合家族已完成且未通过：空间/时间孔轴响应差16.56%/5.38%，细网格热轴15.583947 μm，总预算52.083947 μm超过50 μm。285 J/mm候选保存至68.443 s后因显式连接熔合缺口暂存。遮挡修正350 W预制只完成首条，QT峰温距当前阈值2.876℃且精度未验证；600 W在模型温区外停止，均未取得采用资格。下一轮先分开确定QT独立预制与最终双侧连接，再完成残余状态、冷却、卸夹、孔径/位置度和同状态承载。制造40.006～40.008 mm窗口尚未冻结；相关配置与服役孔径在有效结果通过后同步。详情见[报告4接续任务](docs/review/2026-10-05-报告4独立复核与接续任务.md)。
-
-8P为控形、冶金、洁净、静载和节拍综合比较的候选；6P为低热对照，全周焊为高承载参考。疲劳主表报告同谱资格需求，焊长缩放不计作两项独立优势。评价实体为QT原有Ø40孔，不增加轴套；H7是本设计尺寸控制等级，官方只给名义Ø40。
-
-报告3修订：孔形采用密集周向/轴向采样及相位稳定性检查；制造上下界的焊后/精整孔轴均纳入预算，微珩轴线分配重算为6.5 μm。下界独立精度与内部接触/塑性路径仍须闭合，两个端点差不等于区间保守界。产品内腔不安排焊后清洗补救，全周期未清洗牺牲样用于阻隔/残留资格。当前已从保存服役场提取QT/Ni99界面需求；完整强度还需与残余张量及过渡层性能对齐。发布采用临时目录先检查，再替换R4正式目录和ZIP。
-
-参数源为project/process-r3.yaml，project/process.yaml明确为historical_only。文件名R3为兼容已有入口，不意味着返回旧R3边界。修订审阅稿生成命令为：
+当前交付为修订审阅稿。生成命令：
 
 ```powershell
-python deliverables/report/build_technical_report_pdf.py --review
+python deliverables/report/build_technical_report_pdf.py --review --with-drawings
 ```
 
-正式构建使用python deliverables/build_submission.py；它要求完整R4核验通过，并阻止历史参数和未完成结果进入正式包。现有deliverables/submission中的历史文件不应直接用于本轮比赛提交，待正式构建通过后整体更新。固定焊接题未要求自编代码，报名和盖章材料按官方附件办理；报名10月20日、校方统一作品提交10月25日（含当日）。
-
-本轮三档独立预制及一次联合加密已完成，350℃候选仍有起弧缺口，熔合面积响应差7.478%，未采用。药皮高镍备用路线已完成成分和备料核算。实际结果见[接头重选计算与交付](docs/review/2026-10-05-接头重选实际计算与交付.md)，说明书§2.2及HJ-W-00B。
+正式构建入口为 `python deliverables/build_submission.py`，要求完整R4核验通过；旧submission目录不直接用于本轮提交。参数源project/process-r3.yaml保留兼容文件名，project/process.yaml为历史输入。
 
 ## 历史研究记录（按原日期保留）
 

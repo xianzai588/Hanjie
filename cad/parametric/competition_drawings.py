@@ -127,10 +127,10 @@ def joint_sheet(spec,result):
               polygon([(130,242),(146,242),(130,258)],"#183247"),
               text(100,256,"z4.0"),text(154,256,"8×18(41)"),
               text(95,665,"GB/T 324；段间净距≈41；槽宽6、翼片全宽覆盖、贯通至R74.98翼端","small"),
-              text(95,645,"Ni99齐平：总厚1.50±0.10；表层≥0.50；根道≤0.30/累计≤0.40","small"),
-              text(95,688,"填充面积7.326～8.760 mm²；有效熔合面积另验；残层≥0.8","small")]
+              text(95,645,"MMA首层修整＋裸Ni第二层：总厚1.50±0.10；平直区第二层≥0.65","small"),
+              text(95,688,"累计熔深≤0.40；几何总残层≥1.00；圆角/混合区另验（HJ-017）","small")]
     notes(parts,["方法：自动TIG；直流正接（电极负极）",
-                 "NiFe55 TIG Ø1.6；第二镍层加工后≥0.50",
+                 "NiFe55 TIG Ø1.6；平直区第二层≥0.65",
                  "脉冲100/50 A；50%占空；20 Hz；12 V",
                  f'固定送丝 {result["process"]["fixed_feed_mm_s"]:.3f} ±0.05 mm/s；共2道；焊速1.65±2%',
                  "Ø1.60±0.01；沉积效率0.90～0.98入边界",
@@ -407,7 +407,7 @@ def workstation_sheet(spec,result):
               text(290,347,f'{heads}头，站占用{station:.1f} s','small'),text(505,320,'保持胀套和压环','small'),
               text(720,320,'底座保持至20±1℃','small'),text(935,320,'CMM独立A/B','small'),
               text(935,347,'微珩前/后各CMM360 s','small'),
-              text(75,178,'前工序：Ni99两层预制→24 h延迟PT→连接面与孔精加工→清洗封存→合格座体库存','small')]
+              text(75,178,'前工序：MMA首层→法向修整→低碳第二层→延迟PT→连接面/孔加工→清洗封存','small')]
     for x in positions[:-1]:parts.append(line(x+200,310,x+213,310,'#176b7b',3))
     resource_text=f'固定定位窝数按 N≥ceil[(120＋工装释放时刻＋60)/{station:.1f}]；环境缓冲位另计'
     verification=result.get('numerical_verification',{}).get('position')
@@ -656,6 +656,9 @@ def datum_holder_sheet(spec,result):
 
 
 def postweld_isolation_sheet(spec,result):
+    sys.path.insert(0,str(ROOT/'studies/COMPETITION-DESIGN'))
+    from postweld_isolation import evaluate
+    isolation=evaluate()['honing']; fault=isolation['fault_containment']
     parts=sheet('PT/UT独立接液盘与短孔微珩全收集装置','HJ-015',
         '冷态后序工具；进入NDT/微珩前先闭合隔离，液体/磨屑与不可清洗下腔隔开')
     # No seal is placed on fictitious wing land: the actual outer arc is 18 mm.
@@ -679,17 +682,67 @@ def postweld_isolation_sheet(spec,result):
         polygon([(730,370),(730,435),(1030,435),(1030,370),(1005,370),(1005,410),(755,410),(755,370)],'#eaf4f5'),
         box(735,360,22,10,'#ddba7d'),box(1003,360,22,10,'#ddba7d'),
         line(880,435,880,483,'#176b7b',6),line(880,483,1060,483,'#176b7b',3),
-        text(655,515,'下杯OD60/ID44/液深10；密封R27，压紧≤120 N','small'),
+        text(655,515,'下杯OD60/ID44±0.20/液深16±0.10；密封R27','small'),
         text(655,541,'面圈Ø1.00±0.02；槽0.70±0.01/挡隙0.10±0.01','small'),
-        text(655,567,'杯内占位扣3 mL后容量12.21；故障需7.10 mL','small'),
-        text(655,593,'供液≤60；排管ID≥3.90/L≤1m；净差压≥2kPa','small'),
-        text(655,619,'失吸0.10 s停进给/供液；管内可回流量≤5 mL','small')]
+        text(655,567,f"最小容量{isolation['effective_liquid_hold_up_ml']:.3f}；全管回流需求{isolation['required_fault_hold_up_ml']:.3f} mL",'small'),
+        text(655,593,'供液≤60；ID3.90～4.10/L≤1m；净差压≥2.5kPa','small'),
+        text(655,619,'失吸0.10 s停液；杯内在作液≤2 mL；瓶位见HJ-018','small')]
     parts += [text(70,558,'整盘从壳底竖直装入：缩态→z96就位→充气→吸压/密封联锁','small'),
         text(70,586,'抽尽并原位干燥→壳底接密闭收集筒→保持盘朝上/抽吸→泄压下撤','small'),
         text(70,614,'PT/UT整盘与微珩下杯分工序装入，均从壳底撤出；禁止座下叠放','small'),
         text(70,650,'荧光液及5/10/25 μm颗粒覆盖正常、失吸、停机和撤出；牺牲件下腔未清洗检查','small'),
         text(70,680,'正常产品：过程记录＋干态内窥＋封存；过滤膜提取只用于退出产品流的牺牲件','small')]
     return finish(parts,'316L / 低析出FFKM')
+
+
+def postweld_drain_return_sheet(spec,result):
+    sys.path.insert(0,str(ROOT/'studies/COMPETITION-DESIGN'))
+    from postweld_isolation import evaluate
+    honing=evaluate()['honing']; f=honing['fault_containment']; drain=honing['drain_line']
+    parts=sheet('微珩回液、失吸容量与回收瓶接口','HJ-018',
+        '全湿段回流计入容量；瓶内库存由干式自由出液接口隔开；止回阀不计减益')
+    parts += [text(65,150,'液路布置（高程与管长按标注，NTS）','section'),
+        box(110,200,215,35,'#dbe6eb'),
+        polygon([(126,246),(126,344),(309,344),(309,246),(298,246),(298,330),(138,330),(138,246)],'#eaf4f5'),
+        text(75,184,'上下Ø60罩；下杯接触中心环，无孔壁滑擦','small'),
+        text(142,275,'在作残液≤2 mL','small'),
+        text(142,302,'ID44±0.20','small'),
+        text(75,375,'液深16±0.10，底厚2；上唇z99.90','small'),
+        text(75,402,'杯底z81.90；专用冷态工位，壳底开放','small'),
+        line(309,333,449,385,'#176b7b',4),line(449,385,526,419,'#176b7b',4),
+        line(526,419,526,455,'#176b7b',4),
+        polygon([(482,425),(482,563),(650,563),(650,425),(638,425),(638,551),(494,551),(494,425)],'#eaf4f5'),
+        line(494,492,638,492,'#0284c7',2),
+        line(542,458,542,490,'#0284c7',1),
+        text(557,472,'气隙≥20','small'),
+        text(546,520,'最高故障液位','small'),
+        text(357,344,'湿段总长≤1 m','small'),
+        text(357,370,'ID3.90～4.10','small'),
+        text(343,590,'瓶最高故障液位低于杯出口≥150','small'),
+        text(343,617,'管末端不得浸液；高液位停止供液','small'),
+        text(75,659,'管线连续下坡固定；杯液位/净差压/瓶液位异常时0.10 s内停进给与供液','small'),
+        text(75,690,'撤出前排尽并干燥、封回液口；不打开含液屏障，不以整腔冲洗补救','small')]
+    notes(parts,[
+        '容量最不利：ID43.80、液深15.90',
+        '工具占位≤3.0 mL；杯在作液≤2.0',
+        f"净容积{f['minimum_effective_hold_up_ml']:.3f} mL",
+        f"Ø4.10×1 m全管回流{f['contributions']['full_line_return_ml']:.3f} mL",
+        '上罩及接头回流≤1.0 mL',
+        '供液阀下游可排液≤0.50 mL',
+        '60 mL/min×0.10 s＝0.10 mL',
+        '在作2＋储备2亦计入故障需求',
+        f"合计{f['required_fault_hold_up_ml']:.3f}，余量{f['capacity_margin_ml']:.3f} mL",
+        '瓶故障液位以下容量≥200 mL',
+        '净驱动差压≥2.5 kPa，扣测量U',
+        'Δp＝p杯−p瓶＋ρg(z杯−z出液)',
+        f"计算流量{drain['capacity_ml_min']:.3f} mL/min",
+        '牛顿液μ≤5 mPa·s，局部K≤10',
+        '非牛顿UT凝胶用独立回收资格',
+        '每件封闭供液筒≤35 mL；作业中不续液',
+        '开工前瓶存液≤100；单循环最高151.703',
+        '装机验收湿段、死腔、液位及停机延迟',
+    ],x=715,y=170,step=32)
+    return finish(parts,'316L / 回液软管')
 
 
 def postweld_cartridge_sheet(spec,result):
@@ -743,13 +796,15 @@ def main():
               "portal-transfer.svg":portal_sheet(spec,result),
               "datum-holder-detail.svg":datum_holder_sheet(spec,result),
               "postweld-isolation.svg":postweld_isolation_sheet(spec,result),
-              "postweld-cartridge.svg":postweld_cartridge_sheet(spec,result)}
+              "postweld-cartridge.svg":postweld_cartridge_sheet(spec,result),
+              "postweld-drain-return.svg":postweld_drain_return_sheet(spec,result)}
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
     core = [name for name in drawings if name != "sleeve-detail.svg"]
     (out/"drawing-manifest.json").write_text(json.dumps({"version":"COMPETITION-R4","source":"project/competition-design.yaml",
         "status":"competition design; not manufacturing release","drawings":core,"drawing_count":len(core),
         "supplemental_drawings":["sleeve-detail.svg"],
+        "external_pdf_sheets":[{"number":17,"pdf":"cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf", "title":"HJ-017 名义曲面预制与法向修整断面"}],
         "excluded":"本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"},ensure_ascii=False,indent=2),encoding="utf-8")
     print(f"已同步{len(drawings)}张参赛设计图")
 

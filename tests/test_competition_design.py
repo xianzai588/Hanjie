@@ -44,6 +44,15 @@ def test_support_plane_budget_matches_independent_plane_fit():
     assert budget["design_budget_closes"]
     assert not budget["thermal_residual_design_verified"]
     assert budget["physical_validation_recommended"]
+    assert budget['thermal_diameter_allowance_with_honing_mm']==pytest.approx(.0135)
+    assert budget['thermal_diameter_allowance_without_removal_mm']==pytest.approx(.020)
+    # The former 16 um thermal target does not fit the honing branch even
+    # though the budget before material removal appears to fit.
+    spec['precision']['radial_allocations_mm']['thermal_residual_target']=.008
+    old_target=precision_budget(spec)
+    assert old_target['diameter_with_uncertainty_target_mm']<.05
+    assert old_target['diameter_with_honing_and_uncertainty_target_mm']>.05
+    assert not old_target['design_budget_closes']
     spec["precision"]["radial_allocations_mm"]["thermal_residual_target"] = .012
     assert not precision_budget(spec)["design_budget_closes"]
 

@@ -31,11 +31,11 @@
 <rect x="1003" y="360" width="22" height="10" fill="#ddba7d" stroke="#334155"/>
 <line x1="880" y1="435" x2="880" y2="483" stroke="#176b7b" stroke-width="6"/>
 <line x1="880" y1="483" x2="1060" y2="483" stroke="#176b7b" stroke-width="3"/>
-<text x="655" y="515" class="small">下杯OD60/ID44/液深10；密封R27，压紧≤120 N</text>
+<text x="655" y="515" class="small">下杯OD60/ID44±0.20/液深16±0.10；密封R27</text>
 <text x="655" y="541" class="small">面圈Ø1.00±0.02；槽0.70±0.01/挡隙0.10±0.01</text>
-<text x="655" y="567" class="small">杯内占位扣3 mL后容量12.21；故障需7.10 mL</text>
-<text x="655" y="593" class="small">供液≤60；排管ID≥3.90/L≤1m；净差压≥2kPa</text>
-<text x="655" y="619" class="small">失吸0.10 s停进给/供液；管内可回流量≤5 mL</text>
+<text x="655" y="567" class="small">最小容量20.957；全管回流需求18.803 mL</text>
+<text x="655" y="593" class="small">供液≤60；ID3.90～4.10/L≤1m；净差压≥2.5kPa</text>
+<text x="655" y="619" class="small">失吸0.10 s停液；杯内在作液≤2 mL；瓶位见HJ-018</text>
 <text x="70" y="558" class="small">整盘从壳底竖直装入：缩态→z96就位→充气→吸压/密封联锁</text>
 <text x="70" y="586" class="small">抽尽并原位干燥→壳底接密闭收集筒→保持盘朝上/抽吸→泄压下撤</text>
 <text x="70" y="614" class="small">PT/UT整盘与微珩下杯分工序装入，均从壳底撤出；禁止座下叠放</text>

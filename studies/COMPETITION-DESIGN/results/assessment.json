@@ -9,16 +9,41 @@
     "seat_brep": "simulation/competition-r4/geometry/8P-R2-t15.brep",
     "shell_brep": "simulation/structural-v4/common/shell.brep",
     "process_source": "project/process-r3.yaml",
+    "candidate_state_source": "deliverables/process/current-candidate-state.md",
+    "independent_precoat_input_source": "project/independent-precoat-candidates.yaml",
     "postweld_drain": {
       "inside_diameter_min_mm": 3.9,
+      "inside_diameter_max_mm": 4.1,
       "line_length_max_m": 1.0,
       "local_loss_K_max": 10.0,
       "newtonian_viscosity_max_Pa_s": 0.005,
       "density_kg_m3": 1000.0,
-      "net_differential_pressure_min_Pa": 2000.0,
+      "net_differential_pressure_min_Pa": 2500.0,
       "supply_limit_ml_min": 60.0,
       "capacity_factor": 2.0,
-      "scope": "牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶"
+      "scope": "牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶",
+      "fault_containment": {
+        "cup_inside_diameter_mm": 44.0,
+        "cup_inside_diameter_tolerance_mm": 0.2,
+        "cup_liquid_depth_mm": 16.0,
+        "cup_liquid_depth_tolerance_mm": 0.1,
+        "tool_displacement_max_ml": 3.0,
+        "operating_inventory_max_ml": 2.0,
+        "fittings_and_upper_tool_drainback_max_ml": 1.0,
+        "supply_downstream_of_shutoff_max_ml": 0.5,
+        "shutdown_latency_max_s": 0.1,
+        "reserve_ml": 2.0,
+        "return_wet_length_max_m": 1.0,
+        "bottle_max_liquid_below_cup_outlet_mm": 150.0,
+        "discharge_air_gap_min_mm": 20.0,
+        "bottle_capacity_below_fault_level_min_ml": 200.0,
+        "bottle_initial_inventory_max_ml": 100.0,
+        "supply_cartridge_max_ml": 35.0,
+        "supply_cartridge_policy": "每件预装≤35 mL的封闭定量供液筒，作业中不得续接大储液箱；开工前回收瓶存液≤100 mL",
+        "bottle_inlet": "管末端经瓶顶干式接口自由出液，不插入瓶内液面；高液位停止供液",
+        "routing": "下杯侧下出液，管线连续下坡并机械固定；瓶最高故障液位低于杯出口150 mm，所有软管及接头湿段总长不超过1 m",
+        "level_interlock": "下杯残液达到2 mL即停供液；上罩/接头及供液阀下游容积分别以1.0/0.50 mL上限验收"
+      }
     },
     "assembly": {
       "seat_bottom_z_mm": 100.0,
@@ -50,7 +75,7 @@
       "minimum_leg_mm": 3.5,
       "clearance_leg_mm": 4.3,
       "feed_policy": "送丝3.50±0.05 mm/s，实际分辨率≤0.01；速度与丝径公差均入守恒边界",
-      "filler_candidate": "Ni99预制隔离层＋NiFe55两道承载焊；隔离层制作在轴承孔最终精加工之前",
+      "filler_candidate": "CI-A1高镍独立MMA首层主线＋中间修整＋低碳裸Ni99第二层＋NiFe55最终两道连接；采用窗口由有效接头确定",
       "filler_source": "https://certilas.com/en/product/nife-55-tig",
       "wire_entry_offset_xyz_mm": [
         -1.3,
@@ -68,8 +93,8 @@
       "wire_guide_design": "根道枪靶R74.50/z117.30、棒端R73.20/z116.00；盖面枪靶R74.00/z118.00、棒端R72.70/z116.70；棒材沿(-0.35,+0.93,+0.11225)伸长15 mm后导管竖直到z220，枪/丝实际净隙2.169 mm"
     },
     "thermal_regime": {
-      "method": "铸铁冷焊（不预热）",
-      "design_basis": "室温短段为控形优先的GTAW设计热制度；Ni99首层限定铁素体主导来料，并独立检查PMZ/HAZ",
+      "method": "最终组焊低温短道GTAW（不预热）",
+      "design_basis": "本段只描述入壳最终组焊；MMA首层按HJ-W-00C/00D独立预热、道间及缓冷，首层PMZ/HAZ单独核查",
       "substrate_condition": "QT450-10力学牌号合格；铁素体主导、珠光体面积分数≤20%、无原始白口/游离渗碳体网；20%为项目采购与方法资格窗口",
       "bore_fit_basis": "QT原有Ø40主轴承孔，不增加轴套；20℃40.000～40.025为设计尺寸控制等级H7，非官方尺寸公差；ISO 286-2表格支持公差数值，不推导机型轴承配合或产品寿命",
       "candidate_manufacturing_bore_window_mm": [
@@ -466,11 +491,12 @@
         "fixture_axis_setting": 0.002,
         "sleeve_centering": 0.002,
         "clamp_elastic_shift": 0.0065,
-        "thermal_residual_target": 0.008,
+        "thermal_residual_target": 0.006,
         "release_shift_target": 0.0005
       },
       "status": "径向非热分配14 μm，基准/轴线/定心各2、夹紧6.5、搬运0.5、支点1；固定锥/柱实体有限元与根部连接分别验证，局部压缩另用于2000接触密度匹配。",
       "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
+      "honing_axis_allocation_diameter_mm": 0.0065,
       "bore_finish_strategy": "焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；欠尺寸孔必须走有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴",
       "finish_allowance_diameter_mm": [
         0,
@@ -490,16 +516,41 @@
         "seat_brep": "simulation/competition-r4/geometry/8P-R2-t15.brep",
         "shell_brep": "simulation/structural-v4/common/shell.brep",
         "process_source": "project/process-r3.yaml",
+        "candidate_state_source": "deliverables/process/current-candidate-state.md",
+        "independent_precoat_input_source": "project/independent-precoat-candidates.yaml",
         "postweld_drain": {
           "inside_diameter_min_mm": 3.9,
+          "inside_diameter_max_mm": 4.1,
           "line_length_max_m": 1.0,
           "local_loss_K_max": 10.0,
           "newtonian_viscosity_max_Pa_s": 0.005,
           "density_kg_m3": 1000.0,
-          "net_differential_pressure_min_Pa": 2000.0,
+          "net_differential_pressure_min_Pa": 2500.0,
           "supply_limit_ml_min": 60.0,
           "capacity_factor": 2.0,
-          "scope": "牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶"
+          "scope": "牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶",
+          "fault_containment": {
+            "cup_inside_diameter_mm": 44.0,
+            "cup_inside_diameter_tolerance_mm": 0.2,
+            "cup_liquid_depth_mm": 16.0,
+            "cup_liquid_depth_tolerance_mm": 0.1,
+            "tool_displacement_max_ml": 3.0,
+            "operating_inventory_max_ml": 2.0,
+            "fittings_and_upper_tool_drainback_max_ml": 1.0,
+            "supply_downstream_of_shutoff_max_ml": 0.5,
+            "shutdown_latency_max_s": 0.1,
+            "reserve_ml": 2.0,
+            "return_wet_length_max_m": 1.0,
+            "bottle_max_liquid_below_cup_outlet_mm": 150.0,
+            "discharge_air_gap_min_mm": 20.0,
+            "bottle_capacity_below_fault_level_min_ml": 200.0,
+            "bottle_initial_inventory_max_ml": 100.0,
+            "supply_cartridge_max_ml": 35.0,
+            "supply_cartridge_policy": "每件预装≤35 mL的封闭定量供液筒，作业中不得续接大储液箱；开工前回收瓶存液≤100 mL",
+            "bottle_inlet": "管末端经瓶顶干式接口自由出液，不插入瓶内液面；高液位停止供液",
+            "routing": "下杯侧下出液，管线连续下坡并机械固定；瓶最高故障液位低于杯出口150 mm，所有软管及接头湿段总长不超过1 m",
+            "level_interlock": "下杯残液达到2 mL即停供液；上罩/接头及供液阀下游容积分别以1.0/0.50 mL上限验收"
+          }
         },
         "assembly": {
           "seat_bottom_z_mm": 100.0,
@@ -531,7 +582,7 @@
           "minimum_leg_mm": 3.5,
           "clearance_leg_mm": 4.3,
           "feed_policy": "送丝3.50±0.05 mm/s，实际分辨率≤0.01；速度与丝径公差均入守恒边界",
-          "filler_candidate": "Ni99预制隔离层＋NiFe55两道承载焊；隔离层制作在轴承孔最终精加工之前",
+          "filler_candidate": "CI-A1高镍独立MMA首层主线＋中间修整＋低碳裸Ni99第二层＋NiFe55最终两道连接；采用窗口由有效接头确定",
           "filler_source": "https://certilas.com/en/product/nife-55-tig",
           "wire_entry_offset_xyz_mm": [
             -1.3,
@@ -549,8 +600,8 @@
           "wire_guide_design": "根道枪靶R74.50/z117.30、棒端R73.20/z116.00；盖面枪靶R74.00/z118.00、棒端R72.70/z116.70；棒材沿(-0.35,+0.93,+0.11225)伸长15 mm后导管竖直到z220，枪/丝实际净隙2.169 mm"
         },
         "thermal_regime": {
-          "method": "铸铁冷焊（不预热）",
-          "design_basis": "室温短段为控形优先的GTAW设计热制度；Ni99首层限定铁素体主导来料，并独立检查PMZ/HAZ",
+          "method": "最终组焊低温短道GTAW（不预热）",
+          "design_basis": "本段只描述入壳最终组焊；MMA首层按HJ-W-00C/00D独立预热、道间及缓冷，首层PMZ/HAZ单独核查",
           "substrate_condition": "QT450-10力学牌号合格；铁素体主导、珠光体面积分数≤20%、无原始白口/游离渗碳体网；20%为项目采购与方法资格窗口",
           "bore_fit_basis": "QT原有Ø40主轴承孔，不增加轴套；20℃40.000～40.025为设计尺寸控制等级H7，非官方尺寸公差；ISO 286-2表格支持公差数值，不推导机型轴承配合或产品寿命",
           "candidate_manufacturing_bore_window_mm": [
@@ -947,11 +998,12 @@
             "fixture_axis_setting": 0.002,
             "sleeve_centering": 0.002,
             "clamp_elastic_shift": 0.0065,
-            "thermal_residual_target": 0.008,
+            "thermal_residual_target": 0.006,
             "release_shift_target": 0.0005
           },
           "status": "径向非热分配14 μm，基准/轴线/定心各2、夹紧6.5、搬运0.5、支点1；固定锥/柱实体有限元与根部连接分别验证，局部压缩另用于2000接触密度匹配。",
           "measurement_expanded_uncertainty_diameter_target_mm": 0.002,
+          "honing_axis_allocation_diameter_mm": 0.0065,
           "bore_finish_strategy": "焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；欠尺寸孔必须走有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴",
           "finish_allowance_diameter_mm": [
             0,
@@ -1901,8 +1953,12 @@
   "precision": {
     "support_tilt_rad": 6.666666666666667e-05,
     "tilt_radial_allowance_mm": 0.001,
-    "design_diameter_budget_mm": 0.044000000000000004,
-    "diameter_with_uncertainty_target_mm": 0.046000000000000006,
+    "design_diameter_budget_mm": 0.04,
+    "diameter_with_uncertainty_target_mm": 0.042,
+    "honing_axis_allocation_diameter_mm": 0.0065,
+    "diameter_with_honing_and_uncertainty_target_mm": 0.0485,
+    "thermal_diameter_allowance_with_honing_mm": 0.013500000000000005,
+    "thermal_diameter_allowance_without_removal_mm": 0.020000000000000004,
     "design_budget_closes": true,
     "thermal_residual_design_verified": false,
     "physical_validation_recommended": true

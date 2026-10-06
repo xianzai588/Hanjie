@@ -1,11 +1,16 @@
 version: STAGE-STATUS-1.0
-updated: '2026-10-04'
+updated: '2026-10-06'
 authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
 route_b:
   selected: true
   experimental_data_required: false
   objective: 固定题工艺设计的数值与工程验证；正式冻结依据R4完全冷却、卸夹及精度核验
   current_research_stage: COMPETITION-R4
+  main_route: 独立CI-A1高镍预制—8P低热输入GTAW—铜环实体屏障
+  active_plan: deliverables/competition-route.md
+  historical_next_actions_are_active: false
+  dormant_comparators: [CI-A2, 6P, Continuous, laser, external_plug, microplasma]
+  candidate_state_source: deliverables/process/current-candidate-state.md
   thermal_diagnostic_budget_exhausted: true
   frozen_work:
   - app_expansion
@@ -252,7 +257,8 @@ stages:
     next_action: 无实物Route B不安排CMM、NDT或洁净度试验；仅保留验收流程和洁净度控制设计
   ROUTE-B-DESIGN:
     execution_status: six_candidates_108_capacity_process_cases_and_precision_inverse_budget_completed
-    acceptance_result: digital_recommendation_frozen_physical_release_not_available
+    acceptance_result: historical_conditional_recommendation_superseded_by_R4
+    current_design_evidence: false
     evidence_level: design_assumption_reference_envelope
     allowed_use: 原沉积效率范围内的承载—净热输入—弧燃时间条件选型及公差反算；禁止替代整件位置度与焊接质量验收
     evidence:
@@ -263,7 +269,7 @@ stages:
     - STRUCT-UNCERTAINTY
     formal: false
     experimental_data_required: false
-    next_action: 8P-FAIR_B两道冻结为当前数字推荐；若进入工程放行，补实际载荷、焊缝成形、夹具重复性和物理质量验证
+    next_action: 历史条件选型不作为当前冻结；按COMPETITION-R4有效接头与同状态制造结果重新决定布局
   TOOLING-ACCESS:
     execution_status: occ_swept_shield_torch_envelopes_and_cone_force_checks_completed
     acceptance_result: limited_geometry_routes_available_cleanliness_and_repeatability_open
@@ -277,7 +283,8 @@ stages:
     next_action: 设计覆盖周边落物路径的可收拢挡边，补独立倾斜约束、主动退锥和六支承实体；保留底口开放与工具包络假设
   DECISION:
     execution_status: conditional_capacity_heat_input_selection_completed
-    acceptance_result: digital_design_recommendation_released_physical_release_pending
+    acceptance_result: historical_recommendation_superseded_by_R4_joint_reselection
+    current_design_evidence: false
     evidence_level: design_assumption_reference_envelope
     allowed_use: 竞赛数字设计推荐和阶段设计评审；不等同产品工程放行
     upstream_dependencies:
@@ -286,16 +293,18 @@ stages:
     - SERVICE
     optional_physical_dependencies:
     - EXP-FINAL
-    next_action: 竞赛提交采用8P-FAIR_B两道；工程放行仍需焊缝成形、夹具重复性、洁净度和独立位置度证据
+    next_action: 当前8P仅为可复用候选；采用与提交结论由COMPETITION-R4有效接头、制造和承载闭环决定
   COMPETITION-R4:
-    execution_status: old_family_failed_three_preheat_tracks_and_one_refinement_completed_joint_unqualified
+    execution_status: input_and_section_budgets_completed_waiting_for_applicable_first_interface_source_evidence
     acceptance_result: not_accepted_connection_and_full_state_verification_required
     evidence_level: numerical_design_verification_in_progress
     evidence:
     - simulation/competition-r4/results/design-repair-status-20261005.json
     - simulation/competition-r4/results/route4-reselection/route4-audit.json
+    - studies/COMPETITION-DESIGN/results/precoat-input-budget.json
+    - studies/COMPETITION-DESIGN/results/postweld-isolation.json
     allowed_use: 已完成控形失败场及子项、分工序接头候选；有效接头后的完整状态链才可冻结
     upstream_dependencies:
     - COMPETITION-DESIGN
     - SCHAEFFLER-MAP
-    next_action: 当前预热候选未采用；HJ-W-00B已完成成分和备料核算，先建立连续有效接头与适用PMZ容量，再计算完整残余状态链；保留原失败场与68.443s检查点
+    next_action: 取得可对应电参数、熔敷与带尺寸熔合截面或热循环的ENi-CI球铁验证资料后，继续CI-A1一翼连接；随后验证8P制造与同状态承载。资料缺口解决前不盲扫源宽/功率，其他路线保持休眠

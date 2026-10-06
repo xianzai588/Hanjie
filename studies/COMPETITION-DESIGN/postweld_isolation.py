@@ -26,9 +26,56 @@ def drain_capacity(inputs):
         qualification='design calculation; measure net pressure and flow on the assembled line')
 
 
+def fault_hold_up(inputs):
+    """Whole allowed wet line returning, including liquid already in the tool.
+
+    Minimum cup dimensions and maximum line ID are deliberately different
+    from the minimum line ID used for the pressure-loss calculation.
+    A dry bottle inlet prevents the bottle inventory feeding back; a check
+    valve is not credited, so a stuck-open valve has the same volume bound.
+    """
+    f=inputs['fault_containment']
+    diameter=f['cup_inside_diameter_mm']-f['cup_inside_diameter_tolerance_mm']
+    depth=f['cup_liquid_depth_mm']-f['cup_liquid_depth_tolerance_mm']
+    wet_length=f['return_wet_length_max_m']
+    if not (diameter>0 and depth>0 and wet_length>=inputs['line_length_max_m']>0
+            and inputs['inside_diameter_max_mm']>=inputs['inside_diameter_min_mm']>0):
+        raise ValueError('Fault dimensions must cover the entire permitted drain line')
+    volume=math.pi*inputs['inside_diameter_max_mm']**2/4*wet_length
+    capacity=math.pi*diameter**2/4*depth/1000-f['tool_displacement_max_ml']
+    contributions=dict(operating_inventory_ml=f['operating_inventory_max_ml'],
+        full_line_return_ml=volume,
+        fittings_and_upper_tool_drainback_ml=f['fittings_and_upper_tool_drainback_max_ml'],
+        supply_downstream_of_shutoff_ml=f['supply_downstream_of_shutoff_max_ml'],
+        supply_during_shutdown_ml=inputs['supply_limit_ml_min']/60*f['shutdown_latency_max_s'],
+        reserve_ml=f['reserve_ml'])
+    if any(value<0 for value in contributions.values()):
+        raise ValueError('Liquid inventories must be nonnegative')
+    required=sum(contributions.values())
+    # Even a missed bottle level indication cannot immerse the outlet in
+    # one permitted cycle: the finite supply cartridge bounds all incoming
+    # liquid, and the bottle's initial inventory is an opening condition.
+    bottle_max=(f['bottle_initial_inventory_max_ml']+f['supply_cartridge_max_ml']+
+                volume+f['fittings_and_upper_tool_drainback_max_ml']+
+                f['supply_downstream_of_shutoff_max_ml']+f['operating_inventory_max_ml'])
+    bottle_isolated=(f['bottle_max_liquid_below_cup_outlet_mm']>=150
+                     and f['discharge_air_gap_min_mm']>=20
+                     and bottle_max<=f['bottle_capacity_below_fault_level_min_ml'])
+    return dict(**f,minimum_cup_diameter_mm=diameter,minimum_cup_depth_mm=depth,
+        minimum_effective_hold_up_ml=capacity,contributions=contributions,
+        required_fault_hold_up_ml=required,capacity_margin_ml=capacity-required,
+        bottle_backfeed_excluded_by_geometry=bottle_isolated,
+        bottle_maximum_cycle_inventory_ml=bottle_max,
+        bottle_fault_level_capacity_margin_ml=f['bottle_capacity_below_fault_level_min_ml']-bottle_max,
+        design_pass=capacity>=required and bottle_isolated,
+        check_valve_credit=False,
+        scope='All permitted wet tubing returns; dry discharge above maximum bottle liquid. Dimensions, inventories and shutdown latency are installation acceptance limits, not measured results.')
+
+
 def evaluate():
     config=yaml.safe_load((ROOT/'project/competition-design.yaml').read_text(encoding='utf8'))
     drain=drain_capacity(config['postweld_drain'])
+    fault=fault_hold_up(config['postweld_drain'])
     shell_radius=75.
     # Actual CAD outer wing arc is only 18 mm. A 38+ mm single-wing hood
     # has no two-sided sealing land. Use a continuous under-seat catch pan.
@@ -51,10 +98,16 @@ def evaluate():
     pressure_load=.005*math.pi*pan_radius**2
     lift_design_load=1.5*(pressure_load+10.)
     seal_force=inflatable_pressure_MPa*2*math.pi*shell_radius*6
-    cup_inner_radius=22.;cup_depth=10.;occupied_volume=3000.
-    effective_hold=(math.pi*cup_inner_radius**2*cup_depth-occupied_volume)/1000
-    liquid_flow=config['postweld_drain']['supply_limit_ml_min'];stop_latency=.10;line_drain_volume=5.;reserve=2.
-    required_hold=line_drain_volume+liquid_flow/60*stop_latency+reserve
+    cup_depth=fault['cup_liquid_depth_mm']
+    effective_hold=fault['minimum_effective_hold_up_ml']
+    liquid_flow=config['postweld_drain']['supply_limit_ml_min']
+    stop_latency=fault['shutdown_latency_max_s']
+    line_drain_volume=fault['contributions']['full_line_return_ml']
+    required_hold=fault['required_fault_hold_up_ml']
+    # PT/UT is a whole metered batch, not the honing pump's 0.10 s inflow.
+    pt_batch_limit=5.
+    pt_required_hold=(line_drain_volume+pt_batch_limit+
+                      fault['fittings_and_upper_tool_drainback_max_ml']+fault['reserve_ml'])
     cover_load=120;gasket_radius=27.;gasket_width=1.0
     seal_pressure=cover_load/(2*math.pi*gasket_radius*gasket_width)
     cord=1.;cord_tol=.02;groove=.7;groove_tol=.01;stop_gap=.1;stop_tol=.01
@@ -68,10 +121,10 @@ def evaluate():
         vertical_support_capacity_pass=lift_design_load<=200.,
         under_seat_pan_clearance_pass=99.0<100.0,
         PT_seal_membrane_strength_pass=seal_membrane_stress<=2/3,
-        PT_fault_hold_up_pass=pan_capacity>=required_hold,
+        PT_fault_hold_up_pass=pan_capacity>=pt_required_hold,
         cup_below_hub_no_slot_pass=30<39,
         drain_capacity_pass=drain['laminar_model_applicable'] and drain['capacity_ml_min']>=config['postweld_drain']['capacity_factor']*liquid_flow,
-        retained_liquid_capacity_pass=effective_hold>=required_hold,
+        retained_liquid_capacity_pass=fault['design_pass'],
         low_cold_face_clamp_pressure_pass=seal_pressure<1,
         face_seal_extreme_squeeze_pass=squeeze_ratio[0]>=.15 and squeeze_ratio[1]<=.30)
     return dict(PT_UT=dict(pan_outer_diameter_mm=149.4,collapsed_seal_envelope_mm=149.6,
@@ -79,6 +132,7 @@ def evaluate():
         pan_outer_diameter_tolerance_mm=.05,
         pan_floor_thickness_mm=pan_floor,pan_floor_top_z_mm=96,pan_upper_lip_z_mm=99,
         retained_liquid_depth_mm=pan_depth,effective_hold_up_ml=pan_capacity,
+        metered_liquid_batch_limit_ml=pt_batch_limit,required_fault_hold_up_ml=pt_required_hold,
         seal_inflation_pressure_kPa=[20,30],seal_axial_width_mm=6,seal_wall_nominal_mm=.4,seal_wall_tolerance_mm=.02,
         seal_membrane_stress_bound_MPa=seal_membrane_stress,seal_minimum_procurement_tensile_MPa=2,
         seal_total_distributed_radial_load_bound_N=seal_force,
@@ -107,8 +161,10 @@ def evaluate():
         liquid_depth_mm=10,drain_bore_mm=4,liquid_supply_limit_ml_min=liquid_flow,
         drain_line=drain,
         effective_liquid_hold_up_ml=effective_hold,required_fault_hold_up_ml=required_hold,
+        fault_containment=fault,
         maximum_line_drain_ml=line_drain_volume,supply_shutdown_s=stop_latency,
-        suction_pressure_kPa=[-5,-2],axial_clamp_N=cover_load,average_seal_land_pressure_MPa=seal_pressure,
+        suction_pressure_kPa=[-5,-2],pressure_permission='net driving pressure >=2.5 kPa after uncertainty, including measured elevation; cup vacuum alone does not permit supply',
+        axial_clamp_N=cover_load,average_seal_land_pressure_MPa=seal_pressure,
         lower_face_seal_radius_mm=gasket_radius,face_seal_cord_mm=cord,
         lower_face_seal_groove_depth_mm=groove,metal_stop_gap_mm=stop_gap,
         face_squeeze_mm=cord-groove-stop_gap,face_cord_tolerance_mm=cord_tol,groove_depth_tolerance_mm=groove_tol,

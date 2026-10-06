@@ -67,10 +67,16 @@ def precision_budget(spec):
     radial = sum(p["radial_allocations_mm"].values()) + tilt_radial
     diameter = 2 * radial
     uncertainty = p["measurement_expanded_uncertainty_diameter_target_mm"]
+    honing = p['honing_axis_allocation_diameter_mm']
+    nonthermal = diameter-2*p['radial_allocations_mm']['thermal_residual_target']
     return {"support_tilt_rad": tilt, "tilt_radial_allowance_mm": tilt_radial,
             "design_diameter_budget_mm": diameter,
             "diameter_with_uncertainty_target_mm": diameter + uncertainty,
-            "design_budget_closes": diameter + uncertainty <= p["limit_diameter_mm"],
+            "honing_axis_allocation_diameter_mm":honing,
+            "diameter_with_honing_and_uncertainty_target_mm":diameter+uncertainty+honing,
+            "thermal_diameter_allowance_with_honing_mm":p['limit_diameter_mm']-nonthermal-uncertainty-honing,
+            "thermal_diameter_allowance_without_removal_mm":p['limit_diameter_mm']-nonthermal-uncertainty,
+            "design_budget_closes": diameter + uncertainty + honing <= p["limit_diameter_mm"],
             "thermal_residual_design_verified": False, "physical_validation_recommended": True}
 
 

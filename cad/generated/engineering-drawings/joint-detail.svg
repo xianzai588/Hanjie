@@ -19,10 +19,10 @@
 <text x="100" y="256" class="note">z4.0</text>
 <text x="154" y="256" class="note">8×18(41)</text>
 <text x="95" y="665" class="small">GB/T 324；段间净距≈41；槽宽6、翼片全宽覆盖、贯通至R74.98翼端</text>
-<text x="95" y="645" class="small">Ni99齐平：总厚1.50±0.10；表层≥0.50；根道≤0.30/累计≤0.40</text>
-<text x="95" y="688" class="small">填充面积7.326～8.760 mm²；有效熔合面积另验；残层≥0.8</text>
+<text x="95" y="645" class="small">MMA首层修整＋裸Ni第二层：总厚1.50±0.10；平直区第二层≥0.65</text>
+<text x="95" y="688" class="small">累计熔深≤0.40；几何总残层≥1.00；圆角/混合区另验（HJ-017）</text>
 <text x="640" y="167" class="small">方法：自动TIG；直流正接（电极负极）</text>
-<text x="640" y="205" class="small">NiFe55 TIG Ø1.6；第二镍层加工后≥0.50</text>
+<text x="640" y="205" class="small">NiFe55 TIG Ø1.6；平直区第二层≥0.65</text>
 <text x="640" y="243" class="small">脉冲100/50 A；50%占空；20 Hz；12 V</text>
 <text x="640" y="281" class="small">固定送丝 3.500 ±0.05 mm/s；共2道；焊速1.65</text>
 <text x="640" y="297" class="small">±2%</text>

@@ -42,7 +42,7 @@
     "minimum_leg_mm": 3.5,
     "clearance_leg_mm": 4.3,
     "feed_policy": "送丝3.50±0.05 mm/s，实际分辨率≤0.01；速度与丝径公差均入守恒边界",
-    "filler_candidate": "Ni99预制隔离层＋NiFe55两道承载焊；隔离层制作在轴承孔最终精加工之前",
+    "filler_candidate": "CI-A1高镍独立MMA首层主线＋中间修整＋低碳裸Ni99第二层＋NiFe55最终两道连接；采用窗口由有效接头确定",
     "filler_source": "https://certilas.com/en/product/nife-55-tig",
     "wire_entry_offset_xyz_mm": [
       -1.3,

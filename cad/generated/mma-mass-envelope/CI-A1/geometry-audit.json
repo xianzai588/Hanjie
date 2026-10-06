@@ -1,0 +1,23 @@
+{
+  "candidate": "CI-A1",
+  "source": "simulation/competition-r4/geometry/8P-R2-t15.step",
+  "source_inputs": "project/independent-precoat-candidates.yaml",
+  "plan_area_one_wing_mm2": 115.16868314886237,
+  "pocket_volume_one_wing_mm3": 163.4405771813641,
+  "target_deposited_volume_one_wing_mm3": 417.10158266462577,
+  "nominal_overfill_above_z115_mm": 2.20251719953583,
+  "volume_equivalent_floor_to_top_mm": 3.70251719953583,
+  "nominal_top_z_mm": 117.20251719953583,
+  "material_volumes_mm3": {
+    "QT": 137058.9907398651,
+    "MMA": 417.1015826646131
+  },
+  "deposited_mass_one_wing_g": 3.7080330698884105,
+  "mass_closure_error_g": -1.1269037258898608e-13,
+  "geometry_state": "before first-layer machining; one wing deposited and all eight pockets cut",
+  "shape_interpretation": "volume-equivalent uniform overfill, not actual bead geometry or a conservative thermal bound",
+  "fusion_assigned": false,
+  "physical_bead_shape_verified": false,
+  "residual_state_assigned": false,
+  "mesh_generated": false
+}

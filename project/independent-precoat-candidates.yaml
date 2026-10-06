@@ -1,0 +1,108 @@
+date: '2026-10-06'
+purpose: 首层局部pWPS设计输入、物料和能量需求；不是采用窗口
+geometry_source: cad/generated/independent-precoat-curved/geometry-audit.json
+candidate_state_source: deliverables/process/current-candidate-state.md
+sources:
+  kobelco:
+    url: https://www.kobelco.co.jp/products/welding/pdf/catalog.pdf
+    local: output/review/Kobelco-welding-catalog.pdf
+    pages: [344, 345, 346, 347, 551, 559]
+    role: 所选产品棒径、电流、极性、熔敷典型成分和操作要求
+  esab_ni:
+    url: https://metaloprema.si/_sh/image/Povezave/ESAB/89292182520L0.pdf
+    local: docs/sources/ESAB-OK-Ni-CI-20160218.pdf
+    document: ESAB EN007090, 2016-02-18
+    role: 厂家原始数据表的镜像；异品牌同类电极电压及熔敷率量级，不移植成CI-A1保证值
+  esab_nife:
+    url: https://disprosol.es/resources/Web/Archivos/Consumibles/OK_92.58.pdf
+    local: docs/sources/ESAB-OK-NiFe-CI-A-20160216.pdf
+    document: ESAB EN007071, 2016-02-16
+    role: 厂家原始数据表的镜像；Ø2.5、67.5 A处0.6 kg/h量级，不移植成CI-A2保证值
+  heat_input:
+    url: https://www.twi-global.com/technical-knowledge/faqs/faq-what-is-the-difference-between-heat-input-and-arc-energy
+    role: MMA工程热效率系数0.8；不是本件量热标定
+  ductile_iron_trial:
+    doi: 10.3989/revmetalm.0814
+    local: output/review/Pascual-2009-Ni-NiFe-ductile-iron.pdf
+    role: 6 mm球铁MMA的焊速及热制度量级；不移植140 A、350℃和接头容量
+common:
+  method: SMAW_MMA
+  polarity: DCEP
+  position: PA
+  arc_voltage_V: {nominal: 20.0, engineering_interval: [18.0, 24.0]}
+  voltage_basis: 短弧工作电压区间，以ESAB同类Ni电极20～21 V量级设置；不是空载电压，也不是Kobelco产品表
+  travel_mm_s: {nominal: 2.6, engineering_interval: [2.2, 3.0]}
+  travel_basis: 文献Ni预热道15.6 cm/min=2.6 mm/s；本件调整范围为设计区间
+  total_heat_efficiency: {nominal: 0.8, engineering_interval: [0.7, 0.9]}
+  efficiency_basis: TWI MMA工程系数0.8；0.7/0.9为输入敏感性区间，不声称已测包络
+  entering_deposit_enthalpy_J_kg: [1200000.0, 1300000.0]
+  enthalpy_basis: Oikawa Fe-Ni-C条件计算，同相集合25℃固态参考；CI-A1完全液态首个采样点焓差1.083～1.111 MJ/kg。1.2～1.3为工程核算区间，未覆盖Si/Mn及真实熔滴测值；热模型须统一焓参考
+  dry_electrode_C: [70.0, 100.0]
+  dry_electrode_min: [30.0, 60.0]
+  wing_sequence: [1, 5, 3, 7, 2, 6, 4, 8]
+  final_weld_outer_arc_length_mm: 18.0
+  precoat_track_extent: 按真实曲面BREP的各翼交线裁切两条同心圆弧道，不把最终R74.98的18 mm焊长复制到内侧预制道
+  first_as_deposited_min_normal_thickness_mm: 1.20
+  first_as_deposited_thickness_basis: 修整至0.75 mm最大保留值，另留0.45 mm局部可切削余量；是轮廓需求，不由熔敷质量平均值证明
+  first_machined_normal_thickness_mm: [0.65, 0.75]
+  radial_track_centres_mm: [70.48, 73.48]
+  track_coverage_width_request_mm: 3.5
+  track_overlap_request_mm: 0.5
+  track_width_basis: 6 mm槽宽的几何覆盖需求；焊道实际宽度及起停端连续熔合另核查
+  end_management: 对两端及R1.5曲面保持覆盖；起收弧停留/回退不能在未知热源下任填时长；按端部有效面判定
+  transfer_max_s: 30.0
+  transfer_ambient_C: 20.0
+  transfer_air_h_W_m2K: [10.0, 30.0]
+  transfer_emissivity: 0.7
+  transfer_basis: 沿用升温辐射输入，h区间为自由空气转运敏感性；不包含夹具接触，输出仅平均温度
+  oven_candidates_C: [200.0, 300.0]
+  interpass: 道前工件温度保持所选产品预热区间；升温、离炉、逐道沉积及清渣连续传递；超上限等待，跌破下限回炉恢复，不清零历史
+  cooling: 外部自由支承、避强制风冷；入保温罩/炉缓冷，计算冷却曲线与PMZ后确定冷却程序
+  peening: 每道后趁热轻击熔敷金属；不击QT或熔合线，保留压痕加工余量；不计未验证的应力减益
+  heat_source_admission: 尚缺本产品同类截面/热循环对应的空间热源与起停分配；守恒核算不得赋予有效连接资格
+candidates:
+  CI-A1:
+    role: 唯一主线高镍首层；完成有效接头及保留层验证后冻结生产窗口
+    electrode_diameter_mm: 3.2
+    electrode_length_mm: 350.0
+    product_current_A: [80.0, 130.0]
+    calculation_current_A: {nominal: 100.0, engineering_interval: [80.0, 120.0]}
+    product_preheat_C: [100.0, 300.0]
+    typical_deposit_wt_pct: {C: 1.0, Si: 0.2, Mn: 0.6, Ni: 96.0, Fe: 1.8}
+    nominal_density_kg_m3: 8890.0
+    density_basis: 纯Ni量级用于备料；稀释首层热结构物性另建
+    deposited_mass_rate_g_s: {nominal: 0.25, engineering_interval: [0.15, 0.3333333333]}
+    deposition_basis: ESAB同类Ø3.2在126 A列1.2 kg/h；此处较低电流的0.15～0.333区间为设计敏感性，不作线性缩放或厂家保证
+  CI-A2:
+    role: 休眠材料对照；保留已有输入，不安排并行计算
+    electrode_diameter_mm: 2.6
+    electrode_length_mm: 300.0
+    product_current_A: [60.0, 90.0]
+    calculation_current_A: {nominal: 67.5, engineering_interval: [60.0, 75.0]}
+    product_preheat_C: [150.0, 350.0]
+    typical_deposit_wt_pct: {C: 1.2, Si: 0.3, Mn: 1.6, Ni: 54.6, Fe: 42.3}
+    Fe_basis: 原表为余量；42.3=100-C-Si-Mn-Ni的算术闭合情景，未计痕量P/S/Al
+    nominal_density_kg_m3: 8200.0
+    density_basis: 沿用NiFe工程密度量级用于备料；不作实测或稀释层物性
+    deposited_mass_rate_g_s: {nominal: 0.14, engineering_interval: [0.10, 0.1666666667]}
+    deposition_basis: ESAB同类Ø2.5在67.5 A列0.6 kg/h；KobelcoØ2.6输入作0.10～0.167设计敏感性
+mixing_diagnostic:
+  QT_into_first: [0.10, 0.20]
+  first_into_second: [0.10, 0.15]
+  second_into_final: [0.10, 0.20]
+  steel_into_final: [0.05, 0.10]
+  basis: 仅为换首层焊材的共同诊断情景；实际分道稀释未由这些比例证明
+  bare_Ni99: {C: 0.01, Si: 0.05, Mn: 0.17, Ni: 99.62}
+section_interface:
+  scope: 平直工作截面的体积与质量守恒约束；不赋予实际稀释或连续熔合资格
+  finished_total_thickness_mm: [1.40, 1.60]
+  second_deposited_top_from_QT_floor_min_mm: 1.75
+  final_root_remelt_depth_max_mm: 0.30
+  final_union_remelt_depth_max_mm: 0.40
+  root_contact_width_mm: 2.80
+  final_contact_width_mm: 4.00
+  diluted_first_density_range_g_cm3: [8.30, 8.90]
+  second_density_range_g_cm3: [8.80, 9.00]
+  final_filler_density_g_cm3: 8.20
+  steel_density_g_cm3: 7.85
+  density_basis: 延续工程密度量级作截面敏感性；不是已测稀释层物性包络

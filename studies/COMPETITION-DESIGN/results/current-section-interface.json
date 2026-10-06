@@ -1,0 +1,374 @@
+{
+  "reference": "finished QT/Ni99 connecting surface after preform machining; local thickness/depth minima/maxima include machining and identification uncertainty",
+  "nominal_triangle_root_area_mm2": 3.9199999999999995,
+  "nominal_triangle_cap_area_mm2": 4.08,
+  "nominal_triangle_total_area_mm2": 8.0,
+  "root_contact_width_mm": 2.8,
+  "final_contact_width_mm": 4.0,
+  "NiFe_density_g_cm3": 8.2,
+  "Ni_layer_density_design_range_g_cm3": [
+    8.8,
+    9.0
+  ],
+  "steel_dilution_mass_fraction_range": [
+    0.05,
+    0.1
+  ],
+  "geometric_ideal_throat_mm": 2.4748737341529163,
+  "throat_scope": "3.5 mm minimum leg gives this ideal 45-degree throat only if both-side fusion is demonstrated; deposited area is not a fusion measurement",
+  "Ni_layer_mass_fraction_at_root_depth_0_40_mm": [
+    0.21120000000000003,
+    0.226790450928382
+  ],
+  "Ni_layer_mass_fraction_at_total_union_depth_0_40_mm": [
+    0.1590361445783133,
+    0.17099999999999999
+  ],
+  "maximum_root_depth_for_20pct_Ni_layer_mm": 0.31786569669173065,
+  "proposed_maximum_root_depth_mm": 0.3,
+  "proposed_root_worst_Ni_layer_mass_fraction": 0.19101923244939956,
+  "steel_density_g_cm3": 7.85,
+  "required_root_steel_remelt_area_scenarios_mm2": [
+    0.25095748130987966,
+    0.529799127209746,
+    0.25208386414595074,
+    0.5321770465303404,
+    0.29037201988911276,
+    0.6130075975436825,
+    0.29149840272518385,
+    0.615385516864277
+  ],
+  "final_two_pass_union_depth_limit_mm": 0.4,
+  "minimum_finished_second_layer_mm": 0.6499999999999999,
+  "minimum_second_layer_remaining_mm": 0.2499999999999999,
+  "minimum_total_layer_remaining_mm": 0.9999999999999999,
+  "per_pass_actual_added_area_range_mm2": [
+    3.663208333825432,
+    4.380120337373313
+  ],
+  "total_actual_added_area_range_mm2": [
+    7.326416667650864,
+    8.760240674746626
+  ],
+  "final_union_second_origin_mass_fraction_range": [
+    0.147496378981285,
+    0.18368181330987257
+  ],
+  "second_added_height_min_mm": 1.0,
+  "first_remelt_depth_for_diagnostic_15pct_mm": 0.17448777263714477,
+  "first_geometric_remaining_at_that_depth_mm": 0.47551222736285526,
+  "root_mass_window_design_pass": true,
+  "scope": "Declared flat contact widths and density scenarios; uniform mixing averages are not local concentrations or true transport bounds. Nominal 2.8/4mm triangle areas are reference shapes; robust limits use actual feed corners.",
+  "continuous_connection_verified": false,
+  "actual_dilution_verified": false,
+  "chemistry_origin_ledger": [
+    {
+      "d1": 0.1,
+      "d2": 0.1,
+      "dn": 0.1,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.0010000000000000002,
+        "CI_A1": 0.009000000000000003,
+        "bare_Ni99": 0.09000000000000001,
+        "NiFe55": 0.85,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.030550000000000004,
+        "Si": 0.12940000000000002,
+        "Mn": 0.6385,
+        "Ni": 56.582350000000005
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.1,
+      "dn": 0.1,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.0010000000000000002,
+        "CI_A1": 0.009000000000000003,
+        "bare_Ni99": 0.09000000000000001,
+        "NiFe55": 0.8,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03855000000000001,
+        "Si": 0.13290000000000002,
+        "Mn": 0.626,
+        "Ni": 53.83485
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.1,
+      "dn": 0.2,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.0020000000000000005,
+        "CI_A1": 0.018000000000000006,
+        "bare_Ni99": 0.18000000000000002,
+        "NiFe55": 0.75,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.043100000000000006,
+        "Si": 0.12530000000000002,
+        "Mn": 0.5894999999999999,
+        "Ni": 60.912200000000006
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.1,
+      "dn": 0.2,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.0020000000000000005,
+        "CI_A1": 0.018000000000000006,
+        "bare_Ni99": 0.18000000000000002,
+        "NiFe55": 0.7000000000000001,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.051100000000000007,
+        "Si": 0.12880000000000003,
+        "Mn": 0.577,
+        "Ni": 58.16470000000001
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.15,
+      "dn": 0.1,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.0015,
+        "CI_A1": 0.0135,
+        "bare_Ni99": 0.085,
+        "NiFe55": 0.85,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.036825000000000004,
+        "Si": 0.13135,
+        "Mn": 0.6405,
+        "Ni": 56.516275
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.15,
+      "dn": 0.1,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.0015,
+        "CI_A1": 0.0135,
+        "bare_Ni99": 0.085,
+        "NiFe55": 0.8,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.044825000000000004,
+        "Si": 0.13485000000000003,
+        "Mn": 0.628,
+        "Ni": 53.768775
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.15,
+      "dn": 0.2,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.003,
+        "CI_A1": 0.027,
+        "bare_Ni99": 0.17,
+        "NiFe55": 0.75,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.05565,
+        "Si": 0.1292,
+        "Mn": 0.5934999999999999,
+        "Ni": 60.78005
+      }
+    },
+    {
+      "d1": 0.1,
+      "d2": 0.15,
+      "dn": 0.2,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.003,
+        "CI_A1": 0.027,
+        "bare_Ni99": 0.17,
+        "NiFe55": 0.7000000000000001,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.06365,
+        "Si": 0.1327,
+        "Mn": 0.581,
+        "Ni": 58.03255000000001
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.1,
+      "dn": 0.1,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.0020000000000000005,
+        "CI_A1": 0.008000000000000002,
+        "bare_Ni99": 0.09000000000000001,
+        "NiFe55": 0.85,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.03320000000000001,
+        "Si": 0.1318,
+        "Mn": 0.6382,
+        "Ni": 56.4864
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.1,
+      "dn": 0.1,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.0020000000000000005,
+        "CI_A1": 0.008000000000000002,
+        "bare_Ni99": 0.09000000000000001,
+        "NiFe55": 0.8,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.04120000000000001,
+        "Si": 0.1353,
+        "Mn": 0.6256999999999999,
+        "Ni": 53.7389
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.1,
+      "dn": 0.2,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.004000000000000001,
+        "CI_A1": 0.016000000000000004,
+        "bare_Ni99": 0.18000000000000002,
+        "NiFe55": 0.75,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.048400000000000006,
+        "Si": 0.13010000000000002,
+        "Mn": 0.5888999999999999,
+        "Ni": 60.7203
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.1,
+      "dn": 0.2,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.004000000000000001,
+        "CI_A1": 0.016000000000000004,
+        "bare_Ni99": 0.18000000000000002,
+        "NiFe55": 0.7000000000000001,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.05640000000000001,
+        "Si": 0.13360000000000002,
+        "Mn": 0.5764,
+        "Ni": 57.972800000000014
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.15,
+      "dn": 0.1,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.003,
+        "CI_A1": 0.012,
+        "bare_Ni99": 0.085,
+        "NiFe55": 0.85,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.0408,
+        "Si": 0.13495000000000001,
+        "Mn": 0.64005,
+        "Ni": 56.37235
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.15,
+      "dn": 0.1,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.003,
+        "CI_A1": 0.012,
+        "bare_Ni99": 0.085,
+        "NiFe55": 0.8,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.0488,
+        "Si": 0.13845000000000002,
+        "Mn": 0.6275499999999999,
+        "Ni": 53.62485
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.15,
+      "dn": 0.2,
+      "ds": 0.05,
+      "origin_mass_fractions": {
+        "QT": 0.006,
+        "CI_A1": 0.024,
+        "bare_Ni99": 0.17,
+        "NiFe55": 0.75,
+        "steel": 0.05
+      },
+      "final_composition_wt_pct": {
+        "C": 0.0636,
+        "Si": 0.13640000000000002,
+        "Mn": 0.5925999999999999,
+        "Ni": 60.492200000000004
+      }
+    },
+    {
+      "d1": 0.2,
+      "d2": 0.15,
+      "dn": 0.2,
+      "ds": 0.1,
+      "origin_mass_fractions": {
+        "QT": 0.006,
+        "CI_A1": 0.024,
+        "bare_Ni99": 0.17,
+        "NiFe55": 0.7000000000000001,
+        "steel": 0.1
+      },
+      "final_composition_wt_pct": {
+        "C": 0.0716,
+        "Si": 0.13990000000000002,
+        "Mn": 0.5801,
+        "Ni": 57.74470000000001
+      }
+    }
+  ],
+  "final_carbon_diagnostic_wt_pct": [
+    0.030550000000000004,
+    0.0716
+  ]
+}

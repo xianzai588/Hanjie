@@ -32,8 +32,8 @@ class ManualDocTemplate(SimpleDocTemplate):
     def afterFlowable(self, flowable):
         if isinstance(flowable, Paragraph):
             title = flowable.getPlainText()
-            if flowable.style.name == "H2" or (flowable.style.name == "H1" and
-                    title.startswith(("主轴承座—", "HJ-W-00", "HJ-W-02", "HJ-C-01", "HJ-C-02", "HJ-Q-01", "HJ-Q-02", "HJ-Q-03", "HJ-F-01"))):
+            if (flowable.style.name == "H2" and re.match(r'^[0-7] ',title)) or (flowable.style.name == "H1" and
+                    title.startswith(("当前候选", "主轴承座—", "HJ-W-00", "HJ-W-02", "HJ-C-01", "HJ-C-02", "HJ-Q-01", "HJ-Q-02", "HJ-Q-03", "HJ-F-01"))):
                 self.notify("TOCEntry", (0, title, self.page))
 
 
@@ -91,6 +91,7 @@ def inline(text: str) -> str:
     text = text.replace("{","").replace("}","").replace("`","").replace("$","")
     # 数学减号 U+2212 在中文字体子集中缺字形，统一为 ASCII 连字符以保证 PDF 可读。
     text = text.replace("\u2212","-")
+    text = text.replace("ṁ","m_dot")  # The project CJK font lacks U+1E41.
     text = escape(text)
     for token, tag in ((_SUP_TOKEN, "super"), (_SUB_TOKEN, "sub")):
         text = re.sub(re.escape(token) + r"(.*?)" + re.escape(token),
@@ -102,9 +103,10 @@ def inline(text: str) -> str:
 
 
 def build_story(source: Path = SOURCE) -> list:
-    body = ParagraphStyle("BodyCN", fontName=REGULAR_FONT, fontSize=9, leading=14,
+    is_card=source.parent==ROOT/'deliverables/process'
+    body = ParagraphStyle("BodyCN", fontName=REGULAR_FONT, fontSize=10, leading=14 if is_card else 15.5,
                           wordWrap="CJK", spaceAfter=5)
-    cell = ParagraphStyle("CellCN", parent=body, fontSize=8, leading=12)
+    cell = ParagraphStyle("CellCN", parent=body, fontSize=8.5, leading=12.5 if is_card else 13)
     headings = {i: ParagraphStyle(f"H{i}", parent=body, fontName=BOLD_FONT,
                 fontSize=19 if i == 1 else 14 if i == 2 else 11,
                 leading=25 if i == 1 else 19, spaceBefore=12, spaceAfter=7,
@@ -117,7 +119,13 @@ def build_story(source: Path = SOURCE) -> list:
             return
         n = max(len(row) for row in table_rows)
         rows = [[Paragraph(inline(value), cell) for value in row + [""] * (n - len(row))] for row in table_rows]
-        table = Table(rows, colWidths=[170 * mm / n] * n, repeatRows=1, hAlign="LEFT")
+        widths=[170*mm/n]*n
+        if n==2:widths=[40*mm,130*mm]
+        if n==3 and table_rows[0][0]=='项目':widths=[30*mm,70*mm,70*mm]
+        if n==3 and table_rows[0][0]=='工序':widths=[25*mm,48*mm,97*mm]
+        if n==3 and table_rows[0][1]=='当前设计输入及用途':widths=[30*mm,90*mm,50*mm]
+        if n==4 and table_rows[0][0]=='输入':widths=[25*mm,35*mm,35*mm,75*mm]
+        table = Table(rows, colWidths=widths, repeatRows=1, hAlign="LEFT")
         table.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#E8EEF4")),
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -151,6 +159,8 @@ def build_story(source: Path = SOURCE) -> list:
             continue
         heading = re.match(r"^(#{1,6}) (.*)$", line)
         if heading:
+            if source==SOURCE and len(heading[1])==1:
+                continue  # The full document title is already on the cover.
             story.append(Paragraph(inline(heading[2]), headings[len(heading[1])]))
         else:
             story.append(Paragraph(inline(line.removeprefix("> ")), body))
@@ -214,13 +224,27 @@ def main() -> int:
     # 研究状态独立保留，正文只呈现比赛论证所需证据。
     story = cover_and_contents() + build_story()
     # The workshop cards belong in the readable manual, not only in loose attachments.
-    for card in ("joint-process-card.md", "Ni99-transition-pWPS.md", "independent-prebutter-route-card.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md"):
+    for card in ("current-candidate-state.md", "independent-precoat-design-card.md", "first-layer-input-card.md", "joint-process-card.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md"):
         story += [PageBreak()] + build_story(ROOT / "deliverables/process" / card)
     if "--include-research-status" in sys.argv:
         generated_status = write_status_artifacts(ROOT)
         story += [PageBreak()]+build_story(generated_status)
     doc.multiBuild(story,onFirstPage=on_page,onLaterPages=on_page)
     print(f"工艺设计说明书已生成：{OUT}")
+    if '--with-drawings' in sys.argv:
+        if '--review' not in sys.argv:
+            raise ValueError('--with-drawings仅用于统一审阅稿；正式包按build_submission发布')
+        from pypdf import PdfReader, PdfWriter
+        drawings=ROOT/'cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf'
+        manifest=json.loads((drawings.parent/'pdf-exports.json').read_text(encoding='utf8'))
+        if len(PdfReader(drawings).pages)!=manifest['sheet_count'] or manifest['sheet_count']!=18:
+            raise ValueError('先生成包含HJ-017/HJ-018的18张当前图集')
+        bundle=PdfWriter();bundle.append(OUT);bundle.append(drawings)
+        bundle.add_metadata({'/Title':'QT450-10/Q235B 工艺设计说明书与工程图（修订审阅稿）',
+                             '/Author':'','/Subject':'当前MMA首层候选、工艺规程与18张工程图'})
+        combined=ROOT/'output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf'
+        with combined.open('wb') as stream:bundle.write(stream)
+        print(f'统一审阅稿已生成：{combined}')
     return 0
 
 

@@ -1,0 +1,130 @@
+{
+  "cases": [
+    {
+      "name": "CI-A1",
+      "ternary_normalized_wt_pct": {
+        "C": 1.0121457489878543,
+        "Fe": 1.8218623481781377,
+        "Ni": 97.16599190283401
+      },
+      "limits": {
+        "graphite_allowed": {
+          "solidus_grid_bracket_C": [
+            1330.0,
+            1340.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1390.0,
+            1400.0
+          ]
+        },
+        "graphite_suppressed": {
+          "solidus_grid_bracket_C": [
+            1210.0,
+            1220.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1390.0,
+            1400.0
+          ]
+        }
+      },
+      "nested_phase_feasibility_pass": true
+    },
+    {
+      "name": "CI-A2",
+      "ternary_normalized_wt_pct": {
+        "C": 1.2232415902140674,
+        "Fe": 43.11926605504588,
+        "Ni": 55.657492354740064
+      },
+      "limits": {
+        "graphite_allowed": {
+          "solidus_grid_bracket_C": [
+            1270.0,
+            1280.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1350.0,
+            1360.0
+          ]
+        },
+        "graphite_suppressed": {
+          "solidus_grid_bracket_C": [
+            1080.0,
+            1090.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1350.0,
+            1360.0
+          ]
+        }
+      },
+      "nested_phase_feasibility_pass": true
+    }
+  ],
+  "Gibbs_branch_audit": {
+    "replaced_higher_energy_states": [
+      {
+        "case": "CI-A1",
+        "T_C": 1340.0,
+        "original_higher_Gibbs_energy_J_mol": 39.38408004035591,
+        "selected_source": "CI-A1-graphite_suppressed.nc",
+        "sampled_phase_stability": {
+          "LIQUID": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 512.6710473392595,
+            "samples": 112005
+          },
+          "BCC_A2": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 3076.2371059467696,
+            "samples": 64004
+          },
+          "CEMENTITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 4978.3286038872175,
+            "samples": 16002
+          },
+          "FCC_A1": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 1.0328319317050045,
+            "samples": 64004
+          },
+          "GRAPHITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 1503.4419425177002,
+            "samples": 1
+          }
+        }
+      },
+      {
+        "case": "CI-A1",
+        "T_C": 1360.0,
+        "original_higher_Gibbs_energy_J_mol": 147.44227230129763,
+        "selected_source": "CI-A1-graphite_suppressed.nc",
+        "sampled_phase_stability": {
+          "LIQUID": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 593.7713270634849,
+            "samples": 112005
+          },
+          "BCC_A2": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 2937.1006680245773,
+            "samples": 64004
+          },
+          "CEMENTITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 5854.770231772272,
+            "samples": 16002
+          },
+          "FCC_A1": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 0.8082381456333678,
+            "samples": 64004
+          },
+          "GRAPHITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 5324.639836435377,
+            "samples": 1
+          }
+        }
+      }
+    ],
+    "source_directory": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-filler-enthalpy-20261006\\raw",
+    "maximum_corrected_nested_Gibbs_excess_J_mol": 2.1927262423560023e-06,
+    "nested_phase_feasibility_pass": true,
+    "scope": "same actual composition and temperature; independently converged lower-energy subset state; graphite exact and all phases sampled tangent-plane checks, not a proof over every continuous site fraction"
+  }
+}

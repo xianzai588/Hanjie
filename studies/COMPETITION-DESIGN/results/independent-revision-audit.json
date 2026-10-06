@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-06",
+  "reviewed_commit": "b9053c8",
+  "attachment_use": "Attachment statements are hypotheses; arithmetic reads current configuration and saved raw-family records.",
+  "old_manufacturing": {
+    "source": "simulation/competition-r4/results/design-repair-status-20261005.json",
+    "spatial_response_difference_pct": 16.56288862533575,
+    "temporal_response_difference_pct": 5.37501473255711,
+    "worst_listed_position_um": 15.584046729503577,
+    "worst_full_budget_um": 52.08404672950358,
+    "temporal_bore_spread_um": 25.96133166645842,
+    "target_window_um": 25.0,
+    "guarded_measured_window_um": 24.0,
+    "accepted": false
+  },
+  "old_return_counterexample": {
+    "cup_ml": 12.2053084433746,
+    "requirement_ml": 14.666370614359172,
+    "deficit_ml": 2.4610621709845724
+  },
+  "revised_drain": {
+    "independent_flow_roots": [
+      {
+        "net_pressure_Pa": 1800.0,
+        "flow_ml_min": 114.02379310036841,
+        "pressure_residual_Pa": -2.0497964214882813e-08
+      },
+      {
+        "net_pressure_Pa": 2000.0,
+        "flow_ml_min": 125.78133409378992,
+        "pressure_residual_Pa": -2.2737367544323206e-13
+      },
+      {
+        "net_pressure_Pa": 2500.0,
+        "flow_ml_min": 154.50971279977063,
+        "pressure_residual_Pa": -1.3642420526593924e-12
+      }
+    ],
+    "maximum_full_pipe_return_ml": 13.202543126711104,
+    "minimum_cup_capacity_ml": 20.957154116152388,
+    "required_ml": 18.802543126711107,
+    "margin_ml": 2.154610989441281
+  },
+  "revised_precision_budget": {
+    "nonthermal_um": 27.999999999999996,
+    "thermal_target_um": 12.0,
+    "uncertainty_um": 2.0,
+    "honing_um": 6.5,
+    "full_target_budget_um": 48.5,
+    "thermal_allowance_with_honing_um": 13.500000000000004,
+    "thermal_allowance_without_removal_um": 20.000000000000004,
+    "manufacturing_pass_assigned": false
+  },
+  "scope": "Arithmetic and saved-evidence review; no new welding FE or measured results."
+}
