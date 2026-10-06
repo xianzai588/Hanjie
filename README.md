@@ -2,7 +2,11 @@
 
 当前开发线为COMPETITION-R4，产物为修订审阅稿。现处于有效接头与工艺窗口重选阶段。Ni基独立预制、NiFe最终连接及8P为候选；保留柔顺座体、实心反锥/门架夹具和铜环—静密封—接料盘的设计成果，按实际连接条件复用。
 
-- [说明书与14张工程图审阅稿](output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf)
+本轮执行入口：[最小修复与参赛路线](deliverables/competition-route.md)、[当前提交检查](deliverables/submission-checklist.md)。先取得有效接头，再验证制造后孔形与同状态承载；旧submission目录不作为本轮最终稿。排液计算已采用实际全长管路，不再以短孔流量认证容量。
+
+2026-10-06已按用户确定的无实物路线执行商品焊材相平衡及真实浅槽座体升温设计，新增首次MMA与首层中间修整接口，保留低碳第二层。见[无实物设计执行稿](deliverables/report/design-only-execution-rendered.md)、[预制修订PDF](output/pdf/无实物设计路线-预制修订审阅稿.pdf)、[独立预制设计卡HJ-W-00C](deliverables/process/independent-precoat-design-card.md)。升温核验不代替有效接头和制造后控形。
+
+- [说明书与16张工程图审阅稿](output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf)
 - [说明书正文](deliverables/report/technical-report-v4-unified.md)、[车间工艺卡及工程展开](deliverables/process/)
 - [当前阶段账](project/stage-status.yaml)、[自动状态摘要](deliverables/report/generated/current-status.md)
 - [实际计算入口与结果用途](simulation/competition-r4/README.md)、[内部修复记录](docs/review/2026-10-03-报告复核与修复.md)

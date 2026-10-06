@@ -34,6 +34,17 @@ def publish_validated(candidate, candidate_archive, destination, archive):
 def main():
     import yaml
     spec = yaml.safe_load((ROOT/'project/competition-design.yaml').read_text(encoding='utf8'))
+    joint_file = ROOT/'simulation/competition-r4/results/joint-process-verification.json'
+    if not joint_file.exists():
+        raise RuntimeError('首次QT界面、最终双侧熔合及预制存留状态尚无完整验证；见deliverables/competition-route.md')
+    joint = json.loads(joint_file.read_text(encoding='utf8'))
+    joint_checks = ('first_interface_continuous_fusion_pass', 'final_dual_side_fusion_pass',
+                    'retained_layer_and_dilution_pass', 'PMZ_capacity_design_pass',
+                    'precoat_machining_residual_state_transfer_pass')
+    if not all(joint.get(key) is True for key in joint_checks):
+        raise RuntimeError('有效接头验证未通过，禁止将填料出生或满片弹簧连接作为最终传力依据')
+    if joint.get('layout') != spec['layout'] or not joint.get('manufacturing_cases'):
+        raise RuntimeError('有效接头与整件制造算例尚未对齐')
     sys.path.insert(0, str(ROOT/'simulation/competition-r4'))
     from aggregate_strength import aggregate
     aggregate()
@@ -52,6 +63,8 @@ def main():
     if not peening.get('material_specific_fusion_enthalpy'):
         raise RuntimeError('轻击温窗仍来自旧统一熔化区间；需先完成当前材料热焓的实际时序复核')
     numerical = json.loads(numerical_file.read_text(encoding='utf8'))
+    if set(joint['manufacturing_cases']) != set(numerical['cases']):
+        raise RuntimeError('接头验证对应的制造家族与控形验证不同，不能复用历史通过值')
     if not numerical.get('bore_size_design_pass', False):
         raise RuntimeError('焊前尺寸窗、焊后孔径与微量精整上限尚未完成闭环；禁止发布最终技术包')
     peen_folder = 'simulation/competition-r4/results/' + peening['source_run']

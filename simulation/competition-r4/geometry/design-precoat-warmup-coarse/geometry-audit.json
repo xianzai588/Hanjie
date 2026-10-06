@@ -1,0 +1,10 @@
+{
+  "source": "simulation\\competition-r4\\geometry\\explicit-ni99-wing-t14-first07-h15-lh05\\explicit-stack.brep",
+  "nominal_QT_volume_mm3": 137076.62757183018,
+  "tetra_volume_mm3": 137171.73041022444,
+  "relative_volume_error": 0.0006937932460034144,
+  "nominal_mesh_size_mm": 2.4,
+  "nodes": 16326,
+  "tetrahedra": 60041,
+  "scope": "Same BREP QT solid; no coatings or shell. Warmup convergence only, not a welding or residual-stress mesh."
+}

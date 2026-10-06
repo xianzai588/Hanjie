@@ -5,6 +5,16 @@ geometry_manifest: simulation/competition-r4/geometry/8P-R2-t15-manifest.json
 seat_brep: simulation/competition-r4/geometry/8P-R2-t15.brep
 shell_brep: simulation/structural-v4/common/shell.brep
 process_source: project/process-r3.yaml
+postweld_drain:
+  inside_diameter_min_mm: 3.90
+  line_length_max_m: 1.0
+  local_loss_K_max: 10.0
+  newtonian_viscosity_max_Pa_s: 0.005
+  density_kg_m3: 1000.0
+  net_differential_pressure_min_Pa: 2000.0
+  supply_limit_ml_min: 60.0
+  capacity_factor: 2.0
+  scope: 牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶
 assembly:
   seat_bottom_z_mm: 100.0
   bottom_open: true

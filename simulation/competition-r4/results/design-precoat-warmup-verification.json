@@ -1,0 +1,27 @@
+{
+  "comparisons": [
+    {
+      "label": "时间30→15 s",
+      "common_time_s": 2145.0,
+      "temperature_rise_error_pct": 0.1350318633320393,
+      "absorbed_energy_error_pct": 0.21384366586496856,
+      "warmup_duration_error_pct": 0.6944444444444444,
+      "common_time_gradient_error_pct": 3.430140216722402,
+      "pass_within_5pct": true
+    },
+    {
+      "label": "空间172862→60041单元",
+      "common_time_s": 2160.0,
+      "temperature_rise_error_pct": 0.0006733359037616315,
+      "absorbed_energy_error_pct": 0.00291471270950398,
+      "warmup_duration_error_pct": 0.0,
+      "common_time_gradient_error_pct": 0.016360789837734396,
+      "pass_within_5pct": true
+    }
+  ],
+  "warmup_convergence_pass": true,
+  "full_cycle_gradient_below_10C": true,
+  "maximum_Cp_time_lag_energy_error_pct": 0.14167874488542959,
+  "scope": "Oven warmup only; temperature endpoints compared at the same physical time. Not welding fusion, PMZ or manufacturing convergence.",
+  "exported_curved_STEP_valid_solids": 17
+}

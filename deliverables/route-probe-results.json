@@ -1,0 +1,79 @@
+{
+  "scope": "executed analytical requirements only; no candidate has gained fusion/manufacturing qualification",
+  "design_loads_N_Nmm": {
+    "radial": 5000,
+    "axial": 5000,
+    "moment": 250000
+  },
+  "circular_group_demands": {
+    "6P_fillets": {
+      "effective_area_mm2": 267.28636328851496,
+      "radius_mm": 75,
+      "peak_axial_demand_MPa": 43.648566739910336,
+      "radial_average_demand_MPa": 18.706528602818718,
+      "peak_traction_demand_MPa": 47.48822581247358,
+      "scope": "uniform circular-group resultant traction, not von Mises or local PMZ stress; no allowable or fatigue strength"
+    },
+    "8P_fillets": {
+      "effective_area_mm2": 356.38181771801993,
+      "radius_mm": 75,
+      "peak_axial_demand_MPa": 32.73642505493276,
+      "radial_average_demand_MPa": 14.02989645211404,
+      "peak_traction_demand_MPa": 35.61616935935519,
+      "scope": "uniform circular-group resultant traction, not von Mises or local PMZ stress; no allowable or fatigue strength"
+    },
+    "16_D6_plug_interfaces": {
+      "effective_area_mm2": 452.3893421169302,
+      "radius_mm": 75,
+      "peak_axial_demand_MPa": 25.788995408408965,
+      "radial_average_demand_MPa": 11.052426603603843,
+      "peak_traction_demand_MPa": 28.057591094086973,
+      "scope": "uniform circular-group resultant traction, not von Mises or local PMZ stress; no allowable or fatigue strength"
+    }
+  },
+  "plug_probe": {
+    "hole_count": 16,
+    "hole_diameter_mm": 6,
+    "shell_thickness_mm": 5,
+    "minimum_hole_fill_volume_mm3": 2261.946710584651,
+    "caveat": "full effective diameter and fusion assumed only to derive requirements; outer-interface design pending"
+  },
+  "baseline_GTAW": {
+    "precoat_arc_s": 144,
+    "precoat_net_kJ": 88.704,
+    "final_arc_s": 174.54545454545456,
+    "final_net_kJ": 86.4,
+    "total_arc_s": 318.54545454545456,
+    "total_net_kJ": 175.10399999999998,
+    "status": "historical wide-track baseline, not adopted MMA settings"
+  },
+  "independent_preheat": {
+    "seat_mass_kg": 0.9962389211262894,
+    "stored_sensible_heat_kJ": {
+      "200": 86.97165781432507,
+      "300": 139.52326090373683,
+      "350": 167.10662603242096
+    },
+    "scope": "unrecessed solid CAD and engineering Cp, excludes tools and deposited layers; not furnace electricity, duration or a stress-reset operation"
+  },
+  "honing_drain": {
+    "inside_diameter_min_mm": 3.9,
+    "line_length_max_m": 1.0,
+    "local_loss_K_max": 10.0,
+    "newtonian_viscosity_max_Pa_s": 0.005,
+    "density_kg_m3": 1000.0,
+    "net_differential_pressure_min_Pa": 2000.0,
+    "supply_limit_ml_min": 60.0,
+    "capacity_factor": 2.0,
+    "scope": "牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶",
+    "capacity_ml_min": 125.78133409378995,
+    "reynolds": 136.88014406646025,
+    "laminar_model_applicable": true,
+    "viscous_pressure_loss_Pa": 1846.020925052146,
+    "local_pressure_loss_Pa": 153.9790749478544,
+    "capacity_margin_fraction": 0.048177784114916244,
+    "qualification": "design calculation; measure net pressure and flow on the assembled line"
+  },
+  "engineering_route_qualified": false,
+  "next_gate": "actual first QT interface, final dual fusion, retained layer, PMZ capacity and residual state transfer"
+}

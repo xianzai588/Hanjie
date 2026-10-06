@@ -1,11 +1,34 @@
 """Geometry/hold-up checks for local cold PT/UT and bore finishing tools."""
 from pathlib import Path
 import json,math
+import yaml
 
 ROOT=Path(__file__).resolve().parents[2]
 
 
+def drain_capacity(inputs):
+    d=inputs['inside_diameter_min_mm']/1000
+    length=inputs['line_length_max_m']
+    mu=inputs['newtonian_viscosity_max_Pa_s']
+    rho=inputs['density_kg_m3']
+    pressure=inputs['net_differential_pressure_min_Pa']
+    area=math.pi*d*d/4
+    a=128*mu*length/(math.pi*d**4)
+    b=inputs['local_loss_K_max']*rho/(2*area**2)
+    # pressure = a*Q + b*Q^2; this form avoids subtractive cancellation.
+    q=2*pressure/(a+math.sqrt(a*a+4*b*pressure))
+    speed=q/area
+    reynolds=rho*speed*d/mu
+    return dict(**inputs,capacity_ml_min=q*60*1e6,
+        reynolds=reynolds,laminar_model_applicable=reynolds<2000,
+        viscous_pressure_loss_Pa=a*q,local_pressure_loss_Pa=b*q*q,
+        capacity_margin_fraction=q*60*1e6/(inputs['capacity_factor']*inputs['supply_limit_ml_min'])-1,
+        qualification='design calculation; measure net pressure and flow on the assembled line')
+
+
 def evaluate():
+    config=yaml.safe_load((ROOT/'project/competition-design.yaml').read_text(encoding='utf8'))
+    drain=drain_capacity(config['postweld_drain'])
     shell_radius=75.
     # Actual CAD outer wing arc is only 18 mm. A 38+ mm single-wing hood
     # has no two-sided sealing land. Use a continuous under-seat catch pan.
@@ -30,9 +53,8 @@ def evaluate():
     seal_force=inflatable_pressure_MPa*2*math.pi*shell_radius*6
     cup_inner_radius=22.;cup_depth=10.;occupied_volume=3000.
     effective_hold=(math.pi*cup_inner_radius**2*cup_depth-occupied_volume)/1000
-    liquid_flow=60.;stop_latency=.10;line_drain_volume=5.;reserve=2.
+    liquid_flow=config['postweld_drain']['supply_limit_ml_min'];stop_latency=.10;line_drain_volume=5.;reserve=2.
     required_hold=line_drain_volume+liquid_flow/60*stop_latency+reserve
-    gravity_flow=.6*math.pi*(4e-3)**2/4*math.sqrt(2*9.81*.005)*60*1e6
     cover_load=120;gasket_radius=27.;gasket_width=1.0
     seal_pressure=cover_load/(2*math.pi*gasket_radius*gasket_width)
     cord=1.;cord_tol=.02;groove=.7;groove_tol=.01;stop_gap=.1;stop_tol=.01
@@ -48,7 +70,7 @@ def evaluate():
         PT_seal_membrane_strength_pass=seal_membrane_stress<=2/3,
         PT_fault_hold_up_pass=pan_capacity>=required_hold,
         cup_below_hub_no_slot_pass=30<39,
-        gravity_drain_capacity_pass=gravity_flow>=2*liquid_flow,
+        drain_capacity_pass=drain['laminar_model_applicable'] and drain['capacity_ml_min']>=config['postweld_drain']['capacity_factor']*liquid_flow,
         retained_liquid_capacity_pass=effective_hold>=required_hold,
         low_cold_face_clamp_pressure_pass=seal_pressure<1,
         face_seal_extreme_squeeze_pass=squeeze_ratio[0]>=.15 and squeeze_ratio[1]<=.30)
@@ -83,7 +105,7 @@ def evaluate():
         method='continuous closed-bottom 316L under-seat pan, non-sliding inflatable low-outgassing FFKM seal, PT swab/UT metered gel above pan, separate sealed recovery bottle'),
         honing=dict(lower_cup_outer_diameter_mm=60,lower_cup_inside_diameter_mm=44,
         liquid_depth_mm=10,drain_bore_mm=4,liquid_supply_limit_ml_min=liquid_flow,
-        gravity_drain_at_5mm_head_ml_min=gravity_flow,
+        drain_line=drain,
         effective_liquid_hold_up_ml=effective_hold,required_fault_hold_up_ml=required_hold,
         maximum_line_drain_ml=line_drain_volume,supply_shutdown_s=stop_latency,
         suction_pressure_kPa=[-5,-2],axial_clamp_N=cover_load,average_seal_land_pressure_MPa=seal_pressure,
