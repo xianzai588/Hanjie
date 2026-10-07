@@ -1,0 +1,1099 @@
+{
+  "cases": [
+    {
+      "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-phase-front-dt0125-20261007",
+      "peak_C": 2719.643565284232,
+      "final_max_C": 496.09931434485225,
+      "cooling_end_s": 95.3190172601195,
+      "qualified_reference_area_mm2": 131.39999344617922,
+      "first_coherent_facet_s": 15.9440172601195,
+      "all_qualified_facets_coherent_s": 22.6940172601195,
+      "probes": [
+        {
+          "delay_s": 0.125,
+          "maximum_temperature_C": 2407.8053787314093,
+          "QT_coherent_volume_mm3": 135792.77457334942,
+          "Ni_coherent_volume_mm3": 71.2637015512536,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 0.25,
+          "maximum_temperature_C": 2192.4040548231787,
+          "QT_coherent_volume_mm3": 135784.9024986079,
+          "Ni_coherent_volume_mm3": 72.92289885045129,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 0.5,
+          "maximum_temperature_C": 1901.8910179792817,
+          "QT_coherent_volume_mm3": 135774.3978973269,
+          "Ni_coherent_volume_mm3": 76.75789308032594,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 1.0,
+          "maximum_temperature_C": 1584.5671469651622,
+          "QT_coherent_volume_mm3": 135773.35169199016,
+          "Ni_coherent_volume_mm3": 86.03620313680956,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 2.0,
+          "maximum_temperature_C": 1382.8683651385438,
+          "QT_coherent_volume_mm3": 135830.6211320188,
+          "Ni_coherent_volume_mm3": 131.68197720035175,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 3.0,
+          "maximum_temperature_C": 1339.8019783712195,
+          "QT_coherent_volume_mm3": 135926.4592940665,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 4.0,
+          "maximum_temperature_C": 1218.3092555139322,
+          "QT_coherent_volume_mm3": 136047.98069212027,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 6.0,
+          "maximum_temperature_C": 1166.3398590010183,
+          "QT_coherent_volume_mm3": 136341.84514210073,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 6.996799306319701
+        },
+        {
+          "delay_s": 10.0,
+          "maximum_temperature_C": 1125.5819575419976,
+          "QT_coherent_volume_mm3": 137022.08324567674,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 88.28709932367727
+        },
+        {
+          "delay_s": 12.0,
+          "maximum_temperature_C": 1075.2800274978533,
+          "QT_coherent_volume_mm3": 137220.33419290048,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 131.39999344617922
+        },
+        {
+          "delay_s": 16.0,
+          "maximum_temperature_C": 944.918043522632,
+          "QT_coherent_volume_mm3": 137220.33419290048,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 131.39999344617922
+        }
+      ]
+    },
+    {
+      "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-phase-front-dt00625-20261007",
+      "peak_C": 2719.643565284232,
+      "final_max_C": 496.452134082465,
+      "cooling_end_s": 95.1940172601195,
+      "qualified_reference_area_mm2": 131.39999344617922,
+      "first_coherent_facet_s": 15.8815172601195,
+      "all_qualified_facets_coherent_s": 22.6940172601195,
+      "probes": [
+        {
+          "delay_s": 0.125,
+          "maximum_temperature_C": 2388.7380865986497,
+          "QT_coherent_volume_mm3": 135792.28040211287,
+          "Ni_coherent_volume_mm3": 71.2604439116055,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 0.25,
+          "maximum_temperature_C": 2166.8100893473575,
+          "QT_coherent_volume_mm3": 135783.8775910251,
+          "Ni_coherent_volume_mm3": 72.9030086395904,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 0.5,
+          "maximum_temperature_C": 1877.8364839091175,
+          "QT_coherent_volume_mm3": 135772.37842147832,
+          "Ni_coherent_volume_mm3": 76.6575259129622,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 1.0,
+          "maximum_temperature_C": 1567.8369390093917,
+          "QT_coherent_volume_mm3": 135770.34525111874,
+          "Ni_coherent_volume_mm3": 85.88160397303946,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 2.0,
+          "maximum_temperature_C": 1381.4252258916608,
+          "QT_coherent_volume_mm3": 135828.61517821142,
+          "Ni_coherent_volume_mm3": 133.66916089136419,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 3.0,
+          "maximum_temperature_C": 1339.5032389899818,
+          "QT_coherent_volume_mm3": 135925.96320959047,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 4.0,
+          "maximum_temperature_C": 1210.8709186692743,
+          "QT_coherent_volume_mm3": 136048.82125639042,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 6.0,
+          "maximum_temperature_C": 1165.7758603902541,
+          "QT_coherent_volume_mm3": 136345.34404649798,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 6.996799306319701
+        },
+        {
+          "delay_s": 10.0,
+          "maximum_temperature_C": 1125.2278721707964,
+          "QT_coherent_volume_mm3": 137027.65817313615,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 88.71364799799622
+        },
+        {
+          "delay_s": 12.0,
+          "maximum_temperature_C": 1079.9744811919893,
+          "QT_coherent_volume_mm3": 137220.33419290048,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 131.39999344617922
+        },
+        {
+          "delay_s": 16.0,
+          "maximum_temperature_C": 944.5963160075543,
+          "QT_coherent_volume_mm3": 137220.33419290048,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 131.39999344617922
+        }
+      ]
+    },
+    {
+      "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-phase-front-h045-20261007",
+      "peak_C": 2730.429081250339,
+      "final_max_C": 496.09063879328306,
+      "cooling_end_s": 95.3190172601195,
+      "qualified_reference_area_mm2": 131.55155596602054,
+      "first_coherent_facet_s": 15.6940172601195,
+      "all_qualified_facets_coherent_s": 22.6940172601195,
+      "probes": [
+        {
+          "delay_s": 0.125,
+          "maximum_temperature_C": 2410.4396014136905,
+          "QT_coherent_volume_mm3": 135817.80542298968,
+          "Ni_coherent_volume_mm3": 71.41103458344422,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 0.25,
+          "maximum_temperature_C": 2191.8815811660666,
+          "QT_coherent_volume_mm3": 135810.47774686984,
+          "Ni_coherent_volume_mm3": 73.16685608839911,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 0.5,
+          "maximum_temperature_C": 1901.74702879693,
+          "QT_coherent_volume_mm3": 135801.06495103662,
+          "Ni_coherent_volume_mm3": 76.64425416714592,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 1.0,
+          "maximum_temperature_C": 1583.965143910911,
+          "QT_coherent_volume_mm3": 135801.7294338623,
+          "Ni_coherent_volume_mm3": 86.05127318173204,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 2.0,
+          "maximum_temperature_C": 1382.8587000660639,
+          "QT_coherent_volume_mm3": 135855.63610938116,
+          "Ni_coherent_volume_mm3": 131.53390568390495,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 3.0,
+          "maximum_temperature_C": 1339.87815889519,
+          "QT_coherent_volume_mm3": 135948.39205688852,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 4.0,
+          "maximum_temperature_C": 1218.082802811734,
+          "QT_coherent_volume_mm3": 136066.7205310308,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 0.0
+        },
+        {
+          "delay_s": 6.0,
+          "maximum_temperature_C": 1166.3188380381284,
+          "QT_coherent_volume_mm3": 136354.73524447254,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 7.418672424023107
+        },
+        {
+          "delay_s": 10.0,
+          "maximum_temperature_C": 1125.4214935554166,
+          "QT_coherent_volume_mm3": 137031.5139924763,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 90.16732742065045
+        },
+        {
+          "delay_s": 12.0,
+          "maximum_temperature_C": 1074.7014365546631,
+          "QT_coherent_volume_mm3": 137232.2814239761,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 131.55155596602054
+        },
+        {
+          "delay_s": 16.0,
+          "maximum_temperature_C": 944.7470929044631,
+          "QT_coherent_volume_mm3": 137232.2814239761,
+          "Ni_coherent_volume_mm3": 215.54042990141915,
+          "qualified_coherent_face_area_mm2": 131.55155596602054
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "time half",
+      "maximum_relative_difference": 0.014866433497158407,
+      "metrics": [
+        {
+          "delay_s": 0.125,
+          "response": "maximum_temperature_C",
+          "reference": 2407.8053787314093,
+          "comparison": 2388.7380865986497,
+          "relative_difference": 0.007918950718020857
+        },
+        {
+          "delay_s": 0.125,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 71.2637015512536,
+          "comparison": 71.2604439116055,
+          "relative_difference": 4.5712467598314925e-05
+        },
+        {
+          "delay_s": 0.125,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135792.77457334942,
+          "comparison": 135792.28040211287,
+          "relative_difference": 3.6391570767078146e-06
+        },
+        {
+          "delay_s": 0.125,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 0.25,
+          "response": "maximum_temperature_C",
+          "reference": 2192.4040548231787,
+          "comparison": 2166.8100893473575,
+          "relative_difference": 0.011673927266972455
+        },
+        {
+          "delay_s": 0.25,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 72.92289885045129,
+          "comparison": 72.9030086395904,
+          "relative_difference": 0.0002727567221605355
+        },
+        {
+          "delay_s": 0.25,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135784.9024986079,
+          "comparison": 135783.8775910251,
+          "relative_difference": 7.548023115450819e-06
+        },
+        {
+          "delay_s": 0.25,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 0.5,
+          "response": "maximum_temperature_C",
+          "reference": 1901.8910179792817,
+          "comparison": 1877.8364839091175,
+          "relative_difference": 0.01264769318681658
+        },
+        {
+          "delay_s": 0.5,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 76.75789308032594,
+          "comparison": 76.6575259129622,
+          "relative_difference": 0.0013075810621679005
+        },
+        {
+          "delay_s": 0.5,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135774.3978973269,
+          "comparison": 135772.37842147832,
+          "relative_difference": 1.4873760295484881e-05
+        },
+        {
+          "delay_s": 0.5,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 1.0,
+          "response": "maximum_temperature_C",
+          "reference": 1584.5671469651622,
+          "comparison": 1567.8369390093917,
+          "relative_difference": 0.010558219629766413
+        },
+        {
+          "delay_s": 1.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 86.03620313680956,
+          "comparison": 85.88160397303946,
+          "relative_difference": 0.0017969082564495149
+        },
+        {
+          "delay_s": 1.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135773.35169199016,
+          "comparison": 135770.34525111874,
+          "relative_difference": 2.2143085030739778e-05
+        },
+        {
+          "delay_s": 1.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 2.0,
+          "response": "maximum_temperature_C",
+          "reference": 1382.8683651385438,
+          "comparison": 1381.4252258916608,
+          "relative_difference": 0.0010435839616147488
+        },
+        {
+          "delay_s": 2.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 131.68197720035175,
+          "comparison": 133.66916089136419,
+          "relative_difference": 0.014866433497158407
+        },
+        {
+          "delay_s": 2.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135830.6211320188,
+          "comparison": 135828.61517821142,
+          "relative_difference": 1.4768052966746837e-05
+        },
+        {
+          "delay_s": 2.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 3.0,
+          "response": "maximum_temperature_C",
+          "reference": 1339.8019783712195,
+          "comparison": 1339.5032389899818,
+          "relative_difference": 0.00022297278706881102
+        },
+        {
+          "delay_s": 3.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 3.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135926.4592940665,
+          "comparison": 135925.96320959047,
+          "relative_difference": 3.6496534862434716e-06
+        },
+        {
+          "delay_s": 3.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 4.0,
+          "response": "maximum_temperature_C",
+          "reference": 1218.3092555139322,
+          "comparison": 1210.8709186692743,
+          "relative_difference": 0.0061054587010587105
+        },
+        {
+          "delay_s": 4.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 4.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 136047.98069212027,
+          "comparison": 136048.82125639042,
+          "relative_difference": 6.178401711915533e-06
+        },
+        {
+          "delay_s": 4.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 6.0,
+          "response": "maximum_temperature_C",
+          "reference": 1166.3398590010183,
+          "comparison": 1165.7758603902541,
+          "relative_difference": 0.0004835628366909042
+        },
+        {
+          "delay_s": 6.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 6.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 136341.84514210073,
+          "comparison": 136345.34404649798,
+          "relative_difference": 2.5662074651058578e-05
+        },
+        {
+          "delay_s": 6.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.053248094789179384,
+          "comparison": 0.053248094789179384,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 10.0,
+          "response": "maximum_temperature_C",
+          "reference": 1125.5819575419976,
+          "comparison": 1125.2278721707964,
+          "relative_difference": 0.0003145798214235296
+        },
+        {
+          "delay_s": 10.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 10.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 137022.08324567674,
+          "comparison": 137027.65817313615,
+          "relative_difference": 4.06846875567904e-05
+        },
+        {
+          "delay_s": 10.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.6718957665689628,
+          "comparison": 0.6751419514669373,
+          "relative_difference": 0.003246184897974569,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 12.0,
+          "response": "maximum_temperature_C",
+          "reference": 1075.2800274978533,
+          "comparison": 1079.9744811919893,
+          "relative_difference": 0.004346819092386897
+        },
+        {
+          "delay_s": 12.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 12.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 137220.33419290048,
+          "comparison": 137220.33419290048,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 12.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 1.0,
+          "comparison": 1.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 16.0,
+          "response": "maximum_temperature_C",
+          "reference": 944.918043522632,
+          "comparison": 944.5963160075543,
+          "relative_difference": 0.0003404819256899675
+        },
+        {
+          "delay_s": 16.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 16.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 137220.33419290048,
+          "comparison": 137220.33419290048,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 16.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 1.0,
+          "comparison": 1.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "response": "first_coherent_facet_s",
+          "reference": 15.9440172601195,
+          "comparison": 15.8815172601195,
+          "relative_difference": 0.0039353922535440245
+        },
+        {
+          "response": "all_qualified_facets_coherent_s",
+          "reference": 22.6940172601195,
+          "comparison": 22.6940172601195,
+          "relative_difference": 0.0
+        }
+      ]
+    },
+    {
+      "name": "local mesh",
+      "maximum_relative_difference": 0.01592963712581621,
+      "metrics": [
+        {
+          "delay_s": 0.125,
+          "response": "maximum_temperature_C",
+          "reference": 2407.8053787314093,
+          "comparison": 2410.4396014136905,
+          "relative_difference": 0.001092839115626999
+        },
+        {
+          "delay_s": 0.125,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 71.2637015512536,
+          "comparison": 71.41103458344422,
+          "relative_difference": 0.002063168991319634
+        },
+        {
+          "delay_s": 0.125,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135792.77457334942,
+          "comparison": 135817.80542298968,
+          "relative_difference": 0.00018429726177876174
+        },
+        {
+          "delay_s": 0.125,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 0.25,
+          "response": "maximum_temperature_C",
+          "reference": 2192.4040548231787,
+          "comparison": 2191.8815811660666,
+          "relative_difference": 0.00023831084236629232
+        },
+        {
+          "delay_s": 0.25,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 72.92289885045129,
+          "comparison": 73.16685608839911,
+          "relative_difference": 0.003334258856948554
+        },
+        {
+          "delay_s": 0.25,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135784.9024986079,
+          "comparison": 135810.47774686984,
+          "relative_difference": 0.0001883157226617754
+        },
+        {
+          "delay_s": 0.25,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 0.5,
+          "response": "maximum_temperature_C",
+          "reference": 1901.8910179792817,
+          "comparison": 1901.74702879693,
+          "relative_difference": 7.570842965795888e-05
+        },
+        {
+          "delay_s": 0.5,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 76.75789308032594,
+          "comparison": 76.64425416714592,
+          "relative_difference": 0.0014804850500665042
+        },
+        {
+          "delay_s": 0.5,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135774.3978973269,
+          "comparison": 135801.06495103662,
+          "relative_difference": 0.00019636851683986218
+        },
+        {
+          "delay_s": 0.5,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 1.0,
+          "response": "maximum_temperature_C",
+          "reference": 1584.5671469651622,
+          "comparison": 1583.965143910911,
+          "relative_difference": 0.00037991640518630687
+        },
+        {
+          "delay_s": 1.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 86.03620313680956,
+          "comparison": 86.05127318173204,
+          "relative_difference": 0.00017512866881882084
+        },
+        {
+          "delay_s": 1.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135773.35169199016,
+          "comparison": 135801.7294338623,
+          "relative_difference": 0.00020896451017547385
+        },
+        {
+          "delay_s": 1.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 2.0,
+          "response": "maximum_temperature_C",
+          "reference": 1382.8683651385438,
+          "comparison": 1382.8587000660639,
+          "relative_difference": 6.989148586806459e-06
+        },
+        {
+          "delay_s": 2.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 131.68197720035175,
+          "comparison": 131.53390568390495,
+          "relative_difference": 0.0011244630403864381
+        },
+        {
+          "delay_s": 2.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135830.6211320188,
+          "comparison": 135855.63610938116,
+          "relative_difference": 0.0001841291099783
+        },
+        {
+          "delay_s": 2.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 3.0,
+          "response": "maximum_temperature_C",
+          "reference": 1339.8019783712195,
+          "comparison": 1339.87815889519,
+          "relative_difference": 5.6856307019135544e-05
+        },
+        {
+          "delay_s": 3.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 3.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 135926.4592940665,
+          "comparison": 135948.39205688852,
+          "relative_difference": 0.00016133153537293735
+        },
+        {
+          "delay_s": 3.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 4.0,
+          "response": "maximum_temperature_C",
+          "reference": 1218.3092555139322,
+          "comparison": 1218.082802811734,
+          "relative_difference": 0.00018587456442059402
+        },
+        {
+          "delay_s": 4.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 4.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 136047.98069212027,
+          "comparison": 136066.7205310308,
+          "relative_difference": 0.00013772536618348357
+        },
+        {
+          "delay_s": 4.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.0,
+          "comparison": 0.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 6.0,
+          "response": "maximum_temperature_C",
+          "reference": 1166.3398590010183,
+          "comparison": 1166.3188380381284,
+          "relative_difference": 1.8023016814251018e-05
+        },
+        {
+          "delay_s": 6.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 6.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 136341.84514210073,
+          "comparison": 136354.73524447254,
+          "relative_difference": 9.453358806128304e-05
+        },
+        {
+          "delay_s": 6.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.053248094789179384,
+          "comparison": 0.05639365015142301,
+          "relative_difference": 0.0031455553622436253,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 10.0,
+          "response": "maximum_temperature_C",
+          "reference": 1125.5819575419976,
+          "comparison": 1125.4214935554166,
+          "relative_difference": 0.0001425609086088433
+        },
+        {
+          "delay_s": 10.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 10.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 137022.08324567674,
+          "comparison": 137031.5139924763,
+          "relative_difference": 6.88217368749608e-05
+        },
+        {
+          "delay_s": 10.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 0.6718957665689628,
+          "comparison": 0.6854143743000688,
+          "relative_difference": 0.013518607731106025,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 12.0,
+          "response": "maximum_temperature_C",
+          "reference": 1075.2800274978533,
+          "comparison": 1074.7014365546631,
+          "relative_difference": 0.0005380839673331958
+        },
+        {
+          "delay_s": 12.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 12.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 137220.33419290048,
+          "comparison": 137232.2814239761,
+          "relative_difference": 8.705845994572756e-05
+        },
+        {
+          "delay_s": 12.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 1.0,
+          "comparison": 1.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "delay_s": 16.0,
+          "response": "maximum_temperature_C",
+          "reference": 944.918043522632,
+          "comparison": 944.7470929044631,
+          "relative_difference": 0.00018091581522948277
+        },
+        {
+          "delay_s": 16.0,
+          "response": "Ni_coherent_volume_mm3",
+          "reference": 215.54042990141915,
+          "comparison": 215.54042990141915,
+          "relative_difference": 0.0
+        },
+        {
+          "delay_s": 16.0,
+          "response": "QT_coherent_volume_mm3",
+          "reference": 137220.33419290048,
+          "comparison": 137232.2814239761,
+          "relative_difference": 8.705845994572756e-05
+        },
+        {
+          "delay_s": 16.0,
+          "response": "fraction of qualified interface coherent",
+          "reference": 1.0,
+          "comparison": 1.0,
+          "relative_difference": 0.0,
+          "normalization": "absolute coverage-fraction difference over each actual qualified area"
+        },
+        {
+          "response": "first_coherent_facet_s",
+          "reference": 15.9440172601195,
+          "comparison": 15.6940172601195,
+          "relative_difference": 0.01592963712581621
+        },
+        {
+          "response": "all_qualified_facets_coherent_s",
+          "reference": 22.6940172601195,
+          "comparison": 22.6940172601195,
+          "relative_difference": 0.0
+        }
+      ]
+    }
+  ],
+  "coherent_domain_time_mesh_check_pass": true,
+  "interpolation_scope": "only audit probes between actual saved states; manufacturing uses accepted nodal histories",
+  "physical_temperature_or_capacity_modified": false,
+  "full_manufacturing_verified": false,
+  "prior2s_comparison": [
+    {
+      "delay_s": 2.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 1552.7227600049132,
+      "phase_resolved": 1382.8683651385438,
+      "relative_difference": 0.10939132164574693
+    },
+    {
+      "delay_s": 2.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 111.50856829668666,
+      "phase_resolved": 131.68197720035175,
+      "relative_difference": 0.15319794957947522
+    },
+    {
+      "delay_s": 2.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 135871.45754136902,
+      "phase_resolved": 135830.6211320188,
+      "relative_difference": 0.000300551786881239
+    },
+    {
+      "delay_s": 3.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 1448.862758607654,
+      "phase_resolved": 1339.8019783712195,
+      "relative_difference": 0.0752733684322462
+    },
+    {
+      "delay_s": 3.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 143.20158242181935,
+      "phase_resolved": 215.54042990141915,
+      "relative_difference": 0.3356161417729617
+    },
+    {
+      "delay_s": 3.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 135952.32887910132,
+      "phase_resolved": 135926.4592940665,
+      "relative_difference": 0.00019028423601202845
+    },
+    {
+      "delay_s": 4.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 1346.593381980096,
+      "phase_resolved": 1218.3092555139322,
+      "relative_difference": 0.0952656742434963
+    },
+    {
+      "delay_s": 4.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 208.15062652189886,
+      "phase_resolved": 215.54042990141915,
+      "relative_difference": 0.03428499879535423
+    },
+    {
+      "delay_s": 4.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 136040.37369265076,
+      "phase_resolved": 136047.98069212027,
+      "relative_difference": 5.591409318105467e-05
+    },
+    {
+      "delay_s": 6.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 1217.0051335435874,
+      "phase_resolved": 1166.3398590010183,
+      "relative_difference": 0.041631109965038146
+    },
+    {
+      "delay_s": 6.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 215.54042990141915,
+      "phase_resolved": 215.54042990141915,
+      "relative_difference": 0.0
+    },
+    {
+      "delay_s": 6.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 136275.28228399545,
+      "phase_resolved": 136341.84514210073,
+      "relative_difference": 0.0004882056424857204
+    },
+    {
+      "delay_s": 10.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 1137.4697754299432,
+      "phase_resolved": 1125.5819575419976,
+      "relative_difference": 0.010451106609362212
+    },
+    {
+      "delay_s": 10.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 215.54042990141915,
+      "phase_resolved": 215.54042990141915,
+      "relative_difference": 0.0
+    },
+    {
+      "delay_s": 10.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 136892.6286324876,
+      "phase_resolved": 137022.08324567674,
+      "relative_difference": 0.0009447718945932035
+    },
+    {
+      "delay_s": 12.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 1111.8742467967331,
+      "phase_resolved": 1075.2800274978533,
+      "relative_difference": 0.032912192547229456
+    },
+    {
+      "delay_s": 12.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 215.54042990141915,
+      "phase_resolved": 215.54042990141915,
+      "relative_difference": 0.0
+    },
+    {
+      "delay_s": 12.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 137160.12875927,
+      "phase_resolved": 137220.33419290048,
+      "relative_difference": 0.0004387500874749125
+    },
+    {
+      "delay_s": 16.0,
+      "response": "maximum_temperature_C",
+      "prior2s": 970.2950007729288,
+      "phase_resolved": 944.918043522632,
+      "relative_difference": 0.026153857569174
+    },
+    {
+      "delay_s": 16.0,
+      "response": "Ni_coherent_volume_mm3",
+      "prior2s": 215.54042990141915,
+      "phase_resolved": 215.54042990141915,
+      "relative_difference": 0.0
+    },
+    {
+      "delay_s": 16.0,
+      "response": "QT_coherent_volume_mm3",
+      "prior2s": 137220.33419290048,
+      "phase_resolved": 137220.33419290048,
+      "relative_difference": 0.0
+    }
+  ],
+  "prior2s_maximum_coherent_domain_difference": 0.3356161417729617,
+  "prior2s_cooling_eligible_for_manufacturing": false
+}

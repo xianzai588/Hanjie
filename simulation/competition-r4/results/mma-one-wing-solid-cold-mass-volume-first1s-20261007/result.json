@@ -1,0 +1,163 @@
+{
+  "partial": true,
+  "time_s": 1.0,
+  "mechanical_reference": {
+    "date": "2026-10-07",
+    "purpose": "真实热史与切削制造需求分析的本构参考；不由这些参考赋予CI-A1或PMZ断裂容量",
+    "phase_state_policy": "按实际热史计算出生域与固相域交集；存留固体保留应力、塑性与参照，新生凝固域保留当时偏应变构型，体积参照由同一质量、冷态密度和参考体积确定",
+    "new_coherent_specific_volume": {
+      "reference_trace": "log(material_mass_kg/(rho20_kg_mm3*reference_volume_mm3))",
+      "basis": "CAD沉积包络由冷态质量与密度生成；不能再次将该冷态体积指定为高温无应力体积而重复计入冷却收缩",
+      "thermal_bulk_strain": "采用原有平均热膨胀系数，由平衡方程形成热态体积",
+      "coordinate_update": "质量随存留材料传递，更新参考坐标后重新计算质量比，不将既存固体参照或塑性清零"
+    },
+    "QT_reference": {
+      "source": "https://doi.org/10.1007/s00170-024-14487-7",
+      "source_location": "Farahani等2024 Fig4，GJS500-14球铁；下列为图读近似值",
+      "temperatures_C": [
+        20,
+        200,
+        400,
+        600,
+        750,
+        900,
+        1000,
+        1100
+      ],
+      "E_GPa": [
+        170,
+        164,
+        153,
+        130,
+        114,
+        102,
+        95,
+        90
+      ],
+      "source_yield_MPa": [
+        380,
+        300,
+        190,
+        140,
+        80,
+        40,
+        27,
+        22
+      ],
+      "yield_grade_scale": 0.8157894736842105,
+      "yield_grade_scale_basis": "QT450-10工程名义Rp310/来源图读室温Rp380；仅迁移归一化温度形状",
+      "mean_alpha_20C_per_K": [
+        1.14e-05,
+        1.2e-05,
+        1.3e-05,
+        1.4e-05,
+        1.49e-05,
+        1.57e-05,
+        1.75e-05,
+        1.84e-05
+      ],
+      "poisson": 0.28,
+      "strain_policy": "平均膨胀系数乘(T-20)，不二次积分平均系数",
+      "applicability": "温度形状来自不同Si含量/牌号球铁，不能当作本批QT或Ni富集重熔区的测量；重熔区域单独标识并作参考材料敏感性"
+    },
+    "high_Ni_reference": {
+      "source": "https://www.vdm-metals.com/fileadmin/user_upload/Downloads/Data_Sheets/Data_Sheet_VDM_Nickel_200_201.pdf",
+      "source_location": "2022年3月，Table3a与Table4b，软退火Ni201",
+      "temperatures_C": [
+        20,
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "E_GPa": [
+        205,
+        200,
+        196,
+        190,
+        182,
+        175,
+        165,
+        153,
+        140,
+        134
+      ],
+      "yield_temperatures_C": [
+        20,
+        100,
+        200,
+        300,
+        400,
+        500,
+        600
+      ],
+      "yield_MPa": [
+        80,
+        70,
+        65,
+        60,
+        55,
+        50,
+        40
+      ],
+      "mean_alpha_20C_per_K": [
+        1.33e-05,
+        1.33e-05,
+        1.39e-05,
+        1.43e-05,
+        1.48e-05,
+        1.52e-05,
+        1.56e-05,
+        1.58e-05,
+        1.62e-05,
+        1.65e-05
+      ],
+      "poisson": 0.31,
+      "high_temperature_extension": "900℃以上E按最后已知斜率延拓至相变区；600℃以上屈服按40MPa线性降至液相线0；这是明确的工程参考延拓，不是原厂数据",
+      "strain_policy": "采用20℃为参照的平均系数乘(T-20)；900℃以上平均系数取至1000℃已知16.7e-6，再按末段斜率延拓",
+      "applicability": "Ni201低碳退火态与CI-A1含C约1%熔敷态不同；当前首先计算低屈服参考的制造需求，不宣称它严格包络CI-A1或混合区"
+    },
+    "hardening": {
+      "model": "QT参考理想弹塑性；Ni201参考采用原厂两个规定塑性偏移点的线性硬化弦",
+      "Ni201_H_MPa": 3125,
+      "Ni201_basis": "Table4b在20～600℃的Rp1.0-Rp0.2均为25MPa，H=25/(0.010-0.002)；零塑性屈服=Rp0.2-0.002H，使两个偏移点均被复现",
+      "high_temperature_scope": "600℃以上随屈服同一系数线性降至本工况液相线0，这是参考延拓，不是原厂高温数据",
+      "reason": "QT未取得可用硬化曲线，不增加硬化容量；材料参考需求保留实际塑性增量，不替代CI-A1或PMZ脆性断裂评价"
+    },
+    "furnace_continuation": {
+      "hold_C": 200,
+      "hold_s": 7200,
+      "controlled_cooling_C_h": 50,
+      "cold_stop_max_C": 20.05,
+      "scope": "200℃保温2h引用已登记同类工艺；50℃/h为事前冻结的控温炉设计设置，完整温度场经边界换热连续求解"
+    }
+  },
+  "maximum_equilibrium_residual_N": 0.0371637735590128,
+  "total_Newton_iterations": 56,
+  "source_state_policy": "actual nodal thermal/deposition history; actual previous/current solid-domain intersection retains reference/plasticity; newly coherent shear follows current configuration and specific volume follows carried mass/rho20/reference-volume",
+  "liquid_policy": "exact_P1 material phase volume: existing solid-state tensors retained by solid volume; liquid carries no shear",
+  "volume_of_QT_cells_containing_remelt_mm3": 136.58346023409825,
+  "remelted_QT_constitutive_scope": "cast-family reference in this demand case; region recorded separately, no pristine QT/PMZ fracture capacity assigned",
+  "maximum_equivalent_plastic_strain": 0.04880662851551146,
+  "full_manufacturing_verified": false,
+  "PMZ_capacity_assigned": false,
+  "mechanical_interface_policy": "chronological",
+  "bond_policy": "separate newly connected material freedoms before recorded whole-face temperature exceeds both actual liquidus values; strong solid bond activates only when the complete P1 facet is below both solidus temperatures; surviving reference/plasticity retained through real closure",
+  "bonded_node_pairs": 0,
+  "qualified_fusion_reference_face_area_mm2": 18.7086497089573,
+  "coherent_bonded_reference_face_area_mm2": 0.0,
+  "interface_facet_time_policy": "strong full-facet coherent branch; its activation timing requires the retained-state mesh/time response check",
+  "full_solid_maximum_parent_kinematic_strain": 0.040031223406289916,
+  "full_solid_maximum_material_reference_strain": 0.040031223406289916,
+  "full_solid_minimum_det_F": 1.0102195813038168,
+  "full_solid_maximum_finite_vs_linear_volume_difference": 0.001066005152174759,
+  "small_strain_geometry_volume_check_pass": true,
+  "parent_extension_strain_scope": "equilibrium-history maximum_total_strain_norm includes unborn/liquid parent extensions; use full-solid metrics for actual solid geometry",
+  "component_policy": "affine interpolation independent for every connected solid body; six rigid-increment coordinate gauges retain its inherited pose through separation/reconnection; no cross-body support",
+  "new_coherent_material_policy": "current shear configuration plus mass/density cold specific-volume reference; thermal bulk strain solved by equilibrium, no surviving material history reset"
+}

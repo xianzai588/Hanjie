@@ -25,12 +25,14 @@ def run(source, output):
         x,e,m=f['x'].copy(),f['e'].copy(),f['material'].copy()
         T=f['temperature'].copy();volume=f['volume_mm3'].copy()
         fractions=f['deposited_P1_moments'].sum(axis=1)
+        material_mass=f['material_mass_kg'].copy() if 'material_mass_kg' in f else None
     if np.min(fractions)<1-1e-10:raise ValueError('Furnace continuation requires complete actual deposition')
     np.savez_compressed(output/'mesh.npz',x=x,e=e,material=m)
     tab=inp['materials'];g,_,_,_=operators(x,e,False)
     gram=np.einsum('eik,ejk->eij',g,g)
     n=len(x);rr=np.repeat(e,4,axis=1).ravel();cc=np.tile(e,(1,4)).ravel()
-    mass=np.array([row['nominal_properties_20c']['density_kg_m3'] for row in tab])[m]*1e-9*volume/4
+    if material_mass is None:material_mass=np.array([row['nominal_properties_20c']['density_kg_m3'] for row in tab])[m]*1e-9*volume
+    mass=material_mass/4
     faces=np.sort(np.vstack([e[:,q] for q in [[0,1,2],[0,1,3],[0,2,3],[1,2,3]]]),axis=1)
     unique,count=np.unique(faces,axis=0,return_counts=True)
     free=unique[count==1];xyz=x[free]
@@ -38,13 +40,13 @@ def run(source, output):
     surface=np.bincount(free.ravel(),weights=np.repeat(area/3,3),minlength=n)
     def properties(temperatures,key):
         out=np.empty_like(temperatures)
-        for j in (1,3):
+        for j in np.unique(m):
             curve=tab[j]['temperature_dependent']
             out[m==j]=np.interp(temperatures[m==j],curve['temperatures_c'],curve[key])
         return out
     def enthalpy(temperature):
         local=temperature[e];values=np.empty_like(local);cp=np.empty_like(local)
-        for j in (1,3):
+        for j in np.unique(m):
             select=m==j;row=tab[j]
             if 'enthalpy_table' in row:
                 knots=np.array(row['enthalpy_table']['temperature_C'])
@@ -79,8 +81,8 @@ def run(source, output):
         if not trace:return
         filename='chunk-%04d.npz'%len(chunks)
         np.savez_compressed(trace_dir/filename,time_s=np.array([q[0] for q in trace]),
-            temperature_C=np.array([q[1] for q in trace]),deposit_fraction=np.ones((len(trace),np.sum(m==3))),
-            deposit_element_indices=np.flatnonzero(m==3))
+            temperature_C=np.array([q[1] for q in trace]),deposit_fraction=np.ones((len(trace),np.sum(np.isin(m,inp.get('deposition_material_ids',[3]))))),
+            deposit_element_indices=np.flatnonzero(np.isin(m,inp.get('deposition_material_ids',[3]))))
         chunks.append(dict(file=filename,first_s=trace[0][0],last_s=trace[-1][0],steps=len(trace)))
         trace.clear()
         (trace_dir/'manifest.json').write_text(json.dumps(dict(chunks=chunks,scope='actual furnace continuation of the saved source state')),encoding='utf8')
@@ -131,7 +133,7 @@ def run(source, output):
             print('furnace',round(local_time),round(environment,2),round(T.max(),3),flush=True)
         if local_time>hold+ramp+14400:raise RuntimeError('Controlled furnace did not reach the cold metrology state')
     flush()
-    np.savez_compressed(output/'thermal-fields.npz',x=x,e=e,material=m,temperature=T,volume_mm3=volume,
+    np.savez_compressed(output/'thermal-fields.npz',x=x,e=e,material=m,temperature=T,volume_mm3=volume,material_mass_kg=material_mass,
         thermal_active=np.ones(len(e),bool),deposited_P1_moments=np.full((len(e),4),.25))
     final=dict(partial=False,error=None,time_s=source_end+local_time,source_run=str(source),
         final_min_C=float(T.min()),final_max_C=float(T.max()),

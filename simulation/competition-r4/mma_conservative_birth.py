@@ -5,6 +5,7 @@ integrals of all four parent shape functions are exact for that level set.
 This is a conduction envelope model; it does not solve liquid transport.
 """
 import numpy as np
+import itertools
 from scipy.optimize import brentq
 from scipy.spatial import ConvexHull
 
@@ -39,6 +40,67 @@ def clipped_moments(values, threshold):
         tet = np.vstack([middle, points[tri]])
         ratio = abs(np.linalg.det(tet[1:, 1:]-tet[0, 1:]))
         moments += ratio*tet.mean(axis=0)
+    return moments
+
+
+def intersected_moments(first_values,first_level,second_values,second_level):
+    """Exact P1 birth/solid intersection moments on one parent tetrahedron."""
+    values=np.vstack([first_values,second_values]);levels=np.array([first_level,second_level])
+    unit=np.eye(4);points=[]
+    tolerance=16*np.finfo(float).eps*np.maximum(np.max(abs(values),axis=1),abs(levels))
+    def append(point):
+        if np.all(values@point<=levels+tolerance) and not any(np.max(abs(point-q))<1e-12 for q in points):points.append(point)
+    for point in unit:append(point)
+    for i in range(4):
+        for j in range(i+1,4):
+            for plane in range(2):
+                delta=values[plane,j]-values[plane,i]
+                if delta==0:continue
+                fraction=(levels[plane]-values[plane,i])/delta
+                if 0<=fraction<=1:append(unit[i]+fraction*(unit[j]-unit[i]))
+    for omit in range(4):
+        ids=[j for j in range(4) if j!=omit]
+        matrix=np.vstack([np.ones(3),values[:,ids]])
+        if abs(np.linalg.det(matrix))<1e-18:continue
+        weights=np.linalg.solve(matrix,np.r_[1.,levels])
+        if np.all(weights>=0) and np.all(weights<=1):
+            point=np.zeros(4);point[ids]=weights;append(point)
+    if len(points)<4:return np.zeros(4)
+    points=np.array(points);singular=np.linalg.svd(points[1:,1:]-points[0,1:],compute_uv=False)
+    if singular[-1]<=32*np.finfo(float).eps*singular[0]:return np.zeros(4)
+    middle=points.mean(axis=0);hull=ConvexHull(points[:,1:]);moments=np.zeros(4)
+    for tri in hull.simplices:
+        tet=np.vstack([middle,points[tri]])
+        ratio=abs(np.linalg.det(tet[1:,1:]-tet[0,1:]))
+        moments+=ratio*tet.mean(axis=0)
+    return moments
+
+
+def multiple_cut_moments(values,levels):
+    """P1 moments in up to three actual material-history halfspaces."""
+    values=np.asarray(values);levels=np.asarray(levels);signed=values-levels[:,None]
+    if np.any((signed.min(axis=1)>=0)&(signed.max(axis=1)>0)):return np.zeros(4)
+    select=signed.max(axis=1)>0;values=values[select];levels=levels[select];signed=signed[select]
+    if not len(values):return np.full(4,.25)
+    if len(values)==1:return clipped_moments(values[0],levels[0])
+    if len(values)==2:return intersected_moments(values[0],levels[0],values[1],levels[1])
+    if len(values)!=3:raise ValueError('This manufacturing operation has at most three cuts')
+    planes=np.vstack([-np.eye(4),signed/np.max(abs(signed),axis=1)[:,None]])
+    combinations=np.array(list(itertools.combinations(range(7),3)))
+    matrices=np.concatenate([np.ones((len(combinations),1,4)),planes[combinations]],axis=1)
+    determinant=np.linalg.det(matrices);keep=abs(determinant)>1e-18
+    rhs=np.tile([1.,0,0,0],(keep.sum(),1))
+    candidates=np.linalg.solve(matrices[keep],rhs[...,None])[...,0]
+    points=[]
+    for point in candidates:
+        if np.all(planes@point<=64*np.finfo(float).eps) and not any(np.max(abs(point-q))<1e-12 for q in points):points.append(point)
+    if len(points)<4:return np.zeros(4)
+    points=np.array(points);singular=np.linalg.svd(points[1:,1:]-points[0,1:],compute_uv=False)
+    if singular[-1]<=32*np.finfo(float).eps*singular[0]:return np.zeros(4)
+    middle=points.mean(axis=0);hull=ConvexHull(points[:,1:]);moments=np.zeros(4)
+    for tri in hull.simplices:
+        tet=np.vstack([middle,points[tri]])
+        moments+=abs(np.linalg.det(tet[1:,1:]-tet[0,1:]))*tet.mean(axis=0)
     return moments
 
 

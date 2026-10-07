@@ -1,0 +1,12 @@
+{
+  "partial": false,
+  "error": null,
+  "time_s": 24395.31901726012,
+  "source_run": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-phase-front-dt0125-20261007",
+  "final_min_C": 20.04806971359196,
+  "final_max_C": 20.049308525333327,
+  "maximum_absolute_step_energy_balance_error_J": 0.0009695438094325937,
+  "maximum_step_temperature_change_C": 24.494171598793912,
+  "elapsed_s": 411.1824458000192,
+  "mechanical_residual_state_assigned": false
+}

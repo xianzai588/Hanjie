@@ -1,0 +1,226 @@
+[
+  {
+    "time_s": 0.125,
+    "kind": "new coherent body retains prescribed liquid-envelope pose",
+    "solid_component": 1,
+    "new_nodes": 94,
+    "old_same_body_hosts": 0,
+    "existing_material_state_reset": false
+  },
+  {
+    "time_s": 0.125,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 0.0,
+    "retained_volume_mm3": 137213.89761022234,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.125,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 0,
+    "maximum_coordinate_error_mm": 5.3817797322160536e-15,
+    "maximum_host_weight_L1": 3.054400177807985,
+    "maximum_host_count": 16,
+    "new_node_count": 34
+  },
+  {
+    "time_s": 0.125,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 0.0,
+    "maximum_representation_reference_increment": 3.4638913888187196e-16,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.25,
+    "kind": "same-body coherent-node predictor",
+    "maximum_coordinate_error_mm": 1.1897984257160512e-15,
+    "maximum_host_weight_L1": 3.020027470743605,
+    "maximum_host_count": 16,
+    "new_node_count": 5
+  },
+  {
+    "time_s": 0.25,
+    "kind": "same-body coherent-node predictor",
+    "maximum_coordinate_error_mm": 1.852037001416233e-15,
+    "maximum_host_weight_L1": 3.49384822798759,
+    "maximum_host_count": 7,
+    "new_node_count": 7
+  },
+  {
+    "time_s": 0.25,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 0.010896878375119944,
+    "retained_volume_mm3": 137196.32433061532,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.25,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 0,
+    "maximum_coordinate_error_mm": 1.8520178753637935e-15,
+    "maximum_host_weight_L1": 3.335572098602982,
+    "maximum_host_count": 16,
+    "new_node_count": 62
+  },
+  {
+    "time_s": 0.25,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 1.734723475976807e-18,
+    "maximum_representation_reference_increment": 0.24364506949956094,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.375,
+    "kind": "same-body coherent-node predictor",
+    "maximum_coordinate_error_mm": 9.829921346171148e-16,
+    "maximum_host_weight_L1": 2.544803357934629,
+    "maximum_host_count": 11,
+    "new_node_count": 5
+  },
+  {
+    "time_s": 0.375,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 0.004399115803540077,
+    "retained_volume_mm3": 137178.462155008,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.375,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 0,
+    "maximum_coordinate_error_mm": 6.836451485341298e-15,
+    "maximum_host_weight_L1": 3.3882341301270085,
+    "maximum_host_count": 16,
+    "new_node_count": 86
+  },
+  {
+    "time_s": 0.375,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 3.469446951953614e-18,
+    "maximum_representation_reference_increment": 0.2932661826781866,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.5,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 6.297191922310166e-17,
+    "retained_volume_mm3": 137161.21752297645,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.5,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 1.770577766242703e-14,
+    "maximum_host_weight_L1": 3.778799350265473,
+    "maximum_host_count": 16,
+    "new_node_count": 92
+  },
+  {
+    "time_s": 0.5,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 3.469446951953614e-18,
+    "maximum_representation_reference_increment": 0.06324286082800248,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.625,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 1.826845483364142e-16,
+    "retained_volume_mm3": 137144.3859245588,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.625,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 1.9411151078176883e-14,
+    "maximum_host_weight_L1": 3.9174503583961986,
+    "maximum_host_count": 32,
+    "new_node_count": 110
+  },
+  {
+    "time_s": 0.625,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 3.469446951953614e-18,
+    "maximum_representation_reference_increment": 0.0429132836273829,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.75,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": -3.505573197107956e-17,
+    "retained_volume_mm3": 137128.97655449167,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.75,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 1.7885474144633672e-14,
+    "maximum_host_weight_L1": 3.922822617228458,
+    "maximum_host_count": 16,
+    "new_node_count": 109
+  },
+  {
+    "time_s": 0.75,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 3.469446951953614e-18,
+    "maximum_representation_reference_increment": 0.042543872519232515,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.875,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 1.6740841880459872e-16,
+    "retained_volume_mm3": 137112.23037428423,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.875,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 1.0693261238709472e-14,
+    "maximum_host_weight_L1": 3.323178871377033,
+    "maximum_host_count": 32,
+    "new_node_count": 118
+  },
+  {
+    "time_s": 0.875,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 3.469446951953614e-18,
+    "maximum_representation_reference_increment": 0.03227148399126376,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 1.0,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": -1.8284950300526733e-16,
+    "retained_volume_mm3": 137096.79110556893,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 1.0,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 2.0418062668515673e-14,
+    "maximum_host_weight_L1": 3.990429323647348,
+    "maximum_host_count": 32,
+    "new_node_count": 125
+  },
+  {
+    "time_s": 1.0,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_elastic_strain_error": 3.469446951953614e-18,
+    "maximum_representation_reference_increment": 0.04579458788936846,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  }
+]

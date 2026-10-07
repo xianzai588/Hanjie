@@ -11,9 +11,14 @@ if __name__=='__main__':
     p.add_argument('--mesh',type=lambda s:ROOT/s,required=True)
     p.add_argument('--output',type=lambda s:ROOT/s,required=True)
     p.add_argument('--stop-time',type=float)
+    p.add_argument('--phase-resolved-cooling-dt',type=float)
+    p.add_argument('--endpoint-from',type=lambda s:ROOT/s)
+    p.add_argument('--endpoint-time',type=float,default=11.569017260119475)
+    p.add_argument('--threads',type=int,choices=[1,2,4,8],default=1)
     a=p.parse_args()
     config=arguments(a.mesh,a.output,.125,False,a.stop_time,3.,'bottom_up')
     config.all_wings=True
     config.record_nodal_history=True
-    config.transient_from=None
-    with threadpool_limits(limits=1):run(config)
+    config.transient_from=a.endpoint_from;config.transient_time=a.endpoint_time
+    config.phase_resolved_cooling_dt_s=a.phase_resolved_cooling_dt
+    with threadpool_limits(limits=a.threads):run(config)

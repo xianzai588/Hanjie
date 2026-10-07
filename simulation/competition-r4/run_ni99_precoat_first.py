@@ -190,6 +190,8 @@ def run(a):
             liquid_transport_policy='k_eff=k_molecular*(1+(factor-1)*liquid_fraction); no solid enhancement, energy redistribution only',
             liquid_transport_method_source='Hu et al2024, Additive Manufacturing92 104379, DOI10.1016/j.addma.2024.104379 section2.1',
             liquid_transport_scope='factor3 is a literature method bound for SS316L, not a measured CI-A1 coefficient; no material calibration assigned')
+        input_data['phase_resolved_cooling_dt_s']=getattr(a,'phase_resolved_cooling_dt_s',None)
+        input_data['phase_resolved_cooling_policy']='after the identical arc, use specified cooling dt while any material is above its solidus, then ordinary2s cooling; actual nodal states for solidification-reference replay'
     if all_wings:
         input_data.update(scope='actual eight-wing sequential first-layer thermal history on the complete QT seat; retained mechanical replay follows separately',
             wing_sequence=[row['wing'] for row in tracks],
@@ -260,32 +262,46 @@ def run(a):
     resume_local=0.
     transient_from=getattr(a,'transient_from',None)
     if transient_from:
-        if not (conservative and len(tracks)==1 and record_nodal):raise ValueError('transient replay is restricted to one continuous traced MMA track')
+        if not (conservative and (len(tracks)==1 or all_wings) and record_nodal):raise ValueError('transient replay requires a continuous traced MMA first arc')
         old_input=json.loads((transient_from/'input.json').read_text(encoding='utf8'))
         for key in ['arc_power_W','travel_mm_s','source_width_mm','source_depth_mm','entering_Ni99_C','cold_start_C',
                     'start_ramp_s','end_ramp_s','end_power_fraction','mass_current_exponent','tracks',
                     'liquid_transport_factor','source_policy','source_z_policy','CAD_deposit_volume_mm3','materials']:
             if input_data[key]!=old_input.get(key):raise ValueError('transient physical inputs differ: '+key)
-        resume_local=float(a.transient_time)
-        if not 0<resume_local<tracks[0]['arc_duration_s']:raise ValueError('restart must be within the first arc')
+        restart_time=float(a.transient_time);resume_local=min(restart_time,tracks[0]['arc_duration_s'])
+        first_cooled_stage=None
+        if restart_time>tracks[0]['arc_duration_s']+1e-9:
+            old_result=json.loads((transient_from/'result.json').read_text())
+            if all_wings and old_result['stages'] and abs(old_result['stages'][0]['end_s']-restart_time)<1e-9:
+                first_cooled_stage=old_result['stages'][0]
+            else:raise ValueError('restart after the arc requires the exact saved cooled first-wing process boundary')
+        if restart_time<=0:raise ValueError('restart requires a positive accepted time')
         from mma_thermal_restart import accepted_prefix
-        nodal_trace,rows=accepted_prefix(transient_from,resume_local,x,e,m)
+        nodal_trace,rows=accepted_prefix(transient_from,restart_time,x,e,m)
         history,source_history,birth_history,source_path=[rows[key] for key in ['history','source_history','birth_history','source_path']]
+        if all_wings:
+            saved_boundary=np.loadtxt(transient_from/'boundary-history.csv',delimiter=',',skiprows=1,ndmin=2)
+            boundary_history=saved_boundary[saved_boundary[:,0]<=restart_time+1e-9].tolist()
         for t,temperature,fractions,level in nodal_trace:
             mask=m==1;mask[m==3]=fractions>1e-14
             peak=np.maximum(peak,temperature)
             observer(t,temperature,mask,birth.nodal_values,level)
             qp_mask=mask[:,None]&((m!=3)[:,None]|(birth.nodal_values[e]@tetra_bary.T<=level))
             quadrature_peak=np.maximum(quadrature_peak,np.where(qp_mask,temperature[e]@tetra_bary.T,20.))
-            present=birth.nodal_values[interface_face]@bary.T<=level
+            both=mask[oa[interface]]&mask[ob[interface]]
+            present=both[:,None]&(birth.nodal_values[interface_face]@bary.T<=level)
             interface_peak=np.maximum(interface_peak,np.where(present,temperature[interface_face]@bary.T,20.))
-            cycle_times.append(t);interface_cycles.append(np.where(birth.nodal_values[interface_face]<=level,temperature[interface_face],20.).copy())
-        T=nodal_trace[-1][1].copy();time_s=resume_local
+            cycle_times.append(t);interface_cycles.append(np.where(both[:,None]&(birth.nodal_values[interface_face]<=level),temperature[interface_face],20.).copy())
+        T=nodal_trace[-1][1].copy();time_s=restart_time
         birth.advance(cumulative_mass_g(resume_local)*1e-3)
         active=birth.moments.sum(axis=1)>1e-14
         np.testing.assert_allclose(birth.moments[m==3].sum(axis=1),nodal_trace[-1][2],atol=1e-10)
-        input_data['transient_restart']=dict(source=str(transient_from),accepted_prefix_s=resume_local,
-            prefix_dt_s=old_input['dt_s'],continuation_dt_s=a.dt,scope='same actual state; endpoint discretization comparison only')
+        if first_cooled_stage is not None:
+            if T[np.unique(e[active])].max()>300.+1e-6:raise ValueError('First-wing boundary is not actually cooled to300C')
+            completed=1;stage_rows=[first_cooled_stage]
+        input_data['transient_restart']=dict(source=str(transient_from),accepted_prefix_s=restart_time,
+            prefix_dt_s=old_input['dt_s'],continuation_dt_s=a.dt,
+            scope='same actual cooled first-wing boundary; prior nodal/phase/heat states retained' if first_cooled_stage is not None else 'same actual arc-end state; phase-resolved cooling for material-reference replay' if abs(resume_local-tracks[0]['arc_duration_s'])<1e-9 else 'same actual state; endpoint discretization comparison only')
         (out/'input.json').write_text(json.dumps(input_data,indent=2),encoding='utf8')
     if a.resume_from:
         old_result=json.loads((a.resume_from/'result.json').read_text(encoding='utf8'))
@@ -356,10 +372,13 @@ def run(a):
                 birth=ConservativeBirth(x,e,m,volume,rho,a.track_radius_mm,a.width,
                     deposit_mask=track['targets'],initial_moments=birth.moments,
                     angle_offset=track['angle_offset'])
-            if conservative and (not k or all_wings):front=float(birth.lo.min()-1e-10)
+            if conservative and (not k or all_wings):
+                front=birth.at_mass(cumulative_mass_g(resume_local)*1e-3)[3] if not k and resume_local else float(birth.lo.min()-1e-10)
             local=resume_local if k==0 else 0.;wait=0.;start=time_s-local;duration=track['arc_duration_s'];initial_max=a.initial_temperature if local else float(T[np.unique(e[active])].max())
             cool_target=(500. if k==len(tracks)-1 else 300.) if mma else 90.
-            conditioning_time=0.;conditioning_log=[];arc_started=False
+            conditioning_time=0.;conditioning_log=[];arc_started=local>0.
+            if all_wings and local>0:
+                conditioning_log.append(dict(arc_start_s=start,interface_min_C=a.initial_temperature,interface_max_C=a.initial_temperature,restored_actual_first_arc=True))
             if all_wings:
                 current_faces=interface_face[np.any(np.isin(interface_face,np.unique(e[track['targets']])),axis=1)]
                 current_nodes=np.unique(current_faces)
@@ -369,6 +388,9 @@ def run(a):
                 ambient=300. if conditioning and T[current_nodes].min()<200. else 20.
                 on=local<duration-1e-8 and not conditioning
                 dt=min(a.dt,duration-local) if on else min(10.,1800-conditioning_time) if conditioning else min(2.,1800-wait)
+                phase_dt=getattr(a,'phase_resolved_cooling_dt_s',None)
+                if not on and not conditioning and phase_dt is not None and T[np.unique(e[active])].max()>min(solidus[active,0]):
+                    dt=min(dt,phase_dt)
                 if on and not arc_started:
                     arc_started=True
                     if all_wings:
