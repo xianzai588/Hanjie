@@ -1,0 +1,70 @@
+{
+  "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-one-wing-finite-spectral-first1s-20261007",
+  "time_s": 1.0,
+  "partial": true,
+  "kinematics": "finite_Hencky",
+  "constitutive_volume_check": "logJ=reference-mass trace+plastic trace+3*log(thermal stretch)+J*mean(Cauchy)/K",
+  "cold_complete": false,
+  "maximum_temperature_C": 2399.4985426831745,
+  "materials": [
+    {
+      "material_id": 1,
+      "fully_solid_elements": 68095,
+      "minimum_det_F": 1.0102191247527963,
+      "maximum_abs_surviving_reference_trace": 0.0,
+      "maximum_abs_log_volume_vs_mass_thermal_elastic_trace": 1.1917550279960665e-15,
+      "maximum_abs_log_vs_small_strain_trace": 0.000648303388036571,
+      "mass_weighted_reference_trace": 0.0,
+      "density_range_kg_m3": [
+        6845.967366329485,
+        7127.166595427365
+      ],
+      "reference_quadrature_vs_straight_tet_volume_ratio_range": [
+        1.0,
+        1.0
+      ],
+      "density_definition": "carried mass / CAD-corrected reference quadrature volume / detF; curved-to-straight geometric approximation reported separately"
+    }
+  ],
+  "occupied_coherent_geometry": {
+    "minimum_det_F": 1.0102191247527963,
+    "fully_solid_maximum_polar_rotation_deg": 1.4433372497655563,
+    "all_coherent_maximum_polar_rotation_deg": 1.9221151121765436,
+    "full_solid_rotation_scope": "actual cold rotational response must be considered with interface closure, bore and tool geometry; volume check alone is not geometry qualification"
+  },
+  "datum": {
+    "rotation_columns": [
+      [
+        0.9999999996454061,
+        0.0,
+        2.6630579730288566e-05
+      ],
+      [
+        1.7395321109128802e-10,
+        0.9999999999786658,
+        -6.5320850237352425e-06
+      ],
+      [
+        -2.6630579729720427e-05,
+        6.5320850260514795e-06,
+        0.9999999996240719
+      ]
+    ],
+    "translation_in_rotated_frame_mm": [
+      -0.04422032298226614,
+      0.0009445382648323175,
+      -0.028848691590027897
+    ],
+    "datum": "actual QT lower plane A and existing bore lower-ring centre B; yaw fixed to original X projection",
+    "datum_A_nodes": 2431,
+    "datum_B_nodes": 53,
+    "datum_A_max_plane_error_mm": 0.0038713565278881315
+  },
+  "actual_registered_bore_radial_diameter_range_mm": [
+    40.13971767245004,
+    40.13980683903293
+  ],
+  "bore_note": "existing rough-bore radial diameter in the A/B frame; not final manufactured hole tolerance or positional result",
+  "interpretation": "Compare the recorded reference-volume changes with actual geometry and mass before accepting tool cutting; small-strain truncation is reported separately.",
+  "full_manufacturing_verified": false
+}

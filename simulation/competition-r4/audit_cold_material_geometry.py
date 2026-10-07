@@ -44,8 +44,15 @@ def audit(source, output):
     # The original material reference plus physically carried mass determines
     # volume. A representation-only tensor shift cannot change physical mass
     # or move its geometry without recording the corresponding coordinate map.
-    predicted_trace=mass_reference+plastic[:,:3].sum(axis=1)+3*alpha+stress[:,:3].mean(axis=1)/K
-    volume_defect=np.log(J)-predicted_trace
+    finite=result.get('kinematics')=='finite_Hencky'
+    if finite:alpha=np.log1p(alpha)
+    # For the power-conjugate Hencky formulation tr(T)=J*tr(Cauchy),
+    # including noncoaxial retained references. The first derivative of log
+    # maps the stress measures; it is not sufficient merely to rotate T.
+    elastic_trace=stress[:,:3].mean(axis=1)/K*(J if finite else 1.)
+    predicted_trace=mass_reference+plastic[:,:3].sum(axis=1)+3*alpha+elastic_trace
+    logJ=np.full(len(J),np.nan);np.log(J,out=logJ,where=J>0)
+    volume_defect=logJ-predicted_trace
     for material_id in np.unique(m):
         select=full&(m==material_id)
         if not np.any(select):continue
@@ -62,7 +69,8 @@ def audit(source, output):
     registered,datum=datum_frame(x,u,e,m)
     qt=np.unique(e[m==1]);bore=qt[abs(np.linalg.norm(x[qt,:2],axis=1)-20)<1e-5]
     bore_diameter=2*np.linalg.norm(registered[bore,:2],axis=1)
-    report=dict(source=str(source),time_s=time_s,partial=result['partial'],
+    report=dict(source=str(source),time_s=time_s,partial=result['partial'],kinematics=result.get('kinematics','small_strain'),
+        constitutive_volume_check='logJ=reference-mass trace+plastic trace+3*log(thermal stretch)+J*mean(Cauchy)/K' if finite else 'small-strain volume law; finite geometry compared independently',
         cold_complete=bool(not result['partial'] and temperature.max()<=20.05),
         maximum_temperature_C=float(temperature.max()),materials=rows,
         occupied_coherent_geometry=dict(minimum_det_F=float(J[weight>1e-12].min()),

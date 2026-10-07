@@ -1,0 +1,14 @@
+{
+  "formulation_source": "https://doi.org/10.1016/j.cma.2023.116101",
+  "analytic_cases": "finite rigid rotation; freely heated1.02 stretch;1.01 carried-mass/reference-volume ratio with exact cold stretch",
+  "maximum_analytic_zero_force_error": 2.092261753269399e-11,
+  "force_potential_relative_error": 5.158947877165694e-10,
+  "consistent_tangent_direction_relative_error": 4.4901523301158125e-10,
+  "finite_rotation_force_objectivity_error": 4.280167331480988e-15,
+  "Cauchy_stress_objectivity_error": 4.0337648040965265e-15,
+  "log_derivative_16_vs32_quadrature_error": 3.432460346544337e-16,
+  "tangent_symmetry_relative_error": 1.8574560589623312e-16,
+  "plastic_increment_in_derivative_case": 0.048757993375624635,
+  "finite_kinematics_benchmark_pass": true,
+  "actual_manufacturing_verified": false
+}

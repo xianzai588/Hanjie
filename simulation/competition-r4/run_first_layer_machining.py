@@ -48,7 +48,7 @@ def run(source,output):
             raise ValueError('Actual completed cold deposition is required for first-layer machining')
         interface_policy=replay.get('interface_policy','conformal')
         with np.load(ROOT/replay['source']/'thermal-fields.npz') as thermal:
-            mechanics=SolidMechanics(thermal['x'],thermal['e'],m,v,thermal_input,replay['phase_method'],interface_policy)
+            mechanics=SolidMechanics(thermal['x'],thermal['e'],m,v,thermal_input,replay['phase_method'],interface_policy,result.get('kinematics','small_strain'))
         if not np.array_equal(mechanics.x,x) or not np.array_equal(mechanics.e,e):raise ValueError('Machining-state mesh reconstruction differs from actual source')
         for key,field in [('u','u'),('plastic','plastic'),('eqp','eqp'),('reference','solid_reference_strain'),
                           ('solid_weight','solid_weight'),('stress','stress'),('remelted','remelted_QT')]:
@@ -63,7 +63,8 @@ def run(source,output):
     gradient=np.einsum('eij,eik->ejk',mechanics.u.reshape(-1,3)[e],mechanics.g)
     determinant=np.linalg.det(np.eye(3)+gradient)
     volume_error=abs(determinant-(1+np.trace(gradient,axis1=1,axis2=2)))/np.maximum(abs(determinant),1e-30)
-    if determinant.min()<=0 or volume_error.max()>.05:
+    finite=result.get('kinematics')=='finite_Hencky'
+    if determinant.min()<=0 or (not finite and volume_error.max()>.05):
         raise ValueError('Cold parent geometry requires a finite-deformation representation before tool cutting')
     current,registration=datum_frame(x,mechanics.u.reshape(-1,3),e,m)
     # Shared QT/Ni faces identify the actual original pocket floor. Check the

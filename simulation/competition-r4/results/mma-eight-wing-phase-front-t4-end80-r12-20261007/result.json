@@ -1,0 +1,170 @@
+{
+  "partial": false,
+  "error": null,
+  "time_s": 1694.3021380809557,
+  "stages": [
+    {
+      "track": 1,
+      "start_s": 0.0,
+      "initial_max_C": 300.0,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 197.75,
+      "end_s": 209.31901726011947,
+      "end_active_max_C": 299.7023420446103,
+      "born_volume_mm3": 215.54042990141923,
+      "wing": 1,
+      "conditioning_s": 0.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 0.0,
+          "interface_min_C": 300.0,
+          "interface_max_C": 300.0,
+          "restored_actual_first_arc": true
+        }
+      ]
+    },
+    {
+      "track": 2,
+      "start_s": 209.319017260119,
+      "initial_max_C": 217.1558060554659,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 160.5,
+      "end_s": 381.3880345202385,
+      "end_active_max_C": 298.4327028161165,
+      "born_volume_mm3": 431.0808598028384,
+      "wing": 5,
+      "conditioning_s": 0.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 209.319017260119,
+          "interface_min_C": 215.78413714742456,
+          "interface_max_C": 217.1558060554659
+        }
+      ]
+    },
+    {
+      "track": 3,
+      "start_s": 401.3880345202385,
+      "initial_max_C": 201.3776688626562,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 154.25,
+      "end_s": 567.2070517803579,
+      "end_active_max_C": 297.4380229540005,
+      "born_volume_mm3": 646.6212897042576,
+      "wing": 3,
+      "conditioning_s": 20.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 401.3880345202385,
+          "interface_min_C": 200.63282727639205,
+          "interface_max_C": 201.3776688626562
+        }
+      ]
+    },
+    {
+      "track": 4,
+      "start_s": 657.2070517803579,
+      "initial_max_C": 201.9325864895329,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 150.25,
+      "end_s": 819.0260690404774,
+      "end_active_max_C": 299.3006885054443,
+      "born_volume_mm3": 862.1617196056767,
+      "wing": 7,
+      "conditioning_s": 90.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 657.2070517803579,
+          "interface_min_C": 201.05772556865028,
+          "interface_max_C": 201.9325864895329
+        }
+      ]
+    },
+    {
+      "track": 5,
+      "start_s": 889.0260690404774,
+      "initial_max_C": 203.50594650062385,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 150.25,
+      "end_s": 1050.845086300597,
+      "end_active_max_C": 299.67249568061465,
+      "born_volume_mm3": 1077.7021495070958,
+      "wing": 2,
+      "conditioning_s": 70.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 889.0260690404774,
+          "interface_min_C": 202.64615524919614,
+          "interface_max_C": 203.50594650062385
+        }
+      ]
+    },
+    {
+      "track": 6,
+      "start_s": 1130.845086300597,
+      "initial_max_C": 203.56813714463422,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 150.25,
+      "end_s": 1292.6641035607165,
+      "end_active_max_C": 299.0761320713087,
+      "born_volume_mm3": 1293.242579408515,
+      "wing": 6,
+      "conditioning_s": 80.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 1130.845086300597,
+          "interface_min_C": 202.67742128351333,
+          "interface_max_C": 203.56813714463422
+        }
+      ]
+    },
+    {
+      "track": 7,
+      "start_s": 1352.6641035607165,
+      "initial_max_C": 202.0738797131587,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 152.25,
+      "end_s": 1516.4831208208361,
+      "end_active_max_C": 297.9262731664466,
+      "born_volume_mm3": 1508.7830093099342,
+      "wing": 4,
+      "conditioning_s": 60.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 1352.6641035607165,
+          "interface_min_C": 201.2872790759493,
+          "interface_max_C": 202.0738797131587
+        }
+      ]
+    },
+    {
+      "track": 8,
+      "start_s": 1616.4831208208361,
+      "initial_max_C": 203.11717952472952,
+      "arc_s": 11.569017260119475,
+      "cool_wait_s": 66.25,
+      "end_s": 1694.3021380809557,
+      "end_active_max_C": 496.0520585954358,
+      "born_volume_mm3": 1724.3234392113536,
+      "wing": 8,
+      "conditioning_s": 100.0,
+      "process_temperature_checks": [
+        {
+          "arc_start_s": 1616.4831208208361,
+          "interface_min_C": 202.23893169966766,
+          "interface_max_C": 203.11717952472952
+        }
+      ]
+    }
+  ],
+  "maximum_temperature_C": 2718.629066353972,
+  "maximum_QT_C": 2582.1893371261212,
+  "elapsed_s": 7106.3617471999605,
+  "nominal_interface_area_mm2": 1051.2009387497014,
+  "actual_area_above_both_solidus_mm2": 1051.2009387497014,
+  "both_solidus_threshold_C": 1340.0,
+  "final_active_minimum_C": 185.96818448041714,
+  "active_temperature_range_check_pass": true,
+  "mesh_time_convergence_verified": false,
+  "PMZ_capacity_assigned": false
+}

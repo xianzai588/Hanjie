@@ -17,7 +17,8 @@ from mma_literature_profile import ROOT
 
 
 class SolidMechanics:
-    def __init__(self,x,e,material,volume,thermal_input,phase_method='exact_P1',interface_policy='chronological'):
+    def __init__(self,x,e,material,volume,thermal_input,phase_method='exact_P1',interface_policy='chronological',kinematics='small_strain'):
+        self.kinematics=kinematics
         self.interface_policy=interface_policy;self.source_nodes=len(x)
         self.deposition_material_ids=thermal_input.get('deposition_material_ids',[3])
         self.preexisting_material_ids=thermal_input.get('preexisting_material_ids',[1])
@@ -101,6 +102,16 @@ class SolidMechanics:
         self.history=[];self.birth_audits=[];self.maximum_residual=0.;self.total_iterations=0
         self.iteration_history=[];self.failed_iteration=None
 
+    def strain_at(self,vector,active=None):
+        if self.kinematics=='small_strain':return np.einsum('eij,ej->ei',self.B,vector[self.dof])
+        from precoat_finite_kinematics import logarithmic_strain
+        if active is None:active=self.solid_weight>1e-12
+        result=np.zeros((len(self.e),6))
+        F=np.eye(3)+np.einsum('eij,eik->ejk',vector.reshape(-1,3)[self.e[active]],self.g[active])
+        if np.any(np.linalg.det(F)<=0):raise ValueError('Coherent material geometry has nonpositive detF')
+        result[active]=logarithmic_strain(F)[0]
+        return result
+
     def thermal_strain(self,temperatures):
         result=np.zeros_like(temperatures)
         qt=self.reference_input['QT_reference'];ni=self.reference_input['high_Ni_reference']
@@ -153,7 +164,8 @@ class SolidMechanics:
         for label in np.unique(labels[occupied]):
             nodes=occupied[labels[occupied]==label]
             if len(nodes)<4:raise RuntimeError('Solid component lacks a tetrahedral support')
-            p=self.x[nodes]-self.x[nodes].mean(axis=0)
+            positions=self.x if self.kinematics=='small_strain' else self.x+self.u.reshape(-1,3)
+            p=positions[nodes]-positions[nodes].mean(axis=0)
             basis=np.zeros((3*len(nodes),6));basis.reshape(-1,3,6)[:,:,:3]=np.eye(3)
             for j in range(3):basis[:,j+3]=np.cross(np.eye(3)[j],p).ravel()
             Q,_=np.linalg.qr(basis)
@@ -200,6 +212,7 @@ class SolidMechanics:
         representative=np.arange(self.n)
         previous_representative=np.arange(self.n)
         previous_representative[self.current_bond_pairs[:,1]]=self.current_bond_pairs[:,0]
+        previous_pairs=self.current_bond_pairs.copy()
         if self.interface_policy=='chronological':
             if fused_face_mask is not None:self.fused_faces|=fused_face_mask
             coherent_limit=np.min(self.solidus[self.fusion_adj],axis=1)
@@ -223,7 +236,7 @@ class SolidMechanics:
             self.current_bond_pairs=np.c_[representative[copies],copies]
         old_active=self.solid_weight>1e-12
         retained_reference=self.reference.copy()
-        retained_strain=np.einsum('eij,ej->ei',self.B,self.u[self.dof])
+        retained_strain=self.strain_at(self.u,old_active)
         occupied=np.unique(self.e[active]);old_occupied=np.unique(self.e[old_active])
         gauges,components,solid_component,support_component=self.rigid_gauges(occupied,active)
         added=np.setdiff1d(occupied,old_occupied)
@@ -254,7 +267,8 @@ class SolidMechanics:
         solid_T=np.where(active,solid_T,20.)
         if self.phase_method=='exact_P1' and np.any(solid_T>self.solidus+1e-7):raise RuntimeError('Coherent solid temperature exceeds the cut solidus')
         expansion=self.thermal_strain(solid_T)
-        strain_now=np.einsum('eij,ej->ei',self.B,self.u[self.dof])
+        if self.kinematics=='finite_Hencky':expansion=np.log1p(expansion)
+        strain_now=self.strain_at(self.u,active)
         retained=np.minimum(weight,self.solid_weight)
         retained_moments=moments.copy()
         if self.phase_method=='exact_P1' and geometry_cut_moments is None:
@@ -307,6 +321,47 @@ class SolidMechanics:
         self.solid_weight=weight
         E,Y,nu,H=self.material_properties(solid_T)
         G=E/(2*(1+nu));bulk=E/(3*(1-2*nu))
+        trial=self.u.copy()
+        if self.interface_policy=='chronological':
+            copies=self.current_bond_pairs[:,1]
+            newly_joined=copies[representative[copies]!=previous_representative[copies]]
+            if len(newly_joined):
+                mismatch=self.u.reshape(-1,3)[newly_joined]-self.u.reshape(-1,3)[representative[newly_joined]]
+                self.birth_audits.append(dict(time_s=time_s,kind='actual new coherent interface closure',
+                    new_node_pairs=len(newly_joined),maximum_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).max()),
+                    mean_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).mean()),surviving_material_state_reset=False))
+                if self.kinematics=='finite_Hencky':
+                    # An unrestrained coherent body can undergo a rigid motion
+                    # into its new attachment. Use that objective motion as a
+                    # Newton initial guess rather than straining only the
+                    # duplicated face vertices. Already connected bodies are
+                    # never repositioned; all non-rigid mismatch remains.
+                    old_edges=np.vstack([self.e[old_active][:,[a,b]] for a,b in [(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)]])
+                    if len(previous_pairs):old_edges=np.vstack([old_edges,previous_pairs])
+                    old_graph=coo_matrix((np.ones(2*len(old_edges)),(np.r_[old_edges[:,0],old_edges[:,1]],np.r_[old_edges[:,1],old_edges[:,0]])),shape=(self.n,self.n)).tocsr()
+                    _,old_labels=connected_components(old_graph,directed=False)
+                    for label in np.unique(old_labels[newly_joined]):
+                        contact=newly_joined[old_labels[newly_joined]==label]
+                        target=representative[contact]
+                        if np.any(old_labels[target]==label):continue
+                        raw_labels=np.unique(support_component[contact])
+                        body=occupied[np.isin(support_component[occupied],raw_labels)]
+                        inherited=np.intersect1d(body,old_occupied)
+                        if len(np.unique(old_labels[inherited]))!=1:continue
+                        positions=self.x+trial.reshape(-1,3)
+                        p=positions[contact];q=positions[target]
+                        pc=p.mean(axis=0);qc=q.mean(axis=0)
+                        U,_,Vt=np.linalg.svd((p-pc).T@(q-qc))
+                        correction=np.eye(3);correction[-1,-1]=np.linalg.det(U@Vt)
+                        rotation=U@correction@Vt
+                        updated=(positions[body]-pc)@rotation+qc
+                        trial.reshape(-1,3)[body]=updated-self.x[body]
+                        self.birth_audits.append(dict(time_s=time_s,kind='objective free-body interface initial guess',
+                            moved_nodes=len(body),new_contact_nodes=len(contact),old_component=int(label),
+                            maximum_remaining_pair_mismatch_mm=float(np.linalg.norm(updated[np.searchsorted(body,contact)]-q,axis=1).max()),
+                            reference_or_plastic_history_reset=False,nonrigid_mismatch_solved_by_equilibrium=True))
+            trial.reshape(-1,3)[copies]=trial.reshape(-1,3)[representative[copies]]
+        extension_coordinates=self.x if self.kinematics=='small_strain' else self.x+trial.reshape(-1,3)
         # Outside-coherent-solid vertex freedoms of cut cells are extended
         # affinely from actual solid nodes. This removes vanishing-support
         # freedoms while preserving translation, rotation and linear strain.
@@ -342,7 +397,7 @@ class SolidMechanics:
                 local_ghost=ghost[support_component[ghost]==label]
                 local_hosts=present[support_component[present]==label]
                 try:
-                    rows,extension_audit=birth_continuation(self.x,local_hosts,local_ghost)
+                    rows,extension_audit=birth_continuation(extension_coordinates,local_hosts,local_ghost)
                 except RuntimeError as error:
                     # A thin isolated body may have no bounded extrapolation
                     # from its few full cells. Keep that body's complete real
@@ -370,6 +425,10 @@ class SolidMechanics:
         scalar_extension=coo_matrix((rvalues,(rrows,rcols)),shape=(self.n,len(present))).tocsr()
         extension=kron(scalar_extension,eye(3,format='csr'),format='csr')
         free=(3*present[:,None]+np.arange(3)).ravel()
+        if self.kinematics=='finite_Hencky':
+            saved_u=self.u;self.u=trial
+            gauges,components,solid_component,support_component=self.rigid_gauges(occupied,active)
+            self.u=saved_u
         C=gauges@extension
         # Restrict displacement INCREMENTS to the current coherent cut space.
         # Projecting the total inherited displacement into a different space
@@ -378,17 +437,6 @@ class SolidMechanics:
         # the accepted P1 material geometry and apply the new affine extension
         # only to Newton increments. Actual new interface closure is imposed
         # separately below and keeps its physical strain demand.
-        trial=self.u.copy()
-        if self.interface_policy=='chronological':
-            copies=self.current_bond_pairs[:,1]
-            newly_joined=copies[representative[copies]!=previous_representative[copies]]
-            if len(newly_joined):
-                mismatch=self.u.reshape(-1,3)[newly_joined]-self.u.reshape(-1,3)[representative[newly_joined]]
-                self.birth_audits.append(dict(time_s=time_s,kind='actual new coherent interface closure',
-                    new_node_pairs=len(newly_joined),maximum_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).max()),
-                    mean_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).mean()),
-                    surviving_material_state_reset=False))
-            trial.reshape(-1,3)[copies]=trial.reshape(-1,3)[representative[copies]]
         # Fix only the undetermined rigid increment. When melting separates
         # a body, forcing its total displacement to zero would translate it
         # away from its inherited position and strain it upon reconnection.
@@ -421,6 +469,20 @@ class SolidMechanics:
             new_material_specific_volume_reference='trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained',
             maximum_new_material_density_reference_trace=float(abs(density_reference_trace[new_solid]).max()) if np.any(new_solid) else 0.))
         def assemble(vector,tangent=True):
+            if self.kinematics=='finite_Hencky':
+                from precoat_finite_kinematics import response
+                F=np.eye(3)+np.einsum('eij,eik->ejk',vector.reshape(-1,3)[self.e[active]],self.g[active])
+                local_force,local_tangent,local_stress,increment,flow,*_=response(F,self.g[active],self.reference[active],
+                    self.plastic[active],self.eqp[active],expansion[active],G[active],bulk[active],Y[active],H[active],tangent)
+                stress=np.zeros_like(self.stress);stress[active]=local_stress
+                dl=np.zeros(len(self.e));dl[active]=increment
+                direction=np.zeros_like(self.plastic);direction[active]=flow
+                force=np.bincount(self.dof[active].ravel(),weights=(local_force*(self.volume*weight)[active,None]).ravel(),minlength=self.nd)
+                K=None
+                if tangent:
+                    elements=np.zeros((len(self.e),12,12));elements[active]=local_tangent*(self.volume*weight)[active,None,None]
+                    K=coo_matrix((elements.ravel(),(self.rows,self.cols)),shape=(self.nd,self.nd)).tocsr()
+                return force,K,stress,dl,direction
             strain=np.einsum('eij,ej->ei',self.B,vector[self.dof])-self.reference-self.plastic
             strain[:,:3]-=expansion[:,None]
             dev=strain-strain@self.pv;shear=2*G[:,None]*dev
@@ -443,6 +505,8 @@ class SolidMechanics:
             force,K,stress,dl,direction=assemble(trial)
             projected_force=extension.T@force
             residual=float(np.linalg.norm(projected_force))
+            if self.kinematics=='finite_Hencky' and time_s<=1 and iteration%5==0:
+                print('finite equilibrium',round(time_s,6),iteration,residual,flush=True)
             self.iteration_history.append([time_s,iteration,residual,float(dl.max()),float(np.linalg.norm(trial))])
             if residual<.05:break
             gauge_error=C@(trial[free]-coordinate_origin)
@@ -450,8 +514,9 @@ class SolidMechanics:
             # Exact diagonal congruence scaling handles small physical support
             # without adding stiffness, damping or artificial hardening.
             diagonal=stiffness.diagonal()
-            if np.any(diagonal<=0):raise RuntimeError('Active physical stiffness has a non-positive diagonal')
-            scale=1/np.sqrt(diagonal);S=diags(scale)
+            if self.kinematics=='small_strain' and np.any(diagonal<=0):raise RuntimeError('Active physical stiffness has a non-positive diagonal')
+            if np.any(diagonal==0):raise RuntimeError('Physical tangent has an unsupported zero diagonal')
+            scale=1/np.sqrt(abs(diagonal));S=diags(scale)
             scaled_C=(C@S).tocsr();constraint_scale=1/np.sqrt(np.asarray(scaled_C.multiply(scaled_C).sum(axis=1)).ravel())
             L=diags(constraint_scale);scaled_C=L@scaled_C
             augmented=bmat([[S@stiffness@S,scaled_C.T],[scaled_C,csr_matrix((C.shape[0],C.shape[0]))]],format='csr')
@@ -470,7 +535,10 @@ class SolidMechanics:
                 raise RuntimeError(f'Precoat solid linear residual {linear_residual} at{time_s}s; reference force{np.linalg.norm(rhs)}')
             for power in range(12):
                 candidate=trial.copy();candidate+=extension@solution[:len(free)]*.5**power
-                next_force,*_=assemble(candidate,False)
+                try:next_force,*_=assemble(candidate,False)
+                except ValueError:
+                    if self.kinematics=='finite_Hencky':continue
+                    raise
                 if np.linalg.norm(extension.T@next_force)<residual:
                     trial=candidate;break
             else:
@@ -541,7 +609,7 @@ class SolidMechanics:
         folder.mkdir(parents=True,exist_ok=True)
         source_temperature=temperature.copy()
         if len(temperature)==self.source_nodes:temperature=temperature[self.thermal_origin]
-        extra=dict(thermal_origin=self.thermal_origin,thermal_source_temperature_C=source_temperature)
+        extra=dict(thermal_origin=self.thermal_origin,thermal_source_temperature_C=source_temperature,kinematics=self.kinematics)
         if self.interface_policy=='chronological':extra.update(fused_faces=self.fused_faces,bonded_faces=self.bonded_faces,current_bond_pairs=self.current_bond_pairs,original_fusion_faces=self.fusion_faces)
         np.savez_compressed(folder/'fields.npz',x=self.x,e=self.e,material=self.m,volume_mm3=self.volume,
             time_s=time_s,temperature_C=temperature,occupation=occupation,u=self.u.reshape(-1,3),
@@ -573,7 +641,7 @@ class SolidMechanics:
         gradient=np.einsum('eij,eik->ejk',self.u.reshape(-1,3)[self.e],self.g)
         determinant=np.linalg.det(np.eye(3)+gradient)
         volume_error=abs(determinant-(1+np.trace(gradient,axis1=1,axis2=2)))/np.maximum(abs(determinant),1e-30)
-        physical_strain=np.einsum('eij,ej->ei',self.B,self.u[self.dof])
+        physical_strain=self.strain_at(self.u,full)
         result.update(full_solid_maximum_parent_kinematic_strain=float(np.linalg.norm(physical_strain[full],axis=1).max()),
             full_solid_maximum_material_reference_strain=float(np.linalg.norm((physical_strain-self.reference)[full],axis=1).max()),
             full_solid_minimum_det_F=float(determinant[full].min()),
@@ -581,6 +649,11 @@ class SolidMechanics:
             small_strain_geometry_volume_check_pass=bool(determinant[full].min()>0 and volume_error[full].max()<=.05),
             parent_extension_strain_scope='equilibrium-history maximum_total_strain_norm includes unborn/liquid parent extensions; use full-solid metrics for actual solid geometry',
             component_policy='affine interpolation independent for every connected solid body; six rigid-increment coordinate gauges retain its inherited pose through separation/reconnection; no cross-body support')
+        result['kinematics']=self.kinematics
+        result['finite_configuration_check_pass']=bool(self.kinematics=='finite_Hencky' and determinant[self.solid_weight>1e-12].min()>0)
+        if self.kinematics=='finite_Hencky':
+            result['stress_measure']='Cauchy stress from work-conjugate Hencky stress through the exact log-strain derivative; physical force uses first Piola stress'
+            result['finite_kinematics_source']='https://doi.org/10.1016/j.cma.2023.116101; finite log-strain additive plasticity; existing reference-material demand curves'
         result['new_coherent_material_policy']='current shear configuration plus mass/density cold specific-volume reference; thermal bulk strain solved by equilibrium, no surviving material history reset'
         result['cut_space_displacement_policy']='accepted P1 geometry retained; current cut-space constrains Newton increments only; no representation-only reference shift'
         result['coherent_reference_initialization_order']='actual preclosure configuration; interface joining displacement is never initialized as stress-free new-material shear'

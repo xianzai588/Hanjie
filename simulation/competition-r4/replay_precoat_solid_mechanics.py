@@ -8,24 +8,30 @@ from mma_literature_profile import ROOT
 from precoat_solid_mechanics import SolidMechanics
 
 
-def run(source,output,furnace=None,stop_time=None,phase_method='exact_P1',checkpoint=None,interface_policy='chronological',furnace_increment=12.5,solver_threads=1):
+def run(source,output,furnace=None,stop_time=None,phase_method='exact_P1',checkpoint=None,interface_policy='chronological',furnace_increment=12.5,solver_threads=1,kinematics='small_strain',save_every=5):
     if (output/'input.json').exists():raise ValueError('Preserve mechanical replay evidence')
     output.mkdir(exist_ok=True,parents=True)
     inputs=json.loads((source/'input.json').read_text())
+    if inputs.get('deposition_material_ids')==[4,5]:
+        connection=json.loads((source/'second-layer-connection-audit.json').read_text())
+        if not connection['actual_second_layer_thermal_connection_screen_pass']:
+            raise ValueError('Actual second-layer continuous thermal connection must be verified before retained-state replay')
+        if not connection['retained_first_interface']['every_face_stays_whole_face_coherent']:
+            raise ValueError('Actual second-layer heat remelts the preexisting QT/CI interface; explicit preexisting-interface release/reconnection is required before replay')
     with np.load(source/'thermal-fields.npz') as f:
         x,e,m,volume=f['x'],f['e'],f['material'],f['volume_mm3']
         source_material_mass=f['material_mass_kg'].copy() if 'material_mass_kg' in f else None
-    mechanics=SolidMechanics(x,e,m,volume,inputs,phase_method,interface_policy)
+    mechanics=SolidMechanics(x,e,m,volume,inputs,phase_method,interface_policy,kinematics)
     if source_material_mass is not None:mechanics.material_mass_kg=source_material_mass
     if interface_policy=='chronological':
         with np.load(source/'interface-cycles.npz') as f:
             if not np.array_equal(mechanics.fusion_faces,f['face_nodes']):raise ValueError('Chronological fusion face order mismatch')
             fusion_times=f['time_s'].copy();fusion_history=f['nodal_temperature_C'].min(axis=2)>=mechanics.fusion_threshold_C
     (output/'input.json').write_text(json.dumps(dict(source=str(source),furnace=str(furnace) if furnace else None,
-        material_reference=mechanics.reference_input,phase_method=phase_method,interface_policy=interface_policy,
+        material_reference=mechanics.reference_input,phase_method=phase_method,interface_policy=interface_policy,kinematics=kinematics,
         mechanical_step_policy='all deposition increments; source cooling max nodal change12.5C or60s; fully solid rate-independent furnace max nodal change at specified increment plus hold/ramp/final events',
         furnace_temperature_increment_C=furnace_increment,furnace_time_policy_basis='reference elastoplastic model contains no creep/time-rate term; temperature increments and process events govern furnace path resolution',
-        solver_threads=solver_threads,
+        solver_threads=solver_threads,accepted_state_save_interval_steps=save_every,
         accepted_checkpoint_source=str(checkpoint) if checkpoint else None,
         no_uniform_annealing_reset=True,scope='solid manufacturing demand; PMZ fracture capacity separate'),ensure_ascii=False,indent=2),encoding='utf8')
     clock=time.perf_counter();previous=np.full(len(x),inputs['cold_start_C']);old_occupation=np.isin(m,mechanics.preexisting_material_ids).astype(float)
@@ -46,6 +52,8 @@ def run(source,output,furnace=None,stop_time=None,phase_method='exact_P1',checkp
     if checkpoint:
         checkpoint_input=json.loads((checkpoint/'input.json').read_text())
         checkpoint_result=json.loads((checkpoint/'result.json').read_text())
+        if checkpoint_result.get('kinematics','small_strain')!=kinematics:
+            raise ValueError('Do not convert a small-strain material history into finite-strain history by resetting or shifting references; replay the same actual thermal path in the specified strain measure')
         if checkpoint_input['material_reference']!=mechanics.reference_input or 'carried mass' not in checkpoint_result['source_state_policy']:
             raise ValueError('Replay checkpoint material reference differs from current specific-volume policy')
         with np.load(checkpoint/'fields.npz') as f:
@@ -120,7 +128,7 @@ def run(source,output,furnace=None,stop_time=None,phase_method='exact_P1',checkp
                             (output/'failure.json').write_text(json.dumps(dict(trial_s=float(t),last_accepted_s=last_time,error=str(error)),indent=2),encoding='utf8')
                             raise
                         previous=temperature.copy();old_occupation=occupation.copy();last_time=float(t);step+=1
-                        if step%5==0:
+                        if step%save_every==0:
                             mechanics.save(output,last_time,temperature,occupation,True)
                             print('solid',step,round(t,3),row[1],round(row[2],5),round(time.perf_counter()-clock,1),flush=True)
                     if mandatory:
@@ -143,5 +151,7 @@ if __name__=='__main__':
     p.add_argument('--interface-policy',choices=['chronological','conformal'],default='chronological')
     p.add_argument('--furnace-temperature-increment',type=float,default=12.5)
     p.add_argument('--threads',type=int,choices=[1,2,4,8],default=1)
+    p.add_argument('--kinematics',choices=['small_strain','finite_Hencky'],default='small_strain')
+    p.add_argument('--save-every',type=int,choices=[1,5],default=5)
     a=p.parse_args()
-    with threadpool_limits(limits=a.threads):run(a.source,a.output,a.furnace,a.stop_time,a.phase_method,a.checkpoint,a.interface_policy,a.furnace_temperature_increment,a.threads)
+    with threadpool_limits(limits=a.threads):run(a.source,a.output,a.furnace,a.stop_time,a.phase_method,a.checkpoint,a.interface_policy,a.furnace_temperature_increment,a.threads,a.kinematics,a.save_every)

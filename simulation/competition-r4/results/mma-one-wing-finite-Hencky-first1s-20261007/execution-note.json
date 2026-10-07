@@ -1,0 +1,8 @@
+{
+  "completed": false,
+  "accepted_fields_saved": false,
+  "reason": "Initial full-mesh startup used the verified but costly integral evaluation of both first and second log derivatives. Stopped without a saved accepted checkpoint; the exact spectral first derivative and verified selected Hessian quadrature are used for the same thermal-input startup in the replacement.",
+  "replacement": "mma-one-wing-finite-spectral-first1s-20261007",
+  "thermal_source_or_process_parameters_changed": false,
+  "stored_material_history_reset": false
+}

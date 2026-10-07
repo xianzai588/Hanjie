@@ -1,0 +1,234 @@
+[
+  {
+    "time_s": 0.125,
+    "kind": "new coherent body retains prescribed liquid-envelope pose",
+    "solid_component": 1,
+    "new_nodes": 94,
+    "old_same_body_hosts": 0,
+    "existing_material_state_reset": false
+  },
+  {
+    "time_s": 0.125,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 0.0,
+    "retained_volume_mm3": 137213.89761022234,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.125,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 0,
+    "maximum_coordinate_error_mm": 4.887550589942157e-15,
+    "maximum_host_weight_L1": 3.054400177807966,
+    "maximum_host_count": 16,
+    "new_node_count": 34
+  },
+  {
+    "time_s": 0.125,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 0.0,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.25,
+    "kind": "same-body coherent-node predictor",
+    "maximum_coordinate_error_mm": 1.1897984257160512e-15,
+    "maximum_host_weight_L1": 3.020027470743605,
+    "maximum_host_count": 16,
+    "new_node_count": 5
+  },
+  {
+    "time_s": 0.25,
+    "kind": "same-body coherent-node predictor",
+    "maximum_coordinate_error_mm": 1.852037001416233e-15,
+    "maximum_host_weight_L1": 3.49384822798759,
+    "maximum_host_count": 7,
+    "new_node_count": 7
+  },
+  {
+    "time_s": 0.25,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 0.010896878375119944,
+    "retained_volume_mm3": 137196.32433061532,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.25,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 0,
+    "maximum_coordinate_error_mm": 3.1909449260046803e-15,
+    "maximum_host_weight_L1": 3.361026652549068,
+    "maximum_host_count": 16,
+    "new_node_count": 62
+  },
+  {
+    "time_s": 0.25,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 5.1485137382635176e-18,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.375,
+    "kind": "same-body coherent-node predictor",
+    "maximum_coordinate_error_mm": 9.829921346171148e-16,
+    "maximum_host_weight_L1": 2.544803357934629,
+    "maximum_host_count": 11,
+    "new_node_count": 5
+  },
+  {
+    "time_s": 0.375,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 0.004399115803540076,
+    "retained_volume_mm3": 137178.462155008,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.375,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 0,
+    "maximum_coordinate_error_mm": 2.547476237492391e-15,
+    "maximum_host_weight_L1": 3.4168645009534524,
+    "maximum_host_count": 16,
+    "new_node_count": 86
+  },
+  {
+    "time_s": 0.375,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 7.012098078898518e-16,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.5,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 6.297191922310168e-17,
+    "retained_volume_mm3": 137161.21752297643,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.5,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 2.027691857686109e-14,
+    "maximum_host_weight_L1": 3.8193358201762995,
+    "maximum_host_count": 16,
+    "new_node_count": 92
+  },
+  {
+    "time_s": 0.5,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 7.713443392780635e-17,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.625,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 1.8268454833641422e-16,
+    "retained_volume_mm3": 137144.38592455877,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.625,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 6.903044027555109e-15,
+    "maximum_host_weight_L1": 3.9895652605121286,
+    "maximum_host_count": 32,
+    "new_node_count": 110
+  },
+  {
+    "time_s": 0.625,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 3.869549991796764e-17,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.75,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": -3.5055731971079574e-17,
+    "retained_volume_mm3": 137128.97655449164,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.75,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 1.0627280571564439e-14,
+    "maximum_host_weight_L1": 3.9885344882376033,
+    "maximum_host_count": 16,
+    "new_node_count": 109
+  },
+  {
+    "time_s": 0.75,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 6.480575737558365e-16,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 0.875,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": 1.6740841880459877e-16,
+    "retained_volume_mm3": 137112.23037428423,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 0.875,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 2.0222723869480224e-14,
+    "maximum_host_weight_L1": 3.377778577267192,
+    "maximum_host_count": 32,
+    "new_node_count": 118
+  },
+  {
+    "time_s": 0.875,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 1.0654297846370332e-16,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  },
+  {
+    "time_s": 1.0,
+    "kind": "actual surviving material intersection",
+    "additional_removed_volume_vs_scalar_min_mm3": -1.8284950300526733e-16,
+    "retained_volume_mm3": 137096.79110556893,
+    "material_history_reset": false
+  },
+  {
+    "time_s": 1.0,
+    "kind": "coherent-solid cut extension",
+    "solid_component": 4,
+    "maximum_coordinate_error_mm": 1.1292286456992048e-14,
+    "maximum_host_weight_L1": 3.9938884968609236,
+    "maximum_host_count": 32,
+    "new_node_count": 125
+  },
+  {
+    "time_s": 1.0,
+    "kind": "cut-space material state transfer",
+    "maximum_surviving_reference_tensor_change_without_new_solid": 1.375352207035559e-16,
+    "displacement_space_policy": "retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained",
+    "representation_only_reference_increment": 0.0,
+    "new_material_specific_volume_reference": "trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained",
+    "maximum_new_material_density_reference_trace": 0.0
+  }
+]

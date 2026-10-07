@@ -1,0 +1,79 @@
+{
+  "source": "simulation\\competition-r4\\results\\mma-eight-wing-phase-front-t4-end80-r12-20261007",
+  "partial": false,
+  "full_liquid_threshold_C": 1400.0,
+  "wings": [
+    {
+      "wing": 1,
+      "face_count": 802,
+      "area_mm2": 131.39999344617922,
+      "minimum_whole_face_peak_C": 1768.02880859375,
+      "qualified_area_mm2": 131.39999344617922
+    },
+    {
+      "wing": 2,
+      "face_count": 804,
+      "area_mm2": 131.4000940120388,
+      "minimum_whole_face_peak_C": 1737.4095458984375,
+      "qualified_area_mm2": 131.4000940120388
+    },
+    {
+      "wing": 3,
+      "face_count": 802,
+      "area_mm2": 131.39985847393848,
+      "minimum_whole_face_peak_C": 1740.2431640625,
+      "qualified_area_mm2": 131.39985847393848
+    },
+    {
+      "wing": 4,
+      "face_count": 802,
+      "area_mm2": 131.4000519919736,
+      "minimum_whole_face_peak_C": 1736.3685302734375,
+      "qualified_area_mm2": 131.4000519919736
+    },
+    {
+      "wing": 5,
+      "face_count": 802,
+      "area_mm2": 131.40008286587968,
+      "minimum_whole_face_peak_C": 1741.0640869140625,
+      "qualified_area_mm2": 131.40008286587968
+    },
+    {
+      "wing": 6,
+      "face_count": 802,
+      "area_mm2": 131.40011997739865,
+      "minimum_whole_face_peak_C": 1738.265625,
+      "qualified_area_mm2": 131.40011997739865
+    },
+    {
+      "wing": 7,
+      "face_count": 802,
+      "area_mm2": 131.40035262611855,
+      "minimum_whole_face_peak_C": 1739.483642578125,
+      "qualified_area_mm2": 131.40035262611855
+    },
+    {
+      "wing": 8,
+      "face_count": 802,
+      "area_mm2": 131.4003853561744,
+      "minimum_whole_face_peak_C": 1738.251708984375,
+      "qualified_area_mm2": 131.4003853561744
+    }
+  ],
+  "actual_mass_g": 15.329235374588944,
+  "max_step_mass_error_g": 2.235711615838909e-13,
+  "max_cumulative_mass_error_g": 1.7630341631047486e-13,
+  "maximum_disconnected_volume_mm3": 0.0,
+  "max_relative_energy_error": 1.1942661103603314e-05,
+  "max_source_partition_error_J": 2.842170943040401e-14,
+  "net_input_J": 184675.92747585452,
+  "total_arc_s": 92.5521380809558,
+  "actual_complete_precoat_to_furnace_s": 1694.3021380809557,
+  "conditioning_s": 420.0,
+  "all_actual_start_interfaces_200_300": true,
+  "final_max_C": 496.0520585954358,
+  "full_manufacturing_verified": false,
+  "PMZ_capacity_assigned": false,
+  "numerical_scope": "actual eight-wing thermal history; one-wing frozen discretization evidence retained, no new full-eight convergence claim",
+  "actual_eight_wing_thermal_connection_screen_pass": false
+}

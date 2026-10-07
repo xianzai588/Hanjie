@@ -13,6 +13,8 @@ from run_first_layer_machining import datum_frame
 def run(source,output):
     result=json.loads((source/'result.json').read_text())
     if result['partial']:raise ValueError('Require the completed cold mechanical state')
+    if not (result.get('small_strain_geometry_volume_check_pass') or result.get('finite_configuration_check_pass')) or 'preclosure configuration' not in result.get('coherent_reference_initialization_order',''):
+        raise ValueError('Cold design clouds require valid retained geometry and preclosure coherent-reference initialization')
     with np.load(source/'fields.npz') as f:
         x,e,m=f['x'],f['e'],f['material'];u=f['u'];stress=f['stress'];eqp=f['eqp']
         T=f['temperature_C'];occupation=f['occupation']

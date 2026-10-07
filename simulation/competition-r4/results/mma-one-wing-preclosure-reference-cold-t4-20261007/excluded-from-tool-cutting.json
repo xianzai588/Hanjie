@@ -1,0 +1,12 @@
+{
+  "accepted_time_s": 14.0690172601195,
+  "eligible_for_actual_tool_cutting": false,
+  "bonded_node_pairs": 0,
+  "reason": "The free coherent Ni body develops large rotations before any physically coherent QT/Ni interface patch. Fixed small-strain kinematics is outside its range before the joining event.",
+  "fully_solid_maximum_polar_rotation_deg": 32.044009869211926,
+  "maximum_equivalent_plastic_strain": 0.6981494209568138,
+  "full_solid_finite_vs_linear_volume_difference": 0.12427973252100191,
+  "first_actual_partly_coherent_interface_s": 15.5690172601195,
+  "first_actual_whole_coherent_facet_s": 15.9440172601195,
+  "state_preservation": "Accepted fields remain preserved. The valid unjoined 11.569017 s arc-end checkpoint is saved separately. No phase or material history is cleared and no early bond is imposed."
+}
