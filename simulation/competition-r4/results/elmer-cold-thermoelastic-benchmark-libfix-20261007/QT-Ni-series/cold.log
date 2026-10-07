@@ -1,0 +1,115 @@
+ELMER SOLVER (v 9.0) STARTED AT: 2026/10/07 16:09:21
+ParCommInit: Initialize #PEs: 1
+MAIN: 
+MAIN: =============================================================
+MAIN: ElmerSolver finite element software, Welcome!
+MAIN: This program is free software licensed under (L)GPL
+MAIN: Copyright 1st April 1995 - , CSC - IT Center for Science Ltd.
+MAIN: Webpage http://www.csc.fi/elmer, Email elmeradm@csc.fi
+MAIN: Version: 9.0 (Rev: Release, Compiled: 2026-01-20)
+MAIN:  Running one task without MPI parallelization.
+MAIN:  Running with just one thread per task.
+MAIN:  Lua interpreter linked in.
+MAIN: =============================================================
+MAIN: 
+MAIN: 
+MAIN: -------------------------------------
+MAIN: Reading Model: cold.sif
+LoadInputFile: Scanning input file: cold.sif
+LoadInputFile: Scanning only size info
+LoadInputFile: First time visiting
+LoadInputFile: Reading base load of sif file
+LoadInputFile: Loading input file: cold.sif
+LoadInputFile: Reading base load of sif file
+LoadInputFile: Number of BCs: 4
+LoadInputFile: Number of Body Forces: 0
+LoadInputFile: Number of Initial Conditions: 0
+LoadInputFile: Number of Materials: 2
+LoadInputFile: Number of Equations: 1
+LoadInputFile: Number of Solvers: 2
+LoadInputFile: Number of Bodies: 2
+ElmerAsciiMesh: Base mesh name: ./mesh
+LoadMesh: Elapsed REAL time:     0.0020 (s)
+MAIN: -------------------------------------
+AddVtuOutputSolverHack: Adding ResultOutputSolver to write VTU output in file: cold
+OptimizeBandwidth: Initial bandwidth for heat equation: 206
+OptimizeBandwidth: Optimized bandwidth for heat equation: 25
+StressSolve_init: --------------------------------------------------
+StressSolve_init: Solving displacements from linear elasticity model
+StressSolve_init: --------------------------------------------------
+OptimizeBandwidth: Initial bandwidth for linear elasticity: 206
+OptimizeBandwidth: Optimized bandwidth for linear elasticity: 25
+LoadRestartFile: 
+LoadRestartFile: --------------------------------------------
+LoadRestartFile: Reading data from file: mesh/hot.result
+LoadRestartFile: ASCII 3
+LoadRestartFile: Reading ascii restart file version 3
+LoadRestartFile: Total number of dofs in restart file: 17
+LoadRestartFile: Reading time sequence:    1.000E+00
+LoadRestartFile: Reading variables on timestep: 1
+LoadRestartFile: Time spent for restart (s):      1.0000E-02
+LoadRestartFile: All done
+LoadRestartFile: --------------------------------------------
+MAIN: Number of timesteps to be saved: 1
+MAIN: 
+MAIN: -------------------------------------
+MAIN:  Steady state iteration:            1
+MAIN: -------------------------------------
+MAIN: 
+HeatSolver: Solving the energy equation for temperature
+HeatSolve: 
+HeatSolve: 
+HeatSolve: -------------------------------------
+HeatSolve:  TEMPERATURE ITERATION           1
+HeatSolve: -------------------------------------
+HeatSolve: 
+HeatSolve: Starting Assembly...
+HeatSolve: Assembly:
+HeatSolve: Assembly done
+ComputeChange: NS (ITER=1) (NRM,RELC): (  20.000000      2.0000000     ) :: heat equation
+HeatSolve: iter:    1 Assembly: (s)    0.00    0.00
+HeatSolve: iter:    1 Solve:    (s)    0.00    0.00
+HeatSolve:  Result Norm   :    20.000000000000000
+HeatSolve:  Relative Change :    2.0000000000000000
+ComputeChange: SS (ITER=1) (NRM,RELC): (  20.000000      2.0000000     ) :: heat equation
+StressSolve: 
+StressSolve: --------------------------------------------------
+StressSolve: Solving displacements from linear elasticity model
+StressSolve: --------------------------------------------------
+StressSolve: Starting assembly...
+StressSolve: Assembly:
+ComputeChange: NS (ITER=1) (NRM,RELC): ( 0.77198464E-03  2.0000000     ) :: linear elasticity
+StressSolver: ------------------------------------------
+StressSolver: Starting Stress Computation
+OptimizeBandwidth: Initial bandwidth for linear elasticity: 206
+OptimizeBandwidth: Optimized bandwidth for linear elasticity: 25
+StressSolver: Solving for Stress(1,1)
+StressSolver: Solving for Strain(1,1)
+StressSolver: Solving for Stress(1,2)
+StressSolver: Solving for Strain(1,2)
+StressSolver: Solving for Stress(1,3)
+StressSolver: Solving for Strain(1,3)
+StressSolver: Solving for Stress(2,2)
+StressSolver: Solving for Strain(2,2)
+StressSolver: Solving for Stress(2,3)
+StressSolver: Solving for Strain(2,3)
+StressSolver: Solving for Stress(3,3)
+StressSolver: Solving for Strain(3,3)
+StressSolver: All done
+StressSolver: ------------------------------------------
+ComputeChange: SS (ITER=1) (NRM,RELC): ( 0.77198464E-03  2.0000000     ) :: linear elasticity
+SaveResult: -----------------------------------------
+SaveResult: Saving results to file: mesh/cold.result
+SaveResult: Done writing results file
+SaveResult: -----------------------------------------
+ResultOutputSolver: -------------------------------------
+ResultOutputSolver: Saving with prefix: cold
+CreateListForSaving: Field Variables for Saving
+ResultOutputSolver: Saving in unstructured VTK XML (.vtu) format
+VtuOutputSolver: Saving results in VTK XML format with prefix: cold
+VtuOutputSolver: Saving number of partitions: 1
+ResultOutputSolver: -------------------------------------
+MAIN: *** Elmer Solver: ALL DONE ***
+MAIN: The end
+SOLVER TOTAL TIME(CPU,REAL):         0.17        0.17
+ELMER SOLVER FINISHED AT: 2026/10/07 16:09:22

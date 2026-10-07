@@ -1,0 +1,39 @@
+{
+  "solver": "E:\\OpenSource\\ElmerFEM-26.1\\ElmerFEM-gui-nompi-Windows-AMD64\\bin\\ElmerSolver.exe",
+  "Ni_free": {
+    "hot_displacement_error_mm": 8.326672684688674e-16,
+    "hot_von_mises_max_MPa": 4.2100963818776615e-11,
+    "cold_displacement_max_mm": 1.1425780739801435e-18,
+    "cold_von_mises_max_MPa": 4.547397225651539e-14,
+    "carried_mass_g": 8.89,
+    "hot_volume_mm3": 1049.9059214349163,
+    "hot_density_g_mm3": 0.008467425336405337,
+    "cold_density_g_mm3": 0.00889,
+    "density_mass_recovery_error_g": 0.0
+  },
+  "QT_Ni_series": {
+    "analytic_cold_axial_stress_MPa": 45.90906666666667,
+    "far_field_mean_cold_axial_stress_MPa": 45.90742380852448,
+    "far_field_max_relative_error": 0.00023691515999450392,
+    "far_field_mean_added_axial_stress_MPa": 10.000069654871604,
+    "far_field_added_stress_max_relative_error": 4.611505666503035e-05,
+    "local_axial_stress_range_MPa": [
+      43.558401908019874,
+      47.91719923943721
+    ],
+    "unloaded_cold_displacement_max_difference_mm": 0.0,
+    "unloaded_cold_stress_max_difference_MPa": 0.0,
+    "cold_reference_retained": true,
+    "unloaded_from_actual_loaded_restart": true,
+    "mass_reference": "40 C geometry, density rho20/(1+alpha*20)^3; the hot geometry is not treated as a cold stress-free CAD volume"
+  },
+  "analytic_cold_baseline_passed": true,
+  "actual_deposited_joint_passed": false,
+  "plastic_history_transfer_qualified": false,
+  "full_manufacturing_chain_passed": false,
+  "sources": [
+    "https://www.nic.funet.fi/pub/sci/physics/elmer/doc/ElmerModelsManual.pdf",
+    "https://github.com/ElmerCSC/elmerfem/blob/devel/fem/src/modules/StressSolve.F90"
+  ],
+  "scope": "Actual native Elmer linear thermoelastic runs; free thermal recovery, elastic residual stress and same-reference elastic loading/unloading. No joint, melt or plastic state has been assigned by this benchmark."
+}

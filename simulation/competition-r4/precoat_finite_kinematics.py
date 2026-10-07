@@ -113,7 +113,14 @@ def response(F,g,reference,plastic,eqp,expansion,G,bulk,Y,H,tangent=True,quadrat
             groups=[(np.ones(len(F),bool),quadrature_order)]
         else:
             near=(eigen.min(axis=1)>=.8)&(eigen.max(axis=1)<=1.25)
-            groups=[(near,4),(~near,16)]
+            # The actual7.75s failed trial reached squared stretches0.0015
+            # and656. Its16-point Hessian differs from the resolved integral;
+            #128/256-point comparison closes that local derivative. Resolve
+            # the log integral there without changing its force, material,
+            # thermal path or accepting the distorted trial as manufacturing.
+            extreme=(eigen.min(axis=1)<.05)|(eigen.max(axis=1)>20)
+            broad=((eigen.min(axis=1)<.2)|(eigen.max(axis=1)>5))&~extreme
+            groups=[(near,4),(~near&~broad&~extreme,16),(broad,64),(extreme,128)]
         for selected,order in groups:
             if not np.any(selected):continue
             points,weights=leggauss(order);second_sum=np.zeros((selected.sum(),12,12))

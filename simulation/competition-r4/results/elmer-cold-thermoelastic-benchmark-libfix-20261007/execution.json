@@ -1,0 +1,44 @@
+{
+  "solver": "E:\\OpenSource\\ElmerFEM-26.1\\ElmerFEM-gui-nompi-Windows-AMD64\\bin\\ElmerSolver.exe",
+  "records": [
+    {
+      "case": "Ni-free",
+      "stage": "hot",
+      "returncode": 0,
+      "previous_actual_state_preserved": true
+    },
+    {
+      "case": "Ni-free",
+      "stage": "cold",
+      "returncode": 0
+    },
+    {
+      "case": "QT-Ni-series",
+      "stage": "hot",
+      "returncode": 0
+    },
+    {
+      "case": "QT-Ni-series",
+      "stage": "cold",
+      "returncode": 0
+    },
+    {
+      "case": "QT-Ni-series",
+      "stage": "loaded",
+      "returncode": 0
+    },
+    {
+      "case": "QT-Ni-series",
+      "stage": "unloaded",
+      "returncode": 0
+    }
+  ],
+  "analytic_bar_cold_axial_stress_MPa": 45.90906666666667,
+  "imposed_additional_elastic_stress_MPa": 10,
+  "loaded_right_displacement_mm": 0.005380200860832137,
+  "sources": [
+    "https://www.nic.funet.fi/pub/sci/physics/elmer/doc/ElmerModelsManual.pdf",
+    "https://github.com/ElmerCSC/elmerfem/blob/devel/fem/src/modules/StressSolve.F90"
+  ],
+  "scope": "free thermal dilation/recovery and constrained two-material elastic cold residual, then same-reference loading/unloading; no deposited joint or plastic capacity qualification"
+}

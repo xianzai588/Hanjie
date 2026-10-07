@@ -1,0 +1,39 @@
+{
+  "actual_failed_trial_s": 7.75,
+  "element": 73296,
+  "temperature_C": 1339.8931148086597,
+  "principal_stretches": [
+    25.612171782446428,
+    1.0733234701634362,
+    0.03908300566225299
+  ],
+  "coherent_volume_mm3": 2.1128934933765886e-07,
+  "rows": [
+    {
+      "order": 16,
+      "tangent_relative_FD_error": 0.006279499567728578,
+      "tangent_relative_difference_vs_256": 0.0028437297660108434
+    },
+    {
+      "order": 32,
+      "tangent_relative_FD_error": 0.0013682875201216456,
+      "tangent_relative_difference_vs_256": 0.000871040711110307
+    },
+    {
+      "order": 64,
+      "tangent_relative_FD_error": 2.4144116295293533e-05,
+      "tangent_relative_difference_vs_256": 2.288747641728844e-05
+    },
+    {
+      "order": 128,
+      "tangent_relative_FD_error": 4.755991731706171e-06,
+      "tangent_relative_difference_vs_256": 4.011906962903045e-09
+    },
+    {
+      "order": 256,
+      "tangent_relative_FD_error": 4.7601641261542475e-06,
+      "tangent_relative_difference_vs_256": 0.0
+    }
+  ],
+  "scope": "one actual failed subcell; not a repeated passed benchmark, accepted manufacturing state or material-capacity result"
+}

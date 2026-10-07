@@ -1,0 +1,85 @@
+{
+  "source": "simulation\\competition-r4\\results\\mma-one-wing-finite-spectral-cold-t4-20261007",
+  "accepted_s": 7.625,
+  "materials": [
+    {
+      "material_id": 1,
+      "domain": "coherent",
+      "elements": 62375,
+      "current_coherent_reference_volume_mm3": 136291.6818192396,
+      "principal_stretch_range": [
+        1.0012357716062195,
+        1.0536662960644758
+      ],
+      "maximum_log_strain_norm": 0.054193299097632076,
+      "max_eqp": 0.031104091579244354,
+      "max_eqp_element": 19607,
+      "max_eqp_solid_weight": 0.041546466093812524,
+      "max_eqp_location_mm": [
+        68.10095238732518,
+        -2.547188258388591,
+        108.63192840314574
+      ]
+    },
+    {
+      "material_id": 1,
+      "domain": "fully_solid",
+      "elements": 60944,
+      "current_coherent_reference_volume_mm3": 136089.46952946557,
+      "principal_stretch_range": [
+        1.0028238313957554,
+        1.0354353701417054
+      ],
+      "maximum_log_strain_norm": 0.03677702193247124,
+      "max_eqp": 0.02396466147314595,
+      "max_eqp_element": 44056,
+      "max_eqp_solid_weight": 1.0,
+      "max_eqp_location_mm": [
+        64.38455863038484,
+        -9.317033475242246,
+        111.3952962271673
+      ]
+    },
+    {
+      "material_id": 3,
+      "domain": "coherent",
+      "elements": 209,
+      "current_coherent_reference_volume_mm3": 2.714636546377982,
+      "principal_stretch_range": [
+        0.8004127635349618,
+        1.3270935989342707
+      ],
+      "maximum_log_strain_norm": 0.35279175715126204,
+      "max_eqp": 0.11518437248935963,
+      "max_eqp_element": 71868,
+      "max_eqp_solid_weight": 0.04657614231821067,
+      "max_eqp_location_mm": [
+        70.15158714227077,
+        -8.943215878718782,
+        113.675
+      ]
+    },
+    {
+      "material_id": 3,
+      "domain": "fully_solid",
+      "elements": 48,
+      "current_coherent_reference_volume_mm3": 0.6478749785423912,
+      "principal_stretch_range": [
+        1.0016599324314452,
+        1.039986468439781
+      ],
+      "maximum_log_strain_norm": 0.047189047598480284,
+      "max_eqp": 0.019746884304559967,
+      "max_eqp_element": 72481,
+      "max_eqp_solid_weight": 1.0,
+      "max_eqp_location_mm": [
+        69.4968418536873,
+        -9.482892709178746,
+        113.66489939982065
+      ]
+    }
+  ],
+  "scope": "actual accepted pre-interface coherent material geometry; partially solid parent metric is a P1 gradient on its physical cut domain, not a cold-hole result",
+  "cold_complete": false,
+  "full_manufacturing_verified": false
+}
