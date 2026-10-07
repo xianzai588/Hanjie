@@ -1,0 +1,70 @@
+{
+  "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-one-wing-solid-cold-mass-volume-t4-20261007",
+  "time_s": 10.369017260119476,
+  "partial": true,
+  "cold_complete": false,
+  "maximum_temperature_C": 2478.5080666307076,
+  "materials": [
+    {
+      "material_id": 1,
+      "fully_solid_elements": 58833,
+      "minimum_det_F": 1.010184244784431,
+      "maximum_abs_surviving_reference_trace": 0.020365066328259115,
+      "maximum_abs_log_volume_vs_mass_thermal_elastic_trace": 0.02048811589184853,
+      "maximum_abs_log_vs_small_strain_trace": 0.0006751885695557708,
+      "mass_weighted_reference_trace": -2.287299045975557e-06,
+      "density_range_kg_m3": [
+        6770.795423567499,
+        7127.412684540977
+      ]
+    },
+    {
+      "material_id": 3,
+      "fully_solid_elements": 1605,
+      "minimum_det_F": 1.061009443585841,
+      "maximum_abs_surviving_reference_trace": 1.929879867024198e-17,
+      "maximum_abs_log_volume_vs_mass_thermal_elastic_trace": 0.0009401028954708762,
+      "maximum_abs_log_vs_small_strain_trace": 0.0009401028954708901,
+      "mass_weighted_reference_trace": 7.607906618036618e-18,
+      "density_range_kg_m3": [
+        8304.60459569312,
+        8378.813264804608
+      ]
+    }
+  ],
+  "datum": {
+    "rotation_columns": [
+      [
+        0.9999999820484938,
+        4.1359030627651384e-25,
+        0.00018948090109589127
+      ],
+      [
+        2.8710092928003715e-09,
+        0.9999999998852089,
+        -1.5151971648100243e-05
+      ],
+      [
+        -0.00018948090107414058,
+        1.515197192010096e-05,
+        0.9999999819337029
+      ]
+    ],
+    "translation_in_rotated_frame_mm": [
+      -0.07419418902293738,
+      -0.0006824021413081027,
+      -0.03191927706022568
+    ],
+    "datum": "actual QT lower plane A and existing bore lower-ring centre B; yaw fixed to original X projection",
+    "datum_A_nodes": 2431,
+    "datum_B_nodes": 53,
+    "datum_A_max_plane_error_mm": 0.054360845804708166
+  },
+  "actual_registered_bore_radial_diameter_range_mm": [
+    40.13654572127091,
+    40.13945748314703
+  ],
+  "bore_note": "existing rough-bore radial diameter in the A/B frame; not final manufactured hole tolerance or positional result",
+  "interpretation": "Compare the recorded reference-volume changes with actual geometry and mass before accepting tool cutting; small-strain truncation is reported separately.",
+  "full_manufacturing_verified": false
+}

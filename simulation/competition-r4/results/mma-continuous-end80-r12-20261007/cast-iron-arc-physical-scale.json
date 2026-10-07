@@ -1,0 +1,73 @@
+{
+  "source": "https://doi.org/10.1007/s00170-024-14487-7",
+  "benchmark_material": "GJS500-14; MCAW NiFe, Table1/Fig1/Fig3/Fig6",
+  "benchmark_input": {
+    "current_A": 190.0,
+    "voltage_V": 27.2,
+    "efficiency": 0.85,
+    "speed_mm_s": 4.166666666666667,
+    "arc_length_mm": 150.0,
+    "net_power_W": 4392.8,
+    "net_line_energy_J_mm": 1054.272,
+    "plate_mm": [
+      250.0,
+      140.0,
+      22.0
+    ],
+    "initial_C": 20.0,
+    "density_kg_m3": 7200.0,
+    "cp_J_kgK": 710.0,
+    "conductivity_W_mK": 30.5,
+    "diffusivity_mm2_s": 5.966353677621284
+  },
+  "model": "finite-duration moving point on a semi-infinite surface; reflected heat kernel; constant Fig3 representative properties; no latent heat or boundary losses",
+  "results": [
+    {
+      "distance_y_mm": 10.0,
+      "depth_mm": 2.0,
+      "assumed_track_midpoint_x_mm": 75.0,
+      "peak_C": 454.28193122094996,
+      "peak_from_arc_start_s": 22.626259288281275,
+      "measured_peak_approximate_graph_read_C": [
+        320.0,
+        330.0
+      ],
+      "relative_difference_from_measured_midpoint": 0.39779055760292303
+    },
+    {
+      "distance_y_mm": 15.0,
+      "depth_mm": 2.0,
+      "assumed_track_midpoint_x_mm": 75.0,
+      "peak_C": 224.06035576760289,
+      "peak_from_arc_start_s": 27.897787481838733,
+      "measured_peak_approximate_graph_read_C": [
+        225.0,
+        230.0
+      ],
+      "relative_difference_from_measured_midpoint": -0.015119315307240089
+    }
+  ],
+  "scope": {
+    "unpublished_Goldak_dimensions": true,
+    "paper_thermal_plate_thickness_mm": 22.0,
+    "paper_RS_FE_plate_thickness_mm": 50.0,
+    "published_3D_temperature_average_error_fraction": 0.17,
+    "probe_longitudinal_position_unpublished": true,
+    "temperature_figure_time_origin_not_arc_start": true,
+    "calibrated_to_current_CI_A1": false,
+    "interpretation": "15mm thermal-transport magnitude agrees; 10mm near-field peak is overpredicted by this untuned point-source check, so it is not an accepted melt-pool calibration"
+  },
+  "current_QT_liquid_energy_lower_requirement": {
+    "temperature_interval_C": [
+      300.0,
+      1180.0
+    ],
+    "simultaneous_liquid_mass_kg": 0.007410758488,
+    "sensible_J_kg": 625520.000189162,
+    "latent_J_kg": 250000,
+    "requirement_J": 6488.267272815593,
+    "actual_one_wing_net_input_J": 23084.49093448182,
+    "interpretation": "energy magnitude alone does not exclude the saved deep-remelt result; finite source distribution and actual material consequences still govern design"
+  },
+  "full_manufacturing_verified": false
+}

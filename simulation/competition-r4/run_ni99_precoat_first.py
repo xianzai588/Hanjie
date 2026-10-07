@@ -189,7 +189,7 @@ def run(a):
         input_data.update(liquid_transport_factor=getattr(a,'liquid_transport_factor',1.),
             liquid_transport_policy='k_eff=k_molecular*(1+(factor-1)*liquid_fraction); no solid enhancement, energy redistribution only',
             liquid_transport_method_source='Hu et al2024, Additive Manufacturing92 104379, DOI10.1016/j.addma.2024.104379 section2.1',
-            liquid_transport_scope='factor3 is a literature method bound for SS316L, not a measured CI-A1 coefficient; no material calibration assigned')
+            liquid_transport_scope='factor3 is a literature method setting for SS316L, not a measured CI-A1 coefficient or strict physical bound; no material calibration assigned')
         input_data['phase_resolved_cooling_dt_s']=getattr(a,'phase_resolved_cooling_dt_s',None)
         input_data['phase_resolved_cooling_policy']='after the identical arc, use specified cooling dt while any material is above its solidus, then ordinary2s cooling; actual nodal states for solidification-reference replay'
     if all_wings:

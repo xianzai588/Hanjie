@@ -1,0 +1,9 @@
+{
+  "accepted_time_s": 21.4440172601195,
+  "eligible_for_actual_tool_cutting": false,
+  "reason": "New coherent shear was initialized after the interface joining snap, locking the first 0.287911 mm free-body mismatch into a stress-free material reference. Accepted force equilibrium does not correct the resulting invalid small-strain geometry.",
+  "full_solid_finite_vs_linear_volume_difference": 0.12837412787663413,
+  "maximum_equivalent_plastic_strain": 0.9428458034431915,
+  "state_preservation": "All accepted temperature, mass, geometry, reference, stress and plastic fields remain preserved. No joined checkpoint is reused.",
+  "replacement": "mma-one-wing-preclosure-reference-cold-t4-20261007 restarts from the unjoined incremental-geometry-first1s checkpoint after an analytic birth-order benchmark."
+}

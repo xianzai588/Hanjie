@@ -1,0 +1,57 @@
+{
+  "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-one-wing-incremental-geometry-first1s-20261007",
+  "time_s": 0.625,
+  "partial": true,
+  "cold_complete": false,
+  "maximum_temperature_C": 2279.6284760592525,
+  "materials": [
+    {
+      "material_id": 1,
+      "fully_solid_elements": 68687,
+      "minimum_det_F": 1.0102646783593083,
+      "maximum_abs_surviving_reference_trace": 0.0,
+      "maximum_abs_log_volume_vs_mass_thermal_elastic_trace": 0.0005327678866805657,
+      "maximum_abs_log_vs_small_strain_trace": 0.0005327678866805657,
+      "mass_weighted_reference_trace": 0.0,
+      "density_range_kg_m3": [
+        6826.88267251192,
+        7126.8452260381455
+      ]
+    }
+  ],
+  "datum": {
+    "rotation_columns": [
+      [
+        0.9999999998333863,
+        0.0,
+        1.8254518135004474e-05
+      ],
+      [
+        8.240378356474017e-11,
+        0.9999999999898112,
+        -4.5141582451850555e-06
+      ],
+      [
+        -1.8254518134818482e-05,
+        4.514158245937177e-06,
+        0.9999999998231974
+      ]
+    ],
+    "translation_in_rotated_frame_mm": [
+      -0.04285669381585922,
+      0.0006807443369325483,
+      -0.02867756397205312
+    ],
+    "datum": "actual QT lower plane A and existing bore lower-ring centre B; yaw fixed to original X projection",
+    "datum_A_nodes": 2431,
+    "datum_B_nodes": 53,
+    "datum_A_max_plane_error_mm": 0.0019825337369516654
+  },
+  "actual_registered_bore_radial_diameter_range_mm": [
+    40.13982130652214,
+    40.13988366994132
+  ],
+  "bore_note": "existing rough-bore radial diameter in the A/B frame; not final manufactured hole tolerance or positional result",
+  "interpretation": "Compare the recorded reference-volume changes with actual geometry and mass before accepting tool cutting; small-strain truncation is reported separately.",
+  "full_manufacturing_verified": false
+}

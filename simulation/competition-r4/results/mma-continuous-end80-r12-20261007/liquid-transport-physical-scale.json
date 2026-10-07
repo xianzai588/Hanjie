@@ -1,0 +1,40 @@
+{
+  "measured_Ni_source": "https://doi.org/10.2320/jinstmet.68.781",
+  "reference_state_K": 1800.0,
+  "measurement_scope": "pure Ni electrostatic levitation; density/Cp1420..1850K, viscosity/surface tension1553..1963K; not CI-A1/Fe-Ni-C-S-O flux-covered pool measurements",
+  "reference_properties": {
+    "density_kg_m3": 7843.2,
+    "cp_J_kgK": 619.0951623180802,
+    "viscosity_Pa_s": 0.006156720747769389,
+    "surface_tension_temperature_derivative_N_mK": -0.00022,
+    "conductivity_W_mK": 30.0,
+    "conductivity_scope": "same molecular CI-A1 engineering conductivity table; not a measured alloy conductivity",
+    "diffusivity_m2_s": 6.17832222420048e-06
+  },
+  "scale_case": {
+    "L_m": 0.0032,
+    "H_m": 0.0019523786440512907,
+    "assumed_delta_T_K": 100.0,
+    "Marangoni_number": 1850.7708419898124,
+    "surface_traction_scale_Pa": 6.875,
+    "inertia_surface_traction_balance_speed_m_s": 0.037903792978221724,
+    "Peclet_number_from_that_scale": 19.631889229604823,
+    "time_for_that_scale_to_cross_L_s": 0.08442426861709104
+  },
+  "molecular_branch": {
+    "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-end80-r12-molecular-transport-first1s-20261007",
+    "liquid_transport_factor": 1.0,
+    "saved_thermal_step_s": 0.5,
+    "temperature_C": 2904.4699717346375,
+    "QT_temperature_C": 2870.733645126708,
+    "guard_C": 2800.0,
+    "domain_check_pass": false,
+    "temperature_clipped": false,
+    "chemistry_or_vaporization_solved": false
+  },
+  "interpretation": "Surface-tension transport can compete with molecular diffusion at this sourced pure-Ni scale; the molecular-only branch is insufficient for the saved high-power pool. This does not determine the actual alloy/flux surface gradient, factor3, mixing, flow direction, or melt-pool contour.",
+  "isotropic_factor3_calibrated": false,
+  "strict_physical_bounds_established": false,
+  "process_window_frozen_for_production": false,
+  "full_manufacturing_verified": false
+}

@@ -1,0 +1,9 @@
+{
+  "reason": "Changing the solid cut-space projected inherited total displacements and compensated the material reference. Force/stress preservation did not preserve the physical geometry of surviving QT material.",
+  "accepted_arc_end_s": 11.569017260119475,
+  "geometry_audit": "../mma-continuous-end80-r12-20261007/geometry-demand-at-10s.json",
+  "diagnostic_state_preserved": true,
+  "replacement_policy": "Keep accepted P1 material geometry and restrict Newton displacement increments to the current cut-space; no representation-only reference shift.",
+  "eligible_for_actual_tool_cutting": false,
+  "full_manufacturing_verified": false
+}

@@ -1,0 +1,86 @@
+{
+  "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-one-wing-incremental-geometry-cold-t4-20261007",
+  "time_s": 8.5,
+  "partial": true,
+  "cold_complete": false,
+  "maximum_temperature_C": 2228.353661298714,
+  "materials": [
+    {
+      "material_id": 1,
+      "fully_solid_elements": 59915,
+      "minimum_det_F": 1.0102306127699179,
+      "maximum_abs_surviving_reference_trace": 3.953949797783074e-18,
+      "maximum_abs_log_volume_vs_mass_thermal_elastic_trace": 0.0007130733035596443,
+      "maximum_abs_log_vs_small_strain_trace": 0.0007130733035596443,
+      "mass_weighted_reference_trace": 5.146018847753892e-23,
+      "density_range_kg_m3": [
+        6798.955922495222,
+        7127.085547584585
+      ],
+      "reference_quadrature_vs_straight_tet_volume_ratio_range": [
+        1.0,
+        1.0
+      ],
+      "density_definition": "carried mass / CAD-corrected reference quadrature volume / detF; curved-to-straight geometric approximation reported separately"
+    },
+    {
+      "material_id": 3,
+      "fully_solid_elements": 294,
+      "minimum_det_F": 1.0648414867899085,
+      "maximum_abs_surviving_reference_trace": 1.1438332919722072e-17,
+      "maximum_abs_log_volume_vs_mass_thermal_elastic_trace": 0.0007623767720676411,
+      "maximum_abs_log_vs_small_strain_trace": 0.000762376772067655,
+      "mass_weighted_reference_trace": 7.795880965436748e-18,
+      "density_range_kg_m3": [
+        8306.373672603013,
+        8348.660444100433
+      ],
+      "reference_quadrature_vs_straight_tet_volume_ratio_range": [
+        1.003927785788818,
+        1.003927785788818
+      ],
+      "density_definition": "carried mass / CAD-corrected reference quadrature volume / detF; curved-to-straight geometric approximation reported separately"
+    }
+  ],
+  "occupied_coherent_geometry": {
+    "minimum_det_F": 1.0102306127699179,
+    "fully_solid_maximum_polar_rotation_deg": 1.8819908976802047,
+    "all_coherent_maximum_polar_rotation_deg": 2.258657774603685,
+    "full_solid_rotation_scope": "actual cold rotational response must be considered with interface closure, bore and tool geometry; volume check alone is not geometry qualification"
+  },
+  "datum": {
+    "rotation_columns": [
+      [
+        0.9999999860071314,
+        -4.1359030627651384e-25,
+        0.00016728938124047115
+      ],
+      [
+        2.653038409236592e-09,
+        0.9999999998742464,
+        -1.5858976537783637e-05
+      ],
+      [
+        -0.00016728938121943389,
+        1.5858976759696213e-05,
+        0.9999999858813777
+      ]
+    ],
+    "translation_in_rotated_frame_mm": [
+      -0.07004103702372351,
+      -0.0004324404135900295,
+      -0.031570242722608555
+    ],
+    "datum": "actual QT lower plane A and existing bore lower-ring centre B; yaw fixed to original X projection",
+    "datum_A_nodes": 2431,
+    "datum_B_nodes": 53,
+    "datum_A_max_plane_error_mm": 0.04956998533063975
+  },
+  "actual_registered_bore_radial_diameter_range_mm": [
+    40.13723338341868,
+    40.13926435207309
+  ],
+  "bore_note": "existing rough-bore radial diameter in the A/B frame; not final manufactured hole tolerance or positional result",
+  "interpretation": "Compare the recorded reference-volume changes with actual geometry and mass before accepting tool cutting; small-strain truncation is reported separately.",
+  "full_manufacturing_verified": false
+}

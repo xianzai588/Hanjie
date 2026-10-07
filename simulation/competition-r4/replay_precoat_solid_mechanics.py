@@ -57,6 +57,8 @@ def run(source,output,furnace=None,stop_time=None,phase_method='exact_P1',checkp
             if interface_policy=='chronological':mechanics.fused_faces=f['fused_faces'].copy()
             if 'current_bond_pairs' in f:mechanics.current_bond_pairs=f['current_bond_pairs'].copy()
             if 'bonded_faces' in f:mechanics.bonded_faces=f['bonded_faces'].copy()
+            if len(mechanics.current_bond_pairs) and 'preclosure configuration' not in checkpoint_result.get('coherent_reference_initialization_order',''):
+                raise ValueError('Joined checkpoint initialized new-solid shear after the closure snap; preserve it as a diagnostic and restart before joining')
             if 'material_mass_kg' in f:mechanics.material_mass_kg=f['material_mass_kg'].copy()
             mechanics.previous_actual_temperature=previous[mechanics.thermal_origin].copy()
             mechanics.previous_occupation=old_occupation.copy()

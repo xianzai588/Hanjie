@@ -1,0 +1,22 @@
+{
+  "benchmark": "symmetric stress-free joining and cold material addition; analytic final zero strain, zero stress, zero plasticity and unchanged volume",
+  "exact_solution_basis": "both cold materials are initially unstrained and free; translating each Ni body into contact is a rigid motion; symmetric opposite joining removes arbitrary global rotation",
+  "initial_free_Ni_translation_mm": 0.28791122853114515,
+  "retained_Ni_fraction": 0.5,
+  "new_Ni_fraction": 0.5,
+  "postclosure_initialization_analytic_error": {
+    "maximum_spurious_new_material_reference_norm": 0.1175392668531906,
+    "explanation": "the local constraint snap is not a stress-free new-material shape"
+  },
+  "corrected_numerical": {
+    "equilibrium_residual_N": 4.658475607085285e-16,
+    "maximum_strain": 6.5182185199573265e-18,
+    "maximum_stress_MPa": 9.604490491518734e-13,
+    "maximum_eqp": 0.0,
+    "maximum_abs_detF_minus_one": 0.0,
+    "maximum_reference_tensor": 9.251858538542972e-18
+  },
+  "manufacturing_benchmark_pass": true,
+  "actual_weld_thermal_qualification_assigned": false,
+  "full_manufacturing_verified": false
+}

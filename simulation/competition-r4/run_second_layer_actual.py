@@ -23,7 +23,7 @@ from ni99_physics_bounds import apply_bounds
 from second_layer_surface import surface
 
 
-def run(geometry,output,dt_arc=.125):
+def run(geometry,output,dt_arc=.125,phase_cooling_dt=.125,solver_threads=1):
     if output.exists():raise ValueError('Preserve previous second-layer evidence')
     audit=json.loads((geometry/'geometry-state-audit.json').read_text())
     cut_source=ROOT/audit['source'];mechanical_source=ROOT/json.loads((cut_source/'input.json').read_text())['source']
@@ -57,6 +57,7 @@ def run(geometry,output,dt_arc=.125):
     input_data=dict(mesh=str(geometry),materials=tab,initial_state_path=str(geometry/'inherited-state.npz'),
         preexisting_material_ids=[1,3],deposition_material_ids=[4,5],cold_start_C=float(T.mean()),
         arc_power_W=power,net_line_energy_J_mm=power/speed,travel_mm_s=speed,dt_s=dt_arc,
+        phase_resolved_cooling_dt_s=phase_cooling_dt,solver_threads=solver_threads,
         wire_feed_mm_s=card['feed_mm_s'],wire_diameter_mm=card['diameter_mm'],
         deposition_efficiency_design_case=audit['deposition_efficiency_design_case'],entering_Ni_C=entry,
         source_width_mm=width,source_depth_mm=depth,liquid_transport_factor=liquid_factor,
@@ -129,7 +130,10 @@ def run(geometry,output,dt_arc=.125):
                 precondition=start is None and (T[interpass_nodes].min()<200 or T[interpass_nodes].max()>300+1e-6)
                 on=local<duration-1e-9 and not precondition
                 ambient=300. if precondition and T[interpass_nodes].min()<200 else 20.
-                dt=min(dt_arc,duration-local) if on else 10. if precondition else 2.
+                active_nodes=np.unique(e[moments.sum(axis=1)>1e-14])
+                minimum_solidus=min(tab[j]['fusion_enthalpy']['solidus_C'] for j in np.unique(m))
+                phase_cooling=T[active_nodes].max()>minimum_solidus
+                dt=min(dt_arc,duration-local) if on else 10. if precondition else phase_cooling_dt if phase_cooling else 2.
                 accepted_state=(T.copy(),moments.copy(),peak.copy(),t);trial_end=t+dt
                 if on and start is None:start=t
                 old=T.copy();old_mom=moments.copy();old_fraction=old_mom.sum(axis=1)
@@ -217,5 +221,7 @@ def run(geometry,output,dt_arc=.125):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--geometry',type=lambda s:ROOT/s,required=True)
     p.add_argument('--output',type=lambda s:ROOT/s,required=True);p.add_argument('--dt',type=float,default=.125)
+    p.add_argument('--phase-cooling-dt',type=float,default=.125)
+    p.add_argument('--threads',type=int,choices=[1,2,4,8],default=1)
     a=p.parse_args()
-    with threadpool_limits(limits=1):run(a.geometry,a.output,a.dt)
+    with threadpool_limits(limits=a.threads):run(a.geometry,a.output,a.dt,a.phase_cooling_dt,a.threads)

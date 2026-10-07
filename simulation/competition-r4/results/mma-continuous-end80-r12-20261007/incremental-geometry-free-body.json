@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "reference_scale": 1.0,
+      "hot_equilibrium_residual_N": 3.4161130068193856e-13,
+      "cold_equilibrium_residual_N": 5.713563093924091e-13,
+      "reference_volume_mm3": 0.16666666666666666,
+      "carried_mass_kg": 1.481666666666667e-06,
+      "hot_actual_volume_mm3": 0.1749843202391527,
+      "cold_actual_volume_mm3": 0.16666666666666666,
+      "cold_density_kg_m3": 8890.000000000002,
+      "density_relative_error": 2.220446049250313e-16,
+      "maximum_eqp": 0.0,
+      "maximum_stress_MPa": 1.3632749695281083e-12,
+      "specific_volume_reference_trace": 2.220446049250313e-16
+    },
+    {
+      "reference_scale": 1.01,
+      "hot_equilibrium_residual_N": 1.695447231589871e-13,
+      "cold_equilibrium_residual_N": 4.692006261459923e-13,
+      "reference_volume_mm3": 0.17171683333333335,
+      "carried_mass_kg": 1.481666666666667e-06,
+      "hot_actual_volume_mm3": 0.17504311786029578,
+      "cold_actual_volume_mm3": 0.166641750827518,
+      "cold_density_kg_m3": 8891.329209570422,
+      "density_relative_error": 0.00014951738699897632,
+      "maximum_eqp": 0.0,
+      "maximum_stress_MPa": 1.5787795716980564e-12,
+      "specific_volume_reference_trace": -0.029850992559504276
+    }
+  ],
+  "geometry_policy": "accepted P1 geometry; cut-space displacement increments only",
+  "free_body_specific_volume_check_pass": true,
+  "full_manufacturing_verified": false
+}

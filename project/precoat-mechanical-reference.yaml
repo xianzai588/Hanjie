@@ -1,6 +1,7 @@
 date: '2026-10-07'
 purpose: 真实热史与切削制造需求分析的本构参考；不由这些参考赋予CI-A1或PMZ断裂容量
 phase_state_policy: 按实际热史计算出生域与固相域交集；存留固体保留应力、塑性与参照，新生凝固域保留当时偏应变构型，体积参照由同一质量、冷态密度和参考体积确定
+cut_space_displacement_policy: 保留已接受P1材料几何；新的固相域仿射延拓仅约束Newton位移增量，不投影既有总位移或追加表示补偿体积参照；真实新界面闭合保留其应变需求
 new_coherent_specific_volume:
   reference_trace: log(material_mass_kg/(rho20_kg_mm3*reference_volume_mm3))
   basis: CAD沉积包络由冷态质量与密度生成；不能再次将该冷态体积指定为高温无应力体积而重复计入冷却收缩

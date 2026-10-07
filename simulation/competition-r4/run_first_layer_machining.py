@@ -34,6 +34,10 @@ def run(source,output):
     result=json.loads((source/'result.json').read_text())
     if result['partial'] or result['maximum_equilibrium_residual_N']>=.05:
         raise ValueError('Require the completed equilibrated cold manufacturing demand state')
+    if 'Newton increments only' not in result.get('cut_space_displacement_policy',''):
+        raise ValueError('Tool cutting requires preserved material geometry; a stress-only cut-space reference transfer is insufficient')
+    if result.get('bonded_node_pairs',0) and 'preclosure configuration' not in result.get('coherent_reference_initialization_order',''):
+        raise ValueError('Tool cutting requires the preclosure birth configuration; a joining snap must not become stress-free material shear')
     replay=json.loads((source/'input.json').read_text())
     thermal_input=json.loads((ROOT/replay['source']/'input.json').read_text())
     with np.load(source/'fields.npz') as f:

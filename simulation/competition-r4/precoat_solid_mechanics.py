@@ -371,31 +371,30 @@ class SolidMechanics:
         extension=kron(scalar_extension,eye(3,format='csr'),format='csr')
         free=(3*present[:,None]+np.arange(3)).ravel()
         C=gauges@extension
+        # Restrict displacement INCREMENTS to the current coherent cut space.
+        # Projecting the total inherited displacement into a different space
+        # moves surviving material. A compensating eigenstrain preserves its
+        # stress but cannot preserve its physical volume or position. Retain
+        # the accepted P1 material geometry and apply the new affine extension
+        # only to Newton increments. Actual new interface closure is imposed
+        # separately below and keeps its physical strain demand.
         trial=self.u.copy()
-        trial[3*occupied[:,None]+np.arange(3)]=(extension@trial[free]).reshape(-1,3)[occupied]
+        if self.interface_policy=='chronological':
+            copies=self.current_bond_pairs[:,1]
+            newly_joined=copies[representative[copies]!=previous_representative[copies]]
+            if len(newly_joined):
+                mismatch=self.u.reshape(-1,3)[newly_joined]-self.u.reshape(-1,3)[representative[newly_joined]]
+                self.birth_audits.append(dict(time_s=time_s,kind='actual new coherent interface closure',
+                    new_node_pairs=len(newly_joined),maximum_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).max()),
+                    mean_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).mean()),
+                    surviving_material_state_reset=False))
+            trial.reshape(-1,3)[copies]=trial.reshape(-1,3)[representative[copies]]
         # Fix only the undetermined rigid increment. When melting separates
         # a body, forcing its total displacement to zero would translate it
         # away from its inherited position and strain it upon reconnection.
         # The existing pose is retained through split/join events.
         coordinate_origin=trial[free].copy()
         mapped_strain=np.einsum('eij,ej->ei',self.B,trial[self.dof])
-        preclosure=trial.copy()
-        if self.interface_policy=='chronological':
-            copies=self.current_bond_pairs[:,1]
-            copies=copies[representative[copies]!=previous_representative[copies]]
-            if len(copies):
-                mismatch=self.u.reshape(-1,3)[copies]-self.u.reshape(-1,3)[representative[copies]]
-                self.birth_audits.append(dict(time_s=time_s,kind='actual new coherent interface closure',
-                    new_node_pairs=len(copies),maximum_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).max()),
-                    mean_preclosure_pair_displacement_mm=float(np.linalg.norm(mismatch,axis=1).mean()),
-                    surviving_material_state_reset=False))
-            preclosure[3*copies[:,None]+np.arange(3)]=self.u[3*copies[:,None]+np.arange(3)]
-        representation_strain=np.einsum('eij,ej->ei',self.B,preclosure[self.dof])
-        # Changing the cut-space extension alters ghost values outside solid.
-        # Transfer the surviving elastic-strain tensor into that representation
-        # instead of interpreting the ghost change as a material strain jump.
-        # Plasticity stays volume-weighted; no surviving stress is zeroed.
-        representation_change=representation_strain-retained_strain
         # Mesh volumes are cold mass-equivalent references. A new coherent
         # region loses liquid shear memory, but its specific volume is fixed
         # by the SAME reference mass/density used to construct that envelope.
@@ -404,15 +403,21 @@ class SolidMechanics:
         # prescribed material density. Bulk equilibrium supplies thermal
         # expansion; only the new region's shear configuration is initialized.
         density_reference_trace=np.log(self.material_mass_kg/(self.cold_density_kg_mm3*self.volume))
-        new_reference=mapped_strain@self.pd
+        # Form the new coherent material reference BEFORE imposing actual
+        # interface closure. The trial snap of duplicated interface vertices
+        # is a joining displacement, not a stress-free deposition shape.
+        # Absorbing that local jump into newly coherent cells locks in a
+        # spurious shear eigenstrain and prevents the free body's rigid
+        # translation from relaxing it. Surviving material remains unchanged.
+        new_reference=strain_now@self.pd
         new_reference[:,:3]+=density_reference_trace[:,None]/3
-        transferred=retained_reference+representation_change
-        self.reference[active]=ratio[active,None]*transferred[active]+(1-ratio[active,None])*new_reference[active]
-        transfer_error=float(abs((representation_strain-transferred)-(retained_strain-retained_reference))[old_active&active].max())
-        if transfer_error>1e-10:raise RuntimeError('Surviving elastic-strain transfer failed')
+        self.reference[active]=ratio[active,None]*retained_reference[active]+(1-ratio[active,None])*new_reference[active]
+        transfer_error=float(abs(retained_reference-self.reference)[old_active&active&(added_weight<=1e-12)].max()) if np.any(old_active&active&(added_weight<=1e-12)) else 0.
+        if transfer_error>1e-10:raise RuntimeError('Surviving material reference changed without new coherent volume')
         self.birth_audits.append(dict(time_s=time_s,kind='cut-space material state transfer',
-            maximum_surviving_elastic_strain_error=transfer_error,
-            maximum_representation_reference_increment=float(np.linalg.norm(representation_change,axis=1).max()),
+            maximum_surviving_reference_tensor_change_without_new_solid=transfer_error,
+            displacement_space_policy='retain accepted P1 geometry; current cut-space constrains Newton increments only; actual new interface closure retained',
+            representation_only_reference_increment=0.,
             new_material_specific_volume_reference='trace=log(reference_mass/(rho20*reference_volume)); coherent shear uses current configuration; existing tensors retained',
             maximum_new_material_density_reference_trace=float(abs(density_reference_trace[new_solid]).max()) if np.any(new_solid) else 0.))
         def assemble(vector,tangent=True):
@@ -577,6 +582,8 @@ class SolidMechanics:
             parent_extension_strain_scope='equilibrium-history maximum_total_strain_norm includes unborn/liquid parent extensions; use full-solid metrics for actual solid geometry',
             component_policy='affine interpolation independent for every connected solid body; six rigid-increment coordinate gauges retain its inherited pose through separation/reconnection; no cross-body support')
         result['new_coherent_material_policy']='current shear configuration plus mass/density cold specific-volume reference; thermal bulk strain solved by equilibrium, no surviving material history reset'
+        result['cut_space_displacement_policy']='accepted P1 geometry retained; current cut-space constrains Newton increments only; no representation-only reference shift'
+        result['coherent_reference_initialization_order']='actual preclosure configuration; interface joining displacement is never initialized as stress-free new-material shear'
         (folder/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
         (folder/'birth-continuation-audit.json').write_text(json.dumps(self.birth_audits,indent=2),encoding='utf8')
         return result

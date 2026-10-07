@@ -1,0 +1,150 @@
+{
+  "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-phase-front-dt0125-20261007",
+  "furnace": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-one-wing-furnace-phase-front-20261007",
+  "material_reference": {
+    "date": "2026-10-07",
+    "purpose": "真实热史与切削制造需求分析的本构参考；不由这些参考赋予CI-A1或PMZ断裂容量",
+    "phase_state_policy": "按实际热史计算出生域与固相域交集；存留固体保留应力、塑性与参照，新生凝固域保留当时偏应变构型，体积参照由同一质量、冷态密度和参考体积确定",
+    "cut_space_displacement_policy": "保留已接受P1材料几何；新的固相域仿射延拓仅约束Newton位移增量，不投影既有总位移或追加表示补偿体积参照；真实新界面闭合保留其应变需求",
+    "new_coherent_specific_volume": {
+      "reference_trace": "log(material_mass_kg/(rho20_kg_mm3*reference_volume_mm3))",
+      "basis": "CAD沉积包络由冷态质量与密度生成；不能再次将该冷态体积指定为高温无应力体积而重复计入冷却收缩",
+      "thermal_bulk_strain": "采用原有平均热膨胀系数，由平衡方程形成热态体积",
+      "coordinate_update": "质量随存留材料传递，更新参考坐标后重新计算质量比，不将既存固体参照或塑性清零"
+    },
+    "QT_reference": {
+      "source": "https://doi.org/10.1007/s00170-024-14487-7",
+      "source_location": "Farahani等2024 Fig4，GJS500-14球铁；下列为图读近似值",
+      "temperatures_C": [
+        20,
+        200,
+        400,
+        600,
+        750,
+        900,
+        1000,
+        1100
+      ],
+      "E_GPa": [
+        170,
+        164,
+        153,
+        130,
+        114,
+        102,
+        95,
+        90
+      ],
+      "source_yield_MPa": [
+        380,
+        300,
+        190,
+        140,
+        80,
+        40,
+        27,
+        22
+      ],
+      "yield_grade_scale": 0.8157894736842105,
+      "yield_grade_scale_basis": "QT450-10工程名义Rp310/来源图读室温Rp380；仅迁移归一化温度形状",
+      "mean_alpha_20C_per_K": [
+        1.14e-05,
+        1.2e-05,
+        1.3e-05,
+        1.4e-05,
+        1.49e-05,
+        1.57e-05,
+        1.75e-05,
+        1.84e-05
+      ],
+      "poisson": 0.28,
+      "strain_policy": "平均膨胀系数乘(T-20)，不二次积分平均系数",
+      "applicability": "温度形状来自不同Si含量/牌号球铁，不能当作本批QT或Ni富集重熔区的测量；重熔区域单独标识并作参考材料敏感性"
+    },
+    "high_Ni_reference": {
+      "source": "https://www.vdm-metals.com/fileadmin/user_upload/Downloads/Data_Sheets/Data_Sheet_VDM_Nickel_200_201.pdf",
+      "source_location": "2022年3月，Table3a与Table4b，软退火Ni201",
+      "temperatures_C": [
+        20,
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "E_GPa": [
+        205,
+        200,
+        196,
+        190,
+        182,
+        175,
+        165,
+        153,
+        140,
+        134
+      ],
+      "yield_temperatures_C": [
+        20,
+        100,
+        200,
+        300,
+        400,
+        500,
+        600
+      ],
+      "yield_MPa": [
+        80,
+        70,
+        65,
+        60,
+        55,
+        50,
+        40
+      ],
+      "mean_alpha_20C_per_K": [
+        1.33e-05,
+        1.33e-05,
+        1.39e-05,
+        1.43e-05,
+        1.48e-05,
+        1.52e-05,
+        1.56e-05,
+        1.58e-05,
+        1.62e-05,
+        1.65e-05
+      ],
+      "poisson": 0.31,
+      "high_temperature_extension": "900℃以上E按最后已知斜率延拓至相变区；600℃以上屈服按40MPa线性降至液相线0；这是明确的工程参考延拓，不是原厂数据",
+      "strain_policy": "采用20℃为参照的平均系数乘(T-20)；900℃以上平均系数取至1000℃已知16.7e-6，再按末段斜率延拓",
+      "applicability": "Ni201低碳退火态与CI-A1含C约1%熔敷态不同；当前首先计算低屈服参考的制造需求，不宣称它严格包络CI-A1或混合区"
+    },
+    "hardening": {
+      "model": "QT参考理想弹塑性；Ni201参考采用原厂两个规定塑性偏移点的线性硬化弦",
+      "Ni201_H_MPa": 3125,
+      "Ni201_basis": "Table4b在20～600℃的Rp1.0-Rp0.2均为25MPa，H=25/(0.010-0.002)；零塑性屈服=Rp0.2-0.002H，使两个偏移点均被复现",
+      "high_temperature_scope": "600℃以上随屈服同一系数线性降至本工况液相线0，这是参考延拓，不是原厂高温数据",
+      "reason": "QT未取得可用硬化曲线，不增加硬化容量；材料参考需求保留实际塑性增量，不替代CI-A1或PMZ脆性断裂评价"
+    },
+    "furnace_continuation": {
+      "hold_C": 200,
+      "hold_s": 7200,
+      "controlled_cooling_C_h": 50,
+      "cold_stop_max_C": 20.05,
+      "scope": "200℃保温2h引用已登记同类工艺；50℃/h为事前冻结的控温炉设计设置，完整温度场经边界换热连续求解"
+    }
+  },
+  "phase_method": "exact_P1",
+  "interface_policy": "chronological",
+  "mechanical_step_policy": "all deposition increments; source cooling max nodal change12.5C or60s; fully solid rate-independent furnace max nodal change at specified increment plus hold/ramp/final events",
+  "furnace_temperature_increment_C": 12.5,
+  "furnace_time_policy_basis": "reference elastoplastic model contains no creep/time-rate term; temperature increments and process events govern furnace path resolution",
+  "solver_threads": 4,
+  "accepted_checkpoint_source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-one-wing-incremental-geometry-first1s-20261007",
+  "no_uniform_annealing_reset": true,
+  "scope": "solid manufacturing demand; PMZ fracture capacity separate"
+}
