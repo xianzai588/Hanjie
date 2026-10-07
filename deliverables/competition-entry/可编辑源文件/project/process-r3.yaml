@@ -1,0 +1,28 @@
+version: PROCESS-R3
+authority: current_competition_process_source
+state: current_candidate_design_pending_effective_joint_and_full_state_verification
+used_by:
+- project/competition-design.yaml
+- deliverables/build_submission.py
+- scripts/competition_submission_lint.py
+process:
+  nominal:
+    method: automatic_TIG
+    current_a: 75.0
+    voltage_v: 12.0
+    travel_speed_mm_s: 1.65
+    arc_efficiency: 0.55
+    heat_input_j_per_mm: 300
+    preheat_c: 20
+    interpass_limit_c: 100
+    filler_feed_rate_mm_s: 3.5
+    filler_diameter_mm: 1.6
+    shielding_gas: 99.999% Ar
+    gas_flow_rate_l_min: 10.0
+    tungsten_electrode: W-La20 (Ø2.0 mm)
+    nozzle_diameter_mm: 10.0
+    standoff_distance_mm: 2.5
+    pulse_peak_a: 100
+    pulse_base_a: 50
+    pulse_duty: 0.5
+    pulse_frequency_hz: 20

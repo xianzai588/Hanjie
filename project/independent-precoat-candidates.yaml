@@ -1,5 +1,7 @@
 date: '2026-10-06'
-purpose: 首层局部pWPS设计输入、物料和能量需求；不是采用窗口
+active_local_study: project/precoat-three-case-study.yaml
+electrical_budget_scope: 本文件电参数为前期物料/热量核算；局部三工况以文献净线能量直接给定，不能混用615.385与1215 J/mm
+purpose: 历史首层输入与物料/能量核算；现行设计pWPS见project/precoat-process-design.yaml
 geometry_source: cad/generated/independent-precoat-curved/geometry-audit.json
 candidate_state_source: deliverables/process/current-candidate-state.md
 sources:
@@ -59,7 +61,7 @@ common:
   interpass: 道前工件温度保持所选产品预热区间；升温、离炉、逐道沉积及清渣连续传递；超上限等待，跌破下限回炉恢复，不清零历史
   cooling: 外部自由支承、避强制风冷；入保温罩/炉缓冷，计算冷却曲线与PMZ后确定冷却程序
   peening: 每道后趁热轻击熔敷金属；不击QT或熔合线，保留压痕加工余量；不计未验证的应力减益
-  heat_source_admission: 尚缺本产品同类截面/热循环对应的空间热源与起停分配；守恒核算不得赋予有效连接资格
+  heat_source_admission: 产品参数＋同类ENi-CI球铁净线能量＋本件显式源/物性敏感性；不以精确同构论文为先决条件，局部连续性/温区/数值适用性分别评价
 candidates:
   CI-A1:
     role: 唯一主线高镍首层；完成有效接头及保留层验证后冻结生产窗口

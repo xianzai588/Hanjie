@@ -33,6 +33,10 @@ def run(a):
         for index,table in overrides(tab,a.phase_carbon_corner,a.phase_graphite_limit,a.phase_temperature_shift).items():tab[index]=table
     from ni99_physics_bounds import apply_bounds
     tab=apply_bounds(tab,a.thermal_bounds)
+    mma=getattr(a,'mma_profile',False)
+    if mma:
+        from mma_literature_profile import configure
+        tab,hm_T,hm_H,hm_cp=configure(tab,mma if isinstance(mma,str) else 'CI-A1')
     if a.pure_filler_birth:
         if a.deposition_temperature<1458.85:raise ValueError('pure filler entering temperature below JANAF Ni liquidus plus4 K uncertainty')
         tab[3]['nominal_properties_20c']['density_kg_m3']=8890.
@@ -59,6 +63,9 @@ def run(a):
         answer=np.empty_like(T)
         for j in [1,3]:
             curve=tab[j]['temperature_dependent'];answer[m==j]=np.interp(T[m==j],curve['temperatures_c'],curve[key])
+        if mma and key=='specific_heat_j_kgk':
+            idx=np.clip(np.searchsorted(hm_T,T[m==3],side='right')-1,0,len(hm_cp)-1)
+            answer[m==3]=hm_cp[idx]
         return answer
     def integral(T):
         answer=np.empty_like(T)
@@ -67,6 +74,10 @@ def run(a):
             prefix=np.r_[0,np.cumsum(np.diff(knots)*(cp[1:]+cp[:-1])/2)]
             q=T[m==j];k=np.clip(np.searchsorted(knots,q,side='right')-1,0,len(knots)-2);d=np.minimum(q,knots[-1])-knots[k]
             answer[m==j]=prefix[k]+cp[k]*d+.5*np.diff(cp)[k]/np.diff(knots)[k]*d*d+np.maximum(q-knots[-1],0)*cp[-1]
+        if mma:
+            q=T[m==3]
+            answer[m==3]=(np.interp(q,hm_T,hm_H)+np.minimum(q-hm_T[0],0)*hm_cp[0]
+                          +np.maximum(q-hm_T[-1],0)*hm_cp[-1])
         return answer+melting(T)
     rr=np.repeat(e,4,axis=1).ravel();cc=np.tile(e,(1,4)).ravel()
     faces=np.sort(np.vstack([e[:,q] for q in [[0,1,2],[0,1,3],[0,2,3],[1,2,3]]]),axis=1)
@@ -91,9 +102,11 @@ def run(a):
         nodes=np.unique(e[part]);theta=np.arctan2(x[nodes,1],x[nodes,0]);lo=float(theta.min());hi=float(theta.max())
         overlap=a.half_overlap/sr
         if not 0<=overlap<min(-lo,hi):raise ValueError('short-track overlap exceeds half-track length')
-        for half,(begin,end) in enumerate([(lo,overlap),(-overlap,hi)]):
-            targets=part&((angle<=overlap) if half==0 else (angle>=-overlap));length=sr*(end-begin)
-            if length>18:raise ValueError('precoat short track exceeds18 mm')
+        segments=[(overlap,lo),(-overlap,hi)] if mma else [(lo,overlap),(-overlap,hi)]
+        if mma and strip%2:segments=segments[::-1]
+        for half,(begin,end) in enumerate(segments):
+            targets=part&((angle<=overlap) if (end<0 if mma else half==0) else (angle>=-overlap));length=sr*abs(end-begin)
+            if length>(50 if mma else 18):raise ValueError('precoat track exceeds specified length')
             tracks.append(dict(strip=strip+1,half=half+1,radius_mm=sr,angle_begin=begin,angle_end=end,
                 length_mm=length,arc_duration_s=length/a.travel,targets=targets))
     input_data=dict(mesh=str(a.mesh),nodes=n,tetrahedra=len(e),QT_volume_mm3=float(volume[m==1].sum()),
@@ -120,6 +133,18 @@ def run(a):
         boundary='actual complete QT seat; evolving free faces15 W/m2K plus radiation0.7; no shell and no adiabatic local truncation',
         power_policy='same net power partitioned into entering molten first-layer enthalpy and parent/pool heat',
         scope='first-layer thermal candidate on one actual wing; no invented precoat stress or PMZ capacity')
+    if mma:
+        product=mma if isinstance(mma,str) else 'CI-A1'
+        input_data.update(material_family=product+' SMAW',net_line_energy_J_mm=a.power/a.travel,
+            source_anchor_DOI='10.1016/S0167-577X(99)00204-9',source_anchor_table=3,
+            source_validation='line energy anchored to ENi-CI bead-on-plate; spatial Gaussian is an engineering hypothesis',
+            source_depth_mm_effective=a.depth,
+            inactive_source_parameters=['surface_grid_step'],
+            surface_normalization='not an incident surface source; prescribed NET pool power normalized on connected active metal',
+            power_policy='net workpiece+deposit power prescribed; subtract hot incoming metal enthalpy once; no additional interception efficiency',
+            arc_start_stop='step input; endpoint masks report thermal startup under this source assumption, not measured arc stability',
+            interpass_C=300.,final_cooling_target_C=500.,entering_enthalpy_basis=tab[3]['enthalpy_table'],
+            first_followup='actual machining to0.70mm normal retention; no residual-stress state assigned by this thermal run')
     if a.resume_from:
         old_input=json.loads((a.resume_from/'input.json').read_text(encoding='utf8'))
         ignore={'scope','boundary','deposition_geometry','surface_normalization','active_temperature_guard_C','temperature_guard_basis',
@@ -140,6 +165,7 @@ def run(a):
         from ni99_physics_bounds import NI_MOLAR_KG
         pure_h=(47361+17150)/NI_MOLAR_KG+(a.deposition_temperature-1454.85)*38.91103/NI_MOLAR_KG+(25.-20.)*25.987/NI_MOLAR_KG
         wire_energy=8890e-9*volume*pure_h
+    interface_cycles=[];cycle_times=[]
     completed=0
     if a.resume_from:
         old_result=json.loads((a.resume_from/'result.json').read_text(encoding='utf8'))
@@ -176,6 +202,9 @@ def run(a):
             both_solidus_threshold_C=max(tab[1]['fusion_enthalpy']['solidus_C'],tab[3]['fusion_enthalpy']['solidus_C']),
             active_temperature_range_check_pass=not error and all(row[4]<2800 for row in history),
             mesh_time_convergence_verified=False,PMZ_capacity_assigned=False)
+        if mma and interface_cycles:
+            np.savez_compressed(out/'interface-cycles.npz',time_s=np.array(cycle_times),face_nodes=interface_face,
+                nodal_temperature_C=np.array(interface_cycles,dtype=np.float32))
         if observer.step:observer.save(partial=partial or bool(error))
         (out/('failure.json' if error else 'result.json')).write_text(json.dumps(result,indent=2),encoding='utf8')
         return result
@@ -183,7 +212,8 @@ def run(a):
         for k,track in enumerate(tracks):
             if k<completed:continue
             local=0.;wait=0.;start=time_s;duration=track['arc_duration_s'];initial_max=float(T[np.unique(e[active])].max())
-            while local<duration-1e-8 or T[np.unique(e[active])].max()>90:
+            cool_target=(500. if k==len(tracks)-1 else 300.) if mma else 90.
+            while local<duration-1e-8 or T[np.unique(e[active])].max()>cool_target:
                 on=local<duration-1e-8;dt=min(a.dt,duration-local) if on else min(2.,1800-wait)
                 if on:
                     if a.start_ramp+a.end_ramp>=duration:raise ValueError('arc ramps leave no steady interval')
@@ -192,8 +222,28 @@ def run(a):
                 if dt<=1e-8:raise RuntimeError('whole-seat cooling did not reach90 C within1800 s')
                 old=T.copy();previous=active.copy()
                 if on:
-                    reached=track['angle_begin']+a.travel*(local+dt)/track['radius_mm']
-                    active |= track['targets']&(angle<=reached+1e-10)
+                    direction=1 if track['angle_end']>track['angle_begin'] else -1
+                    reached=track['angle_begin']+direction*a.travel*(local+dt)/track['radius_mm']
+                    if mma:
+                        # Swept-front cell activation uses the first intersected
+                        # vertex, not a centroid that can leave whole extrusion
+                        # columns unsupported. This is a mesh-dependent birth
+                        # approximation and is checked with mesh refinement.
+                        node_angle=np.arctan2(x[e,1],x[e,0])
+                        arrival=node_angle.min(axis=1) if direction>0 else node_angle.max(axis=1)
+                        active |= track['targets']&(direction*(arrival-reached)<=1e-10)
+                    else:active |= track['targets']&(direction*(angle-reached)<=1e-10)
+                    if mma:
+                        # A centroid cut on an unstructured extrusion can create
+                        # floating hot tetrahedra above still-unborn substrate
+                        # metal. Deposit only the face-connected pool; delayed
+                        # elements remain eligible when the front reaches them.
+                        from scipy.sparse.csgraph import connected_components
+                        edge=two&active[oa]&active[np.maximum(ob,0)]
+                        aa,bb=oa[edge],ob[edge]
+                        graph=coo_matrix((np.ones(2*len(aa)),(np.r_[aa,bb],np.r_[bb,aa])),shape=(len(e),len(e))).tocsr()
+                        _,labels=connected_components(graph,directed=False)
+                        active &= np.isin(labels,np.unique(labels[m==1]))
                 born=active&~previous;factor=np.where(active,1.,1e-8);mass=rho*volume*factor
                 ke=np.einsum('eik,ejk,e->eij',g,g,prop(T[e].mean(axis=1),'thermal_conductivity_w_mk')/1000*volume*factor)
                 K=coo_matrix((ke.ravel(),(rr,cc)),shape=(n,n)).tocsr()
@@ -208,12 +258,21 @@ def run(a):
                     if a.end_ramp and duration-midpoint<a.end_ramp:fraction=min(fraction,.35+.65*(duration-midpoint)/a.end_ramp)
                     remaining=a.power*fraction-entering/dt
                     if remaining<0:raise RuntimeError('hot first-layer birth exceeds the same net power budget')
-                    theta=track['angle_begin']+a.travel*(local+dt/2)/track['radius_mm'];source=[track['radius_mm']*np.cos(theta),track['radius_mm']*np.sin(theta),top-a.source_drop]
+                    direction=1 if track['angle_end']>track['angle_begin'] else -1
+                    theta=track['angle_begin']+direction*a.travel*(local+dt/2)/track['radius_mm'];source=[track['radius_mm']*np.cos(theta),track['radius_mm']*np.sin(theta),top-a.source_drop]
                     d=centre-source;w=np.exp(-(d[:,0]**2+d[:,1]**2)/a.width**2-(d[:,2]/a.depth)**2)*volume*active
                     fullspace=np.pi**1.5*a.width**2*a.depth
                     capture=float(w.sum()/fullspace)
-                    if a.source_model=='volume':
-                        p=w/w.sum()*remaining
+                    if a.source_model in ('volume','mma_volume'):
+                        if a.source_model=='mma_volume':
+                            # Prescribed NET absorbed power (El-Banna Table3),
+                            # not incident beam power. The effective pool source
+                            # must integrate to the stated net budget. Shape and
+                            # required electric power are separate assumptions.
+                            w*=d[:,2]<=0
+                            if w.sum()<=0:raise RuntimeError('No material supports the net distributed source')
+                            p=w/w.sum()*remaining
+                        else:p=w/w.sum()*remaining
                         q=np.bincount(e.ravel(),weights=np.repeat(p/4,4),minlength=n)
                         arc_QT=float(p[m==1].sum());arc_Ni=float(p[m==3].sum())
                     else:
@@ -238,6 +297,7 @@ def run(a):
                             arc_QT=float(pm[qm==1].sum());arc_Ni=float(pm[qm==3].sum())
                         if q.sum()>remaining*1.01:raise RuntimeError('surface Gaussian quadrature interception exceeds analytic total by>1%')
                     arc=float(q.sum());command=a.power*fraction*dt
+                    if mma and arc>remaining*1.02:raise RuntimeError('source volume quadrature exceeds fixed analytic total')
                     source_history.append([time_s+dt,dt,k+1,float(volume[born].sum()),entering,command,arc*dt,
                                            (remaining-arc)*dt,capture,1/capture,arc_QT*dt,arc_Ni*dt])
                     q+=np.bincount(e[born].ravel(),weights=np.repeat(wire_energy[born]/(4*dt),4),minlength=n)
@@ -267,6 +327,8 @@ def run(a):
                 interface_peak=np.maximum(interface_peak,np.where(both[:,None],T[interface_face]@bary.T,20.))
                 quadrature_peak=np.maximum(quadrature_peak,np.where(active[:,None],T[e]@tetra_bary.T,20.))
                 observer(time_s,T,active)
+                if mma:
+                    cycle_times.append(time_s);interface_cycles.append(np.where(both[:,None],T[interface_face],20.).copy())
                 loss=dt*float(cooling@(T-20));balance=float((H-old_H).sum())+loss-dt*float(q.sum())
                 history.append([time_s,dt,k+1,int(on),float(T[np.unique(e[active])].max()),float(T[np.unique(e[m==1])].max()),float(T[np.unique(e[(m==3)&active])].max()) if np.any((m==3)&active) else 20.,dt*float(q.sum()),entering,loss,balance])
                 if history[-1][4]>=2800:

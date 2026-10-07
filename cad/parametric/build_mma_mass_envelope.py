@@ -13,11 +13,11 @@ ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'cad/generated/mma-mass-envelope'
 
 
-def build(candidate,mesh_h=None):
+def build(candidate,mesh_h=None,single_track=False):
     budget=json.loads((ROOT/'studies/COMPETITION-DESIGN/results/precoat-input-budget.json').read_text(encoding='utf8'))
     row=budget['candidates'][candidate];rho=row['input']['nominal_density_kg_m3']*1e-6
     target_volume=row['nominal_deposited_mass_per_wing_g']/rho
-    out=OUT/candidate;out.mkdir(parents=True,exist_ok=True)
+    out=OUT/(candidate+'-single-track' if single_track else candidate);out.mkdir(parents=True,exist_ok=True)
     if (out/'geometry-audit.json').exists():raise ValueError('Preserve the completed envelope; use a fresh case')
     gmsh.initialize()
     try:
@@ -28,6 +28,23 @@ def build(candidate,mesh_h=None):
         positive=lambda ent:occ.getCenterOfMass(*ent)[0]>65 and abs(occ.getCenterOfMass(*ent)[1])<.01
         base=[ent for ent in imported if ent[0]==3 and ent[1] not in qt_tags and positive(ent)]
         if len(qt_tags)!=1 or len(base)!=2:raise RuntimeError('The saved conformal one-wing layers were not identified')
+        single_inputs=None
+        if single_track:
+            radius_track=71.98
+            first=next(tag for dim,tag in base if gmsh.model.isInside(3,tag,[radius_track,0.,113.85]))
+            ends=[]
+            for sign in (-1,1):
+                lo,hi=0.,.3
+                for _ in range(38):
+                    mid=(lo+hi)/2
+                    if gmsh.model.isInside(3,first,[radius_track*math.cos(mid),sign*radius_track*math.sin(mid),113.85]):lo=mid
+                    else:hi=mid
+                ends.append(sign*(lo+hi)/2)
+            length=radius_track*(ends[1]-ends[0]);speed=100/60;mass_rate=.17
+            target_volume=mass_rate*length/speed/rho
+            single_inputs=dict(radius_mm=radius_track,length_mm=length,travel_mm_s=speed,
+                deposited_mass_rate_g_s=mass_rate,arc_time_s=length/speed,
+                meaning='single6mm groove coverage hypothesis; mass rate is within the previous engineering interval, not a measured rate')
         top=115.;radius=1.5
         roofs=[ent for body in base for ent in gmsh.model.getBoundary([body],False,False)
                if ent[0]==2 and abs(occ.getCenterOfMass(*ent)[2]-top)<1e-7]
@@ -63,6 +80,7 @@ def build(candidate,mesh_h=None):
             shape_interpretation='volume-equivalent uniform overfill, not actual bead geometry or a conservative thermal bound',
             fusion_assigned=False,physical_bead_shape_verified=False,
             residual_state_assigned=False,mesh_generated=False)
+        if single_inputs:audit['single_track_inputs']=single_inputs
         if mesh_h:
             surfaces=[s[1] for t in ni_tags for s in gmsh.model.getBoundary([(3,t)],False,False) if s[0]==2]
             distance=gmsh.model.mesh.field.add('Distance')
@@ -96,4 +114,5 @@ if __name__=='__main__':
     import argparse
     p=argparse.ArgumentParser();p.add_argument('--candidate',choices=['CI-A1','CI-A2'],required=True)
     p.add_argument('--mesh-h',type=float)
-    a=p.parse_args();print(json.dumps(build(a.candidate,a.mesh_h),ensure_ascii=False,indent=2))
+    p.add_argument('--single-track',action='store_true')
+    a=p.parse_args();print(json.dumps(build(a.candidate,a.mesh_h,a.single_track),ensure_ascii=False,indent=2))

@@ -1,0 +1,36 @@
+{
+  "partial": false,
+  "error": null,
+  "time_s": 137.68155273430824,
+  "stages": [
+    {
+      "track": 1,
+      "start_s": 0.0,
+      "initial_max_C": 200.0,
+      "arc_s": 11.827111733743923,
+      "cool_wait_s": 78.0,
+      "end_s": 89.82711173374392,
+      "end_active_max_C": 297.50662738592075,
+      "born_volume_mm3": 205.8779018132198
+    },
+    {
+      "track": 2,
+      "start_s": 89.82711173374392,
+      "initial_max_C": 297.50662738592075,
+      "arc_s": 11.854441000564307,
+      "cool_wait_s": 36.0,
+      "end_s": 137.68155273430824,
+      "end_active_max_C": 490.0686591014023,
+      "born_volume_mm3": 416.20008639516703
+    }
+  ],
+  "maximum_temperature_C": 2619.4187242604057,
+  "maximum_QT_C": 1998.4634024904321,
+  "elapsed_s": 153.9235456000024,
+  "nominal_interface_area_mm2": 131.39999344617922,
+  "actual_area_above_both_solidus_mm2": 131.34597438376483,
+  "both_solidus_threshold_C": 1340.0,
+  "active_temperature_range_check_pass": true,
+  "mesh_time_convergence_verified": false,
+  "PMZ_capacity_assigned": false
+}

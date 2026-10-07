@@ -1,0 +1,69 @@
+reference:
+  title: Study of restoration by welding of pearlitic ductile cast iron
+  DOI: 10.1016/S0167-577X(99)00204-9
+  source_table: 3
+  source_url: https://studylib.net/doc/26205810/study-of-restoration-by-welding-of-pearlitic-ductile-cast...
+  reported_process: SMAW ENi-CI
+  reported_diameter_mm: 3.25
+  reported_current_A: 90
+  reported_net_line_energy_J_mm: 1215
+  reported_speed_mm_min: 100
+  reported_preheat_C: 200
+  parent_geometry_mm:
+  - 20
+  - 20
+  - 60
+  parent_condition: pearlitic ductile iron; not QT450-10 batch properties
+  voltage_efficiency_reported: false
+  thermal_cycle_note: 200 C preheat 1 h; after welding hold 200 C 2 h then furnace
+    cool; later E7018 preheat studies are not ENi-CI data
+  reported_ENi_CI_melting_line_HV: 820
+  reported_ENi_CI_HAZ_HV: 450
+candidate: CI-A1
+geometry: cad/generated/mma-mass-envelope/CI-A1/first-mass-envelope.brep
+case_budget: 3
+travel_mm_s: 1.6666666666666667
+deposited_mass_per_length_g_mm: 0.09615384615384615
+entering_specific_enthalpy_relative25C_J_kg: 1250000
+initial_temperature_scope: uniform actual workpiece initial-state scenarios, not a
+  furnace or transfer guarantee
+source: Prescribed net absorbed-power lower-half volumetric Gaussian on connected
+  metal. Spatial shape radius3.2mm and depth equal deposited envelope height are engineering
+  assumptions; integrated load exactly equals reference net power minus incoming filler
+  enthalpy. No incident-source or electric-efficiency interpretation.
+source_radius_mm: 3.2
+dt_s: 0.125
+mesh_size_mm: 0.65
+cool_between_tracks_to_C: 300
+final_cooling_to_C: 500
+cases:
+- name: A
+  initial_C: 200
+  line_energy_J_mm: 1215
+- name: B
+  initial_C: 300
+  line_energy_J_mm: 1215
+- name: C
+  initial_C: 300
+  line_energy_J_mm: 1032.75
+  source_radius_factor: 1.15
+claims_excluded:
+- PMZ strength qualification
+- full +/-15% robustness
+- calibrated source dimensions
+- actual transport dilution
+- final 18mm coverage before endpoint analysis
+case_C_scope: 'Combined adverse screening corner: net energy -15%, source radius +15%;
+  not independent identification or a proven uncertainty envelope.'
+source_depth_mm: 3.70251719953583
+numerical_diagnosis: First surface runs found floating activation islands (17 of20
+  initial Ni tetrahedra), followed by sharp leading-edge surface hot spots. Fix connected
+  growth and use a distributed pool source; surface results retained as model diagnostics,
+  not material rejection.
+energy_contract: Reference q_net is applied net workpiece+deposit energy per path
+  length. Electric U/I/efficiency must later be selected to supply it; no second geometric
+  interception factor is applied to already-net energy.
+central_overlap_each_half_mm: 1.6
+track_design: Two radial strips, each two centre-out short tracks, with opposite first
+  directions and 1.6mm overlap per half. This candidate overlap is geometric, not
+  a claimed validated startup exclusion. No start at the thin physical wing edge.

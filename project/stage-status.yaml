@@ -295,7 +295,11 @@ stages:
     - EXP-FINAL
     next_action: 当前8P仅为可复用候选；采用与提交结论由COMPETITION-R4有效接头、制造和承载闭环决定
   COMPETITION-R4:
-    execution_status: input_and_section_budgets_completed_waiting_for_applicable_first_interface_source_evidence
+    competition_entry_document_complete: true
+    competition_entry: deliverables/焊接固定题-参赛设计报告包.zip
+    current_precoat_pWPS: project/precoat-process-design.yaml
+    execution_status: in_progress_literature_anchored_first_interface_model_revision
+    final_release: blocked_pending_joint_manufacturing_and_strength_evidence
     acceptance_result: not_accepted_connection_and_full_state_verification_required
     evidence_level: numerical_design_verification_in_progress
     evidence:
@@ -307,4 +311,4 @@ stages:
     upstream_dependencies:
     - COMPETITION-DESIGN
     - SCHAEFFLER-MAP
-    next_action: 取得可对应电参数、熔敷与带尺寸熔合截面或热循环的ENi-CI球铁验证资料后，继续CI-A1一翼连接；随后验证8P制造与同状态承载。资料缺口解决前不盲扫源宽/功率，其他路线保持休眠
+    next_action: 文献净热依据已验证；修正一翼沉积包络/源分布的温区适用性，停止追加材料与功率扫描。有效热连接及保留状态成立后推进制造链，PMZ容量仅单独约束完整强度结论

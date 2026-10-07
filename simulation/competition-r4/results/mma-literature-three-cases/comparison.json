@@ -1,0 +1,117 @@
+{
+  "cases": [
+    {
+      "source_run": "A-r4",
+      "fusion_criterion": "max_time(min_3_P1_vertices(T)) >= max(QT liquidus, CI-A1 solidus); entire face simultaneously hot, then spatial continuity",
+      "partial_fusion_threshold_C": 1340.0,
+      "full_liquid_threshold_C": 1400.0,
+      "total_interface_area_mm2": 131.39999344617922,
+      "simultaneously_covered_face_area_mm2": 130.9170353444861,
+      "simultaneous_full_liquid_face_area_mm2": 129.41645679827343,
+      "central18mm_min_face_peak_C": 1334.0794677734375,
+      "central18mm_every_face_partial_fusion_pass": false,
+      "continuous_intervals_mm": [
+        [
+          -9.0,
+          8.75
+        ]
+      ],
+      "longest_continuous_interval_mm": [
+        -9.0,
+        8.75
+      ],
+      "longest_continuous_length_mm": 17.75,
+      "maximum_observed_QT_full_melt_depth_mm": 2.962813150479789,
+      "melt_depth_scope": "ever-hot tetra quadrature points below actual curved floor in central18mm; not instantaneous dilution, PMZ width or a converged boundary",
+      "interface_centroid_final_t8_5_s_range": [
+        21.996746226381816,
+        26.90538548530418
+      ],
+      "recorded_cooling_crossing_count": 802,
+      "command_energy_J": 47955.144286974166,
+      "applied_energy_J": 23364.817780042264,
+      "unintercepted_energy_J": 24590.326506931902,
+      "maximum_step_energy_balance_error_J": 0.0001861205673776567,
+      "maximum_temperature_C": 2619.4187242604057,
+      "maximum_QT_C": 1998.4634024904321,
+      "net_energy_contract_pass": false,
+      "usable_for_requested_net_energy_decision": false,
+      "mesh_time_convergence_verified": false,
+      "PMZ_capacity_assigned": false,
+      "case": "A"
+    },
+    {
+      "source_run": "B",
+      "fusion_criterion": "max_time(min_3_P1_vertices(T)) >= max(QT liquidus, CI-A1 solidus); entire face simultaneously hot, then spatial continuity",
+      "partial_fusion_threshold_C": 1340.0,
+      "full_liquid_threshold_C": 1400.0,
+      "total_interface_area_mm2": 131.39999344617922,
+      "simultaneously_covered_face_area_mm2": 130.9170353444861,
+      "simultaneous_full_liquid_face_area_mm2": 130.46740537357226,
+      "central18mm_min_face_peak_C": 1335.3509521484375,
+      "central18mm_every_face_partial_fusion_pass": false,
+      "continuous_intervals_mm": [
+        [
+          -9.0,
+          8.75
+        ]
+      ],
+      "longest_continuous_interval_mm": [
+        -9.0,
+        8.75
+      ],
+      "longest_continuous_length_mm": 17.75,
+      "maximum_observed_QT_full_melt_depth_mm": 2.962813150479789,
+      "melt_depth_scope": "ever-hot tetra quadrature points below actual curved floor in central18mm; not instantaneous dilution, PMZ width or a converged boundary",
+      "interface_centroid_final_t8_5_s_range": [
+        25.046787818818984,
+        29.98507016325405
+      ],
+      "recorded_cooling_crossing_count": 802,
+      "command_energy_J": 47955.144286974166,
+      "applied_energy_J": 23364.817780042264,
+      "unintercepted_energy_J": 24590.326506931902,
+      "maximum_step_energy_balance_error_J": 0.00026503149831569317,
+      "maximum_temperature_C": 2621.107198358637,
+      "maximum_QT_C": 2001.0521972423398,
+      "net_energy_contract_pass": false,
+      "usable_for_requested_net_energy_decision": false,
+      "mesh_time_convergence_verified": false,
+      "PMZ_capacity_assigned": false,
+      "case": "B"
+    },
+    {
+      "source_run": "C",
+      "fusion_criterion": "max_time(min_3_P1_vertices(T)) >= max(QT liquidus, CI-A1 solidus); entire face simultaneously hot, then spatial continuity",
+      "partial_fusion_threshold_C": 1340.0,
+      "full_liquid_threshold_C": 1400.0,
+      "total_interface_area_mm2": 131.39999344617922,
+      "simultaneously_covered_face_area_mm2": 98.47917040453311,
+      "simultaneous_full_liquid_face_area_mm2": 58.97761009084128,
+      "central18mm_min_face_peak_C": 1207.177001953125,
+      "central18mm_every_face_partial_fusion_pass": false,
+      "continuous_intervals_mm": [],
+      "longest_continuous_interval_mm": null,
+      "longest_continuous_length_mm": 0.0,
+      "maximum_observed_QT_full_melt_depth_mm": 2.2606398908428673,
+      "melt_depth_scope": "ever-hot tetra quadrature points below actual curved floor in central18mm; not instantaneous dilution, PMZ width or a converged boundary",
+      "interface_centroid_final_t8_5_s_range": [
+        20.28782150774947,
+        26.29643452890545
+      ],
+      "recorded_cooling_crossing_count": 802,
+      "command_energy_J": 40761.87264392804,
+      "applied_energy_J": 19383.350393586872,
+      "unintercepted_energy_J": 21378.522250341164,
+      "maximum_step_energy_balance_error_J": 0.0002069887254947389,
+      "maximum_temperature_C": 2176.4951393442616,
+      "maximum_QT_C": 1675.1643415260378,
+      "net_energy_contract_pass": false,
+      "usable_for_requested_net_energy_decision": false,
+      "mesh_time_convergence_verified": false,
+      "PMZ_capacity_assigned": false,
+      "case": "C"
+    }
+  ],
+  "decision": "Rejected incident-energy interpretation: applied energy is about half the requested NET energy. These completed runs and their refinements cannot decide CI-A1 qualification."
+}

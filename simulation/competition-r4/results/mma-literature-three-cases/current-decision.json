@@ -1,0 +1,76 @@
+{
+  "execution_status": "in_progress_model_revision",
+  "final_release": "blocked_pending_valid_joint_manufacturing_strength",
+  "literature_anchor_verified": true,
+  "source_DOI": "10.1016/S0167-577X(99)00204-9",
+  "physical_case_budget": 3,
+  "cases": [
+    {
+      "case": "A-net",
+      "stop_time_s": 0.25,
+      "maximum_temperature_C": 3848.4279301445467,
+      "maximum_QT_C": 2392.5145971293555,
+      "energy_applied_J": 506.25000000000006,
+      "energy_command_J": 506.25,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "status": "model_domain_failure_not_material_rejection"
+    },
+    {
+      "case": "B-net",
+      "stop_time_s": 0.25,
+      "maximum_temperature_C": 3849.5243546631677,
+      "maximum_QT_C": 2436.3253491314376,
+      "energy_applied_J": 506.25000000000006,
+      "energy_command_J": 506.25,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "status": "model_domain_failure_not_material_rejection"
+    },
+    {
+      "case": "C-net",
+      "stop_time_s": 0.25,
+      "maximum_temperature_C": 3037.262625466194,
+      "maximum_QT_C": 1918.4570234979183,
+      "energy_applied_J": 430.31250000000006,
+      "energy_command_J": 430.3125,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "status": "model_domain_failure_not_material_rejection"
+    },
+    {
+      "case": "B-staggered",
+      "stop_time_s": 0.375,
+      "maximum_temperature_C": 2958.352152235174,
+      "maximum_QT_C": 1805.9646325876377,
+      "energy_applied_J": 759.375,
+      "energy_command_J": 759.375,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "status": "model_domain_failure_not_material_rejection"
+    },
+    {
+      "case": "B-swept",
+      "stop_time_s": 0.25,
+      "maximum_temperature_C": 2970.7941812832273,
+      "maximum_QT_C": 1654.9222884271373,
+      "energy_applied_J": 506.25000000000006,
+      "energy_command_J": 506.25,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "status": "model_domain_failure_not_material_rejection"
+    },
+    {
+      "case": "CI-A2-reference",
+      "stop_time_s": 0.875,
+      "maximum_temperature_C": 2888.8272251641915,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "status": "same_model_limitation_no_material_switch"
+    }
+  ],
+  "manufacturing_may_proceed_when": "Thermal connection geometry, retained state and applicable thermal/mechanical inputs are supported; PMZ capacity separately controls complete strength acceptance",
+  "decision": "Do not request an exactly matched paper; do not reject CI-A1 or adopt CI-A2 from this shared model failure. Stop more material/power scans; correct deposition-envelope/source applicability.",
+  "invalid_completed_runs": [
+    "A-r4",
+    "B",
+    "C",
+    "C-space",
+    "C-time"
+  ],
+  "invalid_completed_runs_reason": "Reference net energy was incorrectly treated as incident source energy; geometry masking reduced actual heat by about half."
+}
