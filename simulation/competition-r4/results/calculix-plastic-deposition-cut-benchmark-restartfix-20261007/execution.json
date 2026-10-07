@@ -1,0 +1,20 @@
+{
+  "solver": "E:\\OpenSource\\CalculiX-2.23\\calculix_2.23_4win\\ccx_static.exe",
+  "runtime_s": 0.6400000000139698,
+  "returncode": 0,
+  "stages": [
+    "substrate_plastic",
+    "substrate_unload",
+    "substrate_reheat",
+    "deposit_coherent",
+    "cold",
+    "cut",
+    "loaded",
+    "unloaded"
+  ],
+  "scope": "native history functionality; constant material references in a fixed benchmark, not actual CI-A1 geometry, thermal history or capacity",
+  "sources": [
+    "https://www.dhondt.de/",
+    "CalculiX 2.23 official manual: *PLASTIC, *MODEL CHANGE, *RESTART"
+  ]
+}

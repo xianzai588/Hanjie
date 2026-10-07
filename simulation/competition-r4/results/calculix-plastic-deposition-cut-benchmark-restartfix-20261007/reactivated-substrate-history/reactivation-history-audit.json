@@ -1,0 +1,13 @@
+{
+  "previous_equivalent_plastic_range": [
+    0.001174115,
+    0.001174115
+  ],
+  "reactivated_equivalent_plastic_range": [
+    0.001174115,
+    0.001174115
+  ],
+  "maximum_cumulative_plastic_difference": 0.0,
+  "stress_free_native_addition_retains_previous_plastic": true,
+  "scope": "native existing-element history functionality; not a physical melting law or mass/reference qualification"
+}
