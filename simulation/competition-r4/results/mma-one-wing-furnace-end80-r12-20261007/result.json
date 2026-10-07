@@ -1,0 +1,12 @@
+{
+  "partial": false,
+  "error": null,
+  "time_s": 24395.56901726012,
+  "source_run": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-trace-20261007",
+  "final_min_C": 20.04806971359209,
+  "final_max_C": 20.049308525333398,
+  "maximum_absolute_step_energy_balance_error_J": 0.0009695438137669043,
+  "maximum_step_temperature_change_C": 24.522001234551624,
+  "elapsed_s": 354.5907966000086,
+  "mechanical_residual_state_assigned": false
+}

@@ -1,0 +1,64 @@
+{
+  "replaced_higher_energy_states": [
+    {
+      "case": "undiluted_CI_A1",
+      "T_C": 1340.0,
+      "original_higher_Gibbs_energy_J_mol": 39.38408307119971,
+      "selected_source": "undiluted_CI_A1-graphite_suppressed.nc",
+      "sampled_phase_stability": {
+        "LIQUID": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 512.6710473401763,
+          "samples": 112005
+        },
+        "BCC_A2": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 3076.2371059481957,
+          "samples": 64004
+        },
+        "CEMENTITE": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 4978.3286038872175,
+          "samples": 16002
+        },
+        "FCC_A1": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 1.0328319316613488,
+          "samples": 64004
+        },
+        "GRAPHITE": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 1503.4419425217675,
+          "samples": 1
+        }
+      }
+    },
+    {
+      "case": "undiluted_CI_A1",
+      "T_C": 1360.0,
+      "original_higher_Gibbs_energy_J_mol": 147.44226949878794,
+      "selected_source": "undiluted_CI_A1-graphite_suppressed.nc",
+      "sampled_phase_stability": {
+        "LIQUID": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 593.7713270603417,
+          "samples": 112005
+        },
+        "BCC_A2": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 2937.100668019353,
+          "samples": 64004
+        },
+        "CEMENTITE": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 5854.770231772811,
+          "samples": 16002
+        },
+        "FCC_A1": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 0.8082381461426849,
+          "samples": 64004
+        },
+        "GRAPHITE": {
+          "minimum_sampled_tangent_plane_distance_J_mol": 5324.6398364229135,
+          "samples": 1
+        }
+      }
+    }
+  ],
+  "source_directory": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-end80-r12-inventory-phase-20261007\\raw",
+  "maximum_corrected_nested_Gibbs_excess_J_mol": 3.0585360946133733e-06,
+  "nested_phase_feasibility_pass": true,
+  "scope": "same actual composition and temperature; independently converged lower-energy subset state; graphite exact and all phases sampled tangent-plane checks, not a proof over every continuous site fraction"
+}

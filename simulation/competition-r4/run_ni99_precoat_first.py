@@ -20,13 +20,15 @@ def run(a):
     with np.load(a.mesh/'mesh.npz',allow_pickle=False) as f:x,e,m=f['x'],f['e'],f['material']
     centre=x[e].mean(axis=1);angle=np.arctan2(centre[:,1],centre[:,0])
     sector=np.round(angle/(np.pi/4)).astype(int)%8
+    all_wings=getattr(a,'all_wings',False)
     coating=(m==3)|((m==4)&(a.first_geometry=='full_pocket'))
-    keep=(m==1)|(coating&(sector==0));e=e[keep];m=m[keep]
+    keep=(m==1)|(coating if all_wings else coating&(sector==0));e=e[keep];m=m[keep]
     if a.first_geometry=='full_pocket':m[m==4]=3
     used=np.unique(e);remap=np.full(len(x),-1,int);remap[used]=np.arange(len(used));x=x[used];e=remap[e]
     np.savez_compressed(out/'mesh.npz',x=x,e=e,material=m)
     g,volume,_,_=operators(x,e,mechanical=False);n=len(x);centre=x[e].mean(axis=1)
     radius=np.linalg.norm(centre[:,:2],axis=1);angle=np.arctan2(centre[:,1],centre[:,0])
+    sector=np.round(angle/(np.pi/4)).astype(int)%8
     top=float(x[np.unique(e[m==3]),2].max());tab=tables(a.ni1_solidus,a.ni_k_scale)
     if a.phase_carbon_corner:
         from phase_thermal_tables import overrides
@@ -119,10 +121,18 @@ def run(a):
             if length>(50 if mma else 18):raise ValueError('precoat track exceeds specified length')
             tracks.append(dict(strip=strip+1,half=half+1,radius_mm=sr,angle_begin=begin,angle_end=end,
                 length_mm=length,arc_duration_s=length/a.travel,targets=targets))
+    if all_wings:
+        if not (conservative and continuous and len(tracks)==1):
+            raise ValueError('eight-wing replay requires the frozen single continuous MMA track')
+        reference=tracks[0]
+        tracks=[dict(reference,wing=j+1,angle_offset=j*np.pi/4,
+            angle_begin=reference['angle_begin']+j*np.pi/4,
+            angle_end=reference['angle_end']+j*np.pi/4,
+            targets=(m==3)&(sector==j)) for j in [0,4,2,6,1,5,3,7]]
     end_fraction=getattr(a,'end_fraction',.35)
     mass_exponent=getattr(a,'mass_current_exponent',0)
     def cumulative_mass_g(arc_time):
-        duration=sum(track['arc_duration_s'] for track in tracks)
+        duration=tracks[0]['arc_duration_s'] if all_wings else sum(track['arc_duration_s'] for track in tracks)
         if not a.end_ramp or mass_exponent==0:return a.mass_rate_g_s*arc_time
         steady=duration-a.end_ramp
         u=max(0.,arc_time-steady);rate=(1-end_fraction)/a.end_ramp
@@ -175,11 +185,18 @@ def run(a):
             source_parameter_scope='effective conduction-source width/depth hypotheses, not gun settings',
             stop_time_s=getattr(a,'stop_time_s',None),electrical_power_W=2530.,net_efficiency=.8)
         input_data.update(mass_current_exponent=mass_exponent,deposited_mass_profile='steady rate followed by current-fraction^exponent during the end ramp',
-            integrated_deposited_mass_g=cumulative_mass_g(sum(track['arc_duration_s'] for track in tracks)))
+            integrated_deposited_mass_g=cumulative_mass_g(tracks[0]['arc_duration_s'] if all_wings else sum(track['arc_duration_s'] for track in tracks)))
         input_data.update(liquid_transport_factor=getattr(a,'liquid_transport_factor',1.),
             liquid_transport_policy='k_eff=k_molecular*(1+(factor-1)*liquid_fraction); no solid enhancement, energy redistribution only',
             liquid_transport_method_source='Hu et al2024, Additive Manufacturing92 104379, DOI10.1016/j.addma.2024.104379 section2.1',
             liquid_transport_scope='factor3 is a literature method bound for SS316L, not a measured CI-A1 coefficient; no material calibration assigned')
+    if all_wings:
+        input_data.update(scope='actual eight-wing sequential first-layer thermal history on the complete QT seat; retained mechanical replay follows separately',
+            wing_sequence=[row['wing'] for row in tracks],
+            interpass_policy='before each actual wing, QT/interface nodes must be200..300C; air cool or300C furnace boundary conditioning preserves the full nodal field',
+            integrated_deposited_mass_g=8*cumulative_mass_g(tracks[0]['arc_duration_s']),
+            nodal_history_wing_interpretation='deposit fractions cover all eight wing envelopes; track id is in the simultaneous thermal CSV',
+            final_cooling_target_C=500.)
     if a.resume_from:
         old_input=json.loads((a.resume_from/'input.json').read_text(encoding='utf8'))
         ignore={'scope','boundary','deposition_geometry','surface_normalization','active_temperature_guard_C','temperature_guard_basis',
@@ -196,6 +213,7 @@ def run(a):
     T=np.full(n,20.);T[np.unique(e[m==1])]=a.initial_temperature
     active=m==1;time_s=0.;history=[];peak=T.copy();stage_rows=[];source_history=[];birth_history=[];solver_diagnostics=[];source_path=[];nodal_trace=[];trace_chunks=[]
     record_nodal=getattr(a,'record_nodal_history',False)
+    boundary_history=[]
     if record_nodal:
         (out/'nodal-thermal-history').mkdir()
         input_data['nodal_history']='all accepted nodal temperature states and deposit fractions in float64; for retained-state thermomechanical replay'
@@ -213,14 +231,21 @@ def run(a):
         # the prescribed CAD volume with the same Jacobian factor in capacity,
         # incoming enthalpy, conductivity and source, rather than changing feed
         # or density. The raw discrepancy remains in the saved input.
-        volume=volume.copy();volume[m==3]*=cad_volume/raw_mesh_volume
-        birth=ConservativeBirth(x,e,m,volume,rho,a.track_radius_mm,a.width if bottom_up else None)
+        volume=volume.copy()
+        if all_wings:
+            factors={str(j+1):cad_volume/float(volume[(m==3)&(sector==j)].sum()) for j in range(8)}
+            for j in range(8):volume[(m==3)&(sector==j)]*=factors[str(j+1)]
+            input_data.update(CAD_deposit_volume_mm3=8*cad_volume,CAD_volume_quadrature_factors_by_wing=factors,
+                CAD_volume_quadrature_factor=None)
+        else:volume[m==3]*=cad_volume/raw_mesh_volume
+        birth=ConservativeBirth(x,e,m,volume,rho,a.track_radius_mm,a.width if bottom_up else None,
+            deposit_mask=tracks[0]['targets'] if all_wings else None)
         if bottom_up:
             input_data.update(deposition_geometry='mass-controlled bottom-up cut-cell envelope: phi=theta+width/radius*(z-floor)/(top-floor)',
                 front_policy='volume-equivalent progressive groove filling; the existing effective source width sets rise length; no liquid transport or bead contour calibration assigned',
                 source_z_policy='follow the evolving deposition surface at the same midpoint time as commanded arc xy; bounded by actual CAD floor/top',
                 growth_floor_z_mm=birth.floor,growth_top_z_mm=birth.top,growth_rise_length_mm=a.width)
-        prescribed_mass=cumulative_mass_g(sum(t['arc_duration_s'] for t in tracks))*1e-3
+        prescribed_mass=cumulative_mass_g(tracks[0]['arc_duration_s'] if all_wings else sum(t['arc_duration_s'] for t in tracks))*1e-3
         if abs(prescribed_mass-birth.total_mass_kg)>prescribed_mass*1e-9:
             raise ValueError('CAD mass differs from pWPS duration/feed')
         input_data['mesh_mass_discretization_relative_error']=(birth.total_mass_kg-prescribed_mass)/prescribed_mass
@@ -301,6 +326,9 @@ def run(a):
             tetra_quadrature_barycentric=tetra_bary,peak_element_quadrature_C=quadrature_peak,volume_mm3=volume,
             deposited_P1_moments=birth.moments if conservative else np.where(active[:,None],.25,0.)*np.ones((len(e),4)))
         np.savetxt(out/'thermal-history.csv',history,delimiter=',',comments='',header='t_s,dt_s,track,on,max_C,QT_max_C,Ni99_max_C,total_input_J,wire_J,loss_J,balance_J')
+        if all_wings:
+            np.savetxt(out/'boundary-history.csv',boundary_history,delimiter=',',comments='',
+                header='t_s,dt_s,track,wing,arc_on,conditioning,environment_C,interface_min_C,interface_max_C,net_surface_outflow_J')
         np.savetxt(out/'source-partition-history.csv',[row for row in source_history if row[0]<=time_s+1e-10],delimiter=',',comments='',header='t_s,dt_s,track,born_volume_mm3,wire_J,command_J,arc_intercept_J,uncaptured_J,legacy_fullspace_capture,legacy_normalization_multiplier,arc_to_QT_J,arc_to_Ni_J')
         if conservative:
             np.savetxt(out/'deposition-history.csv',[row for row in birth_history if row[0]<=time_s+1e-10],delimiter=',',comments='',
@@ -324,10 +352,29 @@ def run(a):
     try:
         for k,track in enumerate(tracks):
             if k<completed:continue
+            if all_wings and k:
+                birth=ConservativeBirth(x,e,m,volume,rho,a.track_radius_mm,a.width,
+                    deposit_mask=track['targets'],initial_moments=birth.moments,
+                    angle_offset=track['angle_offset'])
+            if conservative and (not k or all_wings):front=float(birth.lo.min()-1e-10)
             local=resume_local if k==0 else 0.;wait=0.;start=time_s-local;duration=track['arc_duration_s'];initial_max=a.initial_temperature if local else float(T[np.unique(e[active])].max())
             cool_target=(500. if k==len(tracks)-1 else 300.) if mma else 90.
+            conditioning_time=0.;conditioning_log=[];arc_started=False
+            if all_wings:
+                current_faces=interface_face[np.any(np.isin(interface_face,np.unique(e[track['targets']])),axis=1)]
+                current_nodes=np.unique(current_faces)
+                if not len(current_nodes):raise RuntimeError('current wing interface temperature check has no nodes')
             while local<duration-1e-8 or T[np.unique(e[active])].max()>cool_target:
-                on=local<duration-1e-8;dt=min(a.dt,duration-local) if on else min(2.,1800-wait)
+                conditioning=all_wings and not arc_started and (T[current_nodes].min()<200. or T[current_nodes].max()>300.+1e-6)
+                ambient=300. if conditioning and T[current_nodes].min()<200. else 20.
+                on=local<duration-1e-8 and not conditioning
+                dt=min(a.dt,duration-local) if on else min(10.,1800-conditioning_time) if conditioning else min(2.,1800-wait)
+                if on and not arc_started:
+                    arc_started=True
+                    if all_wings:
+                        start=time_s
+                        initial_max=float(T[current_nodes].max())
+                        conditioning_log.append(dict(arc_start_s=time_s,interface_min_C=float(T[current_nodes].min()),interface_max_C=initial_max))
                 if on:
                     if a.start_ramp+a.end_ramp>=duration:raise ValueError('arc ramps leave no steady interval')
                     ramps=np.array([a.start_ramp,duration-a.end_ramp,duration]);future=ramps[ramps>local+1e-8]
@@ -414,7 +461,7 @@ def run(a):
                     if conservative:
                         _,source_factor,source_centre,source_front=birth.at_mass(cumulative_mass_g(midpoint)*1e-3)
                     if conservative and bottom_up:
-                        source[2]=float(np.clip(birth.floor+(birth.top-birth.floor)*(source_front-theta)*track['radius_mm']/a.width,birth.floor,birth.top))
+                        source[2]=float(np.clip(birth.floor+(birth.top-birth.floor)*(source_front-theta+track.get('angle_offset',0.))*track['radius_mm']/a.width,birth.floor,birth.top))
                     d=source_centre-source;w=np.exp(-(d[:,0]**2+d[:,1]**2)/a.width**2-(d[:,2]/a.depth)**2)*volume*(source_factor if conservative else active)
                     fullspace=np.pi**1.5*a.width**2*a.depth
                     capture=float(w.sum()/fullspace)
@@ -470,7 +517,8 @@ def run(a):
                         disconnected=float(np.sum(volume[(m==3)&~connected]*factor[(m==3)&~connected]))
                         step_mass=float((rho*volume)@delta_mom.sum(axis=1))*1000
                         total_mass=float((rho*volume*(m==3))@factor)*1000
-                        birth_history.append([time_s+dt,dt,cumulative_mass_g(local+dt)-cumulative_mass_g(local),step_mass,cumulative_mass_g(local+dt),total_mass,
+                        prior_mass=k*prescribed_mass*1000 if all_wings else 0.
+                        birth_history.append([time_s+dt,dt,cumulative_mass_g(local+dt)-cumulative_mass_g(local),step_mass,prior_mass+cumulative_mass_g(local+dt),total_mass,
                             entering,front,(front-theta)*track['radius_mm'],disconnected,float((volume*(m==3))@factor),float(factor[(m==3)&active].min())])
                         if disconnected>1e-8:raise RuntimeError('cut deposit not face-connected to QT')
                 old_H=np.bincount(e.ravel(),weights=(old_nodal_mass*integral(old[e])).ravel(),minlength=n)
@@ -496,7 +544,7 @@ def run(a):
                     return stiffness,jac
                 def heat_loss(values,derivative=False):
                     if derivative:return surface*(15e-6+.7*5.670374419e-14*4*(values+273.15)**3)
-                    return surface*(15e-6*(values-20)+.7*5.670374419e-14*((values+273.15)**4-293.15**4))
+                    return surface*(15e-6*(values-ambient)+.7*5.670374419e-14*((values+273.15)**4-(ambient+273.15)**4))
                 def residual(values,H):
                     return H-old_H+dt*((conduction(values)@values+heat_loss(values) if conservative else K@values+cooling*(values-20))-q)
                 for iteration in range(45):
@@ -525,6 +573,7 @@ def run(a):
                 else:raise RuntimeError('precoat enthalpy Newton failed')
                 time_s+=dt
                 if on:local+=dt
+                elif conditioning:conditioning_time+=dt
                 else:wait+=dt
                 peak=np.maximum(peak,T);both=active[oa[interface]]&active[ob[interface]]
                 present=both[:,None] if not conservative else both[:,None]&(birth.nodal_values[interface_face]@bary.T<=front)
@@ -538,6 +587,7 @@ def run(a):
                 loss=dt*float(heat_loss(T).sum()) if conservative else dt*float(cooling@(T-20))
                 balance=float((H-old_H).sum())+loss-dt*float(q.sum())
                 history.append([time_s,dt,k+1,int(on),float(T[np.unique(e[active])].max()),float(T[np.unique(e[m==1])].max()),float(T[np.unique(e[(m==3)&active])].max()) if np.any((m==3)&active) else 20.,dt*float(q.sum()),entering,loss,balance])
+                if all_wings:boundary_history.append([time_s,dt,k+1,track['wing'],int(on),int(conditioning),ambient,float(T[current_nodes].min()),float(T[current_nodes].max()),loss])
                 if record_nodal:nodal_trace.append((time_s,T.copy(),factor[m==3].copy(),front if conservative else None))
                 if conservative:
                     (out/'progress.json').write_text(json.dumps(dict(t_s=time_s,track=k+1,arc_on=on,maximum_C=history[-1][4],
@@ -553,6 +603,7 @@ def run(a):
                     save(True);print('first Ni99',k+1,round(time_s,3),round(history[-1][4],2),flush=True)
             stage_rows.append(dict(track=k+1,start_s=start,initial_max_C=initial_max,arc_s=duration,cool_wait_s=wait,end_s=time_s,
                 end_active_max_C=float(T[np.unique(e[active])].max()),born_volume_mm3=float(volume[active&(m==3)].sum())))
+            if all_wings:stage_rows[-1].update(wing=track['wing'],conditioning_s=conditioning_time,process_temperature_checks=conditioning_log)
             save(True)
             if a.stop_after_tracks is not None and k+1>=a.stop_after_tracks:
                 result=save(True);print(json.dumps(result,indent=2),flush=True);return result

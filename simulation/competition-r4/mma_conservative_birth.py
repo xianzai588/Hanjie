@@ -43,9 +43,11 @@ def clipped_moments(values, threshold):
 
 
 class ConservativeBirth:
-    def __init__(self, x, e, material, volume, density_kg_mm3, radius=None, rise_length=None):
-        self.indices = np.flatnonzero(material == 3)
-        self.nodal_values = np.arctan2(x[:, 1], x[:, 0])
+    def __init__(self, x, e, material, volume, density_kg_mm3, radius=None, rise_length=None,
+                 deposit_mask=None, initial_moments=None, angle_offset=0.):
+        selected = material == 3 if deposit_mask is None else deposit_mask
+        self.indices = np.flatnonzero(selected)
+        self.nodal_values = (np.arctan2(x[:, 1], x[:, 0])-angle_offset+np.pi)%(2*np.pi)-np.pi
         deposit_nodes=np.unique(e[self.indices])
         self.floor=float(x[deposit_nodes,2].min());self.top=float(x[deposit_nodes,2].max())
         if rise_length is not None:
@@ -60,6 +62,22 @@ class ConservativeBirth:
         self.xe = x[e]
         self.moments = np.zeros((len(e), 4))
         self.moments[material == 1] = .25
+        if initial_moments is not None or deposit_mask is not None:
+            if initial_moments is not None:self.moments = np.asarray(initial_moments).copy()
+            if np.any(self.moments[selected]>1e-12):
+                raise ValueError('current wing already has deposited metal')
+            # Complete earlier wings and absent future wings share the same
+            # geometry-aware area/front routines. They do not receive a new
+            # temperature or enthalpy when the current deposition begins.
+            other = (material == 3)&~selected
+            old = other&(self.moments.sum(axis=1)>.999999)
+            future = other&~old
+            self.nodal_values[np.unique(e[old])] = -100.
+            self.nodal_values[np.unique(e[future])] = 100.
+            self.values = self.nodal_values[e[self.indices]]
+            self.lo = self.values.min(axis=1)
+            self.hi = self.values.max(axis=1)
+        self.base_moments = self.moments.copy()
 
     def evaluate(self, threshold):
         q = np.zeros((len(self.indices), 4))
@@ -81,8 +99,7 @@ class ConservativeBirth:
                 return float(self.evaluate(t).sum(axis=1)@self.weights-target_mass_kg)
             threshold = brentq(residual, float(self.lo.min()-1e-10), float(self.hi.max()+1e-10), xtol=1e-13)
             q = self.evaluate(threshold)
-        moments=np.zeros_like(self.moments)
-        moments[self.material==1]=.25
+        moments=self.base_moments.copy()
         moments[self.indices]=q
         fraction=moments.sum(axis=1)
         cut_centre=self.xe.mean(axis=1)

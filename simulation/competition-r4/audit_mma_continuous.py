@@ -29,6 +29,8 @@ def evaluate(folder):
         source_midpoint_domain_recorded=bool(path.shape[1]==10),
         source_fraction_to_Ni_range=(source[:,11]/source[:,6]).take([np.argmin(source[:,11]/source[:,6]),np.argmax(source[:,11]/source[:,6])]).tolist(),
         source_wire_partition_max_error_J=float(abs(source[:,4]+source[:,6]+source[:,7]-source[:,5]).max()),
+        maximum_relative_step_energy_balance_error=float(np.max(abs(history[:,-1])/np.maximum.reduce([history[:,7],history[:,9],np.ones(len(history))]))),
+        energy_check_basis='step balance normalized by max(input,loss,1J); 1e-6 relative criterion covers both arc and zero-input cooling',
         central18mm_every_face_full_liquid_pass=bool(summary['central18mm_min_face_peak_C']>=threshold),
         full_liquid_continuous_intervals_mm=[],
         minimum_recorded_full_liquid_face_duration_s=None,
@@ -37,6 +39,11 @@ def evaluate(folder):
         physical_source_calibrated=False,
         full_manufacturing_verified=False,
         PMZ_capacity_assigned=False)
+    # The historical audit included process-decision flags for its original
+    # unqualified scenarios. This audit supplies measured accounting fields;
+    # response convergence is decided by the actual comparison driver.
+    summary.pop('usable_for_requested_net_energy_decision',None)
+    summary.pop('mesh_time_convergence_verified',None)
     qualified=(minimum>=threshold)&(centres>=-9)&(centres<=9)
     indices=np.flatnonzero(qualified)
     if len(indices):
@@ -53,7 +60,7 @@ def evaluate(folder):
         and summary['central18mm_every_face_full_liquid_pass']
         and summary['maximum_disconnected_deposit_mm3']<1e-8
         and summary['maximum_cumulative_mass_error_g']<1e-9
-        and summary['maximum_step_energy_balance_error_J']<1e-4
+        and summary['maximum_relative_step_energy_balance_error']<1e-6
         and summary['source_wire_partition_max_error_J']<1e-7
         and summary['maximum_temperature_C']<2800)
     summary['qualification_scope']='thermal connection screen under saved model inputs; numerical comparison required before retained-state manufacturing'

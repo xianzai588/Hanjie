@@ -1,0 +1,32 @@
+{
+  "cases": [
+    {
+      "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-trace-20261007",
+      "normal_retained_mm": 0.7,
+      "corner_R_mm": 0.8,
+      "source_deposit_volume_mm3": 215.54042990141915,
+      "retained_first_layer_mm3": 85.17028140897582,
+      "exact_OCC_retained_first_layer_mm3": 84.75465311175331,
+      "relative_retained_volume_error": 0.004903899455225005,
+      "removed_volume_mm3": 130.37014849244332,
+      "retained_volume_pass": true
+    },
+    {
+      "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-first-end80-r12-h045-trace-20261007",
+      "normal_retained_mm": 0.7,
+      "corner_R_mm": 0.8,
+      "source_deposit_volume_mm3": 215.54042990141915,
+      "retained_first_layer_mm3": 84.94429433202379,
+      "exact_OCC_retained_first_layer_mm3": 84.75465311175331,
+      "relative_retained_volume_error": 0.002237531667086434,
+      "removed_volume_mm3": 130.59613556939536,
+      "retained_volume_pass": true
+    }
+  ],
+  "cut_surface": "R0.80 normal-offset corner and flat z114.20, inner lip capped at z115; parent P1 level-set cut",
+  "geometric_zero_surface_tolerance_mm": 1e-09,
+  "geometric_cut_verified": true,
+  "surviving_plastic_and_residual_history_policy": "volume removal only; no stress/plastic reset; re-equilibration required after the actual cold-state cut",
+  "machining_mechanical_state_verified": false,
+  "full_manufacturing_verified": false
+}

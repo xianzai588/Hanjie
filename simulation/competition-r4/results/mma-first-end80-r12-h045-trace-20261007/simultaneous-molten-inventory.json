@@ -1,0 +1,20 @@
+{
+  "source_run": "mma-first-end80-r12-h045-trace-20261007",
+  "maximum_simultaneous_QT_liquid_volume_mm3": 1024.7049479982836,
+  "time_of_QT_inventory_maximum_s": 11.569017260119475,
+  "QT_liquid_mass_at_maximum_g": 7.377875625587642,
+  "Ni_liquid_mass_range_at_that_time_g": [
+    1.0551299914238648,
+    1.1110634377254351
+  ],
+  "complete_mix_QT_mass_fraction_scenarios_at_that_time": [
+    0.8691163372196705,
+    0.874880909684751
+  ],
+  "QT_inventory_method": "exact P1 temperature-threshold clipped tetrahedron volume at each actual recorded time",
+  "Ni_inventory_method": "occupied volume whose parent tetra all vertices exceed liquidus (lower) or any vertex exceeds liquidus (upper)",
+  "chemical_interpretation": "simultaneous-domain complete-mixing scenarios; not actual transport, retained-layer composition or a rigorous global dilution bound",
+  "required_followup": "first-layer material and remelted-QT state must cover justified composition scenarios before retained mechanical replay",
+  "transport_dilution_verified": false,
+  "PMZ_capacity_assigned": false
+}

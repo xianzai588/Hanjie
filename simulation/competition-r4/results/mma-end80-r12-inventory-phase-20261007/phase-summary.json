@@ -1,0 +1,179 @@
+{
+  "cases": [
+    {
+      "name": "undiluted_CI_A1",
+      "conditional_QT_mass_fraction": 0.0,
+      "ternary_normalized_wt_pct": {
+        "C": 1.0121457489878543,
+        "Fe": 1.8218623481781377,
+        "Ni": 97.16599190283401
+      },
+      "omitted_constituents_wt_pct": 1.2000000000000028,
+      "limits": {
+        "graphite_allowed": {
+          "solidus_grid_bracket_C": [
+            1330.0,
+            1340.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1390.0,
+            1400.0
+          ],
+          "maximum_atomic_balance_error": 5.284964826879346e-11
+        },
+        "graphite_suppressed": {
+          "solidus_grid_bracket_C": [
+            1210.0,
+            1220.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1390.0,
+            1400.0
+          ],
+          "maximum_atomic_balance_error": 5.6902593748020536e-11
+        }
+      },
+      "nested_phase_feasibility_pass": true
+    },
+    {
+      "name": "inventory_QT_low",
+      "conditional_QT_mass_fraction": 0.8688494791275978,
+      "ternary_normalized_wt_pct": {
+        "C": 3.397841144839987,
+        "Fe": 83.60334127257272,
+        "Ni": 12.998817582587295
+      },
+      "omitted_constituents_wt_pct": 2.8073715363860714,
+      "limits": {
+        "graphite_allowed": {
+          "solidus_grid_bracket_C": [
+            1170.0,
+            1180.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1210.0,
+            1220.0
+          ],
+          "maximum_atomic_balance_error": 6.496116977672273e-10
+        },
+        "graphite_suppressed": {
+          "solidus_grid_bracket_C": [
+            1110.0,
+            1120.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1210.0,
+            1220.0
+          ],
+          "maximum_atomic_balance_error": 5.6467386322367474e-11
+        }
+      },
+      "nested_phase_feasibility_pass": true
+    },
+    {
+      "name": "inventory_QT_high",
+      "conditional_QT_mass_fraction": 0.8762395235420875,
+      "ternary_normalized_wt_pct": {
+        "C": 3.418471286370389,
+        "Fe": 84.31054114717082,
+        "Ni": 12.270987566458771
+      },
+      "omitted_constituents_wt_pct": 2.8210431185528506,
+      "limits": {
+        "graphite_allowed": {
+          "solidus_grid_bracket_C": [
+            1170.0,
+            1180.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1210.0,
+            1220.0
+          ],
+          "maximum_atomic_balance_error": 5.728015839423506e-10
+        },
+        "graphite_suppressed": {
+          "solidus_grid_bracket_C": [
+            1110.0,
+            1120.0
+          ],
+          "liquidus_grid_bracket_C": [
+            1210.0,
+            1220.0
+          ],
+          "maximum_atomic_balance_error": 4.5187520392175884e-11
+        }
+      },
+      "nested_phase_feasibility_pass": true
+    }
+  ],
+  "Gibbs_branch_audit": {
+    "replaced_higher_energy_states": [
+      {
+        "case": "undiluted_CI_A1",
+        "T_C": 1340.0,
+        "original_higher_Gibbs_energy_J_mol": 39.38408307119971,
+        "selected_source": "undiluted_CI_A1-graphite_suppressed.nc",
+        "sampled_phase_stability": {
+          "LIQUID": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 512.6710473401763,
+            "samples": 112005
+          },
+          "BCC_A2": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 3076.2371059481957,
+            "samples": 64004
+          },
+          "CEMENTITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 4978.3286038872175,
+            "samples": 16002
+          },
+          "FCC_A1": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 1.0328319316613488,
+            "samples": 64004
+          },
+          "GRAPHITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 1503.4419425217675,
+            "samples": 1
+          }
+        }
+      },
+      {
+        "case": "undiluted_CI_A1",
+        "T_C": 1360.0,
+        "original_higher_Gibbs_energy_J_mol": 147.44226949878794,
+        "selected_source": "undiluted_CI_A1-graphite_suppressed.nc",
+        "sampled_phase_stability": {
+          "LIQUID": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 593.7713270603417,
+            "samples": 112005
+          },
+          "BCC_A2": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 2937.100668019353,
+            "samples": 64004
+          },
+          "CEMENTITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 5854.770231772811,
+            "samples": 16002
+          },
+          "FCC_A1": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 0.8082381461426849,
+            "samples": 64004
+          },
+          "GRAPHITE": {
+            "minimum_sampled_tangent_plane_distance_J_mol": 5324.6398364229135,
+            "samples": 1
+          }
+        }
+      }
+    ],
+    "source_directory": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-end80-r12-inventory-phase-20261007\\raw",
+    "maximum_corrected_nested_Gibbs_excess_J_mol": 3.0585360946133733e-06,
+    "nested_phase_feasibility_pass": true,
+    "scope": "same actual composition and temperature; independently converged lower-energy subset state; graphite exact and all phases sampled tangent-plane checks, not a proof over every continuous site fraction"
+  },
+  "inventory_source": "mma-first-end80-r12-trace-20261007",
+  "source_DOI": "10.2355/tetsutohagane.TETSU-2025-072",
+  "interpretation": "actual-time liquid-inventory complete-mix scenarios; not actual dilution, retained layer composition or a rigorous global bound",
+  "applicability": "Fe-Ni-C projection; omitted Si/Mn and graphite kinetics. FCC mass fraction is not interface or PMZ fracture capacity.",
+  "transport_dilution_verified": false,
+  "remelted_material_capacity_assigned": false
+}

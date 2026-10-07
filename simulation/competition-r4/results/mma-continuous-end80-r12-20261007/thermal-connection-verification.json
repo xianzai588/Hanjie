@@ -1,0 +1,253 @@
+{
+  "cases": [
+    {
+      "source_run": "mma-first-end80-r12-trace-20261007",
+      "fusion_criterion": "max_time(min_3_P1_vertices(T)) >= max(QT liquidus, CI-A1 solidus); entire face simultaneously hot, then spatial continuity",
+      "partial_fusion_threshold_C": 1340.0,
+      "full_liquid_threshold_C": 1400.0,
+      "total_interface_area_mm2": 131.39999344617922,
+      "simultaneously_covered_face_area_mm2": 131.39999344617922,
+      "simultaneous_full_liquid_face_area_mm2": 131.39999344617922,
+      "central18mm_min_face_peak_C": 1765.6478271484375,
+      "central18mm_every_face_partial_fusion_pass": true,
+      "continuous_intervals_mm": [
+        [
+          -9.0,
+          9.0
+        ]
+      ],
+      "longest_continuous_interval_mm": [
+        -9.0,
+        9.0
+      ],
+      "longest_continuous_length_mm": 18.0,
+      "maximum_observed_QT_full_melt_depth_mm": 7.985311209439658,
+      "melt_depth_scope": "ever-hot tetra quadrature points below actual curved floor in central18mm; not instantaneous dilution, PMZ width or a converged boundary",
+      "interface_centroid_final_t8_5_s_range": [
+        55.74727700279401,
+        57.532423428099996
+      ],
+      "recorded_cooling_crossing_count": 802,
+      "command_energy_J": 23084.490934481815,
+      "applied_energy_J": 23084.490934481815,
+      "unintercepted_energy_J": 2.287339929990877e-13,
+      "maximum_step_energy_balance_error_J": 0.00011073867506183888,
+      "maximum_temperature_C": 2719.643565284232,
+      "maximum_QT_C": 2580.1014631609924,
+      "net_energy_contract_pass": true,
+      "PMZ_capacity_assigned": false,
+      "completed_arc_duration_s": 11.569017260119475,
+      "arc_track_count": 1,
+      "actual_deposited_mass_g": 1.9161544218236162,
+      "prescribed_deposited_mass_g": 1.9161544218236166,
+      "maximum_step_mass_error_g": 1.3530149223228705e-13,
+      "maximum_cumulative_mass_error_g": 1.3511414209688155e-13,
+      "maximum_disconnected_deposit_mm3": 0.0,
+      "source_domain_times": "all Gaussian coordinates and source occupancy at midpoint; capacity at implicit end time",
+      "source_midpoint_domain_recorded": true,
+      "source_fraction_to_Ni_range": [
+        0.04446991854283968,
+        0.7035840777386029
+      ],
+      "source_wire_partition_max_error_J": 2.842170943040401e-14,
+      "maximum_relative_step_energy_balance_error": 1.7906378983173415e-07,
+      "energy_check_basis": "step balance normalized by max(input,loss,1J); 1e-6 relative criterion covers both arc and zero-input cooling",
+      "central18mm_every_face_full_liquid_pass": true,
+      "full_liquid_continuous_intervals_mm": [
+        [
+          -9.0,
+          9.0
+        ]
+      ],
+      "minimum_recorded_full_liquid_face_duration_s": 1.444017260119475,
+      "thermal_boundary_scope": "one wing on complete QT seat; initial300C, free cooling to500C; not eight-wing manufacturing/furnace replay",
+      "numerical_response_convergence_verified": true,
+      "physical_source_calibrated": false,
+      "full_manufacturing_verified": false,
+      "one_wing_thermal_connection_screen_pass": true,
+      "qualification_scope": "thermal connection screen under saved model inputs; numerical comparison required before retained-state manufacturing",
+      "comparison_basis": "three complete frozen-case histories plus current-geometry startup time check; all listed relative responses <=5%"
+    },
+    {
+      "source_run": "mma-first-end80-r12-endpoint-dt00625-20261007",
+      "fusion_criterion": "max_time(min_3_P1_vertices(T)) >= max(QT liquidus, CI-A1 solidus); entire face simultaneously hot, then spatial continuity",
+      "partial_fusion_threshold_C": 1340.0,
+      "full_liquid_threshold_C": 1400.0,
+      "total_interface_area_mm2": 131.39999344617922,
+      "simultaneously_covered_face_area_mm2": 131.39999344617922,
+      "simultaneous_full_liquid_face_area_mm2": 131.39999344617922,
+      "central18mm_min_face_peak_C": 1765.6478271484375,
+      "central18mm_every_face_partial_fusion_pass": true,
+      "continuous_intervals_mm": [
+        [
+          -9.0,
+          9.0
+        ]
+      ],
+      "longest_continuous_interval_mm": [
+        -9.0,
+        9.0
+      ],
+      "longest_continuous_length_mm": 18.0,
+      "maximum_observed_QT_full_melt_depth_mm": 7.985311209439658,
+      "melt_depth_scope": "ever-hot tetra quadrature points below actual curved floor in central18mm; not instantaneous dilution, PMZ width or a converged boundary",
+      "interface_centroid_final_t8_5_s_range": [
+        55.748088410517305,
+        57.53814387185492
+      ],
+      "recorded_cooling_crossing_count": 802,
+      "command_energy_J": 23084.490934481815,
+      "applied_energy_J": 23084.490934481815,
+      "unintercepted_energy_J": 4.411441753279063e-14,
+      "maximum_step_energy_balance_error_J": 0.00011067720492974331,
+      "maximum_temperature_C": 2746.3965087083366,
+      "maximum_QT_C": 2585.1893032014445,
+      "net_energy_contract_pass": true,
+      "PMZ_capacity_assigned": false,
+      "completed_arc_duration_s": 11.569017260119475,
+      "arc_track_count": 1,
+      "actual_deposited_mass_g": 1.9161544218236162,
+      "prescribed_deposited_mass_g": 1.9161544218236166,
+      "maximum_step_mass_error_g": 1.3530149223228705e-13,
+      "maximum_cumulative_mass_error_g": 1.3511414209688155e-13,
+      "maximum_disconnected_deposit_mm3": 0.0,
+      "source_domain_times": "all Gaussian coordinates and source occupancy at midpoint; capacity at implicit end time",
+      "source_midpoint_domain_recorded": true,
+      "source_fraction_to_Ni_range": [
+        0.04446991854283968,
+        0.751588837281431
+      ],
+      "source_wire_partition_max_error_J": 2.842170943040401e-14,
+      "maximum_relative_step_energy_balance_error": 1.7896013061293176e-07,
+      "energy_check_basis": "step balance normalized by max(input,loss,1J); 1e-6 relative criterion covers both arc and zero-input cooling",
+      "central18mm_every_face_full_liquid_pass": true,
+      "full_liquid_continuous_intervals_mm": [
+        [
+          -9.0,
+          9.0
+        ]
+      ],
+      "minimum_recorded_full_liquid_face_duration_s": 1.506517260119475,
+      "thermal_boundary_scope": "one wing on complete QT seat; initial300C, free cooling to500C; not eight-wing manufacturing/furnace replay",
+      "numerical_response_convergence_verified": true,
+      "physical_source_calibrated": false,
+      "full_manufacturing_verified": false,
+      "one_wing_thermal_connection_screen_pass": true,
+      "qualification_scope": "thermal connection screen under saved model inputs; numerical comparison required before retained-state manufacturing",
+      "comparison_basis": "three complete frozen-case histories plus current-geometry startup time check; all listed relative responses <=5%"
+    },
+    {
+      "source_run": "mma-first-end80-r12-h045-trace-20261007",
+      "fusion_criterion": "max_time(min_3_P1_vertices(T)) >= max(QT liquidus, CI-A1 solidus); entire face simultaneously hot, then spatial continuity",
+      "partial_fusion_threshold_C": 1340.0,
+      "full_liquid_threshold_C": 1400.0,
+      "total_interface_area_mm2": 131.55155596602054,
+      "simultaneously_covered_face_area_mm2": 131.55155596602054,
+      "simultaneous_full_liquid_face_area_mm2": 131.55155596602054,
+      "central18mm_min_face_peak_C": 1767.1026611328125,
+      "central18mm_every_face_partial_fusion_pass": true,
+      "continuous_intervals_mm": [
+        [
+          -9.0,
+          9.0
+        ]
+      ],
+      "longest_continuous_interval_mm": [
+        -9.0,
+        9.0
+      ],
+      "longest_continuous_length_mm": 18.0,
+      "maximum_observed_QT_full_melt_depth_mm": 7.982040843723041,
+      "melt_depth_scope": "ever-hot tetra quadrature points below actual curved floor in central18mm; not instantaneous dilution, PMZ width or a converged boundary",
+      "interface_centroid_final_t8_5_s_range": [
+        55.729156862522416,
+        57.529448078679074
+      ],
+      "recorded_cooling_crossing_count": 1630,
+      "command_energy_J": 23084.490934481815,
+      "applied_energy_J": 23084.490934481815,
+      "unintercepted_energy_J": 1.9895196601282805e-13,
+      "maximum_step_energy_balance_error_J": 0.00011122838725441397,
+      "maximum_temperature_C": 2730.429081250339,
+      "maximum_QT_C": 2584.196721940923,
+      "net_energy_contract_pass": true,
+      "PMZ_capacity_assigned": false,
+      "completed_arc_duration_s": 11.569017260119475,
+      "arc_track_count": 1,
+      "actual_deposited_mass_g": 1.9161544218236166,
+      "prescribed_deposited_mass_g": 1.9161544218236166,
+      "maximum_step_mass_error_g": 1.3210960103648972e-13,
+      "maximum_cumulative_mass_error_g": 1.3744561044859438e-13,
+      "maximum_disconnected_deposit_mm3": 0.0,
+      "source_domain_times": "all Gaussian coordinates and source occupancy at midpoint; capacity at implicit end time",
+      "source_midpoint_domain_recorded": true,
+      "source_fraction_to_Ni_range": [
+        0.043169083141064275,
+        0.7028368413600936
+      ],
+      "source_wire_partition_max_error_J": 2.842170943040401e-14,
+      "maximum_relative_step_energy_balance_error": 1.7984017105950754e-07,
+      "energy_check_basis": "step balance normalized by max(input,loss,1J); 1e-6 relative criterion covers both arc and zero-input cooling",
+      "central18mm_every_face_full_liquid_pass": true,
+      "full_liquid_continuous_intervals_mm": [
+        [
+          -9.0,
+          9.0
+        ]
+      ],
+      "minimum_recorded_full_liquid_face_duration_s": 1.569017260119475,
+      "thermal_boundary_scope": "one wing on complete QT seat; initial300C, free cooling to500C; not eight-wing manufacturing/furnace replay",
+      "numerical_response_convergence_verified": true,
+      "physical_source_calibrated": false,
+      "full_manufacturing_verified": false,
+      "one_wing_thermal_connection_screen_pass": true,
+      "qualification_scope": "thermal connection screen under saved model inputs; numerical comparison required before retained-state manufacturing",
+      "comparison_basis": "three complete frozen-case histories plus current-geometry startup time check; all listed relative responses <=5%"
+    }
+  ],
+  "relative_response_differences": {
+    "endpoint_time_half": {
+      "maximum_temperature_C": 0.009836930017448314,
+      "maximum_QT_C": 0.001971953472798261,
+      "central18mm_min_face_peak_C": 0.0,
+      "total_interface_area_mm2": 0.0,
+      "maximum_observed_QT_full_melt_depth_mm": 0.0,
+      "common_time_peak_history": 0.009836930017448314,
+      "common_time_QT_history": 0.004232409034888533
+    },
+    "local_space": {
+      "maximum_temperature_C": 0.003965782907650966,
+      "maximum_QT_C": 0.0015872471832613006,
+      "central18mm_min_face_peak_C": 0.0008239661171415995,
+      "total_interface_area_mm2": 0.0011534438919390028,
+      "maximum_observed_QT_full_melt_depth_mm": 0.0004095476845975223,
+      "common_time_peak_history": 0.012049801779592957,
+      "common_time_QT_history": 0.00911149068452559
+    }
+  },
+  "startup_check": {
+    "time_half": {
+      "peak_C": 0.004063451731308292,
+      "QT_peak_C": 0.004554911951363528,
+      "interface_thermal_coverage_mm2": 0.0,
+      "common_time_peak_history": 0.02954004700665744,
+      "common_time_QT_history": 0.030523712546288988
+    },
+    "local_space": {
+      "peak_C": 0.008047275255925739,
+      "QT_peak_C": 0.007299375002252709,
+      "interface_thermal_coverage_mm2": 0.0026013435568943786,
+      "common_time_peak_history": 0.011920064015060806,
+      "common_time_QT_history": 0.008997961185475236
+    }
+  },
+  "one_wing_thermal_connection_and_discretization_pass": true,
+  "source_parameter_scope": "saved volume-equivalent deposited shape and effective3.2mm net heat-source model with liquid factor3; no measured bead/source calibration",
+  "manufacturing_transfer_requirement": "QT observed fully-molten depth about8mm: carry solidification and remelted-material state; do not infer low dilution from an assumed chemistry table",
+  "full_eight_wing_precoat_verified": false,
+  "retained_thermomechanical_state_verified": false,
+  "final_connection_verified": false,
+  "position_design_pass": false,
+  "bore_size_design_pass": false,
+  "complete_joint_strength_pass": false
+}
