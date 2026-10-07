@@ -1,0 +1,9 @@
+{
+  "nodes": 16032,
+  "tetrahedra": 68551,
+  "h_mm": 0.45,
+  "geometry": "same mass-closed CI-A1 one-wing envelope on whole QT seat",
+  "geometry_file": "cad\\generated\\mma-mass-envelope\\CI-A1-single-track-end90\\first-mass-envelope.brep",
+  "full_manufacturing_mesh": false,
+  "physical_bead_shape_verified": false
+}

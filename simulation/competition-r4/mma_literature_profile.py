@@ -29,14 +29,15 @@ def configure(tables,product='CI-A1'):
     return out,t,h,cp
 
 
-def mesh_saved(output,h=.65):
+def mesh_saved(output,h=.65,geometry=None):
     import gmsh
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
     if (output/'mesh.npz').exists():return
     gmsh.initialize()
     try:
         gmsh.option.setNumber('General.Terminal',0);occ=gmsh.model.occ
-        occ.importShapes(str(ROOT/'cad/generated/mma-mass-envelope/CI-A1/first-mass-envelope.brep'));occ.synchronize()
+        geometry=Path(geometry) if geometry else ROOT/'cad/generated/mma-mass-envelope/CI-A1/first-mass-envelope.brep'
+        occ.importShapes(str(geometry));occ.synchronize()
         entities=occ.getEntities(3);qt=[tag for dim,tag in entities if occ.getMass(dim,tag)>10000]
         ni=[tag for dim,tag in entities if tag not in qt]
         surfaces=sorted(set(s[1] for tag in ni for s in gmsh.model.getBoundary([(3,tag)],False,False)))
@@ -59,6 +60,7 @@ def mesh_saved(output,h=.65):
         np.savez_compressed(output/'mesh.npz',x=x,e=e,material=m)
         (output/'mesh-summary.json').write_text(json.dumps(dict(nodes=len(x),tetrahedra=len(e),h_mm=h,
             geometry='same mass-closed CI-A1 one-wing envelope on whole QT seat',
+            geometry_file=str(geometry),
             full_manufacturing_mesh=False,physical_bead_shape_verified=False),indent=2),encoding='utf8')
         print('MMA mesh',len(x),len(e),flush=True)
     finally:gmsh.finalize()

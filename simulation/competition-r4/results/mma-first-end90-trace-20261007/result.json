@@ -1,0 +1,16 @@
+{
+  "partial": true,
+  "error": null,
+  "time_s": 9.375,
+  "stages": [],
+  "maximum_temperature_C": 2467.8865156997513,
+  "maximum_QT_C": 2378.150770926691,
+  "elapsed_s": 210.5596666999918,
+  "nominal_interface_area_mm2": 131.39999344617922,
+  "actual_area_above_both_solidus_mm2": 116.08544527900582,
+  "both_solidus_threshold_C": 1340.0,
+  "final_active_minimum_C": 292.0600932572392,
+  "active_temperature_range_check_pass": true,
+  "mesh_time_convergence_verified": false,
+  "PMZ_capacity_assigned": false
+}

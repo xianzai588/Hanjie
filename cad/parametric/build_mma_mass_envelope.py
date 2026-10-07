@@ -8,16 +8,17 @@ import json
 import math
 import gmsh
 import numpy as np
+import yaml
 
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'cad/generated/mma-mass-envelope'
 
 
-def build(candidate,mesh_h=None,single_track=False):
+def build(candidate,mesh_h=None,single_track=False,output_name=None,use_current_profile=False):
     budget=json.loads((ROOT/'studies/COMPETITION-DESIGN/results/precoat-input-budget.json').read_text(encoding='utf8'))
     row=budget['candidates'][candidate];rho=row['input']['nominal_density_kg_m3']*1e-6
     target_volume=row['nominal_deposited_mass_per_wing_g']/rho
-    out=OUT/(candidate+'-single-track' if single_track else candidate);out.mkdir(parents=True,exist_ok=True)
+    out=OUT/(output_name or (candidate+'-single-track' if single_track else candidate));out.mkdir(parents=True,exist_ok=True)
     if (out/'geometry-audit.json').exists():raise ValueError('Preserve the completed envelope; use a fresh case')
     gmsh.initialize()
     try:
@@ -41,10 +42,20 @@ def build(candidate,mesh_h=None,single_track=False):
                     else:hi=mid
                 ends.append(sign*(lo+hi)/2)
             length=radius_track*(ends[1]-ends[0]);speed=100/60;mass_rate=.17
-            target_volume=mass_rate*length/speed/rho
+            arc_time=length/speed
+            profile=None
+            dose=mass_rate*arc_time
+            if use_current_profile:
+                card=yaml.safe_load((ROOT/'project/precoat-process-design.yaml').read_text(encoding='utf8'))['first']
+                profile=card['end_control']
+                if profile['melting_rate_current_exponent']!=2:raise ValueError('only the frozen endpoint mass hypothesis is supported')
+                fraction=profile['final_current_A']/card['current_A'];ramp=profile['ramp_duration_s']
+                dose=mass_rate*(arc_time-ramp+ramp*(1+fraction+fraction*fraction)/3)
+            target_volume=dose/rho
             single_inputs=dict(radius_mm=radius_track,length_mm=length,travel_mm_s=speed,
                 deposited_mass_rate_g_s=mass_rate,arc_time_s=length/speed,
                 meaning='single6mm groove coverage hypothesis; mass rate is within the previous engineering interval, not a measured rate')
+            if profile:single_inputs.update(end_control=profile,integrated_deposited_mass_g=dose)
         top=115.;radius=1.5
         roofs=[ent for body in base for ent in gmsh.model.getBoundary([body],False,False)
                if ent[0]==2 and abs(occ.getCenterOfMass(*ent)[2]-top)<1e-7]
@@ -115,4 +126,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--candidate',choices=['CI-A1','CI-A2'],required=True)
     p.add_argument('--mesh-h',type=float)
     p.add_argument('--single-track',action='store_true')
-    a=p.parse_args();print(json.dumps(build(a.candidate,a.mesh_h,a.single_track),ensure_ascii=False,indent=2))
+    p.add_argument('--output-name')
+    p.add_argument('--current-profile',action='store_true')
+    a=p.parse_args();print(json.dumps(build(a.candidate,a.mesh_h,a.single_track,a.output_name,a.current_profile),ensure_ascii=False,indent=2))

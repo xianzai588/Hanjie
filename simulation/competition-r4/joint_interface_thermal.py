@@ -34,17 +34,29 @@ class InterfaceThermalObserver:
         centre=xyz.mean(axis=1);theta=np.arctan2(centre[:,1],centre[:,0])
         self.segment=np.round(theta/(np.pi/4)).astype(int)%8
 
-    def __call__(self,t,T,active):
+    def __call__(self,t,T,active,front_values=None,front_level=None):
         live=np.all(active[self.adj],axis=1)
         current=T[self.faces]@self.bary.T
-        self.peak=np.maximum(self.peak,np.where(live[:,None],current,20.));self.wet |= live
+        present=live[:,None]
+        nodal_present=live[:,None]
+        if front_values is not None:
+            self.cut_front_observed=True
+            has_deposit=np.any(self.pairs==3,axis=1)
+            present=present&(~has_deposit[:,None]|(front_values[self.faces]@self.bary.T<=front_level))
+            nodal_present=nodal_present&(~has_deposit[:,None]|(front_values[self.faces]<=front_level))
+        self.peak=np.maximum(self.peak,np.where(present,current,20.));self.wet |= np.any(present*np.ones_like(current,dtype=bool),axis=1)
         threshold=self.solidus[self.pairs].max(axis=1)
-        self.nodal_fused |= live[:,None]&(T[self.faces]>=threshold[:,None])
+        self.nodal_fused |= nodal_present&(T[self.faces]>=threshold[:,None])
         # At a given step P1 temperature is affine on a tetrahedron. The
         # lowest molten point is a hot vertex or an isotherm/edge crossing.
         # This records actual instantaneous fields, not asynchronous maxima.
         lt=T[self.layer_elements];ts=self.remelt_solidus[self.layer_material]
         molten=active[self.layer_indices] & (lt.max(axis=1)>=ts)
+        if front_values is not None:
+            # Depth witnesses for partially occupied deposit cells would
+            # extrapolate into unborn metal. Their interface quadrature is
+            # retained above; volume-depth witnesses wait for a full cell.
+            molten &= (self.layer_material!=3)|(front_values[self.layer_elements].max(axis=1)<=front_level)
         if molten.any():
             vv=lt[molten];zz=self.layer_xyz[molten,:,2];ss=ts[molten]
             low=np.where(vv>=ss[:,None],zz,np.inf).min(axis=1)
@@ -85,6 +97,8 @@ class InterfaceThermalObserver:
           actual_P1_melting_depth_below_z115_mm={str(i):{str(j+1):float(115-self.minimum_melt_z[i,j]) if np.isfinite(self.minimum_melt_z[i,j]) else None for j in [0,4]} for i in [1,3,4]},
           scope='actual per-time-step P1 face quadrature; only when both adjacent solids thermally active; union of melting events',
           spatial_time_convergence_verified=False,precoat_state_verified=False)
+        if getattr(self,'cut_front_observed',False):
+            result['cut_front_scope']='interface quadrature/nodes require actual front arrival; Ni volume-depth witnesses use fully occupied cells only'
         (self.output/'interface-thermal-history-summary.json').write_text(json.dumps(result,indent=2),encoding='utf8')
         (self.output/'progress.json').write_text(json.dumps(dict(t_s=float(self.time),thermal_steps=self.step,
            Ni99_interface_peak_C=rows['Ni99_NiFe']['maximum_observed_quadrature_C'],steel_interface_peak_C=rows['steel_NiFe']['maximum_observed_quadrature_C'])),encoding='utf8')

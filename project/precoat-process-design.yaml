@@ -13,6 +13,18 @@ first:
   track_radius_mm: 71.98
   track_length_per_wing_mm: 19.28169543353246
   tracks_per_wing: 1
+  arc_duration_per_wing_s: 11.569017260119475
+  deposited_mass_per_wing_g: 1.9161544218236166
+  net_power_W_for_design_accounting: 2024.0
+  net_line_energy_J_mm_calculated: 1214.4
+  reference_line_energy_J_mm_rounded: 1215.0
+  geometry_model_path: cad/generated/mma-mass-envelope/CI-A1-single-track-end80-r12
+  end_control:
+    ramp_duration_s: 1.2
+    final_current_A: 80.0
+    melting_rate_current_exponent: 2
+    rate_basis: 末段准稳态I与I²熔化关系的低供料情景，未移植E7018或其他产品的系数；以实际熔敷称量核验
+    source: KOBELCO目录346页，CI-A1直径3.2电流80～130 A；90A候选时间减半仍超温，按3.2mm面内扩散尺度限定末次修订
   preheat_interpass_C:
   - 200
   - 300

@@ -1,0 +1,42 @@
+{
+  "candidate": "CI-A1",
+  "source": "simulation/competition-r4/geometry/8P-R2-t15.step",
+  "source_inputs": "project/independent-precoat-candidates.yaml",
+  "plan_area_one_wing_mm2": 115.16868314886237,
+  "pocket_volume_one_wing_mm3": 163.4405771813641,
+  "target_deposited_volume_one_wing_mm3": 219.59674104434453,
+  "nominal_overfill_above_z115_mm": 0.48759925291839323,
+  "volume_equivalent_floor_to_top_mm": 1.9875992529183932,
+  "nominal_top_z_mm": 115.48759925291839,
+  "material_volumes_mm3": {
+    "QT": 137058.9907398651,
+    "MMA": 219.59674104434143
+  },
+  "deposited_mass_one_wing_g": 1.9522150278841954,
+  "mass_closure_error_g": -2.7540920655155788e-14,
+  "geometry_state": "before first-layer machining; one wing deposited and all eight pockets cut",
+  "shape_interpretation": "volume-equivalent uniform overfill, not actual bead geometry or a conservative thermal bound",
+  "fusion_assigned": false,
+  "physical_bead_shape_verified": false,
+  "residual_state_assigned": false,
+  "mesh_generated": true,
+  "single_track_inputs": {
+    "radius_mm": 71.98,
+    "length_mm": 19.28169543353246,
+    "travel_mm_s": 1.6666666666666667,
+    "deposited_mass_rate_g_s": 0.17,
+    "arc_time_s": 11.569017260119475,
+    "meaning": "single6mm groove coverage hypothesis; mass rate is within the previous engineering interval, not a measured rate",
+    "end_control": {
+      "ramp_duration_s": 0.5,
+      "final_current_A": 90.0,
+      "melting_rate_current_exponent": 2,
+      "rate_basis": "末段准稳态I与I²熔化关系的低供料情景，未移植E7018或其他产品的系数；以实际熔敷称量核验",
+      "source": "KOBELCO目录346页，CI-A1直径3.2电流80～130 A；末端55℃超温后限定修订"
+    },
+    "integrated_deposited_mass_g": 1.952215027884223
+  },
+  "layer_mesh_h_mm": 0.65,
+  "nodes": 18454,
+  "tetrahedra": 77544
+}

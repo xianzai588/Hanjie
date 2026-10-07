@@ -74,6 +74,7 @@ def run(a):
             prefix=np.r_[0,np.cumsum(np.diff(knots)*(cp[1:]+cp[:-1])/2)]
             q=T[m==j];k=np.clip(np.searchsorted(knots,q,side='right')-1,0,len(knots)-2);d=np.minimum(q,knots[-1])-knots[k]
             answer[m==j]=prefix[k]+cp[k]*d+.5*np.diff(cp)[k]/np.diff(knots)[k]*d*d+np.maximum(q-knots[-1],0)*cp[-1]
+            answer[m==j]=np.where(q<knots[0],cp[0]*(q-knots[0]),answer[m==j])
         if mma:
             q=T[m==3]
             answer[m==3]=(np.interp(q,hm_T,hm_H)+np.minimum(q-hm_T[0],0)*hm_cp[0]
@@ -91,6 +92,11 @@ def run(a):
     interface_face=face[interface];interface_area=area[interface]
     bary=np.array([[2/3,1/6,1/6],[1/6,2/3,1/6],[1/6,1/6,2/3]])
     tracks=[]
+    conservative=getattr(a,'conservative_birth',False)
+    continuous=getattr(a,'continuous_track',False)
+    bottom_up=getattr(a,'deposition_growth','angular')=='bottom_up'
+    if conservative and not (mma and continuous and a.radial_tracks==1):
+        raise ValueError('mass-controlled birth currently applies to one continuous MMA track')
     layer_radius=np.linalg.norm(x[np.unique(e[m==3]),:2],axis=1)
     radial_edges=np.linspace(layer_radius.min(),layer_radius.max(),a.radial_tracks+1)
     if a.radial_tracks==2:radial_edges[1]=72.
@@ -102,13 +108,26 @@ def run(a):
         nodes=np.unique(e[part]);theta=np.arctan2(x[nodes,1],x[nodes,0]);lo=float(theta.min());hi=float(theta.max())
         overlap=a.half_overlap/sr
         if not 0<=overlap<min(-lo,hi):raise ValueError('short-track overlap exceeds half-track length')
-        segments=[(overlap,lo),(-overlap,hi)] if mma else [(lo,overlap),(-overlap,hi)]
+        if continuous:
+            sr=a.track_radius_mm
+            lo=-a.track_length_mm/(2*sr);hi=-lo
+            segments=[(lo,hi)]
+        else:segments=[(overlap,lo),(-overlap,hi)] if mma else [(lo,overlap),(-overlap,hi)]
         if mma and strip%2:segments=segments[::-1]
         for half,(begin,end) in enumerate(segments):
-            targets=part&((angle<=overlap) if (end<0 if mma else half==0) else (angle>=-overlap));length=sr*abs(end-begin)
+            targets=part if continuous else part&((angle<=overlap) if (end<0 if mma else half==0) else (angle>=-overlap));length=sr*abs(end-begin)
             if length>(50 if mma else 18):raise ValueError('precoat track exceeds specified length')
             tracks.append(dict(strip=strip+1,half=half+1,radius_mm=sr,angle_begin=begin,angle_end=end,
                 length_mm=length,arc_duration_s=length/a.travel,targets=targets))
+    end_fraction=getattr(a,'end_fraction',.35)
+    mass_exponent=getattr(a,'mass_current_exponent',0)
+    def cumulative_mass_g(arc_time):
+        duration=sum(track['arc_duration_s'] for track in tracks)
+        if not a.end_ramp or mass_exponent==0:return a.mass_rate_g_s*arc_time
+        steady=duration-a.end_ramp
+        u=max(0.,arc_time-steady);rate=(1-end_fraction)/a.end_ramp
+        if mass_exponent!=2:raise ValueError('unfrozen mass/current profile')
+        return a.mass_rate_g_s*(min(arc_time,steady)+u-rate*u*u+rate*rate*u**3/3)
     input_data=dict(mesh=str(a.mesh),nodes=n,tetrahedra=len(e),QT_volume_mm3=float(volume[m==1].sum()),
         first_layer_volume_mm3=float(volume[m==3].sum()),materials=tab,
         arc_power_W=a.power,travel_mm_s=a.travel,source_width_mm=a.width,source_depth_mm=a.depth,
@@ -120,7 +139,7 @@ def run(a):
         preheat_scope='uniform initial QT temperature, no shell; one-track comparison, no maintained furnace or stress relaxation assumed',
         half_track_overlap_each_end_mm=a.half_overlap,
         radial_tracks=a.radial_tracks,radial_order=a.radial_order,radial_strip_edges_mm=radial_edges.tolist(),
-        start_ramp_s=a.start_ramp,end_ramp_s=a.end_ramp,start_power_fraction=a.start_fraction,end_power_fraction=.35,
+        start_ramp_s=a.start_ramp,end_ramp_s=a.end_ramp,start_power_fraction=a.start_fraction,end_power_fraction=end_fraction,
         heat_source_model=a.source_model,thermal_bounds_case=a.thermal_bounds,
         surface_grid_step_mm=a.surface_grid_step if a.source_model=='visible_surface' else None,
         surface_normalization=('fixed pi*width^2; first upward ray/metal hit only; missed flux not redistributed' if a.source_model=='visible_surface' else 'fixed pi*width^2 upward facets; historical overlapping-projection model' if a.source_model=='surface' else 'legacy active-volume Gaussian normalization'),
@@ -145,6 +164,22 @@ def run(a):
             arc_start_stop='step input; endpoint masks report thermal startup under this source assumption, not measured arc stability',
             interpass_C=300.,final_cooling_target_C=500.,entering_enthalpy_basis=tab[3]['enthalpy_table'],
             first_followup='actual machining to0.70mm normal retention; no residual-stress state assigned by this thermal run')
+    if conservative:
+        input_data.update(deposition_geometry='P1-angle cut-cell sweep of saved volume-equivalent CAD envelope driven by cumulative deposited mass',
+            deposited_mass_rate_g_s=a.mass_rate_g_s,
+            birth_policy='exact cut volumes, cell occupancy homogenization with lumped mass at four parent vertices; retain previous enthalpy and add only new mass entering enthalpy',
+            source_policy='midpoint Gaussian location, height, occupied domain and cut centroid evaluated at the same cumulative-mass time; cell load distributed to four vertices',
+            thermal_cut_cell_scope='geometric P1 moments saved for domain auditing; thermal capacity/source use fraction/4, an approximation requiring local mesh comparison',
+            cut_cell_extension='aggregate unsupported outside-front vertices to nearest present metal vertex; solve R^T A R and R^T residual, preserving all mass/heat',
+            front_policy='mass-quantile angular front; source follows single CAD arc; report offset and spatial sensitivity',
+            source_parameter_scope='effective conduction-source width/depth hypotheses, not gun settings',
+            stop_time_s=getattr(a,'stop_time_s',None),electrical_power_W=2530.,net_efficiency=.8)
+        input_data.update(mass_current_exponent=mass_exponent,deposited_mass_profile='steady rate followed by current-fraction^exponent during the end ramp',
+            integrated_deposited_mass_g=cumulative_mass_g(sum(track['arc_duration_s'] for track in tracks)))
+        input_data.update(liquid_transport_factor=getattr(a,'liquid_transport_factor',1.),
+            liquid_transport_policy='k_eff=k_molecular*(1+(factor-1)*liquid_fraction); no solid enhancement, energy redistribution only',
+            liquid_transport_method_source='Hu et al2024, Additive Manufacturing92 104379, DOI10.1016/j.addma.2024.104379 section2.1',
+            liquid_transport_scope='factor3 is a literature method bound for SS316L, not a measured CI-A1 coefficient; no material calibration assigned')
     if a.resume_from:
         old_input=json.loads((a.resume_from/'input.json').read_text(encoding='utf8'))
         ignore={'scope','boundary','deposition_geometry','surface_normalization','active_temperature_guard_C','temperature_guard_basis',
@@ -157,9 +192,39 @@ def run(a):
     observer=InterfaceThermalObserver(out,out/'precoat-interface-observer',tab)
     tetra_bary=np.full((4,4),.1381966011250105);np.fill_diagonal(tetra_bary,.5854101966249685)
     quadrature_peak=np.full((len(e),4),20.)
-    engine=pypardiso.PyPardisoSolver(mtype=2)
+    engine=pypardiso.PyPardisoSolver(mtype=11 if conservative else 2)
     T=np.full(n,20.);T[np.unique(e[m==1])]=a.initial_temperature
-    active=m==1;time_s=0.;history=[];peak=T.copy();stage_rows=[];source_history=[]
+    active=m==1;time_s=0.;history=[];peak=T.copy();stage_rows=[];source_history=[];birth_history=[];solver_diagnostics=[];source_path=[];nodal_trace=[];trace_chunks=[]
+    record_nodal=getattr(a,'record_nodal_history',False)
+    if record_nodal:
+        (out/'nodal-thermal-history').mkdir()
+        input_data['nodal_history']='all accepted nodal temperature states and deposit fractions in float64; for retained-state thermomechanical replay'
+        (out/'input.json').write_text(json.dumps(input_data,indent=2),encoding='utf8')
+    if conservative:
+        from mma_conservative_birth import ConservativeBirth
+        geometry=json.loads((a.mesh/'geometry-audit.json').read_text(encoding='utf8'))
+        cad_volume=geometry['target_deposited_volume_one_wing_mm3']
+        raw_mesh_volume=float(volume[m==3].sum())
+        input_data['raw_mesh_deposit_volume_mm3']=raw_mesh_volume
+        input_data['CAD_deposit_volume_mm3']=cad_volume
+        input_data['CAD_volume_quadrature_factor']=cad_volume/raw_mesh_volume
+        input_data['volume_quadrature_policy']='constant deposit Jacobian correction to exact CAD volume; retain straight-tetra gradients; assess this geometric approximation with local mesh refinement'
+        # Straight tetrahedra omit the curved pocket boundary volume. Integrate
+        # the prescribed CAD volume with the same Jacobian factor in capacity,
+        # incoming enthalpy, conductivity and source, rather than changing feed
+        # or density. The raw discrepancy remains in the saved input.
+        volume=volume.copy();volume[m==3]*=cad_volume/raw_mesh_volume
+        birth=ConservativeBirth(x,e,m,volume,rho,a.track_radius_mm,a.width if bottom_up else None)
+        if bottom_up:
+            input_data.update(deposition_geometry='mass-controlled bottom-up cut-cell envelope: phi=theta+width/radius*(z-floor)/(top-floor)',
+                front_policy='volume-equivalent progressive groove filling; the existing effective source width sets rise length; no liquid transport or bead contour calibration assigned',
+                source_z_policy='follow the evolving deposition surface at the same midpoint time as commanded arc xy; bounded by actual CAD floor/top',
+                growth_floor_z_mm=birth.floor,growth_top_z_mm=birth.top,growth_rise_length_mm=a.width)
+        prescribed_mass=cumulative_mass_g(sum(t['arc_duration_s'] for t in tracks))*1e-3
+        if abs(prescribed_mass-birth.total_mass_kg)>prescribed_mass*1e-9:
+            raise ValueError('CAD mass differs from pWPS duration/feed')
+        input_data['mesh_mass_discretization_relative_error']=(birth.total_mass_kg-prescribed_mass)/prescribed_mass
+        (out/'input.json').write_text(json.dumps(input_data,indent=2),encoding='utf8')
     incoming=np.full((len(e),1),a.deposition_temperature);wire_energy=rho*volume*integral(incoming)[:,0]
     if a.pure_filler_birth:
         from ni99_physics_bounds import NI_MOLAR_KG
@@ -167,6 +232,36 @@ def run(a):
         wire_energy=8890e-9*volume*pure_h
     interface_cycles=[];cycle_times=[]
     completed=0
+    resume_local=0.
+    transient_from=getattr(a,'transient_from',None)
+    if transient_from:
+        if not (conservative and len(tracks)==1 and record_nodal):raise ValueError('transient replay is restricted to one continuous traced MMA track')
+        old_input=json.loads((transient_from/'input.json').read_text(encoding='utf8'))
+        for key in ['arc_power_W','travel_mm_s','source_width_mm','source_depth_mm','entering_Ni99_C','cold_start_C',
+                    'start_ramp_s','end_ramp_s','end_power_fraction','mass_current_exponent','tracks',
+                    'liquid_transport_factor','source_policy','source_z_policy','CAD_deposit_volume_mm3','materials']:
+            if input_data[key]!=old_input.get(key):raise ValueError('transient physical inputs differ: '+key)
+        resume_local=float(a.transient_time)
+        if not 0<resume_local<tracks[0]['arc_duration_s']:raise ValueError('restart must be within the first arc')
+        from mma_thermal_restart import accepted_prefix
+        nodal_trace,rows=accepted_prefix(transient_from,resume_local,x,e,m)
+        history,source_history,birth_history,source_path=[rows[key] for key in ['history','source_history','birth_history','source_path']]
+        for t,temperature,fractions,level in nodal_trace:
+            mask=m==1;mask[m==3]=fractions>1e-14
+            peak=np.maximum(peak,temperature)
+            observer(t,temperature,mask,birth.nodal_values,level)
+            qp_mask=mask[:,None]&((m!=3)[:,None]|(birth.nodal_values[e]@tetra_bary.T<=level))
+            quadrature_peak=np.maximum(quadrature_peak,np.where(qp_mask,temperature[e]@tetra_bary.T,20.))
+            present=birth.nodal_values[interface_face]@bary.T<=level
+            interface_peak=np.maximum(interface_peak,np.where(present,temperature[interface_face]@bary.T,20.))
+            cycle_times.append(t);interface_cycles.append(np.where(birth.nodal_values[interface_face]<=level,temperature[interface_face],20.).copy())
+        T=nodal_trace[-1][1].copy();time_s=resume_local
+        birth.advance(cumulative_mass_g(resume_local)*1e-3)
+        active=birth.moments.sum(axis=1)>1e-14
+        np.testing.assert_allclose(birth.moments[m==3].sum(axis=1),nodal_trace[-1][2],atol=1e-10)
+        input_data['transient_restart']=dict(source=str(transient_from),accepted_prefix_s=resume_local,
+            prefix_dt_s=old_input['dt_s'],continuation_dt_s=a.dt,scope='same actual state; endpoint discretization comparison only')
+        (out/'input.json').write_text(json.dumps(input_data,indent=2),encoding='utf8')
     if a.resume_from:
         old_result=json.loads((a.resume_from/'result.json').read_text(encoding='utf8'))
         if old_result['error'] or not old_result['stages']:raise ValueError('resume requires completed short tracks and cooling')
@@ -191,15 +286,33 @@ def run(a):
         if T[np.unique(e[active])].max()>90:raise ValueError('saved completed track is not cooled')
         print('resume actual cooled first-layer state',completed,time_s,flush=True)
     def save(partial,error=None):
+        if nodal_trace:
+            path=out/'nodal-thermal-history'/('chunk-%04d.npz'%len(trace_chunks))
+            np.savez_compressed(path,time_s=np.array([row[0] for row in nodal_trace]),
+                temperature_C=np.array([row[1] for row in nodal_trace]),
+                deposit_fraction=np.array([row[2] for row in nodal_trace]),front_level_rad=np.array([row[3] for row in nodal_trace]),
+                deposit_element_indices=np.flatnonzero(m==3))
+            trace_chunks.append(dict(file=path.name,first_s=nodal_trace[0][0],last_s=nodal_trace[-1][0],steps=len(nodal_trace)))
+            nodal_trace.clear()
+            (out/'nodal-thermal-history/manifest.json').write_text(json.dumps(dict(chunks=trace_chunks,
+                scope='every accepted thermal increment; complete temperatures/deposit fraction, no reconstructed residual stress'),indent=2),encoding='utf8')
         np.savez_compressed(out/'thermal-fields.npz',x=x,e=e,material=m,temperature=T,peak_nodal_temperature=peak,
             thermal_active=active,interface_nodes=interface_face,interface_area_mm2=interface_area,interface_peak_C=interface_peak,
-            tetra_quadrature_barycentric=tetra_bary,peak_element_quadrature_C=quadrature_peak,volume_mm3=volume)
+            tetra_quadrature_barycentric=tetra_bary,peak_element_quadrature_C=quadrature_peak,volume_mm3=volume,
+            deposited_P1_moments=birth.moments if conservative else np.where(active[:,None],.25,0.)*np.ones((len(e),4)))
         np.savetxt(out/'thermal-history.csv',history,delimiter=',',comments='',header='t_s,dt_s,track,on,max_C,QT_max_C,Ni99_max_C,total_input_J,wire_J,loss_J,balance_J')
-        np.savetxt(out/'source-partition-history.csv',source_history,delimiter=',',comments='',header='t_s,dt_s,track,born_volume_mm3,wire_J,command_J,arc_intercept_J,uncaptured_J,legacy_fullspace_capture,legacy_normalization_multiplier,arc_to_QT_J,arc_to_Ni_J')
+        np.savetxt(out/'source-partition-history.csv',[row for row in source_history if row[0]<=time_s+1e-10],delimiter=',',comments='',header='t_s,dt_s,track,born_volume_mm3,wire_J,command_J,arc_intercept_J,uncaptured_J,legacy_fullspace_capture,legacy_normalization_multiplier,arc_to_QT_J,arc_to_Ni_J')
+        if conservative:
+            np.savetxt(out/'deposition-history.csv',[row for row in birth_history if row[0]<=time_s+1e-10],delimiter=',',comments='',
+                header='t_s,dt_s,target_step_g,actual_step_g,target_cumulative_g,actual_cumulative_g,entering_J,front_angle_rad,front_minus_source_mm,disconnected_deposit_mm3,active_Ni_volume_mm3,minimum_cut_fraction')
+            (out/'nonlinear-diagnostics.json').write_text(json.dumps(solver_diagnostics,indent=2),encoding='utf8')
+            np.savetxt(out/'source-path-history.csv',[row for row in source_path if row[0]<=time_s+1e-10],delimiter=',',comments='',
+                header='t_s,theta_rad,x_mm,y_mm,z_mm,capacity_front_level_rad,QT_domain_mm3,Ni_domain_mm3,source_front_level_rad,source_Ni_domain_mm3')
         result=dict(partial=partial,error=error,time_s=time_s,stages=stage_rows,maximum_temperature_C=float(peak.max()),
             maximum_QT_C=float(peak[np.unique(e[m==1])].max()),elapsed_s=time.perf_counter()-started,
             nominal_interface_area_mm2=float(interface_area.sum()),actual_area_above_both_solidus_mm2=float(np.sum(interface_area*np.mean(interface_peak>=max(tab[1]['fusion_enthalpy']['solidus_C'],tab[3]['fusion_enthalpy']['solidus_C']),axis=1))),
             both_solidus_threshold_C=max(tab[1]['fusion_enthalpy']['solidus_C'],tab[3]['fusion_enthalpy']['solidus_C']),
+            final_active_minimum_C=float(T[np.unique(e[active])].min()),
             active_temperature_range_check_pass=not error and all(row[4]<2800 for row in history),
             mesh_time_convergence_verified=False,PMZ_capacity_assigned=False)
         if mma and interface_cycles:
@@ -211,7 +324,7 @@ def run(a):
     try:
         for k,track in enumerate(tracks):
             if k<completed:continue
-            local=0.;wait=0.;start=time_s;duration=track['arc_duration_s'];initial_max=float(T[np.unique(e[active])].max())
+            local=resume_local if k==0 else 0.;wait=0.;start=time_s-local;duration=track['arc_duration_s'];initial_max=a.initial_temperature if local else float(T[np.unique(e[active])].max())
             cool_target=(500. if k==len(tracks)-1 else 300.) if mma else 90.
             while local<duration-1e-8 or T[np.unique(e[active])].max()>cool_target:
                 on=local<duration-1e-8;dt=min(a.dt,duration-local) if on else min(2.,1800-wait)
@@ -219,9 +332,10 @@ def run(a):
                     if a.start_ramp+a.end_ramp>=duration:raise ValueError('arc ramps leave no steady interval')
                     ramps=np.array([a.start_ramp,duration-a.end_ramp,duration]);future=ramps[ramps>local+1e-8]
                     dt=min(dt,float(future.min()-local))
+                if getattr(a,'stop_time_s',None) is not None:dt=min(dt,a.stop_time_s-time_s)
                 if dt<=1e-8:raise RuntimeError('whole-seat cooling did not reach90 C within1800 s')
                 old=T.copy();previous=active.copy()
-                if on:
+                if on and not conservative:
                     direction=1 if track['angle_end']>track['angle_begin'] else -1
                     reached=track['angle_begin']+direction*a.travel*(local+dt)/track['radius_mm']
                     if mma:
@@ -244,23 +358,64 @@ def run(a):
                         graph=coo_matrix((np.ones(2*len(aa)),(np.r_[aa,bb],np.r_[bb,aa])),shape=(len(e),len(e))).tocsr()
                         _,labels=connected_components(graph,directed=False)
                         active &= np.isin(labels,np.unique(labels[m==1]))
-                born=active&~previous;factor=np.where(active,1.,1e-8);mass=rho*volume*factor
-                ke=np.einsum('eik,ejk,e->eij',g,g,prop(T[e].mean(axis=1),'thermal_conductivity_w_mk')/1000*volume*factor)
+                if conservative:
+                    if on:
+                        target=min(cumulative_mass_g(local+dt)*1e-3,birth.total_mass_kg)
+                        old_mom,mom,delta_mom,factor,cut_centre,front=birth.advance(target)
+                        active=factor>1e-14
+                    else:
+                        mom=birth.moments.copy();old_mom=mom.copy();delta_mom=np.zeros_like(mom)
+                        factor=mom.sum(axis=1);cut_centre=centre.copy()
+                    # Homogenize the unresolved partial volume in its parent
+                    # cell. Total mass is unchanged. Exact cut nodal moments
+                    # on unextended parent DOFs produced nonphysical front
+                    # temperatures and are retained only as geometric data.
+                    nodal_mass=np.repeat((rho*volume*(factor+(1-factor)*1e-8)/4)[:,None],4,axis=1)
+                    old_fraction=old_mom.sum(axis=1)
+                    old_nodal_mass=np.repeat((rho*volume*(old_fraction+(1-old_fraction)*1e-8)/4)[:,None],4,axis=1)
+                    born=(delta_mom.sum(axis=1)>1e-14)&(m==3)
+                    born_volume=float(volume@delta_mom.sum(axis=1))
+                else:
+                    born=active&~previous;factor=np.where(active,1.,1e-8)
+                    nodal_mass=np.repeat((rho*volume*factor/4)[:,None],4,axis=1)
+                    old_nodal_mass=nodal_mass.copy();old_nodal_mass[born]=0.
+                    born_volume=float(volume[born].sum())
+                extension=None
+                if conservative:
+                    from scipy.spatial import cKDTree
+                    supported=np.unique(e[active])
+                    parent_nodes=np.unique(e[m==1])
+                    present_nodes=np.union1d(parent_nodes,supported[birth.nodal_values[supported]<=front])
+                    ghost=np.setdiff1d(supported,present_nodes)
+                    mapping=np.arange(n)
+                    if len(ghost):
+                        _,nearest=cKDTree(x[present_nodes]).query(x[ghost])
+                        mapping[ghost]=present_nodes[nearest]
+                    dofs,inverse=np.unique(mapping,return_inverse=True)
+                    extension=coo_matrix((np.ones(n),(np.arange(n),inverse)),shape=(n,len(dofs))).tocsr()
+                    T=extension@T[dofs]
+                gram=np.einsum('eik,ejk->eij',g,g)
+                ke=gram*(prop(T[e].mean(axis=1),'thermal_conductivity_w_mk')/1000*volume*factor)[:,None,None]
                 K=coo_matrix((ke.ravel(),(rr,cc)),shape=(n,n)).tocsr()
                 wet=active[oa]^((ob>=0)&active[np.maximum(ob,0)])
-                surface=np.bincount(face[wet].ravel(),weights=np.repeat(area[wet]/3,3),minlength=n)
+                surface=birth.surface(x,e,face,oa,ob,area,front) if conservative else np.bincount(face[wet].ravel(),weights=np.repeat(area[wet]/3,3),minlength=n)
                 radiation=.7*5.670374419e-14*((np.maximum(T,20)+273.15)**2+293.15**2)*(np.maximum(T,20)+566.3)
                 cooling=(15e-6+radiation)*surface
-                entering=float(wire_energy[born].sum());q=np.zeros(n)
+                entering=float(wire_energy@delta_mom.sum(axis=1)) if conservative else float(wire_energy[born].sum());q=np.zeros(n)
                 if on:
                     midpoint=local+dt/2;fraction=1.
                     if a.start_ramp and midpoint<a.start_ramp:fraction=a.start_fraction+(1-a.start_fraction)*midpoint/a.start_ramp
-                    if a.end_ramp and duration-midpoint<a.end_ramp:fraction=min(fraction,.35+.65*(duration-midpoint)/a.end_ramp)
+                    if a.end_ramp and duration-midpoint<a.end_ramp:fraction=min(fraction,end_fraction+(1-end_fraction)*(duration-midpoint)/a.end_ramp)
                     remaining=a.power*fraction-entering/dt
                     if remaining<0:raise RuntimeError('hot first-layer birth exceeds the same net power budget')
                     direction=1 if track['angle_end']>track['angle_begin'] else -1
                     theta=track['angle_begin']+direction*a.travel*(local+dt/2)/track['radius_mm'];source=[track['radius_mm']*np.cos(theta),track['radius_mm']*np.sin(theta),top-a.source_drop]
-                    d=centre-source;w=np.exp(-(d[:,0]**2+d[:,1]**2)/a.width**2-(d[:,2]/a.depth)**2)*volume*active
+                    source_factor=factor;source_centre=cut_centre if conservative else centre;source_front=front if conservative else None
+                    if conservative:
+                        _,source_factor,source_centre,source_front=birth.at_mass(cumulative_mass_g(midpoint)*1e-3)
+                    if conservative and bottom_up:
+                        source[2]=float(np.clip(birth.floor+(birth.top-birth.floor)*(source_front-theta)*track['radius_mm']/a.width,birth.floor,birth.top))
+                    d=source_centre-source;w=np.exp(-(d[:,0]**2+d[:,1]**2)/a.width**2-(d[:,2]/a.depth)**2)*volume*(source_factor if conservative else active)
                     fullspace=np.pi**1.5*a.width**2*a.depth
                     capture=float(w.sum()/fullspace)
                     if a.source_model in ('volume','mma_volume'):
@@ -273,7 +428,8 @@ def run(a):
                             if w.sum()<=0:raise RuntimeError('No material supports the net distributed source')
                             p=w/w.sum()*remaining
                         else:p=w/w.sum()*remaining
-                        q=np.bincount(e.ravel(),weights=np.repeat(p/4,4),minlength=n)
+                        load_mom=np.full((len(e),4),.25)
+                        q=np.bincount(e.ravel(),weights=(p[:,None]*load_mom).ravel(),minlength=n)
                         arc_QT=float(p[m==1].sum());arc_Ni=float(p[m==3].sum())
                     else:
                         # Vertical arc on actual upward exposed facets.  Fixed
@@ -297,42 +453,102 @@ def run(a):
                             arc_QT=float(pm[qm==1].sum());arc_Ni=float(pm[qm==3].sum())
                         if q.sum()>remaining*1.01:raise RuntimeError('surface Gaussian quadrature interception exceeds analytic total by>1%')
                     arc=float(q.sum());command=a.power*fraction*dt
+                    if conservative:source_path.append([time_s+dt,theta,*source,front,float((volume*factor)[m==1].sum()),float((volume*factor)[m==3].sum()),source_front,float((volume*source_factor)[m==3].sum())])
                     if mma and arc>remaining*1.02:raise RuntimeError('source volume quadrature exceeds fixed analytic total')
-                    source_history.append([time_s+dt,dt,k+1,float(volume[born].sum()),entering,command,arc*dt,
+                    source_history.append([time_s+dt,dt,k+1,born_volume,entering,command,arc*dt,
                                            (remaining-arc)*dt,capture,1/capture,arc_QT*dt,arc_Ni*dt])
-                    q+=np.bincount(e[born].ravel(),weights=np.repeat(wire_energy[born]/(4*dt),4),minlength=n)
-                old_H=np.bincount(e.ravel(),weights=(mass[:,None]*integral(old[e])/4).ravel(),minlength=n)
-                if born.any():old_H-=np.bincount(e[born].ravel(),weights=(mass[born,None]*integral(old[e])[born]/4).ravel(),minlength=n)
+                    wire_load=np.repeat((wire_energy*delta_mom.sum(axis=1)/(4*dt))[:,None],4,axis=1) if conservative else np.where(born[:,None],wire_energy[:,None]/(4*dt),0.)*np.ones((len(e),4))
+                    q+=np.bincount(e.ravel(),weights=wire_load.ravel(),minlength=n)
+                    if conservative:
+                        from scipy.sparse.csgraph import connected_components
+                        af=birth.nodal_values[face]
+                        edge=two&active[oa]&active[np.maximum(ob,0)]&(af.min(axis=1)<front)
+                        aa,bb=oa[edge],ob[edge]
+                        graph=coo_matrix((np.ones(2*len(aa)),(np.r_[aa,bb],np.r_[bb,aa])),shape=(len(e),len(e))).tocsr()
+                        _,labels=connected_components(graph,directed=False)
+                        connected=np.isin(labels,np.unique(labels[m==1]))
+                        disconnected=float(np.sum(volume[(m==3)&~connected]*factor[(m==3)&~connected]))
+                        step_mass=float((rho*volume)@delta_mom.sum(axis=1))*1000
+                        total_mass=float((rho*volume*(m==3))@factor)*1000
+                        birth_history.append([time_s+dt,dt,cumulative_mass_g(local+dt)-cumulative_mass_g(local),step_mass,cumulative_mass_g(local+dt),total_mass,
+                            entering,front,(front-theta)*track['radius_mm'],disconnected,float((volume*(m==3))@factor),float(factor[(m==3)&active].min())])
+                        if disconnected>1e-8:raise RuntimeError('cut deposit not face-connected to QT')
+                old_H=np.bincount(e.ravel(),weights=(old_nodal_mass*integral(old[e])).ravel(),minlength=n)
                 def enthalpy(values):
-                    point=values[e];H=np.bincount(e.ravel(),weights=(mass[:,None]*integral(point)/4).ravel(),minlength=n)
+                    point=values[e];H=np.bincount(e.ravel(),weights=(nodal_mass*integral(point)).ravel(),minlength=n)
                     cp=prop(point,'specific_heat_j_kgk')+melting(point,derivative=True)
-                    C=np.bincount(e.ravel(),weights=(mass[:,None]*cp/4).ravel(),minlength=n)
+                    C=np.bincount(e.ravel(),weights=(nodal_mass*cp).ravel(),minlength=n)
                     return H,C
-                def residual(values,H):return H-old_H+dt*(K@values+cooling*(values-20)-q)
+                def conduction(values,tangent=False):
+                    means=values[e].mean(axis=1)
+                    def conductivity(temperatures):
+                        liquid=np.clip((temperatures-solidus[:,0])/(liquidus[:,0]-solidus[:,0]),0,1)
+                        if curve:liquid[m==3]=np.interp(temperatures[m==3],phase_T,phase_q)
+                        return prop(temperatures,'thermal_conductivity_w_mk')/1000*(1+(getattr(a,'liquid_transport_factor',1.)-1)*liquid)
+                    cond=conductivity(means)
+                    local_k=gram*(cond*volume*factor)[:,None,None]
+                    stiffness=coo_matrix((local_k.ravel(),(rr,cc)),shape=(n,n)).tocsr()
+                    if not tangent:return stiffness
+                    derivative=(conductivity(means+.01)-conductivity(means-.01))/.02
+                    gradient=np.einsum('eik,ei->ek',g,values[e])
+                    extra=np.einsum('eik,ek->ei',g,gradient)*(derivative*volume*factor/4)[:,None]
+                    jac=stiffness+coo_matrix((np.repeat(extra[:,:,None],4,axis=2).ravel(),(rr,cc)),shape=(n,n)).tocsr()
+                    return stiffness,jac
+                def heat_loss(values,derivative=False):
+                    if derivative:return surface*(15e-6+.7*5.670374419e-14*4*(values+273.15)**3)
+                    return surface*(15e-6*(values-20)+.7*5.670374419e-14*((values+273.15)**4-293.15**4))
+                def residual(values,H):
+                    return H-old_H+dt*((conduction(values)@values+heat_loss(values) if conservative else K@values+cooling*(values-20))-q)
                 for iteration in range(45):
                     H,C=enthalpy(T);r=residual(T,H)
+                    if conservative:r=extension.T@r
                     if np.linalg.norm(r)<1e-5:break
-                    A=diags(C+dt*cooling)+dt*K
-                    delta=pypardiso.spsolve(triu(A,format='csr'),-r,solver=engine)
+                    if conservative:
+                        _,jac=conduction(T,True)
+                        A=diags(C+dt*heat_loss(T,True))+dt*jac
+                    else:A=diags(C+dt*cooling)+dt*K
+                    if conservative:A=(extension.T@A@extension).tocsr()
+                    delta=pypardiso.spsolve(A if conservative else triu(A,format='csr'),-r,solver=engine)
                     if np.linalg.norm(A@delta+r)>.001:raise RuntimeError('precoat linear residual exceeds0.001')
+                    full_delta=extension@delta if conservative else delta
                     for power in range(12):
-                        candidate=T+delta*.5**power;ch,_=enthalpy(candidate)
-                        if np.linalg.norm(residual(candidate,ch))<np.linalg.norm(r):T=candidate;break
-                    else:raise RuntimeError('precoat enthalpy line search failed')
+                        candidate=T+full_delta*.5**power
+                        if conservative and candidate.min()<=-273.15:continue
+                        ch,_=enthalpy(candidate);candidate_residual=residual(candidate,ch)
+                        if conservative:candidate_residual=extension.T@candidate_residual
+                        if np.linalg.norm(candidate_residual)<np.linalg.norm(r):T=candidate;break
+                    else:
+                        solver_diagnostics.append(dict(t_s=time_s,trial_dt_s=dt,iteration=iteration,residual_norm_J=float(np.linalg.norm(r)),
+                            delta_norm_C=float(np.linalg.norm(delta)),minimum_C=float(T.min()),maximum_C=float(T.max()),
+                            tangent_directional_relative_error=None))
+                        raise RuntimeError('precoat enthalpy line search failed')
                 else:raise RuntimeError('precoat enthalpy Newton failed')
                 time_s+=dt
                 if on:local+=dt
                 else:wait+=dt
                 peak=np.maximum(peak,T);both=active[oa[interface]]&active[ob[interface]]
-                interface_peak=np.maximum(interface_peak,np.where(both[:,None],T[interface_face]@bary.T,20.))
-                quadrature_peak=np.maximum(quadrature_peak,np.where(active[:,None],T[e]@tetra_bary.T,20.))
-                observer(time_s,T,active)
+                present=both[:,None] if not conservative else both[:,None]&(birth.nodal_values[interface_face]@bary.T<=front)
+                interface_peak=np.maximum(interface_peak,np.where(present,T[interface_face]@bary.T,20.))
+                qp_present=active[:,None] if not conservative else active[:,None]&((m!=3)[:,None]|(birth.nodal_values[e]@tetra_bary.T<=front))
+                quadrature_peak=np.maximum(quadrature_peak,np.where(qp_present,T[e]@tetra_bary.T,20.))
+                observer(time_s,T,active,birth.nodal_values if conservative else None,front if conservative else None)
                 if mma:
-                    cycle_times.append(time_s);interface_cycles.append(np.where(both[:,None],T[interface_face],20.).copy())
-                loss=dt*float(cooling@(T-20));balance=float((H-old_H).sum())+loss-dt*float(q.sum())
+                    nodal_present=both[:,None] if not conservative else both[:,None]&(birth.nodal_values[interface_face]<=front)
+                    cycle_times.append(time_s);interface_cycles.append(np.where(nodal_present,T[interface_face],20.).copy())
+                loss=dt*float(heat_loss(T).sum()) if conservative else dt*float(cooling@(T-20))
+                balance=float((H-old_H).sum())+loss-dt*float(q.sum())
                 history.append([time_s,dt,k+1,int(on),float(T[np.unique(e[active])].max()),float(T[np.unique(e[m==1])].max()),float(T[np.unique(e[(m==3)&active])].max()) if np.any((m==3)&active) else 20.,dt*float(q.sum()),entering,loss,balance])
+                if record_nodal:nodal_trace.append((time_s,T.copy(),factor[m==3].copy(),front if conservative else None))
+                if conservative:
+                    (out/'progress.json').write_text(json.dumps(dict(t_s=time_s,track=k+1,arc_on=on,maximum_C=history[-1][4],
+                        deposited_g=birth_history[-1][5] if birth_history else 0.,enthalpy_residual_norm_J=float(np.linalg.norm(r)),
+                        source_xyz_mm=source if on else None)),encoding='utf8')
+                if conservative and T[np.unique(e[active])].min()<20.-1e-4:
+                    raise RuntimeError('active temperature below initial environment; cell occupancy discretization violates thermal minimum principle')
                 if history[-1][4]>=2800:
                     raise RuntimeError('active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model')
+                if getattr(a,'stop_time_s',None) is not None and time_s>=a.stop_time_s-1e-10:
+                    result=save(True);print(json.dumps(result,indent=2),flush=True);return result
                 if len(history)%25==0:
                     save(True);print('first Ni99',k+1,round(time_s,3),round(history[-1][4],2),flush=True)
             stage_rows.append(dict(track=k+1,start_s=start,initial_max_C=initial_max,arc_s=duration,cool_wait_s=wait,end_s=time_s,
@@ -343,6 +559,11 @@ def run(a):
         if not active.all():raise RuntimeError('first-layer tracks did not cover all actual wing elements')
         result=save(False);print(json.dumps(result,indent=2),flush=True);return result
     except Exception as exc:
+        if conservative and source_history and source_history[-1][0]>time_s+1e-10:
+            np.savez_compressed(out/'failed-trial-fields.npz',temperature=T,deposited_P1_moments=birth.moments,
+                accepted_time_s=time_s,trial_time_s=source_history[-1][0])
+            (out/'failed-trial-input.json').write_text(json.dumps(dict(source_row=source_history[-1],birth_row=birth_history[-1]),indent=2),encoding='utf8')
+            T=old.copy();active=previous.copy();birth.moments=old_mom.copy()
         save(True,str(exc));raise
 
 

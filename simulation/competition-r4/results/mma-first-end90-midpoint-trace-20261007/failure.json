@@ -1,0 +1,16 @@
+{
+  "partial": true,
+  "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+  "time_s": 11.569017260119475,
+  "stages": [],
+  "maximum_temperature_C": 2803.9781615897873,
+  "maximum_QT_C": 2689.2512551867735,
+  "elapsed_s": 335.3782150000043,
+  "nominal_interface_area_mm2": 131.39999344617922,
+  "actual_area_above_both_solidus_mm2": 131.39999344617922,
+  "both_solidus_threshold_C": 1340.0,
+  "final_active_minimum_C": 290.775935656011,
+  "active_temperature_range_check_pass": false,
+  "mesh_time_convergence_verified": false,
+  "PMZ_capacity_assigned": false
+}
