@@ -1,0 +1,12 @@
+{
+  "partial": false,
+  "error": null,
+  "time_s": 25994.302138080955,
+  "source_run": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\mma-eight-wing-phase-front-t4-end80-r12-20261007",
+  "final_min_C": 20.048730377438375,
+  "final_max_C": 20.04998113138603,
+  "maximum_absolute_step_energy_balance_error_J": 0.0008425540749925631,
+  "maximum_step_temperature_change_C": 31.80218734451148,
+  "elapsed_s": 776.4106675999938,
+  "mechanical_residual_state_assigned": false
+}

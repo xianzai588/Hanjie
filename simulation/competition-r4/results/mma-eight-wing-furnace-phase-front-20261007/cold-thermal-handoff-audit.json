@@ -1,0 +1,33 @@
+{
+  "source": "simulation\\competition-r4\\results\\mma-eight-wing-furnace-phase-front-20261007",
+  "cold_complete": true,
+  "actual_furnace_s": 24300.0,
+  "first_arc_to_cold_s": 25994.302138080955,
+  "first_arc_to_cold_h": 7.220639482800265,
+  "actual_Ni_mass_g": 15.329235374588935,
+  "actual_QT_mass_kg": 0.9879678924196965,
+  "temperature_range_C": [
+    20.048730377438375,
+    20.04998113138603
+  ],
+  "max_relative_step_energy_error": 2.979108539931984e-05,
+  "max_absolute_step_energy_error_J": 0.0008425540749925631,
+  "mass_and_temperature_transfer": "same saved complete eight-wing state; no uniform temperature replacement or nominal-density mass replacement",
+  "capacity": [
+    {
+      "supply_interval_s": 231.3,
+      "furnace_only_positions": 106,
+      "first_arc_to_cold_positions": 113,
+      "including_prior_36min_warmup_positions": 122
+    },
+    {
+      "supply_interval_s": 462.5,
+      "furnace_only_positions": 53,
+      "first_arc_to_cold_positions": 57,
+      "including_prior_36min_warmup_positions": 61
+    }
+  ],
+  "capacity_scope": "process WIP position lower bounds, not furnace count or demonstrated throughput; excludes loading, cleaning, second layer, cutting and delayed inspection",
+  "mechanical_residual_state_assigned": false,
+  "full_manufacturing_verified": false
+}
