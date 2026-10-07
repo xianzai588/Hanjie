@@ -5,16 +5,24 @@
 - [参赛设计报告包ZIP](deliverables/焊接固定题-参赛设计报告包.zip)
 - [说明书与工程图合订本](deliverables/competition-entry/01-工艺设计说明书与工程图.pdf)
 - [工艺规程与检验卡](deliverables/competition-entry/02-工艺规程与检验卡.pdf)
-- [18张工程图](deliverables/competition-entry/03-工程图集.pdf)
+- [21张工程图](deliverables/competition-entry/03-工程图集.pdf)
 - [正文源文件](deliverables/report/technical-report-v4-unified.md)
 - [独立预制设计参数](project/precoat-process-design.yaml)
 - [后续修复计划](deliverables/competition-route.md)
 
-首层设计调整为每翼单主轨迹：110 A、23 V参考、100 mm/min、设计熔敷率0.17 g/s；预计首层耗材15.73 g/件。第二层75 A、11 V参考、2 mm/s、Ø1.20裸棒送丝7.20±0.20 mm/s。以上为设计pWPS，试制确认后冻结生产窗口。最终随动轻击作为选配储备，不作为主流程必需条件，也不计控形/强度收益。
+首层每翼单主轨迹：110 A、23 V参考、100 mm/min、名义熔敷率0.17 g/s；计入末段缓降后沉积15.329235 g/件。八个公差角点加名义实体已完成独立STEP重读，最大槽176.157710 mm³/翼；120 mm/min仍有供料不足情景，保留100基线。第二层75 A、11 V参考、2 mm/s、Ø1.20裸棒送丝7.20±0.20 mm/s。以上为设计pWPS，试制确认后冻结生产窗口。最终随动轻击作为选配，不计控形/强度收益。
+
+本次新增HJ-019真实公差断面、HJ-020专用UT可达图及HJ-021关键零件明细；HJ-P-01按8件/8 h目标配置单头整线、8/9/24个首层/第二层预留/延迟PT位置。143.58元/件为直接运行费假设情景。首层冷态尚未取得，当前完整制造链、Ø0.05 mm及完整承载验证均未通过；历史52.084 μm超差保留。
 
 重建参赛报告文件：
 
 ```powershell
+python cad/parametric/build_precoat_tolerance_family.py
+python cad/parametric/inspect_precoat_tolerance_steps.py
+python studies/COMPETITION-DESIGN/pilot_production_resources.py
+python cad/parametric/build_engineering_supplements.py
+python cad/parametric/export_drawing_pdfs.py
+python -c "import sys;from pathlib import Path;sys.path.insert(0,'src');from hanjie.reporting.current_status import write_status_artifacts;write_status_artifacts(Path.cwd())"
 python deliverables/report/build_technical_report_pdf.py --competition-entry --with-drawings
 python deliverables/build_competition_entry.py
 ```

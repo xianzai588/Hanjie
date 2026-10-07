@@ -237,46 +237,68 @@ def render_markdown(status: Dict[str, Any]) -> str:
 
 
 def write_status_artifacts(root: Path) -> Path:
-    # 当前摘要只取R4有效链；旧collect/render保留给历史研究记录。
-    results=root/'simulation/competition-r4/results'
-    spec=yaml.safe_load((root/'project/competition-design.yaml').read_text(encoding='utf8'))
-    verification=_json(results/'verification.json')
-    service=_json(results/'service-verification.json')
-    family=['8p-thermal-tool-bore006-h15-dt025-s05','8p-thermal-tool-bore008-h15-dt025-s05',
-            '8p-thermal-tool-bore008-h1125-dt025-s05','8p-thermal-tool-bore008-h15-dt0125-s025']
-    workers={case: _json(results/case/'worker-status.json').get('stage','unknown')
-             if (results/case/'worker-status.json').exists() else 'not_recorded' for case in family}
-    actual_source=all(case in family[1:] for case in verification['cases']) and len(verification['cases'])==3
-    upper_bore=40.008
-    service_matches=all(_json(results/case/'input.json').get('initial_bore_diameter_mm')==upper_bore
-                        for case in service['cases'])
-    manifest=_json(root/'cad/generated/engineering-drawings/drawing-manifest.json')
-    status={'current_stage':'COMPETITION-R4', 'artifact_role':'revision_review',
-            'process_source':spec['process_source'], 'geometry':spec['layout'],
-            'manufacturing_window_in_configuration_mm':spec['fixture']['manufacturing_bore_window_mm'],
-            'manufacturing_window_under_verification_mm':[40.006,40.008],
-            'complete_family_workers':workers, 'position_result_source_cases':verification['cases'],
-            'position_actual_family_pass':actual_source and verification.get('position_design_pass',False),
-            'bore_actual_family_pass':actual_source and verification.get('bore_size_design_pass',False),
-            'service_static_reference_pass':service.get('static_service_design_pass',False),
-            'service_matches_current_family_bore':service_matches,
-            'drawing_count':len(manifest['drawings'])+len(manifest.get('supplemental_drawings',[])),
-            'next_action':'完整热耦合与卸夹核验后统一制造窗口、服役孔径、WPS、双头气路/资源及正式提交物',
-            'historical_results_current_design_evidence':False}
+    # 当前候选与历史结果分开：旧家族通过标志不能继承为新制造链通过。
+    manifest = _json(root/'cad/generated/engineering-drawings/drawing-manifest.json')
+    tolerance = _json(root/'cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json')
+    pilot = _json(root/'studies/COMPETITION-DESIGN/results/pilot-production-20261007.json')
+    diagnosis = _json(root/'output/review/phase-interface-diagnosis-20261007/diagnosis.json')
+    status = {
+        'updated_at':'2026-10-07', 'current_stage':'first_layer_cold_state_unqualified',
+        'artifact_role':'engineering_design_report',
+        'route':'CI-A1 ENi-CI SMAW first layer / bare low-C Ni99 second layer / 8P-R2-t15 low-input GTAW / copper barrier',
+        'process_sources':['project/precoat-process-design.yaml','project/process-r3.yaml'],
+        'precision_budget_um':{'datum':28,'measurement':2,'microhone_axis':6.5,'weld_thermal':13.5,'total':50},
+        'microhone_maximum_radial_removal_um':3,
+        'first_layer_nominal_speed_mm_min':100,
+        'speed120_adopted':False,
+        'tolerance_geometry':{
+            'cases':len(tolerance['cases']),
+            'exported_solids_valid':all(c['all_solids_valid'] for c in tolerance['exported_STEP_reopen_check']),
+            'maximum_pocket_volume_one_wing_mm3':tolerance['maximum_actual_pocket_volume_one_wing_mm3'],
+            'maximum_pocket_fill_mass_g':tolerance['maximum_pocket_fill_mass_g'],
+            'actual_residual_cut_performed':False,
+            'source':'cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json'},
+        'cold_state':{
+            'native_last_accepted_thermal_time_s':0.125,
+            'custom_last_accepted_thermal_time_s':7.625,
+            'first_layer_cold_state_qualified':False,
+            'diagnosis_source':'output/review/phase-interface-diagnosis-20261007/diagnosis.json',
+            'native_run_audit':'output/review/native-manufacturing-stop-20261007/native-stop-audit.json',
+            'diagnosis_performed':bool(diagnosis)},
+        'current_route_fusion_verified':False,
+        'position_actual_family_pass':False,
+        'bore_actual_family_pass':False,
+        'complete_strength_verified':False,
+        'drawing_count':len(manifest['drawings'])+len(manifest.get('supplemental_drawings',[]))+len(manifest.get('external_pdf_sheets',[])),
+        'pilot_production':{'parts_per_8h':8, 'resources':pilot['resources'],
+                            'actual_capacity_verified':False,
+                            'direct_operating_cost_scenario_CNY':pilot['direct_operating_cost_scenario_CNY'],
+                            'source':'studies/COMPETITION-DESIGN/results/pilot-production-20261007.json'},
+        'legacy_results':{'maximum_position_budget_um':52.084, 'allowed_um':50,
+                          'current_manufacturing_evidence':False,
+                          'position_source':'simulation/competition-r4/results/verification.json',
+                          'service_source':'simulation/competition-r4/results/service-verification.json'},
+        'next_action':'取得适用热源与高温本构依据，闭合首层一翼冷态；继承残余状态完成实际修整、第二层、最终孔加工、组焊、完全卸夹与同状态承载。',
+        'historical_results_current_design_evidence':False,
+    }
     output = root/"deliverables/report/generated"
     output.mkdir(parents=True,exist_ok=True)
     json_path = output/"current-status.json"
     markdown_path = output/"current-status.md"
     json_path.write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding="utf-8")
-    lines=['# 当前R4设计与核验状态','',
-           '当前产物为修订审阅稿。工艺主线为Ni99两层预制、NiFe55两道脉冲GTAW、柔顺座体、实际承力夹具和连续颗粒隔离。','',
-           f"工程图{status['drawing_count']}张；当前几何{status['geometry']}，最终制造窗口由完整家族核验后冻结。",'',
-           '| 算例 | 当前阶段 |','| --- | --- |']
-    lines += [f'| {case} | {stage} |' for case,stage in workers.items()]
-    lines += ['',f"当前孔轴结果来源：{', '.join(verification['cases'])}。旧冷工具家族保留实际失败，不替代完整工具热耦合家族。",'',
-              f"完整热耦合孔轴核验通过：{status['position_actual_family_pass']}；孔径核验通过：{status['bore_actual_family_pass']}。",'',
-              f"服役静载参考通过：{status['service_static_reference_pass']}；孔径与当前热耦合上界一致：{service_matches}。",'',
-              status['next_action']+'。','',
-              'R3、旧热诊断、旧12 mm服役刚度及历史ROUTE-B排序为历史研究材料。正式结论须引用当前实体、参数和完成状态。']
+    lines=['# 当前工程设计与验证状态','',
+           '工艺主线：CI-A1独立SMAW首层、低碳Ni99第二层、8P-R2-t15最终GTAW与铜环实体屏障。','',
+           f"当前工程图{status['drawing_count']}张。首层100 mm/min候选保留；120 mm/min因公差槽供料不足尚未采用。",'',
+           '| 工程项目 | 当前结果 |','| --- | --- |',
+           '| 公差实体 | 八个角点加名义实体；九组STEP重读，每组17个有效实体 |',
+           f"| 最大槽容积/填槽质量 | {tolerance['maximum_actual_pocket_volume_one_wing_mm3']:.6f} mm³/翼；{tolerance['maximum_pocket_fill_mass_g']:.6f} g/翼 |",
+           '| 首层冷态制造状态 | 原生仅接受至0.125 s，自研仅接受至7.625 s；尚未取得可继承冷态 |',
+           '| 完整连接、位置度、孔径与强度 | 当前制造链均未验证通过 |',
+           '| 历史位置度 | 52.084 μm > 50 μm；失败事实保留，不能继承为新链通过 |',
+           '| 精度分配 | 28+2+6.5+13.5=50 μm；微珩径向去除上限3 μm |',
+           '| 小批整线 | 8件/8 h设计目标；首层8、第二层预留9、延迟PT24个位置；未确认实际产能 |',
+           '| 直接运行费用情景 | 143.58元/件；不含设备、折旧、废品与破坏/疲劳试验 |','',
+           status['next_action'],'',
+           '名义公差实体、热历史与冷态残余状态分别登记，历史计算不代替当前有效制造链。']
     markdown_path.write_text('\n'.join(lines)+'\n',encoding="utf-8")
     return markdown_path

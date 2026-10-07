@@ -1,0 +1,311 @@
+{
+  "cases": [
+    {
+      "case": "D1.50-N0.70-R1.50",
+      "pocket_depth_mm": 1.5,
+      "retained_normal_mm": 0.7,
+      "QT_radius_mm": 1.5,
+      "first_machining_radius_mm": 0.8,
+      "common_circle_centre_rz_mm": [
+        70.48,
+        115.0
+      ],
+      "actual_pocket_volume_one_wing_mm3": 163.4405747630584,
+      "retained_first_volume_one_wing_mm3": 84.75465311175331,
+      "final_second_volume_one_wing_mm3": 78.68592165130511,
+      "material_volumes_mm3": {
+        "QT450-10": 137058.990739865,
+        "first_CI_A1": 678.0372248940265,
+        "second_bare_Ni99": 629.4873732104409
+      },
+      "partition_closure_mm3": -0.0014851262676529586,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.40-N0.65-R1.40",
+      "pocket_depth_mm": 1.4,
+      "retained_normal_mm": 0.65,
+      "QT_radius_mm": 1.4,
+      "first_machining_radius_mm": 0.7499999999999999,
+      "common_circle_centre_rz_mm": [
+        70.38000000000001,
+        115.0
+      ],
+      "actual_pocket_volume_one_wing_mm3": 153.1239619008505,
+      "retained_first_volume_one_wing_mm3": 78.47751215308324,
+      "final_second_volume_one_wing_mm3": 74.64644974776726,
+      "material_volumes_mm3": {
+        "QT450-10": 137141.52418166387,
+        "first_CI_A1": 627.8200972246659,
+        "second_bare_Ni99": 597.1715979821381
+      },
+      "partition_closure_mm3": -0.0009462250454816967,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.40-N0.65-R1.60",
+      "pocket_depth_mm": 1.4,
+      "retained_normal_mm": 0.65,
+      "QT_radius_mm": 1.6,
+      "first_machining_radius_mm": 0.9500000000000001,
+      "common_circle_centre_rz_mm": [
+        70.58,
+        115.19999999999999
+      ],
+      "actual_pocket_volume_one_wing_mm3": 150.6567966627547,
+      "retained_first_volume_one_wing_mm3": 77.39023104364867,
+      "final_second_volume_one_wing_mm3": 73.266565619106,
+      "material_volumes_mm3": {
+        "QT450-10": 137161.2630303741,
+        "first_CI_A1": 619.1218483491893,
+        "second_bare_Ni99": 586.132524952848
+      },
+      "partition_closure_mm3": 0.0005805804103147238,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.40-N0.75-R1.40",
+      "pocket_depth_mm": 1.4,
+      "retained_normal_mm": 0.75,
+      "QT_radius_mm": 1.4,
+      "first_machining_radius_mm": 0.6499999999999999,
+      "common_circle_centre_rz_mm": [
+        70.38000000000001,
+        115.0
+      ],
+      "actual_pocket_volume_one_wing_mm3": 153.12396181410105,
+      "retained_first_volume_one_wing_mm3": 89.41490902978296,
+      "final_second_volume_one_wing_mm3": 63.70905278431808,
+      "material_volumes_mm3": {
+        "QT450-10": 137141.52418166387,
+        "first_CI_A1": 715.3192722382637,
+        "second_bare_Ni99": 509.67242227454466
+      },
+      "partition_closure_mm3": -0.000946919055422768,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.40-N0.75-R1.60",
+      "pocket_depth_mm": 1.4,
+      "retained_normal_mm": 0.75,
+      "QT_radius_mm": 1.6,
+      "first_machining_radius_mm": 0.8500000000000001,
+      "common_circle_centre_rz_mm": [
+        70.58,
+        115.19999999999999
+      ],
+      "actual_pocket_volume_one_wing_mm3": 150.6567961614981,
+      "retained_first_volume_one_wing_mm3": 88.15881754649746,
+      "final_second_volume_one_wing_mm3": 62.49797861500064,
+      "material_volumes_mm3": {
+        "QT450-10": 137161.2630303741,
+        "first_CI_A1": 705.2705403719797,
+        "second_bare_Ni99": 499.9838289200051
+      },
+      "partition_closure_mm3": 0.0005765703390352428,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.60-N0.65-R1.40",
+      "pocket_depth_mm": 1.6,
+      "retained_normal_mm": 0.65,
+      "QT_radius_mm": 1.4,
+      "first_machining_radius_mm": 0.7499999999999999,
+      "common_circle_centre_rz_mm": [
+        70.38000000000001,
+        114.80000000000001
+      ],
+      "actual_pocket_volume_one_wing_mm3": 176.15770957071513,
+      "retained_first_volume_one_wing_mm3": 80.98472988550358,
+      "final_second_volume_one_wing_mm3": 95.17297968521154,
+      "material_volumes_mm3": {
+        "QT450-10": 136957.25629504872,
+        "first_CI_A1": 647.8778390840287,
+        "second_bare_Ni99": 761.3838374816924
+      },
+      "partition_closure_mm3": 0.0011485186987556517,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.60-N0.65-R1.60",
+      "pocket_depth_mm": 1.6,
+      "retained_normal_mm": 0.65,
+      "QT_radius_mm": 1.6,
+      "first_machining_radius_mm": 0.9500000000000001,
+      "common_circle_centre_rz_mm": [
+        70.58,
+        115.0
+      ],
+      "actual_pocket_volume_one_wing_mm3": 173.6744190391597,
+      "retained_first_volume_one_wing_mm3": 79.90858362735617,
+      "final_second_volume_one_wing_mm3": 93.76583541180352,
+      "material_volumes_mm3": {
+        "QT450-10": 136977.12097837112,
+        "first_CI_A1": 639.2686690188493,
+        "second_bare_Ni99": 750.1266832944282
+      },
+      "partition_closure_mm3": -0.0004924113454762846,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.60-N0.75-R1.40",
+      "pocket_depth_mm": 1.6,
+      "retained_normal_mm": 0.75,
+      "QT_radius_mm": 1.4,
+      "first_machining_radius_mm": 0.6499999999999999,
+      "common_circle_centre_rz_mm": [
+        70.38000000000001,
+        114.80000000000001
+      ],
+      "actual_pocket_volume_one_wing_mm3": 176.15770957847593,
+      "retained_first_volume_one_wing_mm3": 92.30783899857421,
+      "final_second_volume_one_wing_mm3": 83.84987057990173,
+      "material_volumes_mm3": {
+        "QT450-10": 136957.25629504872,
+        "first_CI_A1": 738.4627119885937,
+        "second_bare_Ni99": 670.7989646392139
+      },
+      "partition_closure_mm3": 0.001148580777226016,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    },
+    {
+      "case": "D1.60-N0.75-R1.60",
+      "pocket_depth_mm": 1.6,
+      "retained_normal_mm": 0.75,
+      "QT_radius_mm": 1.6,
+      "first_machining_radius_mm": 0.8500000000000001,
+      "common_circle_centre_rz_mm": [
+        70.58,
+        115.0
+      ],
+      "actual_pocket_volume_one_wing_mm3": 173.67441916792114,
+      "retained_first_volume_one_wing_mm3": 91.06613943448177,
+      "final_second_volume_one_wing_mm3": 82.60827973343936,
+      "material_volumes_mm3": {
+        "QT450-10": 136977.12097837112,
+        "first_CI_A1": 728.5291154758542,
+        "second_bare_Ni99": 660.8662378675149
+      },
+      "partition_closure_mm3": -0.000491381244501099,
+      "second_QT_shared_face_area_mm2": 0.0,
+      "full_manufacturing_state_assigned": false
+    }
+  ],
+  "QT_radius_tolerance_mm": 0.1,
+  "QT_radius_tolerance_basis": "Explicitly retain the existing drawing general +/-0.10mm tolerance; do not narrow it to protect supply margin",
+  "maximum_actual_pocket_volume_one_wing_mm3": 176.15770957847593,
+  "density_basis_g_mm3": 0.00889,
+  "maximum_pocket_fill_mass_g": 1.566042038152651,
+  "feed_scenarios": [
+    {
+      "rate_g_s": 0.15,
+      "nominal_speed_mm_min": 100,
+      "relative_speed_upper_scenario": 0,
+      "deposited_mass_g": 1.6907244898443674,
+      "actual_max_pocket_fill_mass_g": 1.566042038152651,
+      "mass_margin_g": 0.12468245169171643,
+      "necessary_nominal_feed_g_s": 0.13893825229001144,
+      "interpretation": "historical feed sensitivity and stated speed scenario; not supplier-guaranteed window or local bead coverage"
+    },
+    {
+      "rate_g_s": 0.15,
+      "nominal_speed_mm_min": 100,
+      "relative_speed_upper_scenario": 0.02,
+      "deposited_mass_g": 1.6566979684910748,
+      "actual_max_pocket_fill_mass_g": 1.566042038152651,
+      "mass_margin_g": 0.09065593033842378,
+      "necessary_nominal_feed_g_s": 0.14179187165711984,
+      "interpretation": "historical feed sensitivity and stated speed scenario; not supplier-guaranteed window or local bead coverage"
+    },
+    {
+      "rate_g_s": 0.15,
+      "nominal_speed_mm_min": 120,
+      "relative_speed_upper_scenario": 0,
+      "deposited_mass_g": 1.4014990583413807,
+      "actual_max_pocket_fill_mass_g": 1.566042038152651,
+      "mass_margin_g": -0.1645429798112703,
+      "necessary_nominal_feed_g_s": 0.16761074816625282,
+      "interpretation": "historical feed sensitivity and stated speed scenario; not supplier-guaranteed window or local bead coverage"
+    },
+    {
+      "rate_g_s": 0.17,
+      "nominal_speed_mm_min": 120,
+      "relative_speed_upper_scenario": 0,
+      "deposited_mass_g": 1.5883655994535648,
+      "actual_max_pocket_fill_mass_g": 1.566042038152651,
+      "mass_margin_g": 0.02232356130091384,
+      "necessary_nominal_feed_g_s": 0.16761074816625282,
+      "interpretation": "historical feed sensitivity and stated speed scenario; not supplier-guaranteed window or local bead coverage"
+    },
+    {
+      "rate_g_s": 0.17,
+      "nominal_speed_mm_min": 120,
+      "relative_speed_upper_scenario": 0.02,
+      "deposited_mass_g": 1.5562294403976775,
+      "actual_max_pocket_fill_mass_g": 1.566042038152651,
+      "mass_margin_g": -0.009812597754973451,
+      "necessary_nominal_feed_g_s": 0.171071912389679,
+      "interpretation": "historical feed sensitivity and stated speed scenario; not supplier-guaranteed window or local bead coverage"
+    }
+  ],
+  "conditional_zero_overfill_speed_limit_at_015_mm_min": 107.74102957534781,
+  "local_profile_qualification_required": true,
+  "actual_residual_cut_performed": false,
+  "decision": "Retain100mm/min pWPS;120mm/min remains conditional because the historical0.15g/s scenario underfills the actual maximum pocket.",
+  "exported_STEP_reopen_check": [
+    {
+      "case": "D1.50-N0.70-R1.50",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.40-N0.65-R1.40",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.40-N0.65-R1.60",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.40-N0.75-R1.40",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.40-N0.75-R1.60",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.60-N0.65-R1.40",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.60-N0.65-R1.60",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.60-N0.75-R1.40",
+      "solids": 17,
+      "all_solids_valid": true
+    },
+    {
+      "case": "D1.60-N0.75-R1.60",
+      "solids": 17,
+      "all_solids_valid": true
+    }
+  ],
+  "maximum_absolute_partition_closure_mm3": 0.0014851262676529586
+}

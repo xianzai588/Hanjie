@@ -29,6 +29,21 @@
       "number": 17,
       "pdf": "cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf",
       "title": "HJ-017 名义曲面预制与法向修整断面"
+    },
+    {
+      "number": 19,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-019.pdf",
+      "title": "HJ-019 真实公差与法向修整截面"
+    },
+    {
+      "number": 20,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-020.pdf",
+      "title": "HJ-020 异种接头专用UT可达与覆盖"
+    },
+    {
+      "number": 21,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-021.pdf",
+      "title": "HJ-021 关键零件明细与制造配合"
     }
   ],
   "excluded": "本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"

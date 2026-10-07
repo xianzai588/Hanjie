@@ -232,7 +232,7 @@ def main() -> int:
     # 研究状态独立保留，正文只呈现比赛论证所需证据。
     story = cover_and_contents() + build_story()
     # The workshop cards belong in the readable manual, not only in loose attachments.
-    for card in ("current-candidate-state.md", "independent-precoat-design-card.md", "first-layer-input-card.md", "joint-process-card.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md"):
+    for card in ("current-candidate-state.md", "independent-precoat-design-card.md", "first-layer-input-card.md", "precoat-tolerance-and-feed-card.md", "joint-process-card.md", "cold-weld-and-peening-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md", "pilot-production-and-resource-card.md"):
         if '--competition-entry' in sys.argv and card in ('current-candidate-state.md','cold-weld-and-peening-card.md'):
             continue  # Internal execution ledger and optional tooling card.
         story += [PageBreak()] + build_story(ROOT / "deliverables/process" / card)
@@ -247,11 +247,11 @@ def main() -> int:
         from pypdf import PdfReader, PdfWriter
         drawings=ROOT/'cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf'
         manifest=json.loads((drawings.parent/'pdf-exports.json').read_text(encoding='utf8'))
-        if len(PdfReader(drawings).pages)!=manifest['sheet_count'] or manifest['sheet_count']!=18:
-            raise ValueError('先生成包含HJ-017/HJ-018的18张当前图集')
+        if len(PdfReader(drawings).pages)!=manifest['sheet_count'] or {sheet['number'] for sheet in manifest['sheets']} != set(range(1,22)):
+            raise ValueError('先生成HJ-001至HJ-021连续图号的当前图集')
         bundle=PdfWriter();bundle.append(OUT);bundle.append(drawings)
         bundle.add_metadata({'/Title':'QT450-10/Q235B 工艺设计说明书与工程图（修订审阅稿）',
-                             '/Author':'','/Subject':'当前MMA首层候选、工艺规程与18张工程图'})
+                             '/Author':'','/Subject':f"当前MMA首层候选、工艺规程与{manifest['sheet_count']}张工程图"})
         combined=ROOT/'output/pdf/工艺设计说明书与工程图-修订审阅稿.pdf'
         if '--competition-entry' in sys.argv:
             combined=ROOT/'output/pdf/工艺设计说明书与工程图-参赛设计稿.pdf'

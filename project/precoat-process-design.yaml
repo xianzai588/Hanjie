@@ -71,6 +71,11 @@ machining:
   - 1.6
   second_deposited_top_min_mm: 1.75
   final_union_remelt_limit_mm: 0.4
+  QT_corner_radius_mm:
+  - 1.4
+  - 1.6
+  first_machining_radius_policy: R_actual_QT - actual_normal_retained; nominal0.80mm;
+    corner range0.65..0.95mm
 production_window_frozen: false
 fusion_verified: false
 full_manufacturing_verified: false
@@ -79,3 +84,4 @@ sources:
   reference_heat: El-Banna2000 Table3, DOI10.1016/S0167-577X(99)00204-9
   second_feed: actual arc length and wire-volume conservation; arc parameters are
     design proposals, not supplier-qualified parameters
+tolerance_geometry_evidence: cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json

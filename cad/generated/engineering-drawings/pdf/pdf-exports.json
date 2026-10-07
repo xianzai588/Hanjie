@@ -2,8 +2,8 @@
   "generated_at": "2026-10-07",
   "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
   "status": "design-review; not manufacturing release",
-  "page_size": "A4 landscape, vector",
-  "sheet_count": 18,
+  "page_size": "A4/A3 landscape, vector; actual page box in each sheet",
+  "sheet_count": 21,
   "combined": "pdf/HJ-DRW-drawing-set.pdf",
   "sheets": [
     {
@@ -113,6 +113,24 @@
       "title": "微珩回液、失吸容量与回收瓶接口",
       "source": "postweld-drain-return.svg",
       "number": 18
+    },
+    {
+      "pdf": "pdf/HJ-DRW-019.pdf",
+      "title": "HJ-019 真实公差与法向修整截面",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-019.pdf",
+      "number": 19
+    },
+    {
+      "pdf": "pdf/HJ-DRW-020.pdf",
+      "title": "HJ-020 异种接头专用UT可达与覆盖",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-020.pdf",
+      "number": 20
+    },
+    {
+      "pdf": "pdf/HJ-DRW-021.pdf",
+      "title": "HJ-021 关键零件明细与制造配合",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-021.pdf",
+      "number": 21
     }
   ]
 }

@@ -26,3 +26,6 @@
 - SKL-SP2：https://magnaflux.com/EU-Files/Product-Data-Sheets/Chemical-Consumables/SKL-SP2-PDS.pdf
 - SKD-S2：https://www.magnaflux.eu/EU-Files/Product-Data-Sheets/Chemical-Consumables/SKD-S2-PDS.pdf
 - TWI：https://www.twi-global.com/technical-knowledge/published-papers/immersion-transmit-receive-longitudinal-phased-array-probe-for-stainless-steel-december-2008
+
+
+HJ-020增加壳体外侧R80、z114～135扫查带，逐段18mm及端部各2mm。顶面4mm足迹、中心R≤69及60°情景最多到R71.60，外侧约3.38mm须由外侧路径交叉覆盖。22.04mm最远几何声程只用于可达预检，实际折射声束与浅层盲区按同材料曲率对比块核定；首次、层间、最终镍/钢侧及圆角/端部均分别记录。

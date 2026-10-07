@@ -801,10 +801,15 @@ def main():
     for name,parts in drawings.items():
         (out/name).write_text("\n".join(parts),encoding="utf-8")
     core = [name for name in drawings if name != "sleeve-detail.svg"]
+    external=[{"number":17,"pdf":"cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf", "title":"HJ-017 名义曲面预制与法向修整断面"}]
+    for number,title in [(19,'真实公差与法向修整截面'),(20,'异种接头专用UT可达与覆盖'),(21,'关键零件明细与制造配合')]:
+        path=f'cad/generated/engineering-supplements-20261007/HJ-DRW-{number:03}.pdf'
+        if (ROOT/path).is_file():
+            external.append(dict(number=number,pdf=path,title=f'HJ-{number:03} {title}'))
     (out/"drawing-manifest.json").write_text(json.dumps({"version":"COMPETITION-R4","source":"project/competition-design.yaml",
         "status":"competition design; not manufacturing release","drawings":core,"drawing_count":len(core),
         "supplemental_drawings":["sleeve-detail.svg"],
-        "external_pdf_sheets":[{"number":17,"pdf":"cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf", "title":"HJ-017 名义曲面预制与法向修整断面"}],
+        "external_pdf_sheets":external,
         "excluded":"本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"},ensure_ascii=False,indent=2),encoding="utf-8")
     print(f"已同步{len(drawings)}张参赛设计图")
 

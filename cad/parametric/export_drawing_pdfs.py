@@ -171,6 +171,7 @@ def main() -> None:
         rules = parse_css(style_element.text or "") if style_element is not None else {}
         pdf_path = PDF_DIR / (svg_path.stem + ".pdf")
         canvas = Canvas(str(pdf_path), pagesize=landscape(A4))
+        canvas.setAuthor('')
         title = export_sheet(svg_path, canvas, page_pw, page_ph, rules)
         canvas.setFont("HanjieCN",7)
         canvas.setFillColor(HexColor("#475569"))
@@ -209,7 +210,7 @@ def main() -> None:
         "generated_at": today,
         "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
         "status": "design-review; not manufacturing release",
-        "page_size": "A4 landscape, vector",
+        "page_size": "A4/A3 landscape, vector; actual page box in each sheet",
         "sheet_count": len(sheets),
         "combined": f"pdf/{COMBINED_NAME}",
         "sheets": sheets,
