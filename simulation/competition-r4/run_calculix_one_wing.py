@@ -31,10 +31,11 @@ def history(folder):
                 yield float(t),f['temperature_C'][i].copy(),f['deposit_element_indices'].copy(),f['deposit_fraction'][i].copy()
 
 
-def build(out,stop,linear_geometry=False):
+def build(out,stop,linear_geometry=False,qt_hardening=False,native_gauss_phase=False):
     source=ROOT/'simulation/competition-r4/results/mma-first-end80-r12-phase-front-dt0125-20261007'
     furnace=ROOT/'simulation/competition-r4/results/mma-one-wing-furnace-phase-front-20261007'
     inp=json.loads((source/'input.json').read_text());ref=yaml.safe_load((ROOT/'project/precoat-mechanical-reference.yaml').read_text(encoding='utf8'))
+    hardening=yaml.safe_load((ROOT/'project/precoat-native-hardening-reference.yaml').read_text(encoding='utf8')) if qt_hardening else None
     f=np.load(source/'thermal-fields.npz');x,e,m,V=f['x'],f['e'],f['material'],f['volume_mm3']
     # Face adjacency is used only to schedule already coherent native clusters.
     faces=np.sort(np.vstack([e[:,q] for q in [[0,1,2],[0,1,3],[0,2,3],[1,2,3]]]),axis=1)
@@ -55,7 +56,13 @@ def build(out,stop,linear_geometry=False):
             fused|=(T[edge_faces].min(axis=1)>=threshold)
             if stop is not None and t>stop+1e-8:break
             occupation=np.ones(len(e));occupation[ids]=frac
-            eligible=(T[e].max(axis=1)<=Ts)&(occupation>=1-1e-10)
+            # Native C3D4 has one constitutive point at the barycentre. A
+            # corner maximum removes still-coherent integration-point material
+            # and can create an artificial one-tetrahedron tip. This option is
+            # a fixed engineering quadrature representation, not temperature
+            # clipping or a statement that every point of the cell is solid.
+            cell_T=T[e].mean(axis=1) if native_gauss_phase else T[e].max(axis=1)
+            eligible=(cell_T<=Ts)&(occupation>=1-1e-10)
             good_edge=eligible[edges].all(axis=1)&fused
             q=edges[good_edge]
             graph=coo_matrix((np.ones(2*len(q)),(np.r_[q[:,0],q[:,1]],np.r_[q[:,1],q[:,0]])),shape=(len(e),len(e))).tocsr()
@@ -102,7 +109,13 @@ def build(out,stop,linear_geometry=False):
         for T,E in zip(qt['temperatures_C'],qt['E_GPa']):q.write(f'{1000*E},{qt["poisson"]},{T}\n')
         q.write('*PLASTIC\n')
         for T,Y in zip(qt['temperatures_C'],qt['source_yield_MPa']):
-            Y*=qt['yield_grade_scale'];q.write(f'{Y:.12g},0,{T}\n{Y:.12g},.1,{T}\n')
+            Y*=qt['yield_grade_scale']
+            if hardening:
+                s=hardening['source']
+                for p in hardening['tabulation']['plastic_strain_points']:
+                    stress=Y*(1+s['tensile_B_MPa']/s['tensile_A_MPa']*p**s['tensile_n'])
+                    q.write(f'{stress:.12g},{p:.12g},{T}\n')
+            else:q.write(f'{Y:.12g},0,{T}\n{Y:.12g},.1,{T}\n')
         q.write('*EXPANSION,ZERO=20\n')
         for T,a in zip(qt['temperatures_C'],qt['mean_alpha_20C_per_K']):q.write(f'{a},{T}\n')
         q.write('*MATERIAL,NAME=NI_REF\n*ELASTIC\n')
@@ -130,7 +143,9 @@ def build(out,stop,linear_geometry=False):
             regime=',NLGEOM=NO' if linear_geometry else ',NLGEOM'
             q.write(f'** Actual thermal time {t:.12g} s\n*STEP{regime},INC=100\n*STATIC,SOLVER=SPOOLES\n.25,1,1e-6,.5\n')
             if len(removed):q.write('*MODEL CHANGE,TYPE=ELEMENT,REMOVE\n'+rows(removed))
-            if len(added):q.write('*MODEL CHANGE,TYPE=ELEMENT,ADD=STRAIN FREE\n'+rows(added))
+            if len(added):
+                mode='WITH STRAIN' if native_gauss_phase else 'STRAIN FREE'
+                q.write(f'*MODEL CHANGE,TYPE=ELEMENT,ADD={mode}\n'+rows(added))
             q.write(bc+'*TEMPERATURE\n');q.writelines(f'{j+1},{v:.12g}\n' for j,v in enumerate(T))
             if i==len(selected)-1:
                 q.write('*NODE PRINT,NSET=ALLN,FREQUENCY=99999\nU,RF\n*EL PRINT,ELSET=ALLE,FREQUENCY=99999\nS,PEEQ,ME\n*NODE FILE,FREQUENCY=99999\nU\n*EL FILE,FREQUENCY=99999\nS,PEEQ\n*RESTART,WRITE\n')
@@ -138,8 +153,9 @@ def build(out,stop,linear_geometry=False):
             q.write('*END STEP\n')
     metadata=dict(source=str(source),furnace=str(furnace),last_time_s=selected[-1][0],selected_steps=len(selected),
                   strain_regime='native small strain plasticity, geometric applicability requires cold audit' if linear_geometry else 'native large strain plasticity',
-                  material_reference=ref, engineering_representation='native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond',
-                  reference_policy='native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory',
+                  material_reference=ref,QT_hardening_reference=hardening, engineering_representation='native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond',
+                  reference_policy=('native ADD=WITH STRAIN keeps the original cold material reference and all previous plastic history; new Ni has a prescribed cold material shape, not an independently zero-stress hot birth. Activation closure stress and cold volume require explicit audit; this is not a calibrated molten-shape transport model' if native_gauss_phase else 'native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory'),
+                  phase_sampling='native one-point C3D4 barycentre; whole-face physical fusion gate retained' if native_gauss_phase else 'all-corner solid phase',
                   actual_carried_Ni_mass_g=float(V[m==3].sum()*8.89e-3),
                   actual_first_layer_joint_passed=False, cold_geometry_qualified=False,full_manufacturing_chain_passed=False,
                   sources=['https://www.dhondt.de/','https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/add_ded/add_ded_method_abstract.html'])
@@ -148,10 +164,10 @@ def build(out,stop,linear_geometry=False):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--stop-time',type=float);p.add_argument('--linear-geometry',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--stop-time',type=float);p.add_argument('--linear-geometry',action='store_true');p.add_argument('--qt-source-hardening',action='store_true');p.add_argument('--native-gauss-phase',action='store_true');a=p.parse_args()
     out=ROOT/a.output
     if (out/'input.json').exists():raise ValueError('Preserve existing native manufacturing run')
-    build(out,a.stop_time,a.linear_geometry)
+    build(out,a.stop_time,a.linear_geometry,a.qt_source_hardening,a.native_gauss_phase)
     env=os.environ.copy();env['OMP_NUM_THREADS']='4';env['CCX_NPROC_RESULTS']='4';env['CCX_NPROC_STIFFNESS']='4'
     start=time.monotonic()
     with (out/'solver.log').open('w',encoding='utf8') as log:

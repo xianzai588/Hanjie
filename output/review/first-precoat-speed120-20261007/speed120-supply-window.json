@@ -1,0 +1,89 @@
+{
+  "historical_rate_interval_g_s": [
+    0.15,
+    0.3333333333
+  ],
+  "historical_interval_source": "project/independent-precoat-candidates.yaml; engineering sensitivity, not supplier guarantee",
+  "actual_feed_lower_bound_verified": false,
+  "first_speed_tolerance_frozen": false,
+  "actual_R1_5_tolerance_volume_CAD_available": false,
+  "required_rate_at_nominal_speed_and_pocket_g_s": 0.15551063582538682,
+  "conditional_speed_limit_at_0_15_g_s_mm_min": 115.87442604664221,
+  "boundary_formula": "q_lower * (L / (v_nominal*(1+eps_upper)) - delta_t) >= rho_upper * V_pocket_upper; additional local retained-envelope coverage is required",
+  "scenarios": [
+    {
+      "rate_g_s": 0.17,
+      "speed_mm_min": 120.0,
+      "volume_basis": "actual_nominal_R1.5_CAD",
+      "pocket_volume_mm3": 163.4405771813641,
+      "deposited_mass_g": 1.5883655994535648,
+      "fill_mass_margin_g": 0.13537886831123802,
+      "required_rate_g_s": 0.15551063582538682
+    },
+    {
+      "rate_g_s": 0.17,
+      "speed_mm_min": 120.0,
+      "volume_basis": "conditional_uniform_0.10mm_deeper_estimate_not_tolerance_CAD",
+      "pocket_volume_mm3": 174.95744549625033,
+      "deposited_mass_g": 1.5883655994535648,
+      "fill_mass_margin_g": 0.03299390899189936,
+      "required_rate_g_s": 0.16646871946197242
+    },
+    {
+      "rate_g_s": 0.17,
+      "speed_mm_min": 122.4,
+      "volume_basis": "actual_nominal_R1.5_CAD",
+      "pocket_volume_mm3": 163.4405771813641,
+      "deposited_mass_g": 1.5562294403976775,
+      "fill_mass_margin_g": 0.10324270925535073,
+      "required_rate_g_s": 0.15872193256482503
+    },
+    {
+      "rate_g_s": 0.17,
+      "speed_mm_min": 122.4,
+      "volume_basis": "conditional_uniform_0.10mm_deeper_estimate_not_tolerance_CAD",
+      "pocket_volume_mm3": 174.95744549625033,
+      "deposited_mass_g": 1.5562294403976775,
+      "fill_mass_margin_g": 0.0008577499360120644,
+      "required_rate_g_s": 0.16990630077716254
+    },
+    {
+      "rate_g_s": 0.15,
+      "speed_mm_min": 120.0,
+      "volume_basis": "actual_nominal_R1.5_CAD",
+      "pocket_volume_mm3": 163.4405771813641,
+      "deposited_mass_g": 1.4014990583413807,
+      "fill_mass_margin_g": -0.05148767280094613,
+      "required_rate_g_s": 0.15551063582538682
+    },
+    {
+      "rate_g_s": 0.15,
+      "speed_mm_min": 120.0,
+      "volume_basis": "conditional_uniform_0.10mm_deeper_estimate_not_tolerance_CAD",
+      "pocket_volume_mm3": 174.95744549625033,
+      "deposited_mass_g": 1.4014990583413807,
+      "fill_mass_margin_g": -0.1538726321202848,
+      "required_rate_g_s": 0.16646871946197242
+    },
+    {
+      "rate_g_s": 0.15,
+      "speed_mm_min": 122.4,
+      "volume_basis": "actual_nominal_R1.5_CAD",
+      "pocket_volume_mm3": 163.4405771813641,
+      "deposited_mass_g": 1.3731436238803034,
+      "fill_mass_margin_g": -0.07984310726202337,
+      "required_rate_g_s": 0.15872193256482503
+    },
+    {
+      "rate_g_s": 0.15,
+      "speed_mm_min": 122.4,
+      "volume_basis": "conditional_uniform_0.10mm_deeper_estimate_not_tolerance_CAD",
+      "pocket_volume_mm3": 174.95744549625033,
+      "deposited_mass_g": 1.3731436238803034,
+      "fill_mass_margin_g": -0.18222806658136204,
+      "required_rate_g_s": 0.16990630077716254
+    }
+  ],
+  "local_contour_requirement": "Complete actual pocket coverage and continuous coverage outside the maximum 0.75mm normal retained envelope at every wing/end/R1.5 corner. Positive machining stock and no cracks/slag in retained metal must be checked; average mass or overfill does not establish this.",
+  "decision": "Retain120 as a conditional design candidate; do not adopt it as production window. Historical low-feed scenario fails nominal full-pocket mass and actual speed/feed/tolerance/contour bounds are not yet verified."
+}

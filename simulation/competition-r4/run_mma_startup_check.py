@@ -10,8 +10,8 @@ from ni99_local_thermal import tables
 from run_ni99_precoat_first import run
 
 
-def arguments(mesh, output, dt, legacy=False, stop_time=1., liquid_transport=1., growth='angular'):
-    card = yaml.safe_load((ROOT/'project/precoat-process-design.yaml').read_text(encoding='utf8'))['first']
+def arguments(mesh, output, dt, legacy=False, stop_time=1., liquid_transport=1., growth='angular',process_design=None):
+    card = yaml.safe_load((process_design or ROOT/'project/precoat-process-design.yaml').read_text(encoding='utf8'))['first']
     if mesh is None:mesh=ROOT/('cad/generated/mma-mass-envelope/CI-A1-single-track' if legacy else card['geometry_model_path'])
     geometry = json.loads((mesh/'geometry-audit.json').read_text(encoding='utf8'))
     path = geometry['single_track_inputs']

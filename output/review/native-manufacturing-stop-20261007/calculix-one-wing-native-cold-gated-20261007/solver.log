@@ -1,0 +1,62 @@
+
+************************************************************
+
+CalculiX Version 2.23, Copyright(C) 1998-2025 Guido Dhondt
+CalculiX comes with ABSOLUTELY NO WARRANTY. This is free
+software, and you are welcome to redistribute it under
+certain conditions, see gpl.htm
+
+************************************************************
+
+You are using an executable made on Fri Oct 24 20:12:25     2025
+
+  The numbers below are estimated upper bounds
+
+  number of:
+
+   nodes:        18450
+   elements:        77499
+   one-dimensional elements:            0
+   two-dimensional elements:            0
+   integration points per element:            1
+   degrees of freedom per node:            3
+   layers per element:            1
+
+   distributed facial loads:            0
+   distributed volumetric loads:            0
+   concentrated loads:            0
+   single point constraints:         3750
+   multiple point constraints:            1
+   terms in all multiple point constraints:            1
+   tie constraints:            0
+   dependent nodes tied by cyclic constraints:            0
+   dependent nodes in pre-tension constraints:            0
+
+   sets:            4
+   terms in all sets:       250947
+
+   materials:            2
+   constants per material and temperature:            2
+   temperature points per material:           14
+   plastic data points per material:            2
+
+   orientations:            0
+   amplitudes:         1250
+   data points in all amplitudes:         1250
+   print requests:            5
+   transformations:            0
+   property cards:            0
+
+ *ERROR reading *EXPANSION. Card image:
+        1.6700000000000003E-05,1000
+
+
+ STEP            1
+
+ *INFO reading *STEP: nonlinear geometric
+       effects are turned on
+
+ *ERROR in calinput: at least one fatal
+        error message while reading the
+        input deck: CalculiX stops.
+

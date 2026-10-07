@@ -1,0 +1,99 @@
+state: spatial_thermal_screen_passed_supply_and_manufacturing_unqualified
+main_route: CI-A1独立预制—低碳Ni99第二层—8P低热GTAW—铜环实体屏障
+first:
+  method: SMAW/MMA
+  polarity: DCEP
+  electrode: KOBELCO CI-A1 ENi-CI
+  diameter_mm: 3.2
+  current_A: 110.0
+  voltage_V_reference: 23.0
+  travel_mm_s: 2.0
+  efficiency_for_design_accounting: 0.8
+  deposited_mass_rate_g_s: 0.17
+  track_radius_mm: 71.98
+  track_length_per_wing_mm: 19.28169543353246
+  tracks_per_wing: 1
+  arc_duration_per_wing_s: 9.64084771676623
+  deposited_mass_per_wing_g: 1.5883655994535648
+  net_power_W_for_design_accounting: 2024.0
+  net_line_energy_J_mm_calculated: 1012.0
+  reference_line_energy_J_mm_rounded: 1012
+  geometry_model_path: cad/generated/mma-mass-envelope/CI-A1-single-track-speed120-end80-r12-h065
+  end_control:
+    ramp_duration_s: 1.2
+    final_current_A: 80.0
+    melting_rate_current_exponent: 2
+    rate_basis: 末段准稳态I与I²熔化关系的低供料情景，未移植E7018或其他产品的系数；以实际熔敷称量核验
+    source: KOBELCO目录346页，CI-A1直径3.2电流80～130 A；90A候选时间减半仍超温，按3.2mm面内扩散尺度限定末次修订
+  preheat_interpass_C:
+  - 200
+  - 300
+  furnace_setpoint_C: 300
+  drying_C:
+  - 70
+  - 100
+  drying_min:
+  - 30
+  - 60
+  hot_peening: 逐道趁热轻击熔敷金属，不击QT/熔合线，不计强度收益
+  cooling: 转200℃保温炉保温2 h，再随炉缓冷；引用同类试验作为设计制度，按本件金相与裂纹评定确认
+second:
+  method: GTAW
+  polarity: DCEN
+  filler: 低碳WWNA99类ERNi-CI裸棒
+  diameter_mm: 1.2
+  diameter_tolerance_mm: 0.02
+  current_A: 75.0
+  voltage_V_reference: 11.0
+  travel_mm_s: 2.0
+  travel_relative_tolerance: 0.02
+  efficiency_for_design_accounting: 0.6
+  feed_mm_s: 7.2
+  feed_tolerance_mm_s: 0.2
+  deposition_efficiency_range:
+  - 0.9
+  - 0.98
+  track_length_per_wing_mm: 38.563543926840644
+  tracks_per_wing: 2
+  preheat_interpass_C:
+  - 200
+  - 300
+  argon_L_min:
+  - 8
+  - 12
+  cooling: 独立保温缓冷，冷态检查后完成最终连接面与孔加工
+machining:
+  first_retained_mm:
+  - 0.65
+  - 0.75
+  total_finished_mm:
+  - 1.4
+  - 1.6
+  second_deposited_top_min_mm: 1.75
+  final_union_remelt_limit_mm: 0.4
+production_window_frozen: false
+fusion_verified: false
+full_manufacturing_verified: false
+sources:
+  product: KOBELCO catalogue pp344-347,551
+  reference_heat: El-Banna2000 Table3, DOI10.1016/S0167-577X(99)00204-9
+  second_feed: actual arc length and wire-volume conservation; arc parameters are
+    design proposals, not supplier-qualified parameters
+speed_revision_basis: 'Speed changes from100 to120 mm/min under the same mass-envelope/source
+  rule: deposited height, effective source depth and source anchor also change. The130.804629
+  mm/min zero-overfill limit is conditional on0.17g/s, design density and nominal
+  full R1.5 pocket. No new current/furnace/source/transport matrix.'
+supply_window_evidence: output/review/first-precoat-speed120-20261007/speed120-supply-window.json
+production_adoption_decision: Retain120 as a conditional design candidate; do not
+  adopt it as production window. Historical low-feed scenario fails nominal full-pocket
+  mass and actual speed/feed/tolerance/contour bounds are not yet verified.
+thermal_screen_evidence:
+  comparison: output/review/first-precoat-speed120-20261007/speed120-thermal-comparison.json
+  actual_completed_runs:
+  - mma-first-speed120-end80-r12-20261007
+  - mma-first-speed120-end80-r12-h045-20261007
+  spatial_response_passed: true
+  maximum_spatial_relative_error: 0.007828149919124014
+  new_temporal_convergence_verified: false
+  physical_source_calibrated: false
+  actual_cold_mechanical_state_qualified: false

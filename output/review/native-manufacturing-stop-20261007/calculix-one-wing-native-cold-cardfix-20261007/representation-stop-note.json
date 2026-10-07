@@ -1,0 +1,9 @@
+{
+  "status": "native large-strain actual replay failed at thermal0.25s, before deposition connection",
+  "last_completed_native_step": 2,
+  "last_completed_thermal_time_s": 0.125,
+  "actual_restore_file_available": false,
+  "diagnosis": "not a detached coherent body: node- and face-connectivity both give one QT body; abnormal tip response at a whole-cell melt-domain change; tool cold benchmark remains valid",
+  "next_representation": "one native classical small-strain sequential plasticity replay from t0; no conversion of this failed large-strain history. Cold geometry, mass/reference and rotation audit required; no stiffness/damping or tolerance change",
+  "scope": "numerical representation qualification, not physical process failure"
+}

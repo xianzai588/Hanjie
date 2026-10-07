@@ -1,0 +1,5005 @@
+
+************************************************************
+
+CalculiX Version 2.23, Copyright(C) 1998-2025 Guido Dhondt
+CalculiX comes with ABSOLUTELY NO WARRANTY. This is free
+software, and you are welcome to redistribute it under
+certain conditions, see gpl.htm
+
+************************************************************
+
+You are using an executable made on Fri Oct 24 20:12:25     2025
+ Decascading the MPC's
+
+ Determining the structure of the matrix:
+ Using up to 4 cpu(s) for setting up the structure of the matrix.
+ number of equations
+ 344526
+ number of nonzero lower triangular matrix elements
+ 13031734
+
+ increment 1 attempt 1 
+ increment size= 2.500000e-01
+ sum of previous increments=0.000000e+00
+ actual step time=2.500000e-01
+ actual total time=2.500000e-01
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Not reusing csc.
+IPARM_MIXED=1
+globDouble=0
++-------------------------------------------------+
++     PaStiX : Parallel Sparse matriX package     +
++-------------------------------------------------+
+  Version:                                   6.4.0
+  Schedulers:
+    sequential:                            Enabled
+    thread static:                         Started
+    thread dynamic:                       Disabled
+    PaRSEC:                               Disabled
+    StarPU:                               Disabled
+  Number of MPI processes:                       1
+  Number of threads per process:                 4
+  Number of GPUs:                                0
+  MPI communication support:              PastixMpiNone
+  Distribution level:                     2D( 128)
+  Blocking size (min/max):             1024 / 2048
+  Computational models
+    CPU:              AMD Opteron 6180 - Intel MKL
+    GPU:             Nvidia K40 GK1108L - CUDA 8.0
+  Low rank parameters:
+    Strategy                        No compression
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Ordering subtask :
+    Ordering method is: Scotch
+    Time to compute ordering              7.832150e-01 s
++-------------------------------------------------+
+  Symbolic factorization subtask:
+    Symbol factorization using: Fax Direct
+    Number of nonzeroes in L structure    206004919
+    Fill-in of L                          7.800855
+    Time to compute symbol matrix         8.403492e-02 s
++-------------------------------------------------+
+  Reordering subtask:
+    Split level                                  0
+    Stoping criterion                           -1
+    Time for reordering                   2.537930e-01 s
++-------------------------------------------------+
+  Mapping/Scheduling subtask:
+    Number of non-zeroes in blocked L     412009838
+    Fill-in                               15.601709
+    Number of operations in full-rank: LU       493.65 GFlops
+    Prediction:
+      Model                              AMD 6180  MKL
+      Time to factorize                   2.349335e+01 s
+    Time for mapping/scheduling           1.490712e-02 s
++-------------------------------------------------+
+  Analyze task:
+    Total time for analyze                1.217131e+00 s
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.411479e+00 s
+    Time to initialize coeftab            1.828740e-01 s
+    Time to factorize                     1.999582e+00 s (246.88 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.103060e-01 s
+    - iteration 1 :
+         total iteration time                   0.138 s
+         error                                  3.0109e-07
+    - iteration 2 :
+         total iteration time                   0.132 s
+         error                                  1.7071e-08
+    - iteration 3 :
+         total iteration time                   0.136 s
+         error                                  7.1629e-10
+    - iteration 4 :
+         total iteration time                   0.133 s
+         error                                  3.392e-11
+    - iteration 5 :
+         total iteration time                   0.135 s
+         error                                  1.4543e-12
+    - iteration 6 :
+         total iteration time                   0.152 s
+         error                                  4.6023e-14
+    Time for refinement                   8.663540e-01 s
+________________________________________
+
+CSC Conversion Time: 0.126181
+Init Time: 1.232197
+Factorize Time: 3.621301
+Solve Time: 0.992324
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.972003
+
+Total PaStiX Time: 5.972003
+CCX without PaStiX Time: 5.352750
+Share of PaStiX Time: 0.527341
+Total Time: 11.324753
+Reusability: 0 : 1 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 13087 and dof 3
+ largest increment of disp= 7.737220e-02
+ largest correction to disp= 7.737220e-02 in node 849 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.417961e+00 s
+    Time to initialize coeftab            2.497048e-01 s
+    Time to factorize                     2.256673e+00 s (218.75 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         3.018281e-01 s
+    - iteration 1 :
+         total iteration time                   0.174 s
+         error                                  0.0011201
+    - iteration 2 :
+         total iteration time                   0.141 s
+         error                                  3.587e-05
+    - iteration 3 :
+         total iteration time                   0.136 s
+         error                                  1.7103e-06
+    - iteration 4 :
+         total iteration time                   0.178 s
+         error                                  8.6941e-08
+    - iteration 5 :
+         total iteration time                   0.16 s
+         error                                  2.7097e-09
+    - iteration 6 :
+         total iteration time                   0.177 s
+         error                                  5.5523e-11
+    - iteration 7 :
+         total iteration time                   0.142 s
+         error                                  1.0027e-12
+    - iteration 8 :
+         total iteration time                   0.198 s
+         error                                  3.4191e-14
+    - iteration 9 :
+         total iteration time                   0.166 s
+         error                                  7.4012e-14
+    - iteration 10 :
+         total iteration time                   0.156 s
+         error                                  7.0196e-14
+    - iteration 11 :
+         total iteration time                   0.17 s
+         error                                  1.1114e-13
+    - iteration 12 :
+         total iteration time                   0.148 s
+         error                                  8.6397e-14
+    - iteration 13 :
+         total iteration time                   0.169 s
+         error                                  1.059e-13
+    - iteration 14 :
+         total iteration time                   0.144 s
+         error                                  2.6244e-13
+    - iteration 15 :
+         total iteration time                   0.142 s
+         error                                  1.3988e-13
+    - iteration 16 :
+         total iteration time                   0.163 s
+         error                                  6.2418e-14
+    - iteration 17 :
+         total iteration time                   0.169 s
+         error                                  7.5376e-14
+    - iteration 18 :
+         total iteration time                   0.163 s
+         error                                  1.4239e-13
+    - iteration 19 :
+         total iteration time                   0.168 s
+         error                                  1.3218e-13
+    - iteration 20 :
+         total iteration time                   0.158 s
+         error                                  1.5906e-13
+    - iteration 21 :
+         total iteration time                   0.162 s
+         error                                  4.6732e-14
+    - iteration 22 :
+         total iteration time                   0.164 s
+         error                                  1.518e-13
+    - iteration 23 :
+         total iteration time                   0.147 s
+         error                                  1.1636e-13
+    - iteration 24 :
+         total iteration time                   0.159 s
+         error                                  7.1034e-14
+    - iteration 25 :
+         total iteration time                   0.159 s
+         error                                  1.0353e-13
+    - iteration 26 :
+         total iteration time                   0.15 s
+         error                                  4.0948e-14
+    - iteration 27 :
+         total iteration time                   0.145 s
+         error                                  8.4987e-14
+    - iteration 28 :
+         total iteration time                   0.161 s
+         error                                  1.8947e-13
+    - iteration 29 :
+         total iteration time                   0.141 s
+         error                                  3.5075e-13
+    - iteration 30 :
+         total iteration time                   0.161 s
+         error                                  8.6533e-14
+    - iteration 31 :
+         total iteration time                   0.144 s
+         error                                  9.1793e-14
+    - iteration 32 :
+         total iteration time                   0.14 s
+         error                                  1.2426e-13
+    - iteration 33 :
+         total iteration time                   0.147 s
+         error                                  1.5737e-13
+    - iteration 34 :
+         total iteration time                   0.146 s
+         error                                  2.6347e-13
+    - iteration 35 :
+         total iteration time                   0.146 s
+         error                                  3.6021e-13
+    - iteration 36 :
+         total iteration time                   0.139 s
+         error                                  3.0542e-13
+    - iteration 37 :
+         total iteration time                   0.159 s
+         error                                  9.7057e-14
+    - iteration 38 :
+         total iteration time                   0.137 s
+         error                                  1.8348e-13
+    - iteration 39 :
+         total iteration time                   0.137 s
+         error                                  1.088e-13
+    - iteration 40 :
+         total iteration time                   0.132 s
+         error                                  1.2805e-13
+    - iteration 41 :
+         total iteration time                   0.151 s
+         error                                  1.1951e-13
+    - iteration 42 :
+         total iteration time                   0.118 s
+         error                                  1.5686e-13
+    - iteration 43 :
+         total iteration time                   0.148 s
+         error                                  2.1076e-13
+    - iteration 44 :
+         total iteration time                   0.165 s
+         error                                  2.3198e-13
+    - iteration 45 :
+         total iteration time                   0.142 s
+         error                                  7.0657e-14
+    - iteration 46 :
+         total iteration time                   0.151 s
+         error                                  8.2364e-14
+    - iteration 47 :
+         total iteration time                   0.149 s
+         error                                  1.1418e-13
+    - iteration 48 :
+         total iteration time                   0.15 s
+         error                                  6.5401e-14
+    - iteration 49 :
+         total iteration time                   0.137 s
+         error                                  8.4631e-14
+    - iteration 50 :
+         total iteration time                   0.142 s
+         error                                  6.4499e-14
+    Time for refinement                   8.602812e+00 s
+________________________________________
+
+CSC Conversion Time: 0.085342
+Init Time: 0.000023
+Factorize Time: 3.981931
+Solve Time: 8.925688
+Clean up Time: 0.000000
+---------------------------------
+Sum: 12.992986
+
+Total PaStiX Time: 18.964988
+CCX without PaStiX Time: 6.185293
+Share of PaStiX Time: 0.754067
+Total Time: 25.150281
+Reusability: 1 : 2 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 102485 and dof 1
+ largest increment of disp= 7.737220e-02
+ largest correction to disp= 3.889124e-12 in node 67 and dof 3
+
+ convergence
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ increment 2 attempt 1 
+ increment size= 2.500000e-01
+ sum of previous increments=2.500000e-01
+ actual step time=5.000000e-01
+ actual total time=5.000000e-01
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.657409e+00 s
+    Time to initialize coeftab            3.142009e-01 s
+    Time to factorize                     2.371819e+00 s (208.13 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.283290e-01 s
+    - iteration 1 :
+         total iteration time                   0.165 s
+         error                                  3.5403e-07
+    - iteration 2 :
+         total iteration time                   0.135 s
+         error                                  2.218e-08
+    - iteration 3 :
+         total iteration time                   0.158 s
+         error                                  9.4526e-10
+    - iteration 4 :
+         total iteration time                   0.149 s
+         error                                  3.9968e-11
+    - iteration 5 :
+         total iteration time                   0.139 s
+         error                                  1.7971e-12
+    - iteration 6 :
+         total iteration time                   0.131 s
+         error                                  5.9933e-14
+    Time for refinement                   9.377730e-01 s
+________________________________________
+
+CSC Conversion Time: 0.096413
+Init Time: 0.000024
+Factorize Time: 4.410698
+Solve Time: 1.086335
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.593470
+
+Total PaStiX Time: 24.558458
+CCX without PaStiX Time: 7.401855
+Share of PaStiX Time: 0.768405
+Total Time: 31.960313
+Reusability: 2 : 3 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 36781 and dof 2
+ largest increment of disp= 7.737220e-02
+ largest correction to disp= 3.103756e-03 in node 849 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.591239e+00 s
+    Time to initialize coeftab            2.760918e-01 s
+    Time to factorize                     2.239787e+00 s (220.40 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.149850e-01 s
+    - iteration 1 :
+         total iteration time                   0.11 s
+         error                                  0.0001407
+    - iteration 2 :
+         total iteration time                   0.132 s
+         error                                  3.7344e-06
+    - iteration 3 :
+         total iteration time                   0.131 s
+         error                                  1.4155e-07
+    - iteration 4 :
+         total iteration time                   0.133 s
+         error                                  8.7195e-09
+    - iteration 5 :
+         total iteration time                   0.153 s
+         error                                  3.3854e-10
+    - iteration 6 :
+         total iteration time                   0.139 s
+         error                                  7.898e-12
+    - iteration 7 :
+         total iteration time                   0.138 s
+         error                                  1.6493e-13
+    - iteration 8 :
+         total iteration time                   0.134 s
+         error                                  1.8902e-14
+    - iteration 9 :
+         total iteration time                   0.135 s
+         error                                  3.2257e-14
+    - iteration 10 :
+         total iteration time                   0.144 s
+         error                                  1.668e-14
+    - iteration 11 :
+         total iteration time                   0.145 s
+         error                                  2.0707e-14
+    - iteration 12 :
+         total iteration time                   0.129 s
+         error                                  1.5079e-14
+    - iteration 13 :
+         total iteration time                   0.141 s
+         error                                  3.253e-15
+    - iteration 14 :
+         total iteration time                   0.138 s
+         error                                  9.9161e-15
+    - iteration 15 :
+         total iteration time                   0.148 s
+         error                                  1.0712e-14
+    - iteration 16 :
+         total iteration time                   0.142 s
+         error                                  1.7721e-14
+    - iteration 17 :
+         total iteration time                   0.136 s
+         error                                  1.458e-14
+    - iteration 18 :
+         total iteration time                   0.139 s
+         error                                  1.8569e-14
+    - iteration 19 :
+         total iteration time                   0.131 s
+         error                                  1.8435e-14
+    - iteration 20 :
+         total iteration time                   0.136 s
+         error                                  1.4845e-14
+    - iteration 21 :
+         total iteration time                   0.132 s
+         error                                  2.4555e-14
+    - iteration 22 :
+         total iteration time                   0.132 s
+         error                                  4.552e-15
+    - iteration 23 :
+         total iteration time                   0.153 s
+         error                                  2.6628e-14
+    - iteration 24 :
+         total iteration time                   0.132 s
+         error                                  1.6593e-14
+    - iteration 25 :
+         total iteration time                   0.147 s
+         error                                  1.8503e-14
+    - iteration 26 :
+         total iteration time                   0.127 s
+         error                                  6.1442e-15
+    - iteration 27 :
+         total iteration time                   0.163 s
+         error                                  1.9662e-14
+    - iteration 28 :
+         total iteration time                   0.131 s
+         error                                  1.3318e-14
+    - iteration 29 :
+         total iteration time                   0.151 s
+         error                                  1.5727e-14
+    - iteration 30 :
+         total iteration time                   0.168 s
+         error                                  1.7942e-14
+    - iteration 31 :
+         total iteration time                   0.154 s
+         error                                  1.9025e-14
+    - iteration 32 :
+         total iteration time                   0.153 s
+         error                                  3.8187e-14
+    - iteration 33 :
+         total iteration time                   0.138 s
+         error                                  2.2379e-14
+    - iteration 34 :
+         total iteration time                   0.131 s
+         error                                  5.6369e-15
+    - iteration 35 :
+         total iteration time                   0.131 s
+         error                                  1.0936e-14
+    - iteration 36 :
+         total iteration time                   0.129 s
+         error                                  8.7975e-15
+    - iteration 37 :
+         total iteration time                   0.127 s
+         error                                  1.4192e-14
+    - iteration 38 :
+         total iteration time                   0.127 s
+         error                                  1.0859e-14
+    - iteration 39 :
+         total iteration time                   0.13 s
+         error                                  8.1783e-15
+    - iteration 40 :
+         total iteration time                   0.13 s
+         error                                  9.0014e-15
+    - iteration 41 :
+         total iteration time                   0.135 s
+         error                                  1.2317e-14
+    - iteration 42 :
+         total iteration time                   0.13 s
+         error                                  4.7187e-15
+    - iteration 43 :
+         total iteration time                   0.131 s
+         error                                  1.3756e-14
+    - iteration 44 :
+         total iteration time                   0.138 s
+         error                                  2.0738e-14
+    - iteration 45 :
+         total iteration time                   0.132 s
+         error                                  2.2115e-14
+    - iteration 46 :
+         total iteration time                   0.14 s
+         error                                  2.5292e-14
+    - iteration 47 :
+         total iteration time                   0.13 s
+         error                                  1.6519e-14
+    - iteration 48 :
+         total iteration time                   0.132 s
+         error                                  5.2995e-15
+    - iteration 49 :
+         total iteration time                   0.141 s
+         error                                  9.8321e-15
+    - iteration 50 :
+         total iteration time                   0.13 s
+         error                                  7.072e-15
+    Time for refinement                   7.683427e+00 s
+________________________________________
+
+CSC Conversion Time: 0.088307
+Init Time: 0.000028
+Factorize Time: 4.168159
+Solve Time: 7.816766
+Clean up Time: 0.000000
+---------------------------------
+Sum: 12.073260
+
+Total PaStiX Time: 36.631718
+CCX without PaStiX Time: 8.311411
+Share of PaStiX Time: 0.815068
+Total Time: 44.943129
+Reusability: 3 : 4 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 19590 and dof 1
+ largest increment of disp= 7.737220e-02
+ largest correction to disp= 2.269887e-13 in node 67 and dof 3
+
+ convergence; the increment size is increased to 3.750000e-01
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ increment 3 attempt 1 
+ increment size= 3.750000e-01
+ sum of previous increments=5.000000e-01
+ actual step time=8.750000e-01
+ actual total time=8.750000e-01
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.564600e+00 s
+    Time to initialize coeftab            2.633290e-01 s
+    Time to factorize                     2.273694e+00 s (217.11 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.155231e-01 s
+    - iteration 1 :
+         total iteration time                   0.14 s
+         error                                  3.3758e-07
+    - iteration 2 :
+         total iteration time                   0.128 s
+         error                                  2.1022e-08
+    - iteration 3 :
+         total iteration time                   0.127 s
+         error                                  8.6344e-10
+    - iteration 4 :
+         total iteration time                   0.128 s
+         error                                  3.9565e-11
+    - iteration 5 :
+         total iteration time                   0.127 s
+         error                                  1.7726e-12
+    - iteration 6 :
+         total iteration time                   0.127 s
+         error                                  5.5868e-14
+    Time for refinement                   8.238959e-01 s
+________________________________________
+
+CSC Conversion Time: 0.103529
+Init Time: 0.000049
+Factorize Time: 4.177757
+Solve Time: 0.954906
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.236241
+
+Total PaStiX Time: 41.867959
+CCX without PaStiX Time: 9.294617
+Share of PaStiX Time: 0.818332
+Total Time: 51.162576
+Reusability: 4 : 5 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 31485 and dof 1
+ largest increment of disp= 1.207139e-01
+ largest correction to disp= 8.341344e-03 in node 849 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.452654e+00 s
+    Time to initialize coeftab            2.711201e-01 s
+    Time to factorize                     2.314603e+00 s (213.28 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.100900e-01 s
+    - iteration 1 :
+         total iteration time                   0.127 s
+         error                                  0.00018616
+    - iteration 2 :
+         total iteration time                   0.129 s
+         error                                  6.2855e-06
+    - iteration 3 :
+         total iteration time                   0.128 s
+         error                                  3.1412e-07
+    - iteration 4 :
+         total iteration time                   0.13 s
+         error                                  1.6429e-08
+    - iteration 5 :
+         total iteration time                   0.127 s
+         error                                  5.1974e-10
+    - iteration 6 :
+         total iteration time                   0.127 s
+         error                                  1.1351e-11
+    - iteration 7 :
+         total iteration time                   0.125 s
+         error                                  2.641e-13
+    - iteration 8 :
+         total iteration time                   0.127 s
+         error                                  1.2855e-14
+    - iteration 9 :
+         total iteration time                   0.135 s
+         error                                  1.0567e-14
+    - iteration 10 :
+         total iteration time                   0.132 s
+         error                                  1.1703e-14
+    - iteration 11 :
+         total iteration time                   0.127 s
+         error                                  1.7414e-14
+    - iteration 12 :
+         total iteration time                   0.127 s
+         error                                  1.9278e-14
+    - iteration 13 :
+         total iteration time                   0.125 s
+         error                                  1.1073e-14
+    - iteration 14 :
+         total iteration time                   0.126 s
+         error                                  2.2774e-14
+    - iteration 15 :
+         total iteration time                   0.127 s
+         error                                  1.5073e-14
+    - iteration 16 :
+         total iteration time                   0.145 s
+         error                                  3.8253e-15
+    - iteration 17 :
+         total iteration time                   0.128 s
+         error                                  2.2554e-14
+    - iteration 18 :
+         total iteration time                   0.127 s
+         error                                  2.0428e-14
+    - iteration 19 :
+         total iteration time                   0.126 s
+         error                                  1.849e-14
+    - iteration 20 :
+         total iteration time                   0.129 s
+         error                                  9.913e-15
+    - iteration 21 :
+         total iteration time                   0.124 s
+         error                                  1.6121e-14
+    - iteration 22 :
+         total iteration time                   0.127 s
+         error                                  2.5734e-14
+    - iteration 23 :
+         total iteration time                   0.127 s
+         error                                  1.1564e-14
+    - iteration 24 :
+         total iteration time                   0.127 s
+         error                                  2.4091e-14
+    - iteration 25 :
+         total iteration time                   0.129 s
+         error                                  3.1356e-14
+    - iteration 26 :
+         total iteration time                   0.129 s
+         error                                  7.6759e-15
+    - iteration 27 :
+         total iteration time                   0.129 s
+         error                                  1.4265e-14
+    - iteration 28 :
+         total iteration time                   0.126 s
+         error                                  1.3339e-14
+    - iteration 29 :
+         total iteration time                   0.127 s
+         error                                  2.2124e-14
+    - iteration 30 :
+         total iteration time                   0.126 s
+         error                                  4.9651e-14
+    - iteration 31 :
+         total iteration time                   0.125 s
+         error                                  3.1151e-14
+    - iteration 32 :
+         total iteration time                   0.13 s
+         error                                  1.3909e-14
+    - iteration 33 :
+         total iteration time                   0.125 s
+         error                                  2.6003e-14
+    - iteration 34 :
+         total iteration time                   0.123 s
+         error                                  1.4487e-14
+    - iteration 35 :
+         total iteration time                   0.123 s
+         error                                  1.4353e-14
+    - iteration 36 :
+         total iteration time                   0.127 s
+         error                                  6.1277e-15
+    - iteration 37 :
+         total iteration time                   0.125 s
+         error                                  8.1642e-15
+    - iteration 38 :
+         total iteration time                   0.125 s
+         error                                  1.3142e-14
+    - iteration 39 :
+         total iteration time                   0.131 s
+         error                                  1.5222e-14
+    - iteration 40 :
+         total iteration time                   0.126 s
+         error                                  2.131e-14
+    - iteration 41 :
+         total iteration time                   0.126 s
+         error                                  2.5174e-14
+    - iteration 42 :
+         total iteration time                   0.125 s
+         error                                  8.749e-15
+    - iteration 43 :
+         total iteration time                   0.128 s
+         error                                  9.9062e-15
+    - iteration 44 :
+         total iteration time                   0.125 s
+         error                                  1.3282e-14
+    - iteration 45 :
+         total iteration time                   0.127 s
+         error                                  1.3521e-14
+    - iteration 46 :
+         total iteration time                   0.129 s
+         error                                  1.2145e-14
+    - iteration 47 :
+         total iteration time                   0.128 s
+         error                                  1.7148e-14
+    - iteration 48 :
+         total iteration time                   0.132 s
+         error                                  1.4689e-14
+    - iteration 49 :
+         total iteration time                   0.127 s
+         error                                  1.9189e-14
+    - iteration 50 :
+         total iteration time                   0.128 s
+         error                                  2.5097e-14
+    Time for refinement                   7.111317e+00 s
+________________________________________
+
+CSC Conversion Time: 0.115111
+Init Time: 0.000044
+Factorize Time: 4.105155
+Solve Time: 7.237404
+Clean up Time: 0.000000
+---------------------------------
+Sum: 11.457715
+
+Total PaStiX Time: 53.325674
+CCX without PaStiX Time: 10.152089
+Share of PaStiX Time: 0.840069
+Total Time: 63.477763
+Reusability: 5 : 6 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 61932 and dof 1
+ largest increment of disp= 1.207139e-01
+ largest correction to disp= 5.094893e-13 in node 2920 and dof 3
+
+ convergence; the increment size is increased to 5.625000e-01
+
+ the increment size exceeds the maximum allowed and is decreased to 5.000000e-01
+
+ the increment size exceeds the remainder of the step and is decreased to 1.250000e-01
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ increment 4 attempt 1 
+ increment size= 1.250000e-01
+ sum of previous increments=8.750000e-01
+ actual step time=1.000000e+00
+ actual total time=1.000000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.540561e+00 s
+    Time to initialize coeftab            2.697639e-01 s
+    Time to factorize                     2.346644e+00 s (210.36 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.110342e-01 s
+    - iteration 1 :
+         total iteration time                   0.128 s
+         error                                  3.5825e-07
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  2.2309e-08
+    - iteration 3 :
+         total iteration time                   0.127 s
+         error                                  8.5001e-10
+    - iteration 4 :
+         total iteration time                   0.125 s
+         error                                  3.6739e-11
+    - iteration 5 :
+         total iteration time                   0.131 s
+         error                                  1.766e-12
+    - iteration 6 :
+         total iteration time                   0.127 s
+         error                                  6.0453e-14
+    Time for refinement                   7.967629e-01 s
+________________________________________
+
+CSC Conversion Time: 0.087142
+Init Time: 0.000026
+Factorize Time: 4.221119
+Solve Time: 0.924258
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.232545
+
+Total PaStiX Time: 58.558220
+CCX without PaStiX Time: 11.106238
+Share of PaStiX Time: 0.840575
+Total Time: 69.664458
+Reusability: 6 : 7 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 24778 and dof 1
+ largest increment of disp= 4.301843e-02
+ largest correction to disp= 2.623413e-03 in node 849 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            344526
+  nnz:          26407994
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.499854e+00 s
+    Time to initialize coeftab            2.474239e-01 s
+    Time to factorize                     2.355181e+00 s (209.60 GFlop/s)
+    Number of operations                       -167193469410.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.75 Go
+    Time to solve                         1.083450e-01 s
+    - iteration 1 :
+         total iteration time                   0.127 s
+         error                                  6.4132e-05
+    - iteration 2 :
+         total iteration time                   0.127 s
+         error                                  2.0436e-06
+    - iteration 3 :
+         total iteration time                   0.129 s
+         error                                  9.0344e-08
+    - iteration 4 :
+         total iteration time                   0.127 s
+         error                                  4.8328e-09
+    - iteration 5 :
+         total iteration time                   0.128 s
+         error                                  1.6609e-10
+    - iteration 6 :
+         total iteration time                   0.126 s
+         error                                  3.7398e-12
+    - iteration 7 :
+         total iteration time                   0.128 s
+         error                                  9.8288e-14
+    - iteration 8 :
+         total iteration time                   0.132 s
+         error                                  6.3278e-15
+    - iteration 9 :
+         total iteration time                   0.129 s
+         error                                  5.4729e-15
+    - iteration 10 :
+         total iteration time                   0.128 s
+         error                                  5.7052e-15
+    - iteration 11 :
+         total iteration time                   0.125 s
+         error                                  8.7198e-15
+    - iteration 12 :
+         total iteration time                   0.126 s
+         error                                  6.0711e-15
+    - iteration 13 :
+         total iteration time                   0.127 s
+         error                                  4.8328e-15
+    - iteration 14 :
+         total iteration time                   0.126 s
+         error                                  9.547e-15
+    - iteration 15 :
+         total iteration time                   0.127 s
+         error                                  6.0093e-15
+    - iteration 16 :
+         total iteration time                   0.125 s
+         error                                  4.9706e-15
+    - iteration 17 :
+         total iteration time                   0.126 s
+         error                                  8.5513e-15
+    - iteration 18 :
+         total iteration time                   0.124 s
+         error                                  7.6836e-15
+    - iteration 19 :
+         total iteration time                   0.132 s
+         error                                  1.9231e-15
+    - iteration 20 :
+         total iteration time                   0.125 s
+         error                                  6.6746e-15
+    - iteration 21 :
+         total iteration time                   0.127 s
+         error                                  1.1403e-14
+    - iteration 22 :
+         total iteration time                   0.128 s
+         error                                  9.557e-15
+    - iteration 23 :
+         total iteration time                   0.126 s
+         error                                  5.7544e-15
+    - iteration 24 :
+         total iteration time                   0.128 s
+         error                                  4.662e-15
+    - iteration 25 :
+         total iteration time                   0.127 s
+         error                                  6.0092e-15
+    - iteration 26 :
+         total iteration time                   0.126 s
+         error                                  9.1348e-15
+    - iteration 27 :
+         total iteration time                   0.127 s
+         error                                  3.7535e-15
+    - iteration 28 :
+         total iteration time                   0.127 s
+         error                                  3.3848e-15
+    - iteration 29 :
+         total iteration time                   0.127 s
+         error                                  2.656e-15
+    - iteration 30 :
+         total iteration time                   0.125 s
+         error                                  4.6096e-15
+    - iteration 31 :
+         total iteration time                   0.126 s
+         error                                  6.7543e-15
+    - iteration 32 :
+         total iteration time                   0.125 s
+         error                                  7.368e-15
+    - iteration 33 :
+         total iteration time                   0.127 s
+         error                                  5.6893e-15
+    - iteration 34 :
+         total iteration time                   0.127 s
+         error                                  4.2446e-15
+    - iteration 35 :
+         total iteration time                   0.126 s
+         error                                  6.9449e-15
+    - iteration 36 :
+         total iteration time                   0.132 s
+         error                                  4.086e-15
+    - iteration 37 :
+         total iteration time                   0.131 s
+         error                                  7.4255e-15
+    - iteration 38 :
+         total iteration time                   0.13 s
+         error                                  4.6491e-15
+    - iteration 39 :
+         total iteration time                   0.128 s
+         error                                  3.5132e-15
+    - iteration 40 :
+         total iteration time                   0.126 s
+         error                                  4.5506e-15
+    - iteration 41 :
+         total iteration time                   0.125 s
+         error                                  2.6443e-15
+    - iteration 42 :
+         total iteration time                   0.126 s
+         error                                  4.0084e-15
+    - iteration 43 :
+         total iteration time                   0.128 s
+         error                                  5.2345e-15
+    - iteration 44 :
+         total iteration time                   0.123 s
+         error                                  7.3029e-15
+    - iteration 45 :
+         total iteration time                   0.125 s
+         error                                  7.3457e-15
+    - iteration 46 :
+         total iteration time                   0.127 s
+         error                                  6.4101e-15
+    - iteration 47 :
+         total iteration time                   0.126 s
+         error                                  4.6649e-15
+    - iteration 48 :
+         total iteration time                   0.125 s
+         error                                  2.6388e-15
+    - iteration 49 :
+         total iteration time                   0.127 s
+         error                                  5.4328e-15
+    - iteration 50 :
+         total iteration time                   0.127 s
+         error                                  3.4534e-15
+    Time for refinement                   7.083792e+00 s
+________________________________________
+
+CSC Conversion Time: 0.094391
+Init Time: 0.000038
+Factorize Time: 4.175041
+Solve Time: 7.207372
+Clean up Time: 0.000000
+---------------------------------
+Sum: 11.476843
+
+Total PaStiX Time: 70.035063
+CCX without PaStiX Time: 11.947575
+Share of PaStiX Time: 0.854267
+Total Time: 81.982638
+Reusability: 7 : 8 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000000
+ time avg. forc= 0.010000
+ largest residual force= 0.000000 in node 35408 and dof 2
+ largest increment of disp= 4.301843e-02
+ largest correction to disp= 1.880322e-13 in node 264 and dof 3
+
+ convergence; the increment size is increased to 1.875000e-01
+
+ the increment size exceeds the remainder of the step and is decreased to 0.000000e+00
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Determining the structure of the matrix:
+ Using up to 4 cpu(s) for setting up the structure of the matrix.
+ number of equations
+ 343293
+ number of nonzero lower triangular matrix elements
+ 12983629
+
+ increment 1 attempt 1 
+ increment size= 2.500000e-01
+ sum of previous increments=0.000000e+00
+ actual step time=2.500000e-01
+ actual total time=1.250000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Not reusing csc.
+IPARM_MIXED=1
+globDouble=0
++-------------------------------------------------+
++     PaStiX : Parallel Sparse matriX package     +
++-------------------------------------------------+
+  Version:                                   6.4.0
+  Schedulers:
+    sequential:                            Enabled
+    thread static:                         Started
+    thread dynamic:                       Disabled
+    PaRSEC:                               Disabled
+    StarPU:                               Disabled
+  Number of MPI processes:                       1
+  Number of threads per process:                 4
+  Number of GPUs:                                0
+  MPI communication support:              PastixMpiNone
+  Distribution level:                     2D( 128)
+  Blocking size (min/max):             1024 / 2048
+  Computational models
+    CPU:              AMD Opteron 6180 - Intel MKL
+    GPU:             Nvidia K40 GK1108L - CUDA 8.0
+  Low rank parameters:
+    Strategy                        No compression
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Ordering subtask :
+    Ordering method is: Scotch
+    Time to compute ordering              9.564910e-01 s
++-------------------------------------------------+
+  Symbolic factorization subtask:
+    Symbol factorization using: Fax Direct
+    Number of nonzeroes in L structure    204071224
+    Fill-in of L                          7.756250
+    Time to compute symbol matrix         8.758688e-02 s
++-------------------------------------------------+
+  Reordering subtask:
+    Split level                                  0
+    Stoping criterion                           -1
+    Time for reordering                   2.777731e-01 s
++-------------------------------------------------+
+  Mapping/Scheduling subtask:
+    Number of non-zeroes in blocked L     408142448
+    Fill-in                               15.512501
+    Number of operations in full-rank: LU       481.72 GFlops
+    Prediction:
+      Model                              AMD 6180  MKL
+      Time to factorize                   2.227646e+01 s
+    Time for mapping/scheduling           1.414990e-02 s
++-------------------------------------------------+
+  Analyze task:
+    Total time for analyze                1.431721e+00 s
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.438939e+00 s
+    Time to initialize coeftab            1.736069e-01 s
+    Time to factorize                     2.313697e+00 s (208.20 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.119740e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  5.4539e-08
+    - iteration 2 :
+         total iteration time                   0.124 s
+         error                                  3.234e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  1.1814e-10
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  6.5726e-12
+    - iteration 5 :
+         total iteration time                   0.123 s
+         error                                  3.2574e-13
+    Time for refinement                   6.439259e-01 s
+________________________________________
+
+CSC Conversion Time: 0.124656
+Init Time: 1.444661
+Factorize Time: 3.953127
+Solve Time: 0.772433
+Clean up Time: 0.145173
+---------------------------------
+Sum: 6.440050
+
+Total PaStiX Time: 76.475113
+CCX without PaStiX Time: 14.807506
+Share of PaStiX Time: 0.837784
+Total Time: 91.282618
+Reusability: 7 : 9 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.129885
+ time avg. forc= 0.129885
+ largest residual force= 9.842387 in node 100941 and dof 3
+ largest increment of disp= 1.138796e-02
+ largest correction to disp= 1.138796e-02 in node 570 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.558955e+00 s
+    Time to initialize coeftab            2.433901e-01 s
+    Time to factorize                     2.240193e+00 s (215.03 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.077480e-01 s
+    - iteration 1 :
+         total iteration time                   0.126 s
+         error                                  5.0035e-08
+    - iteration 2 :
+         total iteration time                   0.125 s
+         error                                  2.7235e-09
+    - iteration 3 :
+         total iteration time                   0.126 s
+         error                                  8.0031e-11
+    - iteration 4 :
+         total iteration time                   0.126 s
+         error                                  4.3031e-12
+    - iteration 5 :
+         total iteration time                   0.131 s
+         error                                  2.4803e-13
+    Time for refinement                   6.714170e-01 s
+________________________________________
+
+CSC Conversion Time: 0.096598
+Init Time: 0.000041
+Factorize Time: 4.110516
+Solve Time: 0.794365
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.001521
+
+Total PaStiX Time: 81.476633
+CCX without PaStiX Time: 15.653018
+Share of PaStiX Time: 0.838844
+Total Time: 97.129651
+Reusability: 8 : 10 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.128324
+ time avg. forc= 0.128324
+ largest residual force= 1.940263 in node 95172 and dof 3
+ largest increment of disp= 1.138796e-02
+ largest correction to disp= 4.084581e-04 in node 12482 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.379350e+00 s
+    Time to initialize coeftab            2.439361e-01 s
+    Time to factorize                     2.257303e+00 s (213.40 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.115539e-01 s
+    - iteration 1 :
+         total iteration time                   0.127 s
+         error                                  1.9644e-08
+    - iteration 2 :
+         total iteration time                   0.127 s
+         error                                  1.0884e-09
+    - iteration 3 :
+         total iteration time                   0.127 s
+         error                                  3.4678e-11
+    - iteration 4 :
+         total iteration time                   0.127 s
+         error                                  1.917e-12
+    - iteration 5 :
+         total iteration time                   0.127 s
+         error                                  1.0361e-13
+    Time for refinement                   6.714520e-01 s
+________________________________________
+
+CSC Conversion Time: 0.085474
+Init Time: 0.000036
+Factorize Time: 3.937759
+Solve Time: 0.797802
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.821071
+
+Total PaStiX Time: 86.297704
+CCX without PaStiX Time: 16.501393
+Share of PaStiX Time: 0.839479
+Total Time: 102.799097
+Reusability: 9 : 11 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.128190
+ time avg. forc= 0.128190
+ largest residual force= 0.203538 in node 40018 and dof 1
+ largest increment of disp= 1.138796e-02
+ largest correction to disp= 5.004545e-05 in node 100937 and dof 3
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.422710e+00 s
+    Time to initialize coeftab            2.375252e-01 s
+    Time to factorize                     2.260517e+00 s (213.10 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.092980e-01 s
+    - iteration 1 :
+         total iteration time                   0.131 s
+         error                                  1.3184e-08
+    - iteration 2 :
+         total iteration time                   0.126 s
+         error                                  7.512e-10
+    - iteration 3 :
+         total iteration time                   0.125 s
+         error                                  2.5268e-11
+    - iteration 4 :
+         total iteration time                   0.126 s
+         error                                  1.4219e-12
+    - iteration 5 :
+         total iteration time                   0.126 s
+         error                                  7.5032e-14
+    Time for refinement                   6.719131e-01 s
+________________________________________
+
+CSC Conversion Time: 0.082361
+Init Time: 0.000033
+Factorize Time: 3.982676
+Solve Time: 0.796978
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.862048
+
+Total PaStiX Time: 91.159751
+CCX without PaStiX Time: 17.334860
+Share of PaStiX Time: 0.840224
+Total Time: 108.494611
+Reusability: 10 : 12 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.128186
+ time avg. forc= 0.128186
+ largest residual force= 0.000449 in node 40018 and dof 3
+ largest increment of disp= 1.138796e-02
+ largest correction to disp= 1.592062e-06 in node 22837 and dof 3
+
+ convergence
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ increment 2 attempt 1 
+ increment size= 2.500000e-01
+ sum of previous increments=2.500000e-01
+ actual step time=5.000000e-01
+ actual total time=1.500000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.411390e+00 s
+    Time to initialize coeftab            2.754350e-01 s
+    Time to factorize                     2.281442e+00 s (211.15 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.088710e-01 s
+    - iteration 1 :
+         total iteration time                   0.133 s
+         error                                  8.5726e-08
+    - iteration 2 :
+         total iteration time                   0.151 s
+         error                                  4.8153e-09
+    - iteration 3 :
+         total iteration time                   0.132 s
+         error                                  1.3708e-10
+    - iteration 4 :
+         total iteration time                   0.131 s
+         error                                  6.8212e-12
+    - iteration 5 :
+         total iteration time                   0.135 s
+         error                                  3.694e-13
+    Time for refinement                   7.257068e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080132
+Init Time: 0.000039
+Factorize Time: 4.025893
+Solve Time: 0.851673
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.957737
+
+Total PaStiX Time: 96.117488
+CCX without PaStiX Time: 18.271937
+Share of PaStiX Time: 0.840266
+Total Time: 114.389425
+Reusability: 11 : 13 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.233162
+ time avg. forc= 0.180674
+ largest residual force= 7.164352 in node 43201 and dof 2
+ largest increment of disp= 1.125273e-02
+ largest correction to disp= 2.039789e-03 in node 22831 and dof 3
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.390289e+00 s
+    Time to initialize coeftab            2.498991e-01 s
+    Time to factorize                     2.286045e+00 s (210.72 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.036170e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  5.527e-08
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  3.062e-09
+    - iteration 3 :
+         total iteration time                   0.125 s
+         error                                  8.8975e-11
+    - iteration 4 :
+         total iteration time                   0.126 s
+         error                                  4.3529e-12
+    - iteration 5 :
+         total iteration time                   0.126 s
+         error                                  2.3641e-13
+    Time for refinement                   6.571989e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080228
+Init Time: 0.000034
+Factorize Time: 3.983781
+Solve Time: 0.777359
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.841402
+
+Total PaStiX Time: 100.958890
+CCX without PaStiX Time: 19.137723
+Share of PaStiX Time: 0.840647
+Total Time: 120.096613
+Reusability: 12 : 14 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.230061
+ time avg. forc= 0.179124
+ largest residual force= 0.777138 in node 89760 and dof 3
+ largest increment of disp= 1.125273e-02
+ largest correction to disp= 3.760569e-04 in node 100941 and dof 3
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.371644e+00 s
+    Time to initialize coeftab            2.668631e-01 s
+    Time to factorize                     2.322795e+00 s (207.39 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.048892e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  4.2852e-08
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  2.395e-09
+    - iteration 3 :
+         total iteration time                   0.135 s
+         error                                  7.076e-11
+    - iteration 4 :
+         total iteration time                   0.135 s
+         error                                  3.555e-12
+    - iteration 5 :
+         total iteration time                   0.146 s
+         error                                  1.8941e-13
+    Time for refinement                   7.047460e-01 s
+________________________________________
+
+CSC Conversion Time: 0.084480
+Init Time: 0.000041
+Factorize Time: 4.019588
+Solve Time: 0.830826
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.934934
+
+Total PaStiX Time: 105.893824
+CCX without PaStiX Time: 19.992158
+Share of PaStiX Time: 0.841188
+Total Time: 125.885982
+Reusability: 13 : 15 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.229886
+ time avg. forc= 0.179036
+ largest residual force= 0.019818 in node 43199 and dof 1
+ largest increment of disp= 1.125273e-02
+ largest correction to disp= 2.141324e-05 in node 100941 and dof 3
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.712415e+00 s
+    Time to initialize coeftab            2.914300e-01 s
+    Time to factorize                     2.243546e+00 s (214.71 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.072481e-01 s
+    - iteration 1 :
+         total iteration time                   0.124 s
+         error                                  8.0724e-09
+    - iteration 2 :
+         total iteration time                   0.12 s
+         error                                  4.6913e-10
+    - iteration 3 :
+         total iteration time                   0.133 s
+         error                                  1.5193e-11
+    - iteration 4 :
+         total iteration time                   0.126 s
+         error                                  7.6174e-13
+    Time for refinement                   5.415661e-01 s
+________________________________________
+
+CSC Conversion Time: 0.109131
+Init Time: 0.000040
+Factorize Time: 4.333089
+Solve Time: 0.664529
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.106789
+
+Total PaStiX Time: 111.000613
+CCX without PaStiX Time: 20.969758
+Share of PaStiX Time: 0.841103
+Total Time: 131.970371
+Reusability: 14 : 16 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.229885
+ time avg. forc= 0.179036
+ largest residual force= 0.000014 in node 3753 and dof 3
+ largest increment of disp= 1.125273e-02
+ largest correction to disp= 9.199831e-07 in node 3753 and dof 3
+
+ convergence; the increment size is increased to 3.750000e-01
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ increment 3 attempt 1 
+ increment size= 3.750000e-01
+ sum of previous increments=5.000000e-01
+ actual step time=8.750000e-01
+ actual total time=1.875000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.393049e+00 s
+    Time to initialize coeftab            2.437899e-01 s
+    Time to factorize                     2.252304e+00 s (213.88 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.033561e-01 s
+    - iteration 1 :
+         total iteration time                   0.123 s
+         error                                  1.142e-07
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  6.2003e-09
+    - iteration 3 :
+         total iteration time                   0.12 s
+         error                                  1.9885e-10
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  1.1632e-11
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  5.9256e-13
+    Time for refinement                   6.479771e-01 s
+________________________________________
+
+CSC Conversion Time: 0.083815
+Init Time: 0.000035
+Factorize Time: 3.948203
+Solve Time: 0.766958
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.799010
+
+Total PaStiX Time: 115.799623
+CCX without PaStiX Time: 21.928610
+Share of PaStiX Time: 0.840783
+Total Time: 137.728232
+Reusability: 15 : 17 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.327047
+ time avg. forc= 0.228373
+ largest residual force= 12.293649 in node 48832 and dof 3
+ largest increment of disp= 1.541412e-02
+ largest correction to disp= 4.368291e-03 in node 3778 and dof 3
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.392052e+00 s
+    Time to initialize coeftab            2.408190e-01 s
+    Time to factorize                     2.280672e+00 s (211.22 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.040840e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  4.261e-08
+    - iteration 2 :
+         total iteration time                   0.122 s
+         error                                  2.2984e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  7.3318e-11
+    - iteration 4 :
+         total iteration time                   0.124 s
+         error                                  4.2287e-12
+    - iteration 5 :
+         total iteration time                   0.126 s
+         error                                  2.2098e-13
+    Time for refinement                   6.568151e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081471
+Init Time: 0.000044
+Factorize Time: 3.969319
+Solve Time: 0.784486
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.835320
+
+Total PaStiX Time: 120.634943
+CCX without PaStiX Time: 22.782821
+Share of PaStiX Time: 0.841144
+Total Time: 143.417764
+Reusability: 16 : 18 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.322076
+ time avg. forc= 0.226716
+ largest residual force= 1.004720 in node 57897 and dof 1
+ largest increment of disp= 1.541412e-02
+ largest correction to disp= 9.014965e-04 in node 14031 and dof 3
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.443094e+00 s
+    Time to initialize coeftab            2.448561e-01 s
+    Time to factorize                     2.008692e+00 s (239.82 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.038480e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  3.462e-08
+    - iteration 2 :
+         total iteration time                   0.125 s
+         error                                  1.8336e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  5.6081e-11
+    - iteration 4 :
+         total iteration time                   0.126 s
+         error                                  3.1851e-12
+    - iteration 5 :
+         total iteration time                   0.129 s
+         error                                  1.691e-13
+    Time for refinement                   6.633871e-01 s
+________________________________________
+
+CSC Conversion Time: 0.085412
+Init Time: 0.000034
+Factorize Time: 3.762912
+Solve Time: 0.784522
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.632880
+
+Total PaStiX Time: 125.267823
+CCX without PaStiX Time: 23.651318
+Share of PaStiX Time: 0.841180
+Total Time: 148.919141
+Reusability: 17 : 19 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.321797
+ time avg. forc= 0.226623
+ largest residual force= 0.092598 in node 48718 and dof 3
+ largest increment of disp= 1.541412e-02
+ largest correction to disp= 7.872744e-05 in node 43427 and dof 3
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.396680e+00 s
+    Time to initialize coeftab            2.458870e-01 s
+    Time to factorize                     2.027725e+00 s (237.57 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.025941e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  3.4785e-09
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  2.0039e-10
+    - iteration 3 :
+         total iteration time                   0.122 s
+         error                                  7.5998e-12
+    - iteration 4 :
+         total iteration time                   0.125 s
+         error                                  4.3818e-13
+    Time for refinement                   5.340672e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080720
+Init Time: 0.000030
+Factorize Time: 3.734646
+Solve Time: 0.652659
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.468055
+
+Total PaStiX Time: 129.735878
+CCX without PaStiX Time: 24.489244
+Share of PaStiX Time: 0.841211
+Total Time: 154.225122
+Reusability: 18 : 20 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.321796
+ time avg. forc= 0.226623
+ largest residual force= 0.000555 in node 22020 and dof 1
+ largest increment of disp= 1.541412e-02
+ largest correction to disp= 9.542611e-06 in node 435 and dof 1
+
+ convergence; the increment size is increased to 5.625000e-01
+
+ the increment size exceeds the maximum allowed and is decreased to 5.000000e-01
+
+ the increment size exceeds the remainder of the step and is decreased to 1.250000e-01
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ increment 4 attempt 1 
+ increment size= 1.250000e-01
+ sum of previous increments=8.750000e-01
+ actual step time=1.000000e+00
+ actual total time=2.000000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.468448e+00 s
+    Time to initialize coeftab            2.521160e-01 s
+    Time to factorize                     1.970433e+00 s (244.47 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.061418e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  3.4115e-08
+    - iteration 2 :
+         total iteration time                   0.121 s
+         error                                  1.8073e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  5.5255e-11
+    - iteration 4 :
+         total iteration time                   0.134 s
+         error                                  3.1217e-12
+    - iteration 5 :
+         total iteration time                   0.129 s
+         error                                  1.6373e-13
+    Time for refinement                   6.676168e-01 s
+________________________________________
+
+CSC Conversion Time: 0.085633
+Init Time: 0.000032
+Factorize Time: 3.750999
+Solve Time: 0.790746
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.627410
+
+Total PaStiX Time: 134.363289
+CCX without PaStiX Time: 25.442203
+Share of PaStiX Time: 0.840793
+Total Time: 159.805492
+Reusability: 19 : 21 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.343097
+ time avg. forc= 0.255741
+ largest residual force= 1.170414 in node 43898 and dof 3
+ largest increment of disp= 5.373266e-03
+ largest correction to disp= 1.815448e-03 in node 14031 and dof 3
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.414193e+00 s
+    Time to initialize coeftab            2.425241e-01 s
+    Time to factorize                     1.986307e+00 s (242.52 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.054070e-01 s
+    - iteration 1 :
+         total iteration time                   0.124 s
+         error                                  2.7984e-08
+    - iteration 2 :
+         total iteration time                   0.122 s
+         error                                  1.567e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  5.2719e-11
+    - iteration 4 :
+         total iteration time                   0.128 s
+         error                                  3.0555e-12
+    - iteration 5 :
+         total iteration time                   0.121 s
+         error                                  1.4988e-13
+    Time for refinement                   6.547658e-01 s
+________________________________________
+
+CSC Conversion Time: 0.082538
+Init Time: 0.000033
+Factorize Time: 3.699986
+Solve Time: 0.776094
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.558651
+
+Total PaStiX Time: 138.921940
+CCX without PaStiX Time: 26.313265
+Share of PaStiX Time: 0.840753
+Total Time: 165.235205
+Reusability: 20 : 22 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.342723
+ time avg. forc= 0.255648
+ largest residual force= 0.591864 in node 43897 and dof 3
+ largest increment of disp= 5.373266e-03
+ largest correction to disp= 1.565232e-04 in node 435 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.384394e+00 s
+    Time to initialize coeftab            2.362189e-01 s
+    Time to factorize                     2.204283e+00 s (218.54 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.023898e-01 s
+    - iteration 1 :
+         total iteration time                   0.111 s
+         error                                  2.7239e-09
+    - iteration 2 :
+         total iteration time                   0.122 s
+         error                                  1.4342e-10
+    - iteration 3 :
+         total iteration time                   0.121 s
+         error                                  4.0048e-12
+    - iteration 4 :
+         total iteration time                   0.121 s
+         error                                  2.1173e-13
+    Time for refinement                   5.161750e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081994
+Init Time: 0.000030
+Factorize Time: 3.881867
+Solve Time: 0.633519
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.597410
+
+Total PaStiX Time: 143.519349
+CCX without PaStiX Time: 27.167114
+Share of PaStiX Time: 0.840836
+Total Time: 170.686464
+Reusability: 21 : 23 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.342719
+ time avg. forc= 0.255647
+ largest residual force= 0.275675 in node 43414 and dof 3
+ largest increment of disp= 5.373266e-03
+ largest correction to disp= 2.787209e-05 in node 25848 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.487637e+00 s
+    Time to initialize coeftab            2.793210e-01 s
+    Time to factorize                     2.215905e+00 s (217.39 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.092591e-01 s
+    - iteration 1 :
+         total iteration time                   0.125 s
+         error                                  8.972e-10
+    - iteration 2 :
+         total iteration time                   0.147 s
+         error                                  6.0872e-11
+    - iteration 3 :
+         total iteration time                   0.109 s
+         error                                  2.3326e-12
+    - iteration 4 :
+         total iteration time                   0.11 s
+         error                                  1.103e-13
+    Time for refinement                   5.314679e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081446
+Init Time: 0.000032
+Factorize Time: 4.040493
+Solve Time: 0.661906
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.783877
+
+Total PaStiX Time: 148.303226
+CCX without PaStiX Time: 28.017730
+Share of PaStiX Time: 0.841098
+Total Time: 176.320956
+Reusability: 22 : 24 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.342719
+ time avg. forc= 0.255647
+ largest residual force= 0.041331 in node 43414 and dof 3
+ largest increment of disp= 5.373266e-03
+ largest correction to disp= 1.338610e-05 in node 25848 and dof 1
+
+ no convergence
+
+ iteration 5
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.457344e+00 s
+    Time to initialize coeftab            2.479019e-01 s
+    Time to factorize                     2.275041e+00 s (211.74 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.007421e-01 s
+    - iteration 1 :
+         total iteration time                   0.119 s
+         error                                  1.9365e-09
+    - iteration 2 :
+         total iteration time                   0.121 s
+         error                                  1.2373e-10
+    - iteration 3 :
+         total iteration time                   0.112 s
+         error                                  4.6913e-12
+    - iteration 4 :
+         total iteration time                   0.12 s
+         error                                  2.4552e-13
+    Time for refinement                   5.102251e-01 s
+________________________________________
+
+CSC Conversion Time: 0.088361
+Init Time: 0.000035
+Factorize Time: 4.039731
+Solve Time: 0.626162
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.754288
+
+Total PaStiX Time: 153.057514
+CCX without PaStiX Time: 28.915592
+Share of PaStiX Time: 0.841100
+Total Time: 181.973106
+Reusability: 23 : 25 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.342719
+ time avg. forc= 0.255647
+ largest residual force= 0.002364 in node 43898 and dof 3
+ largest increment of disp= 5.373266e-03
+ largest correction to disp= 4.538149e-06 in node 43414 and dof 3
+
+ no convergence
+
+ iteration 6
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            343293
+  nnz:          26310551
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.412387e+00 s
+    Time to initialize coeftab            2.446620e-01 s
+    Time to factorize                     2.253378e+00 s (213.78 GFlop/s)
+    Number of operations                       -166241552962.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.062181e-01 s
+    - iteration 1 :
+         total iteration time                   0.11 s
+         error                                  2.0111e-09
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  1.0054e-10
+    - iteration 3 :
+         total iteration time                   0.122 s
+         error                                  2.076e-12
+    - iteration 4 :
+         total iteration time                   0.123 s
+         error                                  4.2441e-14
+    Time for refinement                   5.174909e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080257
+Init Time: 0.000038
+Factorize Time: 3.968904
+Solve Time: 0.640109
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.689309
+
+Total PaStiX Time: 157.746823
+CCX without PaStiX Time: 29.769107
+Share of PaStiX Time: 0.841245
+Total Time: 187.515931
+Reusability: 24 : 26 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.342719
+ time avg. forc= 0.255647
+ largest residual force= 0.000011 in node 43898 and dof 3
+ largest increment of disp= 5.373266e-03
+ largest correction to disp= 2.141736e-07 in node 43414 and dof 3
+
+ convergence
+
+ the increment size exceeds the remainder of the step and is decreased to 0.000000e+00
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Determining the structure of the matrix:
+ Using up to 4 cpu(s) for setting up the structure of the matrix.
+ number of equations
+ 341487
+ number of nonzero lower triangular matrix elements
+ 12910246
+
+ increment 1 attempt 1 
+ increment size= 2.500000e-01
+ sum of previous increments=0.000000e+00
+ actual step time=2.500000e-01
+ actual total time=2.250000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Not reusing csc.
+IPARM_MIXED=1
+globDouble=0
++-------------------------------------------------+
++     PaStiX : Parallel Sparse matriX package     +
++-------------------------------------------------+
+  Version:                                   6.4.0
+  Schedulers:
+    sequential:                            Enabled
+    thread static:                         Started
+    thread dynamic:                       Disabled
+    PaRSEC:                               Disabled
+    StarPU:                               Disabled
+  Number of MPI processes:                       1
+  Number of threads per process:                 4
+  Number of GPUs:                                0
+  MPI communication support:              PastixMpiNone
+  Distribution level:                     2D( 128)
+  Blocking size (min/max):             1024 / 2048
+  Computational models
+    CPU:              AMD Opteron 6180 - Intel MKL
+    GPU:             Nvidia K40 GK1108L - CUDA 8.0
+  Low rank parameters:
+    Strategy                        No compression
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Ordering subtask :
+    Ordering method is: Scotch
+    Time to compute ordering              9.350550e-01 s
++-------------------------------------------------+
+  Symbolic factorization subtask:
+    Symbol factorization using: Fax Direct
+    Number of nonzeroes in L structure    204117124
+    Fill-in of L                          7.802052
+    Time to compute symbol matrix         8.405590e-02 s
++-------------------------------------------------+
+  Reordering subtask:
+    Split level                                  0
+    Stoping criterion                           -1
+    Time for reordering                   2.422030e-01 s
++-------------------------------------------------+
+  Mapping/Scheduling subtask:
+    Number of non-zeroes in blocked L     408234248
+    Fill-in                               15.604104
+    Number of operations in full-rank: LU       487.74 GFlops
+    Prediction:
+      Model                              AMD 6180  MKL
+      Time to factorize                   2.303566e+01 s
+    Time for mapping/scheduling           1.030302e-02 s
++-------------------------------------------------+
+  Analyze task:
+    Total time for analyze                1.365976e+00 s
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.480252e+00 s
+    Time to initialize coeftab            1.707468e-01 s
+    Time to factorize                     2.406253e+00 s (202.70 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.092999e-01 s
+    - iteration 1 :
+         total iteration time                   0.124 s
+         error                                  3.1876e-08
+    - iteration 2 :
+         total iteration time                   0.12 s
+         error                                  1.6827e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  4.7404e-11
+    - iteration 4 :
+         total iteration time                   0.124 s
+         error                                  1.9975e-12
+    - iteration 5 :
+         total iteration time                   0.124 s
+         error                                  1.2649e-13
+    Time for refinement                   6.452701e-01 s
+________________________________________
+
+CSC Conversion Time: 0.119828
+Init Time: 1.369594
+Factorize Time: 4.084352
+Solve Time: 0.770168
+Clean up Time: 0.157911
+---------------------------------
+Sum: 6.501853
+
+Total PaStiX Time: 164.248676
+CCX without PaStiX Time: 32.479524
+Share of PaStiX Time: 0.834902
+Total Time: 196.728200
+Reusability: 24 : 27 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.369928
+ time avg. forc= 0.369928
+ largest residual force= 40.162533 in node 48600 and dof 2
+ largest increment of disp= 1.718961e-02
+ largest correction to disp= 1.718961e-02 in node 4794 and dof 2
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.361246e+00 s
+    Time to initialize coeftab            2.315509e-01 s
+    Time to factorize                     2.421407e+00 s (201.43 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.038520e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  3.796e-08
+    - iteration 2 :
+         total iteration time                   0.12 s
+         error                                  2.2355e-09
+    - iteration 3 :
+         total iteration time                   0.134 s
+         error                                  7.0758e-11
+    - iteration 4 :
+         total iteration time                   0.124 s
+         error                                  3.8125e-12
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  2.0345e-13
+    Time for refinement                   6.566060e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081451
+Init Time: 0.000032
+Factorize Time: 4.067602
+Solve Time: 0.777998
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.927082
+
+Total PaStiX Time: 169.175758
+CCX without PaStiX Time: 33.320043
+Share of PaStiX Time: 0.835453
+Total Time: 202.495801
+Reusability: 25 : 28 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.364220
+ time avg. forc= 0.364220
+ largest residual force= 39.939591 in node 47711 and dof 2
+ largest increment of disp= 4.420635e-01
+ largest correction to disp= 4.420635e-01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.485735e+00 s
+    Time to initialize coeftab            2.372541e-01 s
+    Time to factorize                     2.401847e+00 s (203.07 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.037140e-01 s
+    - iteration 1 :
+         total iteration time                   0.123 s
+         error                                  3.3193e-07
+    - iteration 2 :
+         total iteration time                   0.131 s
+         error                                  2.7072e-09
+    - iteration 3 :
+         total iteration time                   0.128 s
+         error                                  1.4562e-10
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  4.3728e-12
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  1.8278e-13
+    Time for refinement                   6.615880e-01 s
+________________________________________
+
+CSC Conversion Time: 0.089257
+Init Time: 0.000028
+Factorize Time: 4.183196
+Solve Time: 0.780808
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.053289
+
+Total PaStiX Time: 174.229047
+CCX without PaStiX Time: 34.169597
+Share of PaStiX Time: 0.836037
+Total Time: 208.398645
+Reusability: 26 : 29 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.397163
+ time avg. forc= 0.397163
+ largest residual force= 111.955540 in node 25829 and dof 2
+ largest increment of disp= 3.421623e+01
+ largest correction to disp= 3.421623e+01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.368344e+00 s
+    Time to initialize coeftab            2.530739e-01 s
+    Time to factorize                     2.515971e+00 s (193.86 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.090319e-01 s
+    - iteration 1 :
+         total iteration time                   0.123 s
+         error                                  0.18282
+    - iteration 2 :
+         total iteration time                   0.131 s
+         error                                  0.031749
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  0.014234
+    - iteration 4 :
+         total iteration time                   0.119 s
+         error                                  0.013348
+    - iteration 5 :
+         total iteration time                   0.123 s
+         error                                  0.0017466
+    - iteration 6 :
+         total iteration time                   0.134 s
+         error                                  0.00020352
+    - iteration 7 :
+         total iteration time                   0.127 s
+         error                                  5.9806e-05
+    - iteration 8 :
+         total iteration time                   0.105 s
+         error                                  1.5087e-05
+    - iteration 9 :
+         total iteration time                   0.118 s
+         error                                  1.2028e-06
+    - iteration 10 :
+         total iteration time                   0.128 s
+         error                                  4.3505e-08
+    - iteration 11 :
+         total iteration time                   0.129 s
+         error                                  1.8269e-09
+    - iteration 12 :
+         total iteration time                   0.14 s
+         error                                  5.6406e-11
+    - iteration 13 :
+         total iteration time                   0.106 s
+         error                                  1.955e-12
+    - iteration 14 :
+         total iteration time                   0.141 s
+         error                                  7.5635e-14
+    - iteration 15 :
+         total iteration time                   0.105 s
+         error                                  8.2405e-10
+    - iteration 16 :
+         total iteration time                   0.103 s
+         error                                  6.0746e-10
+    - iteration 17 :
+         total iteration time                   0.128 s
+         error                                  6.0369e-10
+    - iteration 18 :
+         total iteration time                   0.138 s
+         error                                  2.9941e-10
+    - iteration 19 :
+         total iteration time                   0.137 s
+         error                                  2.0087e-10
+    - iteration 20 :
+         total iteration time                   0.148 s
+         error                                  2.9636e-11
+    - iteration 21 :
+         total iteration time                   0.146 s
+         error                                  3.7624e-12
+    - iteration 22 :
+         total iteration time                   0.144 s
+         error                                  3.2073e-12
+    - iteration 23 :
+         total iteration time                   0.117 s
+         error                                  1.9743e-12
+    - iteration 24 :
+         total iteration time                   0.138 s
+         error                                  7.4358e-14
+    - iteration 25 :
+         total iteration time                   0.14 s
+         error                                  4.7905e-11
+    - iteration 26 :
+         total iteration time                   0.138 s
+         error                                  4.7465e-11
+    - iteration 27 :
+         total iteration time                   0.154 s
+         error                                  2.6868e-11
+    - iteration 28 :
+         total iteration time                   0.144 s
+         error                                  1.8672e-11
+    - iteration 29 :
+         total iteration time                   0.137 s
+         error                                  5.1722e-12
+    - iteration 30 :
+         total iteration time                   0.143 s
+         error                                  7.1883e-13
+    - iteration 31 :
+         total iteration time                   0.136 s
+         error                                  6.3643e-11
+    - iteration 32 :
+         total iteration time                   0.134 s
+         error                                  6.3554e-11
+    - iteration 33 :
+         total iteration time                   0.139 s
+         error                                  4.8731e-11
+    - iteration 34 :
+         total iteration time                   0.218 s
+         error                                  4.8593e-11
+    - iteration 35 :
+         total iteration time                   0.135 s
+         error                                  4.8537e-11
+    - iteration 36 :
+         total iteration time                   0.136 s
+         error                                  3.9784e-11
+    - iteration 37 :
+         total iteration time                   0.144 s
+         error                                  2.7063e-11
+    - iteration 38 :
+         total iteration time                   0.144 s
+         error                                  2.4201e-11
+    - iteration 39 :
+         total iteration time                   0.14 s
+         error                                  1.6743e-11
+    - iteration 40 :
+         total iteration time                   0.124 s
+         error                                  8.8256e-12
+    - iteration 41 :
+         total iteration time                   0.135 s
+         error                                  1.5199e-12
+    - iteration 42 :
+         total iteration time                   0.144 s
+         error                                  2.4103e-13
+    - iteration 43 :
+         total iteration time                   0.12 s
+         error                                  7.3858e-11
+    - iteration 44 :
+         total iteration time                   0.102 s
+         error                                  7.2225e-11
+    - iteration 45 :
+         total iteration time                   0.11 s
+         error                                  7.0752e-11
+    - iteration 46 :
+         total iteration time                   0.124 s
+         error                                  6.5807e-11
+    - iteration 47 :
+         total iteration time                   0.127 s
+         error                                  5.9365e-11
+    - iteration 48 :
+         total iteration time                   0.124 s
+         error                                  5.8881e-11
+    - iteration 49 :
+         total iteration time                   0.123 s
+         error                                  5.8658e-11
+    - iteration 50 :
+         total iteration time                   0.127 s
+         error                                  5.8101e-11
+    Time for refinement                   6.697560e+00 s
+________________________________________
+
+CSC Conversion Time: 0.082274
+Init Time: 0.000042
+Factorize Time: 4.193826
+Solve Time: 6.824444
+Clean up Time: 0.000000
+---------------------------------
+Sum: 11.100586
+
+Total PaStiX Time: 185.329634
+CCX without PaStiX Time: 35.032446
+Share of PaStiX Time: 0.841023
+Total Time: 220.362080
+Reusability: 27 : 30 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.675224
+ time avg. forc= 0.675224
+ largest residual force= 575.625600 in node 111907 and dof 3
+ largest increment of disp= 2.033193e+04
+ largest correction to disp= 2.033193e+04 in node 572 and dof 1
+
+ divergence; the increment size is decreased to 6.250000e-02
+ the increment is reattempted
+
+ increment 1 attempt 2 
+ increment size= 6.250000e-02
+ sum of previous increments=0.000000e+00
+ actual step time=6.250000e-02
+ actual total time=2.062500e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.404122e+00 s
+    Time to initialize coeftab            2.311361e-01 s
+    Time to factorize                     2.400443e+00 s (203.19 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.139119e-01 s
+    - iteration 1 :
+         total iteration time                   0.133 s
+         error                                  1.5266e-08
+    - iteration 2 :
+         total iteration time                   0.148 s
+         error                                  9.6848e-10
+    - iteration 3 :
+         total iteration time                   0.138 s
+         error                                  3.6384e-11
+    - iteration 4 :
+         total iteration time                   0.108 s
+         error                                  1.7031e-12
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  9.3094e-14
+    Time for refinement                   6.863570e-01 s
+________________________________________
+
+CSC Conversion Time: 0.084415
+Init Time: 0.000032
+Factorize Time: 4.093098
+Solve Time: 0.816288
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.993833
+
+Total PaStiX Time: 190.323466
+CCX without PaStiX Time: 35.965551
+Share of PaStiX Time: 0.841064
+Total Time: 226.289017
+Reusability: 28 : 31 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.335641
+ time avg. forc= 0.335641
+ largest residual force= 41.727509 in node 48600 and dof 2
+ largest increment of disp= 1.784969e-02
+ largest correction to disp= 1.784969e-02 in node 572 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.492551e+00 s
+    Time to initialize coeftab            2.295499e-01 s
+    Time to factorize                     2.682619e+00 s (181.81 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.662302e-01 s
+    - iteration 1 :
+         total iteration time                   0.165 s
+         error                                  2.2054e-08
+    - iteration 2 :
+         total iteration time                   0.152 s
+         error                                  1.2193e-09
+    - iteration 3 :
+         total iteration time                   0.115 s
+         error                                  2.9336e-11
+    - iteration 4 :
+         total iteration time                   0.123 s
+         error                                  9.7585e-13
+    Time for refinement                   5.925438e-01 s
+________________________________________
+
+CSC Conversion Time: 0.093425
+Init Time: 0.000040
+Factorize Time: 4.468774
+Solve Time: 0.779760
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.341999
+
+Total PaStiX Time: 195.665465
+CCX without PaStiX Time: 36.838522
+Share of PaStiX Time: 0.841557
+Total Time: 232.503987
+Reusability: 29 : 32 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.332286
+ time avg. forc= 0.332286
+ largest residual force= 45.922253 in node 47711 and dof 2
+ largest increment of disp= 4.034722e-01
+ largest correction to disp= 4.034722e-01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.782259e+00 s
+    Time to initialize coeftab            2.366481e-01 s
+    Time to factorize                     2.356580e+00 s (206.97 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.045861e-01 s
+    - iteration 1 :
+         total iteration time                   0.12 s
+         error                                  3.6758e-07
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  2.1731e-08
+    - iteration 3 :
+         total iteration time                   0.121 s
+         error                                  9.7982e-10
+    - iteration 4 :
+         total iteration time                   0.124 s
+         error                                  4.4242e-11
+    - iteration 5 :
+         total iteration time                   0.123 s
+         error                                  2.1298e-12
+    - iteration 6 :
+         total iteration time                   0.125 s
+         error                                  6.9807e-14
+    Time for refinement                   7.735541e-01 s
+________________________________________
+
+CSC Conversion Time: 0.117657
+Init Time: 0.000027
+Factorize Time: 4.451741
+Solve Time: 0.893165
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.462589
+
+Total PaStiX Time: 201.128054
+CCX without PaStiX Time: 37.785239
+Share of PaStiX Time: 0.841845
+Total Time: 238.913293
+Reusability: 30 : 33 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.368784
+ time avg. forc= 0.368784
+ largest residual force= 109.011830 in node 25607 and dof 2
+ largest increment of disp= 3.765279e+01
+ largest correction to disp= 3.765279e+01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.406016e+00 s
+    Time to initialize coeftab            2.370679e-01 s
+    Time to factorize                     2.459587e+00 s (198.30 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.053181e-01 s
+    - iteration 1 :
+         total iteration time                   0.124 s
+         error                                  0.0086107
+    - iteration 2 :
+         total iteration time                   0.124 s
+         error                                  0.00064857
+    - iteration 3 :
+         total iteration time                   0.122 s
+         error                                  0.0002343
+    - iteration 4 :
+         total iteration time                   0.132 s
+         error                                  2.0794e-06
+    - iteration 5 :
+         total iteration time                   0.123 s
+         error                                  4.8667e-08
+    - iteration 6 :
+         total iteration time                   0.126 s
+         error                                  3.1206e-09
+    - iteration 7 :
+         total iteration time                   0.124 s
+         error                                  4.282e-11
+    - iteration 8 :
+         total iteration time                   0.125 s
+         error                                  2.6311e-12
+    - iteration 9 :
+         total iteration time                   0.126 s
+         error                                  9.2708e-14
+    - iteration 10 :
+         total iteration time                   0.112 s
+         error                                  9.0203e-11
+    - iteration 11 :
+         total iteration time                   0.121 s
+         error                                  6.2064e-11
+    - iteration 12 :
+         total iteration time                   0.122 s
+         error                                  2.8822e-11
+    - iteration 13 :
+         total iteration time                   0.125 s
+         error                                  6.2696e-12
+    - iteration 14 :
+         total iteration time                   0.123 s
+         error                                  5.5592e-13
+    - iteration 15 :
+         total iteration time                   0.122 s
+         error                                  9.6742e-11
+    - iteration 16 :
+         total iteration time                   0.119 s
+         error                                  7.2292e-11
+    - iteration 17 :
+         total iteration time                   0.123 s
+         error                                  2.1829e-11
+    - iteration 18 :
+         total iteration time                   0.122 s
+         error                                  2.3168e-12
+    - iteration 19 :
+         total iteration time                   0.129 s
+         error                                  1.0495e-13
+    - iteration 20 :
+         total iteration time                   0.121 s
+         error                                  4.7645e-12
+    - iteration 21 :
+         total iteration time                   0.123 s
+         error                                  3.2568e-12
+    - iteration 22 :
+         total iteration time                   0.123 s
+         error                                  1.2989e-12
+    - iteration 23 :
+         total iteration time                   0.123 s
+         error                                  6.3341e-13
+    - iteration 24 :
+         total iteration time                   0.122 s
+         error                                  4.289e-12
+    - iteration 25 :
+         total iteration time                   0.122 s
+         error                                  2.7948e-12
+    - iteration 26 :
+         total iteration time                   0.123 s
+         error                                  2.7569e-12
+    - iteration 27 :
+         total iteration time                   0.122 s
+         error                                  1.4907e-12
+    - iteration 28 :
+         total iteration time                   0.122 s
+         error                                  1.1191e-13
+    - iteration 29 :
+         total iteration time                   0.123 s
+         error                                  2.0703e-11
+    - iteration 30 :
+         total iteration time                   0.128 s
+         error                                  1.809e-11
+    - iteration 31 :
+         total iteration time                   0.126 s
+         error                                  1.7983e-11
+    - iteration 32 :
+         total iteration time                   0.122 s
+         error                                  3.116e-12
+    - iteration 33 :
+         total iteration time                   0.126 s
+         error                                  5.8391e-14
+    - iteration 34 :
+         total iteration time                   0.124 s
+         error                                  2.5914e-11
+    - iteration 35 :
+         total iteration time                   0.122 s
+         error                                  1.8573e-11
+    - iteration 36 :
+         total iteration time                   0.123 s
+         error                                  1.1515e-11
+    - iteration 37 :
+         total iteration time                   0.122 s
+         error                                  1.4149e-12
+    - iteration 38 :
+         total iteration time                   0.124 s
+         error                                  1.5669e-14
+    - iteration 39 :
+         total iteration time                   0.112 s
+         error                                  3.5732e-11
+    - iteration 40 :
+         total iteration time                   0.123 s
+         error                                  3.2645e-11
+    - iteration 41 :
+         total iteration time                   0.123 s
+         error                                  9.684e-12
+    - iteration 42 :
+         total iteration time                   0.125 s
+         error                                  1.8554e-12
+    - iteration 43 :
+         total iteration time                   0.123 s
+         error                                  1.5666e-14
+    - iteration 44 :
+         total iteration time                   0.121 s
+         error                                  1.6754e-11
+    - iteration 45 :
+         total iteration time                   0.123 s
+         error                                  1.594e-11
+    - iteration 46 :
+         total iteration time                   0.122 s
+         error                                  6.3975e-12
+    - iteration 47 :
+         total iteration time                   0.122 s
+         error                                  2.7388e-13
+    - iteration 48 :
+         total iteration time                   0.12 s
+         error                                  5.1666e-11
+    - iteration 49 :
+         total iteration time                   0.121 s
+         error                                  4.2889e-11
+    - iteration 50 :
+         total iteration time                   0.123 s
+         error                                  2.0087e-11
+    Time for refinement                   6.322543e+00 s
+________________________________________
+
+CSC Conversion Time: 0.085125
+Init Time: 0.000037
+Factorize Time: 4.161294
+Solve Time: 6.444604
+Clean up Time: 0.000000
+---------------------------------
+Sum: 10.691061
+
+Total PaStiX Time: 211.819116
+CCX without PaStiX Time: 38.631645
+Share of PaStiX Time: 0.845752
+Total Time: 250.450760
+Reusability: 31 : 34 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.596247
+ time avg. forc= 0.596247
+ largest residual force= 468.694600 in node 43391 and dof 3
+ largest increment of disp= 3.449811e+04
+ largest correction to disp= 3.449811e+04 in node 572 and dof 1
+
+ divergence; the increment size is decreased to 1.562500e-02
+ the increment is reattempted
+
+ increment 1 attempt 3 
+ increment size= 1.562500e-02
+ sum of previous increments=0.000000e+00
+ actual step time=1.562500e-02
+ actual total time=2.015625e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.377926e+00 s
+    Time to initialize coeftab            2.386851e-01 s
+    Time to factorize                     2.442728e+00 s (199.67 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.046309e-01 s
+    - iteration 1 :
+         total iteration time                   0.12 s
+         error                                  6.3058e-08
+    - iteration 2 :
+         total iteration time                   0.125 s
+         error                                  3.7704e-09
+    - iteration 3 :
+         total iteration time                   0.118 s
+         error                                  1.1384e-10
+    - iteration 4 :
+         total iteration time                   0.117 s
+         error                                  5.3857e-12
+    - iteration 5 :
+         total iteration time                   0.127 s
+         error                                  2.9304e-13
+    Time for refinement                   6.436119e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080474
+Init Time: 0.000036
+Factorize Time: 4.119235
+Solve Time: 0.763180
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.962926
+
+Total PaStiX Time: 216.782041
+CCX without PaStiX Time: 39.541320
+Share of PaStiX Time: 0.845737
+Total Time: 256.323361
+Reusability: 32 : 35 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.326940
+ time avg. forc= 0.326940
+ largest residual force= 41.908389 in node 48600 and dof 2
+ largest increment of disp= 1.921425e-02
+ largest correction to disp= 1.921425e-02 in node 572 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.398942e+00 s
+    Time to initialize coeftab            2.325671e-01 s
+    Time to factorize                     2.440151e+00 s (199.88 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.085191e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  2.0501e-08
+    - iteration 2 :
+         total iteration time                   0.122 s
+         error                                  1.1446e-09
+    - iteration 3 :
+         total iteration time                   0.112 s
+         error                                  2.8136e-11
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  1.0146e-12
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  6.3503e-14
+    Time for refinement                   6.374841e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081251
+Init Time: 0.000036
+Factorize Time: 4.129518
+Solve Time: 0.762039
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.972844
+
+Total PaStiX Time: 221.754886
+CCX without PaStiX Time: 40.379455
+Share of PaStiX Time: 0.845959
+Total Time: 262.134341
+Reusability: 33 : 36 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.323946
+ time avg. forc= 0.323946
+ largest residual force= 51.272570 in node 47711 and dof 2
+ largest increment of disp= 4.035596e-01
+ largest correction to disp= 4.035596e-01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.497003e+00 s
+    Time to initialize coeftab            2.359190e-01 s
+    Time to factorize                     2.410808e+00 s (202.31 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.054790e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  3.5761e-07
+    - iteration 2 :
+         total iteration time                   0.113 s
+         error                                  1.9605e-08
+    - iteration 3 :
+         total iteration time                   0.121 s
+         error                                  5.8576e-10
+    - iteration 4 :
+         total iteration time                   0.123 s
+         error                                  2.14e-11
+    - iteration 5 :
+         total iteration time                   0.116 s
+         error                                  1.2953e-12
+    - iteration 6 :
+         total iteration time                   0.124 s
+         error                                  5.0223e-14
+    Time for refinement                   7.545669e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081459
+Init Time: 0.000032
+Factorize Time: 4.202351
+Solve Time: 0.876113
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.159955
+
+Total PaStiX Time: 226.914841
+CCX without PaStiX Time: 41.218896
+Share of PaStiX Time: 0.846275
+Total Time: 268.133736
+Reusability: 34 : 37 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.364468
+ time avg. forc= 0.364468
+ largest residual force= 119.036014 in node 25607 and dof 2
+ largest increment of disp= 3.638027e+01
+ largest correction to disp= 3.638027e+01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.375462e+00 s
+    Time to initialize coeftab            2.423110e-01 s
+    Time to factorize                     2.320020e+00 s (210.23 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.049218e-01 s
+    - iteration 1 :
+         total iteration time                   0.123 s
+         error                                  0.01087
+    - iteration 2 :
+         total iteration time                   0.124 s
+         error                                  0.00096125
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  0.00025996
+    - iteration 4 :
+         total iteration time                   0.123 s
+         error                                  6.2236e-06
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  1.4129e-07
+    - iteration 6 :
+         total iteration time                   0.123 s
+         error                                  8.9791e-09
+    - iteration 7 :
+         total iteration time                   0.125 s
+         error                                  3.3158e-10
+    - iteration 8 :
+         total iteration time                   0.123 s
+         error                                  1.3654e-11
+    - iteration 9 :
+         total iteration time                   0.124 s
+         error                                  5.4916e-13
+    - iteration 10 :
+         total iteration time                   0.122 s
+         error                                  1.6079e-11
+    - iteration 11 :
+         total iteration time                   0.122 s
+         error                                  2.5977e-12
+    - iteration 12 :
+         total iteration time                   0.123 s
+         error                                  4.0361e-13
+    - iteration 13 :
+         total iteration time                   0.122 s
+         error                                  2.3421e-11
+    - iteration 14 :
+         total iteration time                   0.121 s
+         error                                  5.4773e-12
+    - iteration 15 :
+         total iteration time                   0.122 s
+         error                                  1.9247e-12
+    - iteration 16 :
+         total iteration time                   0.124 s
+         error                                  4.2272e-14
+    - iteration 17 :
+         total iteration time                   0.123 s
+         error                                  6.7521e-11
+    - iteration 18 :
+         total iteration time                   0.123 s
+         error                                  3.0647e-11
+    - iteration 19 :
+         total iteration time                   0.123 s
+         error                                  8.761e-12
+    - iteration 20 :
+         total iteration time                   0.124 s
+         error                                  5.4234e-13
+    - iteration 21 :
+         total iteration time                   0.121 s
+         error                                  5.3297e-11
+    - iteration 22 :
+         total iteration time                   0.126 s
+         error                                  4.0088e-11
+    - iteration 23 :
+         total iteration time                   0.123 s
+         error                                  1.0184e-11
+    - iteration 24 :
+         total iteration time                   0.123 s
+         error                                  3.6517e-13
+    - iteration 25 :
+         total iteration time                   0.119 s
+         error                                  1.0026e-10
+    - iteration 26 :
+         total iteration time                   0.121 s
+         error                                  3.6708e-11
+    - iteration 27 :
+         total iteration time                   0.122 s
+         error                                  1.7458e-11
+    - iteration 28 :
+         total iteration time                   0.123 s
+         error                                  2.0147e-12
+    - iteration 29 :
+         total iteration time                   0.123 s
+         error                                  1.1082e-13
+    - iteration 30 :
+         total iteration time                   0.122 s
+         error                                  8.5401e-11
+    - iteration 31 :
+         total iteration time                   0.122 s
+         error                                  8.4484e-11
+    - iteration 32 :
+         total iteration time                   0.122 s
+         error                                  1.5868e-11
+    - iteration 33 :
+         total iteration time                   0.123 s
+         error                                  3.1125e-12
+    - iteration 34 :
+         total iteration time                   0.123 s
+         error                                  1.6982e-13
+    - iteration 35 :
+         total iteration time                   0.123 s
+         error                                  6.9416e-11
+    - iteration 36 :
+         total iteration time                   0.122 s
+         error                                  6.8377e-11
+    - iteration 37 :
+         total iteration time                   0.122 s
+         error                                  1.1572e-11
+    - iteration 38 :
+         total iteration time                   0.125 s
+         error                                  1.6179e-12
+    - iteration 39 :
+         total iteration time                   0.124 s
+         error                                  2.1956e-14
+    - iteration 40 :
+         total iteration time                   0.123 s
+         error                                  1.3585e-10
+    - iteration 41 :
+         total iteration time                   0.12 s
+         error                                  9.0398e-11
+    - iteration 42 :
+         total iteration time                   0.119 s
+         error                                  8.3265e-11
+    - iteration 43 :
+         total iteration time                   0.123 s
+         error                                  1.4437e-12
+    - iteration 44 :
+         total iteration time                   0.125 s
+         error                                  4.4969e-14
+    - iteration 45 :
+         total iteration time                   0.122 s
+         error                                  9.1711e-11
+    - iteration 46 :
+         total iteration time                   0.121 s
+         error                                  7.8721e-11
+    - iteration 47 :
+         total iteration time                   0.121 s
+         error                                  3.6154e-12
+    - iteration 48 :
+         total iteration time                   0.121 s
+         error                                  5.0917e-14
+    - iteration 49 :
+         total iteration time                   0.114 s
+         error                                  9.8305e-11
+    - iteration 50 :
+         total iteration time                   0.123 s
+         error                                  8.8314e-11
+    Time for refinement                   6.310286e+00 s
+________________________________________
+
+CSC Conversion Time: 0.084354
+Init Time: 0.000027
+Factorize Time: 3.993807
+Solve Time: 6.430352
+Clean up Time: 0.000000
+---------------------------------
+Sum: 10.508539
+
+Total PaStiX Time: 237.423380
+CCX without PaStiX Time: 42.065899
+Share of PaStiX Time: 0.849490
+Total Time: 279.489279
+Reusability: 35 : 38 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.591225
+ time avg. forc= 0.591225
+ largest residual force= 430.019663 in node 49084 and dof 1
+ largest increment of disp= 3.303944e+04
+ largest correction to disp= 3.303944e+04 in node 572 and dof 1
+
+ divergence; the increment size is decreased to 3.906250e-03
+ the increment is reattempted
+
+ increment 1 attempt 4 
+ increment size= 3.906250e-03
+ sum of previous increments=0.000000e+00
+ actual step time=3.906250e-03
+ actual total time=2.003906e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.462966e+00 s
+    Time to initialize coeftab            2.901559e-01 s
+    Time to factorize                     2.526465e+00 s (193.05 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.055031e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  8.9946e-08
+    - iteration 2 :
+         total iteration time                   0.122 s
+         error                                  5.4667e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  1.7497e-10
+    - iteration 4 :
+         total iteration time                   0.123 s
+         error                                  9.492e-12
+    - iteration 5 :
+         total iteration time                   0.123 s
+         error                                  5.3067e-13
+    Time for refinement                   6.632938e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080979
+Init Time: 0.000030
+Factorize Time: 4.336153
+Solve Time: 0.786342
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.203504
+
+Total PaStiX Time: 242.626884
+CCX without PaStiX Time: 42.967205
+Share of PaStiX Time: 0.849551
+Total Time: 285.594089
+Reusability: 36 : 39 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.324733
+ time avg. forc= 0.324733
+ largest residual force= 41.935867 in node 48600 and dof 2
+ largest increment of disp= 1.954797e-02
+ largest correction to disp= 1.954797e-02 in node 572 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.397611e+00 s
+    Time to initialize coeftab            2.305322e-01 s
+    Time to factorize                     2.439812e+00 s (199.91 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.165740e-01 s
+    - iteration 1 :
+         total iteration time                   0.121 s
+         error                                  2.968e-08
+    - iteration 2 :
+         total iteration time                   0.123 s
+         error                                  1.8029e-09
+    - iteration 3 :
+         total iteration time                   0.121 s
+         error                                  5.5359e-11
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  2.8882e-12
+    - iteration 5 :
+         total iteration time                   0.121 s
+         error                                  1.6988e-13
+    Time for refinement                   6.454601e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080834
+Init Time: 0.000031
+Factorize Time: 4.123167
+Solve Time: 0.778664
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.982697
+
+Total PaStiX Time: 247.609580
+CCX without PaStiX Time: 43.804364
+Share of PaStiX Time: 0.849683
+Total Time: 291.413944
+Reusability: 37 : 40 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.321833
+ time avg. forc= 0.321833
+ largest residual force= 52.086852 in node 47711 and dof 2
+ largest increment of disp= 4.042899e-01
+ largest correction to disp= 4.042899e-01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.416545e+00 s
+    Time to initialize coeftab            2.426260e-01 s
+    Time to factorize                     2.356461e+00 s (206.98 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.034260e-01 s
+    - iteration 1 :
+         total iteration time                   0.126 s
+         error                                  2.1215e-07
+    - iteration 2 :
+         total iteration time                   0.121 s
+         error                                  1.713e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  9.4081e-11
+    - iteration 4 :
+         total iteration time                   0.123 s
+         error                                  5.6086e-12
+    - iteration 5 :
+         total iteration time                   0.125 s
+         error                                  1.965e-13
+    Time for refinement                   6.548069e-01 s
+________________________________________
+
+CSC Conversion Time: 0.080825
+Init Time: 0.000039
+Factorize Time: 4.072404
+Solve Time: 0.776609
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.929878
+
+Total PaStiX Time: 252.539458
+CCX without PaStiX Time: 44.641814
+Share of PaStiX Time: 0.849783
+Total Time: 297.181272
+Reusability: 38 : 41 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.363728
+ time avg. forc= 0.363728
+ largest residual force= 121.769546 in node 25607 and dof 2
+ largest increment of disp= 3.626386e+01
+ largest correction to disp= 3.626386e+01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.397549e+00 s
+    Time to initialize coeftab            2.484591e-01 s
+    Time to factorize                     2.442257e+00 s (199.71 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.013708e-01 s
+    - iteration 1 :
+         total iteration time                   0.12 s
+         error                                  0.0017666
+    - iteration 2 :
+         total iteration time                   0.12 s
+         error                                  0.00012132
+    - iteration 3 :
+         total iteration time                   0.111 s
+         error                                  3.692e-06
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  2.2262e-07
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  9.007e-09
+    - iteration 6 :
+         total iteration time                   0.123 s
+         error                                  7.897e-10
+    - iteration 7 :
+         total iteration time                   0.124 s
+         error                                  3.72e-11
+    - iteration 8 :
+         total iteration time                   0.126 s
+         error                                  1.3359e-12
+    - iteration 9 :
+         total iteration time                   0.113 s
+         error                                  5.3628e-14
+    - iteration 10 :
+         total iteration time                   0.121 s
+         error                                  1.0099e-10
+    - iteration 11 :
+         total iteration time                   0.122 s
+         error                                  7.1873e-11
+    - iteration 12 :
+         total iteration time                   0.123 s
+         error                                  1.7436e-13
+    - iteration 13 :
+         total iteration time                   0.101 s
+         error                                  6.4002e-11
+    - iteration 14 :
+         total iteration time                   0.113 s
+         error                                  5.7879e-11
+    - iteration 15 :
+         total iteration time                   0.121 s
+         error                                  4.5182e-11
+    - iteration 16 :
+         total iteration time                   0.122 s
+         error                                  1.3663e-11
+    - iteration 17 :
+         total iteration time                   0.119 s
+         error                                  6.2769e-12
+    - iteration 18 :
+         total iteration time                   0.123 s
+         error                                  1.8271e-12
+    - iteration 19 :
+         total iteration time                   0.132 s
+         error                                  3.1651e-14
+    - iteration 20 :
+         total iteration time                   0.115 s
+         error                                  4.9611e-11
+    - iteration 21 :
+         total iteration time                   0.0997 s
+         error                                  6.0638e-12
+    - iteration 22 :
+         total iteration time                   0.12 s
+         error                                  2.842e-12
+    - iteration 23 :
+         total iteration time                   0.121 s
+         error                                  5.4937e-14
+    - iteration 24 :
+         total iteration time                   0.12 s
+         error                                  7.678e-11
+    - iteration 25 :
+         total iteration time                   0.122 s
+         error                                  7.4938e-11
+    - iteration 26 :
+         total iteration time                   0.121 s
+         error                                  3.012e-11
+    - iteration 27 :
+         total iteration time                   0.121 s
+         error                                  8.6494e-12
+    - iteration 28 :
+         total iteration time                   0.122 s
+         error                                  2.767e-12
+    - iteration 29 :
+         total iteration time                   0.125 s
+         error                                  1.3002e-14
+    - iteration 30 :
+         total iteration time                   0.119 s
+         error                                  1.2418e-10
+    - iteration 31 :
+         total iteration time                   0.121 s
+         error                                  1.0369e-10
+    - iteration 32 :
+         total iteration time                   0.119 s
+         error                                  2.8998e-11
+    - iteration 33 :
+         total iteration time                   0.119 s
+         error                                  7.2516e-12
+    - iteration 34 :
+         total iteration time                   0.122 s
+         error                                  7.2435e-12
+    - iteration 35 :
+         total iteration time                   0.123 s
+         error                                  8.6902e-13
+    - iteration 36 :
+         total iteration time                   0.123 s
+         error                                  9.2369e-11
+    - iteration 37 :
+         total iteration time                   0.121 s
+         error                                  4.6843e-12
+    - iteration 38 :
+         total iteration time                   0.121 s
+         error                                  1.3526e-13
+    - iteration 39 :
+         total iteration time                   0.12 s
+         error                                  8.7911e-11
+    - iteration 40 :
+         total iteration time                   0.121 s
+         error                                  4.1854e-11
+    - iteration 41 :
+         total iteration time                   0.119 s
+         error                                  1.1245e-11
+    - iteration 42 :
+         total iteration time                   0.111 s
+         error                                  5.4711e-12
+    - iteration 43 :
+         total iteration time                   0.121 s
+         error                                  4.4155e-14
+    - iteration 44 :
+         total iteration time                   0.112 s
+         error                                  7.1631e-11
+    - iteration 45 :
+         total iteration time                   0.124 s
+         error                                  4.2733e-11
+    - iteration 46 :
+         total iteration time                   0.127 s
+         error                                  3.6948e-11
+    - iteration 47 :
+         total iteration time                   0.123 s
+         error                                  1.4405e-12
+    - iteration 48 :
+         total iteration time                   0.121 s
+         error                                  1.8296e-14
+    - iteration 49 :
+         total iteration time                   0.123 s
+         error                                  8.0403e-11
+    - iteration 50 :
+         total iteration time                   0.121 s
+         error                                  7.4639e-11
+    Time for refinement                   6.178947e+00 s
+________________________________________
+
+CSC Conversion Time: 0.083169
+Init Time: 0.000026
+Factorize Time: 4.144190
+Solve Time: 6.294994
+Clean up Time: 0.000000
+---------------------------------
+Sum: 10.522380
+
+Total PaStiX Time: 263.061838
+CCX without PaStiX Time: 45.489688
+Share of PaStiX Time: 0.852570
+Total Time: 308.551527
+Reusability: 39 : 42 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.593758
+ time avg. forc= 0.593758
+ largest residual force= 420.693613 in node 49084 and dof 1
+ largest increment of disp= 3.269374e+04
+ largest correction to disp= 3.269374e+04 in node 572 and dof 1
+
+ divergence; the increment size is decreased to 9.765625e-04
+ the increment is reattempted
+
+ increment 1 attempt 5 
+ increment size= 9.765625e-04
+ sum of previous increments=0.000000e+00
+ actual step time=9.765625e-04
+ actual total time=2.000977e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.403469e+00 s
+    Time to initialize coeftab            2.335761e-01 s
+    Time to factorize                     2.494737e+00 s (195.51 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.058440e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  9.6095e-08
+    - iteration 2 :
+         total iteration time                   0.124 s
+         error                                  5.6714e-09
+    - iteration 3 :
+         total iteration time                   0.12 s
+         error                                  1.6472e-10
+    - iteration 4 :
+         total iteration time                   0.121 s
+         error                                  8.1129e-12
+    - iteration 5 :
+         total iteration time                   0.12 s
+         error                                  4.8152e-13
+    Time for refinement                   6.459441e-01 s
+________________________________________
+
+CSC Conversion Time: 0.085454
+Init Time: 0.000027
+Factorize Time: 4.188699
+Solve Time: 0.767955
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.042135
+
+Total PaStiX Time: 268.103973
+CCX without PaStiX Time: 46.408218
+Share of PaStiX Time: 0.852444
+Total Time: 314.512191
+Reusability: 40 : 43 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.324186
+ time avg. forc= 0.324186
+ largest residual force= 41.940436 in node 48600 and dof 2
+ largest increment of disp= 1.963006e-02
+ largest correction to disp= 1.963006e-02 in node 572 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.405417e+00 s
+    Time to initialize coeftab            2.344520e-01 s
+    Time to factorize                     2.430637e+00 s (200.66 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.036451e-01 s
+    - iteration 1 :
+         total iteration time                   0.122 s
+         error                                  3.4012e-08
+    - iteration 2 :
+         total iteration time                   0.125 s
+         error                                  1.9026e-09
+    - iteration 3 :
+         total iteration time                   0.123 s
+         error                                  4.4725e-11
+    - iteration 4 :
+         total iteration time                   0.129 s
+         error                                  1.2008e-12
+    - iteration 5 :
+         total iteration time                   0.125 s
+         error                                  7.711e-14
+    Time for refinement                   6.606050e-01 s
+________________________________________
+
+CSC Conversion Time: 0.082578
+Init Time: 0.000037
+Factorize Time: 4.130261
+Solve Time: 0.780571
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.993447
+
+Total PaStiX Time: 273.097420
+CCX without PaStiX Time: 47.252260
+Share of PaStiX Time: 0.852498
+Total Time: 320.349680
+Reusability: 41 : 44 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.321311
+ time avg. forc= 0.321311
+ largest residual force= 52.320837 in node 47711 and dof 2
+ largest increment of disp= 4.045923e-01
+ largest correction to disp= 4.045923e-01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.391612e+00 s
+    Time to initialize coeftab            2.386310e-01 s
+    Time to factorize                     2.378426e+00 s (205.07 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.018572e-01 s
+    - iteration 1 :
+         total iteration time                   0.12 s
+         error                                  9.1613e-08
+    - iteration 2 :
+         total iteration time                   0.121 s
+         error                                  3.9296e-09
+    - iteration 3 :
+         total iteration time                   0.125 s
+         error                                  2.2935e-10
+    - iteration 4 :
+         total iteration time                   0.126 s
+         error                                  9.3496e-12
+    - iteration 5 :
+         total iteration time                   0.12 s
+         error                                  4.4274e-13
+    Time for refinement                   6.513910e-01 s
+________________________________________
+
+CSC Conversion Time: 0.085590
+Init Time: 0.000032
+Factorize Time: 4.064426
+Solve Time: 0.771116
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.921164
+
+Total PaStiX Time: 278.018583
+CCX without PaStiX Time: 48.109245
+Share of PaStiX Time: 0.852483
+Total Time: 326.127828
+Reusability: 42 : 45 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.363662
+ time avg. forc= 0.363662
+ largest residual force= 122.431949 in node 25607 and dof 2
+ largest increment of disp= 3.623419e+01
+ largest correction to disp= 3.623419e+01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.388643e+00 s
+    Time to initialize coeftab            2.328050e-01 s
+    Time to factorize                     2.361553e+00 s (206.53 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.094189e-01 s
+    - iteration 1 :
+         total iteration time                   0.119 s
+         error                                  0.0069197
+    - iteration 2 :
+         total iteration time                   0.118 s
+         error                                  0.00047732
+    - iteration 3 :
+         total iteration time                   0.122 s
+         error                                  3.7464e-05
+    - iteration 4 :
+         total iteration time                   0.12 s
+         error                                  5.6088e-07
+    - iteration 5 :
+         total iteration time                   0.121 s
+         error                                  1.325e-08
+    - iteration 6 :
+         total iteration time                   0.105 s
+         error                                  9.1665e-10
+    - iteration 7 :
+         total iteration time                   0.124 s
+         error                                  4.2019e-11
+    - iteration 8 :
+         total iteration time                   0.123 s
+         error                                  1.5168e-12
+    - iteration 9 :
+         total iteration time                   0.122 s
+         error                                  8.0896e-14
+    - iteration 10 :
+         total iteration time                   0.11 s
+         error                                  7.012e-11
+    - iteration 11 :
+         total iteration time                   0.123 s
+         error                                  3.1062e-11
+    - iteration 12 :
+         total iteration time                   0.122 s
+         error                                  1.9701e-11
+    - iteration 13 :
+         total iteration time                   0.129 s
+         error                                  3.2762e-12
+    - iteration 14 :
+         total iteration time                   0.127 s
+         error                                  1.9337e-14
+    - iteration 15 :
+         total iteration time                   0.12 s
+         error                                  6.2077e-11
+    - iteration 16 :
+         total iteration time                   0.12 s
+         error                                  5.9558e-11
+    - iteration 17 :
+         total iteration time                   0.12 s
+         error                                  1.5737e-11
+    - iteration 18 :
+         total iteration time                   0.121 s
+         error                                  4.003e-12
+    - iteration 19 :
+         total iteration time                   0.124 s
+         error                                  1.2292e-13
+    - iteration 20 :
+         total iteration time                   0.111 s
+         error                                  1.5286e-10
+    - iteration 21 :
+         total iteration time                   0.12 s
+         error                                  4.9051e-12
+    - iteration 22 :
+         total iteration time                   0.123 s
+         error                                  4.3649e-12
+    - iteration 23 :
+         total iteration time                   0.121 s
+         error                                  3.8557e-12
+    - iteration 24 :
+         total iteration time                   0.12 s
+         error                                  1.3499e-13
+    - iteration 25 :
+         total iteration time                   0.111 s
+         error                                  1.1164e-10
+    - iteration 26 :
+         total iteration time                   0.119 s
+         error                                  2.9495e-11
+    - iteration 27 :
+         total iteration time                   0.118 s
+         error                                  4.8173e-13
+    - iteration 28 :
+         total iteration time                   0.115 s
+         error                                  8.2272e-11
+    - iteration 29 :
+         total iteration time                   0.119 s
+         error                                  2.9712e-12
+    - iteration 30 :
+         total iteration time                   0.12 s
+         error                                  1.9619e-13
+    - iteration 31 :
+         total iteration time                   0.11 s
+         error                                  5.4944e-12
+    - iteration 32 :
+         total iteration time                   0.12 s
+         error                                  1.4079e-12
+    - iteration 33 :
+         total iteration time                   0.118 s
+         error                                  2.1241e-13
+    - iteration 34 :
+         total iteration time                   0.118 s
+         error                                  8.2866e-11
+    - iteration 35 :
+         total iteration time                   0.117 s
+         error                                  7.2953e-11
+    - iteration 36 :
+         total iteration time                   0.12 s
+         error                                  5.6948e-12
+    - iteration 37 :
+         total iteration time                   0.125 s
+         error                                  1.6733e-14
+    - iteration 38 :
+         total iteration time                   0.117 s
+         error                                  6.9746e-11
+    - iteration 39 :
+         total iteration time                   0.096 s
+         error                                  6.3319e-11
+    - iteration 40 :
+         total iteration time                   0.111 s
+         error                                  4.9389e-11
+    - iteration 41 :
+         total iteration time                   0.12 s
+         error                                  1.1965e-12
+    - iteration 42 :
+         total iteration time                   0.12 s
+         error                                  1.0899e-13
+    - iteration 43 :
+         total iteration time                   0.119 s
+         error                                  5.1073e-11
+    - iteration 44 :
+         total iteration time                   0.117 s
+         error                                  1.2842e-11
+    - iteration 45 :
+         total iteration time                   0.121 s
+         error                                  5.5995e-13
+    - iteration 46 :
+         total iteration time                   0.119 s
+         error                                  6.7935e-11
+    - iteration 47 :
+         total iteration time                   0.123 s
+         error                                  7.3883e-12
+    - iteration 48 :
+         total iteration time                   0.12 s
+         error                                  1.0333e-12
+    - iteration 49 :
+         total iteration time                   0.12 s
+         error                                  2.3212e-14
+    - iteration 50 :
+         total iteration time                   0.115 s
+         error                                  1.6659e-11
+    Time for refinement                   6.146542e+00 s
+________________________________________
+
+CSC Conversion Time: 0.082577
+Init Time: 0.000035
+Factorize Time: 4.040192
+Solve Time: 6.273175
+Clean up Time: 0.000000
+---------------------------------
+Sum: 10.395978
+
+Total PaStiX Time: 288.414562
+CCX without PaStiX Time: 48.955001
+Share of PaStiX Time: 0.854892
+Total Time: 337.369563
+Reusability: 43 : 46 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.595536
+ time avg. forc= 0.595536
+ largest residual force= 421.950339 in node 49084 and dof 1
+ largest increment of disp= 3.261032e+04
+ largest correction to disp= 3.261032e+04 in node 572 and dof 1
+
+ divergence; the increment size is decreased to 2.441406e-04
+ the increment is reattempted
+
+ increment 1 attempt 6 
+ increment size= 2.441406e-04
+ sum of previous increments=0.000000e+00
+ actual step time=2.441406e-04
+ actual total time=2.000244e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.374696e+00 s
+    Time to initialize coeftab            2.665141e-01 s
+    Time to factorize                     2.370933e+00 s (205.72 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.021280e-01 s
+    - iteration 1 :
+         total iteration time                   0.12 s
+         error                                  1.3033e-07
+    - iteration 2 :
+         total iteration time                   0.121 s
+         error                                  7.7012e-09
+    - iteration 3 :
+         total iteration time                   0.121 s
+         error                                  2.4722e-10
+    - iteration 4 :
+         total iteration time                   0.113 s
+         error                                  1.3145e-11
+    - iteration 5 :
+         total iteration time                   0.128 s
+         error                                  6.891e-13
+    Time for refinement                   6.398840e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081195
+Init Time: 0.000034
+Factorize Time: 4.069396
+Solve Time: 0.759110
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.909736
+
+Total PaStiX Time: 293.324297
+CCX without PaStiX Time: 49.885349
+Share of PaStiX Time: 0.854651
+Total Time: 343.209646
+Reusability: 44 : 47 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.324051
+ time avg. forc= 0.324051
+ largest residual force= 41.941571 in node 48600 and dof 2
+ largest increment of disp= 1.965060e-02
+ largest correction to disp= 1.965060e-02 in node 572 and dof 1
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.388586e+00 s
+    Time to initialize coeftab            2.296391e-01 s
+    Time to factorize                     2.492369e+00 s (195.69 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.147330e-01 s
+    - iteration 1 :
+         total iteration time                   0.119 s
+         error                                  2.3024e-08
+    - iteration 2 :
+         total iteration time                   0.12 s
+         error                                  1.2662e-09
+    - iteration 3 :
+         total iteration time                   0.12 s
+         error                                  3.0855e-11
+    - iteration 4 :
+         total iteration time                   0.122 s
+         error                                  1.1739e-12
+    - iteration 5 :
+         total iteration time                   0.127 s
+         error                                  7.6491e-14
+    Time for refinement                   6.454120e-01 s
+________________________________________
+
+CSC Conversion Time: 0.081749
+Init Time: 0.000035
+Factorize Time: 4.166940
+Solve Time: 0.775479
+Clean up Time: 0.000000
+---------------------------------
+Sum: 5.024203
+
+Total PaStiX Time: 298.348501
+CCX without PaStiX Time: 50.724445
+Share of PaStiX Time: 0.854688
+Total Time: 349.072945
+Reusability: 45 : 48 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.321179
+ time avg. forc= 0.321179
+ largest residual force= 52.371838 in node 47711 and dof 2
+ largest increment of disp= 4.046647e-01
+ largest correction to disp= 4.046647e-01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.419565e+00 s
+    Time to initialize coeftab            2.393422e-01 s
+    Time to factorize                     2.341439e+00 s (208.31 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.113160e-01 s
+    - iteration 1 :
+         total iteration time                   0.115 s
+         error                                  1.6483e-07
+    - iteration 2 :
+         total iteration time                   0.113 s
+         error                                  1.0839e-08
+    - iteration 3 :
+         total iteration time                   0.116 s
+         error                                  4.37e-10
+    - iteration 4 :
+         total iteration time                   0.116 s
+         error                                  2.0227e-11
+    - iteration 5 :
+         total iteration time                   0.127 s
+         error                                  8.8322e-13
+    Time for refinement                   6.252971e-01 s
+________________________________________
+
+CSC Conversion Time: 0.082057
+Init Time: 0.000039
+Factorize Time: 4.057643
+Solve Time: 0.753545
+Clean up Time: 0.000000
+---------------------------------
+Sum: 4.893285
+
+Total PaStiX Time: 303.241785
+CCX without PaStiX Time: 51.562073
+Share of PaStiX Time: 0.854674
+Total Time: 354.803858
+Reusability: 46 : 49 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.363568
+ time avg. forc= 0.363568
+ largest residual force= 122.627161 in node 25607 and dof 2
+ largest increment of disp= 3.622712e+01
+ largest correction to disp= 3.622712e+01 in node 572 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            341487
+  nnz:          26161979
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       1.392912e+00 s
+    Time to initialize coeftab            2.396390e-01 s
+    Time to factorize                     2.379841e+00 s (204.95 GFlop/s)
+    Number of operations                       -166281989315.00  Flops
+    Number of static pivots                      1
+    Memory usage of coeftab                       1.73 Go
+    Time to solve                         1.069479e-01 s
+    - iteration 1 :
+         total iteration time                   0.12 s
+         error                                  0.41689
+    - iteration 2 :
+         total iteration time                   0.122 s
+         error                                  0.1146
+    - iteration 3 :
+         total iteration time                   0.124 s
+         error                                  0.031743
+    - iteration 4 :
+         total iteration time                   0.124 s
+         error                                  0.026551
+    - iteration 5 :
+         total iteration time                   0.122 s
+         error                                  0.016643
+    - iteration 6 :
+         total iteration time                   0.12 s
+         error                                  0.00027649
+    - iteration 7 :
+         total iteration time                   0.12 s
+         error                                  6.9024e-06
+    - iteration 8 :
+         total iteration time                   0.122 s
+         error                                  3.5885e-07
+    - iteration 9 :
+         total iteration time                   0.122 s
+         error                                  9.6174e-09
+    - iteration 10 :
+         total iteration time                   0.121 s
+         error                                  6.9667e-10
+    - iteration 11 :
+         total iteration time                   0.129 s
+         error                                  2.8011e-11
+    - iteration 12 :
+         total iteration time                   0.127 s
+         error                                  6.9164e-13
+    - iteration 13 :
+         total iteration time                   0.119 s
+         error                                  1.7652e-09
+    - iteration 14 :
+         total iteration time                   0.122 s
+         error                                  1.7028e-09
+    - iteration 15 :
+         total iteration time                   0.126 s
+         error                                  1.7017e-09
+    - iteration 16 :
+         total iteration time                   0.128 s
+         error                                  1.6987e-09
+    - iteration 17 :
+         total iteration time                   0.126 s
+         error                                  1.656e-09
+    - iteration 18 :
+         total iteration time                   0.0997 s
+         error                                  1.3565e-09
+    - iteration 19 :
+         total iteration time                   0.12 s
+         error                                  3.2925e-11
+    - iteration 20 :
+         total iteration time                   0.122 s
+         error                                  2.4256e-12
+    - iteration 21 :
+         total iteration time                   0.122 s
+         error                                  1.4096e-13
+    - iteration 22 :
+         total iteration time                   0.119 s
+         error                                  1.4015e-10
+    - iteration 23 :
+         total iteration time                   0.117 s
+         error                                  1.3894e-10
+    - iteration 24 :
+         total iteration time                   0.117 s
+         error                                  1.3831e-10
+    - iteration 25 :
+         total iteration time                   0.117 s
+         error                                  9.3783e-11
+    - iteration 26 :
+         total iteration time                   0.123 s
+         error                                  2.2219e-11
+    - iteration 27 :
+         total iteration time                   0.125 s
+         error                                  1.3278e-11
+    - iteration 28 :
+         total iteration time                   0.122 s
+         error                                  1.9244e-12
+    - iteration 29 :
+         total iteration time                   0.113 s
+         error                                  1.4667e-13
+    - iteration 30 :
+         total iteration time                   0.106 s
+         error                                  1.043e-10
+    - iteration 31 :
+         total iteration time                   0.135 s
+         error                                  1.0281e-10
+    - iteration 32 :
+         total iteration time                   0.12 s
+         error                                  9.144e-11
+    - iteration 33 :
+         total iteration time                   0.113 s
+         error                                  7.7046e-11
+    - iteration 34 :
+         total iteration time                   0.121 s
+         error                                  3.0113e-11
+    - iteration 35 :
+         total iteration time                   0.12 s
+         error                                  2.8046e-11
+    - iteration 36 :
+         total iteration time                   0.12 s
+         error                                  7.1182e-12
+    - iteration 37 :
+         total iteration time                   0.124 s
+         error                                  2.9677e-13
+    - iteration 38 :
+         total iteration time                   0.119 s
+         error                                  8.8876e-11
+    - iteration 39 :
+         total iteration time                   0.12 s
+         error                                  8.0813e-11
+    - iteration 40 :
+         total iteration time                   0.129 s
+         error                                  7.9967e-11
+    - iteration 41 :
+         total iteration time                   0.112 s
+         error                                  7.6936e-11
+    - iteration 42 :
+         total iteration time                   0.118 s
+         error                                  7.6699e-11
+    - iteration 43 :
+         total iteration time                   0.12 s
+         error                                  6.2282e-11
+    - iteration 44 :
+         total iteration time                   0.12 s
+         error                                  3.8568e-11
+    - iteration 45 :
+         total iteration time                   0.122 s
+         error                                  8.5406e-12
+    - iteration 46 :
+         total iteration time                   0.113 s
+         error                                  5.1969e-13
+    - iteration 47 :
+         total iteration time                   0.109 s
+         error                                  1.0228e-10
+    - iteration 48 :
+         total iteration time                   0.122 s
+         error                                  1.0192e-10
+    - iteration 49 :
+         total iteration time                   0.11 s
+         error                                  9.7998e-11
+    - iteration 50 :
+         total iteration time                   0.12 s
+         error                                  9.0501e-11
+    Time for refinement                   6.117880e+00 s
+________________________________________
+
+CSC Conversion Time: 0.081646
+Init Time: 0.000034
+Factorize Time: 4.071786
+Solve Time: 6.239494
+Clean up Time: 0.000000
+---------------------------------
+Sum: 10.392960
+
+Total PaStiX Time: 313.634745
+CCX without PaStiX Time: 52.403478
+Share of PaStiX Time: 0.856836
+Total Time: 366.038223
+Reusability: 47 : 50 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.595728
+ time avg. forc= 0.595728
+ largest residual force= 422.193785 in node 49084 and dof 1
+ largest increment of disp= 3.258952e+04
+ largest correction to disp= 3.258952e+04 in node 572 and dof 1
+
+
+  The numbers below are estimated upper bounds
+
+  number of:
+
+   nodes:       125244
+   elements:        77499
+   one-dimensional elements:            0
+   two-dimensional elements:            0
+   integration points per element:            4
+   degrees of freedom per node:            3
+   layers per element:            1
+
+   distributed facial loads:            0
+   distributed volumetric loads:            0
+   concentrated loads:            0
+   single point constraints:           54
+   multiple point constraints:            1
+   terms in all multiple point constraints:            1
+   tie constraints:            0
+   dependent nodes tied by cyclic constraints:            0
+   dependent nodes in pre-tension constraints:            0
+
+   sets:            4
+   terms in all sets:       405486
+
+   materials:            2
+   constants per material and temperature:            2
+   temperature points per material:           14
+   plastic data points per material:            2
+
+   orientations:            0
+   amplitudes:           18
+   data points in all amplitudes:           18
+   print requests:            5
+   transformations:            0
+   property cards:            0
+
+
+ STEP            1
+
+ *INFO reading *STEP: nonlinear geometric
+       effects are turned off
+
+ Static analysis was selected
+
+ Nonlinear material laws are taken into account
+
+ Newton-Raphson iterative procedure is active
+
+
+ STEP            2
+
+ *INFO reading *STEP: nonlinear geometric
+       effects are turned off
+
+ Static analysis was selected
+
+ Nonlinear material laws are taken into account
+
+ Newton-Raphson iterative procedure is active
+
+
+ STEP            3
+
+ *INFO reading *STEP: nonlinear geometric
+       effects are turned off
+
+ Static analysis was selected
+
+ Nonlinear material laws are taken into account
+
+ Newton-Raphson iterative procedure is active
+
+ divergence; the increment size is decreased to 6.103516e-05
+ the increment is reattempted
+
+
+ *ERROR: too many cutbacks
+ best solution and residuals are in the frd file
+

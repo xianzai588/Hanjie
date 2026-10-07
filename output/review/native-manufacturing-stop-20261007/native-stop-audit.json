@@ -1,0 +1,348 @@
+{
+  "actual_runs": [
+    {
+      "run": "calculix-one-wing-native-C3D10-first1s-20261007",
+      "execution": {
+        "returncode": 4294967295,
+        "runtime_s": 392.64000000001397,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 1,
+      "last_completed_actual_thermal_time_s": 0.0,
+      "native_restart_available": false,
+      "native_error": false,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-C3D10-first1s-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-C3D10-pastix-first1s-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 366.48500000004424,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.0,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-C3D10-pastix-first1s-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-classical-cold-20261007",
+      "execution": null,
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.125,
+      "native_restart_available": false,
+      "native_error": false,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-classical-cold-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-classical-events-cold-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 11.313000000023749,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.125,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-classical-events-cold-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-classical-noNLGEOM-cold-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 36.375,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.125,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-classical-noNLGEOM-cold-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-cold-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 8.25,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 0,
+      "last_completed_actual_thermal_time_s": 0.0,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-cold-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-cold-cardfix-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 46.39100000000326,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.125,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-cold-cardfix-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-cold-gated-20261007",
+      "execution": null,
+      "last_fully_completed_native_step": 0,
+      "last_completed_actual_thermal_time_s": 0.0,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-cold-gated-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-gauss-coldref-cold-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 46.73399999999674,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.125,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "native one-point C3D4 barycentre; whole-face physical fusion gate retained",
+      "reference_policy": "native ADD=WITH STRAIN keeps the original cold material reference and all previous plastic history; new Ni has a prescribed cold material shape, not an independently zero-stress hot birth. Activation closure stress and cold volume require explicit audit; this is not a calibrated molten-shape transport model",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-gauss-coldref-cold-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    },
+    {
+      "run": "calculix-one-wing-native-source-hardening-cold-20261007",
+      "execution": {
+        "returncode": 201,
+        "runtime_s": 54.32799999997951,
+        "native_solver_completed": false,
+        "cold_geometry_qualified": false,
+        "full_manufacturing_chain_passed": false
+      },
+      "last_fully_completed_native_step": 2,
+      "last_completed_actual_thermal_time_s": 0.125,
+      "native_restart_available": false,
+      "native_error": true,
+      "native_job_finished": false,
+      "cold_mechanical_state_qualified": false,
+      "cutting_allowed": false,
+      "representation": "native whole-element coherent clusters; partial birth/solid caps are withheld; actual interface whole-face melting and cooling gate retained; no liquid stiffness or early bond",
+      "phase_sampling": "whole-corner phase gate",
+      "reference_policy": "native stress-free new coherent addition retains previous integration-point plastic state; cold mass/specific-volume qualification remains mandatory",
+      "raw_location": "simulation\\competition-r4\\results\\calculix-one-wing-native-source-hardening-cold-20261007",
+      "unsuccessful_FRD_identity": "best unsuccessful iterate only; not the last accepted state"
+    }
+  ],
+  "phase_input_mismatch": {
+    "actual_time_s": 0.25,
+    "QT_solidus_C": 1100,
+    "corner_removed_elements": 681,
+    "corner_removed_volume_mm3": 38.82320438539892,
+    "gauss_removed_elements": 464,
+    "gauss_removed_volume_mm3": 23.78538526257738,
+    "still_coherent_gauss_material_removed_by_corner_volume_mm3": 15.037819122821542,
+    "actual_tip_one_based_node": 4794,
+    "neighborhood": [
+      {
+        "one_based_element": 11763,
+        "corners_C": [
+          925.063698360113,
+          1092.976175141338,
+          925.2882052238722,
+          1197.8465201328888
+        ],
+        "native_one_point_C": 1035.293649714553,
+        "corner_removes": true,
+        "gauss_removes": false
+      },
+      {
+        "one_based_element": 14554,
+        "corners_C": [
+          1092.976175141338,
+          1157.1683042700417,
+          925.2882052238722,
+          1197.8465201328888
+        ],
+        "native_one_point_C": 1093.3198011920351,
+        "corner_removes": true,
+        "gauss_removes": false
+      },
+      {
+        "one_based_element": 30702,
+        "corners_C": [
+          1092.976175141338,
+          1157.1683042700417,
+          922.8386060792101,
+          925.2882052238722
+        ],
+        "native_one_point_C": 1024.5678226786154,
+        "corner_removes": true,
+        "gauss_removes": false
+      },
+      {
+        "one_based_element": 35748,
+        "corners_C": [
+          1035.3289327466177,
+          1092.976175141338,
+          925.063698360113,
+          1197.8465201328888
+        ],
+        "native_one_point_C": 1062.8038315952394,
+        "corner_removes": true,
+        "gauss_removes": false
+      },
+      {
+        "one_based_element": 46786,
+        "corners_C": [
+          1092.976175141338,
+          922.8386060792101,
+          925.063698360113,
+          925.2882052238722
+        ],
+        "native_one_point_C": 966.5416712011333,
+        "corner_removes": false,
+        "gauss_removes": false
+      },
+      {
+        "one_based_element": 54543,
+        "corners_C": [
+          1092.976175141338,
+          1157.1683042700417,
+          1027.895913350439,
+          922.8386060792101
+        ],
+        "native_one_point_C": 1050.2197497102572,
+        "corner_removes": true,
+        "gauss_removes": false
+      },
+      {
+        "one_based_element": 55570,
+        "corners_C": [
+          1092.976175141338,
+          1190.3027638891451,
+          1157.1683042700417,
+          1197.8465201328888
+        ],
+        "native_one_point_C": 1159.5734408583535,
+        "corner_removes": true,
+        "gauss_removes": true
+      },
+      {
+        "one_based_element": 57471,
+        "corners_C": [
+          1092.976175141338,
+          1178.606575879077,
+          1157.1683042700417,
+          1190.3027638891451
+        ],
+        "native_one_point_C": 1154.7634547949006,
+        "corner_removes": true,
+        "gauss_removes": true
+      },
+      {
+        "one_based_element": 58382,
+        "corners_C": [
+          1092.976175141338,
+          1035.3289327466177,
+          1190.3027638891451,
+          1197.8465201328888
+        ],
+        "native_one_point_C": 1129.1135979774974,
+        "corner_removes": true,
+        "gauss_removes": true
+      },
+      {
+        "one_based_element": 63646,
+        "corners_C": [
+          1157.1683042700417,
+          1027.895913350439,
+          1178.606575879077,
+          1092.976175141338
+        ],
+        "native_one_point_C": 1114.161742160224,
+        "corner_removes": true,
+        "gauss_removes": true
+      }
+    ],
+    "result": "Input mismatch is demonstrated, but its correction plus cold-reference retention also failed at0.25s. It does not establish the sole cause or physical process failure."
+  },
+  "conclusion": "Native plastic/deposition/cut restart functionality passed its independent fixed benchmark; the actual transient wing representation has not produced a restorable cold state. Stop additional native mesh, solver, numerical damping, contact or hardening variants. Do not use failed FRD fields for physical cutting or component position verification.",
+  "last_custom_accepted_recovery": "simulation/competition-r4/results/mma-one-wing-finite-spectral-cold-t4-20261007/fields.npz at7.625s, not a cold/coherently joined state",
+  "full_manufacturing_chain_passed": false
+}

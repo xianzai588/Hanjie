@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'cad/generated/mma-mass-envelope'
 
 
-def build(candidate,mesh_h=None,single_track=False,output_name=None,use_current_profile=False):
+def build(candidate,mesh_h=None,single_track=False,output_name=None,use_current_profile=False,process_design=None):
     budget=json.loads((ROOT/'studies/COMPETITION-DESIGN/results/precoat-input-budget.json').read_text(encoding='utf8'))
     row=budget['candidates'][candidate];rho=row['input']['nominal_density_kg_m3']*1e-6
     target_volume=row['nominal_deposited_mass_per_wing_g']/rho
@@ -41,18 +41,20 @@ def build(candidate,mesh_h=None,single_track=False,output_name=None,use_current_
                     if gmsh.model.isInside(3,first,[radius_track*math.cos(mid),sign*radius_track*math.sin(mid),113.85]):lo=mid
                     else:hi=mid
                 ends.append(sign*(lo+hi)/2)
-            length=radius_track*(ends[1]-ends[0]);speed=100/60;mass_rate=.17
+            card_path=Path(process_design) if process_design else ROOT/'project/precoat-process-design.yaml'
+            card=yaml.safe_load(card_path.read_text(encoding='utf8'))['first']
+            length=radius_track*(ends[1]-ends[0]);speed=card['travel_mm_s'];mass_rate=card['deposited_mass_rate_g_s']
             arc_time=length/speed
             profile=None
             dose=mass_rate*arc_time
             if use_current_profile:
-                card=yaml.safe_load((ROOT/'project/precoat-process-design.yaml').read_text(encoding='utf8'))['first']
                 profile=card['end_control']
                 if profile['melting_rate_current_exponent']!=2:raise ValueError('only the frozen endpoint mass hypothesis is supported')
                 fraction=profile['final_current_A']/card['current_A'];ramp=profile['ramp_duration_s']
                 dose=mass_rate*(arc_time-ramp+ramp*(1+fraction+fraction*fraction)/3)
             target_volume=dose/rho
             single_inputs=dict(radius_mm=radius_track,length_mm=length,travel_mm_s=speed,
+                process_design_source=str(card_path),
                 deposited_mass_rate_g_s=mass_rate,arc_time_s=length/speed,
                 meaning='single6mm groove coverage hypothesis; mass rate is within the previous engineering interval, not a measured rate')
             if profile:single_inputs.update(end_control=profile,integrated_deposited_mass_g=dose)
@@ -128,4 +130,5 @@ if __name__=='__main__':
     p.add_argument('--single-track',action='store_true')
     p.add_argument('--output-name')
     p.add_argument('--current-profile',action='store_true')
-    a=p.parse_args();print(json.dumps(build(a.candidate,a.mesh_h,a.single_track,a.output_name,a.current_profile),ensure_ascii=False,indent=2))
+    p.add_argument('--process-design',type=lambda s:ROOT/s)
+    a=p.parse_args();print(json.dumps(build(a.candidate,a.mesh_h,a.single_track,a.output_name,a.current_profile,a.process_design),ensure_ascii=False,indent=2))

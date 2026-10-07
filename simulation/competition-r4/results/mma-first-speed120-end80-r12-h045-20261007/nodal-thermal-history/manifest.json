@@ -1,0 +1,53 @@
+{
+  "chunks": [
+    {
+      "file": "chunk-0000.npz",
+      "first_s": 0.125,
+      "last_s": 3.125,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0001.npz",
+      "first_s": 3.25,
+      "last_s": 6.25,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0002.npz",
+      "first_s": 6.375,
+      "last_s": 9.31584771676623,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0003.npz",
+      "first_s": 9.44084771676623,
+      "last_s": 12.39084771676623,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0004.npz",
+      "first_s": 12.51584771676623,
+      "last_s": 15.51584771676623,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0005.npz",
+      "first_s": 15.64084771676623,
+      "last_s": 18.64084771676623,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0006.npz",
+      "first_s": 18.76584771676623,
+      "last_s": 63.01584771676623,
+      "steps": 25
+    },
+    {
+      "file": "chunk-0007.npz",
+      "first_s": 65.01584771676623,
+      "last_s": 83.01584771676623,
+      "steps": 10
+    }
+  ],
+  "scope": "every accepted thermal increment; complete temperatures/deposit fraction, no reconstructed residual stress"
+}

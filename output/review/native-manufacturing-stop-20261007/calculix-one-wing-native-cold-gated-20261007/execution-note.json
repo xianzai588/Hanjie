@@ -1,0 +1,5 @@
+{
+  "status": "stopped before solving any physical increment",
+  "reason": "known official numeric card width issue in the previous deck; preserved gated deck, next cardfix run uses 12 significant digits and excludes 60 s forced increments in rate-independent furnace",
+  "geometry_or_material_pass": false
+}
