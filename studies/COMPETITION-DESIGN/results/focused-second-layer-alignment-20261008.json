@@ -1,0 +1,348 @@
+{
+  "baseline_commit": "b69e26a1e69479b02db252fa2f0256fc0c0d1c08",
+  "kind": "one proposed design revision, not an adopted production WPS",
+  "sources": [
+    "docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf p1",
+    "project/precoat-process-design.yaml",
+    "studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json"
+  ],
+  "supplier_recommendation": {
+    "wire_inches": 0.045,
+    "current_A": [
+      80,
+      110
+    ],
+    "voltage_V": [
+      13,
+      16
+    ]
+  },
+  "stock_and_geometry": {
+    "diameter_mm": 1.143,
+    "diameter_tolerance_mm": 0.02,
+    "maximum_saved_roof_area_mm2": 115.1686831488573,
+    "minimum_cover_volume_demand_mm3": 126.68555146374304,
+    "track_length_per_wing_mm": 38.563543926840644
+  },
+  "current_baseline": {
+    "setpoint": {
+      "current_A": 75.0,
+      "reference_voltage_V": 11.0,
+      "travel_mm_s": 2.0,
+      "travel_relative_tolerance": 0.02,
+      "feed_mm_s": 8.0,
+      "feed_tolerance_mm_s": 0.2
+    },
+    "net_power_W": 495.0,
+    "nominal_net_energy_J_mm": 247.5,
+    "pure_arc_time_s": 154.25417570736258,
+    "nominal_net_heat_kJ": 76.35581697514448,
+    "nominal_consumed_length_mm": 1234.0334056589006,
+    "feed_per_travel_ratio": 4.0,
+    "minimum_volume_per_wing_mm3": 131.4417330518055,
+    "maximum_volume_per_wing_mm3": 167.96163963896714,
+    "minimum_volume_margin_mm3": 4.756181588062461,
+    "minimum_volume_margin_percent": 3.754320467574135,
+    "maximum_consumed_length_per_wing_mm": 161.33727561229247,
+    "shortest_blank_tail_margin_mm": 1.1627243877075273,
+    "existing_feed_stroke_requirement_mm": 162.0,
+    "feed_stroke_margin_mm": 0.6627243877075273,
+    "fixed_tolerance_corners": [
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 153.4671646068148,
+        "deposited_volume_per_wing_mm3": 136.80670174779755
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 153.4671646068148,
+        "deposited_volume_per_wing_mm3": 148.9672974587129
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 147.4488444261554,
+        "deposited_volume_per_wing_mm3": 131.4417330518055
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 147.4488444261554,
+        "deposited_volume_per_wing_mm3": 143.12544265641043
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 161.33727561229247,
+        "deposited_volume_per_wing_mm3": 143.82243004255642
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 161.33727561229247,
+        "deposited_volume_per_wing_mm3": 156.6066460463392
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 155.0103236274967,
+        "deposited_volume_per_wing_mm3": 138.1823347467699
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 155.0103236274967,
+        "deposited_volume_per_wing_mm3": 150.46520894648276
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 153.4671646068148,
+        "deposited_volume_per_wing_mm3": 146.7260714616164
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 153.4671646068148,
+        "deposited_volume_per_wing_mm3": 159.7683889248712
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 147.4488444261554,
+        "deposited_volume_per_wing_mm3": 140.97210787488635
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 7.8,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 147.4488444261554,
+        "deposited_volume_per_wing_mm3": 153.50296190820956
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 161.33727561229247,
+        "deposited_volume_per_wing_mm3": 154.25048538272495
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 1.96,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 161.33727561229247,
+        "deposited_volume_per_wing_mm3": 167.96163963896714
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 155.0103236274967,
+        "deposited_volume_per_wing_mm3": 148.2014467402651
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 8.2,
+        "travel_mm_s": 2.04,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 155.0103236274967,
+        "deposited_volume_per_wing_mm3": 161.3749086727331
+      }
+    ]
+  },
+  "selected_proposal": {
+    "setpoint": {
+      "current_A": 85.0,
+      "reference_voltage_V": 14.0,
+      "travel_mm_s": 2.88,
+      "travel_relative_tolerance": 0.02,
+      "feed_mm_s": 11.52,
+      "feed_tolerance_mm_s": 0.29
+    },
+    "net_power_W": 714.0,
+    "nominal_net_energy_J_mm": 247.91666666666669,
+    "pure_arc_time_s": 107.12095535233513,
+    "nominal_net_heat_kJ": 76.48436212156729,
+    "nominal_consumed_length_mm": 1234.0334056589006,
+    "feed_per_travel_ratio": 4.0,
+    "minimum_volume_per_wing_mm3": 131.41832818480913,
+    "maximum_volume_per_wing_mm3": 167.99008842616888,
+    "minimum_volume_margin_mm3": 4.732776721066088,
+    "minimum_volume_margin_percent": 3.735845695411122,
+    "maximum_consumed_length_per_wing_mm": 161.36460238661707,
+    "shortest_blank_tail_margin_mm": 1.1353976133829349,
+    "existing_feed_stroke_requirement_mm": 162.0,
+    "feed_stroke_margin_mm": 0.6353976133829349,
+    "fixed_tolerance_corners": [
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 153.43983783249024,
+        "deposited_volume_per_wing_mm3": 136.78234158010744
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 153.43983783249024,
+        "deposited_volume_per_wing_mm3": 148.94077194278367
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 147.42258929003967,
+        "deposited_volume_per_wing_mm3": 131.41832818480913
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 147.42258929003967,
+        "deposited_volume_per_wing_mm3": 143.09995735679217
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 161.36460238661707,
+        "deposited_volume_per_wing_mm3": 143.84679021024655
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 161.36460238661707,
+        "deposited_volume_per_wing_mm3": 156.63317156226844
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 155.03657876361248,
+        "deposited_volume_per_wing_mm3": 138.2057396137663
+      },
+      {
+        "diameter_mm": 1.123,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 155.03657876361248,
+        "deposited_volume_per_wing_mm3": 150.49069424610107
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 153.43983783249024,
+        "deposited_volume_per_wing_mm3": 146.69994502439036
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 153.43983783249024,
+        "deposited_volume_per_wing_mm3": 159.7399401376695
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 147.42258929003967,
+        "deposited_volume_per_wing_mm3": 140.94700600382606
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.23,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 147.42258929003967,
+        "deposited_volume_per_wing_mm3": 153.4756287597217
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 161.36460238661707,
+        "deposited_volume_per_wing_mm3": 154.27661181995103
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.8224,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 161.36460238661707,
+        "deposited_volume_per_wing_mm3": 167.99008842616888
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.9,
+        "consumed_length_per_wing_mm": 155.03657876361248,
+        "deposited_volume_per_wing_mm3": 148.22654861132548
+      },
+      {
+        "diameter_mm": 1.163,
+        "feed_mm_s": 11.809999999999999,
+        "travel_mm_s": 2.9375999999999998,
+        "deposition_utilization": 0.98,
+        "consumed_length_per_wing_mm": 155.03657876361248,
+        "deposited_volume_per_wing_mm3": 161.40224182122108
+      }
+    ]
+  },
+  "nominal_heat_change_percent": 0.16835016835017313,
+  "pure_arc_time_change_s": -47.13322035502745,
+  "physical_questions_to_resolve": [
+    "local two-track coverage and continuous fusion",
+    "first-layer remelt and surviving composition",
+    "actual arc-voltage/current energy integral",
+    "changed instantaneous power and travel thermal history"
+  ],
+  "accounting_scope": "Supplier range, conserved nominal feed/travel ratio and fixed existing tolerances. Equal line energy does not equate source shape, penetration or residual stress; pure arc time is not station cycle time.",
+  "source_parameters_modified": false,
+  "manufacturing_performance_solver_runs": 0,
+  "second_layer_fusion_verified": false,
+  "postweld_position_verified": false
+}
