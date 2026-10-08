@@ -8,7 +8,7 @@
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
     <dc:title>铸铁到钢壳的分层材料链及加工顺序</dc:title>
-    <dc:date>2026-10-08T11:03:23.603175</dc:date>
+    <dc:date>2026-10-08T19:53:44.769272</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -39,7 +39,7 @@ L 226.771654 87.874016
 L 226.771654 62.362205 
 L 48.188976 62.362205 
 z
-" clip-path="url(#p144e7353aa)" style="fill: url(#hbc4c438087); stroke: #24364b; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p750dd2d060)" style="fill: url(#h8222098391); stroke: #24364b; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 226.771654 87.874016 
@@ -47,7 +47,7 @@ L 320.314961 87.874016
 L 320.314961 75.685039 
 L 226.771654 75.685039 
 z
-" clip-path="url(#p144e7353aa)" style="fill: #a48352; stroke: #24364b; stroke-width: 0.65; stroke-linejoin: miter"/>
+" clip-path="url(#p750dd2d060)" style="fill: #a48352; stroke: #24364b; stroke-width: 0.65; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 226.771654 75.685039 
@@ -55,7 +55,7 @@ L 320.314961 75.685039
 L 320.314961 62.362205 
 L 226.771654 62.362205 
 z
-" clip-path="url(#p144e7353aa)" style="fill: #86a8a2; stroke: #24364b; stroke-width: 0.65; stroke-linejoin: miter"/>
+" clip-path="url(#p750dd2d060)" style="fill: #86a8a2; stroke: #24364b; stroke-width: 0.65; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 322.299213 170.07874 
@@ -63,7 +63,7 @@ L 356.314961 170.07874
 L 356.314961 31.181102 
 L 322.299213 31.181102 
 z
-" clip-path="url(#p144e7353aa)" style="fill: url(#h50e04e0f95); stroke: #24364b; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p750dd2d060)" style="fill: url(#h1e42be7c70); stroke: #24364b; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 296.220472 62.362205 
@@ -73,35 +73,35 @@ L 317.19685 42.519685
 L 311.244094 48.755906 
 L 304.724409 54.141732 
 z
-" clip-path="url(#p144e7353aa)" style="fill: #24364b; stroke: #24364b; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p750dd2d060)" style="fill: #24364b; stroke: #24364b; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 206.929134 62.362205 
 L 226.771654 62.362205 
-" clip-path="url(#p144e7353aa)" style="fill: none; stroke-dasharray: 1.85,0.8; stroke-dashoffset: 0; stroke: #71808a; stroke-width: 0.5"/>
+" clip-path="url(#p750dd2d060)" style="fill: none; stroke-dasharray: 1.85,0.8; stroke-dashoffset: 0; stroke: #71808a; stroke-width: 0.5"/>
    </g>
    <g id="line2d_2">
     <path d="M 164.409449 38.267717 
 L 184.251969 38.267717 
 L 252.283465 81.92126 
-" clip-path="url(#p144e7353aa)" style="fill: none; stroke: #a48352; stroke-width: 0.65; stroke-linecap: square"/>
+" clip-path="url(#p750dd2d060)" style="fill: none; stroke: #a48352; stroke-width: 0.65; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
     <path d="M 172.913386 51.023622 
 L 198.425197 51.023622 
 L 272.125984 69.165354 
-" clip-path="url(#p144e7353aa)" style="fill: none; stroke: #3f6b68; stroke-width: 0.65; stroke-linecap: square"/>
+" clip-path="url(#p750dd2d060)" style="fill: none; stroke: #3f6b68; stroke-width: 0.65; stroke-linecap: square"/>
    </g>
    <g id="line2d_4">
     <path d="M 368.503937 48.188976 
 L 350.645669 48.188976 
 L 314.645669 51.023622 
-" clip-path="url(#p144e7353aa)" style="fill: none; stroke: #24364b; stroke-width: 0.65; stroke-linecap: square"/>
+" clip-path="url(#p750dd2d060)" style="fill: none; stroke: #24364b; stroke-width: 0.65; stroke-linecap: square"/>
    </g>
    <g id="line2d_5">
     <path d="M 19.84252 188.503937 
 L 462.047244 188.503937 
-" clip-path="url(#p144e7353aa)" style="fill: none; stroke: #24364b; stroke-width: 0.65; stroke-linecap: square"/>
+" clip-path="url(#p750dd2d060)" style="fill: none; stroke: #24364b; stroke-width: 0.65; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <!-- 圆环分层连接局部剖面 -->
@@ -10756,12 +10756,12 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p144e7353aa">
+  <clipPath id="p750dd2d060">
    <rect x="0" y="0" width="481.889764" height="269.291339"/>
   </clipPath>
  </defs>
  <defs>
-  <pattern id="hbc4c438087" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+  <pattern id="h8222098391" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
    <rect x="0" y="0" width="73" height="73" fill="#d9dfdf"/>
    <path d="M -36 36 
 L 36 -36 
@@ -10803,7 +10803,7 @@ M 36 108
 L 108 36 
 " style="fill: #24364b; stroke: #24364b; stroke-width: 0.45; stroke-linecap: butt; stroke-linejoin: miter"/>
   </pattern>
-  <pattern id="h50e04e0f95" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+  <pattern id="h1e42be7c70" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
    <rect x="0" y="0" width="73" height="73" fill="#e8ecef"/>
    <path d="M -36 36 
 L 36 108 

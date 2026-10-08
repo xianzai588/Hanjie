@@ -63,3 +63,21 @@ output/tmp/*.txt
 # OS
 .DS_Store
 Thumbs.db
+
+# Ring FE raw meshes/fields are reproducible working files. Publish result
+# tables, input identities, balances and plots; rerun solvers for full fields.
+simulation/ring-baseline-structure/results/**/*.npz
+simulation/ring-baseline-structure/results/**/*.msh
+simulation/ring-baseline-manufacturing/results/**/*.npz
+simulation/ring-baseline-manufacturing/results/**/*.msh
+simulation/ring-baseline-structure/*.log
+simulation/ring-baseline-manufacturing/*.log
+# This 7.3 MB immutable support snapshot is needed to reproduce the retained
+# independent medium eigenstrain check; its original mesh build was not cached.
+!simulation/ring-baseline-structure/results/medium/mesh.npz
+
+# Solver progress is transient; final ledgers and histories are retained.
+simulation/ring-baseline-manufacturing/results/**/progress.json
+simulation/ring-baseline-structure/figures/.*
+# Large competition ZIP is published as checked 8 MiB Git volumes.
+deliverables/焊接固定题-参赛设计报告包.zip

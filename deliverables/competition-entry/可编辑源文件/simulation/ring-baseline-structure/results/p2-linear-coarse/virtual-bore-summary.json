@@ -1,0 +1,119 @@
+{
+  "source_input_identity": {
+    "schema": "RING-P2-STRAIGHT-QUARTER-2",
+    "geometry_DATA_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+    "bulk_size_mm": 6.0,
+    "local_size_mm": 0.9,
+    "shell_surface_size_function": "Min(6.0,2.0+Max(0,Abs(z-107.5)-17.5)*.3)",
+    "leg_mm": 3.5,
+    "effective_arc_mm": 18.0,
+    "quadrant": "x>=0,y>=0",
+    "displacement_order": 2,
+    "geometry_order": 1,
+    "material_inputs": {
+      "1": {
+        "name": "QT450-10",
+        "E_MPa": 169000.0,
+        "nu": 0.27,
+        "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+      },
+      "2": {
+        "name": "Q235B",
+        "E_MPa": 206000.0,
+        "nu": 0.3,
+        "basis": "engineering room-temperature elastic input"
+      },
+      "3": {
+        "name": "CI-A1 retained first layer",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+      },
+      "4": {
+        "name": "Ni99 retained second layer",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+      },
+      "5": {
+        "name": "NiFe55 final effective fillet",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; effective interface and joint strength require qualification"
+      }
+    },
+    "loads_N_N_Nmm": [
+      5000,
+      5000,
+      250000
+    ],
+    "boundary": "z=0 clamped; y=0 symmetric; x=0 symmetric for axial and antisymmetric for radial/My"
+  },
+  "source_process_version": "SUBMISSION-RING-20261008-R2",
+  "sampling": "128 equally spaced angles x 11 equally spaced heights; ray intersection of actual P1/P2 FE bore faces; same sample grid at every resolution",
+  "sample_count": 1408,
+  "interpolation_order": 2,
+  "cases": {
+    "radial": {
+      "axis_center_radial_um": 10.404357997773847,
+      "axis_tilt_urad": 20.239225261811004,
+      "axis_diameter_envelope_um": 21.11230437447486,
+      "mean_bore_diameter_change_um": -2.3478013267500605e-16,
+      "cylindrical_radial_peak_to_valley_um": 0.010809090169596261,
+      "axis_fit_coefficients_mm": [
+        0.010404357997773847,
+        -1.3552527156068805e-20,
+        2.0239225261811005e-05,
+        -1.9122909985952778e-21,
+        -1.1739006633750303e-19
+      ],
+      "bore_node_count": 1408
+    },
+    "axial": {
+      "axis_center_radial_um": 3.2864878353466853e-16,
+      "axis_tilt_urad": 1.6823694987161687e-13,
+      "axis_diameter_envelope_um": 2.726004984032554e-15,
+      "mean_bore_diameter_change_um": -0.3510588293145205,
+      "cylindrical_radial_peak_to_valley_um": 9.626442448690355,
+      "axis_fit_coefficients_mm": [
+        0.0,
+        3.2864878353466853e-19,
+        1.6516822628064648e-19,
+        -3.198637724735471e-20,
+        -0.00017552941465726025
+      ],
+      "bore_node_count": 1408
+    },
+    "overturning": {
+      "axis_center_radial_um": 1.6675059903303544,
+      "axis_tilt_urad": 477.2459014167851,
+      "axis_diameter_envelope_um": 10.493700501912485,
+      "mean_bore_diameter_change_um": 2.345665902561169e-16,
+      "cylindrical_radial_peak_to_valley_um": 0.4661822932083689,
+      "axis_fit_coefficients_mm": [
+        0.0016675059903303545,
+        1.0842021724855044e-19,
+        -0.00047724590141678513,
+        -2.013343037856741e-21,
+        1.1728329512805846e-19
+      ],
+      "bore_node_count": 1408
+    },
+    "combined": {
+      "axis_center_radial_um": 12.071863988104203,
+      "axis_tilt_urad": 457.0066761549739,
+      "axis_diameter_envelope_um": 30.998828118533016,
+      "mean_bore_diameter_change_um": -0.3510588293145203,
+      "cylindrical_radial_peak_to_valley_um": 10.078199427404629,
+      "axis_fit_coefficients_mm": [
+        0.012071863988104203,
+        5.421010862427522e-20,
+        -0.0004570066761549739,
+        -5.961598372901598e-20,
+        -0.00017552941465726017
+      ],
+      "bore_node_count": 1408
+    }
+  },
+  "coordinate_reference": "nominal R20 cylinder directions; displacement interpolated on the actual faceted FE bore surface"
+}

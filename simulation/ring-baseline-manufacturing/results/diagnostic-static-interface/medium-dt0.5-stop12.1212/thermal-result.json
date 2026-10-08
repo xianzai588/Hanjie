@@ -1,0 +1,554 @@
+{
+  "model": "3D four-node tetrahedral thermal enthalpy FE; nominal retained layers and source births; no melt transport",
+  "mesh": {
+    "level": "medium",
+    "nodes": 52608,
+    "tetrahedra": 213820,
+    "bulk_mm": 4.5,
+    "local_mm": 0.75,
+    "quality_min": 0.052000042369427006,
+    "material_volumes_mm3": {
+      "1": 244521.93524624547,
+      "2": 486948.1339399043,
+      "3": 894.9133113734662,
+      "4": 735.5652824600706,
+      "5": 1257.5753614561477
+    },
+    "nonmatching_interface": {
+      "method": "16-neighbour distance-weighted least-norm interpolation with exact constant and linear reproduction; planar QT and curved steel patches",
+      "maximum_affine_coordinate_error_mm": 2.2499543461931834e-13,
+      "maximum_host_weight_L1": 1.213885105610625,
+      "rigid_translation_and_rotation_patch_pass": true
+    },
+    "interfaces": {
+      "QT_first": 32,
+      "first_second": 32,
+      "second_final": 16,
+      "final_shell": 0,
+      "QT_final": 0
+    },
+    "arc_length_mm": 20.0,
+    "effective_connection_length_mm": 18.0,
+    "precoat_solids": 17,
+    "fit_gap_mm": 0.02,
+    "thermal_fillet_leg_mm": 4.0,
+    "root_leg_mm": 2.8,
+    "qualification": "shared faces define nominal thermal paths; fusion and stress history not qualified",
+    "cache_key": {
+      "schema": "ring-thermal-mesh-v2",
+      "process_version": "SUBMISSION-RING-20261008-R2",
+      "cad_file": "cad/generated/ring-baseline/ring-precoat-eight-windows-17solids.step",
+      "cad_bytes": 544325,
+      "cad_mtime_ns": 1791443716623998225,
+      "level": "medium",
+      "bulk_mm": 4.5,
+      "local_mm": 0.75,
+      "actual_arc_mm": 20.0,
+      "root_leg_mm": 2.8,
+      "cap_leg_mm": 4.0,
+      "interface": "independent_shell_16host_affine"
+    }
+  },
+  "material_inputs": [
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1100,
+        "liquidus_C": 1180,
+        "latent_heat_J_kg": 250000,
+        "basis": "球铁冷却曲线10.3390/cryst15070614/Table7及推荐范围；按组元差异取1100～1180设计区间；潜热250 kJ/kg工程估值，批次热分析复核"
+      },
+      "name": "球墨铸铁 QT450-10",
+      "standard": "GB/T 1348-2019",
+      "composition_basis": "工程名义成分；Cr/Ni为当量核算的残余元素假设，按来料化学分析替换",
+      "composition_nominal_wt_pct": {
+        "C": 3.65,
+        "Si": 2.6,
+        "Mn": 0.3,
+        "Mg": 0.045,
+        "P": 0.04,
+        "S": 0.015,
+        "Cr": 0.05,
+        "Ni": 0.05
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7200.0,
+        "specific_heat_j_kgk": 460.0,
+        "thermal_conductivity_w_mk": 35.0,
+        "elastic_modulus_gpa": 170.0,
+        "poisson_ratio": 0.27,
+        "alpha_per_k": 1.05e-05,
+        "yield_strength_mpa": 310.0,
+        "tensile_strength_mpa": 450.0,
+        "elongation_pct": 10.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          750,
+          900,
+          1200
+        ],
+        "thermal_conductivity_w_mk": [
+          35.0,
+          34.0,
+          32.0,
+          28.0,
+          24.0,
+          25.0,
+          28.0
+        ],
+        "specific_heat_j_kgk": [
+          460.0,
+          510.0,
+          580.0,
+          710.0,
+          850.0,
+          720.0,
+          750.0
+        ],
+        "elastic_modulus_gpa": [
+          170.0,
+          158.0,
+          135.0,
+          70.0,
+          20.0,
+          8.0,
+          1.5
+        ],
+        "yield_strength_mpa": [
+          310.0,
+          280.0,
+          210.0,
+          50.0,
+          15.0,
+          5.0,
+          1.0
+        ],
+        "alpha_per_k": [
+          1.05e-05,
+          1.12e-05,
+          1.2e-05,
+          1.3e-05,
+          1.35e-05,
+          1.38e-05,
+          1.4e-05
+        ]
+      }
+    },
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1474.85,
+        "liquidus_C": 1519.85,
+        "latent_heat_J_kg": 264000,
+        "basis": "Q235连铸研究Table2：1748/1793 K、264 kJ/kg；10.3390/ma16093361；设计借用，不是本批次DSC"
+      },
+      "name": "碳素结构钢 Q235B",
+      "standard": "GB/T 700-2006",
+      "composition_basis": "工程名义成分；Cr/Ni/Mo为当量核算的残余元素假设，按来料化学分析替换",
+      "composition_nominal_wt_pct": {
+        "C": 0.17,
+        "Mn": 0.45,
+        "Si": 0.2,
+        "S": 0.035,
+        "P": 0.035,
+        "Cr": 0.05,
+        "Ni": 0.05,
+        "Mo": 0.01
+      },
+      "nominal_properties_20c": {
+        "density_kg_m3": 7850.0,
+        "specific_heat_j_kgk": 470.0,
+        "thermal_conductivity_w_mk": 45.0,
+        "elastic_modulus_gpa": 210.0,
+        "poisson_ratio": 0.28,
+        "alpha_per_k": 1.2e-05,
+        "yield_strength_mpa": 235.0,
+        "tensile_strength_mpa": 420.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          45.0,
+          43.0,
+          38.0,
+          31.0,
+          26.0,
+          28.0,
+          32.0
+        ],
+        "specific_heat_j_kgk": [
+          470.0,
+          520.0,
+          610.0,
+          760.0,
+          800.0,
+          650.0,
+          700.0
+        ],
+        "elastic_modulus_gpa": [
+          210.0,
+          195.0,
+          165.0,
+          85.0,
+          25.0,
+          10.0,
+          2.0
+        ],
+        "yield_strength_mpa": [
+          235.0,
+          210.0,
+          160.0,
+          60.0,
+          20.0,
+          8.0,
+          2.0
+        ],
+        "alpha_per_k": [
+          1.2e-05,
+          1.28e-05,
+          1.36e-05,
+          1.44e-05,
+          1.48e-05,
+          1.5e-05,
+          1.52e-05
+        ]
+      }
+    },
+    {
+      "name": "Ni99 first, diluted",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8491.377023083045
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1446
+        ],
+        "thermal_conductivity_w_mk": [
+          52.724999999999994,
+          49.875,
+          46.2,
+          42.599999999999994,
+          41.55,
+          43.2,
+          44.775000000000006,
+          46.349999999999994,
+          48.0,
+          49.574999999999996,
+          51.150000000000006,
+          51.150000000000006
+        ],
+        "specific_heat_j_kgk": [
+          456,
+          480,
+          510,
+          550,
+          570,
+          590,
+          610,
+          630,
+          650,
+          670,
+          690,
+          750
+        ]
+      },
+      "fusion_enthalpy": {
+        "solidus_C": 1300.0,
+        "liquidus_C": 1446,
+        "latent_heat_J_kg": 297000
+      },
+      "basis": "k: Special Metals Nickel 200 Table3, scaled sensitivity; cp(T) and latent engineering inputs; first-layer solidus parameter, not CALPHAD or observed PMZ"
+    },
+    {
+      "name": "Ni99 second",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8827.837312259506
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1446
+        ],
+        "thermal_conductivity_w_mk": [
+          52.724999999999994,
+          49.875,
+          46.2,
+          42.599999999999994,
+          41.55,
+          43.2,
+          44.775000000000006,
+          46.349999999999994,
+          48.0,
+          49.574999999999996,
+          51.150000000000006,
+          51.150000000000006
+        ],
+        "specific_heat_j_kgk": [
+          456,
+          480,
+          510,
+          550,
+          570,
+          590,
+          610,
+          630,
+          650,
+          670,
+          690,
+          750
+        ]
+      },
+      "fusion_enthalpy": {
+        "solidus_C": 1435,
+        "liquidus_C": 1446,
+        "latent_heat_J_kg": 297000
+      },
+      "basis": "k: Special Metals Nickel 200 Table3, scaled sensitivity; cp(T) and latent engineering inputs; first-layer solidus parameter, not CALPHAD or observed PMZ"
+    },
+    {
+      "fusion_enthalpy": {
+        "solidus_C": 1420,
+        "liquidus_C": 1460,
+        "latent_heat_J_kg": 275000,
+        "basis": "Paek等JOM2021 Fig2/10.1007/s11837-020-04487-9，Fe-Ni二元边界；55～58%Ni低碳实际配混，考虑C/Si/Mn与读图差异取1420～1460设计包络；潜热275 kJ/kg工程估值"
+      },
+      "name": "NiFe-55型镍铁铸铁实心填充棒",
+      "standard": "EN ISO 1071 / GB/T 10044；具体实心棒分类按供货证书",
+      "composition_basis": "CEWELD NiFe 55 TIG供方典型成分；https://certilas.com/en/product/nife-55-tig；批次证书复核",
+      "composition_nominal_wt_pct": {
+        "Ni": 55.0,
+        "Fe": "Balance",
+        "C": 0.01,
+        "Mn": 0.7,
+        "Si": 0.13
+      },
+      "property_basis": "名义物性为保守工程输入，不作为供方实測接头性能；历史结果以各运行input.json为准",
+      "nominal_properties_20c": {
+        "density_kg_m3": 8200.0,
+        "specific_heat_j_kgk": 480.0,
+        "thermal_conductivity_w_mk": 22.0,
+        "elastic_modulus_gpa": 160.0,
+        "poisson_ratio": 0.3,
+        "alpha_per_k": 1.1e-05,
+        "yield_strength_mpa": 290.0,
+        "tensile_strength_mpa": 450.0
+      },
+      "temperature_dependent": {
+        "temperatures_c": [
+          20,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1400
+        ],
+        "thermal_conductivity_w_mk": [
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          35
+        ],
+        "specific_heat_j_kgk": [
+          480,
+          520,
+          570,
+          630,
+          710,
+          760,
+          800
+        ]
+      }
+    }
+  ],
+  "arc_schedule": [
+    {
+      "pass": 0,
+      "segment": 1,
+      "start_s": 0.0,
+      "end_s": 12.121212121212121
+    },
+    {
+      "pass": 0,
+      "segment": 5,
+      "start_s": 30.12121212121212,
+      "end_s": 42.24242424242424
+    },
+    {
+      "pass": 0,
+      "segment": 3,
+      "start_s": 60.24242424242424,
+      "end_s": 72.36363636363636
+    },
+    {
+      "pass": 0,
+      "segment": 7,
+      "start_s": 90.36363636363636,
+      "end_s": 102.48484848484848
+    },
+    {
+      "pass": 0,
+      "segment": 2,
+      "start_s": 120.48484848484848,
+      "end_s": 132.6060606060606
+    },
+    {
+      "pass": 0,
+      "segment": 6,
+      "start_s": 150.6060606060606,
+      "end_s": 162.72727272727272
+    },
+    {
+      "pass": 0,
+      "segment": 4,
+      "start_s": 180.72727272727272,
+      "end_s": 192.84848484848484
+    },
+    {
+      "pass": 0,
+      "segment": 8,
+      "start_s": 210.84848484848484,
+      "end_s": 222.96969696969697
+    },
+    {
+      "pass": 1,
+      "segment": 1,
+      "start_s": 240.96969696969697,
+      "end_s": 253.0909090909091
+    },
+    {
+      "pass": 1,
+      "segment": 5,
+      "start_s": 271.09090909090907,
+      "end_s": 283.2121212121212
+    },
+    {
+      "pass": 1,
+      "segment": 3,
+      "start_s": 301.2121212121212,
+      "end_s": 313.3333333333333
+    },
+    {
+      "pass": 1,
+      "segment": 7,
+      "start_s": 331.3333333333333,
+      "end_s": 343.45454545454544
+    },
+    {
+      "pass": 1,
+      "segment": 2,
+      "start_s": 361.45454545454544,
+      "end_s": 373.57575757575756
+    },
+    {
+      "pass": 1,
+      "segment": 6,
+      "start_s": 391.57575757575756,
+      "end_s": 403.6969696969697
+    },
+    {
+      "pass": 1,
+      "segment": 4,
+      "start_s": 421.6969696969697,
+      "end_s": 433.8181818181818
+    },
+    {
+      "pass": 1,
+      "segment": 8,
+      "start_s": 451.8181818181818,
+      "end_s": 463.93939393939394
+    }
+  ],
+  "travel_mm_s": 1.65,
+  "actual_segment_mm": 20.0,
+  "net_W": 495.0,
+  "net_energy_J_mm": 300.0,
+  "declared_source": {
+    "radial_mm": 74.8,
+    "Gaussian_width_mm": 1.270170592,
+    "Gaussian_depth_mm": 0.923760431,
+    "root_z_mm": 116.2,
+    "cap_z_mm": 117.0,
+    "qualification": "inherited engineering source input; not measured arc shape"
+  },
+  "source_energy_J": 5999.999999999989,
+  "nominal_ledger_J": 96000.0,
+  "arc_dt_s": 0.5,
+  "idle_dt_s": 2.0,
+  "cooling_dt_s": [
+    5.0,
+    15.0,
+    30.0
+  ],
+  "end_s": 12.1212121212121,
+  "max_C": 1761.3556220459338,
+  "bore_peak_C": 20.046262217494206,
+  "material_peak_C": {
+    "1": 402.1345376853749,
+    "2": 653.8421788030431,
+    "3": 526.0583888356754,
+    "4": 810.7727236307658,
+    "5": 1761.3556220459338
+  },
+  "final_max_C": 958.0477271080887,
+  "copper_peak_C": 21.99484813553782,
+  "max_step_balance_J": 3.8829028881082195e-10,
+  "max_Newton_iterations": 10,
+  "start_records": [
+    {
+      "pass": 0,
+      "segment": 1,
+      "start_s": 0.0,
+      "end_s": 12.121212121212121,
+      "second_layer_current_max_C": 20.0,
+      "interpass_100C": true
+    }
+  ],
+  "interpass_limits_pass": true,
+  "elapsed_s": 144.87973713874817,
+  "complete_final_thermal_cycle": false,
+  "stop_time_s": 12.1212121212121,
+  "no_precoat_residual_reset": true,
+  "mechanical_state_computed": false,
+  "full_manufacturing_chain_passed": false,
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "actual_path_320mm": true,
+  "scope": "actual final-weld thermal design calculation on retained nominal precoat geometry; precoat stress history and continuous fused interfaces remain separate inputs",
+  "current_evidence_usable": false,
+  "rejection_reason": "stale static final interface area was used during root birth; independently meshed joint faces incorrectly retained external radiation/convection"
+}

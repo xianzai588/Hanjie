@@ -1,0 +1,38 @@
+{
+  "schema": "hanjie-package-volumes-v1",
+  "archive_name": "焊接固定题-参赛设计报告包.zip",
+  "bytes": 43567684,
+  "sha256": "1e05337fde7b76c41e9e795c9a93854e67e33eb7aa31aa3d82ece89e10d9c399",
+  "parts": [
+    {
+      "file": "part-001.bin",
+      "bytes": 8388608,
+      "sha256": "7499097185b4c974fd0c84fe6685ae5c867d5c621bcf3bdf1a429b11ce13e3ed"
+    },
+    {
+      "file": "part-002.bin",
+      "bytes": 8388608,
+      "sha256": "e14664b6e1ba5914002ddab6f1956f0bc4e64a473143a1867bfdd445a0d5c4f2"
+    },
+    {
+      "file": "part-003.bin",
+      "bytes": 8388608,
+      "sha256": "0fe435a843e1df780b48ed1518c6cf15d0928d2698d70cf072861faa5c8a0f74"
+    },
+    {
+      "file": "part-004.bin",
+      "bytes": 8388608,
+      "sha256": "dd233e494bb8e5e9923c887a1af9ca72ad9c7c0b1eabe74c57c8d573039eee5c"
+    },
+    {
+      "file": "part-005.bin",
+      "bytes": 8388608,
+      "sha256": "96e3d6007c41591bfc6c1b51e370ef4134157a8f2389f99a98cc87a8a1e5b0a6"
+    },
+    {
+      "file": "part-006.bin",
+      "bytes": 1624644,
+      "sha256": "6c91db6604c71005ba0dc64c4a0e4a748bb31e608703941725d251666597c8c5"
+    }
+  ]
+}

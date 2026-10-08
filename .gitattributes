@@ -12,3 +12,7 @@
 # The rebuilt small baseline solids are delivered directly with the report.
 cad/generated/ring-baseline/*.step -filter -diff -merge -text
 deliverables/competition-entry/*.step -filter -diff -merge -text
+
+# Small rebuilt ring tooling solids are ordinary Git blobs for self-contained delivery.
+cad/generated/ring-fixture/*.step -filter -diff -merge -text
+deliverables/package-parts/*.bin -filter -diff -merge -text

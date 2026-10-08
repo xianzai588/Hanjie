@@ -16,6 +16,7 @@ import subprocess
 import tempfile
 from xml.sax.saxutils import escape
 from PIL import Image
+import yaml
 
 from OCP.BRepAlgoAPI import BRepAlgoAPI_Common, BRepAlgoAPI_Cut
 from OCP.BRepCheck import BRepCheck_Analyzer
@@ -33,17 +34,39 @@ from OCP.TopExp import TopExp_Explorer
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "cad/generated/ring-baseline"
+BASELINE = yaml.safe_load((ROOT / "project/submission-baseline.yaml").read_text(encoding="utf-8"))
+_seat, _shell = BASELINE["geometry"]["seat"], BASELINE["geometry"]["shell"]
 NOMINAL = {
-    "seat_inner_radius_mm": 20.0,
-    "seat_outer_radius_mm": 74.98,
-    "seat_bottom_z_mm": 100.0,
-    "seat_thickness_mm": 15.0,
-    "shell_inner_radius_mm": 75.0,
-    "shell_outer_radius_mm": 80.0,
+    "seat_inner_radius_mm": _seat["nominal_bore_diameter_mm"] / 2,
+    "seat_outer_radius_mm": _seat["outside_radius_mm"],
+    "seat_bottom_z_mm": _seat["bottom_z_mm"],
+    "seat_thickness_mm": _seat["thickness_mm"],
+    "shell_inner_radius_mm": _shell["outside_diameter_mm"] / 2 - _shell["wall_thickness_mm"],
+    "shell_outer_radius_mm": _shell["outside_diameter_mm"] / 2,
     "shell_bottom_z_mm": 0.0,
-    "shell_height_mm": 200.0,
-    "bore_axis_position_tolerance_diameter_mm": 0.05,
+    "shell_height_mm": _shell["height_mm"],
+    "bore_axis_position_tolerance_diameter_mm": BASELINE["precision"]["official_position_tolerance_diameter_mm"],
 }
+# The retained-layer construction and dimensioned sheets below implement this
+# frozen design. Reject unsupported edits instead of exporting stale geometry.
+_IMPLEMENTED = {"count":8, "center_radius_mm":71.98, "center_arc_length_mm":24.0,
+                "radial_width_mm":6.0, "groove_depth_mm":1.5, "inner_bottom_radius_mm":1.5}
+for _key, _value in _IMPLEMENTED.items():
+    if BASELINE["material_route"]["precoat_windows"][_key] != _value:
+        raise ValueError(f"Precoat {_key} changed: update retained-layer construction and drawings first")
+for _key, _value in {"outside_radius_mm":74.98,"bottom_z_mm":100.0,"thickness_mm":15.0}.items():
+    if _seat[_key] != _value:
+        raise ValueError(f"Seat {_key} changed: update pocket and section drawing implementation first")
+for _stage, _inputs in {
+    "first_layer": {"steady_current_A":110.0,"reference_voltage_V":23.0,"travel_speed_mm_min":75.0,
+                    "engineering_arc_efficiency":0.8,"last_ramp_duration_s":1.2,"last_current_A":80.0,
+                    "nominal_retained_normal_thickness_mm":0.7},
+    "second_layer": {"current_A":75.0,"reference_voltage_V":11.0,"travel_speed_mm_s":2.0,
+                     "wire_diameter_mm":1.2,"wire_feed_mm_s":7.2},
+}.items():
+    for _key,_value in _inputs.items():
+        if BASELINE["material_route"][_stage][_key] != _value:
+            raise ValueError(f"{_stage} {_key} changed: update precoat supply/heat implementation first")
 DENSITIES = {"QT450-10": 7200.0, "Q235B": 7850.0}
 
 
@@ -243,7 +266,7 @@ def ring_precoat(output, seat):
                           "delay_positions":delay,
                           "total_precoat_and_delay_positions":2*per_stage+delay})
     plan = {
-        "card": "HJ-S01", "model_id": "ring-eight-local-precoat-windows",
+        "card": "HJ-S01", "process_version": BASELINE["version"], "model_id": "ring-eight-local-precoat-windows",
         "geometry": {"window_count":8,"window_center_radius_mm":71.98,
                      "window_arc_length_at_center_mm":24.,"arc_length_tolerance_mm":.5,
                      "window_angle_rad":theta,"radial_width_mm":6.,"width_tolerance_mm":.1,
@@ -259,7 +282,8 @@ def ring_precoat(output, seat):
                      "retained_material_volumes_mm3":totals,
                      "nominal_pocket_volume_per_window_mm3":volume(pockets[0]),
                      "partition_closure_error_mm3":closure,"STEP_reopen_check":check},
-        "first_layer": {"material":"CI-A1 / ENi-CI coated electrode","electrode_core_diameter_mm":3.2,
+        "precoat_thermal_cycle": BASELINE["material_route"]["precoat_thermal_cycle"],
+        "first_layer": {"weave_design": BASELINE["material_route"]["first_layer"]["weave_design"],"material":"CI-A1 / ENi-CI coated electrode","electrode_core_diameter_mm":3.2,
                         "current_A":110,"voltage_V":23,"net_efficiency_design_assumption":.8,
                         "speed_mm_min":75,"speed_tolerance_relative":.02,
                         "diagnostic_supply_g_s":[.15,.17],
@@ -382,7 +406,7 @@ def drawing(output):
         text(cx + 195 * math.cos(i * math.pi / 4) - 5,
              cy - 195 * math.sin(i * math.pi / 4) + 7, str(i + 1), "small")
     h_dim(cx - 80 * s, cx + 80 * s, 190, cy, "壳体 Ø160")
-    h_dim(cx - 74.98 * s, cx + 74.98 * s, 703, cy, "座体 Ø149.96（名义）")
+    h_dim(cx - 74.98 * s, cx + 74.98 * s, 703, cy, "座外 Ø149.94～149.98")
     line(cx - 20 * s, cy - 8, 238, 350, "dim")
     line(238, 350, 138, 350, "dim")
     text(137, 338, "Ø40（名义）", "small")
@@ -398,7 +422,7 @@ def drawing(output):
     rect(xc - 74.98 * k, seat_high, (74.98 - 20) * k, 15 * k, "url(#qt)")
     rect(xc + 20 * k, seat_high, (74.98 - 20) * k, 15 * k, "url(#qt)")
     line(xc, top - 40, xc, floor + 38, "center")
-    h_dim(xc - 75 * k, xc + 75 * k, 247, top, "壳内 Ø150")
+    h_dim(xc - 75 * k, xc + 75 * k, 247, top, "壳内 Ø150.00～150.02")
     h_dim(xc - 20 * k, xc + 20 * k, 418, seat_high, "Ø40")
     v_dim(top, floor, 1303, xc + 80 * k, "200")
     v_dim(seat_low, floor, 780, xc - 80 * k, "100")
@@ -549,6 +573,8 @@ def build(output=OUT):
     full_length = 2 * math.pi * 74.98
     audit = {
         "model_id": "HJ-S01-complete-ring-nominal",
+        "process_version": BASELINE["version"],
+        "assembly_tolerances": {"seat": _seat, "shell": _shell},
         "units": "mm",
         "geometry_state": "Nominal uncoated QT450-10 complete ring and Q235B shell; separate solids before welding",
         "nominal_dimensions": n,

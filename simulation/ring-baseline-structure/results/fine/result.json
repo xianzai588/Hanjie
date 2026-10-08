@@ -1,0 +1,514 @@
+{
+  "mesh": {
+    "level": "fine",
+    "bulk_size_mm": 3.0,
+    "local_size_mm": 0.45,
+    "nodes": 251556,
+    "tetrahedra": 1120739,
+    "tetrahedra_by_material": {
+      "1": 418017,
+      "2": 552160,
+      "3": 50570,
+      "4": 48831,
+      "5": 51161
+    },
+    "volumes_mm3": {
+      "1": 244442.24702869853,
+      "2": 486946.8613064177,
+      "3": 894.5154494909823,
+      "4": 744.2089270621118,
+      "5": 868.2799999999863
+    },
+    "quality_min": 0.054930183140699994,
+    "quality_p01": 0.3525935795089156,
+    "nonpositive_quality_count": 0,
+    "interface_surfaces": {
+      "QT_first": [
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244
+      ],
+      "first_second": [
+        248,
+        249,
+        250,
+        251,
+        254,
+        255,
+        256,
+        257,
+        260,
+        261,
+        262,
+        263,
+        266,
+        267,
+        268,
+        269,
+        272,
+        273,
+        274,
+        275,
+        278,
+        279,
+        280,
+        281,
+        284,
+        285,
+        286,
+        287,
+        290,
+        291,
+        292,
+        293
+      ],
+      "second_final": [
+        295,
+        298,
+        301,
+        304,
+        307,
+        310,
+        313,
+        316
+      ],
+      "final_shell": [
+        179,
+        184,
+        189,
+        194,
+        199,
+        204,
+        209,
+        322,
+        323
+      ],
+      "QT_final": []
+    },
+    "effective_segment_length_mm": 18.0,
+    "effective_segment_count": 8,
+    "fillet_leg_mm": 3.5,
+    "unwelded_radial_gap_mm": 0.02,
+    "model": "five-material conforming tetrahedral solids; bonded qualified interfaces; open unwelded gap"
+  },
+  "material_inputs": {
+    "1": {
+      "name": "QT450-10",
+      "E_MPa": 169000.0,
+      "nu": 0.27,
+      "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+    },
+    "2": {
+      "name": "Q235B",
+      "E_MPa": 206000.0,
+      "nu": 0.3,
+      "basis": "engineering room-temperature elastic input"
+    },
+    "3": {
+      "name": "CI-A1 retained first layer",
+      "E_MPa": 200000.0,
+      "nu": 0.3,
+      "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+    },
+    "4": {
+      "name": "Ni99 retained second layer",
+      "E_MPa": 200000.0,
+      "nu": 0.3,
+      "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+    },
+    "5": {
+      "name": "NiFe55 final effective fillet",
+      "E_MPa": 200000.0,
+      "nu": 0.3,
+      "basis": "design elastic assumption; effective interface and joint strength require qualification"
+    }
+  },
+  "boundary": "all translations fixed on complete Q235B bottom annulus z=0; top edge free; unwelded gap has no ties/contact",
+  "load_application": "constant bore-surface traction for radial/axial, affine axial traction t_z=a+b*x for pure My; actual force/moment checked",
+  "initial_state": "cold unstressed ideal qualified joint; no precoat or welding residual stresses transferred",
+  "cases": {
+    "radial": {
+      "axis_center_radial_um": 10.154621927329009,
+      "axis_tilt_urad": 20.475811006054844,
+      "axis_diameter_envelope_um": 20.616380901332654,
+      "mean_bore_diameter_change_um": -0.0010022353682673333,
+      "cylindrical_radial_peak_to_valley_um": 0.01056294975818571,
+      "axis_fit_coefficients_mm": [
+        0.010154621926076754,
+        -1.5947524630742903e-07,
+        2.047580327423123e-05,
+        1.779411864582513e-08,
+        -5.011176841336666e-07
+      ],
+      "bore_node_count": 296,
+      "elastic_strain_energy_N_mm": 25.279724845778592,
+      "applied_force_N": [
+        5000.0,
+        0.0,
+        0.0
+      ],
+      "applied_moment_N_mm": [
+        0.0,
+        0.14534900141428864,
+        0.06360163545528508
+      ],
+      "reaction_force_N": [
+        -4999.999999999275,
+        -1.0503399654498325e-10,
+        -1.0850788788942549e-10
+      ],
+      "reaction_moment_N_mm": [
+        -1.0075057683838948e-08,
+        -0.145348999050157,
+        -0.0636016263671961
+      ],
+      "force_balance_relative_error": 1.4808628186076275e-13,
+      "moment_balance_relative_error": 5.509109067403817e-14,
+      "free_residual_relative_norm": 7.829543314428009e-10,
+      "CG_iterations": 70,
+      "max_displacement_um": 10.330789812203717,
+      "raw_element_stress_by_material": {
+        "1": {
+          "von_mises_max_MPa": 19.94164958710834,
+          "maximum_principal_max_MPa": 19.81202361924239,
+          "peak_centroid_mm": [
+            6.734859594104225,
+            -74.49151640496272,
+            113.4283916305296
+          ]
+        },
+        "2": {
+          "von_mises_max_MPa": 97.40391126289119,
+          "maximum_principal_max_MPa": 94.2702891468214,
+          "peak_centroid_mm": [
+            -46.30237344168457,
+            59.16620889404389,
+            115.01790406208258
+          ]
+        },
+        "3": {
+          "von_mises_max_MPa": 37.06211577703481,
+          "maximum_principal_max_MPa": 33.58810375314606,
+          "peak_centroid_mm": [
+            -7.755950804223437,
+            -74.49416574002322,
+            114.0402630841484
+          ]
+        },
+        "4": {
+          "von_mises_max_MPa": 211.56826745639034,
+          "maximum_principal_max_MPa": 263.2218450650017,
+          "peak_centroid_mm": [
+            -9.18157593630066,
+            74.34319258355758,
+            114.91520226220685
+          ]
+        },
+        "5": {
+          "von_mises_max_MPa": 594.9980995424434,
+          "maximum_principal_max_MPa": 385.7314033668048,
+          "peak_centroid_mm": [
+            8.786256399243213,
+            -74.47826837839239,
+            115.0795147198625
+          ]
+        }
+      }
+    },
+    "axial": {
+      "axis_center_radial_um": 0.05638764277341026,
+      "axis_tilt_urad": 12.10268502770966,
+      "axis_diameter_envelope_um": 0.29276017355056616,
+      "mean_bore_diameter_change_um": -0.299769639496778,
+      "cylindrical_radial_peak_to_valley_um": 8.847988253550001,
+      "axis_fit_coefficients_mm": [
+        -5.60823498489695e-05,
+        5.859717822516514e-06,
+        1.203285033839294e-05,
+        1.2982671580936054e-06,
+        -0.000149884819748389
+      ],
+      "bore_node_count": 296,
+      "elastic_strain_energy_N_mm": 76.18698785383064,
+      "applied_force_N": [
+        0.0,
+        0.0,
+        5000.0
+      ],
+      "applied_moment_N_mm": [
+        -0.06360163545528508,
+        0.5639419339380538,
+        0.0
+      ],
+      "reaction_force_N": [
+        1.2468512157239392e-10,
+        1.8627287632422652e-10,
+        -5000.000000001404
+      ],
+      "reaction_moment_N_mm": [
+        0.06360161792859943,
+        -0.5639419250092742,
+        -3.3026320468038395e-09
+      ],
+      "force_balance_relative_error": 2.84407426398316e-13,
+      "moment_balance_relative_error": 7.978122018056816e-14,
+      "free_residual_relative_norm": 8.229436670530873e-10,
+      "CG_iterations": 71,
+      "max_displacement_um": 30.693542520641866,
+      "raw_element_stress_by_material": {
+        "1": {
+          "von_mises_max_MPa": 39.280604897501014,
+          "maximum_principal_max_MPa": 38.42133553766486,
+          "peak_centroid_mm": [
+            19.25465179253941,
+            7.58384053605516,
+            100.50436949927655
+          ]
+        },
+        "2": {
+          "von_mises_max_MPa": 57.61544515296553,
+          "maximum_principal_max_MPa": 31.772300642359617,
+          "peak_centroid_mm": [
+            -9.074291215183582,
+            -74.76273029940454,
+            115.1854006082318
+          ]
+        },
+        "3": {
+          "von_mises_max_MPa": 24.00575468311182,
+          "maximum_principal_max_MPa": 15.840676908546733,
+          "peak_centroid_mm": [
+            70.76783381433263,
+            -7.355509229404288,
+            114.02499999999999
+          ]
+        },
+        "4": {
+          "von_mises_max_MPa": 78.15114880294273,
+          "maximum_principal_max_MPa": 30.24989524219591,
+          "peak_centroid_mm": [
+            58.89767913270592,
+            46.224966324328776,
+            114.82922664700126
+          ]
+        },
+        "5": {
+          "von_mises_max_MPa": 254.84900655484634,
+          "maximum_principal_max_MPa": 42.236000565473894,
+          "peak_centroid_mm": [
+            -8.892150737058902,
+            74.46581335285644,
+            115.19270755496544
+          ]
+        }
+      }
+    },
+    "overturning": {
+      "axis_center_radial_um": 1.622083149936763,
+      "axis_tilt_urad": 383.65758812823384,
+      "axis_diameter_envelope_um": 8.999005828935022,
+      "mean_bore_diameter_change_um": -0.004268499946328526,
+      "cylindrical_radial_peak_to_valley_um": 0.30565005096627373,
+      "axis_fit_coefficients_mm": [
+        0.0016220820193891422,
+        1.915119634198826e-06,
+        -0.0003836550203602883,
+        1.403666883650583e-06,
+        -2.134249973164263e-06
+      ],
+      "bore_node_count": 296,
+      "elastic_strain_energy_N_mm": 129.37980980549423,
+      "applied_force_N": [
+        0.0,
+        0.0,
+        1.0729195309977513e-12
+      ],
+      "applied_moment_N_mm": [
+        0.028651584728663693,
+        250000.00000000003,
+        0.0
+      ],
+      "reaction_force_N": [
+        1.2163459099926778e-10,
+        -5.656770828196518e-11,
+        4.1042048809524813e-10
+      ],
+      "reaction_moment_N_mm": [
+        -0.028651594572660498,
+        -250000.0000000067,
+        -8.126935989385403e-09
+      ],
+      "force_balance_relative_error": 8.6561354857163e-14,
+      "moment_balance_relative_error": 5.760147448993069e-14,
+      "free_residual_relative_norm": 7.281487920317226e-10,
+      "CG_iterations": 67,
+      "max_displacement_um": 21.122780802976074,
+      "raw_element_stress_by_material": {
+        "1": {
+          "von_mises_max_MPa": 82.0279350652593,
+          "maximum_principal_max_MPa": 64.37577121687204,
+          "peak_centroid_mm": [
+            -1.454084142566586,
+            -20.79936281858023,
+            107.00701796278074
+          ]
+        },
+        "2": {
+          "von_mises_max_MPa": 51.45848394741471,
+          "maximum_principal_max_MPa": 55.30740483137926,
+          "peak_centroid_mm": [
+            74.61084950787371,
+            9.108611956304294,
+            114.91344327715119
+          ]
+        },
+        "3": {
+          "von_mises_max_MPa": 33.22317752646831,
+          "maximum_principal_max_MPa": 32.17336542015387,
+          "peak_centroid_mm": [
+            -74.4221225725689,
+            8.541836885218927,
+            114.03998944237604
+          ]
+        },
+        "4": {
+          "von_mises_max_MPa": 104.40406497181282,
+          "maximum_principal_max_MPa": 139.73700471883097,
+          "peak_centroid_mm": [
+            -9.18157593630066,
+            74.34319258355758,
+            114.91520226220685
+          ]
+        },
+        "5": {
+          "von_mises_max_MPa": 395.53126338390206,
+          "maximum_principal_max_MPa": 299.56622395063107,
+          "peak_centroid_mm": [
+            74.46541527399158,
+            -8.89558222485675,
+            115.1913799329292
+          ]
+        }
+      }
+    },
+    "combined": {
+      "axis_center_radial_um": 11.720624069583147,
+      "axis_tilt_urad": 351.1568991236246,
+      "axis_diameter_envelope_um": 28.7084500754386,
+      "mean_bore_diameter_change_um": -0.3050403748103307,
+      "cylindrical_radial_peak_to_valley_um": 9.07453369592043,
+      "axis_fit_coefficients_mm": [
+        0.011720621595578856,
+        7.615362259035744e-06,
+        -0.000351146366748686,
+        2.7197281696533063e-06,
+        -0.00015252018740516534
+      ],
+      "bore_node_count": 296,
+      "elastic_strain_energy_N_mm": 238.72776096751375,
+      "applied_force_N": [
+        5000.0,
+        0.0,
+        4999.999999999996
+      ],
+      "applied_moment_N_mm": [
+        -0.034950050726138215,
+        250000.7092909353,
+        0.06360163545528508
+      ],
+      "reaction_force_N": [
+        -4999.999999999611,
+        -3.5928363950884715e-11,
+        -5000.00000000032
+      ],
+      "reaction_moment_N_mm": [
+        0.0349500237284067,
+        -250000.70929094785,
+        -0.06360169362823784
+      ],
+      "force_balance_relative_error": 1.015186017986106e-13,
+      "moment_balance_relative_error": 2.613906081610648e-13,
+      "free_residual_relative_norm": 9.542763827261304e-10,
+      "CG_iterations": 68,
+      "max_displacement_um": 54.950563828590425,
+      "raw_element_stress_by_material": {
+        "1": {
+          "von_mises_max_MPa": 100.5487381682673,
+          "maximum_principal_max_MPa": 100.69395432829444,
+          "peak_centroid_mm": [
+            -20.0850278889652,
+            4.573268866542302,
+            100.64694657978609
+          ]
+        },
+        "2": {
+          "von_mises_max_MPa": 145.30365725918998,
+          "maximum_principal_max_MPa": 126.34430559880495,
+          "peak_centroid_mm": [
+            -46.30237344168457,
+            59.16620889404389,
+            115.01790406208258
+          ]
+        },
+        "3": {
+          "von_mises_max_MPa": 54.222167203348754,
+          "maximum_principal_max_MPa": 54.42175285544754,
+          "peak_centroid_mm": [
+            -46.90912368642665,
+            58.366276163325786,
+            114.0401299637059
+          ]
+        },
+        "4": {
+          "von_mises_max_MPa": 323.6515596057093,
+          "maximum_principal_max_MPa": 386.16365907147684,
+          "peak_centroid_mm": [
+            -9.18157593630066,
+            74.34319258355758,
+            114.91520226220685
+          ]
+        },
+        "5": {
+          "von_mises_max_MPa": 926.889586681847,
+          "maximum_principal_max_MPa": 471.44405327913796,
+          "peak_centroid_mm": [
+            8.786256399243213,
+            -74.47826837839239,
+            115.0795147198625
+          ]
+        }
+      }
+    }
+  },
+  "scope": "cold elastic service response under reference envelope; not post-weld position tolerance or strength certification",
+  "elapsed_seconds": 244.18838047981262
+}

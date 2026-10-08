@@ -1,4 +1,4 @@
-version: SUBMISSION-RING-20261008
+version: SUBMISSION-RING-20261008-R2
 purpose: 焊接固定题报告与工程图的完整圆环基准；参数为设计pWPS，供后续试制确认
 source_document: competition/original-files/welding/第一届辽宁省大学生材料焊接与铸造工艺设计大赛实施方案.pdf
 source_pages:
@@ -23,11 +23,19 @@ geometry:
     wall_thickness_mm: 5.0
     height_mm: 200.0
     nominal_inside_diameter_mm: 150.0
+    assembly_inside_diameter_limits_mm: [150.00, 150.02]
+    assembly_band_roundness_max_mm: 0.005
   seat:
     material: QT450-10
     shape: 完整圆环；本体保留连续环向承载通道
     nominal_bore_diameter_mm: 40.0
     outside_radius_mm: 74.98
+    assembly_outside_diameter_limits_mm: [149.94, 149.98]
+    assembly_band_roundness_max_mm: 0.005
+    assembled_measured_radial_gap_limits_mm: [0.005, 0.045]
+    ideal_circular_radial_gap_limits_mm: [0.01, 0.04]
+    assembly_gap_rule: 独立A/B定心后逐窗实测局部间隙0.005至0.045；只满足直径限值不代替周向间隙验收
+    seat_bottom_z_tolerance_mm: 0.05
     thickness_mm: 15.0
     bottom_z_mm: 100.0
     thickness_and_height_basis: 题面未指定；本设计选定
@@ -54,6 +62,19 @@ weld_layout:
   end_allowance_mm: 1.0
   effective_length_per_pass_mm: 144.0
 material_route:
+  precoat_thermal_cycle:
+    applies_to: 首层与第二层分别执行；圆环壳外自由支承
+    furnace_preheat_setpoint_C: 300.0
+    workpiece_weld_permission_C: [200.0, 300.0]
+    sensing: 窗口附近与对向环体各独立测点；最冷/最热点共同控制转序
+    postheat_furnace_setpoint_C: 200.0
+    postheat_workpiece_hold_window_C: [190.0, 210.0]
+    postheat_hold_h: 2.0
+    hold_timer_start: 全部规定工件测点进入190至210℃保持窗后开始计时；超出保持窗暂停并重新评价
+    furnace_cooling_max_C_h: 50.0
+    cold_handoff_C: [19.0, 21.0]
+    cold_handoff: 所有测点冷态且完成清渣/层厚与对应PT交接，不以炉温代替工件温
+    reservation: 每层10h是容位计划；实际测温未准入则延迟转序
   chain:
   - QT450-10
   - CI-A1高镍SMAW首层
@@ -109,7 +130,22 @@ material_route:
       maximum_volume_mm3: 23.796072933822128
       maximum_mass_g: 0.2115470883816787
       manufacturing_order: 第一镍层保护保留至第二层焊接结束，再随最终齐平加工去除
-    motion: 控制小摆动覆盖整个6 mm槽底及内缘保护带；逐窗检查起止端覆盖
+    motion: 中心弧推进速度75 mm/min；摆动时间包含在主弧19.2 s内，实际热量按U(t)I(t)积分
+    weave_design:
+      radial_peak_to_peak_mm: 4.0
+      center_inward_offset_from_window_reference_mm: 0.25
+      minimum_qualified_radial_melt_footprint_mm: 3.0
+      center_rule: 按实际槽内外缘及内缘0.5保护带中心定位；名义R71.73，保持75mm/min按R71.98窗口参考弧推进
+      endpoint_motion: 起端和止端各0.5s完整径向扫掠一次，规定电流不变，逐窗确认端部1.5mm保护带连续覆盖
+      radial_width_tolerance_mm: 0.2
+      frequency_Hz: 1.0
+      frequency_tolerance_Hz: 0.1
+      dwell_each_radial_edge_s: 0.10
+      dwell_tolerance_s: 0.02
+      waveform: 每周期两边各驻留0.10 s，其余时间线性往返；推进与摆动独立
+      nominal_radial_extrema_mm: [69.73, 73.73]
+      endpoint_protection: 两端各0.5 s各完成一次径向扫掠；确认端部1.5mm保护带，记录实际轨迹与积分电能
+      acceptance: 初始pWPS摆动设计值，截面确认全槽底/内缘保护/端部连续覆盖后冻结，不以理论摆宽认定熔宽
   second_layer:
     station: 壳外预制工位
     filler: 低碳Ni99裸棒
@@ -244,21 +280,64 @@ submission:
   page_count_policy: 使用本次PDF实际页数和材料包清单，不沿用历史14/63或16/72页数
   reconstruction: 基于远端工程基线和恢复附件重新生成的新版本；不宣称恢复旧提交9cf6963的原字节
 fixture_feasibility:
-  configuration: 基础站短受力闭环、胀套背承与独立压环
+  configuration: HJ-F-S01完整圆环专属整体下背承、双柱上桥和主动退锥
+  release_minimum_post_arc_hold_s: 120.0
+  release_part_max_temperature_exclusive_C: 55.0
   analysis_script: studies/COMPETITION-DESIGN/ring-fixture-feasibility.py
   result_file: studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json
-  purpose: 以等效短梁截面建立冷态刚度起点，并预留接触、连接和基础柔度
-  beam_length_mm: 120.0
-  section_width_mm: 80.0
-  section_height_mm: 120.0
+  builder: cad/parametric/ring_fixture/build_ring_fixture.py
+  assembly_step: cad/generated/ring-fixture/ring-fixture-assembly.step
+  drawing_pdf: cad/generated/ring-fixture/HJ-F-S01-ring-fixture-drawings.pdf
+  base_dimensions_mm: [460, 400, 80]
+  bed_dimensions_mm: [460, 400, 100]
+  lower_column_diameter_mm: 144.0
+  lower_column_top_z_mm: 80.0
+  upper_neck_diameter_mm: 96.0
+  upper_neck_top_z_mm: 99.8
+  cone_half_angle_deg: 3.0
+  cone_bottom_diameter_mm: 38.2898094
+  cone_top_diameter_mm: 36.67564979808233
+  cone_top_z_mm: 115.2
+  active_cone_release_stroke_mm: 1.5
+  columns_diameter_mm: 70.0
+  columns_x_mm: [-140.0, 140.0]
+  bridge_dimensions_mm: [340, 220, 80]
+  bridge_bottom_z_mm: 400.0
+  bridge_access_hole_diameter_mm: 110.0
+  base_bolts: 18-M30x140；预紧100±10kN，有效啮合60mm
+  bridge_bolts: 4-M16x110；预紧20±2kN
   elastic_modulus_MPa: 206000.0
+  poisson_ratio: 0.3
   transverse_force_N: 5000.0
   end_moment_N_mm: 170000.0
-  bore_axis_lever_mm: 100.0
+  bore_endpoint_z_mm: [100.0, 115.0]
   radial_clamping_budget_um: 6.5
-  scope: 计入短梁剪切的冷态解析截面起点；完整站的接触、连接、基础和热态按工装图与首件确认。原重型门架保留候选详图，不作为基础站主配置
-  poisson_ratio: 0.3
-  rectangular_shear_factor: 0.8333333333333334
-  cold_axis_displacement_um: 5.052588996763753
-  remaining_contact_connection_base_budget_um: 1.4474110032362466
-  selection_basis: 60 mm宽初始截面计入短梁剪切后6.737 μm超预算；宽增至80 mm后5.053 μm，给接口与基础留1.447 μm
+  calculated_cold_axis_upper_um: 5.639447
+  contact_seating_allocation_um: 0.25
+  axis_with_seating_allocation_um: 5.889447
+  remaining_machine_rocking_allocation_um: 0.610553
+  scope: 冷态真实分段截面、含水气孔净截面、预紧连接和上桥轴压的解析设计；接触坐实和机台摇摆为明确分配，热态及实机重复性另确认
+
+monitoring_design:
+  purpose: 当前圆环设计pWPS的数字监测窗口；电流和电压容差为监测设计值，设备接入后按评定与校准结果确认
+  operation: final_GTAW
+  current:
+    supported_definitions:
+    - instantaneous_pulsed_A
+    - cycle_mean_A
+    plateau_tolerance_A: 5.0
+    cycle_mean_tolerance_A: 5.0
+    minimum_samples_per_cycle: 20
+    minimum_bad_cycles: 2
+    phase_basis: 瞬时波形必须附脉冲相位起点、频率和占空比；按整周期评价峰值与基值，平均电流不得冒充瞬时波形
+  voltage_window_V:
+  - 11.0
+  - 13.0
+  travel_speed_relative_tolerance: 0.02
+  temperature_definition: pre_arc_control_point_C
+  temperature_gates: 首段起弧15～35℃；续焊起弧15～100℃；弧燃和冷却温度不按层间起弧温度误判
+  bias_policy: 工艺窗口固定；有证书的离线传感器校准另行处理，不从本件焊接序列自动估计偏置或平移窗口
+  minimum_event_duration_s: 0.05
+  wire_feed_tolerance_mm_s: 0.05
+  segment_energy_relative_tolerance: 0.02
+  segment_path_relative_tolerance: 0.02

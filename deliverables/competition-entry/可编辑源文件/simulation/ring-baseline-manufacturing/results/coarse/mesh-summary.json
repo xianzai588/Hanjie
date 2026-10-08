@@ -1,0 +1,51 @@
+{
+  "level": "coarse",
+  "nodes": 62486,
+  "tetrahedra": 247346,
+  "bulk_mm": 6.0,
+  "local_mm": 1.0,
+  "quality_min": 0.04183276197612123,
+  "material_volumes_mm3": {
+    "1": 244442.24702869853,
+    "2": 486946.8613064168,
+    "3": 894.5154494909823,
+    "4": 744.2089270621032,
+    "5": 1257.5797990575213
+  },
+  "interfaces": {
+    "QT_first": 32,
+    "first_second": 32,
+    "second_final": 16,
+    "final_shell": 18,
+    "QT_final": 0
+  },
+  "arc_length_mm": 20.0,
+  "effective_connection_length_mm": 18.0,
+  "root_leg_mm": 2.8,
+  "thermal_fillet_leg_mm": 4.0,
+  "fit_gap_mm": 0.02,
+  "minimum_inner_shell_face_centroid_radius_mm": 74.99195121090351,
+  "interface_method": "shared conforming material-interface nodes; unconnected fit gap is open",
+  "cache_key": {
+    "schema": "ring-final-conforming-v3",
+    "process_version": "SUBMISSION-RING-20261008-R2",
+    "cad_data_sha256": "0022456176f493d9738547f328ebc964adc98770a07af3c2f437243afaa2eb9f",
+    "bulk_mm": 6.0,
+    "local_mm": 1.0,
+    "arc_length_mm": 20.0,
+    "root_leg_mm": 2.8,
+    "cap_leg_mm": 4.0,
+    "shell_surface": "2mm z90..125; smoothly coarsen away from open fit-gap band",
+    "interface": "conforming_shared_nodes"
+  },
+  "qualification": "geometry establishes nominal contact paths, not continuous fusion or retained residual stress",
+  "actual_faceted_gap_audit": {
+    "method": "clip actual straight inner-shell triangular facets to z100..115; minimize xy radius on every polygon edge",
+    "tested_facets": 10927,
+    "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.99094505152505,
+    "maximum_nominal_seat_outer_radius_mm": 74.98,
+    "minimum_conservative_open_clearance_mm": 0.01094505152504155,
+    "direct_precoated_seat_shell_shared_nodes": 0,
+    "unwelded_gap_geometry_verified": true
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "base_commit": "9881addbb0dd070a0b1cecbc1fd554ce52c059ef",
+  "regression": {
+    "passed": 286,
+    "failed": 0,
+    "elapsed_s": 32.14,
+    "command": "python -m pytest -q"
+  },
+  "pdf_visual_review": {
+    "all_combined_pages_reviewed": 81,
+    "final_rerender_pixels_identical_to_review": true,
+    "final_pages": [
+      {
+        "file": "output/pdf/工艺设计说明书-参赛设计稿.pdf",
+        "pages": 54
+      },
+      {
+        "file": "output/pdf/焊接工艺设计论文-正文.pdf",
+        "pages": 24
+      },
+      {
+        "file": "output/pdf/基准与候选工程图集.pdf",
+        "pages": 27
+      },
+      {
+        "file": "output/pdf/工艺设计说明书与工程图-参赛设计稿.pdf",
+        "pages": 81
+      }
+    ],
+    "author_metadata_empty": true
+  },
+  "publication": {
+    "source_dependencies": 57,
+    "output_files": 4,
+    "seal_verified": true,
+    "output_SHA256": {
+      "output/pdf/工艺设计说明书-参赛设计稿.pdf": "1edb074d26efdb0e1ec0bfca75e0806d62a47b7a136f65005de9af1d0fd2e9cc",
+      "output/pdf/焊接工艺设计论文-正文.pdf": "bc8a961e910563db4b1b3016afb9ba959b7ee03a702d0d19e5fdb35353fb5585",
+      "output/pdf/基准与候选工程图集.pdf": "09d8c36f7668e602eff1cf5108dd2ab332518a39c10519ae84d12280eef1464d",
+      "output/pdf/工艺设计说明书与工程图-参赛设计稿.pdf": "a3b535646046b28f9098d66c9dbd0d0d03c74a84cda670d47485ea414d26a3fe"
+    }
+  },
+  "fixture": {
+    "new_lid_sweep_checks": {
+      "RF20_RF21_lateral_vs_fixed_lower_tools_sweep_mm3": 0.0,
+      "RF20_RF21_lateral_vs_columns_bridge_and_stops_sweep_mm3": 0.0,
+      "RF20_RF21_lateral_vs_raised_product_sweep_mm3": 0.0,
+      "RF20_RF21_lateral_vs_raised_A_holder_sweep_mm3": 0.0,
+      "RF20_RF21_lateral_vs_raised_upper_tools_sweep_mm3": 0.0,
+      "RF20_RF21_vertical_press_vs_fixed_lower_tools_sweep_mm3": 0.0,
+      "RF20_RF21_vertical_press_vs_columns_bridge_and_stops_sweep_mm3": 0.0,
+      "RF20_RF21_vertical_press_vs_raised_product_sweep_mm3": 0.0,
+      "RF20_RF21_vertical_press_vs_raised_A_holder_sweep_mm3": 0.0,
+      "RF20_RF21_vertical_press_vs_raised_upper_tools_sweep_mm3": 0.0
+    },
+    "cold_axis_with_seating_um": 5.88944737882906
+  },
+  "thermal": {
+    "actual_path_mm": 320,
+    "source_energy_J": 95999.99999999999,
+    "cycle_completed": true,
+    "tooling_exit": {
+      "time_s": 603.939393939394,
+      "part_max_C": 48.66803069431943,
+      "copper_C": 22.59784960412606,
+      "time_after_final_arc_s": 140.00000000000006,
+      "criterion": ">=120s after final arc AND whole-part max<55C; product exits copper fixture"
+    },
+    "final_time_s": 2643.939393939394,
+    "final_max_C": 20.99962051969814
+  },
+  "production_release": false,
+  "engineering_scope": "design submission and verified numerical/software artifacts; fusion, full manufacturing residuals and physical qualification remain separate gates"
+}

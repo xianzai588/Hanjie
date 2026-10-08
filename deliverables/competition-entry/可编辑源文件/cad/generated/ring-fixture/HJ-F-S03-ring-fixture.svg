@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 1400 990">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#27384A"/></marker><pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#EDF0F2"/><line x1="0" x2="0" y1="0" y2="10" stroke="#BBC4CB" stroke-width="1"/></pattern></defs>
+<rect width="1400" height="990" fill="white"/>
+<g font-family="Noto Sans SC,sans-serif" fill="#27384A" stroke-linejoin="round">
+<rect x="30" y="30" width="1340" height="930" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="78" font-size="28" fill="#27384A" text-anchor="start">HJ-F-S03 受控退出、质量范围与刚度分配</text>
+<text x="60" y="112" font-size="16" fill="#27384A" text-anchor="start">完整圆环专属工装 | 单位:mm | A3 | 所列尺寸为设计选定</text>
+<line x1="30" y1="135" x2="1370" y2="135" stroke="#27384A" stroke-width="1.4"/>
+<line x1="30" y1="875" x2="1370" y2="875" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="906" font-size="16" fill="#27384A" text-anchor="start">HJ-F-S01-R2 | 圆环固定题基础站 | 设计/解析与实测分项记录</text>
+<text x="60" y="938" font-size="14" fill="#27384A" text-anchor="start">材料与热处理按BOM；配锥/基准共同精磨；未注锐边去毛刺，内腔接触处圆滑</text>
+<text x="1110" y="906" font-size="16" fill="#27384A" text-anchor="start">比例:NTS | 第3/3页</text>
+<text x="1110" y="938" font-size="14" fill="#27384A" text-anchor="start">严禁按图量取尺寸</text>
+<text x="70" y="171" font-size="18" fill="#27384A" text-anchor="start">C-C 安装 → 完全退出（名义位置）</text>
+<rect x="118.9" y="757.0" width="262.2" height="56.99999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="118.9" y="711.4" width="262.2" height="45.599999999999994" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="208.96" y="654.4" width="82.08" height="56.99999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="222.64" y="643.114" width="54.72" height="11.285999999999998" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<polygon points="239.087407,643.114 260.912593,643.114 260.452546,634.336 239.547454,634.336" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="150.25" y="472.0" width="39.9" height="239.39999999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="309.85" y="472.0" width="39.9" height="239.39999999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="153.10000000000002" y="426.40000000000003" width="65.55" height="45.599999999999994" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="281.35" y="426.40000000000003" width="65.55" height="45.599999999999994" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="207.82" y="651.7837" width="14.819999999999999" height="0.57" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="277.36" y="651.7837" width="14.819999999999999" height="0.57" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="207.364" y="643.285" width="1.71" height="6.041999999999996" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="290.926" y="643.285" width="1.71" height="6.041999999999996" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="204.4" y="586.0" width="2.8499999999999996" height="113.99999999999999" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<rect x="292.75" y="586.0" width="2.8499999999999996" height="113.99999999999999" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<rect x="207.2614" y="634.45" width="31.3386" height="8.549999999999999" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="261.4" y="634.45" width="31.3386" height="8.549999999999999" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="198.7" y="700.0" width="8.493000000000002" height="11.399999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="292.807" y="700.0" width="8.493000000000002" height="11.399999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="238.6171" y="617.122" width="0.9290999999999994" height="25.992" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="260.4538" y="617.122" width="0.9290999999999994" height="25.992" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="236.89" y="611.422" width="2.1830999999999987" height="5.699999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="260.9269" y="611.422" width="2.1830999999999987" height="5.699999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="230.05" y="449.20000000000005" width="13.11" height="162.222" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="256.84" y="449.20000000000005" width="13.11" height="162.222" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="221.5" y="437.8" width="21.659999999999997" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="256.84" y="437.8" width="21.659999999999997" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="221.5" y="629.89" width="14.819999999999999" height="4.56" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="263.68" y="629.89" width="14.819999999999999" height="4.56" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="221.5" y="600.25" width="7.9799999999999995" height="29.639999999999997" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="270.52" y="600.25" width="7.9799999999999995" height="29.639999999999997" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="211.24" y="426.40000000000003" width="14.819999999999999" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="273.94" y="426.40000000000003" width="14.819999999999999" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<line x1="250.0" y1="822.55" x2="250.0" y2="412.15000000000003" stroke="#315D83" stroke-width="1" stroke-dasharray="14 4 2 4"/>
+<rect x="493.9" y="757.0" width="262.2" height="56.99999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="493.9" y="711.4" width="262.2" height="45.599999999999994" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="583.96" y="654.4" width="82.08" height="56.99999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="597.64" y="643.114" width="54.72" height="11.285999999999998" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<polygon points="614.087407,643.114 635.912593,643.114 635.452546,634.336 614.547454,634.336" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="525.25" y="472.0" width="39.9" height="239.39999999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="684.85" y="472.0" width="39.9" height="239.39999999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="528.1" y="426.40000000000003" width="65.55" height="45.599999999999994" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="656.35" y="426.40000000000003" width="65.55" height="45.599999999999994" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="582.82" y="651.7837" width="14.819999999999999" height="0.57" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="652.36" y="651.7837" width="14.819999999999999" height="0.57" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="582.364" y="643.285" width="1.71" height="6.041999999999996" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="665.926" y="643.285" width="1.71" height="6.041999999999996" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="579.4" y="506.20000000000005" width="2.8499999999999996" height="113.99999999999999" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<rect x="667.75" y="506.20000000000005" width="2.8499999999999996" height="113.99999999999999" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<rect x="582.2614" y="554.65" width="31.3386" height="8.549999999999999" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="636.4" y="554.65" width="31.3386" height="8.549999999999999" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="573.7" y="620.2" width="8.493000000000002" height="11.399999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="667.807" y="620.2" width="8.493000000000002" height="11.399999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="613.6171" y="468.922" width="0.9290999999999994" height="25.99199999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="635.4538" y="468.922" width="0.9290999999999994" height="25.99199999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="611.89" y="463.22200000000004" width="2.1830999999999987" height="5.699999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="635.9269" y="463.22200000000004" width="2.1830999999999987" height="5.699999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="605.05" y="301.00000000000006" width="13.11" height="162.222" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="631.84" y="301.00000000000006" width="13.11" height="162.222" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="596.5" y="289.6" width="21.659999999999997" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="631.84" y="289.6" width="21.659999999999997" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="596.5" y="481.69000000000005" width="14.819999999999999" height="4.56" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="638.68" y="481.69000000000005" width="14.819999999999999" height="4.56" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="596.5" y="452.05" width="7.9799999999999995" height="29.639999999999997" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="645.52" y="452.05" width="7.9799999999999995" height="29.639999999999997" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="569.14" y="426.40000000000003" width="14.819999999999999" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="666.04" y="426.40000000000003" width="14.819999999999999" height="11.399999999999999" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="573.7" y="631.885" width="102.6" height="1.14" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<line x1="625.0" y1="822.55" x2="625.0" y2="278.20000000000005" stroke="#315D83" stroke-width="1" stroke-dasharray="14 4 2 4"/>
+<text x="140" y="217" font-size="16" fill="#27384A" text-anchor="start">安装/施焊</text>
+<text x="535" y="217" font-size="16" fill="#27384A" text-anchor="start">产品上升140 + 上工具260</text>
+<text x="70" y="251" font-size="15" fill="#27384A" text-anchor="start">RF20无孔盖：在z116.7从+y200横插至轴心，再上升0.8</text>
+<text x="70" y="279" font-size="14" fill="#27384A" text-anchor="start">横插时锥顶净隙1.5、垫顶至托环0.8、盖至柱内缘15</text>
+<line x1="405" y1="405" x2="470" y2="405" stroke="#315D83" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="70" y="844" font-size="14" fill="#27384A" text-anchor="start">盘/铜/下反锥原位；产品从其外侧抬离，封底后沿+y横移</text>
+<text x="925" y="170" font-size="20" fill="#27384A" text-anchor="start">退出操作与净隙</text>
+<text x="925" y="211" font-size="14" fill="#27384A" text-anchor="start">1. 停弧≥120 s且最高温&lt;55℃</text>
+<text x="925" y="234" font-size="14" fill="#27384A" text-anchor="start">2. 压环卸载；双止挡外退30</text>
+<text x="925" y="257" font-size="14" fill="#27384A" text-anchor="start">3. 胀套主动上退1.5，确认收拢</text>
+<text x="925" y="280" font-size="14" fill="#27384A" text-anchor="start">4. 铜瓣径退1.10；上工具升260</text>
+<text x="925" y="303" font-size="14" fill="#27384A" text-anchor="start">5. A托环接管；壳体+托环升140</text>
+<text x="925" y="326" font-size="14" fill="#27384A" text-anchor="start">6. 盖底z116.7，从+y200横插至轴心</text>
+<text x="925" y="349" font-size="14" fill="#27384A" text-anchor="start">   盖+密封上升0.8，贴合锁定</text>
+<text x="925" y="372" font-size="14" fill="#27384A" text-anchor="start">7. 封底反馈后，产品+y横移360</text>
+<text x="925" y="395" font-size="14" fill="#27384A" text-anchor="start">壳上口z340 → 桥底z400: 60</text>
+<text x="925" y="418" font-size="14" fill="#27384A" text-anchor="start">上胀套底z359.8 → 壳上口: 19.8</text>
+<text x="925" y="441" font-size="14" fill="#27384A" text-anchor="start">托环底z120 → 反锥顶115.2: 4.8</text>
+<text x="925" y="464" font-size="14" fill="#27384A" text-anchor="start">底盖下表面117.5 → 反锥顶: 2.3</text>
+<line x1="925" y1="492" x2="1325" y2="492" stroke="#27384A" stroke-width="1.4"/>
+<text x="925" y="527" font-size="20" fill="#27384A" text-anchor="start">冷态径向解析分配 / μm</text>
+<text x="925" y="566" font-size="14" fill="#27384A" text-anchor="start">实际下柱/颈/锥（含气水孔）</text>
+<text x="1320" y="566" font-size="14" fill="#27384A" text-anchor="end">4.356</text>
+<text x="925" y="594" font-size="14" fill="#27384A" text-anchor="start">基板与钢床座</text>
+<text x="1320" y="594" font-size="14" fill="#27384A" text-anchor="end">0.162</text>
+<text x="925" y="622" font-size="14" fill="#27384A" text-anchor="start">预紧螺栓弹性转角</text>
+<text x="1320" y="622" font-size="14" fill="#27384A" text-anchor="end">0.833</text>
+<text x="925" y="650" font-size="14" fill="#27384A" text-anchor="start">上筒/桥/柱/止挡轴压折算</text>
+<text x="1320" y="650" font-size="14" fill="#27384A" text-anchor="end">0.289</text>
+<text x="925" y="678" font-size="14" fill="#27384A" text-anchor="start">接触坐实增量分配</text>
+<text x="1320" y="678" font-size="14" fill="#27384A" text-anchor="end">0.250</text>
+<text x="925" y="706" font-size="14" fill="#27384A" text-anchor="start">合计（径向分配6.5）</text>
+<text x="1320" y="706" font-size="14" fill="#27384A" text-anchor="end">5.889</text>
+<text x="925" y="734" font-size="14" fill="#27384A" text-anchor="start">机台摇摆剩余分配</text>
+<text x="1320" y="734" font-size="14" fill="#27384A" text-anchor="end">0.611</text>
+<text x="925" y="781" font-size="14" fill="#27384A" text-anchor="start">制件 196.71 kg + 床座 139.59 kg</text>
+<text x="925" y="809" font-size="13" fill="#27384A" text-anchor="start">标准件包络质量另列；采购件非实心质量</text>
+<text x="925" y="837" font-size="14" fill="#27384A" text-anchor="start">热态、机台和坐实资格按工装卡执行</text>
+</g></svg>

@@ -1,0 +1,1970 @@
+{
+  "normal": {
+    "sample_id": "RING-FULL-normal",
+    "session_id": "RING-FULL-normal-SUBMISSION-RING-20261008-R2-FULL-normal-3",
+    "process_version": "SUBMISSION-RING-20261008-R2",
+    "operation": "final_GTAW",
+    "source_type": "simulated",
+    "record_scope": "complete_final_weld_simulated_control_replay",
+    "hardware_commands_sent": 0,
+    "candidate_arc_count": 16,
+    "candidate_arc_time_s": 193.93939393939397,
+    "candidate_path_mm": 319.99999999665016,
+    "candidate_net_heat_J": 96001.64999931006,
+    "candidate_segment_metrics": [
+      {
+        "pass_id": 1,
+        "segment_id": 1,
+        "start_s": 0.05,
+        "end_s": 12.171212121212122,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10915.4545452,
+        "net_arc_energy_J": 6003.499999860001,
+        "net_energy_J_mm": 300.1749999982531,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5,
+        "start_s": 12.221212121212123,
+        "end_s": 24.342424242424244,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10905.727272600001,
+        "net_arc_energy_J": 5998.149999930001,
+        "net_energy_J_mm": 299.9075000017484,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3,
+        "start_s": 24.392424242424244,
+        "end_s": 36.513636363636365,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 20.000000000700005,
+        "gross_arc_energy_J": 10909.454545963643,
+        "net_arc_energy_J": 6000.200000280004,
+        "net_energy_J_mm": 300.0100000034998,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7,
+        "start_s": 36.56363636363636,
+        "end_s": 48.68484848484849,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999400007,
+        "gross_arc_energy_J": 10910.227272509093,
+        "net_arc_energy_J": 6000.624999880002,
+        "net_energy_J_mm": 300.03125000300093,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2,
+        "start_s": 48.734848484848484,
+        "end_s": 60.85606060606061,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10904.954545199997,
+        "net_arc_energy_J": 5997.724999859998,
+        "net_energy_J_mm": 299.88624999824793,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6,
+        "start_s": 60.906060606060606,
+        "end_s": 73.02727272727273,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10914.727272600005,
+        "net_arc_energy_J": 6003.099999930003,
+        "net_energy_J_mm": 300.15500000175285,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4,
+        "start_s": 73.07727272727273,
+        "end_s": 85.19848484848485,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999650026,
+        "gross_arc_energy_J": 10902.727272600016,
+        "net_arc_energy_J": 5996.499999930009,
+        "net_energy_J_mm": 299.825000001747,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8,
+        "start_s": 85.24848484848485,
+        "end_s": 97.36969696969697,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 20.0000000008,
+        "gross_arc_energy_J": 10913.954546036366,
+        "net_arc_energy_J": 6002.675000320002,
+        "net_energy_J_mm": 300.13375000399475,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1,
+        "start_s": 97.41969696969697,
+        "end_s": 109.5409090909091,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999500005,
+        "gross_arc_energy_J": 10907.22727254545,
+        "net_arc_energy_J": 5998.974999899998,
+        "net_energy_J_mm": 299.9487500024985,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5,
+        "start_s": 109.5909090909091,
+        "end_s": 121.71212121212122,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10909.45454519999,
+        "net_arc_energy_J": 6000.199999859995,
+        "net_energy_J_mm": 300.0099999982499,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3,
+        "start_s": 121.76212121212122,
+        "end_s": 133.88333333333333,
+        "arc_time_s": 12.12121212121211,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10911.727272600016,
+        "net_arc_energy_J": 6001.449999930009,
+        "net_energy_J_mm": 300.0725000017517,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7,
+        "start_s": 133.93333333333334,
+        "end_s": 146.05454545454546,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 20.000000000550003,
+        "gross_arc_energy_J": 10904.954545854549,
+        "net_arc_energy_J": 5997.725000220003,
+        "net_energy_J_mm": 299.88625000275323,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2,
+        "start_s": 146.10454545454547,
+        "end_s": 158.2257575757576,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999925005,
+        "gross_arc_energy_J": 10915.454544909137,
+        "net_arc_energy_J": 6003.499999700026,
+        "net_energy_J_mm": 300.1749999962571,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6,
+        "start_s": 158.2757575757576,
+        "end_s": 170.39696969696973,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999960008,
+        "gross_arc_energy_J": 10902.727272581855,
+        "net_arc_energy_J": 5996.499999920021,
+        "net_energy_J_mm": 299.82500000199633,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4,
+        "start_s": 170.44696969696975,
+        "end_s": 182.56818181818187,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999650026,
+        "gross_arc_energy_J": 10912.454545199995,
+        "net_arc_energy_J": 6001.849999859997,
+        "net_energy_J_mm": 300.09249999825107,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8,
+        "start_s": 182.61818181818188,
+        "end_s": 194.739393939394,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999649976,
+        "gross_arc_energy_J": 10907.227272599976,
+        "net_arc_energy_J": 5998.9749999299875,
+        "net_energy_J_mm": 299.94875000174886,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      }
+    ],
+    "virtual_requests_emitted": [
+      {
+        "pass_id": 1,
+        "segment_id": 1
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8
+      }
+    ],
+    "feedback_consumed_arc_count": 16,
+    "suppressed_request_count": 0,
+    "consumed_virtual_arc_time_s": 193.93939393939397,
+    "consumed_virtual_net_heat_J": 96001.64999931006,
+    "decisions": [
+      {
+        "pass_id": 1,
+        "segment_id": 1,
+        "stage": "first_weld",
+        "temperature_before_arc_C": 25.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.1749999982531,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.9075000017484,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.0100000034998,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.03125000300093,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.88624999824793,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.15500000175285,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.825000001747,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.13375000399475,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.9487500024985,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.0099999982499,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.0725000017517,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.88625000275323,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.1749999962571,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.82500000199633,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.09249999825107,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.94875000174886,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      }
+    ],
+    "statement": "16段次候选反馈均为合成输入；同步UI和速度积分评价逐段能量/路径，许可后才消费反馈，异常锁存后停止请求。未许可段的候选波形不计执行；无真实设备日志。"
+  },
+  "energy_offset": {
+    "sample_id": "RING-FULL-energy_offset",
+    "session_id": "RING-FULL-energy_offset-SUBMISSION-RING-20261008-R2-FULL-energy-3",
+    "process_version": "SUBMISSION-RING-20261008-R2",
+    "operation": "final_GTAW",
+    "source_type": "simulated",
+    "record_scope": "complete_final_weld_simulated_control_replay",
+    "hardware_commands_sent": 0,
+    "candidate_arc_count": 16,
+    "candidate_arc_time_s": 193.93939393939397,
+    "candidate_path_mm": 319.99999999665016,
+    "candidate_net_heat_J": 96301.68124930406,
+    "candidate_segment_metrics": [
+      {
+        "pass_id": 1,
+        "segment_id": 1,
+        "start_s": 0.05,
+        "end_s": 12.171212121212122,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10915.4545452,
+        "net_arc_energy_J": 6003.499999860001,
+        "net_energy_J_mm": 300.1749999982531,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5,
+        "start_s": 12.221212121212123,
+        "end_s": 24.342424242424244,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10905.727272600001,
+        "net_arc_energy_J": 5998.149999930001,
+        "net_energy_J_mm": 299.9075000017484,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3,
+        "start_s": 24.392424242424244,
+        "end_s": 36.513636363636365,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 20.000000000700005,
+        "gross_arc_energy_J": 10909.454545963643,
+        "net_arc_energy_J": 6000.200000280004,
+        "net_energy_J_mm": 300.0100000034998,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7,
+        "start_s": 36.56363636363636,
+        "end_s": 48.68484848484849,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999400007,
+        "gross_arc_energy_J": 11455.738636134549,
+        "net_arc_energy_J": 6300.656249874002,
+        "net_energy_J_mm": 315.032812503151,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": false,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2,
+        "start_s": 48.734848484848484,
+        "end_s": 60.85606060606061,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10904.954545199997,
+        "net_arc_energy_J": 5997.724999859998,
+        "net_energy_J_mm": 299.88624999824793,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6,
+        "start_s": 60.906060606060606,
+        "end_s": 73.02727272727273,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10914.727272600005,
+        "net_arc_energy_J": 6003.099999930003,
+        "net_energy_J_mm": 300.15500000175285,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4,
+        "start_s": 73.07727272727273,
+        "end_s": 85.19848484848485,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999650026,
+        "gross_arc_energy_J": 10902.727272600016,
+        "net_arc_energy_J": 5996.499999930009,
+        "net_energy_J_mm": 299.825000001747,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8,
+        "start_s": 85.24848484848485,
+        "end_s": 97.36969696969697,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 20.0000000008,
+        "gross_arc_energy_J": 10913.954546036366,
+        "net_arc_energy_J": 6002.675000320002,
+        "net_energy_J_mm": 300.13375000399475,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1,
+        "start_s": 97.41969696969697,
+        "end_s": 109.5409090909091,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999500005,
+        "gross_arc_energy_J": 10907.22727254545,
+        "net_arc_energy_J": 5998.974999899998,
+        "net_energy_J_mm": 299.9487500024985,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5,
+        "start_s": 109.5909090909091,
+        "end_s": 121.71212121212122,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10909.45454519999,
+        "net_arc_energy_J": 6000.199999859995,
+        "net_energy_J_mm": 300.0099999982499,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3,
+        "start_s": 121.76212121212122,
+        "end_s": 133.88333333333333,
+        "arc_time_s": 12.12121212121211,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10911.727272600016,
+        "net_arc_energy_J": 6001.449999930009,
+        "net_energy_J_mm": 300.0725000017517,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7,
+        "start_s": 133.93333333333334,
+        "end_s": 146.05454545454546,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 20.000000000550003,
+        "gross_arc_energy_J": 10904.954545854549,
+        "net_arc_energy_J": 5997.725000220003,
+        "net_energy_J_mm": 299.88625000275323,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2,
+        "start_s": 146.10454545454547,
+        "end_s": 158.2257575757576,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999925005,
+        "gross_arc_energy_J": 10915.454544909137,
+        "net_arc_energy_J": 6003.499999700026,
+        "net_energy_J_mm": 300.1749999962571,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6,
+        "start_s": 158.2757575757576,
+        "end_s": 170.39696969696973,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999960008,
+        "gross_arc_energy_J": 10902.727272581855,
+        "net_arc_energy_J": 5996.499999920021,
+        "net_energy_J_mm": 299.82500000199633,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4,
+        "start_s": 170.44696969696975,
+        "end_s": 182.56818181818187,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999650026,
+        "gross_arc_energy_J": 10912.454545199995,
+        "net_arc_energy_J": 6001.849999859997,
+        "net_energy_J_mm": 300.09249999825107,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8,
+        "start_s": 182.61818181818188,
+        "end_s": 194.739393939394,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999649976,
+        "gross_arc_energy_J": 10907.227272599976,
+        "net_arc_energy_J": 5998.9749999299875,
+        "net_energy_J_mm": 299.94875000174886,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      }
+    ],
+    "virtual_requests_emitted": [
+      {
+        "pass_id": 1,
+        "segment_id": 1
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7
+      }
+    ],
+    "feedback_consumed_arc_count": 4,
+    "suppressed_request_count": 12,
+    "consumed_virtual_arc_time_s": 48.484848484848484,
+    "consumed_virtual_net_heat_J": 24302.50624994401,
+    "decisions": [
+      {
+        "pass_id": 1,
+        "segment_id": 1,
+        "stage": "first_weld",
+        "temperature_before_arc_C": 25.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.1749999982531,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.9075000017484,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.0100000034998,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 315.032812503151,
+        "energy_in_range": false,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": false,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      }
+    ],
+    "statement": "16段次候选反馈均为合成输入；同步UI和速度积分评价逐段能量/路径，许可后才消费反馈，异常锁存后停止请求。未许可段的候选波形不计执行；无真实设备日志。"
+  },
+  "wire_feed_offset": {
+    "sample_id": "RING-FULL-wire_feed_offset",
+    "session_id": "RING-FULL-wire_feed_offset-SUBMISSION-RING-20261008-R2-FULL-wire_feed-3",
+    "process_version": "SUBMISSION-RING-20261008-R2",
+    "operation": "final_GTAW",
+    "source_type": "simulated",
+    "record_scope": "complete_final_weld_simulated_control_replay",
+    "hardware_commands_sent": 0,
+    "candidate_arc_count": 16,
+    "candidate_arc_time_s": 193.93939393939397,
+    "candidate_path_mm": 319.99999999665016,
+    "candidate_net_heat_J": 96001.64999931006,
+    "candidate_segment_metrics": [
+      {
+        "pass_id": 1,
+        "segment_id": 1,
+        "start_s": 0.05,
+        "end_s": 12.171212121212122,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10915.4545452,
+        "net_arc_energy_J": 6003.499999860001,
+        "net_energy_J_mm": 300.1749999982531,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5,
+        "start_s": 12.221212121212123,
+        "end_s": 24.342424242424244,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10905.727272600001,
+        "net_arc_energy_J": 5998.149999930001,
+        "net_energy_J_mm": 299.9075000017484,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3,
+        "start_s": 24.392424242424244,
+        "end_s": 36.513636363636365,
+        "arc_time_s": 12.121212121212121,
+        "actual_path_mm": 20.000000000700005,
+        "gross_arc_energy_J": 10909.454545963643,
+        "net_arc_energy_J": 6000.200000280004,
+        "net_energy_J_mm": 300.0100000034998,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7,
+        "start_s": 36.56363636363636,
+        "end_s": 48.68484848484849,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999400007,
+        "gross_arc_energy_J": 10910.227272509093,
+        "net_arc_energy_J": 6000.624999880002,
+        "net_energy_J_mm": 300.03125000300093,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 4.0,
+        "wire_feed_max_mm_s": 4.0,
+        "wire_feed_in_range": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2,
+        "start_s": 48.734848484848484,
+        "end_s": 60.85606060606061,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10904.954545199997,
+        "net_arc_energy_J": 5997.724999859998,
+        "net_energy_J_mm": 299.88624999824793,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6,
+        "start_s": 60.906060606060606,
+        "end_s": 73.02727272727273,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10914.727272600005,
+        "net_arc_energy_J": 6003.099999930003,
+        "net_energy_J_mm": 300.15500000175285,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4,
+        "start_s": 73.07727272727273,
+        "end_s": 85.19848484848485,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999650026,
+        "gross_arc_energy_J": 10902.727272600016,
+        "net_arc_energy_J": 5996.499999930009,
+        "net_energy_J_mm": 299.825000001747,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8,
+        "start_s": 85.24848484848485,
+        "end_s": 97.36969696969697,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 20.0000000008,
+        "gross_arc_energy_J": 10913.954546036366,
+        "net_arc_energy_J": 6002.675000320002,
+        "net_energy_J_mm": 300.13375000399475,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1,
+        "start_s": 97.41969696969697,
+        "end_s": 109.5409090909091,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999500005,
+        "gross_arc_energy_J": 10907.22727254545,
+        "net_arc_energy_J": 5998.974999899998,
+        "net_energy_J_mm": 299.9487500024985,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5,
+        "start_s": 109.5909090909091,
+        "end_s": 121.71212121212122,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10909.45454519999,
+        "net_arc_energy_J": 6000.199999859995,
+        "net_energy_J_mm": 300.0099999982499,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3,
+        "start_s": 121.76212121212122,
+        "end_s": 133.88333333333333,
+        "arc_time_s": 12.12121212121211,
+        "actual_path_mm": 19.99999999965,
+        "gross_arc_energy_J": 10911.727272600016,
+        "net_arc_energy_J": 6001.449999930009,
+        "net_energy_J_mm": 300.0725000017517,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7,
+        "start_s": 133.93333333333334,
+        "end_s": 146.05454545454546,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 20.000000000550003,
+        "gross_arc_energy_J": 10904.954545854549,
+        "net_arc_energy_J": 5997.725000220003,
+        "net_energy_J_mm": 299.88625000275323,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2,
+        "start_s": 146.10454545454547,
+        "end_s": 158.2257575757576,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999925005,
+        "gross_arc_energy_J": 10915.454544909137,
+        "net_arc_energy_J": 6003.499999700026,
+        "net_energy_J_mm": 300.1749999962571,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6,
+        "start_s": 158.2757575757576,
+        "end_s": 170.39696969696973,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.99999999960008,
+        "gross_arc_energy_J": 10902.727272581855,
+        "net_arc_energy_J": 5996.499999920021,
+        "net_energy_J_mm": 299.82500000199633,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4,
+        "start_s": 170.44696969696975,
+        "end_s": 182.56818181818187,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999650026,
+        "gross_arc_energy_J": 10912.454545199995,
+        "net_arc_energy_J": 6001.849999859997,
+        "net_energy_J_mm": 300.09249999825107,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8,
+        "start_s": 182.61818181818188,
+        "end_s": 194.739393939394,
+        "arc_time_s": 12.121212121212125,
+        "actual_path_mm": 19.999999999649976,
+        "gross_arc_energy_J": 10907.227272599976,
+        "net_arc_energy_J": 5998.9749999299875,
+        "net_energy_J_mm": 299.94875000174886,
+        "energy_window_J_mm": [
+          294.0,
+          306.0
+        ],
+        "path_window_mm": [
+          19.6,
+          20.4
+        ],
+        "energy_in_range": true,
+        "path_in_range": true,
+        "wire_feed_min_mm_s": 3.5,
+        "wire_feed_max_mm_s": 3.5,
+        "wire_feed_in_range": true
+      }
+    ],
+    "virtual_requests_emitted": [
+      {
+        "pass_id": 1,
+        "segment_id": 1
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7
+      }
+    ],
+    "feedback_consumed_arc_count": 4,
+    "suppressed_request_count": 12,
+    "consumed_virtual_arc_time_s": 48.484848484848484,
+    "consumed_virtual_net_heat_J": 24002.47499995001,
+    "decisions": [
+      {
+        "pass_id": 1,
+        "segment_id": 1,
+        "stage": "first_weld",
+        "temperature_before_arc_C": 25.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.1749999982531,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 5,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 299.9075000017484,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 3,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.0100000034998,
+        "energy_in_range": true,
+        "wire_feed_in_range": true,
+        "path_in_range": true,
+        "feedback_in_range": true
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 7,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": false,
+        "permitted": true,
+        "action": "emit_virtual_arc_request",
+        "feedback_consumed": true,
+        "segment_net_energy_J_mm": 300.03125000300093,
+        "energy_in_range": true,
+        "wire_feed_in_range": false,
+        "path_in_range": true,
+        "feedback_in_range": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 2,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 6,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 4,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 1,
+        "segment_id": 8,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 1,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 5,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 3,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 7,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 2,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 6,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 4,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      },
+      {
+        "pass_id": 2,
+        "segment_id": 8,
+        "stage": "weld",
+        "temperature_before_arc_C": 85.0,
+        "previous_segment_energy_in_range": true,
+        "monitor_fault_latched_before_request": true,
+        "permitted": false,
+        "action": "suppress_arc_request",
+        "feedback_consumed": false
+      }
+    ],
+    "statement": "16段次候选反馈均为合成输入；同步UI和速度积分评价逐段能量/路径，许可后才消费反馈，异常锁存后停止请求。未许可段的候选波形不计执行；无真实设备日志。"
+  }
+}

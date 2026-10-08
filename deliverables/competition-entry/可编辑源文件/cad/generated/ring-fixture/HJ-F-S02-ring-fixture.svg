@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 1400 990">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#27384A"/></marker><pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#EDF0F2"/><line x1="0" x2="0" y1="0" y2="10" stroke="#BBC4CB" stroke-width="1"/></pattern></defs>
+<rect width="1400" height="990" fill="white"/>
+<g font-family="Noto Sans SC,sans-serif" fill="#27384A" stroke-linejoin="round">
+<rect x="30" y="30" width="1340" height="930" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="78" font-size="28" fill="#27384A" text-anchor="start">HJ-F-S02 孔内胀套、铜屏障与气水接口</text>
+<text x="60" y="112" font-size="16" fill="#27384A" text-anchor="start">完整圆环专属工装 | 单位:mm | A3 | 所列尺寸为设计选定</text>
+<line x1="30" y1="135" x2="1370" y2="135" stroke="#27384A" stroke-width="1.4"/>
+<line x1="30" y1="875" x2="1370" y2="875" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="906" font-size="16" fill="#27384A" text-anchor="start">HJ-F-S01-R2 | 圆环固定题基础站 | 设计/解析与实测分项记录</text>
+<text x="60" y="938" font-size="14" fill="#27384A" text-anchor="start">材料与热处理按BOM；配锥/基准共同精磨；未注锐边去毛刺，内腔接触处圆滑</text>
+<text x="1110" y="906" font-size="16" fill="#27384A" text-anchor="start">比例:NTS | 第2/3页</text>
+<text x="1110" y="938" font-size="14" fill="#27384A" text-anchor="start">严禁按图量取尺寸</text>
+<text x="80" y="168" font-size="18" fill="#27384A" text-anchor="start">B-B 近孔区放大剖视</text>
+<rect x="188.0" y="695.8" width="384.0" height="79.19999999999999" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<polygon points="303.4204,695.8 456.5796,695.8 453.3512,634.2 306.6488,634.2" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="80.07999999999998" y="635.0" width="219.92000000000002" height="60.0" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="460.0" y="635.0" width="219.92000000000002" height="60.0" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="180.0" y="603.0" width="104.0" height="32.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="476.0" y="603.0" width="104.0" height="32.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="180.0" y="395.0" width="56.0" height="208.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="524.0" y="395.0" width="56.0" height="208.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="240.0" y="375.0" width="92.0" height="98.39999999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="428.0" y="375.0" width="92.0" height="98.39999999999998" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="288.0" y="473.4" width="15.319999999999993" height="40.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="456.68" y="473.4" width="15.319999999999993" height="40.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="300.12" y="513.4" width="3.1999999999999886" height="120.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="456.68" y="513.4" width="3.1999999999999886" height="120.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="300.12" y="633.4" width="6.519999999999996" height="62.400000000000034" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="453.36" y="633.4" width="6.519999999999996" height="62.400000000000034" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<line x1="380.0" y1="787.0" x2="380.0" y2="359.0" stroke="#315D83" stroke-width="1" stroke-dasharray="12 4 2 4"/>
+<line x1="188.0" y1="810" x2="572.0" y2="810" stroke="#27384A" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="380.0" y="801.0" font-size="14" fill="#27384A" text-anchor="middle">Ø96上颈</text>
+<text x="80" y="842" font-size="14" fill="#27384A" text-anchor="start">图示接触按名义位；最大胀开Ø40.04为行程限位</text>
+<text x="760" y="170" font-size="20" fill="#27384A" text-anchor="start">制造与配合要求</text>
+<text x="760" y="215" font-size="16" fill="#27384A" text-anchor="start">固定反锥: 3°半角，z99.8～115.2</text>
+<text x="760" y="246" font-size="14" fill="#27384A" text-anchor="start">下Ø38.2898 / 上Ø36.6756</text>
+<text x="760" y="277" font-size="14" fill="#27384A" text-anchor="start">有效配锥带z100.2～114.8，Ra≤0.2</text>
+<text x="760" y="308" font-size="16" fill="#27384A" text-anchor="start">胀套: 17-4PH H900；六槽宽0.8</text>
+<text x="760" y="339" font-size="14" fill="#27384A" text-anchor="start">弹性颈L30、t0.80；根部Ø46/38.34×10</text>
+<text x="760" y="370" font-size="16" fill="#27384A" text-anchor="start">塌缩Ø39.94；孔Ø40名义径向间隙0.03</text>
+<text x="760" y="401" font-size="14" fill="#27384A" text-anchor="start">正向上退1.5，3°锥释放0.0786径向</text>
+<text x="760" y="432" font-size="14" fill="#27384A" text-anchor="start">µ&gt;tan3°可自锁；禁止只靠弹簧松脱</text>
+<text x="760" y="463" font-size="16" fill="#27384A" text-anchor="start">独立压环OD100/ID48，轴压500 N</text>
+<text x="760" y="494" font-size="14" fill="#27384A" text-anchor="start">气缸/驱动径向浮动，推力经球面座传递</text>
+<line x1="730" y1="545" x2="1320" y2="545" stroke="#27384A" stroke-width="1.4"/>
+<text x="760" y="585" font-size="20" fill="#27384A" text-anchor="start">屏障与气水分区</text>
+<text x="760" y="622" font-size="14" fill="#27384A" text-anchor="start">铜瓣工作顶z99.5，距座底0.5；径退1.10±0.05</text>
+<text x="760" y="651" font-size="14" fill="#27384A" text-anchor="start">固定盘外径148、底z83.59；中央口Ø96连续气密焊</text>
+<text x="760" y="680" font-size="14" fill="#27384A" text-anchor="start">水块最小R49，Ø96颈R48，名义净隙1.00</text>
+<text x="760" y="709" font-size="14" fill="#27384A" text-anchor="start">16水孔Ø4，4块各4路；立管OD4/ID2.5</text>
+<text x="760" y="738" font-size="14" fill="#27384A" text-anchor="start">水路z−40/−30分层径向出侧面，气路z−55独立</text>
+<text x="760" y="767" font-size="14" fill="#27384A" text-anchor="start">2气孔Ø6位于x±62；固定反锥保持实心</text>
+<text x="760" y="796" font-size="14" fill="#27384A" text-anchor="start">软管16根OD3，弯曲半径按空间路径记录</text>
+<text x="760" y="825" font-size="14" fill="#27384A" text-anchor="start">铜水路泄漏信号→停弧；盘和回收水路固定在站内</text>
+</g></svg>

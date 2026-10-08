@@ -1,0 +1,1197 @@
+{
+  "version": "HJ-F-S01-R2",
+  "design_identity": "SUBMISSION-RING-20261008-R2",
+  "bom": [
+    {
+      "code": "RF01",
+      "name": "整体下背承座；含3°反锥和分区内钻气水路",
+      "material": "45钢",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 119.28837073147793
+    },
+    {
+      "code": "RF02",
+      "name": "连续贴合钢床座；下机台另核刚度",
+      "material": "Q355B",
+      "quantity": 1,
+      "scope": "machine_bed",
+      "nominal_solid_mass_kg": 139.58587649625218
+    },
+    {
+      "code": "RF03",
+      "name": "双立柱Ø70×420；连接面磨削",
+      "material": "45钢",
+      "quantity": 2,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 25.251652081453045
+    },
+    {
+      "code": "RF04",
+      "name": "上桥340×220×80；中央Ø110",
+      "material": "45钢",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 39.93403326760688
+    },
+    {
+      "code": "RF05",
+      "name": "六指胀套；17-4PH热处理后配锥精磨",
+      "material": "17-4PH",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.07993382911416443
+    },
+    {
+      "code": "RF06",
+      "name": "上承力筒Ø70/24；Ø100头部止挡",
+      "material": "45钢",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 8.749225301761358
+    },
+    {
+      "code": "RF07",
+      "name": "双正向止挡26×30×20；外退30",
+      "material": "45钢",
+      "quantity": 2,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.24491999999999997
+    },
+    {
+      "code": "RF08",
+      "name": "独立压环OD100/ID48；500N球面推力",
+      "material": "304",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 1.343299779740785
+    },
+    {
+      "code": "RF09",
+      "name": "压环气缸安装包络OD100/ID72×20",
+      "material": "采购件",
+      "quantity": 1,
+      "scope": "purchased_envelope",
+      "nominal_solid_mass_kg": null
+    },
+    {
+      "code": "RF10",
+      "name": "气缸反力 collar；径向浮动连接",
+      "material": "304",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.15881928961141512
+    },
+    {
+      "code": "RF11",
+      "name": "A基准托环OD180/ID150.20±0.04×20",
+      "material": "45钢",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 1.2105890622834108
+    },
+    {
+      "code": "RF12",
+      "name": "铜瓣屏障；现有四瓣与水口接口",
+      "material": "C11000",
+      "quantity": 4,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.11290731110773881
+    },
+    {
+      "code": "RF13",
+      "name": "固定接料盘、铜背承、水口块；中央Ø96气密焊接",
+      "material": "C11000",
+      "quantity": 1,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.329721232433489
+    },
+    {
+      "code": "RF14",
+      "name": "底座18-M30×140，100±10kN/只",
+      "material": "8.8",
+      "quantity": 18,
+      "scope": "standard_part_envelope",
+      "nominal_solid_mass_kg": 20.17118037701388
+    },
+    {
+      "code": "RF15",
+      "name": "上桥4-M16×110，20±2kN/只",
+      "material": "8.8",
+      "quantity": 4,
+      "scope": "standard_part_envelope",
+      "nominal_solid_mass_kg": 0.879022258323588
+    },
+    {
+      "code": "RF16",
+      "name": "水管接头及刚性端口安装包络",
+      "material": "采购件",
+      "quantity": 32,
+      "scope": "purchased_envelope",
+      "nominal_solid_mass_kg": null
+    },
+    {
+      "code": "RF17",
+      "name": "PFA短软管16根OD3；恒长弯曲路径",
+      "material": "采购件",
+      "quantity": 16,
+      "scope": "purchased_envelope",
+      "nominal_solid_mass_kg": null
+    },
+    {
+      "code": "RF18",
+      "name": "密封水立管16根OD4/ID2.5×3.59",
+      "material": "304",
+      "quantity": 16,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.003488045292312819
+    },
+    {
+      "code": "RF19",
+      "name": "独立气立管2根OD6/ID4×6",
+      "material": "304",
+      "quantity": 2,
+      "scope": "fabricated",
+      "nominal_solid_mass_kg": 0.0014947697845780234
+    },
+    {
+      "code": "RF20",
+      "name": "转运洁净底盖OD180×2",
+      "material": "304",
+      "quantity": 1,
+      "scope": "transfer_accessory",
+      "nominal_solid_mass_kg": 0.40358784183606633
+    },
+    {
+      "code": "RF21",
+      "name": "转运静密封圈；干净软接触",
+      "material": "PTFE",
+      "quantity": 1,
+      "scope": "transfer_accessory",
+      "nominal_solid_mass_kg": 0.004533946517660791
+    }
+  ],
+  "working_solid_count": 108,
+  "step_rechecks": [
+    {
+      "file": "ring-fixture-assembly.step",
+      "solid_count": 108,
+      "all_solids_valid": true,
+      "solids": [
+        {
+          "valid": true,
+          "volume_mm3": 15195970.79390362
+        },
+        {
+          "valid": true,
+          "volume_mm3": 17781640.317993917
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1608385.4828951375
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1608385.4828951375
+        },
+        {
+          "valid": true,
+          "volume_mm3": 5087137.9958735155
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056766
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056762
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056766
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056762
+        },
+        {
+          "valid": true,
+          "volume_mm3": 36799.24469124261
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319793
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.49089921431981
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 94.24777960769588
+        },
+        {
+          "valid": true,
+          "volume_mm3": 94.24777960769588
+        },
+        {
+          "valid": true,
+          "volume_mm3": 15600.0
+        },
+        {
+          "valid": true,
+          "volume_mm3": 15600.0
+        },
+        {
+          "valid": true,
+          "volume_mm3": 154215.16716985076
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.3156001068237
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.3156001072357
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.315600107749
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.315600107425
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999997222
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999998968
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999997222
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999996123
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000012687
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999996123
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000012687
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999998968
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000000716
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000000728
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000000716
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000014046
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999997404
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000014046
+        },
+        {
+          "valid": true,
+          "volume_mm3": 124.99999999997404
+        },
+        {
+          "valid": true,
+          "volume_mm3": 125.00000000000728
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.0796326794852
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.0796326794852
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.0796326794583
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.0796326794845
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267939297
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267939297
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.0796326794845
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.0796326794583
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267949106
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267949106
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267945183
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267949447
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.079632679383
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.079632679383
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267949447
+        },
+        {
+          "valid": true,
+          "volume_mm3": 157.07963267945183
+        },
+        {
+          "valid": true,
+          "volume_mm3": 220.97552600580778
+        },
+        {
+          "valid": true,
+          "volume_mm3": 220.97552600582338
+        },
+        {
+          "valid": true,
+          "volume_mm3": 221.1054913198881
+        },
+        {
+          "valid": true,
+          "volume_mm3": 221.1054913202226
+        },
+        {
+          "valid": true,
+          "volume_mm3": 220.97552600589873
+        },
+        {
+          "valid": true,
+          "volume_mm3": 220.97552600590214
+        },
+        {
+          "valid": true,
+          "volume_mm3": 221.1054913205045
+        },
+        {
+          "valid": true,
+          "volume_mm3": 221.10549132008268
+        },
+        {
+          "valid": true,
+          "volume_mm3": 242.6193863844705
+        },
+        {
+          "valid": true,
+          "volume_mm3": 242.6193863856727
+        },
+        {
+          "valid": true,
+          "volume_mm3": 233.60944393241084
+        },
+        {
+          "valid": true,
+          "volume_mm3": 233.60944415942083
+        },
+        {
+          "valid": true,
+          "volume_mm3": 242.6193866402852
+        },
+        {
+          "valid": true,
+          "volume_mm3": 242.61938671319405
+        },
+        {
+          "valid": true,
+          "volume_mm3": 233.60944387426338
+        },
+        {
+          "valid": true,
+          "volume_mm3": 233.60944416133347
+        },
+        {
+          "valid": true,
+          "volume_mm3": 10314.042466305902
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1114550.9938549704
+        },
+        {
+          "valid": true,
+          "volume_mm3": 169394.6758815656
+        },
+        {
+          "valid": true,
+          "volume_mm3": 75649.55109844389
+        },
+        {
+          "valid": true,
+          "volume_mm3": 20027.653166635373
+        },
+        {
+          "valid": true,
+          "volume_mm3": 486946.861306428
+        },
+        {
+          "valid": true,
+          "volume_mm3": 246080.97140524982
+        }
+      ]
+    },
+    {
+      "file": "HJ-F-S01-ring-fixture-unlocked.step",
+      "solid_count": 60,
+      "all_solids_valid": true,
+      "solids": [
+        {
+          "valid": true,
+          "volume_mm3": 15195970.79390362
+        },
+        {
+          "valid": true,
+          "volume_mm3": 17781640.317993917
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1608385.4828951375
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1608385.4828951375
+        },
+        {
+          "valid": true,
+          "volume_mm3": 5087137.9958735155
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056766
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056762
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056766
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056762
+        },
+        {
+          "valid": true,
+          "volume_mm3": 36799.24469124261
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319793
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.49089921431981
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 94.24777960769588
+        },
+        {
+          "valid": true,
+          "volume_mm3": 94.24777960769588
+        },
+        {
+          "valid": true,
+          "volume_mm3": 15600.0
+        },
+        {
+          "valid": true,
+          "volume_mm3": 15600.0
+        },
+        {
+          "valid": true,
+          "volume_mm3": 154215.16716985076
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.3156001069215
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.315600107075
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.3156001071575
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.315600106988
+        },
+        {
+          "valid": true,
+          "volume_mm3": 10314.042466305902
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1114550.9938549704
+        },
+        {
+          "valid": true,
+          "volume_mm3": 169394.6758815656
+        },
+        {
+          "valid": true,
+          "volume_mm3": 75649.55109844389
+        },
+        {
+          "valid": true,
+          "volume_mm3": 20027.653166635373
+        },
+        {
+          "valid": true,
+          "volume_mm3": 486946.861306428
+        },
+        {
+          "valid": true,
+          "volume_mm3": 246080.97140524982
+        }
+      ]
+    },
+    {
+      "file": "HJ-F-S01-ring-fixture-release.step",
+      "solid_count": 62,
+      "all_solids_valid": true,
+      "solids": [
+        {
+          "valid": true,
+          "volume_mm3": 15195970.79390362
+        },
+        {
+          "valid": true,
+          "volume_mm3": 17781640.317993917
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1608385.4828951375
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1608385.4828951375
+        },
+        {
+          "valid": true,
+          "volume_mm3": 5087137.9958735155
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.2843383848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 142754.28433838475
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056766
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056762
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056766
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27994.339437056762
+        },
+        {
+          "valid": true,
+          "volume_mm3": 36799.24469124261
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319793
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.49089921431981
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319796
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.490899214319803
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 27.4908992143198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 94.24777960769588
+        },
+        {
+          "valid": true,
+          "volume_mm3": 94.24777960769588
+        },
+        {
+          "valid": true,
+          "volume_mm3": 15600.0
+        },
+        {
+          "valid": true,
+          "volume_mm3": 15600.0
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.3156001069215
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.315600107075
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.3156001071575
+        },
+        {
+          "valid": true,
+          "volume_mm3": 3150.315600106988
+        },
+        {
+          "valid": true,
+          "volume_mm3": 10309.664224872788
+        },
+        {
+          "valid": true,
+          "volume_mm3": 1114550.9938549704
+        },
+        {
+          "valid": true,
+          "volume_mm3": 169394.6758815656
+        },
+        {
+          "valid": true,
+          "volume_mm3": 75649.55109844389
+        },
+        {
+          "valid": true,
+          "volume_mm3": 20027.653166635373
+        },
+        {
+          "valid": true,
+          "volume_mm3": 154215.16716985087
+        },
+        {
+          "valid": true,
+          "volume_mm3": 486946.861306428
+        },
+        {
+          "valid": true,
+          "volume_mm3": 246080.97140524982
+        },
+        {
+          "valid": true,
+          "volume_mm3": 50893.800988154646
+        },
+        {
+          "valid": true,
+          "volume_mm3": 2060.884780754952
+        }
+      ]
+    }
+  ],
+  "mass_summary_kg": {
+    "fabricated_fixture_components": 196.7084547016671,
+    "supplied_steel_machine_bed": 139.58587649625218,
+    "standard_hardware_solid_envelopes": 21.050202635337467,
+    "fabricated_plus_bed": 336.2943311979193
+  },
+  "mass_scope": "CAD实体质量；采购气缸、PFA管、安装接头包络不按实心质量累计；机器人、机台、泵箱、罩体及转运器不属于本质量范围",
+  "clearances_mm": {
+    "shell_to_main_column_mm": 3,
+    "water_block_to_neck_mm": 0.999999999999988,
+    "copper_top_to_ring_bottom_mm": 0.5,
+    "neck_top_to_ring_bottom_mm": 0.20000000000000284,
+    "pressure_to_weld_inner_edge_mm": 20.700000000000003,
+    "collapsed_sleeve_to_bore_radial_mm": 0.030000000000001137,
+    "raised_shell_top_to_bridge_bottom_mm": 60,
+    "raised_holder_bottom_to_cone_top_mm": 4.799999999999997,
+    "raised_sleeve_bottom_to_product_top_mm": 19.80000000000001,
+    "raised_pressure_bottom_to_product_top_mm": 35,
+    "head_to_open_stop_radial_mm": 22,
+    "transfer_gripper_envelope_to_column_mm": 2,
+    "transfer_lid_bottom_to_cone_top_mm": 2.299999999999997,
+    "lid_lateral_entry_bottom_to_cone_top_mm": 1.5,
+    "lid_lateral_entry_gasket_top_to_holder_bottom_mm": 0.7999999999999972,
+    "lid_installation_radius_to_column_inner_edge_mm": 15
+  },
+  "sweep_intersection_volumes_mm3": {
+    "raised_product_shell_vs_fixed_sweep_mm3": 0.0,
+    "raised_product_ring_vs_fixed_sweep_mm3": 0.0,
+    "raised_A_holder_vs_fixed_sweep_mm3": 0.0,
+    "collapsed_sleeve_after_1_5mm_vs_fixed_core_mm3": 0.0,
+    "working_seat_vs_fixed_cartridge_mm3": 0.0,
+    "product_vs_raised_upper_mm3": 0.0,
+    "RF20_RF21_lateral_vs_fixed_lower_tools_sweep_mm3": 0.0,
+    "RF20_RF21_lateral_vs_columns_bridge_and_stops_sweep_mm3": 0.0,
+    "RF20_RF21_lateral_vs_raised_product_sweep_mm3": 0.0,
+    "RF20_RF21_lateral_vs_raised_A_holder_sweep_mm3": 0.0,
+    "RF20_RF21_lateral_vs_raised_upper_tools_sweep_mm3": 0.0,
+    "RF20_RF21_vertical_press_vs_fixed_lower_tools_sweep_mm3": 0.0,
+    "RF20_RF21_vertical_press_vs_columns_bridge_and_stops_sweep_mm3": 0.0,
+    "RF20_RF21_vertical_press_vs_raised_product_sweep_mm3": 0.0,
+    "RF20_RF21_vertical_press_vs_raised_A_holder_sweep_mm3": 0.0,
+    "RF20_RF21_vertical_press_vs_raised_upper_tools_sweep_mm3": 0.0
+  },
+  "water_route": {
+    "minimum_bend_radius_mm": 16.584849779171186,
+    "maximum_hose_length_mm": 31.424000018041678,
+    "hose_outer_diameter_mm": 3,
+    "flow_pressure_qualification": "水路为分区安装设计；流量/压降/气密性按水路卡及整站资格检查"
+  },
+  "motion_certificate": {
+    "fixed_items": "RF01/RF02/RF03/RF04/RF13、下反锥与铜瓣保持站内原位；铜瓣仅径退1.10",
+    "upper_lift_mm": 260,
+    "product_and_A_holder_lift_mm": 140,
+    "stop_retraction_mm": 30,
+    "lid_installation": {
+      "preconditions": "上工具累计升260、产品与A托环升140并接管；在洁净罩内执行",
+      "lateral_start_center_xy_mm": [
+        0,
+        200
+      ],
+      "lateral_end_center_xy_mm": [
+        0,
+        0
+      ],
+      "lateral_lid_lower_z_mm": 116.7,
+      "lateral_gasket_top_z_mm": 119.2,
+      "final_vertical_lift_mm": 0.8,
+      "final_lid_lower_z_mm": 117.5,
+      "final_gasket_top_z_mm": 120.0,
+      "path": "盖从+y≥200在下表面z116.7横插至轴心，再升0.8贴合/锁定；不得从站底竖直穿过固定反锥",
+      "sweep_method": "RF20横插为精确圆盘扫掠；RF21横插采用外径172实心圆盘保守包络；竖向0.8为圆盘与真实环形密封的连续扫掠",
+      "qualification_scope": "名义刚性几何；RF21终态与托环下面仅接触，密封压缩/锁扣反馈/安装公差由首件确认"
+    },
+    "product_horizontal_exit": "升140并封底后沿+y横移360；外包络R103与双柱内缘R105相差2mm，顶部z340低于桥底400",
+    "upper_lift": "塌缩Ø39.94在Ø40孔内径向净隙0.03；根部/压环均始于孔上方，Ø100头通过Ø110桥孔；止挡先外退",
+    "core_withdrawal": "1.5mm主动上退给3°锥径向释放0.0786mm，高于Ø40.04→39.94所需0.05mm；µ>tan3°时须动力退锥",
+    "cleanliness": "停弧后盘仍朝上接退工具落物；抬离在洁净罩内执行，升140后RF20在z116.7由+y200横插、升0.8封底再横移；不得从产品内清盘或磨削",
+    "scope": "所列名义部件连续轴向扫掠与横移包络；机器人运动学、管路连接力和制造公差按首件执行"
+  }
+}

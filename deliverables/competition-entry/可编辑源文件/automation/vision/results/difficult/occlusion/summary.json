@@ -1,0 +1,26 @@
+{
+  "sample_count": 100,
+  "success_count": 0,
+  "success_rate": 0.0,
+  "detection_return_count": 100,
+  "detection_return_rate": 1.0,
+  "quality_accept_count": 0,
+  "quality_accept_rate": 0.0,
+  "quality_rejected_count": 100,
+  "x_mae_mm": 1.7740372212727866,
+  "y_mae_mm": 2.3515834548075993,
+  "radial_mae_mm": 2.9459825154357997,
+  "radial_p95_mm": 3.205838242845112,
+  "theta_mae_deg": 2.444295289558645,
+  "theta_p95_deg": 2.9611689391607814,
+  "difficulty": "occlusion",
+  "engineering_gate": "FAIL",
+  "engineering_gate_pass": false,
+  "gate_limits": {
+    "radial_p95_mm": 0.01,
+    "theta_p95_deg": 0.007641474995076329,
+    "pose_lever_arm_mm": 74.98,
+    "source": "project/tolerance.yaml automation_path_chain"
+  },
+  "statement": "数字样本测试结果，不代表真实工业相机精度；检测返回率仅表示算法给出结果，工程门限还需同时满足误差预算。"
+}

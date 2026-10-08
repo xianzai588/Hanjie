@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 1400 990">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#27384A"/></marker><pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#EDF0F2"/><line x1="0" x2="0" y1="0" y2="10" stroke="#BBC4CB" stroke-width="1"/></pattern></defs>
+<rect width="1400" height="990" fill="white"/>
+<g font-family="Noto Sans SC,sans-serif" fill="#27384A" stroke-linejoin="round">
+<rect x="30" y="30" width="1340" height="930" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="78" font-size="28" fill="#27384A" text-anchor="start">HJ-F-S01 工装总装与载荷闭环</text>
+<text x="60" y="112" font-size="16" fill="#27384A" text-anchor="start">完整圆环专属工装 | 单位:mm | A3 | 所列尺寸为设计选定</text>
+<line x1="30" y1="135" x2="1370" y2="135" stroke="#27384A" stroke-width="1.4"/>
+<line x1="30" y1="875" x2="1370" y2="875" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="906" font-size="16" fill="#27384A" text-anchor="start">HJ-F-S01-R2 | 圆环固定题基础站 | 设计/解析与实测分项记录</text>
+<text x="60" y="938" font-size="14" fill="#27384A" text-anchor="start">材料与热处理按BOM；配锥/基准共同精磨；未注锐边去毛刺，内腔接触处圆滑</text>
+<text x="1110" y="906" font-size="16" fill="#27384A" text-anchor="start">比例:NTS | 第1/3页</text>
+<text x="1110" y="938" font-size="14" fill="#27384A" text-anchor="start">严禁按图量取尺寸</text>
+<rect x="206.0" y="710.0" width="368.0" height="80.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="206.0" y="646.0" width="368.0" height="64.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="332.4" y="566.0" width="115.2" height="80.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="351.6" y="550.16" width="76.80000000000001" height="15.839999999999998" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<polygon points="374.68408,550.16 405.31592,550.16 404.67024,537.84 375.32976,537.84" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="250.0" y="310.0" width="56.0" height="336.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="474.0" y="310.0" width="56.0" height="336.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="254.0" y="246.0" width="92.0" height="64.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="434.0" y="246.0" width="92.0" height="64.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="330.8" y="562.328" width="20.8" height="0.8" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="428.4" y="562.328" width="20.8" height="0.8" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="330.15999999999997" y="550.4" width="2.4000000000000004" height="8.479999999999995" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="447.44" y="550.4" width="2.4000000000000004" height="8.479999999999995" fill="#E9C797" stroke="#27384A" stroke-width="1.4"/>
+<rect x="326.0" y="470.0" width="4.0" height="160.0" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<rect x="450.0" y="470.0" width="4.0" height="160.0" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<rect x="330.01599999999996" y="538.0" width="43.98400000000001" height="12.0" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="406.0" y="538.0" width="43.98400000000001" height="12.0" fill="#F4EEE4" stroke="#27384A" stroke-width="1.4"/>
+<rect x="318.0" y="630.0" width="11.920000000000005" height="16.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="450.08" y="630.0" width="11.920000000000005" height="16.0" fill="url(#hatch)" stroke="#27384A" stroke-width="1.4"/>
+<rect x="374.024" y="513.68" width="1.3039999999999994" height="36.48000000000001" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="404.672" y="513.68" width="1.3039999999999994" height="36.48000000000001" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="371.6" y="505.68" width="3.0639999999999987" height="8.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="405.336" y="505.68" width="3.0639999999999987" height="8.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="362.0" y="278.0" width="18.400000000000002" height="227.68000000000004" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="399.6" y="278.0" width="18.400000000000002" height="227.68000000000004" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="350.0" y="262.0" width="30.400000000000002" height="16.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="399.6" y="262.0" width="30.400000000000002" height="16.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="350.0" y="531.6" width="20.8" height="6.4" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="409.2" y="531.6" width="20.8" height="6.4" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="350.0" y="490.0" width="11.200000000000001" height="41.6" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="418.8" y="490.0" width="11.200000000000001" height="41.6" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="335.6" y="246.0" width="20.8" height="16.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<rect x="423.6" y="246.0" width="20.8" height="16.0" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<line x1="390.0" y1="802.0" x2="390.0" y2="226.0" stroke="#315D83" stroke-width="1" stroke-dasharray="14 4 2 4"/>
+<text x="80" y="169" font-size="18" fill="#27384A" text-anchor="start">A-A 剖视（安装状态）</text>
+<line x1="206.0" y1="822" x2="574.0" y2="822" stroke="#27384A" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="390.0" y="813.0" font-size="14" fill="#27384A" text-anchor="middle">460</text>
+<line x1="120" y1="790.0" x2="120" y2="646.0" stroke="#27384A" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="120.0" y="708.0" font-size="14" fill="#27384A" text-anchor="middle">180</text>
+<text x="80" y="855" font-size="14" fill="#27384A" text-anchor="start">RF02钢床座100 + RF01基板80；基板顶z−20</text>
+<line x1="310.0" y1="537.84" x2="372.4" y2="537.84" stroke="#315D83" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="80" y="517.84" font-size="15" fill="#27384A" text-anchor="start">5 kN + 170 kN·mm</text>
+<text x="80" y="192" font-size="14" fill="#27384A" text-anchor="start">侧向反力: 孔→3°反锥→Ø96颈→Ø144柱→底座/床座</text>
+<text x="80" y="217" font-size="14" fill="#27384A" text-anchor="start">轴向反力: 胀套/压环→承力筒→双止挡→上桥→双柱</text>
+<text x="690" y="165" font-size="17" fill="#27384A" text-anchor="start">基板俯视（轴向钻孔位置以BOM/STEP为准）</text>
+<rect x="870.1" y="239.0" width="289.8" height="252.0" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1015" cy="365" r="56.7" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1015" cy="365" r="50.4" fill="none" stroke="#315D83" stroke-width="1.4"/>
+<circle cx="1015" cy="365" r="45.36" fill="none" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="926.8" cy="365" r="22.05" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1103.2" cy="365" r="22.05" fill="#E9EDF0" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="911.05" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="945.7" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="980.35" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1015.0" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1049.65" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1084.3" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1118.95" cy="459.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="911.05" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="945.7" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="980.35" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1015.0" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1049.65" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1084.3" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1118.95" cy="270.5" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="898.45" cy="412.25" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="898.45" cy="317.75" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1131.55" cy="412.25" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<circle cx="1131.55" cy="317.75" r="10.395" fill="white" stroke="#27384A" stroke-width="1.4"/>
+<line x1="855" y1="365" x2="1175" y2="365" stroke="#315D83" stroke-width="1" stroke-dasharray="12 3 2 3"/>
+<line x1="1015" y1="215" x2="1015" y2="515" stroke="#315D83" stroke-width="1" stroke-dasharray="12 3 2 3"/>
+<line x1="870.1" y1="520" x2="1159.9" y2="520" stroke="#27384A" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="1015.0" y="511.0" font-size="14" fill="#27384A" text-anchor="middle">460</text>
+<text x="760" y="565" font-size="16" fill="#27384A" text-anchor="start">18-M30×140 / Ø33通孔；100±10 kN/只</text>
+<text x="760" y="592" font-size="14" fill="#27384A" text-anchor="start">18孔坐标: 主排y=±150，x=0/±55/±110/±165</text>
+<text x="760" y="617" font-size="14" fill="#27384A" text-anchor="start">侧排x=±185，y=±75；床座啮合≥60</text>
+<text x="760" y="662" font-size="16" fill="#27384A" text-anchor="start">双柱Ø70，中心(±140,0)，长420</text>
+<text x="760" y="692" font-size="16" fill="#27384A" text-anchor="start">上桥340×220×80，桥底z400，中央孔Ø110</text>
+<text x="760" y="722" font-size="14" fill="#27384A" text-anchor="start">桥孔削弱后有效条带b110纳入弯曲和剪切</text>
+<text x="760" y="752" font-size="16" fill="#27384A" text-anchor="start">上桥4-M16×110；双止挡26×30×20</text>
+<text x="760" y="782" font-size="14" fill="#27384A" text-anchor="start">止挡外退30后，Ø100上头可穿Ø110通孔</text>
+<text x="760" y="828" font-size="15" fill="#27384A" text-anchor="start">RF01/RF02全底面贴合；机台余量见第3页</text>
+</g></svg>

@@ -1,0 +1,70 @@
+{
+  "source_input_identity": null,
+  "source_process_version": null,
+  "sampling": "128 equally spaced angles x 11 equally spaced heights; ray intersection of actual P1/P2 FE bore faces; same sample grid at every resolution",
+  "sample_count": 1408,
+  "interpolation_order": 1,
+  "cases": {
+    "radial": {
+      "axis_center_radial_um": 10.15423497812112,
+      "axis_tilt_urad": 20.497983954547188,
+      "axis_diameter_envelope_um": 20.615939583346023,
+      "mean_bore_diameter_change_um": -0.0010067344976322995,
+      "cylindrical_radial_peak_to_valley_um": 0.010900162950777323,
+      "axis_fit_coefficients_mm": [
+        0.01015423497693583,
+        -1.5514968690344072e-07,
+        2.0497975297049397e-05,
+        1.8839384984663427e-08,
+        -5.033672488161498e-07
+      ],
+      "bore_node_count": 1408
+    },
+    "axial": {
+      "axis_center_radial_um": 0.012386749587866801,
+      "axis_tilt_urad": 0.6024950581866303,
+      "axis_diameter_envelope_um": 0.03341350999761886,
+      "mean_bore_diameter_change_um": -0.3511903337259235,
+      "cylindrical_radial_peak_to_valley_um": 8.685027263732703,
+      "axis_fit_coefficients_mm": [
+        -1.236319392657944e-05,
+        7.635452090790946e-07,
+        5.528342251820328e-07,
+        -2.3952998686321623e-07,
+        -0.00017559516686296175
+      ],
+      "bore_node_count": 1408
+    },
+    "overturning": {
+      "axis_center_radial_um": 1.6214043463174916,
+      "axis_tilt_urad": 379.7932596544767,
+      "axis_diameter_envelope_um": 8.939684185955365,
+      "mean_bore_diameter_change_um": -0.002924322569847888,
+      "cylindrical_radial_peak_to_valley_um": 0.3478803036591788,
+      "axis_fit_coefficients_mm": [
+        0.0016214033987706979,
+        1.7529153092802935e-06,
+        -0.0003797906909032255,
+        1.3968472441161576e-06,
+        -1.462161284923944e-06
+      ],
+      "bore_node_count": 1408
+    },
+    "combined": {
+      "axis_center_radial_um": 11.763275418741427,
+      "axis_tilt_urad": 358.7418094373042,
+      "axis_diameter_envelope_um": 28.90765147132545,
+      "mean_bore_diameter_change_um": -0.35512139079215893,
+      "cylindrical_radial_peak_to_valley_um": 8.965441421214662,
+      "axis_fit_coefficients_mm": [
+        0.011763275181741572,
+        2.361310880540264e-06,
+        -0.00035873988138187624,
+        1.1761566513193793e-06,
+        -0.00017756069539607945
+      ],
+      "bore_node_count": 1408
+    }
+  },
+  "coordinate_reference": "nominal R20 cylinder directions; displacement interpolated on the actual faceted FE bore surface"
+}

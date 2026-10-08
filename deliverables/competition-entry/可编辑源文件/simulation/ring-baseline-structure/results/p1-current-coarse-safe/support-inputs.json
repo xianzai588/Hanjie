@@ -1,0 +1,64 @@
+{
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "mesh_inputs": {
+    "schema": "RING-COLD-EXPLICIT-JOINT-MESH-2",
+    "level": "coarse",
+    "leg_mm": 3.5,
+    "precoat_STEP_geometry_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+    "bulk_size_mm": 6.0,
+    "local_size_mm": 0.9,
+    "shell_surface_size_function": "Min(6.0, 2.0 + Max(0, Abs(z-107.5)-17.5)*0.3)",
+    "algorithm_3D": 1,
+    "netgen_optimization": false,
+    "shell_geometry_mm": [
+      75.0,
+      80.0,
+      200.0
+    ],
+    "effective_length_mm": 18.0,
+    "segments": 8,
+    "interfaces": "only conforming shared material faces; unwelded radial gap=.02mm"
+  },
+  "material_inputs": {
+    "1": {
+      "name": "QT450-10",
+      "E_MPa": 169000.0,
+      "nu": 0.27,
+      "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+    },
+    "2": {
+      "name": "Q235B",
+      "E_MPa": 206000.0,
+      "nu": 0.3,
+      "basis": "engineering room-temperature elastic input"
+    },
+    "3": {
+      "name": "CI-A1 retained first layer",
+      "E_MPa": 200000.0,
+      "nu": 0.3,
+      "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+    },
+    "4": {
+      "name": "Ni99 retained second layer",
+      "E_MPa": 200000.0,
+      "nu": 0.3,
+      "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+    },
+    "5": {
+      "name": "NiFe55 final effective fillet",
+      "E_MPa": 200000.0,
+      "nu": 0.3,
+      "basis": "design elastic assumption; effective interface and joint strength require qualification"
+    }
+  },
+  "actual_faceted_gap_audit": {
+    "method": "clip actual straight inner-shell triangular facets to z100..115; minimize xy radius on every polygon edge",
+    "tested_facets": 11735,
+    "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.99166343605829,
+    "maximum_nominal_seat_outer_radius_mm": 74.98,
+    "minimum_conservative_open_clearance_mm": 0.011663436058285015,
+    "direct_precoated_seat_shell_shared_nodes": 0,
+    "unwelded_gap_geometry_verified": true
+  },
+  "scope": "Current independently built P1 support mesh only. No service-load solution or residual-stress qualification is implied."
+}

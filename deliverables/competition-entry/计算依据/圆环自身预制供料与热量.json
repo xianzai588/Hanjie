@@ -1,5 +1,6 @@
 {
   "card": "HJ-S01",
+  "process_version": "SUBMISSION-RING-20261008-R2",
   "model_id": "ring-eight-local-precoat-windows",
   "geometry": {
     "window_count": 8,
@@ -107,7 +108,49 @@
       ]
     }
   },
+  "precoat_thermal_cycle": {
+    "applies_to": "首层与第二层分别执行；圆环壳外自由支承",
+    "furnace_preheat_setpoint_C": 300.0,
+    "workpiece_weld_permission_C": [
+      200.0,
+      300.0
+    ],
+    "sensing": "窗口附近与对向环体各独立测点；最冷/最热点共同控制转序",
+    "postheat_furnace_setpoint_C": 200.0,
+    "postheat_workpiece_hold_window_C": [
+      190.0,
+      210.0
+    ],
+    "postheat_hold_h": 2.0,
+    "hold_timer_start": "全部规定工件测点进入190至210℃保持窗后开始计时；超出保持窗暂停并重新评价",
+    "furnace_cooling_max_C_h": 50.0,
+    "cold_handoff_C": [
+      19.0,
+      21.0
+    ],
+    "cold_handoff": "所有测点冷态且完成清渣/层厚与对应PT交接，不以炉温代替工件温",
+    "reservation": "每层10h是容位计划；实际测温未准入则延迟转序"
+  },
   "first_layer": {
+    "weave_design": {
+      "radial_peak_to_peak_mm": 4.0,
+      "center_inward_offset_from_window_reference_mm": 0.25,
+      "minimum_qualified_radial_melt_footprint_mm": 3.0,
+      "center_rule": "按实际槽内外缘及内缘0.5保护带中心定位；名义R71.73，保持75mm/min按R71.98窗口参考弧推进",
+      "endpoint_motion": "起端和止端各0.5s完整径向扫掠一次，规定电流不变，逐窗确认端部1.5mm保护带连续覆盖",
+      "radial_width_tolerance_mm": 0.2,
+      "frequency_Hz": 1.0,
+      "frequency_tolerance_Hz": 0.1,
+      "dwell_each_radial_edge_s": 0.1,
+      "dwell_tolerance_s": 0.02,
+      "waveform": "每周期两边各驻留0.10 s，其余时间线性往返；推进与摆动独立",
+      "nominal_radial_extrema_mm": [
+        69.73,
+        73.73
+      ],
+      "endpoint_protection": "两端各0.5 s各完成一次径向扫掠；确认端部1.5mm保护带，记录实际轨迹与积分电能",
+      "acceptance": "初始pWPS摆动设计值，截面确认全槽底/内缘保护/端部连续覆盖后冻结，不以理论摆宽认定熔宽"
+    },
     "material": "CI-A1 / ENi-CI coated electrode",
     "electrode_core_diameter_mm": 3.2,
     "current_A": 110,
@@ -261,6 +304,37 @@
       73.98
     ],
     "common_track_angle_rad": 0.333425951653237,
+    "trajectory_control": {
+      "basis": "Measure each machined pocket before precoat; use its own inner/outer radius and angular end faces",
+      "measured_fields": [
+        "inner_radius_mm",
+        "outer_radius_mm",
+        "window_start_angle_rad",
+        "window_stop_angle_rad"
+      ],
+      "inner_track_radius_formula": "measured_inner_radius_mm + 1.0",
+      "center_track_radius_formula": "(measured_inner_radius_mm + measured_outer_radius_mm) / 2",
+      "outer_track_radius_formula": "measured_outer_radius_mm - 1.0",
+      "track_start_stop_angle": "Use measured window_start_angle_rad/window_stop_angle_rad for all three tracks, rather than the fixed nominal 24/71.98 angle",
+      "protection_geometry": "Inner-land protection 0.5mm normal to actual inner edge; terminal protection 1.5mm normal to each measured terminal face. Protection is not enlarged.",
+      "actual_pitch_range_mm": [
+        1.95,
+        2.05
+      ],
+      "minimum_effective_bead_width_formula_mm": "max(2.8, maximum_measured_adjacent_track_pitch_mm + 0.8)",
+      "maximum_effective_bead_width_mm": 3.0,
+      "wide_6_1mm_window_required_width_min_mm": 2.85,
+      "nominal_track_radii_mm": [
+        69.98,
+        71.98,
+        73.98
+      ],
+      "nominal_three_track_length_one_window_mm": 72.0,
+      "nominal_three_track_length_eight_windows_mm": 576.0,
+      "nominal_accounting_scope": "72/576mm and their mass/arc-time/net-heat quantities refer to nominal 24mm windows; actual track lengths, supply and arc times are recorded and evaluated with the same formulas for each measured window",
+      "qualification": "First-piece macrosections confirm inner corner, terminal coverage, full radial coverage and overlap >=0.8mm on the measured-window path; verify contour and retained layers for each window",
+      "STEP_scope": "The 17-solid STEP is the nominal flush-machined retained-material partition, not a simulation of the melt-pool process at every tolerance corner"
+    },
     "track_lengths_mm": [
       23.333148096693527,
       24.000000000000004,
@@ -313,38 +387,7 @@
       1.6
     ],
     "finished_second_layer_min_mm": 0.65,
-    "acceptance": "Actual local contour >=1.75mm above measured pocket bottom, overlap >=0.8mm, no uncovered QT in final path; supply volume is not a local minimum-thickness measurement",
-    "trajectory_control": {
-      "basis": "Measure each machined pocket before precoat; use its own inner/outer radius and angular end faces",
-      "measured_fields": [
-        "inner_radius_mm",
-        "outer_radius_mm",
-        "window_start_angle_rad",
-        "window_stop_angle_rad"
-      ],
-      "inner_track_radius_formula": "measured_inner_radius_mm + 1.0",
-      "center_track_radius_formula": "(measured_inner_radius_mm + measured_outer_radius_mm) / 2",
-      "outer_track_radius_formula": "measured_outer_radius_mm - 1.0",
-      "track_start_stop_angle": "Use measured window_start_angle_rad/window_stop_angle_rad for all three tracks, rather than the fixed nominal 24/71.98 angle",
-      "protection_geometry": "Inner-land protection 0.5mm normal to actual inner edge; terminal protection 1.5mm normal to each measured terminal face. Protection is not enlarged.",
-      "actual_pitch_range_mm": [
-        1.95,
-        2.05
-      ],
-      "minimum_effective_bead_width_formula_mm": "max(2.8, maximum_measured_adjacent_track_pitch_mm + 0.8)",
-      "maximum_effective_bead_width_mm": 3.0,
-      "wide_6_1mm_window_required_width_min_mm": 2.85,
-      "nominal_track_radii_mm": [
-        69.98,
-        71.98,
-        73.98
-      ],
-      "nominal_three_track_length_one_window_mm": 72.0,
-      "nominal_three_track_length_eight_windows_mm": 576.0,
-      "nominal_accounting_scope": "72/576mm and their mass/arc-time/net-heat quantities refer to nominal 24mm windows; actual track lengths, supply and arc times are recorded and evaluated with the same formulas for each measured window",
-      "qualification": "First-piece macrosections confirm inner corner, terminal coverage, full radial coverage and overlap >=0.8mm on the measured-window path; verify contour and retained layers for each window",
-      "STEP_scope": "The 17-solid STEP is the nominal flush-machined retained-material partition, not a simulation of the melt-pool process at every tolerance corner"
-    }
+    "acceptance": "Actual local contour >=1.75mm above measured pocket bottom, overlap >=0.8mm, no uncovered QT in final path; supply volume is not a local minimum-thickness measurement"
   },
   "combined_nominal": {
     "arc_time_s": 449.6,

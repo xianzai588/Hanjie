@@ -100,7 +100,7 @@
       "sources": [
         "deliverables/process/ring-final-welding-card.json resource_planning",
         "deliverables/process/ring-final-welding-card.md §5",
-        "deliverables/process/pilot-production-and-resource-card.md"
+        "deliverables/process/ring-production-resource-card.md"
       ],
       "kind": "capacity_planning",
       "calculated_object": "完整圆环座体",
@@ -163,7 +163,7 @@
         "design_density_g_mm3": 0.00889,
         "maximum_first_layer_demand_per_window_g": 2.3914989
       },
-      "first_layer_travel_speed_mm_min": 80,
+      "first_layer_travel_speed_mm_min": 75.0,
       "second_layer_paths": 3,
       "actual_macrosection_claim": false,
       "machining_sequence": "两层壳外预制及检查后，最终孔和连接面加工，清洗干燥后入壳组焊"

@@ -251,12 +251,15 @@ def test_anomaly_event_score_matches_injected_signal() -> None:
     assert score["fn"] == 0
 
 
-def test_anomaly_detector_debounces_short_pulse_and_adapts_current_bias() -> None:
+def test_fixed_ring_window_debounces_short_pulse_and_rejects_low_sampling() -> None:
     from signal_simulator import simulate_trial
 
-    short = simulate_trial("SHORT", True, 7, duration_s=8.0, sample_rate_hz=200.0, anomaly_duration_s=0.02, anomaly_names=("current_drop",))
+    short = simulate_trial("SHORT", True, 7, duration_s=8.0, sample_rate_hz=400.0, anomaly_duration_s=0.02, anomaly_names=("current_drop",))
     assert not detect(short)["events"]
     biased = simulate_trial("BIAS", False, 8, current_bias=3.0)
     result = detect(biased)
     assert not result["events"]
-    assert abs(result["calibration"]["current"]["estimated_bias"] - 3.0) < 0.2
+    assert result["calibration"]["current"]["estimated_bias"] == 0.0
+    assert result["calibration"]["current"]["adjusted_window"] == result["calibration"]["current"]["nominal_window"]
+    with pytest.raises(ValueError, match="至少每周期20点"):
+        simulate_trial("LOW-RATE", False, 8, sample_rate_hz=200.0)

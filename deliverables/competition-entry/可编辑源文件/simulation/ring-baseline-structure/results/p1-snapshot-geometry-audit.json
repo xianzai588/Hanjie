@@ -1,0 +1,345 @@
+{
+  "source_geometry_record": "cad/generated/ring-baseline/ring-precoat-design.json",
+  "CAD_material_volumes_mm3": {
+    "QT450-10": 244442.2470286911,
+    "first_CI_A1_retained": 894.5154494913477,
+    "second_Ni_retained": 744.208927061874
+  },
+  "final_weld_analytic_volume_mm3": 868.28,
+  "snapshots": {
+    "coarse": {
+      "regions": {
+        "1": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98,
+              100.0
+            ],
+            [
+              74.98,
+              74.98,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            19.999999999999996,
+            74.98000000000003
+          ],
+          "CAD_volume_mm3": 244442.24702869853,
+          "linear_FE_volume_mm3": 244611.62265581824
+        },
+        "2": {
+          "coordinate_bounds_mm": [
+            [
+              -80.0,
+              -80.0,
+              0.0
+            ],
+            [
+              80.0,
+              80.0,
+              200.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            74.99999999999999,
+            80.00000000000001
+          ],
+          "CAD_volume_mm3": 486946.8613064177,
+          "linear_FE_volume_mm3": 485364.055107043
+        },
+        "3": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98,
+              113.5
+            ],
+            [
+              74.98,
+              74.98,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            68.97999999999234,
+            74.98000000000029
+          ],
+          "CAD_volume_mm3": 894.5154494909823,
+          "linear_FE_volume_mm3": 889.0247339525574
+        },
+        "4": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98,
+              -74.98,
+              114.2
+            ],
+            [
+              74.98000000000002,
+              74.98,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            69.67999999998987,
+            74.98000000000029
+          ],
+          "CAD_volume_mm3": 744.2089270621118,
+          "linear_FE_volume_mm3": 735.4181338656097
+        },
+        "5": {
+          "coordinate_bounds_mm": [
+            [
+              -75.00000000000001,
+              -75.00000000000003,
+              115.0
+            ],
+            [
+              75.0,
+              75.00000000000003,
+              118.5
+            ]
+          ],
+          "radius_bounds_mm": [
+            71.49999999999997,
+            75.00000000000004
+          ],
+          "CAD_volume_mm3": 868.2799999999863,
+          "linear_FE_volume_mm3": 868.2513611177717
+        }
+      },
+      "direct_precoated_seat_shell_shared_nodes": 0,
+      "Ni99_final_shared_nodes": 1017,
+      "final_shell_shared_nodes": 994,
+      "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.96454737537319,
+      "nominal_seat_outer_radius_mm": 74.98,
+      "raw_mesh_input_identity_present": false,
+      "scope": "explicit audit of retained snapshot; no retrofit of a different mesh-strategy cache identity"
+    },
+    "medium": {
+      "regions": {
+        "1": {
+          "coordinate_bounds_mm": [
+            [
+              -74.97999733823137,
+              -74.97999999999833,
+              100.0
+            ],
+            [
+              74.98,
+              74.97999998047844,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            19.999999999999996,
+            74.98000000000003
+          ],
+          "CAD_volume_mm3": 244442.24702869853,
+          "linear_FE_volume_mm3": 244522.28495762887
+        },
+        "2": {
+          "coordinate_bounds_mm": [
+            [
+              -80.0,
+              -80.0,
+              0.0
+            ],
+            [
+              80.0,
+              80.0,
+              200.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            74.99999999999997,
+            80.00000000000001
+          ],
+          "CAD_volume_mm3": 486946.8613064177,
+          "linear_FE_volume_mm3": 486400.8130635406
+        },
+        "3": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98000000000002,
+              113.5
+            ],
+            [
+              74.98,
+              74.98,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            68.97999999999234,
+            74.98000000000029
+          ],
+          "CAD_volume_mm3": 894.5154494909823,
+          "linear_FE_volume_mm3": 895.3335153606788
+        },
+        "4": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98000000000002,
+              114.2
+            ],
+            [
+              74.98000000000002,
+              74.98000000000002,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            69.67999999998987,
+            74.98000000000029
+          ],
+          "CAD_volume_mm3": 744.2089270621118,
+          "linear_FE_volume_mm3": 735.6045288702283
+        },
+        "5": {
+          "coordinate_bounds_mm": [
+            [
+              -75.0,
+              -75.00000000000001,
+              115.0
+            ],
+            [
+              75.0,
+              75.00000000000001,
+              118.5
+            ]
+          ],
+          "radius_bounds_mm": [
+            71.49999999999999,
+            75.00000000000004
+          ],
+          "CAD_volume_mm3": 868.2799999999863,
+          "linear_FE_volume_mm3": 868.28191822595
+        }
+      },
+      "direct_precoated_seat_shell_shared_nodes": 0,
+      "Ni99_final_shared_nodes": 1762,
+      "final_shell_shared_nodes": 1734,
+      "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.99097484748387,
+      "nominal_seat_outer_radius_mm": 74.98,
+      "raw_mesh_input_identity_present": false,
+      "scope": "explicit audit of retained snapshot; no retrofit of a different mesh-strategy cache identity"
+    },
+    "fine": {
+      "regions": {
+        "1": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98,
+              100.0
+            ],
+            [
+              74.98,
+              74.98,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            19.999999999999996,
+            74.98000000000003
+          ],
+          "CAD_volume_mm3": 244442.24702869853,
+          "linear_FE_volume_mm3": 244478.6958928396
+        },
+        "2": {
+          "coordinate_bounds_mm": [
+            [
+              -80.0,
+              -80.0,
+              0.0
+            ],
+            [
+              80.0,
+              80.0,
+              200.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            74.99999999999999,
+            80.00000000000001
+          ],
+          "CAD_volume_mm3": 486946.8613064177,
+          "linear_FE_volume_mm3": 486641.4607326167
+        },
+        "3": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98000000000002,
+              113.5
+            ],
+            [
+              74.98000000000002,
+              74.98000000000002,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            68.97999999999234,
+            74.98000000000029
+          ],
+          "CAD_volume_mm3": 894.5154494909823,
+          "linear_FE_volume_mm3": 894.7833264512358
+        },
+        "4": {
+          "coordinate_bounds_mm": [
+            [
+              -74.98000000000002,
+              -74.98000000000002,
+              114.2
+            ],
+            [
+              74.98000000000002,
+              74.98,
+              115.0
+            ]
+          ],
+          "radius_bounds_mm": [
+            69.67999999998987,
+            74.98000000000029
+          ],
+          "CAD_volume_mm3": 744.2089270621118,
+          "linear_FE_volume_mm3": 740.3518107506989
+        },
+        "5": {
+          "coordinate_bounds_mm": [
+            [
+              -75.00000000000001,
+              -75.00000000000003,
+              115.0
+            ],
+            [
+              75.0,
+              75.00000000000003,
+              118.5
+            ]
+          ],
+          "radius_bounds_mm": [
+            71.49999999999997,
+            75.00000000000004
+          ],
+          "CAD_volume_mm3": 868.2799999999863,
+          "linear_FE_volume_mm3": 868.2770202100467
+        }
+      },
+      "direct_precoated_seat_shell_shared_nodes": 0,
+      "Ni99_final_shared_nodes": 3364,
+      "final_shell_shared_nodes": 3343,
+      "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.99273439929007,
+      "nominal_seat_outer_radius_mm": 74.98,
+      "raw_mesh_input_identity_present": false,
+      "scope": "explicit audit of retained snapshot; no retrofit of a different mesh-strategy cache identity"
+    }
+  },
+  "geometry_basis": "R20/74.98 complete seat z100..115; R75/80 shell z0..200; 17 retained solids; 8 effective fillets of18mm/3.5mm. Source STEP HEADER changes do not modify these frozen dimensions. Input-identity-free legacy meshes are not silently reused by the current builder."
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="950" viewBox="0 0 1200 950">
+<defs><marker id="ar" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#315D83"/></marker><pattern id="blind" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#B35648" fill-opacity="0.10"/><line x1="0" y1="0" x2="0" y2="12" stroke="#B35648" stroke-width="2" stroke-opacity="0.55"/></pattern></defs>
+<rect width="1200" height="950" fill="white"/><g font-family="Noto Sans SC,sans-serif" fill="#27384A" stroke-linejoin="round">
+<rect x="25" y="20" width="1150" height="910" fill="none" stroke="#27384A" stroke-width="1.2"/>
+<text x="55" y="68" font-size="30" fill="#27384A" text-anchor="start">HJ-Q-S01 圆环局部径向断面：候选声路与未确认区</text>
+<text x="55" y="112" font-size="24" fill="#27384A" text-anchor="start">完整QT座体R20～74.98、z100～115；钢壳R75～80、高200</text>
+<polygon points="100,715 631.2400000000001,715 631.2400000000001,525 100,525" fill="#EADAC2" stroke="#27384A" stroke-width="1.2"/>
+<rect x="632" y="145" width="190" height="570" fill="#CBD5DF" stroke="#27384A" stroke-width="1.2"/>
+<path d="M 403.2400000000001,525 L 631.2400000000001,525 L 631.2400000000001,582.0 L 460.2400000000001,582.0 A 57.0,57.0 0 0 1 403.2400000000001,525 Z" fill="#8FB4B3" stroke="#315D83" stroke-width="2"/>
+<path d="M 429.84000000000026,525 L 631.2400000000001,525 L 631.2400000000001,555.3999999999999 L 460.2400000000001,555.3999999999999 A 30.400000000000002,30.400000000000002 0 0 1 429.84000000000026,525 Z" fill="#E8C46B" stroke="#315D83" stroke-width="2"/>
+<polygon points="499.0,525 632,525 632,392.0" fill="#D89768" stroke="#27384A" stroke-width="1.2"/>
+<rect x="403.2400000000001" y="525" width="228" height="57.0" fill="url(#blind)" stroke="#B35648" stroke-width="1.2"/>
+<text x="138" y="697.8999999999999" font-size="26" fill="#27384A" text-anchor="start">QT450-10</text>
+<text x="727.0" y="627.6000000000001" font-size="26" fill="#27384A" text-anchor="middle">Q235B</text>
+<text x="727.0" y="669.3999999999999" font-size="24" fill="#27384A" text-anchor="middle">t5 mm</text>
+<rect x="233.0" y="494" width="152" height="31" fill="#E9EDF0" stroke="#27384A" stroke-width="1.2"/>
+<text x="309.0" y="460" font-size="24" fill="#27384A" text-anchor="middle">T：R66.5 / 总足迹4×6</text>
+<line x1="309.0" y1="525" x2="407.726896031426" y2="582.0" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)" stroke-dasharray="8 5"/>
+<line x1="309.0" y1="525" x2="410.0868199901615" y2="552.0861317817942" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)"/>
+<circle cx="410.0868199901615" cy="552.0861317817942" r="4" stroke="#315D83" fill="#315D83" stroke-width="1.4"/>
+<text x="110" y="624" font-size="24" fill="#315D83" text-anchor="start">60°虚线：纯QT延伸</text>
+<text x="110" y="665" font-size="24" fill="#315D83" text-anchor="start">75°实线：先遇R1.5界面</text>
+<rect x="826" y="279.5" width="44" height="54" fill="#E9EDF0" stroke="#27384A" stroke-width="1.2"/>
+<line x1="822" y1="306.5" x2="632" y2="496.5" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)"/>
+<text x="719.3999999999999" y="270.39999999999986" font-size="24" fill="#27384A" text-anchor="middle">钢中L45°</text>
+<text x="880" y="315.5" font-size="24" fill="#27384A" text-anchor="start">S45</text>
+<line x1="632" y1="496.5" x2="594.0257632334764" y2="525" stroke="#BB8038" stroke-width="2.3" marker-end="url(#ar)" stroke-dasharray="6 5"/>
+<line x1="632" y1="496.5" x2="606.4292892159798" y2="525" stroke="#BB8038" stroke-width="2.3" marker-end="url(#ar)" stroke-dasharray="6 5"/>
+<text x="480" y="246" font-size="24" fill="#996B30" text-anchor="start">NiFe55后段声速待校准</text>
+<line x1="657" y1="266" x2="605.3999999999999" y2="519.2999999999997" stroke="#996B30" stroke-width="1.4"/>
+<line x1="822" y1="458.5" x2="632" y2="458.5" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)"/>
+<text x="841" y="445.5" font-size="24" fill="#27384A" text-anchor="start">S0</text>
+<line x1="632" y1="422.39999999999986" x2="656" y2="359.7000000000002" stroke="#315D83" stroke-width="1.4"/>
+<text x="657" y="342.60000000000014" font-size="24" fill="#315D83" text-anchor="start">T4 钢侧</text>
+<line x1="601.6000000000001" y1="525" x2="654" y2="578.2000000000003" stroke="#315D83" stroke-width="1.4"/>
+<text x="657" y="585.7999999999997" font-size="24" fill="#315D83" text-anchor="start">T3 最终镍侧</text>
+<line x1="472.39999999999986" y1="582.0" x2="500" y2="741" stroke="#B35648" stroke-width="1.4"/>
+<text x="60" y="772" font-size="24" fill="#994D43" text-anchor="start">T1：QT/CI-A1首次界面平底、R1.5圆角和两端壁</text>
+<line x1="567.3999999999999" y1="555.3999999999999" x2="645" y2="781" stroke="#B35648" stroke-width="1.4"/>
+<text x="60" y="813" font-size="24" fill="#994D43" text-anchor="start">T2：CI-A1/Ni99层间；0.70 / 0.80 mm薄层分辨未确认</text>
+<text x="60" y="856" font-size="24" fill="#27384A" text-anchor="start">z115以下0.02 mm装配气隙不计传声；最小最终等脚3.50 mm</text>
+<text x="60" y="899" font-size="24" fill="#27384A" text-anchor="start">2 / 5 MHz候选；材料声速、脉宽、曲面折射与接收声路由对比块确认</text>
+</g></svg>

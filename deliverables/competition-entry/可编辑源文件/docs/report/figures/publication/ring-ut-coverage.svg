@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 1400 990">
+<defs><marker id="ar" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#315D83"/></marker><pattern id="blind" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="9" height="9" fill="#B35648" fill-opacity="0.10"/><line x1="0" y1="0" x2="0" y2="9" stroke="#B35648" stroke-width="2" stroke-opacity="0.55"/></pattern></defs>
+<rect width="1400" height="990" fill="white"/><g font-family="Noto Sans SC,sans-serif" fill="#27384A" stroke-linejoin="round">
+<rect x="30" y="30" width="1340" height="930" fill="none" stroke="#27384A" stroke-width="1.2"/>
+<text x="60" y="77" font-size="28" fill="#27384A" text-anchor="start">HJ-Q-S01 方法示意 | 圆环UT探入、声路与未确认区</text>
+<text x="60" y="112" font-size="16" fill="#27384A" text-anchor="start">SUBMISSION-RING-20261008-R2 | 几何与材料输入用于方法设计；目标反射体资格矩阵另行记录</text>
+<line x1="30" y1="140" x2="1370" y2="140" stroke="#27384A" stroke-width="1.4"/>
+<line x1="30" y1="927" x2="1370" y2="927" stroke="#27384A" stroke-width="1.4"/>
+<text x="60" y="953" font-size="14" fill="#27384A" text-anchor="start">图中射线为候选主声路；薄层、曲面折射、双晶接收交叠和几何回波由同工艺对比块确认</text>
+<text x="60" y="172" font-size="20" fill="#27384A" text-anchor="start">A  局部径向剖面与候选纵波声路</text>
+<text x="60" y="199" font-size="14" fill="#27384A" text-anchor="start">图示局部R61～80 / z110～125；完整QT座体R20～74.98、z100～115</text>
+<polygon points="90,660 509.4000000000001,660 509.4000000000001,510 90,510" fill="#EADAC2" stroke="#27384A" stroke-width="1.2"/>
+<rect x="510" y="210" width="150" height="450" fill="#CBD5DF" stroke="#27384A" stroke-width="1.2"/>
+<path d="M 329.4000000000001,510 L 509.4000000000001,510 L 509.4000000000001,555.0 L 374.4000000000001,555.0 A 45.0,45.0 0 0 1 329.4000000000001,510 Z" fill="#8FB4B3" stroke="#315D83" stroke-width="1.8"/>
+<path d="M 350.4000000000002,510 L 509.4000000000001,510 L 509.4000000000001,533.9999999999999 L 374.4000000000001,533.9999999999999 A 24.0,24.0 0 0 1 350.4000000000002,510 Z" fill="#E8C46B" stroke="#315D83" stroke-width="1.8"/>
+<polygon points="405.0,510 510,510 510,405.0" fill="#D89768" stroke="#27384A" stroke-width="1.2"/>
+<rect x="329.4000000000001" y="510" width="180" height="45.0" fill="url(#blind)" stroke="#B35648" stroke-width="1.2"/>
+<text x="120" y="600" font-size="17" fill="#27384A" text-anchor="start">QT450-10</text>
+<text x="585.0" y="570" font-size="17" fill="#27384A" text-anchor="middle">Q235B</text>
+<text x="585.0" y="606.0000000000001" font-size="13" fill="#27384A" text-anchor="middle">t5 / h200</text>
+<rect x="195.0" y="489" width="120" height="21" fill="#E9EDF0" stroke="#27384A" stroke-width="1.2"/>
+<text x="255.0" y="479" font-size="14" fill="#27384A" text-anchor="middle">T：R66.5 / 足迹4×6</text>
+<line x1="255.0" y1="510" x2="332.9422863405995" y2="555.0" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)" stroke-dasharray="6 4"/>
+<text x="188.99999999999991" y="557.9999999999998" font-size="13" fill="#27384A" text-anchor="start">60°延伸</text>
+<line x1="255.0" y1="510" x2="334.80538420275906" y2="531.3837882487849" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)"/>
+<circle cx="334.80538420275906" cy="531.3837882487849" r="3" stroke="#315D83" fill="#315D83" stroke-width="1.4"/>
+<text x="338.9999999999999" y="608.9999999999999" font-size="13" fill="#315D83" text-anchor="start">75°先遇R1.5圆角</text>
+<rect x="664" y="317.5" width="32" height="40" fill="#E9EDF0" stroke="#27384A" stroke-width="1.2"/>
+<text x="682" y="263.9999999999999" font-size="15" fill="#27384A" text-anchor="middle">S45</text>
+<line x1="660" y1="337.5" x2="510" y2="487.5" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)"/>
+<text x="593.9999999999999" y="342.00000000000017" font-size="14" fill="#27384A" text-anchor="middle">钢中L45°</text>
+<line x1="510" y1="487.5" x2="480.02033939484977" y2="510" stroke="#BB8038" stroke-width="2.3" marker-end="url(#ar)" stroke-dasharray="5 4"/>
+<line x1="510" y1="487.5" x2="489.8125967494577" y2="510" stroke="#BB8038" stroke-width="2.3" marker-end="url(#ar)" stroke-dasharray="5 4"/>
+<text x="413.9999999999999" y="357.00000000000017" font-size="13" fill="#996B30" text-anchor="start">NiFe55后段</text>
+<text x="413.9999999999999" y="381.0000000000001" font-size="13" fill="#996B30" text-anchor="start">声速待校准</text>
+<line x1="660" y1="457.5" x2="510" y2="457.5" stroke="#315D83" stroke-width="2.3" marker-end="url(#ar)"/>
+<text x="672" y="447.5" font-size="14" fill="#27384A" text-anchor="start">S0</text>
+<text x="540" y="411.0000000000001" font-size="15" fill="#315D83" text-anchor="start">T4</text>
+<line x1="484.50000000000017" y1="510" x2="531.0000000000001" y2="540.0" stroke="#315D83" stroke-width="1.4"/>
+<text x="533.9999999999999" y="548.9999999999999" font-size="15" fill="#315D83" text-anchor="start">T3</text>
+<line x1="381.0000000000001" y1="555.0" x2="365.0000000000001" y2="672" stroke="#B35648" stroke-width="1.4"/>
+<text x="70" y="678" font-size="14" fill="#994D43" text-anchor="start">T1平底/圆角/端壁；T2薄层交叠及近表面：分辨与传播未确认</text>
+<text x="540" y="647.9999999999998" font-size="12" fill="#994D43" text-anchor="start">0.02气隙非声路</text>
+<text x="825" y="172" font-size="20" fill="#27384A" text-anchor="start">B  输入、目标与方法资格</text>
+<text x="825" y="211" font-size="14" fill="#27384A" text-anchor="start">参考钢L / S</text>
+<text x="988" y="211" font-size="14" fill="#27384A" text-anchor="start">5890 / 3240 m/s（1020钢代理）</text>
+<text x="825" y="241" font-size="14" fill="#27384A" text-anchor="start">PMMA纵波</text>
+<text x="988" y="241" font-size="14" fill="#27384A" text-anchor="start">2730 m/s</text>
+<text x="825" y="271" font-size="14" fill="#27384A" text-anchor="start">QT纵波参考</text>
+<text x="988" y="271" font-size="14" fill="#27384A" text-anchor="start">5600 m/s（本批需校准）</text>
+<text x="825" y="301" font-size="14" fill="#27384A" text-anchor="start">Ni焊态传播</text>
+<text x="988" y="301" font-size="14" fill="#27384A" text-anchor="start">CI-A1 / Ni99 / NiFe55逐层校准</text>
+<text x="825" y="331" font-size="14" fill="#27384A" text-anchor="start">频率候选</text>
+<text x="988" y="331" font-size="14" fill="#27384A" text-anchor="start">2 / 5 MHz，按同块SNR和分辨筛选</text>
+<text x="825" y="361" font-size="14" fill="#27384A" text-anchor="start">钢中L45 / L60</text>
+<text x="988" y="361" font-size="14" fill="#27384A" text-anchor="start">楔入射19.132° / 23.666°</text>
+<line x1="825" y1="391" x2="1325" y2="391" stroke="#27384A" stroke-width="1.4"/>
+<text x="825" y="423" font-size="18" fill="#27384A" text-anchor="start">薄层与曲率筛查</text>
+<text x="825" y="458" font-size="14" fill="#27384A" text-anchor="start">两周期/正常入射假设：2 / 5 MHz → 2.80 / 1.12 mm</text>
+<text x="825" y="487" font-size="14" fill="#27384A" text-anchor="start">斜入射按局部法向投影；实际脉宽/死区要测</text>
+<text x="825" y="516" font-size="14" fill="#27384A" text-anchor="start">壳外R80，周向6 mm弦弓高0.0563 mm</text>
+<text x="825" y="545" font-size="14" fill="#27384A" text-anchor="start">局部法向周向变化±2.149°，曲面楔按实测研配</text>
+<line x1="825" y1="556" x2="1325" y2="556" stroke="#27384A" stroke-width="1.4"/>
+<text x="825" y="589" font-size="18" fill="#27384A" text-anchor="start">专用对比块人工反射体</text>
+<text x="825" y="625" font-size="14" fill="#27384A" text-anchor="start">相同QT/CI-A1/Ni99/NiFe55/Q235B全过程</text>
+<text x="825" y="653" font-size="14" fill="#27384A" text-anchor="start">完整环优先；≥60°环段需排除截断边界影响</text>
+<text x="825" y="681" font-size="14" fill="#27384A" text-anchor="start">T1平底/圆角/两端、T2层间、T3根部/弧坑</text>
+<text x="825" y="709" font-size="14" fill="#27384A" text-anchor="start">T4钢侧近根/近趾；按三种面法向分别设置</text>
+<text x="825" y="737" font-size="14" fill="#27384A" text-anchor="start">槽深0.5×长3、宽≤0.2：项目资格目标</text>
+<text x="825" y="765" font-size="14" fill="#27384A" text-anchor="start">逐姿态记录SNR≥12 dB、重复幅度差≤2 dB</text>
+<text x="825" y="793" font-size="14" fill="#27384A" text-anchor="start">宏观/金相证实首次熔合、层厚及重熔</text>
+<text x="825" y="821" font-size="14" fill="#27384A" text-anchor="start">PT补表面开口裂纹；内部未确认区另发展方法</text>
+<text x="60" y="720" font-size="20" fill="#27384A" text-anchor="start">C  周向逐段扫描与端部登记</text>
+<circle cx="225" cy="820" r="63.733000000000004" stroke="#27384A" fill="none" stroke-width="1.4"/>
+<circle cx="225" cy="820" r="17.0" stroke="#27384A" fill="none" stroke-width="1.4"/>
+<circle cx="225" cy="820" r="68.0" stroke="#8799AA" fill="none" stroke-width="1.4"/>
+<path d="M 285.3347312161303,830.1528172482967 A 61.183,61.183 0 0 0 285.3347312161303,809.8471827517033" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 288.27442820997413,827.6316461986145 A 63.733000000000004,63.733000000000004 0 0 0 288.27442820997413,812.3683538013855" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 296.15236015513204,832.5460808364357 A 72.25,72.25 0 0 0 296.15236015513204,807.4539191635643" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="310.0" y="825.0" font-size="13" fill="#27384A" text-anchor="middle">1</text>
+<path d="M 274.84222350841173,784.5160283404249 A 61.183,61.183 0 0 0 260.48397165957505,770.1577764915883" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 275.13816604163094,780.6546115156827 A 63.733000000000004,63.733000000000004 0 0 0 264.34538848431725,769.8618339583691" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 284.18373519987966,778.5591024736369 A 72.25,72.25 0 0 0 266.4408975263631,760.8162648001204" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="285.10407640085657" y="764.8959235991434" font-size="13" fill="#27384A" text-anchor="middle">2</text>
+<path d="M 235.15281724829674,759.6652687838697 A 61.183,61.183 0 0 0 214.8471827517033,759.6652687838697" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 232.6316461986145,756.7255717900258 A 63.733000000000004,63.733000000000004 0 0 0 217.3683538013855,756.7255717900258" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 237.54608083643572,748.847639844868 A 72.25,72.25 0 0 0 212.45391916356428,748.847639844868" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="225.0" y="740.0" font-size="13" fill="#27384A" text-anchor="middle">3</text>
+<path d="M 189.51602834042495,770.1577764915883 A 61.183,61.183 0 0 0 175.15777649158824,784.516028340425" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 185.65461151568277,769.8618339583691 A 63.733000000000004,63.733000000000004 0 0 0 174.86183395836903,780.6546115156827" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 183.55910247363693,760.8162648001204 A 72.25,72.25 0 0 0 165.81626480012034,778.5591024736369" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="164.89592359914346" y="764.8959235991434" font-size="13" fill="#27384A" text-anchor="middle">4</text>
+<path d="M 164.6652687838697,809.8471827517033 A 61.183,61.183 0 0 0 164.6652687838697,830.1528172482967" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 161.72557179002584,812.3683538013855 A 63.733000000000004,63.733000000000004 0 0 0 161.72557179002584,827.6316461986145" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 153.84763984486796,807.4539191635643 A 72.25,72.25 0 0 0 153.84763984486796,832.5460808364357" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="140.0" y="825.0" font-size="13" fill="#27384A" text-anchor="middle">5</text>
+<path d="M 175.15777649158824,855.4839716595751 A 61.183,61.183 0 0 0 189.51602834042492,869.8422235084117" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 174.86183395836903,859.3453884843173 A 63.733000000000004,63.733000000000004 0 0 0 185.65461151568275,870.1381660416309" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 165.81626480012034,861.4408975263631 A 72.25,72.25 0 0 0 183.5591024736369,879.1837351998796" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="164.89592359914343" y="885.1040764008566" font-size="13" fill="#27384A" text-anchor="middle">6</text>
+<path d="M 214.8471827517033,880.3347312161303 A 61.183,61.183 0 0 0 235.1528172482967,880.3347312161303" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 217.36835380138552,883.2744282099742 A 63.733000000000004,63.733000000000004 0 0 0 232.63164619861445,883.2744282099742" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 212.45391916356428,891.152360155132 A 72.25,72.25 0 0 0 237.5460808364357,891.1523601551321" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="224.99999999999997" y="910.0" font-size="13" fill="#27384A" text-anchor="middle">7</text>
+<path d="M 260.48397165957505,869.8422235084117 A 61.183,61.183 0 0 0 274.84222350841173,855.4839716595751" fill="none" stroke="#D9B365" stroke-width="6"/>
+<path d="M 264.34538848431725,870.1381660416309 A 63.733000000000004,63.733000000000004 0 0 0 275.13816604163094,859.3453884843173" fill="none" stroke="#D89768" stroke-width="3"/>
+<path d="M 266.4408975263631,879.1837351998796 A 72.25,72.25 0 0 0 284.18373519987966,861.4408975263631" fill="none" stroke="#315D83" stroke-width="2"/>
+<text x="285.1040764008565" y="885.1040764008566" font-size="13" fill="#27384A" text-anchor="middle">8</text>
+<text x="375" y="755" font-size="14" fill="#27384A" text-anchor="start">金色：24 mm预制窗 / 19.1039°</text>
+<text x="375" y="784" font-size="14" fill="#27384A" text-anchor="start">橙色：18 mm有效连接 / 13.7547°</text>
+<text x="375" y="813" font-size="14" fill="#27384A" text-anchor="start">蓝色：各段中心±10°候选扫查</text>
+<text x="375" y="842" font-size="14" fill="#27384A" text-anchor="start">步距≤1 mm，按实际入射面弧长登记</text>
+<text x="375" y="871" font-size="14" fill="#27384A" text-anchor="start">T1两端壁与弧坑逐项记录，不靠段中替代</text>
+<text x="825" y="892" font-size="13" fill="#27384A" text-anchor="start">来源：Evident技术说明/材料表；ISO 22825:2017</text>
+<text x="375" y="908" font-size="13" fill="#27384A" text-anchor="start">材料典型值、候选射线和资格目标为不同证据；完整依据及计算见 ring-ut-coverage-design.md</text>
+</g></svg>

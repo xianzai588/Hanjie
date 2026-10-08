@@ -1,0 +1,73 @@
+{
+  "input_identity": {
+    "schema": "RING-P2-STRAIGHT-QUARTER-2",
+    "geometry_DATA_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+    "bulk_size_mm": 4.5,
+    "local_size_mm": 0.65,
+    "shell_surface_size_function": "Min(4.5,2.0+Max(0,Abs(z-107.5)-17.5)*.3)",
+    "leg_mm": 3.5,
+    "effective_arc_mm": 18.0,
+    "quadrant": "x>=0,y>=0",
+    "displacement_order": 2,
+    "geometry_order": 1,
+    "material_inputs": {
+      "1": {
+        "name": "QT450-10",
+        "E_MPa": 169000.0,
+        "nu": 0.27,
+        "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+      },
+      "2": {
+        "name": "Q235B",
+        "E_MPa": 206000.0,
+        "nu": 0.3,
+        "basis": "engineering room-temperature elastic input"
+      },
+      "3": {
+        "name": "CI-A1 retained first layer",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+      },
+      "4": {
+        "name": "Ni99 retained second layer",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+      },
+      "5": {
+        "name": "NiFe55 final effective fillet",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; effective interface and joint strength require qualification"
+      }
+    },
+    "loads_N_N_Nmm": [
+      5000,
+      5000,
+      250000
+    ],
+    "boundary": "z=0 clamped; y=0 symmetric; x=0 symmetric for axial and antisymmetric for radial/My"
+  },
+  "nodes": 146223,
+  "tetrahedra": 88586,
+  "element_order": 2,
+  "tetrahedra_by_material": {
+    "1": 29008,
+    "2": 43253,
+    "3": 6528,
+    "4": 4740,
+    "5": 5057
+  },
+  "quarter_material_volumes_mm3": {
+    "1": 61110.56175717274,
+    "2": 121736.71532660472,
+    "3": 223.62886237275524,
+    "4": 186.05223176551095,
+    "5": 217.0699999999964
+  },
+  "minimum_element_Jacobian_mm3": 6.482563971340238e-05,
+  "inverted_element_count": 0,
+  "bore_triangles": 68,
+  "full_ring_reconstruction": "exact symmetry/antisymmetry of specified geometry, loads and clamped base"
+}

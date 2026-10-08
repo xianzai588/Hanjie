@@ -17,11 +17,11 @@
 | C09 | 同一材料链的分道均匀混合诊断情景 | 最终C为0.03055～0.07160 wt%；首层入第二层≤15%对应条件重熔深度≤0.1745 mm | 用于检查成分敏感性及截面评价重点；稀释率为输入情景，不是测量或实际输运结果 |
 | C10 | 旧八翼完全卸夹制造家族，已有数值结果 | 热残余孔轴最不利15.584 μm；总预算52.084 μm；细时间孔径极差约25.961 μm | 超过50 μm目标2.084 μm，说明为何采用分工序制造及恢复圆环基准；结果保留其原材料与网格身份 |
 | C11 | 共用孔轴设计分配，直径值 | 28＋2＋6.5＋13.5＝50 μm为允许上限；热残余内部目标12 μm给出48.5 μm，总裕量1.5 μm | 13.5是热残余上限而非内部目标；后列6.5是有限精整轴线变化直径。工装6.5径向已含在28非热直径项内 |
-| C12 | 圆环短闭框架冷态截面核算 | L120、b80、h120 mm、E206 GPa、ν0.30；5 kN/170 kN·mm，轴线杠杆100 mm；含平移、转角和剪切5.053 μm，距6.5 μm径向夹紧分配余1.447 μm | 采用短受力闭环为基础站，剩余额度分配给接触/连接/基座/热态；6.5径向已在28非热直径项内。原重门架5.602 μm保留八翼历史对象 |
+| C12 | 圆环专属真实工装冷态核算 | 整体背承Ø144/Ø96、3°反锥、双柱上桥；下背承/底座/床座/预紧连接/上桥五项共5.639 μm径向，坐实分配0.250后5.889，余0.611给实机摇摆 | 采用HJ-F-S01/S02专属CAD/BOM/退工具路径，6.5 μm径向含在28非热直径项；冷态计算不覆盖热态与实机接触 |
 | C13 | 原八翼铜屏障热容量与退出，设计核算 | 净铜≥67.60 g；总水流≥0.60 L/min；铜≤45℃、下座≤48℃；铜瓣退位1.10±0.05 mm | 定义屏障制造和联锁窗口；圆环核对装配净隙及热边界后使用 |
 | C14 | 后序隔离液路，几何及流阻核算 | 微珩液154.510 mL/min、供液≤60；下杯容量20.957 mL/故障需求18.803 mL；PT/UT盘47.733/21.203 mL | 支撑局部封闭回收；流阻结果仅适用于规定黏度牛顿液，UT凝胶另确认 |
 | C15 | 孔壁、孔径及有限精整，方法设计目标 | 径向去除≤3 μm；直径增量≤6 μm；孔径方法U≤0.5 μm；40.000～40.025 mm为项目H7窗 | 孔轴、尺寸、表面缺陷分别检查，精整前后复检并保持封闭回收 |
-| C16 | 圆环小批资源，规划情景 | 8件/8 h、3600 s间隔；每层10 h，各10位，延迟24位，共44位；PT每阶段2停留位；最终焊站900 s预留 | 解释单头与跨日库存。10 h按5.6 h缓降＋2 h保温＋2.4 h升温/转运/热滞后预留，属于容位规划。八翼41位/143.58元费用保持原口径 |
+| C16 | 圆环小批资源，规划情景 | 8件/8 h、3600 s间隔；每层10 h，各10位，延迟24位，共44位；PT每阶段2停留位；最终焊站900 s预留 | 解释单头与跨日库存。10 h按5.6 h缓降＋2 h保温＋2.4 h升温/转运/热滞后预留，属于容位规划。圆环3人专线178.69元/件、共享147.56元/件；八翼41位/143.58元保持历史口径 |
 | C17 | PT/UT及洁净检验，试制方法目标 | PT15～35℃、渗透15～30 min、显像10～30 min；UT专用对比块；牺牲件残留＋U≤0.50 mg | 交付可执行的质量评价方案；方法目标和实际检测值分别填报 |
 | C18 | 圆环八个局部预制窗口，名义实体与供料核算 | 窗长24±0.5、宽6±0.1、深1.50±0.10 mm；17有效实体；首层75 mm/min＋两端各0.5 s补弧；最短弧/速度+2%低供料2.869706 g/窗，对含保护带目标2.603046 g保留0.266660 g（10.24%） | 75 mm/min主弧及两端补弧统一提供保护带覆盖；与80比较采用同样补弧制度。首层/第二层弧燃161.6/288 s、净热322.2208/142.560 kJ；80在同样补弧条件下仅3.61%供料裕量。首件/每批冷态称量确认供料资格，逐窗检查余高与周界覆盖 |
 
@@ -36,13 +36,19 @@
 - C08、C09：`studies/COMPETITION-DESIGN/results/current-section-interface.json`；八翼平直接触宽度及均匀混合情景。
 - C10：`simulation/competition-r4/results/verification.json`、`deliverables/competition-entry/计算依据/历史八翼制造复核.json`；保留旧制造家族结果与离散差。
 - C11、C15：`deliverables/process/bore-compensation-and-finish-card.md`及`project/competition-design.yaml`。40.006～40.008 mm在旧八翼为补偿输入，在圆环HJ-W-S01为自身试制起始加工设定，各自记录其孔径响应。
-- C12：圆环`studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json`、计算脚本`studies/COMPETITION-DESIGN/ring-fixture-feasibility.py`。八翼原工装另见`simulation/competition-r4/results/fixture-axis-solid-core-h2/result.json`、`simulation/competition-r4/results/fixture-axis-solid-core-h1.5/result.json`及HJ-F-01，分别保留局部压缩与整体轴移口径。
+- C12：圆环专属`studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json`、计算脚本`studies/COMPETITION-DESIGN/ring-fixture-feasibility.py`。八翼原工装另见`simulation/competition-r4/results/fixture-axis-solid-core-h2/result.json`、`simulation/competition-r4/results/fixture-axis-solid-core-h1.5/result.json`及HJ-F-01，分别保留局部压缩与整体轴移口径。
 - C13：`studies/COMPETITION-DESIGN/results/engineering-checks-r3.json`、`deliverables/process/copper-shield-card.md`、`deliverables/process/clean-shield-engineering-detail.md`。
 - C14：`studies/COMPETITION-DESIGN/results/postweld-isolation.json`及`project/competition-design.yaml`的`postweld_drain`；下杯容量采用16 mm深现行边界，不采用历史10 mm名义深度字段。
-- C16：圆环`deliverables/process/ring-final-welding-card.json`及`cad/generated/ring-baseline/ring-precoat-design.json`的资源规划。八翼费用/库存另见`project/pilot-production-design.yaml`、`studies/COMPETITION-DESIGN/results/pilot-production-20261007.json`及HJ-P-01。
+- C16：圆环`deliverables/process/ring-final-welding-card.json`及`cad/generated/ring-baseline/ring-precoat-design.json`的资源规划。圆环费用见`studies/COMPETITION-DESIGN/results/ring-production-resources.json`和HJ-P-S01；八翼费用/库存另见`project/pilot-production-design.yaml`、`studies/COMPETITION-DESIGN/results/pilot-production-20261007.json`及HJ-P-01。
 - C17：`deliverables/process/NDT-inspection-card.md`、`deliverables/process/cleanliness-inspection-card.md`及`deliverables/process/manufacturing-and-inspection-card.md`。
 - C18：`cad/generated/ring-baseline/ring-precoat-design.json`、`cad/generated/ring-baseline/ring-precoat-eight-windows-17solids.step`及HJ-S01；供料关系和温度效率为设计输入，几何重读与质量/热量积分单独记录。
 
 ## 3 提交时的引用规则
 
 正文和图表使用上述编号或工艺卡号连接到同一来源。新圆环名义几何、共用守恒式、八翼已算结果和试制目标各保留对象与条件；受载弹性偏移、焊后残余位置度、精整轴线变化分别报告。比赛论证围绕结构选择、材料分工、制造顺序、工位可实施性和质量评价展开。
+
+## 4 本轮新增圆环计算与自动化
+
+- C19：圆环实际冷态结构FE，simulation/ring-baseline-structure/results/assessment.json。8×18 mm有效连接、最低焊脚3.5 mm、两保留层、壳底固定和共同载荷；P2中档组合孔轴31.115 μm、径向孔形峰谷10.159 μm及能量264.032 N·mm，Ni99/NiFe55原始峰391/969 MPa；整体刚度复核与局部强度资格分别报告，不作为制造残余位置度。
+- C20：圆环最终热过程与固有应变条件响应，simulation/ring-baseline-manufacturing/results/assessment.json。16×20 mm实际路径、96 kJ、源和边界明确；平均/一阶/二阶/单窗模式及非零预制残余重分配独立输入。温度、孔径、孔轴和弹性适用范围共同评价，不把假设的收缩幅值称为pWPS实绩。
+- C21：当前自动化版本、波形/速度/温度/送丝及逐段积分电能见automation/app/results/demo-summary.json。信号与异常身份一致才入库；全演示为simulated，硬件命令0。正常/越能量/越送丝分别回放，许可实际决定后续虚拟请求。

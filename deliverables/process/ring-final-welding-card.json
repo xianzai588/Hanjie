@@ -67,8 +67,115 @@
   "precoat_source": "cad/generated/ring-baseline/ring-precoat-design.json",
   "scope": "Path-length, energy, wire and station-resource design accounting for complete ring; no transfer of eight-wing manufacturing history.",
   "base_fixture_source": "studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json",
-  "base_fixture_cold_axis_um": 5.052588996763753,
-  "fixture_contact_connection_base_and_hot_remaining_um": 1.4474110032362466,
   "lower_cavity_gas": "separate inlet and filtered recovery from sealed bottom-tool feedthroughs; near atmospheric, verify both flows; no product gas holes",
-  "copper_top_to_ring_bottom_nominal_clearance_mm": 0.5
+  "copper_top_to_ring_bottom_nominal_clearance_mm": 0.5,
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "source_type": "design_pWPS",
+  "authority": "project/submission-baseline.yaml",
+  "sequence": [
+    1,
+    5,
+    3,
+    7,
+    2,
+    6,
+    4,
+    8
+  ],
+  "assembly_tolerances": {
+    "primary_object": "完整圆环主轴承座与壳体",
+    "builder": "cad/parametric/build_ring_baseline.py",
+    "directory": "cad/generated/ring-baseline",
+    "assembly_step": "cad/generated/ring-baseline/ring-assembly-QT450-10-Q235B.step",
+    "seat_step": "cad/generated/ring-baseline/ring-seat-QT450-10.step",
+    "manifest": "cad/generated/ring-baseline/geometry-quality-and-mass.json",
+    "drawing": "cad/generated/ring-baseline/HJ-S01-ring-baseline.svg",
+    "shell": {
+      "material": "Q235B",
+      "outside_diameter_mm": 160.0,
+      "wall_thickness_mm": 5.0,
+      "height_mm": 200.0,
+      "nominal_inside_diameter_mm": 150.0,
+      "assembly_inside_diameter_limits_mm": [
+        150.0,
+        150.02
+      ],
+      "assembly_band_roundness_max_mm": 0.005
+    },
+    "seat": {
+      "material": "QT450-10",
+      "shape": "完整圆环；本体保留连续环向承载通道",
+      "nominal_bore_diameter_mm": 40.0,
+      "outside_radius_mm": 74.98,
+      "assembly_outside_diameter_limits_mm": [
+        149.94,
+        149.98
+      ],
+      "assembly_band_roundness_max_mm": 0.005,
+      "assembled_measured_radial_gap_limits_mm": [
+        0.005,
+        0.045
+      ],
+      "ideal_circular_radial_gap_limits_mm": [
+        0.01,
+        0.04
+      ],
+      "assembly_gap_rule": "独立A/B定心后逐窗实测局部间隙0.005至0.045；只满足直径限值不代替周向间隙验收",
+      "seat_bottom_z_tolerance_mm": 0.05,
+      "thickness_mm": 15.0,
+      "bottom_z_mm": 100.0,
+      "thickness_and_height_basis": "题面未指定；本设计选定",
+      "detail_scope": "母件总装几何；局部浅槽、过渡层和焊缝由工艺断面与工艺卡表达"
+    }
+  },
+  "monitoring_design": {
+    "purpose": "当前圆环设计pWPS的数字监测窗口；电流和电压容差为监测设计值，设备接入后按评定与校准结果确认",
+    "operation": "final_GTAW",
+    "current": {
+      "supported_definitions": [
+        "instantaneous_pulsed_A",
+        "cycle_mean_A"
+      ],
+      "plateau_tolerance_A": 5.0,
+      "cycle_mean_tolerance_A": 5.0,
+      "minimum_samples_per_cycle": 20,
+      "minimum_bad_cycles": 2,
+      "phase_basis": "瞬时波形必须附脉冲相位起点、频率和占空比；按整周期评价峰值与基值，平均电流不得冒充瞬时波形"
+    },
+    "voltage_window_V": [
+      11.0,
+      13.0
+    ],
+    "travel_speed_relative_tolerance": 0.02,
+    "temperature_definition": "pre_arc_control_point_C",
+    "temperature_gates": "首段起弧15～35℃；续焊起弧15～100℃；弧燃和冷却温度不按层间起弧温度误判",
+    "bias_policy": "工艺窗口固定；有证书的离线传感器校准另行处理，不从本件焊接序列自动估计偏置或平移窗口",
+    "minimum_event_duration_s": 0.05,
+    "wire_feed_tolerance_mm_s": 0.05,
+    "segment_energy_relative_tolerance": 0.02,
+    "segment_path_relative_tolerance": 0.02
+  },
+  "precoat_thermal_cycle": {
+    "applies_to": "首层与第二层分别执行；圆环壳外自由支承",
+    "furnace_preheat_setpoint_C": 300.0,
+    "workpiece_weld_permission_C": [
+      200.0,
+      300.0
+    ],
+    "sensing": "窗口附近与对向环体各独立测点；最冷/最热点共同控制转序",
+    "postheat_furnace_setpoint_C": 200.0,
+    "postheat_workpiece_hold_window_C": [
+      190.0,
+      210.0
+    ],
+    "postheat_hold_h": 2.0,
+    "hold_timer_start": "全部规定工件测点进入190至210℃保持窗后开始计时；超出保持窗暂停并重新评价",
+    "furnace_cooling_max_C_h": 50.0,
+    "cold_handoff_C": [
+      19.0,
+      21.0
+    ],
+    "cold_handoff": "所有测点冷态且完成清渣/层厚与对应PT交接，不以炉温代替工件温",
+    "reservation": "每层10h是容位计划；实际测温未准入则延迟转序"
+  }
 }

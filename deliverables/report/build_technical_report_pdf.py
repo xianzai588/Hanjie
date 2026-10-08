@@ -4,6 +4,7 @@ from __future__ import annotations
 from html import escape
 from pathlib import Path
 import json
+import hashlib
 import re
 import sys
 
@@ -21,6 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from hanjie.domain.evidence import validate_evidence_graph
 from hanjie.reporting.fonts import register_project_fonts
 from hanjie.reporting.current_status import write_status_artifacts
+from hanjie.reporting.publication import fingerprints, image_dependencies, validate_ring_production_release
 from hanjie.domain.competition_design import current_assessment
 import yaml
 
@@ -247,6 +249,22 @@ def validate_report_numbers(result, source=SOURCE):
         raise ValueError('圆环含起停热量未闭合')
     for value in (f"{length:.0f} mm",f"{ring['nominal_net_heat_kJ']:.1f} kJ",f"{ring['arc_on_time_s']:.2f} s"):
         if re.sub(r'\s+','',value) not in compact:raise ValueError('圆环正文数值缺失：'+value)
+    if '--competition-entry' in sys.argv:
+        structure=json.loads((ROOT/'simulation/ring-baseline-structure/results/assessment.json').read_text())
+        manufacture=json.loads((ROOT/'simulation/ring-baseline-manufacturing/results/assessment.json').read_text())
+        current_values=[f"{structure['combined']['axis_diameter_envelope_um']:.3f}",
+                        f"{structure['combined']['elastic_strain_energy_N_mm']:.3f}",
+                        f"{structure['combined']['raw_quadrature_stress_by_material']['5']['von_mises_max_MPa']:.2f}",
+                        *[f"{manufacture['cold_response_summary'][mode]['position_diameter_um']:.4f}" for mode in
+                          ('first_harmonic_final_shrink','first_harmonic_precoat_redistribution')]]
+        heat=manufacture['thermal_result']
+        current_values += [f"{heat['tooling_exit']['time_s']:.3f}",
+                           f"{heat['tooling_exit']['part_max_C']:.3f}",
+                           f"{heat['end_s']:.3f}", f"{heat['final_max_C']:.4f}",
+                           f"{heat['material_peak_C']['4']:.3f}",
+                           f"{heat['material_peak_C']['2']:.3f}"]
+        if any(value not in compact for value in current_values):
+            raise ValueError('当前圆环计算改变，须同步正文数值及解释后再渲染')
 
 
 def main() -> int:
@@ -260,20 +278,12 @@ def main() -> int:
     elif '--review' in sys.argv:
         OUT=ROOT/'output/pdf/工艺设计说明书-修订审阅稿.pdf'
     else:
-        verification=ROOT/'simulation/competition-r4/results/verification.json'
-        if not verification.exists() or not json.loads(verification.read_text(encoding='utf8')).get('position_design_pass',False):
-            raise ValueError('位置度或空间/时间精度未通过；用--review生成明确标识的修订审阅稿')
-        if not json.loads(verification.read_text(encoding='utf8')).get('bore_size_design_pass',False):
-            raise ValueError('焊后孔径与微珩尺寸链未通过；用--review生成修订审阅稿')
-        current=json.loads(verification.read_text(encoding='utf8'))
-        if any(not json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('fixture_thermal') for case in current['cases']):
-            raise ValueError('正式稿须采用芯/胀套及托垫热耦合的完整冷态结果')
-        service=json.loads((verification.parent/'service-verification.json').read_text(encoding='utf8'))
-        if not service.get('complete_welded_strength_design_pass',False):
-            raise ValueError('完整焊接件强度须补残余张量及过渡层/界面核验；当前仅可生成审阅稿')
-        current_bore=json.loads((verification.parent/current['cases'][0]/'input.json').read_text(encoding='utf8'))['initial_bore_diameter_mm']
-        if not service.get('static_service_design_pass',False) or any(json.loads((verification.parent/case/'input.json').read_text(encoding='utf8')).get('initial_bore_diameter_mm') != current_bore for case in service['cases']):
-            raise ValueError('正式稿须采用与已接受制造窗口同孔径的服役强度核验')
+        write_status_artifacts(ROOT)
+        state=json.loads((ROOT/'deliverables/report/generated/current-status.json').read_text(encoding='utf8'))
+        baseline=yaml.safe_load((ROOT/'project/submission-baseline.yaml').read_text(encoding='utf8'))
+        validate_ring_production_release(state, baseline['version'])
+    if '--competition-entry' in sys.argv:
+        write_status_artifacts(ROOT)  # Standalone PDF entry must not bypass active-object identity.
     validate_report_numbers(current_assessment(ROOT))
     graph = yaml.safe_load((ROOT / "evidence/evidence_graph.yaml").read_text(encoding="utf-8"))
     errors = validate_evidence_graph(graph, ROOT)
@@ -293,7 +303,7 @@ def main() -> int:
     # 工艺卡与正文使用同一套字体、表格和页码样式。
     story = cover_and_contents() + build_story()
     # The workshop cards belong in the readable manual, not only in loose attachments.
-    for card in ("ring-baseline-design-card.md", "ring-final-welding-card.md", "manufacturing-and-inspection-card.md", "independent-precoat-design-card.md", "first-layer-input-card.md", "precoat-tolerance-and-feed-card.md", "joint-process-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md", "pilot-production-and-resource-card.md", "calculation-index.md"):
+    for card in ("ring-baseline-design-card.md", "ring-final-welding-card.md", "ring-fixture-design-card.md", "ring-automation-card.md", "manufacturing-and-inspection-card.md", "NDT-inspection-card.md", "ring-ut-coverage-design.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "ring-production-resource-card.md", "calculation-index.md"):
         if '--competition-entry' in sys.argv and card in ('current-candidate-state.md','cold-weld-and-peening-card.md'):
             continue  # Internal execution ledger and optional tooling card.
         story += [PageBreak()] + build_story(ROOT / "deliverables/process" / card)
@@ -329,13 +339,15 @@ def main() -> int:
         scope_doc.build([
             Paragraph('工程图对象与使用顺序',ParagraphStyle('ScopeTitle',parent=scope_style,fontName=BOLD_FONT,fontSize=20,leading=30)),
             Spacer(1,12*mm),
-            Paragraph('HJ-S01：完整圆环座体与Q235B壳体的名义母件总装。HJ-S02：圆环局部预制窗口、存留层及加工断面。八段短焊位置与实际电弧行程分别标注，过渡层与槽加工按基准卡执行。',scope_style),
+            Paragraph('HJ-F-S01～S03：圆环专属紧凑载荷环、实体屏障与受控退出。HJ-S01：完整圆环座体与Q235B壳体的名义母件总装。HJ-S02：圆环局部预制窗口、存留层及加工断面。八段短焊位置与实际电弧行程分别标注，过渡层与槽加工按基准卡执行。',scope_style),
             Spacer(1,8*mm),
             Paragraph('HJ-001至HJ-021：已建立的八翼开口结构创新候选及其夹具、洁净防护、预制公差和检测图。图中的翼形、预制用量和工位数量保留原对象身份，作为候选比较与工程细化依据。',scope_style),
             Spacer(1,8*mm),
             Paragraph('图纸按对象使用：完整环的环向载荷通道与开口八翼的柔顺槽不同，不能通过改图名互换；相同的焊段布局可共用焊长与送丝守恒核算，热史、残余变形和刚度另按对应实体评价。',scope_style)
         ],onFirstPage=on_page,onLaterPages=on_page)
-        drawing_bundle=PdfWriter();drawing_bundle.append(scope);drawing_bundle.append(ring);drawing_bundle.append(drawings)
+        fixture=ROOT/'cad/generated/ring-fixture/HJ-F-S01-ring-fixture-drawings.pdf'
+        if not fixture.is_file():raise FileNotFoundError('先生成圆环专属工装图：'+str(fixture))
+        drawing_bundle=PdfWriter();drawing_bundle.append(scope);drawing_bundle.append(ring);drawing_bundle.append(fixture);drawing_bundle.append(drawings)
         drawing_bundle.add_metadata({'/Title':'完整圆环基准与八翼创新候选工程图集','/Author':''})
         drawing_out=ROOT/'output/pdf/基准与候选工程图集.pdf'
         with drawing_out.open('wb') as stream:drawing_bundle.write(stream)
@@ -357,6 +369,50 @@ def main() -> int:
         with combined.open('wb') as stream:bundle.write(stream)
         compact_pdf(combined)
         print(f'统一审阅稿已生成：{combined}')
+    if '--competition-entry' in sys.argv and '--with-drawings' in sys.argv:
+        source_paths=[SOURCE,ROOT/'project/submission-baseline.yaml',ROOT/'project/report.yaml',
+                      *[ROOT/'deliverables/process'/name for name in (
+                        'ring-baseline-design-card.md','ring-final-welding-card.md','ring-fixture-design-card.md',
+                        'ring-automation-card.md','manufacturing-and-inspection-card.md','NDT-inspection-card.md',
+                        'cleanliness-inspection-card.md','bore-compensation-and-finish-card.md',
+                        'ring-ut-coverage-design.md',
+                        'ring-production-resource-card.md','calculation-index.md')],
+                      ROOT/'cad/generated/ring-fixture/HJ-F-S01-ring-fixture-drawings.pdf']
+        source_paths += image_dependencies(ROOT,[p for p in source_paths if p.suffix=='.md'])
+        source_paths += [ROOT/name for name in (
+            'cad/generated/ring-baseline/geometry-quality-and-mass.json',
+            'cad/generated/ring-baseline/ring-precoat-design.json',
+            'cad/generated/ring-baseline/HJ-S01-ring-baseline.png',
+            'cad/generated/ring-baseline/HJ-S02-ring-precoat-section.png',
+            'deliverables/process/ring-final-welding-card.json',
+            'studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json',
+            'studies/COMPETITION-DESIGN/results/ring-production-resources.json',
+            'simulation/ring-baseline-structure/results/assessment.json',
+            'simulation/ring-baseline-manufacturing/results/assessment.json',
+            'automation/app/results/demo-summary.json',
+            'automation/app/results/complete-weld-replay-summary.json',
+            'automation/path-planning/results/weld-path.json',
+            'deliverables/report/generated/current-status.json',
+            'cad/generated/ring-baseline/ring-assembly-QT450-10-Q235B.step',
+            'cad/generated/ring-baseline/ring-seat-QT450-10.step',
+            'cad/generated/ring-baseline/ring-precoat-eight-windows-17solids.step',
+            'cad/generated/ring-fixture/ring-fixture-assembly.step',
+            'cad/generated/ring-fixture/geometry-quality-and-bom.json',
+            'simulation/ring-baseline-structure/results/medium/mesh.npz',
+            'docs/report/figures/publication/ring-ut-coverage.pdf',
+            'scripts/generate-ring-ut-coverage.py',
+            'cad/generated/engineering-drawings/pdf/HJ-DRW-drawing-set.pdf',
+            'deliverables/report/build_technical_report_pdf.py',
+            'src/hanjie/reporting/fonts.py',
+            'src/hanjie/reporting/current_status.py',
+            'simulation/ring-baseline-structure/model_inputs.py',
+            'src/hanjie/reporting/publication.py')]
+        source_paths += [p for p in (ROOT/'assets/fonts').iterdir() if p.is_file()]
+        outputs=[OUT,PAPER,ROOT/'output/pdf/基准与候选工程图集.pdf',combined]
+        state={'process_version':yaml.safe_load((ROOT/'project/submission-baseline.yaml').read_text())['version'],
+               'sources':fingerprints(ROOT,source_paths),
+               'outputs':fingerprints(ROOT,outputs)}
+        (ROOT/'output/pdf/ring-publication-build.json').write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n')
     return 0
 
 

@@ -1,0 +1,2982 @@
+{
+  "mesh": {
+    "mesh_inputs": {
+      "schema": "RING-COLD-EXPLICIT-JOINT-MESH-2",
+      "level": "coarse",
+      "leg_mm": 3.5,
+      "precoat_STEP_geometry_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+      "bulk_size_mm": 6.0,
+      "local_size_mm": 0.9,
+      "shell_surface_size_function": "Min(6.0, 2.0 + Max(0, Abs(z-107.5)-17.5)*0.3)",
+      "algorithm_3D": 1,
+      "netgen_optimization": false,
+      "shell_geometry_mm": [
+        75.0,
+        80.0,
+        200.0
+      ],
+      "effective_length_mm": 18.0,
+      "segments": 8,
+      "interfaces": "only conforming shared material faces; unwelded radial gap=.02mm"
+    },
+    "level": "coarse",
+    "bulk_size_mm": 6.0,
+    "local_size_mm": 0.9,
+    "nodes": 60703,
+    "tetrahedra": 243112,
+    "tetrahedra_by_material": {
+      "1": 64567,
+      "2": 146699,
+      "3": 12741,
+      "4": 10098,
+      "5": 9007
+    },
+    "volumes_mm3": {
+      "1": 244442.24702869853,
+      "2": 486946.8613064177,
+      "3": 894.5154494909823,
+      "4": 744.2089270621118,
+      "5": 868.2799999999863
+    },
+    "quality_min": 0.035291422779138375,
+    "quality_p01": 0.35185865157447244,
+    "nonpositive_quality_count": 0,
+    "interface_surfaces": {
+      "QT_first": [
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244
+      ],
+      "first_second": [
+        248,
+        249,
+        250,
+        251,
+        254,
+        255,
+        256,
+        257,
+        260,
+        261,
+        262,
+        263,
+        266,
+        267,
+        268,
+        269,
+        272,
+        273,
+        274,
+        275,
+        278,
+        279,
+        280,
+        281,
+        284,
+        285,
+        286,
+        287,
+        290,
+        291,
+        292,
+        293
+      ],
+      "second_final": [
+        295,
+        298,
+        301,
+        304,
+        307,
+        310,
+        313,
+        316
+      ],
+      "final_shell": [
+        179,
+        184,
+        189,
+        194,
+        199,
+        204,
+        209,
+        322,
+        323
+      ],
+      "QT_final": []
+    },
+    "effective_segment_length_mm": 18.0,
+    "effective_segment_count": 8,
+    "fillet_leg_mm": 3.5,
+    "unwelded_radial_gap_mm": 0.02,
+    "model": "five-material conforming tetrahedral solids; bonded qualified interfaces; open unwelded gap",
+    "actual_faceted_gap_audit": {
+      "method": "clip actual straight inner-shell triangular facets to z100..115; minimize xy radius on every polygon edge",
+      "tested_facets": 11735,
+      "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.99166343605829,
+      "maximum_nominal_seat_outer_radius_mm": 74.98,
+      "minimum_conservative_open_clearance_mm": 0.011663436058285015,
+      "direct_precoated_seat_shell_shared_nodes": 0,
+      "unwelded_gap_geometry_verified": true
+    },
+    "bulk_mm": 6.0,
+    "cold_effective_support_mm": 18.0,
+    "actual_thermal_path_mm": 20.0,
+    "interface_method": "conforming nominal shared faces; minimum18mm effective support and3.5mm fillet",
+    "snapshot_provenance": "explicit fixed accepted P1 structural mesh; not a claim of rebuilding with latest builder settings",
+    "original_analysis_inputs": {
+      "process_version": "SUBMISSION-RING-20261008-R2",
+      "mesh_inputs": {
+        "schema": "RING-COLD-EXPLICIT-JOINT-MESH-2",
+        "level": "coarse",
+        "leg_mm": 3.5,
+        "precoat_STEP_geometry_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+        "bulk_size_mm": 6.0,
+        "local_size_mm": 0.9,
+        "shell_surface_size_function": "Min(6.0, 2.0 + Max(0, Abs(z-107.5)-17.5)*0.3)",
+        "algorithm_3D": 1,
+        "netgen_optimization": false,
+        "shell_geometry_mm": [
+          75.0,
+          80.0,
+          200.0
+        ],
+        "effective_length_mm": 18.0,
+        "segments": 8,
+        "interfaces": "only conforming shared material faces; unwelded radial gap=.02mm"
+      },
+      "material_inputs": {
+        "1": {
+          "name": "QT450-10",
+          "E_MPa": 169000.0,
+          "nu": 0.27,
+          "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+        },
+        "2": {
+          "name": "Q235B",
+          "E_MPa": 206000.0,
+          "nu": 0.3,
+          "basis": "engineering room-temperature elastic input"
+        },
+        "3": {
+          "name": "CI-A1 retained first layer",
+          "E_MPa": 200000.0,
+          "nu": 0.3,
+          "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+        },
+        "4": {
+          "name": "Ni99 retained second layer",
+          "E_MPa": 200000.0,
+          "nu": 0.3,
+          "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+        },
+        "5": {
+          "name": "NiFe55 final effective fillet",
+          "E_MPa": 200000.0,
+          "nu": 0.3,
+          "basis": "design elastic assumption; effective interface and joint strength require qualification"
+        }
+      },
+      "actual_faceted_gap_audit": {
+        "method": "clip actual straight inner-shell triangular facets to z100..115; minimize xy radius on every polygon edge",
+        "tested_facets": 11735,
+        "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.99166343605829,
+        "maximum_nominal_seat_outer_radius_mm": 74.98,
+        "minimum_conservative_open_clearance_mm": 0.011663436058285015,
+        "direct_precoated_seat_shell_shared_nodes": 0,
+        "unwelded_gap_geometry_verified": true
+      },
+      "scope": "Current independently built P1 support mesh only. No service-load solution or residual-stress qualification is implied."
+    },
+    "original_cache_identity_available": true,
+    "current_precoat_STEP_DATA_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+    "source_mesh_npz_sha256": "f6086d62939465b27696dd3ebe6be0072b4b6dbb3a34e8d2b8828b6b783040fc",
+    "source_snapshot": "simulation/ring-baseline-structure/results/p1-current-coarse-safe",
+    "current_retained_volume_relative_error": {
+      "1": 0.0006929065216261349,
+      "3": 0.006138200901854143,
+      "4": 0.01181226518065327
+    }
+  },
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "actual_path_320mm": true,
+  "model": "3D cold linear-elastic eigenstrain response, nominal assumed bonded connections, full fixture release",
+  "elastic_inputs": {
+    "1": {
+      "E_MPa": 169000.0,
+      "nu": 0.27
+    },
+    "2": {
+      "E_MPa": 206000.0,
+      "nu": 0.3
+    },
+    "3": {
+      "E_MPa": 200000.0,
+      "nu": 0.3
+    },
+    "4": {
+      "E_MPa": 200000.0,
+      "nu": 0.3
+    },
+    "5": {
+      "E_MPa": 200000.0,
+      "nu": 0.3
+    }
+  },
+  "kernel_amplitude": 0.0001,
+  "cold_support_scope": "8x18mm minimum effective support;3.5mm fillet. Thermal calculations use the20mm actual arc/deposit envelope. Neither qualified first interface nor20mm full support is presumed.",
+  "source_qualification": "input eigenstrains are independent sensitivity variables; no temperature-to-shrinkage calibration is claimed",
+  "retained_precoat_policy": "No complete precoat residual-stress/plastic field is imported. The nonzero kernels represent final-cycle changes of retained eigenstrain, not numerical inheritance of that field. Predictive manufacturing response requires the complete retained precoat state.",
+  "responses": {
+    "symmetric_final_shrink": {
+      "input_amplitude": 0.0001,
+      "input_microstrain": 100.0,
+      "CG_iterations": 57,
+      "free_residual_N": 1.4165030650899338e-06,
+      "gauge_reaction_N": 5.127619200288918e-09,
+      "maximum_von_Mises_MPa": 148.0492940796918,
+      "von_Mises_by_material_MPa": {
+        "1": 3.6000753404180124,
+        "2": 20.06035673176177,
+        "3": 7.683182024682901,
+        "4": 29.641336481525673,
+        "5": 148.0492940796918
+      },
+      "position_diameter_mm": 6.360804020387489e-06,
+      "bore_radius_mm": 20.00000604874389,
+      "bore_axis_slopes": [
+        1.5501943725696493e-07,
+        1.110345919567993e-07
+      ],
+      "bore_axis_center_in_datum_frame_mm": [
+        2.4426761043220433e-08,
+        9.1488696867714e-07
+      ],
+      "bore_axis_z_reference_mm": -107.50050095506673,
+      "datum_A_origin_mm": [
+        1.283798379307181e-06,
+        8.039012256618369e-07,
+        1.1965392453869925e-07
+      ],
+      "datum_frame": [
+        [
+          0.6553283010024216,
+          0.7553441718218783,
+          -1.2655033227131496e-09
+        ],
+        [
+          0.7553441718218782,
+          -0.6553283010024217,
+          -4.4487357519615036e-10
+        ],
+        [
+          -1.1653528050798168e-09,
+          -6.643523097163835e-10,
+          -1.0
+        ]
+      ],
+      "datum_B_center_in_A_frame_mm": [
+        -6.174653682671085e-08,
+        1.9057531381655695e-08
+      ],
+      "bore_fit_rms_mm": 2.1965537320544897e-05,
+      "datum_a_fit_rms_mm": 7.755029042048013e-08,
+      "evidence_level": "solver_verified_measurement_scenario",
+      "official_cmm_equivalence_confirmed": false,
+      "section_axis_envelope_diameter_mm": 6.360804020387489e-06,
+      "section_centres_relative_B_mm": [
+        [
+          4.777061926969309e-07,
+          7.393950978155857e-07
+        ],
+        [
+          7.033956317914665e-07,
+          1.0747570957415659e-06
+        ],
+        [
+          1.3245644501004706e-06,
+          2.1257833169674887e-06
+        ],
+        [
+          1.5078359784234869e-06,
+          2.800247776289823e-06
+        ],
+        [
+          4.0385386411088767e-07,
+          2.0074788397323314e-06
+        ],
+        [
+          5.419262184457242e-07,
+          9.276983746393726e-07
+        ],
+        [
+          5.823161559395704e-07,
+          1.091671087291284e-06
+        ],
+        [
+          5.141039817680419e-07,
+          1.357005311331511e-06
+        ],
+        [
+          -2.976372290932139e-08,
+          7.366188624465104e-07
+        ],
+        [
+          -2.8391016065590807e-07,
+          3.6650967831728776e-07
+        ],
+        [
+          4.789034090219738e-07,
+          9.472523114228583e-07
+        ],
+        [
+          4.4065248299239007e-07,
+          9.663011679463025e-07
+        ],
+        [
+          -1.388640669520152e-06,
+          -5.211427632970211e-07
+        ],
+        [
+          -2.508672274558262e-06,
+          -8.152214491678946e-07
+        ],
+        [
+          -2.025711875104916e-06,
+          3.420969136123797e-08
+        ],
+        [
+          -6.995007762088799e-07,
+          8.438241937660793e-07
+        ],
+        [
+          3.7622037708969074e-07,
+          8.707147586386456e-07
+        ]
+      ],
+      "sampled_bore_two_point_diameter_min_mm": 39.99993617386894,
+      "sampled_bore_two_point_diameter_max_mm": 40.00009006574435,
+      "sampled_section_diameter_spreads_mm": [
+        1.9923384968478786e-06,
+        1.180077868667695e-05,
+        1.1856146016953062e-05,
+        1.1467558181266213e-05,
+        1.0966263872091986e-05,
+        1.8970980164567663e-06,
+        2.6481804837885647e-06,
+        3.414836108106556e-06,
+        7.897633473419319e-06,
+        1.2419102120020398e-05,
+        6.044262342186357e-06,
+        2.6446751988373762e-06,
+        1.2281974697714304e-05,
+        1.3821234297495266e-05,
+        1.5013730667590153e-05,
+        1.4142886101353724e-05,
+        1.2541388940690013e-06
+      ],
+      "maximum_sampled_section_ovalization_mm": 1.5013730667590153e-05,
+      "minimum_diameter_change_um": -0.063826131061262,
+      "maximum_diameter_change_um": 0.09006574435233006,
+      "position_diameter_um": 0.006360804020387489
+    },
+    "first_harmonic_final_shrink": {
+      "input_amplitude": 0.0001,
+      "input_microstrain": 100.0,
+      "CG_iterations": 56,
+      "free_residual_N": 1.089792987056289e-06,
+      "gauge_reaction_N": 2.544079788470898e-09,
+      "maximum_von_Mises_MPa": 146.815807798134,
+      "von_Mises_by_material_MPa": {
+        "1": 3.228641829039953,
+        "2": 20.240248150395782,
+        "3": 6.994883086450718,
+        "4": 30.33176942285599,
+        "5": 146.815807798134
+      },
+      "position_diameter_mm": 0.00023187688660182486,
+      "bore_radius_mm": 19.999999850273724,
+      "bore_axis_slopes": [
+        4.6550148718991004e-08,
+        -2.3617080457174746e-06
+      ],
+      "bore_axis_center_in_datum_frame_mm": [
+        -2.874624291804847e-06,
+        9.818063206873082e-05
+      ],
+      "bore_axis_z_reference_mm": 107.4999991104046,
+      "datum_A_origin_mm": [
+        2.5236500951208996e-06,
+        -8.427516671275873e-07,
+        -2.116438235148436e-09
+      ],
+      "datum_frame": [
+        [
+          -0.024808552516343837,
+          0.9996922204969105,
+          -3.682639433410128e-09
+        ],
+        [
+          0.9996922204969105,
+          0.02480855251634384,
+          4.545006712549406e-10
+        ],
+        [
+          -5.45721824035131e-10,
+          3.6702304865725717e-09,
+          1.0
+        ]
+      ],
+      "datum_B_center_in_A_frame_mm": [
+        1.5433314515119033e-07,
+        -4.163583450002808e-06
+      ],
+      "bore_fit_rms_mm": 6.115427407129219e-07,
+      "datum_a_fit_rms_mm": 1.4633929616080729e-07,
+      "evidence_level": "solver_verified_measurement_scenario",
+      "official_cmm_equivalence_confirmed": false,
+      "section_axis_envelope_diameter_mm": 0.000231368667582646,
+      "section_centres_relative_B_mm": [
+        [
+          -3.266621814619785e-06,
+          0.00011563820418297098
+        ],
+        [
+          -3.2332811515117273e-06,
+          0.0001136708860058101
+        ],
+        [
+          -3.158304616313558e-06,
+          0.00011169688707853653
+        ],
+        [
+          -3.0670430689519244e-06,
+          0.00010942397718926767
+        ],
+        [
+          -2.9953670874638457e-06,
+          0.00010694082944220962
+        ],
+        [
+          -3.0295595835430678e-06,
+          0.00010478680620223749
+        ],
+        [
+          -2.9712890552822102e-06,
+          0.00010258668184422386
+        ],
+        [
+          -2.9008731072058773e-06,
+          0.00010052428284817057
+        ],
+        [
+          -2.834549648734459e-06,
+          9.83725249359114e-05
+        ],
+        [
+          -2.790773088288846e-06,
+          9.59199918696651e-05
+        ],
+        [
+          -2.7416322831716775e-06,
+          9.384991407622433e-05
+        ],
+        [
+          -2.6702993129857004e-06,
+          9.162202201458099e-05
+        ],
+        [
+          -2.6592297004483164e-06,
+          8.910800556043798e-05
+        ],
+        [
+          -2.6695759252354786e-06,
+          8.666337576839269e-05
+        ],
+        [
+          -2.724829580050921e-06,
+          8.452218562260846e-05
+        ],
+        [
+          -2.7026286034684993e-06,
+          8.274991458313032e-05
+        ],
+        [
+          -2.4527543647651893e-06,
+          8.099421350301433e-05
+        ]
+      ],
+      "sampled_bore_two_point_diameter_min_mm": 39.999995562477395,
+      "sampled_bore_two_point_diameter_max_mm": 40.00000261076157,
+      "sampled_section_diameter_spreads_mm": [
+        8.644060329743297e-07,
+        2.7840600651529712e-06,
+        1.8948759290537964e-06,
+        1.1012699090429123e-06,
+        4.348853721580781e-07,
+        3.37885232681856e-07,
+        2.1938605243576603e-07,
+        3.260528060877732e-07,
+        1.0955394031952892e-06,
+        1.827177243285405e-06,
+        2.1219879258183028e-06,
+        5.498032464856806e-07,
+        2.9702858483915406e-06,
+        3.4980363921022217e-06,
+        4.150636222277626e-06,
+        4.8073786302893495e-06,
+        7.796321028763487e-07
+      ],
+      "maximum_sampled_section_ovalization_mm": 4.8073786302893495e-06,
+      "minimum_diameter_change_um": -0.004437522605371669,
+      "maximum_diameter_change_um": 0.0026107615695991626,
+      "position_diameter_um": 0.23187688660182487
+    },
+    "second_harmonic_final_shrink": {
+      "input_amplitude": 0.0001,
+      "input_microstrain": 100.0,
+      "CG_iterations": 57,
+      "free_residual_N": 9.22460703857527e-07,
+      "gauge_reaction_N": 4.3967954240802655e-09,
+      "maximum_von_Mises_MPa": 145.36342422658484,
+      "von_Mises_by_material_MPa": {
+        "1": 3.6392786649743325,
+        "2": 20.22708221027181,
+        "3": 7.3509423861856895,
+        "4": 30.847584654378988,
+        "5": 145.36342422658484
+      },
+      "position_diameter_mm": 3.4237954704240116e-06,
+      "bore_radius_mm": 20.000000771865235,
+      "bore_axis_slopes": [
+        -3.239414195133267e-08,
+        -4.336570223460832e-09
+      ],
+      "bore_axis_center_in_datum_frame_mm": [
+        -6.788673167559262e-07,
+        -2.787213270513626e-07
+      ],
+      "bore_axis_z_reference_mm": -107.50000673258268,
+      "datum_A_origin_mm": [
+        3.231588136924183e-05,
+        -1.3359965889303549e-05,
+        -5.1088405696440105e-08
+      ],
+      "datum_frame": [
+        [
+          -0.008496233754240783,
+          0.9999639063545861,
+          -2.6376569922898837e-07
+        ],
+        [
+          0.999963906354621,
+          0.008496233754240294,
+          -2.9740636751042813e-09
+        ],
+        [
+          -7.329412606952387e-10,
+          -2.6378144730365936e-07,
+          -0.9999999999999649
+        ]
+      ],
+      "datum_B_center_in_A_frame_mm": [
+        5.369929415609806e-07,
+        3.685835707624539e-07
+      ],
+      "bore_fit_rms_mm": 6.550116897402452e-06,
+      "datum_a_fit_rms_mm": 1.3572915422367901e-05,
+      "evidence_level": "solver_verified_measurement_scenario",
+      "official_cmm_equivalence_confirmed": false,
+      "section_axis_envelope_diameter_mm": 3.4237954704240116e-06,
+      "section_centres_relative_B_mm": [
+        [
+          -4.531186385017229e-07,
+          8.36290590844459e-08
+        ],
+        [
+          -7.098679070792145e-07,
+          -2.8278403717431687e-07
+        ],
+        [
+          -8.875957095760976e-07,
+          -3.047189952036072e-07
+        ],
+        [
+          -1.1128874554509077e-06,
+          -1.2111522508680487e-07
+        ],
+        [
+          -1.4217679937108704e-06,
+          4.1371447597184844e-07
+        ],
+        [
+          -4.2810296110869976e-07,
+          -2.153377567127597e-07
+        ],
+        [
+          -8.581659211718273e-07,
+          -1.4812646986826168e-06
+        ],
+        [
+          -8.176750308265799e-07,
+          -1.223886949641666e-06
+        ],
+        [
+          -6.960806360918356e-07,
+          -3.52192608445685e-07
+        ],
+        [
+          -8.277788461139189e-07,
+          -1.2141164659887687e-07
+        ],
+        [
+          -7.192615300399971e-07,
+          -3.9297948212513587e-07
+        ],
+        [
+          -3.7598818325529493e-07,
+          -2.793372910000596e-07
+        ],
+        [
+          -4.697269724906731e-07,
+          -2.5211904207799477e-07
+        ],
+        [
+          -4.360846912262203e-07,
+          2.36561211229668e-07
+        ],
+        [
+          -4.785335922165524e-07,
+          1.4062936055441318e-07
+        ],
+        [
+          -5.109385506109507e-07,
+          -1.4929011570609908e-07
+        ],
+        [
+          -3.3716932745445503e-07,
+          -4.3635764464655116e-07
+        ]
+      ],
+      "sampled_bore_two_point_diameter_min_mm": 39.99996020000623,
+      "sampled_bore_two_point_diameter_max_mm": 40.00003832295941,
+      "sampled_section_diameter_spreads_mm": [
+        7.812295318387896e-05,
+        6.343589146240447e-05,
+        5.517138467325822e-05,
+        4.7672984841540256e-05,
+        4.0016092910377665e-05,
+        4.5010846896786916e-05,
+        3.5473740069846826e-05,
+        2.0531290552128212e-05,
+        1.645106097214466e-05,
+        1.2411685155200303e-05,
+        1.0958829427920591e-05,
+        7.176906571260133e-06,
+        6.982112594755563e-07,
+        6.365009703301894e-06,
+        1.2532818367105847e-05,
+        1.8686607312190517e-05,
+        2.4569264034823846e-05
+      ],
+      "maximum_sampled_section_ovalization_mm": 7.812295318387896e-05,
+      "minimum_diameter_change_um": -0.03979999377179411,
+      "maximum_diameter_change_um": 0.038322959412084856,
+      "position_diameter_um": 0.0034237954704240117
+    },
+    "single_segment_final_shrink": {
+      "input_amplitude": 0.0001,
+      "input_microstrain": 100.0,
+      "CG_iterations": 56,
+      "free_residual_N": 4.3119244754211154e-07,
+      "gauge_reaction_N": 1.4549551101725084e-09,
+      "maximum_von_Mises_MPa": 141.89374879969552,
+      "von_Mises_by_material_MPa": {
+        "1": 3.0227863998977647,
+        "2": 18.48362146213197,
+        "3": 6.4960891115716155,
+        "4": 30.204347349893272,
+        "5": 141.89374879969552
+      },
+      "position_diameter_mm": 5.8661766483169895e-05,
+      "bore_radius_mm": 20.000000960065826,
+      "bore_axis_slopes": [
+        -9.347268840840685e-10,
+        6.327305673883869e-07
+      ],
+      "bore_axis_center_in_datum_frame_mm": [
+        -1.9302318753017538e-07,
+        2.458471125314395e-05
+      ],
+      "bore_axis_z_reference_mm": -107.50006458572942,
+      "datum_A_origin_mm": [
+        1.5872506157717698e-05,
+        -6.075163740681955e-07,
+        -1.6437525965489405e-06
+      ],
+      "datum_frame": [
+        [
+          -0.006820795996759156,
+          0.9999767381004249,
+          -7.008124457012667e-08
+        ],
+        [
+          0.9999767381004272,
+          0.006820795996759118,
+          -7.791257682880617e-10
+        ],
+        [
+          -3.01097784338062e-10,
+          -7.008492860534589e-08,
+          -0.9999999999999977
+        ]
+      ],
+      "datum_B_center_in_A_frame_mm": [
+        -2.1227837297564414e-07,
+        -7.429547414948976e-07
+      ],
+      "bore_fit_rms_mm": 3.044812087161026e-06,
+      "datum_a_fit_rms_mm": 3.4066944344102357e-06,
+      "evidence_level": "solver_verified_measurement_scenario",
+      "official_cmm_equivalence_confirmed": false,
+      "section_axis_envelope_diameter_mm": 5.801562277354133e-05,
+      "section_centres_relative_B_mm": [
+        [
+          -1.1132028467409577e-07,
+          2.90075977847991e-05
+        ],
+        [
+          -1.4550748551936145e-07,
+          2.8556254608616738e-05
+        ],
+        [
+          -2.0437548986430977e-07,
+          2.8353299981073515e-05
+        ],
+        [
+          -2.8885992153454035e-07,
+          2.8037486293969177e-05
+        ],
+        [
+          -3.7483895795036733e-07,
+          2.7339819932938094e-05
+        ],
+        [
+          -1.4630184866737658e-07,
+          2.6213015030516194e-05
+        ],
+        [
+          -1.5183867543772082e-07,
+          2.547196352044419e-05
+        ],
+        [
+          -2.0855262327568083e-07,
+          2.510735363091926e-05
+        ],
+        [
+          -2.0593654734916675e-07,
+          2.46958065461928e-05
+        ],
+        [
+          -1.9558018343259594e-07,
+          2.3996944195406104e-05
+        ],
+        [
+          -1.2808067564603783e-07,
+          2.345725997186206e-05
+        ],
+        [
+          -7.447787093692868e-08,
+          2.2891469698701443e-05
+        ],
+        [
+          -1.6982741901838785e-07,
+          2.190303150145983e-05
+        ],
+        [
+          -2.699371501860572e-07,
+          2.12834275299046e-05
+        ],
+        [
+          -3.1737479562979797e-07,
+          2.0873337124004814e-05
+        ],
+        [
+          -2.444640727225869e-07,
+          2.0579400737564742e-05
+        ],
+        [
+          -4.4120407343472444e-08,
+          2.0172611596481073e-05
+        ]
+      ],
+      "sampled_bore_two_point_diameter_min_mm": 39.99998219498128,
+      "sampled_bore_two_point_diameter_max_mm": 40.00001410520514,
+      "sampled_section_diameter_spreads_mm": [
+        2.017551360466996e-05,
+        1.4004268159339972e-05,
+        1.1521109996692758e-05,
+        1.0122168809800769e-05,
+        8.642979032913445e-06,
+        1.1522971917088398e-05,
+        9.08111343278506e-06,
+        5.73135061188168e-06,
+        5.577094221109746e-06,
+        5.424383310526082e-06,
+        4.190736021314478e-06,
+        2.25852413393568e-06,
+        2.590796313484134e-06,
+        1.6848689696757901e-06,
+        1.3954453024211944e-06,
+        2.7947857006438426e-06,
+        5.993825574535094e-06
+      ],
+      "maximum_sampled_section_ovalization_mm": 2.017551360466996e-05,
+      "minimum_diameter_change_um": -0.017805018721617216,
+      "maximum_diameter_change_um": 0.014105205139003374,
+      "position_diameter_um": 0.0586617664831699
+    },
+    "first_harmonic_precoat_redistribution": {
+      "input_amplitude": 0.0001,
+      "input_microstrain": 100.0,
+      "CG_iterations": 57,
+      "free_residual_N": 1.0753877944077772e-06,
+      "gauge_reaction_N": 2.8227097042564576e-09,
+      "maximum_von_Mises_MPa": 59.32242880655514,
+      "von_Mises_by_material_MPa": {
+        "1": 25.84534021692227,
+        "2": 7.829930378356487,
+        "3": 26.062973808654846,
+        "4": 28.927223944618714,
+        "5": 59.32242880655514
+      },
+      "position_diameter_mm": 0.000281426032715058,
+      "bore_radius_mm": 20.00000008290004,
+      "bore_axis_slopes": [
+        5.118813181167947e-07,
+        2.352978506456781e-06
+      ],
+      "bore_axis_center_in_datum_frame_mm": [
+        2.6236255866527656e-05,
+        0.00011981390059563453
+      ],
+      "bore_axis_z_reference_mm": -107.5000004556725,
+      "datum_A_origin_mm": [
+        5.320000474225613e-07,
+        -2.831107529799315e-07,
+        -6.125441600045879e-08
+      ],
+      "datum_frame": [
+        [
+          0.21251976540708334,
+          0.977156768032294,
+          -1.2216080390832083e-09
+        ],
+        [
+          0.9771567680322942,
+          -0.2125197654070834,
+          6.238150700716121e-10
+        ],
+        [
+          3.4994913785182545e-10,
+          -1.326275579950658e-09,
+          -1.0
+        ]
+      ],
+      "datum_B_center_in_A_frame_mm": [
+        -7.25020918208047e-07,
+        -3.3119972632483167e-06
+      ],
+      "bore_fit_rms_mm": 9.694900161896911e-08,
+      "datum_a_fit_rms_mm": 1.7652798136879162e-07,
+      "evidence_level": "solver_verified_measurement_scenario",
+      "official_cmm_equivalence_confirmed": false,
+      "section_axis_envelope_diameter_mm": 0.0002813521319948278,
+      "section_centres_relative_B_mm": [
+        [
+          3.006889955348141e-05,
+          0.00013742494978769828
+        ],
+        [
+          2.9588760415164154e-05,
+          0.000135248445825278
+        ],
+        [
+          2.9119794999599514e-05,
+          0.00013307929009182594
+        ],
+        [
+          2.8645079083217223e-05,
+          0.0001308652231671603
+        ],
+        [
+          2.8162960372235715e-05,
+          0.00012863630513111268
+        ],
+        [
+          2.7684754386613712e-05,
+          0.00012642736491661258
+        ],
+        [
+          2.7192334989860277e-05,
+          0.00012421857671743766
+        ],
+        [
+          2.6712246931320607e-05,
+          0.0001220366930347795
+        ],
+        [
+          2.623158431863698e-05,
+          0.00011982228626347868
+        ],
+        [
+          2.5749116038850712e-05,
+          0.00011760806833851424
+        ],
+        [
+          2.5278702762484474e-05,
+          0.00011539545679907864
+        ],
+        [
+          2.480948522109654e-05,
+          0.0001132018991869502
+        ],
+        [
+          2.4317110186501854e-05,
+          0.0001109950358902331
+        ],
+        [
+          2.382391194958091e-05,
+          0.00010876181413085232
+        ],
+        [
+          2.3339541051156305e-05,
+          0.00010655634526359267
+        ],
+        [
+          2.2871622400299355e-05,
+          0.0001043727389340314
+        ],
+        [
+          2.2420439729847226e-05,
+          0.0001021857870646982
+        ]
+      ],
+      "sampled_bore_two_point_diameter_min_mm": 39.99999950802015,
+      "sampled_bore_two_point_diameter_max_mm": 40.00000057572285,
+      "sampled_section_diameter_spreads_mm": [
+        5.436769612288117e-07,
+        3.4103053536682637e-07,
+        2.0140435452731253e-07,
+        1.2541988070324805e-07,
+        1.6626433563260434e-07,
+        4.623994129815401e-07,
+        2.2670708688110608e-07,
+        2.2477269112641807e-07,
+        2.7252800549604217e-07,
+        2.9531674528016083e-07,
+        2.808925430031195e-07,
+        2.394193145960344e-07,
+        3.215416271018512e-07,
+        3.5121345831612416e-07,
+        3.9010831187624717e-07,
+        4.2923725374066635e-07,
+        1.9878951462715122e-07
+      ],
+      "maximum_sampled_section_ovalization_mm": 5.436769612288117e-07,
+      "minimum_diameter_change_um": -0.0004919798470837122,
+      "maximum_diameter_change_um": 0.000575722850726379,
+      "position_diameter_um": 0.281426032715058
+    },
+    "single_window_precoat_redistribution": {
+      "input_amplitude": 0.0001,
+      "input_microstrain": 100.0,
+      "CG_iterations": 55,
+      "free_residual_N": 6.067998376331136e-07,
+      "gauge_reaction_N": 2.8968646717310456e-09,
+      "maximum_von_Mises_MPa": 59.903769723251074,
+      "von_Mises_by_material_MPa": {
+        "1": 25.67749697129206,
+        "2": 7.650214488312907,
+        "3": 26.02981901931561,
+        "4": 28.275086733917163,
+        "5": 59.903769723251074
+      },
+      "position_diameter_mm": 7.15820867381951e-05,
+      "bore_radius_mm": 20.00000014647303,
+      "bore_axis_slopes": [
+        1.7946301571976465e-10,
+        -6.15899736572501e-07
+      ],
+      "bore_axis_center_in_datum_frame_mm": [
+        -8.766025201449528e-07,
+        3.091735008170087e-05
+      ],
+      "bore_axis_z_reference_mm": 107.50003728487829,
+      "datum_A_origin_mm": [
+        9.04582813623378e-05,
+        -2.235350263157798e-05,
+        -2.2803160990706058e-06
+      ],
+      "datum_frame": [
+        [
+          -0.00161349626896352,
+          0.9999986983140469,
+          -4.275250229080276e-08
+        ],
+        [
+          0.9999986983140478,
+          0.0016134962689635347,
+          3.0275081940942954e-10
+        ],
+        [
+          -3.7173162335009854e-10,
+          4.275195815263686e-08,
+          0.9999999999999992
+        ]
+      ],
+      "datum_B_center_in_A_frame_mm": [
+        6.814782865370336e-07,
+        -8.687161885148201e-07
+      ],
+      "bore_fit_rms_mm": 1.5068100296253873e-06,
+      "datum_a_fit_rms_mm": 3.3755424159671112e-06,
+      "evidence_level": "solver_verified_measurement_scenario",
+      "official_cmm_equivalence_confirmed": false,
+      "section_axis_envelope_diameter_mm": 7.15820867381951e-05,
+      "section_centres_relative_B_mm": [
+        [
+          -6.74977839008424e-07,
+          3.578467815092752e-05
+        ],
+        [
+          -9.425106626884614e-07,
+          3.504400367024686e-05
+        ],
+        [
+          -9.347970177024647e-07,
+          3.4342640355883686e-05
+        ],
+        [
+          -8.454739456488824e-07,
+          3.365362621509947e-05
+        ],
+        [
+          -8.766271367787542e-07,
+          3.3148249473642016e-05
+        ],
+        [
+          -6.731447561678669e-07,
+          3.297871303891898e-05
+        ],
+        [
+          -1.187873221400776e-06,
+          3.20652843679989e-05
+        ],
+        [
+          -9.998286975309486e-07,
+          3.1265501315824586e-05
+        ],
+        [
+          -7.566339558861843e-07,
+          3.055370086596226e-05
+        ],
+        [
+          -1.006491212433566e-06,
+          3.0234502423458288e-05
+        ],
+        [
+          -1.037229161871226e-06,
+          2.9988639855288147e-05
+        ],
+        [
+          -6.603380926015218e-07,
+          2.9443134001298365e-05
+        ],
+        [
+          -7.882268768226892e-07,
+          2.82078840896855e-05
+        ],
+        [
+          -9.064925832542175e-07,
+          2.776119472156207e-05
+        ],
+        [
+          -1.007285189340972e-06,
+          2.7409748900157228e-05
+        ],
+        [
+          -9.591233545263864e-07,
+          2.709171176868441e-05
+        ],
+        [
+          -6.45189463683038e-07,
+          2.6621729942527603e-05
+        ]
+      ],
+      "sampled_bore_two_point_diameter_min_mm": 39.999995741435775,
+      "sampled_bore_two_point_diameter_max_mm": 40.000010498252365,
+      "sampled_section_diameter_spreads_mm": [
+        3.61401681203688e-06,
+        2.1889190122692526e-06,
+        1.2998879697079246e-06,
+        1.5884202184679452e-06,
+        2.284987708378594e-06,
+        1.873054451095868e-06,
+        4.2139686797781906e-06,
+        4.4869297610716785e-06,
+        4.883074595340986e-06,
+        5.235318141671996e-06,
+        7.062208759123223e-06,
+        9.040224043133094e-06,
+        7.655376911941403e-06,
+        8.466631342685105e-06,
+        9.476349404735629e-06,
+        1.1131890978788306e-05,
+        1.471820418430525e-05
+      ],
+      "maximum_sampled_section_ovalization_mm": 1.471820418430525e-05,
+      "minimum_diameter_change_um": -0.004258564224812744,
+      "maximum_diameter_change_um": 0.010498252365209737,
+      "position_diameter_um": 0.07158208673819509
+    }
+  },
+  "conditional_scans": [
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 9.988842716664831e-11,
+      "minimum_diameter_change_um": -1.4210854715202004e-11,
+      "maximum_diameter_change_um": 7.105427357601002e-12,
+      "initial_bore_allowable_low_mm": 40.000000000000014,
+      "initial_bore_allowable_high_mm": 40.02499999999999,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 0.0,
+      "combined_VM_by_material_MPa": "{\"1\": 0.0, \"2\": 0.0, \"3\": 0.0, \"4\": 0.0, \"5\": 0.0}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.0703564636611604,
+      "minimum_diameter_change_um": -0.00012299619100986092,
+      "maximum_diameter_change_um": 0.00014390683134024584,
+      "initial_bore_allowable_low_mm": 40.00000012299619,
+      "initial_bore_allowable_high_mm": 40.02499985609317,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 14.830607201638784,
+      "combined_VM_by_material_MPa": "{\"1\": 6.461335054230568, \"2\": 1.9574825945891217, \"3\": 6.515743452163711, \"4\": 7.231805986154678, \"5\": 14.830607201638784}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.281426032715058,
+      "minimum_diameter_change_um": -0.0004919798470837122,
+      "maximum_diameter_change_um": 0.000575722850726379,
+      "initial_bore_allowable_low_mm": 40.00000049197985,
+      "initial_bore_allowable_high_mm": 40.02499942427715,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 59.32242880655514,
+      "combined_VM_by_material_MPa": "{\"1\": 25.84534021692227, \"2\": 7.829930378356487, \"3\": 26.062973808654846, \"4\": 28.927223944618714, \"5\": 59.32242880655514}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.5628525401697619,
+      "minimum_diameter_change_um": -0.0009839464780725393,
+      "maximum_diameter_change_um": 0.001151700530499511,
+      "initial_bore_allowable_low_mm": 40.00000098394648,
+      "initial_bore_allowable_high_mm": 40.02499884829947,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 118.64485761311028,
+      "combined_VM_by_material_MPa": "{\"1\": 51.69068043384454, \"2\": 15.659860756712973, \"3\": 52.12594761730969, \"4\": 57.85444788923743, \"5\": 118.64485761311028}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.02318765740149934,
+      "minimum_diameter_change_um": -0.0004437526186507057,
+      "maximum_diameter_change_um": 0.00026107616690751456,
+      "initial_bore_allowable_low_mm": 40.00000044375262,
+      "initial_bore_allowable_high_mm": 40.02499973892383,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 14.681580779813402,
+      "combined_VM_by_material_MPa": "{\"1\": 0.32286418290399527, \"2\": 2.0240248150395788, \"3\": 0.6994883086450718, \"4\": 3.0331769422855994, \"5\": 14.681580779813402}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.09354397878756558,
+      "minimum_diameter_change_um": -0.0004188026991869265,
+      "maximum_diameter_change_um": 0.00031519541465740986,
+      "initial_bore_allowable_low_mm": 40.0000004188027,
+      "initial_bore_allowable_high_mm": 40.024999684804584,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 24.01001930120386,
+      "combined_VM_by_material_MPa": "{\"1\": 6.542760977307442, \"2\": 2.594207398754585, \"3\": 6.749029729894012, \"4\": 6.160420578538023, \"5\": 24.01001930120386}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.30461355610674046,
+      "minimum_diameter_change_um": -0.0005244280174565574,
+      "maximum_diameter_change_um": 0.0006234309992692033,
+      "initial_bore_allowable_low_mm": 40.00000052442802,
+      "initial_bore_allowable_high_mm": 40.024999376569,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 66.0714324457396,
+      "combined_VM_by_material_MPa": "{\"1\": 25.926674583002804, \"2\": 8.25174488189942, \"3\": 26.289964960863408, \"4\": 27.62666559725201, \"5\": 66.0714324457396}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.58604011474383,
+      "minimum_diameter_change_um": -0.0010163926376094423,
+      "maximum_diameter_change_um": 0.0011994467072895532,
+      "initial_bore_allowable_low_mm": 40.00000101639264,
+      "initial_bore_allowable_high_mm": 40.02499880055329,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 124.80338620949357,
+      "combined_VM_by_material_MPa": "{\"1\": 51.77199937250563, \"2\": 16.02550427663818, \"3\": 52.351857222753836, \"4\": 56.52161235955475, \"5\": 124.80338620949357}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.05796915637955193,
+      "minimum_diameter_change_um": -0.0011093814151763581,
+      "maximum_diameter_change_um": 0.0006526904030579317,
+      "initial_bore_allowable_low_mm": 40.000001109381415,
+      "initial_bore_allowable_high_mm": 40.024999347309596,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 36.7039519495335,
+      "combined_VM_by_material_MPa": "{\"1\": 0.8071604572599882, \"2\": 5.060062037598946, \"3\": 1.7487207716126796, \"4\": 7.582942355713998, \"5\": 36.7039519495335}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.12832537085282142,
+      "minimum_diameter_change_um": -0.0010844313109714676,
+      "maximum_diameter_change_um": 0.0007068096365969723,
+      "initial_bore_allowable_low_mm": 40.00000108443131,
+      "initial_bore_allowable_high_mm": 40.02499929319036,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 43.41918419019164,
+      "combined_VM_by_material_MPa": "{\"1\": 6.665345047412115, \"2\": 5.437369020396919, \"3\": 7.128044407322393, \"4\": 7.3100655056289705, \"5\": 43.41918419019164}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.33939490372095066,
+      "minimum_diameter_change_um": -0.001009579605693034,
+      "maximum_diameter_change_um": 0.0008691673869520855,
+      "initial_bore_allowable_low_mm": 40.000001009579606,
+      "initial_bore_allowable_high_mm": 40.02499913083261,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 79.74757473608288,
+      "combined_VM_by_material_MPa": "{\"1\": 26.048791114940077, \"2\": 9.21365985636297, \"3\": 26.638423731886235, \"4\": 25.94098575830273, \"5\": 79.74757473608288}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6208215178553875,
+      "minimum_diameter_change_um": -0.0010650613262441766,
+      "maximum_diameter_change_um": 0.0012710766128520845,
+      "initial_bore_allowable_low_mm": 40.000001065061326,
+      "initial_bore_allowable_high_mm": 40.024998728923386,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 136.19701068051273,
+      "combined_VM_by_material_MPa": "{\"1\": 51.89403558797689, \"2\": 16.789947059061834, \"3\": 52.694768664566055, \"4\": 54.64481208885594, \"5\": 136.19701068051273}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.11593835638536153,
+      "minimum_diameter_change_um": -0.0022187623329728012,
+      "maximum_diameter_change_um": 0.0013053807847995813,
+      "initial_bore_allowable_low_mm": 40.00000221876233,
+      "initial_bore_allowable_high_mm": 40.024998694619214,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 73.407903899067,
+      "combined_VM_by_material_MPa": "{\"1\": 1.6143209145199764, \"2\": 10.120124075197891, \"3\": 3.497441543225359, \"4\": 15.165884711427996, \"5\": 73.407903899067}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.18629449946513746,
+      "minimum_diameter_change_um": -0.0021938118663911155,
+      "maximum_diameter_change_um": 0.0013595000467603313,
+      "initial_bore_allowable_low_mm": 40.000002193811866,
+      "initial_bore_allowable_high_mm": 40.02499864049995,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 79.23861087340705,
+      "combined_VM_by_material_MPa": "{\"1\": 6.870768313633694, \"2\": 10.44240323795049, \"3\": 8.269919013086419, \"4\": 13.234778527371915, \"5\": 79.23861087340705}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.39736394448892326,
+      "minimum_diameter_change_um": -0.002118959152141997,
+      "maximum_diameter_change_um": 0.0015218577757991625,
+      "initial_bore_allowable_low_mm": 40.00000211895915,
+      "initial_bore_allowable_high_mm": 40.02499847814222,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 107.77872841907983,
+      "combined_VM_by_material_MPa": "{\"1\": 26.25262053341802, \"2\": 12.019152031481271, \"3\": 27.23953442231968, \"4\": 24.61149735007362, \"5\": 107.77872841907983}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6787906201270204,
+      "minimum_diameter_change_um": -0.0020191524043866593,
+      "maximum_diameter_change_um": 0.0017383347596933163,
+      "initial_bore_allowable_low_mm": 40.000002019152404,
+      "initial_bore_allowable_high_mm": 40.02499826166524,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 159.49514947216576,
+      "combined_VM_by_material_MPa": "{\"1\": 52.09758222988015, \"2\": 18.42731971272594, \"3\": 53.27684746377247, \"4\": 51.88197151660546, \"5\": 159.49514947216576}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.23187688660182487,
+      "minimum_diameter_change_um": -0.004437522605371669,
+      "maximum_diameter_change_um": 0.0026107615695991626,
+      "initial_bore_allowable_low_mm": 40.000004437522605,
+      "initial_bore_allowable_high_mm": 40.02499738923843,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 146.815807798134,
+      "combined_VM_by_material_MPa": "{\"1\": 3.228641829039953, \"2\": 20.240248150395782, \"3\": 6.994883086450718, \"4\": 30.33176942285599, \"5\": 146.815807798134}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.30223301169555367,
+      "minimum_diameter_change_um": -0.004412571449563529,
+      "maximum_diameter_change_um": 0.0026648808244544853,
+      "initial_bore_allowable_low_mm": 40.00000441257145,
+      "initial_bore_allowable_high_mm": 40.024997335119174,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 152.14763153016904,
+      "combined_VM_by_material_MPa": "{\"1\": 7.285375663505155, \"2\": 20.533552039772182, \"3\": 11.621177884883792, \"4\": 27.92797801099478, \"5\": 152.14763153016904}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.5133023641194191,
+      "minimum_diameter_change_um": -0.0043377166818459045,
+      "maximum_diameter_change_um": 0.002827238560598744,
+      "initial_bore_allowable_low_mm": 40.00000433771668,
+      "initial_bore_allowable_high_mm": 40.02499717276144,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 173.67673676076657,
+      "combined_VM_by_material_MPa": "{\"1\": 26.66138018964846, \"2\": 21.749476081587677, \"3\": 28.51217762928957, \"4\": 29.240262022515882, \"5\": 173.67673676076657}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.7947291265953836,
+      "minimum_diameter_change_um": -0.004237907234028171,
+      "maximum_diameter_change_um": 0.003043715530282043,
+      "initial_bore_allowable_low_mm": 40.000004237907234,
+      "initial_bore_allowable_high_mm": 40.02499695628447,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 215.55745683815965,
+      "combined_VM_by_material_MPa": "{\"1\": 52.50524106683604, \"2\": 24.038304062962542, \"3\": 54.47906884463936, \"4\": 49.22299470014724, \"5\": 215.55745683815965}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.4637544688386286,
+      "minimum_diameter_change_um": -0.008875036911604184,
+      "maximum_diameter_change_um": 0.005221523146303753,
+      "initial_bore_allowable_low_mm": 40.00000887503691,
+      "initial_bore_allowable_high_mm": 40.02499477847685,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 293.631615596268,
+      "combined_VM_by_material_MPa": "{\"1\": 6.457283658079906, \"2\": 40.480496300791565, \"3\": 13.989766172901437, \"4\": 60.66353884571198, \"5\": 293.631615596268}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.5341106772929265,
+      "minimum_diameter_change_um": -0.008850084405764846,
+      "maximum_diameter_change_um": 0.0052756423869482205,
+      "initial_bore_allowable_low_mm": 40.000008850084406,
+      "initial_bore_allowable_high_mm": 40.02499472435761,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 298.6997029853792,
+      "combined_VM_by_material_MPa": "{\"1\": 8.746602794854182, \"2\": 40.75897662020698, \"3\": 18.48688154935795, \"4\": 58.0484409479928, \"5\": 298.6997029853792}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.7451801028187977,
+      "minimum_diameter_change_um": -0.008775225552426491,
+      "maximum_diameter_change_um": 0.005438000130197906,
+      "initial_bore_allowable_low_mm": 40.00000877522555,
+      "initial_bore_allowable_high_mm": 40.02499456199987,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 316.9544434936282,
+      "combined_VM_by_material_MPa": "{\"1\": 27.483073254534776, \"2\": 41.76961295180196, \"3\": 33.079676052345675, \"4\": 52.93911410948766, \"5\": 316.9544434936282}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 0.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 1.0266070765900788,
+      "minimum_diameter_change_um": -0.008675410647640547,
+      "maximum_diameter_change_um": 0.0056544770998812055,
+      "initial_bore_allowable_low_mm": 40.00000867541065,
+      "initial_bore_allowable_high_mm": 40.0249943455229,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 347.35347352153315,
+      "combined_VM_by_material_MPa": "{\"1\": 53.32276037929692, \"2\": 43.49895216317535, \"3\": 57.02435525857914, \"4\": 58.480524045031764, \"5\": 347.35347352153315}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.006360804020387489,
+      "minimum_diameter_change_um": -0.063826131061262,
+      "maximum_diameter_change_um": 0.09006574435233006,
+      "initial_bore_allowable_low_mm": 40.00006382613106,
+      "initial_bore_allowable_high_mm": 40.024909934255646,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 148.0492940796918,
+      "combined_VM_by_material_MPa": "{\"1\": 3.6000753404180124, \"2\": 20.06035673176177, \"3\": 7.683182024682901, \"4\": 29.641336481525673, \"5\": 148.0492940796918}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.07455354029147998,
+      "minimum_diameter_change_um": -0.06393120418834997,
+      "maximum_diameter_change_um": 0.09020965259054492,
+      "initial_bore_allowable_low_mm": 40.00006393120419,
+      "initial_bore_allowable_high_mm": 40.02490979034741,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 151.2923468384278,
+      "combined_VM_by_material_MPa": "{\"1\": 7.406093307179118, \"2\": 19.830754941393433, \"3\": 11.536566940512978, \"4\": 31.62426916026162, \"5\": 151.2923468384278}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.28562187702569286,
+      "minimum_diameter_change_um": -0.06424641164670675,
+      "maximum_diameter_change_um": 0.09064147289450375,
+      "initial_bore_allowable_low_mm": 40.00006424641165,
+      "initial_bore_allowable_high_mm": 40.024909358527104,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 172.63198556621887,
+      "combined_VM_by_material_MPa": "{\"1\": 26.781242959176613, \"2\": 19.793654820537878, \"3\": 28.522912907730074, \"4\": 46.81714226534805, \"5\": 172.63198556621887}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.5670481905567064,
+      "minimum_diameter_change_um": -0.06467618554495402,
+      "maximum_diameter_change_um": 0.0912174562657242,
+      "initial_bore_allowable_low_mm": 40.000064676185545,
+      "initial_bore_allowable_high_mm": 40.02490878254373,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 210.37029313836592,
+      "combined_VM_by_material_MPa": "{\"1\": 52.62492250554854, \"2\": 23.12679379289341, \"3\": 54.495370327521, \"4\": 73.53794434703278, \"5\": 210.37029313836592}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.028137872180481093,
+      "minimum_diameter_change_um": -0.0638547613007745,
+      "maximum_diameter_change_um": 0.09011341535369866,
+      "initial_bore_allowable_low_mm": 40.0000638547613,
+      "initial_bore_allowable_high_mm": 40.024909886584645,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 160.72557529249522,
+      "combined_VM_by_material_MPa": "{\"1\": 3.603026851992745, \"2\": 20.287095335846423, \"3\": 8.26999383586838, \"4\": 32.67328990651407, \"5\": 160.72557529249522}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.09774100455538112,
+      "minimum_diameter_change_um": -0.06395983325546695,
+      "maximum_diameter_change_um": 0.09025733309897532,
+      "initial_bore_allowable_low_mm": 40.000063959833255,
+      "initial_bore_allowable_high_mm": 40.0249097426669,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 165.93201802376768,
+      "combined_VM_by_material_MPa": "{\"1\": 7.489638868957493, \"2\": 20.445674694150284, \"3\": 12.202399630293138, \"4\": 30.298537501515185, \"5\": 165.93201802376768}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.308809530646826,
+      "minimum_diameter_change_um": -0.0642750371468992,
+      "maximum_diameter_change_um": 0.09068918188859243,
+      "initial_bore_allowable_low_mm": 40.00006427503715,
+      "initial_bore_allowable_high_mm": 40.02490931081811,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 186.73042813535602,
+      "combined_VM_by_material_MPa": "{\"1\": 26.863198250255273, \"2\": 21.62075370637323, \"3\": 28.786784062032197, \"4\": 44.47325554363966, \"5\": 186.73042813535602}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.5902358438836298,
+      "minimum_diameter_change_um": -0.06470863168317464,
+      "maximum_diameter_change_um": 0.09126520329516552,
+      "initial_bore_allowable_low_mm": 40.00006470863168,
+      "initial_bore_allowable_high_mm": 40.0249087347967,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 223.28797051019316,
+      "combined_VM_by_material_MPa": "{\"1\": 52.70656074738211, \"2\": 23.983224450283192, \"3\": 54.741087391483774, \"4\": 71.76431297481103, \"5\": 223.28797051019316}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.062168525866885455,
+      "minimum_diameter_change_um": -0.06389770535975003,
+      "maximum_diameter_change_um": 0.09018493248191817,
+      "initial_bore_allowable_low_mm": 40.00006389770536,
+      "initial_bore_allowable_high_mm": 40.02490981506752,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 182.74549028064774,
+      "combined_VM_by_material_MPa": "{\"1\": 3.9367587763808047, \"2\": 22.878157928896535, \"3\": 9.15079839290467, \"4\": 37.2215938607322, \"5\": 182.74549028064774}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.13252264069162487,
+      "minimum_diameter_change_um": -0.06400277548834765,
+      "maximum_diameter_change_um": 0.09032886448068211,
+      "initial_bore_allowable_low_mm": 40.00006400277549,
+      "initial_bore_allowable_high_mm": 40.02490967113552,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 187.90378721305595,
+      "combined_VM_by_material_MPa": "{\"1\": 7.615260761569094, \"2\": 23.213979140613635, \"3\": 13.206576174635456, \"4\": 34.79000827408379, \"5\": 187.90378721305595}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.34359104143023494,
+      "minimum_diameter_change_um": -0.06431797402228767,
+      "maximum_diameter_change_um": 0.09076075603786649,
+      "initial_bore_allowable_low_mm": 40.00006431797402,
+      "initial_bore_allowable_high_mm": 40.02490923924396,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 208.0294122749444,
+      "combined_VM_by_material_MPa": "{\"1\": 26.98623513078077, \"2\": 24.366911901294607, \"3\": 29.188702967229354, \"4\": 41.22698534994062, \"5\": 208.0294122749444}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6250173544650275,
+      "minimum_diameter_change_um": -0.06475730032207139,
+      "maximum_diameter_change_um": 0.09133683445128327,
+      "initial_bore_allowable_low_mm": 40.00006475730032,
+      "initial_bore_allowable_high_mm": 40.02490866316555,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 243.12606044897984,
+      "combined_VM_by_material_MPa": "{\"1\": 52.82907304772042, \"2\": 26.201904331425098, \"3\": 55.11321458363295, \"4\": 69.16340935390136, \"5\": 243.12606044897984}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.12013682381913479,
+      "minimum_diameter_change_um": -0.0639692751462917,
+      "maximum_diameter_change_um": 0.09030415603206166,
+      "initial_bore_allowable_low_mm": 40.000063969275146,
+      "initial_bore_allowable_high_mm": 40.02490969584397,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 219.44644403864802,
+      "combined_VM_by_material_MPa": "{\"1\": 4.723071002330332, \"2\": 27.494237883480576, \"3\": 10.619938179383592, \"4\": 44.80275996181186, \"5\": 219.44644403864802}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.19049184745983977,
+      "minimum_diameter_change_um": -0.06407434230482068,
+      "maximum_diameter_change_um": 0.09044811179137469,
+      "initial_bore_allowable_low_mm": 40.000064074342305,
+      "initial_bore_allowable_high_mm": 40.02490955188821,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 224.54543518755173,
+      "combined_VM_by_material_MPa": "{\"1\": 7.8253967029974625, \"2\": 27.82851747097741, \"3\": 14.891418904232205, \"4\": 42.3034884413777, \"5\": 224.54543518755173}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.40156029223388007,
+      "minimum_diameter_change_um": -0.06438953185039509,
+      "maximum_diameter_change_um": 0.09088007465862802,
+      "initial_bore_allowable_low_mm": 40.00006438953185,
+      "initial_bore_allowable_high_mm": 40.02490911992534,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 243.81351578575322,
+      "combined_VM_by_material_MPa": "{\"1\": 27.191569600331363, \"2\": 28.953887549867837, \"3\": 30.017224816117334, \"4\": 38.94553638859058, \"5\": 243.81351578575322}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6829866118513716,
+      "minimum_diameter_change_um": -0.06483841318782879,
+      "maximum_diameter_change_um": 0.09145624812134656,
+      "initial_bore_allowable_low_mm": 40.00006483841319,
+      "initial_bore_allowable_high_mm": 40.02490854375188,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 276.9242530058531,
+      "combined_VM_by_material_MPa": "{\"1\": 53.033405586934656, \"2\": 30.71122272572592, \"3\": 55.74268613733838, \"4\": 65.00838607971258, \"5\": 276.9242530058531}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.23607489246560043,
+      "minimum_diameter_change_um": -0.0641124012119576,
+      "maximum_diameter_change_um": 0.09054270950059617,
+      "initial_bore_allowable_low_mm": 40.00006411240121,
+      "initial_bore_allowable_high_mm": 40.0249094572905,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 292.85060611184633,
+      "combined_VM_by_material_MPa": "{\"1\": 6.295874848440409, \"2\": 36.726691690424005, \"3\": 13.834627952819908, \"4\": 59.96643969872723, \"5\": 292.85060611184633}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.3064304352255405,
+      "minimum_diameter_change_um": -0.06421746238771675,
+      "maximum_diameter_change_um": 0.09068671278100737,
+      "initial_bore_allowable_low_mm": 40.00006421746239,
+      "initial_bore_allowable_high_mm": 40.02490931328722,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 297.87475795200265,
+      "combined_VM_by_material_MPa": "{\"1\": 8.583489507836147, \"2\": 37.05903737818971, \"3\": 18.289178170578523, \"4\": 57.38529550440759, \"5\": 297.87475795200265}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.517498994957826,
+      "minimum_diameter_change_um": -0.06453263401340337,
+      "maximum_diameter_change_um": 0.09111881821866064,
+      "initial_bore_allowable_low_mm": 40.00006453263401,
+      "initial_bore_allowable_high_mm": 40.02490888118178,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 316.0153465083516,
+      "combined_VM_by_material_MPa": "{\"1\": 27.60323486519359, \"2\": 38.14919100220261, \"3\": 33.115087132460445, \"4\": 52.427335834200136, \"5\": 316.0153465083516}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.7989253644170722,
+      "minimum_diameter_change_um": -0.06500063324921257,
+      "maximum_diameter_change_um": 0.09169518176577185,
+      "initial_bore_allowable_low_mm": 40.00006500063325,
+      "initial_bore_allowable_high_mm": 40.02490830481823,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 346.2999331532553,
+      "combined_VM_by_material_MPa": "{\"1\": 53.442608304458616, \"2\": 39.80362766536981, \"3\": 57.034964138704325, \"4\": 57.54486764997409, \"5\": 346.2999331532553}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.46795226506587173,
+      "minimum_diameter_change_um": -0.06439859925677638,
+      "maximum_diameter_change_um": 0.09105767060901826,
+      "initial_bore_allowable_low_mm": 40.00006439859926,
+      "initial_bore_allowable_high_mm": 40.02490894232939,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 439.6626786832608,
+      "combined_VM_by_material_MPa": "{\"1\": 9.441781736256724, \"2\": 55.19208660951863, \"3\": 20.77315107762052, \"4\": 90.29602108904776, \"5\": 439.6626786832608}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.5383081769666704,
+      "minimum_diameter_change_um": -0.06450364848831214,
+      "maximum_diameter_change_um": 0.09117598871455357,
+      "initial_bore_allowable_low_mm": 40.00006450364849,
+      "initial_bore_allowable_high_mm": 40.024908824011284,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 444.6112138451823,
+      "combined_VM_by_material_MPa": "{\"1\": 10.384715518689301, \"2\": 55.52249089565652, \"3\": 25.143716976597016, \"4\": 87.63601146929807, \"5\": 444.6112138451823}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.7493770516483735,
+      "minimum_diameter_change_um": -0.06483312435534572,
+      "maximum_diameter_change_um": 0.09159673069092378,
+      "initial_bore_allowable_low_mm": 40.000064833124355,
+      "initial_bore_allowable_high_mm": 40.02490840326931,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 461.5618689362123,
+      "combined_VM_by_material_MPa": "{\"1\": 28.430348482145913, \"2\": 56.57658636040082, \"3\": 39.44435557977579, \"4\": 81.39057933218714, \"5\": 461.5618689362123}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 100.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 1.0308036503418494,
+      "minimum_diameter_change_um": -0.06532505070566685,
+      "maximum_diameter_change_um": 0.09217347443524204,
+      "initial_bore_allowable_low_mm": 40.000065325050706,
+      "initial_bore_allowable_high_mm": 40.02490782652556,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 488.5991909830345,
+      "combined_VM_by_material_MPa": "{\"1\": 54.263107497278604, \"2\": 58.121518680097786, \"3\": 59.96239271541865, \"4\": 78.38427606619577, \"5\": 488.5991909830345}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.019082411989254908,
+      "minimum_diameter_change_um": -0.1914783930772046,
+      "maximum_diameter_change_um": 0.2701972335117375,
+      "initial_bore_allowable_low_mm": 40.00019147839308,
+      "initial_bore_allowable_high_mm": 40.02472980276649,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 444.1478822390754,
+      "combined_VM_by_material_MPa": "{\"1\": 10.800226021254035, \"2\": 60.18107019528532, \"3\": 23.049546074048703, \"4\": 88.92400944457701, \"5\": 444.1478822390754}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.08569893549323292,
+      "minimum_diameter_change_um": -0.19158346596270803,
+      "maximum_diameter_change_um": 0.27034114459212333,
+      "initial_bore_allowable_low_mm": 40.00019158346596,
+      "initial_bore_allowable_high_mm": 40.02472965885541,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 443.6193535627706,
+      "combined_VM_by_material_MPa": "{\"1\": 10.812547621540006, \"2\": 59.93074945205232, \"3\": 25.122934834102153, \"4\": 88.2010006575851, \"5\": 443.6193535627706}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.2940160891296228,
+      "minimum_diameter_change_um": -0.19189867274604921,
+      "maximum_diameter_change_um": 0.2707729733941733,
+      "initial_bore_allowable_low_mm": 40.000191898672746,
+      "initial_bore_allowable_high_mm": 40.024729227026604,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 459.8134028597457,
+      "combined_VM_by_material_MPa": "{\"1\": 28.67134307233206, \"2\": 59.30456051520256, \"3\": 39.534132127657486, \"4\": 98.51857182163653, \"5\": 459.8134028597457}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.5754407838907943,
+      "minimum_diameter_change_um": -0.1923189206678444,
+      "maximum_diameter_change_um": 0.2713489681411829,
+      "initial_bore_allowable_low_mm": 40.00019231892067,
+      "initial_bore_allowable_high_mm": 40.02472865103186,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 486.6676816215752,
+      "combined_VM_by_material_MPa": "{\"1\": 54.5031992715128, \"2\": 58.768434331014106, \"3\": 60.10768054524628, \"4\": 117.36768773979561, \"5\": 486.6676816215752}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.04073496630061192,
+      "minimum_diameter_change_um": -0.19150702320303026,
+      "maximum_diameter_change_um": 0.27024490618288155,
+      "initial_bore_allowable_low_mm": 40.0001915070232,
+      "initial_bore_allowable_high_mm": 40.024729755093816,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 452.81752936830225,
+      "combined_VM_by_material_MPa": "{\"1\": 10.803060329543388, \"2\": 58.161873127174154, \"3\": 23.636236718265007, \"4\": 91.95588217012039, \"5\": 452.81752936830225}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.10757506190335786,
+      "minimum_diameter_change_um": -0.1916120948948219,
+      "maximum_diameter_change_um": 0.27038882678454,
+      "initial_bore_allowable_low_mm": 40.000191612094895,
+      "initial_bore_allowable_high_mm": 40.024729611173214,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 457.70316372479175,
+      "combined_VM_by_material_MPa": "{\"1\": 10.815826432129095, \"2\": 57.97324654321452, \"3\": 25.808916453516204, \"4\": 89.3343541318358, \"5\": 457.70316372479175}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.3172038092363121,
+      "minimum_diameter_change_um": -0.19192729806860598,
+      "maximum_diameter_change_um": 0.2708206841077754,
+      "initial_bore_allowable_low_mm": 40.00019192729807,
+      "initial_bore_allowable_high_mm": 40.02472917931589,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 474.41568866792204,
+      "combined_VM_by_material_MPa": "{\"1\": 28.754365980571528, \"2\": 58.00441064956765, \"3\": 40.1718906402398, \"4\": 95.66173206243182, \"5\": 474.41568866792204}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.5986285413913082,
+      "minimum_diameter_change_um": -0.19234754124397568,
+      "maximum_diameter_change_um": 0.27139671686171596,
+      "initial_bore_allowable_low_mm": 40.000192347541244,
+      "initial_bore_allowable_high_mm": 40.02472860328314,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 501.0493979137605,
+      "combined_VM_by_material_MPa": "{\"1\": 54.58542856396696, \"2\": 59.53292522274298, \"3\": 60.721429607230505, \"4\": 114.89578141191697, \"5\": 501.0493979137605}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.07348189066071951,
+      "minimum_diameter_change_um": -0.1915499670062104,
+      "maximum_diameter_change_um": 0.2703164258619495,
+      "initial_bore_allowable_low_mm": 40.000191549967006,
+      "initial_bore_allowable_high_mm": 40.02472968357414,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 474.83688077971215,
+      "combined_VM_by_material_MPa": "{\"1\": 10.8075315782939, \"2\": 60.186363563066166, \"3\": 24.516502591643377, \"4\": 96.50384494685109, \"5\": 474.83688077971215}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.14092220630355604,
+      "minimum_diameter_change_um": -0.19165503692875063,
+      "maximum_diameter_change_um": 0.2704603606886735,
+      "initial_bore_allowable_low_mm": 40.00019165503693,
+      "initial_bore_allowable_high_mm": 40.02472953963931,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 479.71838562622924,
+      "combined_VM_by_material_MPa": "{\"1\": 10.944384785750728, \"2\": 59.99568741729439, \"3\": 26.83865620361873, \"4\": 93.87318454572089, \"5\": 479.71838562622924}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.3519854036207342,
+      "minimum_diameter_change_um": -0.19197023471662078,
+      "maximum_diameter_change_um": 0.27089226080079243,
+      "initial_bore_allowable_low_mm": 40.00019197023472,
+      "initial_bore_allowable_high_mm": 40.0247291077392,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 496.3278896200442,
+      "combined_VM_by_material_MPa": "{\"1\": 28.87898603854954, \"2\": 60.770932327197215, \"3\": 41.15710888154506, \"4\": 91.38250333654734, \"5\": 496.3278896200442}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6334101942218737,
+      "minimum_diameter_change_um": -0.19239047072261428,
+      "maximum_diameter_change_um": 0.271468350582893,
+      "initial_bore_allowable_low_mm": 40.00019239047072,
+      "initial_bore_allowable_high_mm": 40.024728531649416,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 522.6532382232072,
+      "combined_VM_by_material_MPa": "{\"1\": 54.708822233207144, \"2\": 62.28963531706093, \"3\": 61.644232637123395, \"4\": 111.20503460275368, \"5\": 522.6532382232072}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.12853903597413535,
+      "minimum_diameter_change_um": -0.19162153645879698,
+      "maximum_diameter_change_um": 0.27043565366824396,
+      "initial_bore_allowable_low_mm": 40.00019162153646,
+      "initial_bore_allowable_high_mm": 40.02472956434633,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 511.53637755901974,
+      "combined_VM_by_material_MPa": "{\"1\": 11.02403240432913, \"2\": 64.01850623563703, \"3\": 25.984156229048217, \"4\": 104.0841330505889, \"5\": 511.53637755901974}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.19889009111345898,
+      "minimum_diameter_change_um": -0.19172660336153058,
+      "maximum_diameter_change_um": 0.2705796122555171,
+      "initial_bore_allowable_low_mm": 40.00019172660336,
+      "initial_bore_allowable_high_mm": 40.02472942038774,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 516.4117769345481,
+      "combined_VM_by_material_MPa": "{\"1\": 11.617447456374267, \"2\": 64.34584036857676, \"3\": 28.556689307321758, \"4\": 101.44007910120294, \"5\": 516.4117769345481}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.4099547642206997,
+      "minimum_diameter_change_um": -0.19204179220366768,
+      "maximum_diameter_change_um": 0.2710115836350724,
+      "initial_bore_allowable_low_mm": 40.000192041792204,
+      "initial_bore_allowable_high_mm": 40.02472898841636,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 532.8684103578875,
+      "combined_VM_by_material_MPa": "{\"1\": 29.086911392560296, \"2\": 65.38243407160084, \"3\": 42.80499785625187, \"4\": 94.99524717657042, \"5\": 532.8684103578875}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6913796580253851,
+      "minimum_diameter_change_um": -0.1924620162370161,
+      "maximum_diameter_change_um": 0.2715877684735801,
+      "initial_bore_allowable_low_mm": 40.00019246201624,
+      "initial_bore_allowable_high_mm": 40.024728412231525,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 558.7322638732415,
+      "combined_VM_by_material_MPa": "{\"1\": 54.914609970021885, \"2\": 66.88657069407836, \"3\": 63.187766396201944, \"4\": 105.10475787558043, \"5\": 558.7322638732415}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.24447372301528555,
+      "minimum_diameter_change_um": -0.1917646617997093,
+      "maximum_diameter_change_um": 0.27067421559223703,
+      "initial_bore_allowable_low_mm": 40.0001917646618,
+      "initial_bore_allowable_high_mm": 40.024729325784406,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 584.9370483510862,
+      "combined_VM_by_material_MPa": "{\"1\": 12.59655866793255, \"2\": 73.25050462285809, \"3\": 28.921130297139875, \"4\": 119.24572180269952, \"5\": 584.9370483510862}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.3148275154636436,
+      "minimum_diameter_change_um": -0.19186972274098935,
+      "maximum_diameter_change_um": 0.2708182217148192,
+      "initial_bore_allowable_low_mm": 40.00019186972274,
+      "initial_bore_allowable_high_mm": 40.024729181778284,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 589.8025021875571,
+      "combined_VM_by_material_MPa": "{\"1\": 13.178178018784031, \"2\": 73.57773821364005, \"3\": 31.99820080374396, \"4\": 116.58012471809023, \"5\": 589.8025021875571}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.5258936260642051,
+      "minimum_diameter_change_um": -0.19218489363481694,
+      "maximum_diameter_change_um": 0.2712503356647744,
+      "initial_bore_allowable_low_mm": 40.000192184893635,
+      "initial_bore_allowable_high_mm": 40.024728749664334,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 606.0087134480283,
+      "combined_VM_by_material_MPa": "{\"1\": 29.503585374460854, \"2\": 74.60728098604312, \"3\": 46.11991519040947, \"4\": 109.86052095718469, \"5\": 606.0087134480283}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.8073187429640459,
+      "minimum_diameter_change_um": -0.192605093786824,
+      "maximum_diameter_change_um": 0.27182671059478025,
+      "initial_bore_allowable_low_mm": 40.00019260509379,
+      "initial_bore_allowable_high_mm": 40.024728173289404,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 631.1065629199443,
+      "combined_VM_by_material_MPa": "{\"1\": 55.32667241296169, \"2\": 76.08753797015125, \"3\": 66.29382607057566, \"4\": 104.35747394704421, \"5\": 631.1065629199443}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.4763493124457899,
+      "minimum_diameter_change_um": -0.1920508584234426,
+      "maximum_diameter_change_um": 0.2711517648492645,
+      "initial_bore_allowable_low_mm": 40.00019205085842,
+      "initial_bore_allowable_high_mm": 40.02472884823515,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 731.7427434541206,
+      "combined_VM_by_material_MPa": "{\"1\": 15.741957036536062, \"2\": 91.71506970806124, \"3\": 34.79977570558826, \"4\": 149.57151250634928, \"5\": 731.7427434541206}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.5467044589893528,
+      "minimum_diameter_change_um": -0.19215590737076127,
+      "maximum_diameter_change_um": 0.27129586602825384,
+      "initial_bore_allowable_low_mm": 40.00019215590737,
+      "initial_bore_allowable_high_mm": 40.02472870413397,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 736.5942235558482,
+      "combined_VM_by_material_MPa": "{\"1\": 16.306774000414634, \"2\": 92.04216070234975, \"3\": 38.89625507085117, \"4\": 146.8762114715033, \"5\": 736.5942235558482}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.7577718911118763,
+      "minimum_diameter_change_um": -0.192471042453235,
+      "maximum_diameter_change_um": 0.2717282651119035,
+      "initial_bore_allowable_low_mm": 40.00019247104245,
+      "initial_bore_allowable_high_mm": 40.02472827173489,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 752.445691687611,
+      "combined_VM_by_material_MPa": "{\"1\": 30.34006798828016, \"2\": 93.06179005620822, \"3\": 52.809441877950164, \"4\": 139.78495118273136, \"5\": 752.445691687611}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 300.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 1.0391974943948368,
+      "minimum_diameter_change_um": -0.19289119478571592,
+      "maximum_diameter_change_um": 0.27230502020358927,
+      "initial_bore_allowable_low_mm": 40.000192891194786,
+      "initial_bore_allowable_high_mm": 40.024727694979795,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 776.4375815383809,
+      "combined_VM_by_material_MPa": "{\"1\": 56.152695117516366, \"2\": 94.5081828995712, \"3\": 72.57049989434181, \"4\": 132.96384549104675, \"5\": 776.4375815383809}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.03180401985117747,
+      "minimum_diameter_change_um": -0.3191306550220929,
+      "maximum_diameter_change_um": 0.45032872321115747,
+      "initial_bore_allowable_low_mm": 40.00031913065502,
+      "initial_bore_allowable_high_mm": 40.02454967127679,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 740.2464703984591,
+      "combined_VM_by_material_MPa": "{\"1\": 18.000376702090062, \"2\": 100.30178365880887, \"3\": 38.415910123414506, \"4\": 148.20668240762836, \"5\": 740.2464703984591}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.09825512317845751,
+      "minimum_diameter_change_um": -0.3192357276375901,
+      "maximum_diameter_change_um": 0.45047263714081964,
+      "initial_bore_allowable_low_mm": 40.00031923572764,
+      "initial_bore_allowable_high_mm": 40.02454952736286,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 739.7031155914158,
+      "combined_VM_by_material_MPa": "{\"1\": 18.01235818194326, \"2\": 100.04735836526648, \"3\": 40.124420116636855, \"4\": 145.6820614158195, \"5\": 739.7031155914158}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.30241343395729564,
+      "minimum_diameter_change_um": -0.3195509336890723,
+      "maximum_diameter_change_um": 0.450904474462277,
+      "initial_bore_allowable_low_mm": 40.00031955093369,
+      "initial_bore_allowable_high_mm": 40.024549095525536,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 750.7932491403811,
+      "combined_VM_by_material_MPa": "{\"1\": 30.58206122639333, \"2\": 99.35838090452643, \"3\": 52.8445926155152, \"4\": 154.63221307763445, \"5\": 750.7932491403811}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.5838350373361411,
+      "minimum_diameter_change_um": -0.31997118067295105,
+      "maximum_diameter_change_um": 0.45148048059218127,
+      "initial_bore_allowable_low_mm": 40.00031997118067,
+      "initial_bore_allowable_high_mm": 40.024548519519406,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 774.6602857722644,
+      "combined_VM_by_material_MPa": "{\"1\": 56.393444735146886, \"2\": 98.6162065512832, \"3\": 72.68478061460206, \"4\": 169.27329216857765, \"5\": 774.6602857722644}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.053391138827592034,
+      "minimum_diameter_change_um": -0.3191592849773883,
+      "maximum_diameter_change_um": 0.4503763975947095,
+      "initial_bore_allowable_low_mm": 40.00031915928498,
+      "initial_bore_allowable_high_mm": 40.024549623602404,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 744.9095876344397,
+      "combined_VM_by_material_MPa": "{\"1\": 18.003187554564178, \"2\": 98.27814145033847, \"3\": 39.00257507593186, \"4\": 151.2385376990376, \"5\": 744.9095876344397}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.12010859581438617,
+      "minimum_diameter_change_um": -0.31926435642049,
+      "maximum_diameter_change_um": 0.45052032102432804,
+      "initial_bore_allowable_low_mm": 40.00031926435642,
+      "initial_bore_allowable_high_mm": 40.024549479678974,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 749.7242906951296,
+      "combined_VM_by_material_MPa": "{\"1\": 18.015435963378096, \"2\": 98.02390344033984, \"3\": 40.707513337698536, \"4\": 148.56689708297057, \"5\": 749.7242906951296}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.3256009893801021,
+      "minimum_diameter_change_um": -0.3195795588766259,
+      "maximum_diameter_change_um": 0.45095218688118166,
+      "initial_bore_allowable_low_mm": 40.00031957955888,
+      "initial_bore_allowable_high_mm": 40.02454904781312,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 765.4461529156,
+      "combined_VM_by_material_MPa": "{\"1\": 30.665963572132707, \"2\": 97.33703781109377, \"3\": 53.515391182634524, \"4\": 151.74361027962362, \"5\": 765.4461529156}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6070228310031127,
+      "minimum_diameter_change_um": -0.31999980109986836,
+      "maximum_diameter_change_um": 0.4515282309967006,
+      "initial_bore_allowable_low_mm": 40.0003199998011,
+      "initial_bore_allowable_high_mm": 40.024548471769,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 789.226871705032,
+      "combined_VM_by_material_MPa": "{\"1\": 56.47620820626139, \"2\": 96.60141334633664, \"3\": 73.31505393760405, \"4\": 166.43508039495185, \"5\": 789.226871705032}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.08606243755537342,
+      "minimum_diameter_change_um": -0.31920222859582736,
+      "maximum_diameter_change_um": 0.4504479197890987,
+      "initial_bore_allowable_low_mm": 40.000319202228596,
+      "initial_bore_allowable_high_mm": 40.02454955208021,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 766.9288017643405,
+      "combined_VM_by_material_MPa": "{\"1\": 18.007535754733624, \"2\": 98.06109255813982, \"3\": 39.882715248836924, \"4\": 155.7864171126824, \"5\": 766.9288017643405}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.15291022039805036,
+      "minimum_diameter_change_um": -0.31930729824836135,
+      "maximum_diameter_change_um": 0.4505918574864154,
+      "initial_bore_allowable_low_mm": 40.00031930729825,
+      "initial_bore_allowable_high_mm": 40.02454940814251,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 771.7429625614024,
+      "combined_VM_by_material_MPa": "{\"1\": 18.0201843008391, \"2\": 97.86879944191338, \"3\": 41.58247847295363, \"4\": 153.110664243505, \"5\": 771.7429625614024}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.3603823794670434,
+      "minimum_diameter_change_um": -0.3196224953114779,
+      "maximum_diameter_change_um": 0.45102376610373085,
+      "initial_bore_allowable_low_mm": 40.00031962249531,
+      "initial_bore_allowable_high_mm": 40.024548976233895,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 787.4275116823788,
+      "combined_VM_by_material_MPa": "{\"1\": 30.79188852354272, \"2\": 97.34556757181227, \"3\": 54.522675173717936, \"4\": 147.41212339411098, \"5\": 787.4275116823788}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6418045353757388,
+      "minimum_diameter_change_um": -0.3200427303582387,
+      "maximum_diameter_change_um": 0.4515998672545152,
+      "initial_bore_allowable_low_mm": 40.00032004273036,
+      "initial_bore_allowable_high_mm": 40.024548400132744,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 811.0845258524887,
+      "combined_VM_by_material_MPa": "{\"1\": 56.60039856183461, \"2\": 98.6992555594499, \"3\": 74.26175401607794, \"4\": 162.18238731920778, \"5\": 811.0845258524887}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.14068936957742723,
+      "minimum_diameter_change_um": -0.31927379765761543,
+      "maximum_diameter_change_um": 0.4505671518373333,
+      "initial_bore_allowable_low_mm": 40.00031927379766,
+      "initial_bore_allowable_high_mm": 40.02454943284816,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 803.6278764624761,
+      "combined_VM_by_material_MPa": "{\"1\": 18.015134259963727, \"2\": 101.43547667923211, \"3\": 41.349969179341905, \"4\": 163.36644953257036, \"5\": 803.6278764624761}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.20760662283938802,
+      "minimum_diameter_change_um": -0.3193788643258699,
+      "maximum_diameter_change_um": 0.45071111328809366,
+      "initial_bore_allowable_low_mm": 40.000319378864326,
+      "initial_bore_allowable_high_mm": 40.02454928888671,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 808.44119683884,
+      "combined_VM_by_material_MPa": "{\"1\": 18.028448993284016, \"2\": 101.24128189971347, \"3\": 43.041562387000994, \"4\": 160.68436386000675, \"5\": 808.44119683884}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.41835148553585294,
+      "minimum_diameter_change_um": -0.319694052436148,
+      "maximum_diameter_change_um": 0.4511430932012672,
+      "initial_bore_allowable_low_mm": 40.000319694052436,
+      "initial_bore_allowable_high_mm": 40.0245488569068,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 824.0679762806357,
+      "combined_VM_by_material_MPa": "{\"1\": 31.001951350491357, \"2\": 101.87974906094898, \"3\": 56.20420511615761, \"4\": 153.5458475841309, \"5\": 824.0679762806357}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6997740764545393,
+      "minimum_diameter_change_um": -0.3201142755102637,
+      "maximum_diameter_change_um": 0.4517192894013533,
+      "initial_bore_allowable_low_mm": 40.00032011427551,
+      "initial_bore_allowable_high_mm": 40.0245482807106,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 847.5329008241354,
+      "combined_VM_by_material_MPa": "{\"1\": 56.807502007406846, \"2\": 103.30795216166375, \"3\": 75.84288453063277, \"4\": 155.10802445621778, \"5\": 847.5329008241354}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.25287599605171424,
+      "minimum_diameter_change_um": -0.31941692230219587,
+      "maximum_diameter_change_um": 0.4508057222523121,
+      "initial_bore_allowable_low_mm": 40.0003194169223,
+      "initial_bore_allowable_high_mm": 40.024549194277746,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 877.0272504681221,
+      "combined_VM_by_material_MPa": "{\"1\": 18.897541421887578, \"2\": 109.77480801714533, \"3\": 44.28564500679034, \"4\": 178.5272558284609, \"5\": 877.0272504681221}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.32322737754971737,
+      "minimum_diameter_change_um": -0.3195219829734697,
+      "maximum_diameter_change_um": 0.4509497312241706,
+      "initial_bore_allowable_low_mm": 40.00031952198297,
+      "initial_bore_allowable_high_mm": 40.024549050268774,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 881.8390931711015,
+      "combined_VM_by_material_MPa": "{\"1\": 19.43437753761139, \"2\": 110.10031958441219, \"3\": 45.962416143458874, \"4\": 175.83415324029335, \"5\": 881.8390931711015}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.5342900130232171,
+      "minimum_diameter_change_um": -0.3198371531496491,
+      "maximum_diameter_change_um": 0.45138185370063866,
+      "initial_bore_allowable_low_mm": 40.00031983715315,
+      "initial_bore_allowable_high_mm": 40.0245486181463,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 897.3644726739873,
+      "combined_VM_by_material_MPa": "{\"1\": 31.42276469414733, \"2\": 111.10903419999703, \"3\": 59.576438948160764, \"4\": 168.5791007645498, \"5\": 897.3644726739873}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.8157132875207043,
+      "minimum_diameter_change_um": -0.3202573523282126,
+      "maximum_diameter_change_um": 0.45195823999222284,
+      "initial_bore_allowable_low_mm": 40.00032025735233,
+      "initial_bore_allowable_high_mm": 40.024548041760006,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 920.4905856746664,
+      "combined_VM_by_material_MPa": "{\"1\": 57.22215125586555, \"2\": 112.52725712516451, \"3\": 79.01661803813236, \"4\": 161.0503081723674, \"5\": 920.4905856746664}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.4847482109232602,
+      "minimum_diameter_change_um": -0.3197031174480003,
+      "maximum_diameter_change_um": 0.4512832884771001,
+      "initial_bore_allowable_low_mm": 40.00031970311745,
+      "initial_bore_allowable_high_mm": 40.02454871671152,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1023.8296677987864,
+      "combined_VM_by_material_MPa": "{\"1\": 22.042679321603156, \"2\": 128.23894533843577, \"3\": 50.160711366320434, \"4\": 208.85108070021676, \"5\": 1023.8296677987864}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.5551023762428199,
+      "minimum_diameter_change_um": -0.3198081661679453,
+      "maximum_diameter_change_um": 0.4514273924840495,
+      "initial_bore_allowable_low_mm": 40.00031980816617,
+      "initial_bore_allowable_high_mm": 40.024548572607515,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1028.6391706381726,
+      "combined_VM_by_material_MPa": "{\"1\": 22.57361848481196, \"2\": 128.56460321944746, \"3\": 52.671412440779704, \"4\": 206.14083320265487, \"5\": 1028.6391706381726}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.7661679450642939,
+      "minimum_diameter_change_um": -0.3201233005327708,
+      "maximum_diameter_change_um": 0.451859800094212,
+      "initial_bore_allowable_low_mm": 40.00032012330053,
+      "initial_bore_allowable_high_mm": 40.024548140199904,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1044.0044317525637,
+      "combined_VM_by_material_MPa": "{\"1\": 32.71140453101368, \"2\": 129.56916653067398, \"3\": 66.35106623596873, \"4\": 198.70608792278188, \"5\": 1044.0044317525637}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 500.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 1.047592237699577,
+      "minimum_diameter_change_um": -0.3205434519131245,
+      "maximum_diameter_change_um": 0.45243656655458153,
+      "initial_bore_allowable_low_mm": 40.00032054345191,
+      "initial_bore_allowable_high_mm": 40.024547563433444,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1066.5913186958967,
+      "combined_VM_by_material_MPa": "{\"1\": 58.0531749244679, \"2\": 130.9716299012672, \"3\": 85.57911605572473, \"4\": 190.58017014472148, \"5\": 1066.5913186958967}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.06360803896850005,
+      "minimum_diameter_change_um": -0.6382613093691702,
+      "maximum_diameter_change_um": 0.900657449932396,
+      "initial_bore_allowable_low_mm": 40.00063826130937,
+      "initial_bore_allowable_high_mm": 40.024099342550066,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1480.4929407969182,
+      "combined_VM_by_material_MPa": "{\"1\": 36.000753404180124, \"2\": 200.60356731761775, \"3\": 76.83182024682901, \"4\": 296.4133648152567, \"5\": 1480.4929407969182}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.12978661988118162,
+      "minimum_diameter_change_um": -0.6383663813878115,
+      "maximum_diameter_change_um": 0.9008013709674856,
+      "initial_bore_allowable_low_mm": 40.00063836638139,
+      "initial_bore_allowable_high_mm": 40.02409919862903,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1479.9384756902796,
+      "combined_VM_by_material_MPa": "{\"1\": 36.012479590761224, \"2\": 200.3460726044322, \"3\": 78.4687116562716, \"4\": 293.705061301428, \"5\": 1479.9384756902796}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.330271196779998,
+      "minimum_diameter_change_um": -0.6386815856203043,
+      "maximum_diameter_change_um": 0.9012332296265413,
+      "initial_bore_allowable_low_mm": 40.00063868158562,
+      "initial_bore_allowable_high_mm": 40.02409876677037,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1480.1609659559824,
+      "combined_VM_by_material_MPa": "{\"1\": 38.23747573260015, \"2\": 199.61051369687905, \"3\": 86.80634453186882, \"4\": 296.09005167021843, \"5\": 1480.1609659559824}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 0.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6048274714623162,
+      "minimum_diameter_change_um": -0.6391018301812323,
+      "maximum_diameter_change_um": 0.9018092641639441,
+      "initial_bore_allowable_low_mm": 40.00063910183018,
+      "initial_bore_allowable_high_mm": 40.024098190735835,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1501.5864982807623,
+      "combined_VM_by_material_MPa": "{\"1\": 61.16412245278666, \"2\": 198.71676180905285, \"3\": 105.6891852310304, \"4\": 309.2644261552689, \"5\": 1501.5864982807623}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.0851169674939698,
+      "minimum_diameter_change_um": -0.6382899389691943,
+      "maximum_diameter_change_um": 0.9007051285436773,
+      "initial_bore_allowable_low_mm": 40.00063828993897,
+      "initial_bore_allowable_high_mm": 40.024099294871455,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1480.472497123079,
+      "combined_VM_by_material_MPa": "{\"1\": 36.003546661564755, \"2\": 198.57992120980052, \"3\": 77.41846558985569, \"4\": 299.44520672215555, \"5\": 1480.472497123079}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.15157958343597933,
+      "minimum_diameter_change_um": -0.6383950098225455,
+      "maximum_diameter_change_um": 0.9008490590929341,
+      "initial_bore_allowable_low_mm": 40.00063839500982,
+      "initial_bore_allowable_high_mm": 40.024099150940906,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1479.9237703625324,
+      "combined_VM_by_material_MPa": "{\"1\": 36.01540639484953, \"2\": 198.32248773947896, \"3\": 79.05404962012263, \"4\": 296.7358625192145, \"5\": 1479.9237703625324}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.3521498694426641,
+      "minimum_diameter_change_um": -0.6387102104667974,
+      "maximum_diameter_change_um": 0.9012809462589644,
+      "initial_bore_allowable_low_mm": 40.00063871021047,
+      "initial_bore_allowable_high_mm": 40.02409871905374,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1494.8352316668793,
+      "combined_VM_by_material_MPa": "{\"1\": 38.4172327939636, \"2\": 197.5874916525427, \"3\": 87.490101785117, \"4\": 293.20427553533216, \"5\": 1494.8352316668793}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 10.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6280151045845832,
+      "minimum_diameter_change_um": -0.6391304502386674,
+      "maximum_diameter_change_um": 0.9018570188104036,
+      "initial_bore_allowable_low_mm": 40.00063913045024,
+      "initial_bore_allowable_high_mm": 40.02409814298119,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1516.2391246508353,
+      "combined_VM_by_material_MPa": "{\"1\": 61.24801522195178, \"2\": 196.69539113858926, \"3\": 106.35983532443537, \"4\": 306.3756415083088, \"5\": 1516.2391246508353}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.1176466077524524,
+      "minimum_diameter_change_um": -0.6383328820405154,
+      "maximum_diameter_change_um": 0.9007766571258458,
+      "initial_bore_allowable_low_mm": 40.00063833288204,
+      "initial_bore_allowable_high_mm": 40.02409922334287,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1497.1588875149776,
+      "combined_VM_by_material_MPa": "{\"1\": 36.00780252663984, \"2\": 195.5444667462878, \"3\": 78.29850686448981, \"4\": 303.99301952412407, \"5\": 1497.1588875149776}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.1843136677340258,
+      "minimum_diameter_change_um": -0.6384379510819826,
+      "maximum_diameter_change_um": 0.900920601914379,
+      "initial_bore_allowable_low_mm": 40.00063843795108,
+      "initial_bore_allowable_high_mm": 40.024099079398084,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1501.9192773157893,
+      "combined_VM_by_material_MPa": "{\"1\": 36.01986251812497, \"2\": 195.28712753943466, \"3\": 79.93216427077613, \"4\": 301.2821540023638, \"5\": 1501.9192773157893}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.3849710167503876,
+      "minimum_diameter_change_um": -0.6387531463545315,
+      "maximum_diameter_change_um": 0.9013525318550819,
+      "initial_bore_allowable_low_mm": 40.000638753146355,
+      "initial_bore_allowable_high_mm": 40.02409864746814,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1516.846895677029,
+      "combined_VM_by_material_MPa": "{\"1\": 38.687080967808186, \"2\": 194.55299769742888, \"3\": 88.5160348582079, \"4\": 293.6200541100955, \"5\": 1516.846895677029}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 25.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.6627965860417816,
+      "minimum_diameter_change_um": -0.6391733789641307,
+      "maximum_diameter_change_um": 0.9019286614346811,
+      "initial_bore_allowable_low_mm": 40.000639173378964,
+      "initial_bore_allowable_high_mm": 40.024098071338564,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1538.2190995204269,
+      "combined_VM_by_material_MPa": "{\"1\": 61.37389026330362, \"2\": 193.66343908644035, \"3\": 107.36636550138203, \"4\": 302.0431497321251, \"5\": 1538.2190995204269}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.17212488347668067,
+      "minimum_diameter_change_um": -0.6384044502141251,
+      "maximum_diameter_change_um": 0.9008958997682726,
+      "initial_bore_allowable_low_mm": 40.000638404450214,
+      "initial_bore_allowable_high_mm": 40.02409910410023,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1533.857603528681,
+      "combined_VM_by_material_MPa": "{\"1\": 36.01507150946725, \"2\": 196.12218511627964, \"3\": 79.76543049767385, \"4\": 311.5728342253648, \"5\": 1533.857603528681}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.23893513555866056,
+      "minimum_diameter_change_um": -0.6385095162642074,
+      "maximum_diameter_change_um": 0.9010398683244603,
+      "initial_bore_allowable_low_mm": 40.000638509516264,
+      "initial_bore_allowable_high_mm": 40.024098960131674,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1538.618835398069,
+      "combined_VM_by_material_MPa": "{\"1\": 36.02746509650518, \"2\": 195.9276714205568, \"3\": 81.39596557280188, \"4\": 308.8595338273902, \"5\": 1538.618835398069}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.43967921696397033,
+      "minimum_diameter_change_um": -0.6388247025697069,
+      "maximum_diameter_change_um": 0.9014718695325996,
+      "initial_bore_allowable_low_mm": 40.00063882470257,
+      "initial_bore_allowable_high_mm": 40.024098528130466,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1553.5336767794124,
+      "combined_VM_by_material_MPa": "{\"1\": 39.13738177723178, \"2\": 195.3708288331053, \"3\": 90.22668578804611, \"4\": 301.1780405593902, \"5\": 1553.5336767794124}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 50.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.7207658087825283,
+      "minimum_diameter_change_um": -0.6392449232350828,
+      "maximum_diameter_change_um": 0.9020480941472897,
+      "initial_bore_allowable_low_mm": 40.000639244923235,
+      "initial_bore_allowable_high_mm": 40.02409795190585,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1574.8550233647577,
+      "combined_VM_by_material_MPa": "{\"1\": 61.58377704708544, \"2\": 194.69113514362454, \"3\": 109.04535034743587, \"4\": 294.82424678822196, \"5\": 1574.8550233647577}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.2813787595896734,
+      "minimum_diameter_change_um": -0.6385475730397161,
+      "maximum_diameter_change_um": 0.9011344913716357,
+      "initial_bore_allowable_low_mm": 40.00063854757304,
+      "initial_bore_allowable_high_mm": 40.02409886550863,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1607.2557529249523,
+      "combined_VM_by_material_MPa": "{\"1\": 36.03026851992745, \"2\": 202.87095335846422, \"3\": 82.69993835868381, \"4\": 326.7328990651407, \"5\": 1607.2557529249523}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.34828360456095303,
+      "minimum_diameter_change_um": -0.638652633114134,
+      "maximum_diameter_change_um": 0.901278507456027,
+      "initial_bore_allowable_low_mm": 40.000638652633114,
+      "initial_bore_allowable_high_mm": 40.02409872149254,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1612.0185517889815,
+      "combined_VM_by_material_MPa": "{\"1\": 36.04332864633049, \"2\": 202.6746137338547, \"3\": 84.32454160014791, \"4\": 324.01507427314334, \"5\": 1612.0185517889815}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.5552881185365901,
+      "minimum_diameter_change_um": -0.6389678014926403,
+      "maximum_diameter_change_um": 0.9017106512345663,
+      "initial_bore_allowable_low_mm": 40.00063896780149,
+      "initial_bore_allowable_high_mm": 40.024098289348764,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1626.9095627432653,
+      "combined_VM_by_material_MPa": "{\"1\": 40.03997621111119, \"2\": 202.39940542664908, \"3\": 93.6506588688491, \"4\": 316.2975973398639, \"5\": 1626.9095627432653}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 100.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 0.8367045347521335,
+      "minimum_diameter_change_um": -0.639387998262464,
+      "maximum_diameter_change_um": 0.9022870659549653,
+      "initial_bore_allowable_low_mm": 40.00063938799826,
+      "initial_bore_allowable_high_mm": 40.024097712934044,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1648.1359525612713,
+      "combined_VM_by_material_MPa": "{\"1\": 62.003902700982714, \"2\": 203.75949812189796, \"3\": 112.40841023231522, \"4\": 307.0916951682618, \"5\": 1648.1359525612713}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 0.0,
+      "position_diameter_um": 0.5057529472217026,
+      "minimum_diameter_change_um": -0.6388337645901743,
+      "maximum_diameter_change_um": 0.9016120999731925,
+      "initial_bore_allowable_low_mm": 40.00063883376459,
+      "initial_bore_allowable_high_mm": 40.024098387900025,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1754.0545009362443,
+      "combined_VM_by_material_MPa": "{\"1\": 37.795082843775155, \"2\": 219.54961603429066, \"3\": 88.57129001358068, \"4\": 357.0545116569218, \"5\": 1754.0545009362443}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 25.0,
+      "position_diameter_um": 0.5761038611307137,
+      "minimum_diameter_change_um": -0.6389388127274742,
+      "maximum_diameter_change_um": 0.9017562110997801,
+      "initial_bore_allowable_low_mm": 40.00063893881273,
+      "initial_bore_allowable_high_mm": 40.0240982437889,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1758.8200347907245,
+      "combined_VM_by_material_MPa": "{\"1\": 38.289998813613764, \"2\": 219.8737726762939, \"3\": 90.18514473684517, \"4\": 354.3288107831879, \"5\": 1758.8200347907245}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 100.0,
+      "position_diameter_um": 0.7871631273097954,
+      "minimum_diameter_change_um": -0.6392539452590995,
+      "maximum_diameter_change_um": 0.9021886400120138,
+      "initial_bore_allowable_low_mm": 40.00063925394526,
+      "initial_bore_allowable_high_mm": 40.02409781135999,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1773.6692838266258,
+      "combined_VM_by_material_MPa": "{\"1\": 41.85253399863979, \"2\": 220.8624534802454, \"3\": 100.50801543168285, \"4\": 346.5488571226379, \"5\": 1773.6692838266258}",
+      "material_feasibility_established": false
+    },
+    {
+      "mean_final_shrink_microstrain": 1000.0,
+      "first_harmonic_final_shrink_microstrain": 200.0,
+      "first_harmonic_precoat_redistribution_microstrain": 200.0,
+      "position_diameter_um": 1.0685828901988401,
+      "minimum_diameter_change_um": -0.639674094209397,
+      "maximum_diameter_change_um": 0.9027654348869874,
+      "initial_bore_allowable_low_mm": 40.00063967409421,
+      "initial_bore_allowable_high_mm": 40.02409723456511,
+      "mathematical_position_within_13_5um": true,
+      "nonempty_bore_window": true,
+      "combined_maximum_von_Mises_MPa": 1794.7289453479746,
+      "combined_VM_by_material_MPa": "{\"1\": 62.84552938829466, \"2\": 222.21806839999405, \"3\": 119.15287789632153, \"4\": 337.1582015290996, \"5\": 1794.7289453479746}",
+      "material_feasibility_established": false
+    }
+  ],
+  "key_modes_only": false,
+  "material_capacity_assigned": false,
+  "cold_elastic_applicability": "Each100microstrain kernel has its own per-material stress; combined stresses must be checked against qualified yield data before using the linear response. Neither a mathematical position bound nor low axis drift establishes deposited-layer strength.",
+  "cold_position_budget_um": 13.5,
+  "metrology": "A96 at R77.5; B96 at z20/180; bore17x192; straight-axis and section-centre envelope",
+  "elastic_only": true,
+  "full_manufacturing_chain_passed": false,
+  "elapsed_s": 138.506591796875
+}

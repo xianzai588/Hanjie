@@ -312,7 +312,7 @@ def station_resources():
     text(ax, 7, 9.3, "每层10 h：300→20℃按50℃/h缓冷5.6 h，保温2 h，升温/转运预留2.4 h。", size=7.3, serif=True)
     text(ax, 7, 3.4, "依据：HJ-W-S01；共44个热过程/等待位；热时隙为规划输入，首批跨日组织。", size=7.0, color=GRAY, serif=True)
     save(fig, "station-resources", description="完整圆环小批试制的预制缓冷和检测资源规划",
-         sources=["deliverables/process/ring-final-welding-card.json resource_planning", "deliverables/process/ring-final-welding-card.md §5", "deliverables/process/pilot-production-and-resource-card.md"],
+         sources=["deliverables/process/ring-final-welding-card.json resource_planning", "deliverables/process/ring-final-welding-card.md §5", "deliverables/process/ring-production-resource-card.md"],
          semantics={"kind": "capacity_planning", "calculated_object": "完整圆环座体", "target_parts_per_shift": r["parts_per_8h_shift"], "shift_h": 8, "feed_interval_s": r["feed_interval_s"], "thermal_slot_reserved_h_each_layer": 10, "thermal_slot_basis_h": {"cooling_300_to_20_at_50C_per_h": 5.6, "hold": 2, "heating_and_transfer_reserve": 2.4}, "positions": {"first_cycle_reserved": r["first_independent_thermal_positions"], "second_cycle_reserved": r["second_independent_thermal_positions"], "delayed_PT_wait": r["delayed_PT_positions"], "total": r["thermal_and_delay_positions_subtotal"]}, "heat_slots_are_planning_not_thermal_history_results": True, "actual_capacity_verified": RING_CARD["capacity_verified"]})
 
 
@@ -353,7 +353,7 @@ def precoat_section():
     text(ax, 85, 4.3, "两层预制完成后再终加工精密孔；高温预制与入壳低热组焊分别制定温度制度。", size=7.35, color=GRAY, ha="center", serif=True)
     save(fig, "precoat-section", description="铸铁到钢壳的分层材料链及加工顺序",
          sources=["project/submission-baseline.yaml material_route", "cad/generated/ring-baseline/ring-precoat-design.json", "deliverables/process/ring-final-welding-card.json"],
-         semantics={"kind": "section_schematic", "primary_object": "完整圆环座体8个局部预制窗口", "not_to_scale": True, "material_chain": ["QT450-10", "CI-A1首层", "低碳Ni99第二层", "NiFe55最终焊缝", "Q235B"], "precoat_window": BASELINE["material_route"]["precoat_windows"], "first_layer_travel_speed_mm_min": 80, "second_layer_paths": 3, "actual_macrosection_claim": False, "machining_sequence": "两层壳外预制及检查后，最终孔和连接面加工，清洗干燥后入壳组焊"})
+         semantics={"kind": "section_schematic", "primary_object": "完整圆环座体8个局部预制窗口", "not_to_scale": True, "material_chain": ["QT450-10", "CI-A1首层", "低碳Ni99第二层", "NiFe55最终焊缝", "Q235B"], "precoat_window": BASELINE["material_route"]["precoat_windows"], "first_layer_travel_speed_mm_min": BASELINE["material_route"]["first_layer"]["travel_speed_mm_min"], "second_layer_paths": 3, "actual_macrosection_claim": False, "machining_sequence": "两层壳外预制及检查后，最终孔和连接面加工，清洗干燥后入壳组焊"})
 
 
 def main():

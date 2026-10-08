@@ -1,0 +1,48 @@
+{
+  "level": "medium",
+  "nodes": 52608,
+  "tetrahedra": 213820,
+  "bulk_mm": 4.5,
+  "local_mm": 0.75,
+  "quality_min": 0.052000042369427006,
+  "material_volumes_mm3": {
+    "1": 244521.93524624547,
+    "2": 486948.1339399043,
+    "3": 894.9133113734662,
+    "4": 735.5652824600706,
+    "5": 1257.5753614561477
+  },
+  "nonmatching_interface": {
+    "method": "16-neighbour distance-weighted least-norm interpolation with exact constant and linear reproduction; planar QT and curved steel patches",
+    "maximum_affine_coordinate_error_mm": 2.2499543461931834e-13,
+    "maximum_host_weight_L1": 1.213885105610625,
+    "rigid_translation_and_rotation_patch_pass": true
+  },
+  "interfaces": {
+    "QT_first": 32,
+    "first_second": 32,
+    "second_final": 16,
+    "final_shell": 0,
+    "QT_final": 0
+  },
+  "arc_length_mm": 20.0,
+  "effective_connection_length_mm": 18.0,
+  "precoat_solids": 17,
+  "fit_gap_mm": 0.02,
+  "thermal_fillet_leg_mm": 4.0,
+  "root_leg_mm": 2.8,
+  "qualification": "shared faces define nominal thermal paths; fusion and stress history not qualified",
+  "cache_key": {
+    "schema": "ring-thermal-mesh-v2",
+    "process_version": "SUBMISSION-RING-20261008-R2",
+    "cad_file": "cad/generated/ring-baseline/ring-precoat-eight-windows-17solids.step",
+    "level": "medium",
+    "bulk_mm": 4.5,
+    "local_mm": 0.75,
+    "actual_arc_mm": 20.0,
+    "root_leg_mm": 2.8,
+    "cap_leg_mm": 4.0,
+    "interface": "independent_shell_16host_affine",
+    "cad_data_sha256": "0022456176f493d9738547f328ebc964adc98770a07af3c2f437243afaa2eb9f"
+  }
+}

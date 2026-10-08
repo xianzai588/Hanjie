@@ -15,23 +15,22 @@ ROOT = Path(__file__).resolve().parents[2]
 def calculate():
     length = 74.98 - 20.0
     alpha = 12e-6  # /K, design approximation for QT; not a fitted property.
-    equivalent_pair_difference = 8.0
     allowance = 12e-3  # mm, internal target within the 13.5 um budget.
-    diameter_bound = 2 * alpha * length * equivalent_pair_difference
+    unit_sensitivity = 2 * alpha * length
     return {
         "physical_object": "complete-ring simplified eight-channel compatibility model",
-        "model_role": "control-target screening; not residual-deformation FE or CMM",
+        "model_role": "historical analytical interpretation; active control window uses explicit FE response kernels",
         "assumptions": {
             "channel_count": 8,
             "equal_radial_stiffness": True,
             "small_displacement": True,
             "radial_length_mm": length,
             "thermal_expansion_per_k": alpha,
-            "equivalent_opposing_shrinkage_temperature_difference_k": equivalent_pair_difference,
         },
         "equilibrium": "u = (1/4) sum_j alpha L DeltaT_pair,j n_j; j=1..4",
         "conservative_model_bound": "position_diameter <= 2 alpha L max(abs(DeltaT_pair))",
-        "position_diameter_bound_um": diameter_bound * 1000,
+        "position_diameter_per_equivalent_pair_kelvin_um": unit_sensitivity * 1000,
+        "actual_residual_position_predicted": False,
         "internal_position_target_um": allowance * 1000,
         "maximum_equivalent_difference_for_target_k": allowance / (2 * alpha * length),
         "process_inputs": {

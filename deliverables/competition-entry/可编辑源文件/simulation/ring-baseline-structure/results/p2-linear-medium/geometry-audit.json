@@ -1,0 +1,9 @@
+{
+  "method": "clip actual straight inner-shell triangular facets to z100..115; minimize xy radius on every polygon edge",
+  "tested_facets": 3553,
+  "minimum_faceted_shell_inner_radius_in_z100_115_mm": 74.9923567925569,
+  "maximum_nominal_seat_outer_radius_mm": 74.98,
+  "minimum_conservative_open_clearance_mm": 0.012356792556900587,
+  "direct_precoated_seat_shell_shared_nodes": 0,
+  "unwelded_gap_geometry_verified": true
+}

@@ -1,0 +1,323 @@
+{
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "input_identity": {
+    "schema": "RING-P2-STRAIGHT-QUARTER-2",
+    "geometry_DATA_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+    "bulk_size_mm": 4.5,
+    "local_size_mm": 0.65,
+    "shell_surface_size_function": "Min(4.5,2.0+Max(0,Abs(z-107.5)-17.5)*.3)",
+    "leg_mm": 3.5,
+    "effective_arc_mm": 18.0,
+    "quadrant": "x>=0,y>=0",
+    "displacement_order": 2,
+    "geometry_order": 1,
+    "material_inputs": {
+      "1": {
+        "name": "QT450-10",
+        "E_MPa": 169000.0,
+        "nu": 0.27,
+        "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+      },
+      "2": {
+        "name": "Q235B",
+        "E_MPa": 206000.0,
+        "nu": 0.3,
+        "basis": "engineering room-temperature elastic input"
+      },
+      "3": {
+        "name": "CI-A1 retained first layer",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+      },
+      "4": {
+        "name": "Ni99 retained second layer",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+      },
+      "5": {
+        "name": "NiFe55 final effective fillet",
+        "E_MPa": 200000.0,
+        "nu": 0.3,
+        "basis": "design elastic assumption; effective interface and joint strength require qualification"
+      }
+    },
+    "loads_N_N_Nmm": [
+      5000,
+      5000,
+      250000
+    ],
+    "boundary": "z=0 clamped; y=0 symmetric; x=0 symmetric for axial and antisymmetric for radial/My"
+  },
+  "mesh": {
+    "input_identity": {
+      "schema": "RING-P2-STRAIGHT-QUARTER-2",
+      "geometry_DATA_sha256": "4f4b6e730c099e03a0e8605f88afb16aa22b97ff529b6213ecd1a80519eca78d",
+      "bulk_size_mm": 4.5,
+      "local_size_mm": 0.65,
+      "shell_surface_size_function": "Min(4.5,2.0+Max(0,Abs(z-107.5)-17.5)*.3)",
+      "leg_mm": 3.5,
+      "effective_arc_mm": 18.0,
+      "quadrant": "x>=0,y>=0",
+      "displacement_order": 2,
+      "geometry_order": 1,
+      "material_inputs": {
+        "1": {
+          "name": "QT450-10",
+          "E_MPa": 169000.0,
+          "nu": 0.27,
+          "basis": "existing structural-v4 design elastic input; batch modulus not measured"
+        },
+        "2": {
+          "name": "Q235B",
+          "E_MPa": 206000.0,
+          "nu": 0.3,
+          "basis": "engineering room-temperature elastic input"
+        },
+        "3": {
+          "name": "CI-A1 retained first layer",
+          "E_MPa": 200000.0,
+          "nu": 0.3,
+          "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+        },
+        "4": {
+          "name": "Ni99 retained second layer",
+          "E_MPa": 200000.0,
+          "nu": 0.3,
+          "basis": "design elastic assumption; deposited chemistry and strength require qualification"
+        },
+        "5": {
+          "name": "NiFe55 final effective fillet",
+          "E_MPa": 200000.0,
+          "nu": 0.3,
+          "basis": "design elastic assumption; effective interface and joint strength require qualification"
+        }
+      },
+      "loads_N_N_Nmm": [
+        5000,
+        5000,
+        250000
+      ],
+      "boundary": "z=0 clamped; y=0 symmetric; x=0 symmetric for axial and antisymmetric for radial/My"
+    },
+    "nodes": 146223,
+    "tetrahedra": 88586,
+    "element_order": 2,
+    "tetrahedra_by_material": {
+      "1": 29008,
+      "2": 43253,
+      "3": 6528,
+      "4": 4740,
+      "5": 5057
+    },
+    "quarter_material_volumes_mm3": {
+      "1": 61110.56175717274,
+      "2": 121736.71532660472,
+      "3": 223.62886237275524,
+      "4": 186.05223176551095,
+      "5": 217.0699999999964
+    },
+    "minimum_element_Jacobian_mm3": 6.482563971340238e-05,
+    "inverted_element_count": 0,
+    "bore_triangles": 68,
+    "full_ring_reconstruction": "exact symmetry/antisymmetry of specified geometry, loads and clamped base"
+  },
+  "quadrature_geometry": {
+    "minimum_quadrature_Jacobian_mm3": 6.482563976476683e-05,
+    "integrated_quarter_volume_mm3": 183430.99871468107,
+    "nonzeros": 33470806
+  },
+  "load_integration": {
+    "quarter_bore_area_mm2": 470.6049375576265,
+    "quarter_integral_x_squared_mm4": 93607.92619124,
+    "surface_quadrature": "7-point degree-5 triangle rule; curved quadratic surface Jacobian"
+  },
+  "cases": {
+    "radial": {
+      "axis_center_radial_um": 10.424804313544279,
+      "axis_tilt_urad": 20.243289847068592,
+      "axis_diameter_envelope_um": 21.153257974794588,
+      "mean_bore_diameter_change_um": -6.164469772135651e-17,
+      "cylindrical_radial_peak_to_valley_um": 0.011114027741381677,
+      "axis_fit_coefficients_mm": [
+        0.010424804313544278,
+        2.236166980751353e-19,
+        2.0243289847068593e-05,
+        -2.8795805622278175e-22,
+        -3.0822348860678253e-20
+      ],
+      "bore_node_count": 600,
+      "elastic_strain_energy_N_mm": 25.957171216852203,
+      "CG_iterations": 142,
+      "applied_force_N": [
+        4999.999999999997,
+        0.0,
+        0.0
+      ],
+      "reaction_force_N": [
+        -4999.999999993733,
+        0.0,
+        0.0
+      ],
+      "applied_moment_N_mm": [
+        0.0,
+        0.04656392851232738,
+        0.0
+      ],
+      "reaction_moment_N_mm": [
+        0.0,
+        -0.046563900318809,
+        0.0
+      ],
+      "force_balance_relative_error": 1.2529199011623859e-12,
+      "moment_balance_relative_error": 1.1277407352405788e-13,
+      "free_residual_relative_norm": 9.096007479478183e-10
+    },
+    "axial": {
+      "axis_center_radial_um": 7.861238842621669e-17,
+      "axis_tilt_urad": 6.006605991344583e-14,
+      "axis_diameter_envelope_um": 1.0339033972541812e-15,
+      "mean_bore_diameter_change_um": -0.3356519792156234,
+      "cylindrical_radial_peak_to_valley_um": 9.651221204757556,
+      "axis_fit_coefficients_mm": [
+        5.122538756678991e-20,
+        -5.963109325432943e-20,
+        -6.0654203748285856e-21,
+        5.975903470775176e-20,
+        -0.0001678259896078117
+      ],
+      "bore_node_count": 600,
+      "elastic_strain_energy_N_mm": 82.54785913937528,
+      "CG_iterations": 148,
+      "applied_force_N": [
+        0.0,
+        0.0,
+        4999.999999999997
+      ],
+      "reaction_force_N": [
+        0.0,
+        0.0,
+        -5000.0000000038
+      ],
+      "applied_moment_N_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reaction_moment_N_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "force_balance_relative_error": 7.605194696225226e-13,
+      "moment_balance_relative_error": 0.0,
+      "free_residual_relative_norm": 9.951715717195879e-10
+    },
+    "overturning": {
+      "axis_center_radial_um": 1.6738704382665235,
+      "axis_tilt_urad": 480.89934367383324,
+      "axis_diameter_envelope_um": 10.561231031640546,
+      "mean_bore_diameter_change_um": 9.824971230116889e-18,
+      "cylindrical_radial_peak_to_valley_um": 0.5127579232180424,
+      "axis_fit_coefficients_mm": [
+        0.0016738704382665236,
+        -4.174178364069192e-18,
+        -0.0004808993436738332,
+        5.722808469311638e-21,
+        4.9124856150584446e-21
+      ],
+      "bore_node_count": 600,
+      "elastic_strain_energy_N_mm": 147.28025845244187,
+      "CG_iterations": 139,
+      "applied_force_N": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reaction_force_N": [
+        3.2212791436172213e-10,
+        0.0,
+        0.0
+      ],
+      "applied_moment_N_mm": [
+        0.0,
+        249999.99999999988,
+        0.0
+      ],
+      "reaction_moment_N_mm": [
+        0.0,
+        -249999.99999995696,
+        0.0
+      ],
+      "force_balance_relative_error": 6.442558287234442e-14,
+      "moment_balance_relative_error": 1.7171259969472885e-13,
+      "free_residual_relative_norm": 8.887352347158482e-10
+    },
+    "combined": {
+      "axis_center_radial_um": 12.098674751810803,
+      "axis_tilt_urad": 460.65605382676495,
+      "axis_diameter_envelope_um": 31.107190311023082,
+      "mean_bore_diameter_change_um": -0.3356519792156243,
+      "cylindrical_radial_peak_to_valley_um": 10.161431379054065,
+      "axis_fit_coefficients_mm": [
+        0.012098674751810803,
+        -3.848917712323541e-18,
+        -0.0004606560538267649,
+        -1.3376265510297942e-20,
+        -0.00016782598960781215
+      ],
+      "bore_node_count": 600,
+      "elastic_strain_energy_N_mm": 264.0317379234136,
+      "applied_force_N": [
+        4999.999999999997,
+        0.0,
+        4999.999999999997
+      ],
+      "reaction_force_N": [
+        -4999.999999993411,
+        0.0,
+        -5000.0000000038
+      ],
+      "applied_moment_N_mm": [
+        0.0,
+        250000.0465639284,
+        0.0
+      ],
+      "reaction_moment_N_mm": [
+        0.0,
+        -250000.04656385726,
+        0.0
+      ],
+      "force_balance_relative_error": 1.5210855009195853e-12,
+      "moment_balance_relative_error": 2.845190465450287e-13
+    }
+  },
+  "combined_raw_quadrature_stress_by_material": {
+    "1": {
+      "von_mises_max_MPa": 107.47461801062431,
+      "maximum_principal_max_MPa": 102.17047432633038
+    },
+    "2": {
+      "von_mises_max_MPa": 142.1368357208761,
+      "maximum_principal_max_MPa": 141.16094760125256
+    },
+    "3": {
+      "von_mises_max_MPa": 63.854079917345125,
+      "maximum_principal_max_MPa": 65.16554256359463
+    },
+    "4": {
+      "von_mises_max_MPa": 390.97469858915144,
+      "maximum_principal_max_MPa": 411.04145440150484
+    },
+    "5": {
+      "von_mises_max_MPa": 969.3771278316829,
+      "maximum_principal_max_MPa": 524.9989544682267
+    }
+  },
+  "method": "3D straight-sided quadratic displacement tetrahedra, quarter-symmetry, full-ring bore reconstructed by exact load parity; 4 volume and 7 surface quadrature points",
+  "strength_verified": false,
+  "postweld_position_verified": false,
+  "elapsed_seconds": null,
+  "timing_status": "Wall-clock duration unavailable: the initial timing variable was shadowed by the element-block index; calculation values and fields are unaffected."
+}

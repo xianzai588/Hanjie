@@ -1,5 +1,45 @@
 {
   "model_id": "HJ-S01-complete-ring-nominal",
+  "process_version": "SUBMISSION-RING-20261008-R2",
+  "assembly_tolerances": {
+    "seat": {
+      "material": "QT450-10",
+      "shape": "完整圆环；本体保留连续环向承载通道",
+      "nominal_bore_diameter_mm": 40.0,
+      "outside_radius_mm": 74.98,
+      "assembly_outside_diameter_limits_mm": [
+        149.94,
+        149.98
+      ],
+      "assembly_band_roundness_max_mm": 0.005,
+      "assembled_measured_radial_gap_limits_mm": [
+        0.005,
+        0.045
+      ],
+      "ideal_circular_radial_gap_limits_mm": [
+        0.01,
+        0.04
+      ],
+      "assembly_gap_rule": "独立A/B定心后逐窗实测局部间隙0.005至0.045；只满足直径限值不代替周向间隙验收",
+      "seat_bottom_z_tolerance_mm": 0.05,
+      "thickness_mm": 15.0,
+      "bottom_z_mm": 100.0,
+      "thickness_and_height_basis": "题面未指定；本设计选定",
+      "detail_scope": "母件总装几何；局部浅槽、过渡层和焊缝由工艺断面与工艺卡表达"
+    },
+    "shell": {
+      "material": "Q235B",
+      "outside_diameter_mm": 160.0,
+      "wall_thickness_mm": 5.0,
+      "height_mm": 200.0,
+      "nominal_inside_diameter_mm": 150.0,
+      "assembly_inside_diameter_limits_mm": [
+        150.0,
+        150.02
+      ],
+      "assembly_band_roundness_max_mm": 0.005
+    }
+  },
   "units": "mm",
   "geometry_state": "Nominal uncoated QT450-10 complete ring and Q235B shell; separate solids before welding",
   "nominal_dimensions": {

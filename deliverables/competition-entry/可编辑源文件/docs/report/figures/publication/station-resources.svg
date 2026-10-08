@@ -8,7 +8,7 @@
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
     <dc:title>完整圆环小批试制的预制缓冷和检测资源规划</dc:title>
-    <dc:date>2026-10-08T11:03:23.334054</dc:date>
+    <dc:date>2026-10-08T19:53:44.474360</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -37,7 +37,7 @@ L 297.637795 100.629921
 L 297.637795 85.03937 
 L 215.433071 85.03937 
 z
-" clip-path="url(#p391e6ceb4f)" style="fill: #24364b"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: #24364b"/>
    </g>
    <g id="patch_3">
     <path d="M 215.433071 134.645669 
@@ -45,7 +45,7 @@ L 297.637795 134.645669
 L 297.637795 119.055118 
 L 215.433071 119.055118 
 z
-" clip-path="url(#p391e6ceb4f)" style="fill: #3f6b68"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: #3f6b68"/>
    </g>
    <g id="patch_4">
     <path d="M 215.433071 168.661417 
@@ -53,37 +53,37 @@ L 412.724409 168.661417
 L 412.724409 153.070866 
 L 215.433071 153.070866 
 z
-" clip-path="url(#p391e6ceb4f)" style="fill: #a48352"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: #a48352"/>
    </g>
    <g id="line2d_1">
     <path d="M 215.433071 185.669291 
 L 412.724409 185.669291 
-" clip-path="url(#p391e6ceb4f)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 215.433071 185.669291 
 L 215.433071 189.92126 
-" clip-path="url(#p391e6ceb4f)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
     <path d="M 281.19685 185.669291 
 L 281.19685 189.92126 
-" clip-path="url(#p391e6ceb4f)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
    </g>
    <g id="line2d_4">
     <path d="M 346.96063 185.669291 
 L 346.96063 189.92126 
-" clip-path="url(#p391e6ceb4f)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
    </g>
    <g id="line2d_5">
     <path d="M 412.724409 185.669291 
 L 412.724409 189.92126 
-" clip-path="url(#p391e6ceb4f)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: none; stroke: #71808a; stroke-width: 0.45; stroke-linecap: square"/>
    </g>
    <g id="line2d_6">
     <path d="M 19.84252 208.346457 
 L 462.047244 208.346457 
-" clip-path="url(#p391e6ceb4f)" style="fill: none; stroke: #24364b; stroke-width: 0.65; stroke-linecap: square"/>
+" clip-path="url(#pc8dfb0908b)" style="fill: none; stroke: #24364b; stroke-width: 0.65; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <!-- 圆环小批试制资源设计 -->
@@ -12185,7 +12185,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p391e6ceb4f">
+  <clipPath id="pc8dfb0908b">
    <rect x="0" y="0" width="481.889764" height="269.291339"/>
   </clipPath>
  </defs>
