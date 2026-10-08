@@ -75,7 +75,9 @@ def test_baseline_parameter_consistency() -> None:
     assert "tolerance" not in base and "process" not in base
     tolerance = get_tolerance()
     assert tolerance["product_geometry_chain"]["contributions_mm"]["fixture_repeatability"] == base["fixture"]["positioning_repeatability_mm"]
-    assert get_process()["authority"].startswith("焊接工艺")
+    process=get_process()
+    assert process["state"]=="historical_only"
+    assert process["current_authority"]=="project/process-r3.yaml"
 
 
 def test_joint_design_and_wire_deposition_are_not_conflated() -> None:

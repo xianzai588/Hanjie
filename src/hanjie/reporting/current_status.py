@@ -21,6 +21,10 @@ def collect_tooling_status(root: Path) -> Dict[str, Any]:
     # BREP不能靠文件名判定版本；只校核本次几何证据实际依赖的实体。
     for path, expected in inputs["structured_inputs"].items():
         actual = yaml.safe_load((root/path).read_text(encoding="utf-8"))
+        if path == "cad/parametric/geometry.json":
+            # 历史身份元数据不改变几何；保留全部尺寸、夹具及工艺字段的比较。
+            actual = {key: value for key, value in actual.items() if key != "provenance"}
+            expected = {key: value for key, value in expected.items() if key != "provenance"}
         if actual != expected:
             raise ValueError("工装检查输入已变化，请重跑 studies/TOOLING-ACCESS/run.py")
     for path, expected in inputs["geometry_sha256"].items():

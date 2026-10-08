@@ -65,7 +65,7 @@ def notes(parts,items,x=640,y=167,step=38):
 
 
 def seat_sheet(spec):
-    parts=sheet("接头布局、座体尺寸与独立基准","HJ-001","主设计：8P-R2-t15，八段各18 mm；焊后孔轴位置度在精整前检验")
+    parts=sheet("接头布局、座体尺寸与独立基准","HJ-001","八翼创新候选8P-R2-t15，八段各18 mm；焊后孔轴位置度在精整前检验")
     scale,cx,cy=3.0,310,395
     shape=read_brep(ROOT/spec["seat_brep"])
     edges=TopExp_Explorer(shape,TopAbs_EDGE)
@@ -89,21 +89,26 @@ def seat_sheet(spec):
     for i in range(8):
         angle=i*math.pi/4
         parts.append(text(cx+205*math.cos(angle)-5,cy-205*math.sin(angle)+5,str(i+1),"section"))
+    parts.append(text(640,147,"八翼候选尺寸与基准","section"))
     notes(parts,["材料：QT450-10座体 / Q235B壳体",
                  "座体厚15；中心环外径82；32处转接R2",
                  "外缘直径149.94～149.98（设计限值）",
                  "壳体内径150.00～150.02（设计限值）",
-                 "径向装配间隙0.01～0.04，不能靠间隙定心",
-                 "座体底面距壳体下端100（工序设计尺寸）",
-                 '焊前候选孔40.006～40.008；最终40.000～40.025',
+                 "径向装配间隙0.01～0.04；独立工装定心",
+                 "座体底面距壳体下端100（工序设计尺寸）"],y=183,step=31)
+    # Preserve each complete limit dimension on one line. Splitting a range
+    # by character count can turn 40.025 into a misleading 40.0 + 25.
+    parts += [text(640,369,"焊前候选孔：40.006～40.008"),
+              text(640,400,"最终孔尺寸：40.000～40.025")]
+    notes(parts,[
                  "A：壳体下端独立安装面",
                  "B：壳体内壁双测量带所建立的轴线",
-                 "B定向按A法向约束；不以胀套轴冒充B",
+                 "B按A法向定向，由壳体测量带建立",
                  "Ø40孔轴：位置度 Ø0.05，相对A、B",
-                 "测量长度15；不默认扩展到整根主轴",
-                 "C仅周向识别焊段，不加入位置度基准框",
+                 "测量长度15，按实际孔长评价",
+                 "C用于周向识别焊段，不列入位置度基准框",
                  "八槽宽4±0.05，圆端R2，最深R39",
-                 "槽位22.5°起，每45°；翼间其余区域留空"])
+                 "槽位22.5°起，每45°；翼间其余区域留空"],y=431,step=31)
     # 位置度符号用圆与十字绘制，避免字体缺字符。
     gx,gy=95,588
     parts += [line(gx+18,gy,267,437,"#334155",1.2),

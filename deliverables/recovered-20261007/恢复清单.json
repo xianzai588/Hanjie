@@ -1,0 +1,30 @@
+{
+  "recovery_date": "2026-10-07",
+  "base_branch": "wave2/continuous-fatigue-stiffness",
+  "base_commit": "e29e9b22b20f08b91533fc2c81cfc559e79b30d9",
+  "status": "Partial artifact recovery; original bytes retained",
+  "files": [
+    {
+      "file": "焊接工艺设计论文-正文.pdf",
+      "bytes": 870987,
+      "sha256": "8efb5aa093b30d445c61ded5858f533e7fef9dee58acac54bbe71da53ae881d3",
+      "git_blob_sha": "c3f083ad70a1b810f7485e5a92e1d17c0790a033",
+      "pages": 14
+    },
+    {
+      "file": "工艺设计说明书与工程图-参赛设计稿.pdf",
+      "bytes": 3139716,
+      "sha256": "964ecc08e8b8f8478dc1c5b445303d8921d93a909a9a57d4ddf54caa13172c52",
+      "git_blob_sha": "4f1419a57a48e747d292b1a3bd17e31ff3c923c8",
+      "pages": 63
+    },
+    {
+      "file": "论文排版与图表预览.png",
+      "bytes": 648625,
+      "sha256": "a50e51fac17de00253c3ef06c5a99ff2e140382c4892742cc646d17e4a0e50dd",
+      "git_blob_sha": "8c41ac39e9d136904927a49fe20366a7b618436e"
+    }
+  ],
+  "omitted_duplicate": "焊接工艺设计论文-正文 (1).pdf",
+  "version_note": "PDFs are the earlier 14-page paper and 63-page combined volume. The preview shows three pages of a later revision. The complete 16-page paper, 72-page combined volume, editable sources and original local commit were not recovered."
+}

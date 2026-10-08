@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#24364B"/></marker>
+<pattern id="qt" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#E8EFED"/><line x1="0" y1="0" x2="0" y2="10" stroke="#3F6B68" stroke-width="1"/></pattern>
+<pattern id="steel" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="9" height="9" fill="#F2F3F4"/><line x1="0" y1="0" x2="0" y2="9" stroke="#6D7984" stroke-width="1"/></pattern></defs>
+<style>text{font-family:"NotoSansSC","Noto Sans SC","Noto Sans CJK SC","DejaVu Sans",sans-serif;fill:#24364B;font-size:20px}.small{font-size:17px}.tiny{font-size:15px}.title{font-size:31px;font-weight:700}.subtitle{font-size:20px;fill:#3F6B68}.edge{fill:none;stroke:#24364B;stroke-width:1.6}.center{fill:none;stroke:#8A939B;stroke-width:.8;stroke-dasharray:16 5 3 5}.dim{fill:none;stroke:#24364B;stroke-width:1}.candidate{fill:none;stroke:#A48352;stroke-width:5;stroke-linecap:round}</style>
+<rect width="1400" height="1000" fill="#fff"/><rect x="25" y="25" width="1350" height="950" class="edge"/>
+<text x="55" y="70" class="title" text-anchor="start">完整圆环座体 · 名义装配与检验基准</text>
+<text x="55" y="106" class="subtitle" text-anchor="start">完整 QT450-10 圆环 + Q235B 机壳；分段连接候选与预制接口另见 HJ-S01 设计卡</text>
+<text x="1315" y="72" class="subtitle" text-anchor="end">HJ-S01</text>
+<text x="55" y="164" class="subtitle" text-anchor="start">俯视图</text>
+<circle cx="345" cy="434" r="232" fill="#F2F3F4" class="edge"/>
+<circle cx="345" cy="434" r="217.5" fill="#fff" class="edge"/>
+<circle cx="345" cy="434" r="217.442" fill="#E8EFED" class="edge"/>
+<circle cx="345" cy="434" r="58" fill="#fff" class="edge"/>
+<line x1="85" y1="434" x2="605" y2="434" class="center"/>
+<line x1="345" y1="174" x2="345" y2="694" class="center"/>
+<path d="M560.877,460.037 A217.442,217.442 0 0 0 560.877,407.963" class="candidate"/>
+<text x="535" y="441" class="small" text-anchor="start">1</text>
+<path d="M516.06,299.763 A217.442,217.442 0 0 0 479.237,262.94" class="candidate"/>
+<text x="477.886" y="303.114" class="small" text-anchor="start">2</text>
+<path d="M371.037,218.123 A217.442,217.442 0 0 0 318.963,218.123" class="candidate"/>
+<text x="340" y="246" class="small" text-anchor="start">3</text>
+<path d="M210.763,262.94 A217.442,217.442 0 0 0 173.94,299.763" class="candidate"/>
+<text x="202.114" y="303.114" class="small" text-anchor="start">4</text>
+<path d="M129.123,407.963 A217.442,217.442 0 0 0 129.123,460.037" class="candidate"/>
+<text x="145" y="441" class="small" text-anchor="start">5</text>
+<path d="M173.94,568.237 A217.442,217.442 0 0 0 210.763,605.06" class="candidate"/>
+<text x="202.114" y="578.886" class="small" text-anchor="start">6</text>
+<path d="M318.963,649.877 A217.442,217.442 0 0 0 371.037,649.877" class="candidate"/>
+<text x="340" y="636" class="small" text-anchor="start">7</text>
+<path d="M479.237,605.06 A217.442,217.442 0 0 0 516.06,568.237" class="candidate"/>
+<text x="477.886" y="578.886" class="small" text-anchor="start">8</text>
+<line x1="113" y1="434" x2="113" y2="197" class="dim"/>
+<line x1="577" y1="434" x2="577" y2="197" class="dim"/>
+<line x1="113" y1="190" x2="577" y2="190" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="345" y="181" class="small" text-anchor="middle">壳体 Ø160</text>
+<line x1="127.558" y1="434" x2="127.558" y2="710" class="dim"/>
+<line x1="562.442" y1="434" x2="562.442" y2="710" class="dim"/>
+<line x1="127.558" y1="703" x2="562.442" y2="703" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="345" y="694" class="small" text-anchor="middle">座体 Ø149.96（名义）</text>
+<line x1="287" y1="426" x2="238" y2="350" class="dim"/>
+<line x1="238" y1="350" x2="138" y2="350" class="dim"/>
+<text x="137" y="338" class="small" text-anchor="start">Ø40（名义）</text>
+<text x="87" y="742" class="small" text-anchor="start">赭色：8×18 mm 有效区；实际每段20 mm、两道</text>
+<text x="87" y="773" class="small" text-anchor="start">按 1→5→3→7→2→6→4→8 对称次序设计</text>
+<text x="760" y="164" class="subtitle" text-anchor="start">轴向剖视图</text>
+<rect x="840" y="290" width="10" height="400" stroke="#24364B" stroke-width="1.6" fill="url(#steel)"/>
+<rect x="1150" y="290" width="10" height="400" stroke="#24364B" stroke-width="1.6" fill="url(#steel)"/>
+<rect x="850.04" y="460" width="109.96" height="30" stroke="#24364B" stroke-width="1.6" fill="url(#qt)"/>
+<rect x="1040" y="460" width="109.96" height="30" stroke="#24364B" stroke-width="1.6" fill="url(#qt)"/>
+<line x1="1000" y1="250" x2="1000" y2="728" class="center"/>
+<line x1="850" y1="290" x2="850" y2="254" class="dim"/>
+<line x1="1150" y1="290" x2="1150" y2="254" class="dim"/>
+<line x1="850" y1="247" x2="1150" y2="247" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="1000" y="238" class="small" text-anchor="middle">壳内 Ø150</text>
+<line x1="960" y1="460" x2="960" y2="425" class="dim"/>
+<line x1="1040" y1="460" x2="1040" y2="425" class="dim"/>
+<line x1="960" y1="418" x2="1040" y2="418" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="1000" y="409" class="small" text-anchor="middle">Ø40</text>
+<line x1="1160" y1="290" x2="1310" y2="290" class="dim"/>
+<line x1="1160" y1="690" x2="1310" y2="690" class="dim"/>
+<line x1="1303" y1="290" x2="1303" y2="690" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="1293" y="490.0" class="small" text-anchor="middle" transform="rotate(-90 1293 490.0)">200</text>
+<line x1="840" y1="490" x2="787" y2="490" class="dim"/>
+<line x1="840" y1="690" x2="787" y2="690" class="dim"/>
+<line x1="780" y1="490" x2="780" y2="690" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="770" y="590.0" class="small" text-anchor="middle" transform="rotate(-90 770 590.0)">100</text>
+<line x1="1149.96" y1="460" x2="1221" y2="460" class="dim"/>
+<line x1="1149.96" y1="490" x2="1221" y2="490" class="dim"/>
+<line x1="1214" y1="460" x2="1214" y2="490" class="dim" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="1204" y="475.0" class="small" text-anchor="middle" transform="rotate(-90 1204 475.0)">15</text>
+<line x1="840" y1="690" x2="827" y2="690" class="dim"/>
+<path d="M827 690 L817 707 L837 707 Z" fill="#24364B"/>
+<line x1="827" y1="707" x2="827" y2="715" class="dim"/>
+<rect x="812" y="715" width="30" height="30" stroke="#24364B" stroke-width="1.6" fill="#fff"/>
+<text x="827" y="738" class="" text-anchor="middle">A</text>
+<line x1="1150" y1="580" x2="1202" y2="580" class="dim"/>
+<path d="M1150 580 L1165 572 L1165 588 Z" fill="#24364B"/>
+<rect x="1202" y="565" width="30" height="30" stroke="#24364B" stroke-width="1.6" fill="#fff"/>
+<text x="1217" y="588" class="" text-anchor="middle">B</text>
+<text x="912" y="537" class="small" text-anchor="start">QT450-10</text>
+<text x="1120" y="331" class="small" text-anchor="end">Q235B</text>
+<line x1="1149.96" y1="459" x2="1190" y2="369" class="dim"/>
+<line x1="1190" y1="369" x2="1340" y2="369" class="dim"/>
+<text x="1340" y="350" class="small" text-anchor="end">名义径向间隙 0.02</text>
+<text x="1340" y="395" class="small" text-anchor="end">直径间隙 0.04</text>
+<line x1="960" y1="472" x2="938" y2="767" class="dim"/>
+<line x1="938" y1="767" x2="904" y2="767" class="dim"/>
+<rect x="710" y="751" width="34" height="32" stroke="#24364B" stroke-width="1.6" fill="#fff"/>
+<rect x="744" y="751" width="82" height="32" stroke="#24364B" stroke-width="1.6" fill="#fff"/>
+<rect x="826" y="751" width="34" height="32" stroke="#24364B" stroke-width="1.6" fill="#fff"/>
+<rect x="860" y="751" width="34" height="32" stroke="#24364B" stroke-width="1.6" fill="#fff"/>
+<circle cx="727" cy="767" r="8" fill="none" class="edge"/>
+<line x1="715" y1="767" x2="739" y2="767" class="edge"/>
+<line x1="727" y1="755" x2="727" y2="779" class="edge"/>
+<text x="754" y="774" class="small" text-anchor="start">Ø0.05</text>
+<text x="837" y="774" class="small" text-anchor="start">A</text>
+<text x="871" y="774" class="small" text-anchor="start">B</text>
+<text x="710" y="816" class="small" text-anchor="start">A：机壳下端安装面；B：机壳内壁建立的轴线</text>
+<text x="710" y="847" class="small" text-anchor="start">位置度为孔轴要求；完全卸夹、冷态、独立基准测量</text>
+<text x="87" y="817" class="small" text-anchor="start">名义 STEP：机壳与圆环共轴，两个独立有效实体</text>
+<text x="87" y="849" class="small" text-anchor="start">层次：QT → 首镍层 → 第二镍层 → NiFe 连接 → Q235B</text>
+<line x1="55" y1="883" x2="1345" y2="883" class="edge"/>
+<line x1="705" y1="883" x2="705" y2="975" class="edge"/>
+<line x1="1040" y1="883" x2="1040" y2="975" class="edge"/>
+<text x="70" y="916" class="small" text-anchor="start">工艺设计图｜完整圆环基准｜单位：mm</text>
+<text x="70" y="947" class="tiny" text-anchor="start">8局部预制窗与层次见 HJ-S02；完整座体不开八翼槽</text>
+<text x="720" y="916" class="small" text-anchor="start">比例：NTS（不按比例）</text>
+<text x="720" y="947" class="tiny" text-anchor="start">名义设计 · 位置度目标 Ø0.05</text>
+<text x="1055" y="916" class="small" text-anchor="start">材料：QT450-10 / Q235B</text>
+<text x="1055" y="947" class="small" text-anchor="start">HJ-S01 · 圆环基准</text>
+</svg>

@@ -1,0 +1,98 @@
+{
+  "design_identity": "SUBMISSION-RING-20261008",
+  "configuration": "基础站短受力闭环；等效钢梁截面起点",
+  "scope": "冷态悬臂弯曲与矩形截面剪切核算，不是全架有限元或实测定位结果",
+  "inputs": {
+    "beam_length_mm": 120.0,
+    "section_width_mm": 80.0,
+    "section_height_mm": 120.0,
+    "elastic_modulus_MPa": 206000.0,
+    "poisson_ratio": 0.3,
+    "shear_modulus_MPa": 79230.76923076923,
+    "rectangular_shear_factor": 0.8333333333333334,
+    "transverse_force_N": 5000.0,
+    "end_moment_N_mm": 170000.0,
+    "axis_lever_from_beam_end_mm": 100.0,
+    "radial_clamping_allocation_um": 6.5
+  },
+  "assumptions": [
+    "矩形等截面梁、线弹性小挠度，夹固端为计算边界",
+    "力与端矩产生的端部平移和孔轴杠杆转角位移按同向叠加",
+    "短梁L/h=1，计入剪切挠度；接触、连接、基座与热态变化另占剩余工装预算"
+  ],
+  "section": {
+    "second_moment_mm4": 11520000.0,
+    "equivalent_member_mass_kg": 9.043199999999999,
+    "root_bending_stress_MPa": 4.010416666666667,
+    "mass_scope": "仅120×80×120 mm等效受力件，不是工作站总质量"
+  },
+  "formulas": {
+    "I": "b*h^3/12",
+    "force_end_translation": "F*L^3/(3*E*I)",
+    "moment_end_translation": "M*L^2/(2*E*I)",
+    "force_rotation_at_axis_lever": "F*L^2*lever/(2*E*I)",
+    "moment_rotation_at_axis_lever": "M*L*lever/(E*I)",
+    "transverse_shear_translation": "F*L/(kappa*G*b*h), G=E/[2*(1+nu)]"
+  },
+  "axis_displacement_components_um": {
+    "force_end_translation": 1.2135922330097086,
+    "moment_end_translation": 0.5157766990291263,
+    "force_rotation_at_axis_lever": 1.5169902912621358,
+    "moment_rotation_at_axis_lever": 0.8596278317152102,
+    "transverse_shear_translation": 0.9466019417475727
+  },
+  "complete_cantilever_axis_displacement_um": 5.052588996763753,
+  "remaining_contact_connection_base_budget_um": 1.4474110032362466,
+  "section_fits_radial_allocation": true,
+  "design_decision": "采用短受力闭环作为基础站的截面设计起点；完整梁端平移、转角投影和剪切纳入后仍保留工装预算。接触、连接与基础柔度按剩余额度设计，总站热态与重复定位在工装首件确认。",
+  "historical_fixture_scope": "既有重型门架为八翼研究详图，不列为圆环基础站主配置",
+  "initial_section_width_60mm": {
+    "design_identity": "SUBMISSION-RING-20261008",
+    "configuration": "基础站短受力闭环；等效钢梁截面起点",
+    "scope": "冷态悬臂弯曲与矩形截面剪切核算，不是全架有限元或实测定位结果",
+    "inputs": {
+      "beam_length_mm": 120.0,
+      "section_width_mm": 60.0,
+      "section_height_mm": 120.0,
+      "elastic_modulus_MPa": 206000.0,
+      "poisson_ratio": 0.3,
+      "shear_modulus_MPa": 79230.76923076923,
+      "rectangular_shear_factor": 0.8333333333333334,
+      "transverse_force_N": 5000.0,
+      "end_moment_N_mm": 170000.0,
+      "axis_lever_from_beam_end_mm": 100.0,
+      "radial_clamping_allocation_um": 6.5
+    },
+    "assumptions": [
+      "矩形等截面梁、线弹性小挠度，夹固端为计算边界",
+      "力与端矩产生的端部平移和孔轴杠杆转角位移按同向叠加",
+      "短梁L/h=1，计入剪切挠度；接触、连接、基座与热态变化另占剩余工装预算"
+    ],
+    "section": {
+      "second_moment_mm4": 8640000.0,
+      "equivalent_member_mass_kg": 6.782399999999999,
+      "root_bending_stress_MPa": 5.347222222222222,
+      "mass_scope": "仅120×60×120 mm等效受力件，不是工作站总质量"
+    },
+    "formulas": {
+      "I": "b*h^3/12",
+      "force_end_translation": "F*L^3/(3*E*I)",
+      "moment_end_translation": "M*L^2/(2*E*I)",
+      "force_rotation_at_axis_lever": "F*L^2*lever/(2*E*I)",
+      "moment_rotation_at_axis_lever": "M*L*lever/(E*I)",
+      "transverse_shear_translation": "F*L/(kappa*G*b*h), G=E/[2*(1+nu)]"
+    },
+    "axis_displacement_components_um": {
+      "force_end_translation": 1.6181229773462784,
+      "moment_end_translation": 0.6877022653721683,
+      "force_rotation_at_axis_lever": 2.0226537216828477,
+      "moment_rotation_at_axis_lever": 1.146170442286947,
+      "transverse_shear_translation": 1.262135922330097
+    },
+    "complete_cantilever_axis_displacement_um": 6.736785329018338,
+    "remaining_contact_connection_base_budget_um": -0.23678532901833815,
+    "section_fits_radial_allocation": false,
+    "design_decision": "采用短受力闭环作为基础站的截面设计起点；完整梁端平移、转角投影和剪切纳入后仍保留工装预算。接触、连接与基础柔度按剩余额度设计，总站热态与重复定位在工装首件确认。",
+    "historical_fixture_scope": "既有重型门架为八翼研究详图，不列为圆环基础站主配置"
+  }
+}

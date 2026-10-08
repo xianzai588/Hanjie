@@ -9,3 +9,6 @@
 *.pdf binary
 *.png binary
 *.zip binary
+# The rebuilt small baseline solids are delivered directly with the report.
+cad/generated/ring-baseline/*.step -filter -diff -merge -text
+deliverables/competition-entry/*.step -filter -diff -merge -text

@@ -1,7 +1,8 @@
-"""生成无需 CAD 软件即可查看的参数化俯视工程草图（SVG）。"""
+"""复查 V1-6P-t12 历史布局草图；当前参赛模型使用 build_ring_baseline.py。"""
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from pathlib import Path
@@ -21,6 +22,11 @@ def polygon(points: list[tuple[float, float]]) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--historical-v1", action="store_true", help="明确选择历史 V1-6P-t12 草图")
+    args = parser.parse_args()
+    if not args.historical_v1:
+        parser.error("此入口只生成历史 V1-6P-t12。复查请加 --historical-v1；参赛圆环请运行 cad/parametric/build_ring_baseline.py。")
     geometry = json.loads(GEOMETRY.read_text(encoding="utf-8"))
     official = geometry["official"]
     design = geometry["design_assumptions"]

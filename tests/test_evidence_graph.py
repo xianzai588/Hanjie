@@ -189,9 +189,13 @@ def test_current_report_has_no_known_v42_stale_claims() -> None:
     assert "8P-FAIR_B" in report
     assert "尚未完成 FAIR-A/B" not in report
     assert "GB/T 1182-2008" not in report
-    assert "0.001742 mm" in report
+    # The complete-ring submission and the eight-wing numerical object are
+    # distinct. A historical R3 displacement token cannot qualify either one.
+    assert "完整圆环" in report
+    assert "八翼" in report
+    assert "52.084" in report
     # 竞赛正文的工艺口径：铸铁冷焊热制度、Schaeffler 相图映射与半热态锤击必须可检索。
-    for token in ("Schaeffler", "层间温度≤100℃", "趁热轻击", "NiFe-55", "0.001742 mm"):
+    for token in ("Schaeffler", "层间温度≤100℃", "趁热轻击", "NiFe-55"):
         assert token in report
     # 免责声明体措辞不得回流正文。
     for banned in ("不构成任何许用应力取值", "无法证明", "本结论不构成放行", "仅为探索"):

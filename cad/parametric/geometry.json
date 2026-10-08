@@ -1,4 +1,14 @@
 {
+  "provenance": {
+    "status": "historical_reference",
+    "model_id": "V1-6P-t12",
+    "scope": "六点柔顺布局、12 mm 座厚的历史数字样机；保留原参数用于复查早期算例。",
+    "current_submission_baseline": "project/submission-baseline.yaml",
+    "current_submission_builder": "cad/parametric/build_ring_baseline.py",
+    "eight_wing_candidate_config": "project/competition-design.yaml",
+    "eight_wing_candidate_drawings": "cad/parametric/competition_drawings.py",
+    "compatibility_use": "旧基线一致性、ROUTE-B 和 TOOLING-ACCESS 仍读取部分共同字段；这不使 V1 几何成为当前参赛模型。"
+  },
   "units": "mm",
   "official": {
     "shell_outer_diameter": 160.0,

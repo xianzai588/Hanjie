@@ -1,0 +1,264 @@
+version: SUBMISSION-RING-20261008
+purpose: 焊接固定题报告与工程图的完整圆环基准；参数为设计pWPS，供后续试制确认
+source_document: competition/original-files/welding/第一届辽宁省大学生材料焊接与铸造工艺设计大赛实施方案.pdf
+source_pages:
+  fixed_geometry_and_limits: 3
+  five_design_dimensions:
+  - 3
+  - 4
+  report_and_drawing_submission: 5
+  registration: 7
+  submission_deadline: 8
+geometry:
+  primary_object: 完整圆环主轴承座与壳体
+  builder: cad/parametric/build_ring_baseline.py
+  directory: cad/generated/ring-baseline
+  assembly_step: cad/generated/ring-baseline/ring-assembly-QT450-10-Q235B.step
+  seat_step: cad/generated/ring-baseline/ring-seat-QT450-10.step
+  manifest: cad/generated/ring-baseline/geometry-quality-and-mass.json
+  drawing: cad/generated/ring-baseline/HJ-S01-ring-baseline.svg
+  shell:
+    material: Q235B
+    outside_diameter_mm: 160.0
+    wall_thickness_mm: 5.0
+    height_mm: 200.0
+    nominal_inside_diameter_mm: 150.0
+  seat:
+    material: QT450-10
+    shape: 完整圆环；本体保留连续环向承载通道
+    nominal_bore_diameter_mm: 40.0
+    outside_radius_mm: 74.98
+    thickness_mm: 15.0
+    bottom_z_mm: 100.0
+    thickness_and_height_basis: 题面未指定；本设计选定
+    detail_scope: 母件总装几何；局部浅槽、过渡层和焊缝由工艺断面与工艺卡表达
+weld_layout:
+  segment_count: 8
+  segment_length_mm: 20.0
+  angular_pitch_degrees: 45.0
+  pass_count: 2
+  sequence:
+  - 1
+  - 5
+  - 3
+  - 7
+  - 2
+  - 6
+  - 4
+  - 8
+  length_per_pass_mm: 160.0
+  total_arc_length_mm: 320.0
+  choice_reason: 每段18 mm有效连接，两端各1 mm用于起弧/收弧过渡；按20 mm实际路径核算热量、弧燃和焊材
+  effective_segment_length_mm: 18.0
+  start_allowance_mm: 1.0
+  end_allowance_mm: 1.0
+  effective_length_per_pass_mm: 144.0
+material_route:
+  chain:
+  - QT450-10
+  - CI-A1高镍SMAW首层
+  - 低碳Ni99第二层
+  - NiFe55最终焊缝
+  - Q235B
+  first_layer:
+    station: 壳外开放预制工位
+    method: SMAW
+    electrode_diameter_mm: 3.2
+    steady_current_A: 110.0
+    reference_voltage_V: 23.0
+    travel_speed_mm_min: 75.0
+    typical_deposit_carbon_wt_percent: 1.0
+    interpass_temperature_C:
+    - 200.0
+    - 300.0
+    nominal_retained_normal_thickness_mm: 0.7
+    retained_normal_thickness_tolerance_mm: 0.05
+    basis: 75 mm/min主弧与两端保护弧为圆环局部预制采用输入；按含保护带最大需求核对供料，局部成形和熔合按截面确认
+    travel_speed_relative_tolerance: 0.02
+    engineering_arc_efficiency: 0.8
+    deposition_rate_g_s:
+    - 0.15
+    - 0.17
+    last_ramp_duration_s: 1.2
+    last_current_A: 80.0
+    nominal_net_arc_power_W: 2024.0
+    feed_check:
+      method: 末段及保护弧熔敷率按电流比例核算；最大槽和保护带需求由圆环几何记录给出
+      geometry_record: cad/generated/ring-baseline/ring-precoat-design.json
+      nominal_arc_24mm_low_feed_speed_upper_g: 2.9285294117647056
+      minimum_arc_23_5mm_low_feed_speed_upper_g: 2.869705882352941
+      endpoint_protection_low_feed_mass_g: 0.12954545454545455
+      maximum_groove_and_protection_demand_g: 2.603045988381679
+      initial_80mm_minimum_arc_with_protection_g: 2.6969117647058822
+      choice_reason: 75比80增加首层纯弧燃9.6 s/件，使低供料与公差组合裕量由约3.6%提高到约10%；热过程在最终孔加工前完成
+      mass_margin_g: 0.2666598939712621
+      relative_margin: 0.10244148400045949
+    nominal_arc_time_per_window_s: 20.2
+    nominal_net_heat_per_window_kJ: 40.2776
+    nominal_net_heat_all_windows_kJ: 322.2208
+    heat_management_note: 75 mm/min增加材料裕量与首层热量；独立壳外预制在最终孔加工前完成，温度历程与缓冷另行管理
+    endpoint_protection_arcs:
+      start_current_A: 110.0
+      start_duration_s: 0.5
+      end_current_A: 80.0
+      end_duration_s: 0.5
+      purpose: 首层临时内缘及端部镍保护带覆盖第二层重熔边界；保护弧计入热量和供料
+    temporary_protection:
+      inner_land_width_mm: 0.5
+      terminal_length_mm: 1.5
+      maximum_volume_mm3: 23.796072933822128
+      maximum_mass_g: 0.2115470883816787
+      manufacturing_order: 第一镍层保护保留至第二层焊接结束，再随最终齐平加工去除
+    motion: 控制小摆动覆盖整个6 mm槽底及内缘保护带；逐窗检查起止端覆盖
+  second_layer:
+    station: 壳外预制工位
+    filler: 低碳Ni99裸棒
+    method: GTAW
+    purpose: 降低最终组焊直接卷入高碳首层的程度
+    current_A: 75.0
+    reference_voltage_V: 11.0
+    travel_speed_mm_s: 2.0
+    wire_diameter_mm: 1.2
+    wire_feed_mm_s: 7.2
+    wire_feed_tolerance_mm_s: 0.2
+    track_radii_mm:
+    - 69.98
+    - 71.98
+    - 73.98
+    angular_span_rad: 0.333425951653237
+    track_policy: 三轨共用24/71.98角度；覆盖径向浅槽，并检查圆角与两端轮廓
+    total_height_from_actual_groove_bottom_min_mm: 1.75
+    final_machined_total_thickness_mm:
+    - 1.4
+    - 1.6
+  manufacturing_order:
+  - 座体及局部浅槽加工
+  - 壳外首层预制、清渣与缓冷
+  - 首层法向修整与表面检查
+  - 第二层预制、缓冷及延迟检查
+  - 连接面和轴承孔最终加工
+  - 清洗、去毛刺、干燥
+  - 入壳定位及铜环屏障就位
+  - 八段对称组焊
+  - 带防护冷却、完全卸夹和受控退工具
+  - 独立基准几何、连接与洁净检查
+  precoat_windows:
+    count: 8
+    center_radius_mm: 71.98
+    center_arc_length_mm: 24.0
+    arc_length_tolerance_mm: 0.5
+    radial_width_mm: 6.0
+    radial_width_tolerance_mm: 0.1
+    groove_depth_mm: 1.5
+    groove_depth_tolerance_mm: 0.1
+    inner_bottom_radius_mm: 1.5
+    outer_boundary: 贯通至实际座体外缘，不留裸露QT窄边
+    first_layer_machining_excess_height_mm: 0.2
+    maximum_rectangular_volume_with_excess_mm3: 269.01
+    design_density_g_mm3: 0.00889
+    maximum_first_layer_demand_per_window_g: 2.3914989
+  precoat_ledger:
+    arc_time_s: 449.6
+    net_heat_J: 464780.8
+    deposited_mass_g: 45.06978424851721
+final_GTAW:
+  method: 自动脉冲GTAW
+  polarity: DCEN
+  peak_current_A: 100.0
+  base_current_A: 50.0
+  peak_duty_fraction: 0.5
+  frequency_Hz: 20.0
+  reference_voltage_V: 12.0
+  travel_speed_mm_s: 1.65
+  wire_diameter_mm: 1.6
+  wire_feed_mm_s: 3.5
+  filler: NiFe55类TIG棒材，按实际批次证书确认
+  shielding_gas: Ar
+  shielding_flow_L_min:
+  - 8.0
+  - 12.0
+  start_temperature_C:
+  - 15.0
+  - 35.0
+  interpass_limit_C: 100.0
+  nominal_net_energy_J_mm: 300.0
+  evaluation_energy_range_J_mm:
+  - 250.0
+  - 350.0
+  model_arc_efficiency: 0.55
+  net_energy_kJ: 96.0
+  nominal_arc_time_s: 193.93939393939394
+  calculation_basis: 每段20 mm实际路径，两道320 mm；有效连接18 mm/段用于焊缝组容量需求。净热、弧燃和耗丝均含两端过渡
+  minimum_total_leg_mm: 3.5
+  maximum_geometric_envelope_leg_mm: 4.3
+  final_peening_enabled: false
+  nominal_wire_consumption_length_mm: 678.7878787878788
+precision:
+  official_position_tolerance_diameter_mm: 0.05
+  datum_A: 壳体下端独立安装面
+  datum_B: 壳体内壁两轴向测量带拟合的轴线，按A法向约束定向
+  datum_basis: 题面要求对基准面的位置度；本设计具体定义A/B测量体系
+  measurement_temperature_C:
+  - 19.0
+  - 21.0
+  measurement_state: 孔内和壳底工装全部解除
+  diameter_allocations_um:
+    manufacturing_assembly_and_positioning: 28.0
+    measurement_expanded_uncertainty: 2.0
+    limited_honing_axis_change: 6.5
+    welding_thermal_residual: 13.5
+  maximum_local_radial_honing_removal_um: 3.0
+  bore_size_control_mm:
+  - 40.0
+  - 40.025
+  bore_size_basis: 设计H7尺寸控制窗；官方只规定名义直径40 mm，未指定配合等级
+  mechanism: 胀套背承、对称短段、逐段能量控制、分工序热管理；不采用焊后精镗修正孔轴
+cleanliness:
+  requirement: 焊渣、飞溅不得进入产品内腔
+  primary_barrier: 铜环实体屏障与接料盘
+  auxiliary_measures: 气幕与顶部排烟
+  product_inspection: 全过程记录核对、干态分区内窥和洁净封存
+  qualification: 全周期牺牲壳体的颗粒提取检验，另行退出产品流
+  source_control: 药皮焊接、清渣与切削在入壳前完成
+innovation_candidate:
+  identity: 8P-R2-t15八翼开口座体
+  authority_file: project/competition-authority.yaml
+  design_file: project/competition-design.yaml
+  geometry_manifest: simulation/competition-r4/geometry/8P-R2-t15-manifest.json
+  purpose: 研究柔顺结构减弱焊缝收缩向孔区的传递；同时评价槽根承载、热过程和检测可达性
+  result_identity: 已有八翼模型和结果继续按原实体引用；不移植为完整圆环结论
+  shared_calculations: 同一焊长、送丝、线能量条件下的守恒核算和名义焊缝组需求
+  geometry_specific_calculations: 首层温度历程、残余孔形、局部应力、预制占用时间与热工位容量
+  historical_final_weld_input:
+    total_arc_length_mm: 288.0
+    net_energy_kJ: 86.4
+    nominal_arc_time_s: 174.54545454545456
+    scope: 旧八翼计算输入，未含本次圆环起止过渡路径，不作为圆环组焊用量
+submission:
+  paper_source: deliverables/report/technical-report-v4-unified.md
+  paper_pdf: output/pdf/焊接工艺设计论文-正文.pdf
+  combined_pdf: output/pdf/工艺设计说明书与工程图-参赛设计稿.pdf
+  entry_directory: deliverables/competition-entry
+  zip: deliverables/焊接固定题-参赛设计报告包.zip
+  package_manifest: deliverables/competition-entry/验证与交付状态.json
+  page_count_policy: 使用本次PDF实际页数和材料包清单，不沿用历史14/63或16/72页数
+  reconstruction: 基于远端工程基线和恢复附件重新生成的新版本；不宣称恢复旧提交9cf6963的原字节
+fixture_feasibility:
+  configuration: 基础站短受力闭环、胀套背承与独立压环
+  analysis_script: studies/COMPETITION-DESIGN/ring-fixture-feasibility.py
+  result_file: studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json
+  purpose: 以等效短梁截面建立冷态刚度起点，并预留接触、连接和基础柔度
+  beam_length_mm: 120.0
+  section_width_mm: 80.0
+  section_height_mm: 120.0
+  elastic_modulus_MPa: 206000.0
+  transverse_force_N: 5000.0
+  end_moment_N_mm: 170000.0
+  bore_axis_lever_mm: 100.0
+  radial_clamping_budget_um: 6.5
+  scope: 计入短梁剪切的冷态解析截面起点；完整站的接触、连接、基础和热态按工装图与首件确认。原重型门架保留候选详图，不作为基础站主配置
+  poisson_ratio: 0.3
+  rectangular_shear_factor: 0.8333333333333334
+  cold_axis_displacement_um: 5.052588996763753
+  remaining_contact_connection_base_budget_um: 1.4474110032362466
+  selection_basis: 60 mm宽初始截面计入短梁剪切后6.737 μm超预算；宽增至80 mm后5.053 μm，给接口与基础留1.447 μm

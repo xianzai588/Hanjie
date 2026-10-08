@@ -9,6 +9,7 @@ def _load_lint():
         "competition_submission_lint", root / "scripts/competition_submission_lint.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    module.SECTION_REF_DOCS = ["deliverables/competition-route.md", "deliverables/submission-checklist.md"]
     return module
 
 
@@ -16,7 +17,7 @@ def _pdf_text():
     import pymupdf
     root = Path(__file__).parents[1]
     return "\n".join(page.get_text() for page in pymupdf.open(
-        root / "deliverables/submission/01-工艺设计说明书.pdf"))
+        root / "output/pdf/焊接工艺设计论文-正文.pdf"))
 
 
 def test_delivered_documents_reference_real_sections():
@@ -26,11 +27,11 @@ def test_delivered_documents_reference_real_sections():
 def test_dangling_section_ref_is_detected(tmp_path):
     module = _load_lint()
     doc = tmp_path / "sample.txt"
-    doc.write_text("A类确认清单见说明书§9.2；适用域见§2.4；放行见§7。", encoding="utf-8")
+    doc.write_text("A类确认清单见说明书§9.2；适用域见§99.1；设计结论见§7。", encoding="utf-8")
     module.SECTION_REF_DOCS = [str(doc)]
     errors = module.check_section_refs(_pdf_text())
     assert any("§9.2" in error for error in errors), errors
-    assert any("§2.4" in error for error in errors), errors
+    assert any("§99.1" in error for error in errors), errors
     assert not any("§7" in error for error in errors), errors
 
 

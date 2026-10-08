@@ -1,11 +1,16 @@
-# 参数化 CAD 数字样机
+# CAD 模型与图纸入口
 
-- `parametric/geometry.json`：官方尺寸、设计假设和 V1 参数入口；
-- `parametric/hanjie_model.scad`：可在 OpenSCAD 中渲染壳体、柔顺轴承座、夹具或总装；
-- `generated/layout-v1.svg`：由脚本生成的俯视工程布局图。
-- `generated/engineering-drawings/`：由 `parametric/generate_engineering_drawings.py` 生成的 8 张工程表达图，覆盖座、壳体、接头、焊缝布置、夹具总装/零件、焊接总装及内腔防护安装/退出工序。
-- `simulation/structural-v4/generate_seat_geometry.py`：P1A 七个公平比较实体的唯一 OCC 生成入口；输出在 `simulation/structural-v4/models/`。
+参赛主方案采用完整圆环，输入来自 `project/submission-baseline.yaml`。`parametric/build_ring_baseline.py` 生成座体、总装和八个局部双层预制窗口的 STEP，以及 HJ-S01、HJ-S02 两张设计图，输出目录为 `generated/ring-baseline/`。
 
-工程图包已经显式包含 A/B/C 基准、Ø0.05 位置度框、焊缝符号、槽宽、夹具自由度、材料和未注公差，但当前状态仍是 `design-review`，不是制造发布图：图纸中的座厚、翼宽、装配间隙、焊缝尺寸和夹具等效刚度属于设计假设。
+八翼开口方案作为结构候选保留。其输入为 `project/competition-design.yaml`，`parametric/competition_drawings.py` 读取对应的真实座体 BREP 并生成 HJ-001～HJ-021。`parametric/generate_engineering_drawings.py` 的命令入口已转到该生成器；文件内旧绘图函数仅供历史复查。八翼方案的应力、变形及热模型结果按原模型身份使用。
 
-P1A 实体已由 OpenCascade（OCP）直接导出 STEP/BREP；这些文件只证明参数化实体和导出链路已生成，仍需独立几何审查后才能进入结构求解。当前没有把 SCAD 渲染图当作 P1A 权威实体，也没有把导出文件当作制造发布图；仍需完成三维关联、公差叠加、焊缝可达性、夹具干涉和企业制图标准复核。
+| 对象 | 输入与生成入口 | 文件用途 |
+|---|---|---|
+| 完整圆环参赛主方案 | `project/submission-baseline.yaml`、`parametric/build_ring_baseline.py` | 参赛几何、局部预制结构与工序接口 |
+| 八翼结构候选 | `project/competition-design.yaml`、`parametric/competition_drawings.py` | 结构比较和原八翼计算的几何对象 |
+| V1 六点、12 mm 座厚 | `parametric/geometry.json`、`parametric/hanjie_model.scad`、`parametric/generate_drawing.py --historical-v1` | 早期草图与历史算例复查 |
+| P1A 公平比较实体 | `simulation/structural-v4/generate_seat_geometry.py` | 七个旧比较模型，输出位于 `simulation/structural-v4/models/` |
+
+`parametric/geometry.json` 保留原有 V1-6P-t12 参数，并增加 `provenance` 标识。旧的领域一致性校验、ROUTE-B 与 TOOLING-ACCESS 仍读取其中的焊脚、配合或夹具字段；这些兼容读取不代表整份 V1 几何适用于当前圆环。复用历史脚本前，先核对其模型身份和所读取的字段。圆环输入与八翼输入分别维护，不以替换旧参数的方式继承旧计算结果。
+
+STEP 实体检查用于确认几何、材料分区和工装接口。图中的焊接工艺和尺寸要求用于指导后续试制与检验，具体接头能力按对应工艺设计卡及正文的论证对象判定。
