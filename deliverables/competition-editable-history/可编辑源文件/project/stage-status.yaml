@@ -1,0 +1,382 @@
+version: STAGE-STATUS-1.0
+updated: '2026-10-08'
+authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
+route_b:
+  selected: true
+  experimental_data_required: false
+  objective: 焊接固定题报告与工程图交付；以有效接头和完整制造状态支撑设计判断
+  submission_object: 8P-R2-t15八翼柔顺槽座体与八段两道连接
+  submission_baseline_source: project/submission-baseline.yaml
+  current_research_stage: COMPETITION-R4
+  active_submission_stage: COMPETITION-DELIVERY-20261008
+  main_route: CI-A1独立高镍首层—低碳Ni99第二层—8P低热GTAW—铜环实体屏障
+  adopted_fixture: 原详细设计门架、内锥胀套、托环与铜环
+  active_plan: deliverables/competition-route.md
+  next_action: 本轮有限工程与当前交付已通过新独立定向终审，工程文件冻结；适用新输入或真实工程变化时审查，再决定有限制造链。无变化不重复读取、重问、打包或计算。
+  historical_next_actions_are_active: false
+  dormant_comparators:
+  - complete_ring
+  - short_beam_fixture
+  - CI-A2
+  - 6P
+  - Continuous
+  - laser
+  - external_plug
+  - microplasma
+  candidate_state_source: deliverables/process/current-candidate-state.md
+  thermal_diagnostic_budget_exhausted: true
+  frozen_work:
+  - app_expansion
+  - vision_network_expansion
+  - uncalibrated_monte_carlo
+  - general_solidification_solver_expansion
+  - finite_strain_solver_expansion
+  - new_candidate_expansion
+  supersedes: 圆环替换主结构与短梁替换完整工装；实物确认协议保留为后续实施，不阻断报告与工程图交付
+stages:
+  COMPETITION-DELIVERY-20261008:
+    physical_object: 8P-R2-t15八翼柔顺槽座体；每翼18 mm实际路径、16 mm稳定有效连接
+    execution_status: finite_supply_pass_allocation_native_interface_and_affected_delivery_review_complete
+    acceptance_result: document_package_complete_core_joint_manufacturing_precision_and_strength_unaccepted
+    evidence_level: engineering_design_with_registered_calculation_status
+    experimental_data_required: false
+    current_design_evidence: true
+    evidence:
+    - project/submission-baseline.yaml
+    - deliverables/report/technical-report-v4-unified.md
+    - deliverables/process/calculation-index.md
+    - deliverables/process/current-candidate-state.md
+    - simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json
+    - deliverables/process/shell-datum-and-cmm-execution-card.md
+    - deliverables/process/gas-water-fault-execution-card.md
+    - cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json
+    - docs/review/final-delivery-audit-20261008.md
+    - docs/review/evidence-transfer-20261008.md
+    - docs/review/macroscopic-manufacturing-plan-20261008.md
+    - docs/review/macroscopic-input-independent-review-20261008.md
+    - studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json
+    - cad/generated/competition-design/assembly-coverage-20261008.json
+    - docs/review/final-limited-correction-audit-20261008.md
+    - studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json
+    - studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
+    - docs/review/native-interface-adaptation-20261008.md
+    - docs/review/second-round-input-independent-audit-20261008.md
+    - docs/review/second-round-final-delivery-audit-20261008.md
+    allowed_use: 参赛说明书、分工序pWPS和当前工程图；文件成套与实际指标资格分别验收
+    upstream_dependencies: []
+    next_action: 当前102页/46项主包及240项编辑历史包已独立定向审阅，6处同步缺陷全部闭合。文件冻结，新制造FE0；整体性能仍未验收。下一步仅由适用新来源或工程变化触发，记录元数据更新不重启审核。
+  SUBMISSION-RING-20261008:
+    physical_object: 完整圆环比较对象；局部预制窗与8×20 mm两道组焊
+    record_role: dormant_comparator
+    current_design_evidence: false
+    execution_status: nominal_geometry_process_cards_and_analytical_screening_completed
+    acceptance_result: joint_manufacturing_precision_and_strength_not_verified
+    evidence_level: engineering_design_inputs_and_analytical_screening
+    experimental_data_required: false
+    evidence:
+    - cad/generated/ring-baseline/geometry-quality-and-mass.json
+    - cad/generated/ring-baseline/ring-precoat-design.json
+    - studies/COMPETITION-DESIGN/results/ring-control-screening.json
+    - studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json
+    allowed_use: 圆环名义几何、供料热量及解析条件比较；假设冻结温差不代表制造残余响应
+    upstream_dependencies: []
+    next_action: 保留历史比较，停止加入活动主链
+  COMPETITION-R3:
+    execution_status: full_part_thermal_structural_solver_completed_coarse_and_independent_mesh_check
+    acceptance_result: design_checks_passed_physical_performance_unverified
+    evidence_level: numerical_design_verification
+    evidence: simulation/competition-r3/results/verification.json
+    allowed_use: 历史R3参考；旧边界及预算不覆盖当前R4实体、孔径或热耦合结果
+    upstream_dependencies:
+    - COMPETITION-DESIGN
+    - SCHAEFFLER-MAP
+    next_action: 按说明书 §9.2 完成 NiFe/QT 熔合、裂纹、疲劳、洁净度和测量能力的 A 类首件确认
+    current_design_evidence: false
+  COMPETITION-R2:
+    execution_status: revised_design_geometry_process_budget_and_interlocks_completed
+    acceptance_result: design_checks_passed_physical_performance_unverified
+    evidence_level: design_assumption
+    evidence: studies/COMPETITION-DESIGN/results/assessment.json
+    allowed_use: 历史四道沉积基线；不覆盖当前 R3 两道脉冲方案，也不放行实物性能或正式热结构
+    upstream_dependencies:
+    - ROUTE-B-DESIGN
+    - TOOLING-ACCESS
+    next_action: 按当前说明书与设计图集开展设计评审；完整热结构、柔性工装与洁净性能保持未验证
+  THERMAL-R1-SINGLEPASS-DIAGNOSTIC:
+    execution_status: actual_fvm_solver_run_completed_60_s
+    acceptance_result: solver_converged_energy_residual_within_diagnostic_limit
+    evidence_level: solver_result_unvalidated
+    evidence: simulation/thermal-ref/results/competition-r2/r1-singlepass/assessment.json
+    allowed_use: 新Ø1.6棒径和3.5 mm等面积截面接入既有FV求解链的单段热诊断；禁止代表四道整件热历史
+    upstream_dependencies:
+    - COMPETITION-R2
+    - THERMAL-NUMERICAL-GATE
+    next_action: 历史单段结果仅作数值回归；当前整件 R3 热-结构结果见 simulation/competition-r3
+  G-INPUTS:
+    execution_status: controlled_inputs_volume_candidate_and_conditional_load_basis_defined
+    acceptance_result: not_closed
+    evidence_level: design_assumption
+    allowed_use: 条件性数值筛查；真实载荷、许用与成形关系仍待闭合
+    upstream_dependencies: []
+    next_action: 按ROUTE-B-DESIGN的固定送丝情景推进分层几何与候选尺度热历史；实际成形不作为当前核算依赖，保留未验证边界
+  LOAD-BASIS-0:
+    execution_status: conditional_weld_group_screening_and_component_leg_curves_completed
+    acceptance_result: reference_envelope_only_actual_load_missing
+    evidence_level: design_assumption_reference_envelope
+    allowed_use: 焊脚、焊长、径向/轴向/倾覆分量、单位载荷响应和热量/节拍敏感性比较
+    evidence: simulation/structural-v4/results/joint-load-basis/joint-load-basis.json
+    upstream_dependencies:
+    - G-INPUTS
+    next_action: 已转为ROUTE-B-DESIGN条件选型；没有载荷来源时保留参数包络，不认证服役安全
+  THERMAL-0.4R1:
+    execution_status: ten_case_run_and_audit_completed
+    acceptance_result: failed_spatial_convergence
+    evidence_level: solver_result_unvalidated
+    allowed_use: 未校准局部热诊断；禁止正式整件性能结论
+    evidence: simulation/thermal-v5/results/credibility04r1/assessment.json
+    diagnostic_evidence: simulation/thermal-v5/results/credibility04r1/spatial-convergence-diagnosis.json
+    gate_field: thermal_1_allowed
+    upstream_dependencies:
+    - G-INPUTS
+    next_action: 局部高梯度焊道/热源离散已定位；固定情景改进边界表示并复算网格序列
+  THERMAL-0.4R2-A:
+    execution_status: fixed_six_strip_geometry_coarse_medium_fine_and_directional_controls_completed
+    acceptance_result: fixed_geometry_reduced_but_did_not_close_spatial_error
+    evidence_level: solver_result_unvalidated
+    allowed_use: 分离场网格与阶梯几何影响；禁止正式整件性能结论
+    evidence: simulation/thermal-v5/results/spatial-fix-study/assessment.json
+    upstream_dependencies:
+    - THERMAL-0.4R1
+    next_action: 已转入THERMAL-0.5局部截面三级序列
+  THERMAL-0.5-XSEC:
+    execution_status: local_xsec_m_f_vf_run_and_second_layer_diagnosis_completed
+    acceptance_result: nonmonotonic_not_in_asymptotic_region
+    evidence_level: solver_result_unvalidated
+    allowed_use: 局部离散根因诊断；禁止给最终空间/时间准入或正式整件性能结论
+    evidence: simulation/thermal-v5/results/xsec-refinement-study/assessment.json
+    upstream_dependencies:
+    - THERMAL-0.4R2-A
+    next_action: 停止xfine和新网格时间步；补逐面界面通量、局部源密度及接口/阶梯边界对齐的嵌套网格诊断
+  THERMAL-0.6-NESTED:
+    execution_status: strict_nested_m_f_vf_and_detailed_ledgers_completed
+    acceptance_result: asymptotic_trend_but_local_field_and_fixed_history_failed
+    evidence_level: solver_result_unvalidated
+    allowed_use: 边界源承载层、逐面峰值与固定点重构的数值机制诊断；禁止正式结构热载荷
+    evidence: simulation/thermal-v5/results/nested-refinement-study/assessment.json
+    upstream_dependencies:
+    - THERMAL-0.5-XSEC
+    next_action: 停止NEST-XF和时间步复查；改为显式边界面Neumann通量并建立仿射精确同材料点重构，再重复NEST-F/VF
+  THERMAL-0.7-BOUNDARY-NEUMANN:
+    execution_status: analytic_verification_and_conditional_f_vf_completed
+    acceptance_result: explicit_face_and_reconstruction_verified_but_field_gate_failed
+    evidence_level: solver_result_unvalidated
+    allowed_use: 证明面功率施加与点重构实现正确，并排除边界层体积源单位误用；禁止正式结构热载荷
+    evidence: simulation/thermal-v5/results/boundary-neumann-plan6/assessment.json
+    upstream_dependencies:
+    - THERMAL-0.6-NESTED
+    next_action: 自研FVM停止继续细化；已完成首轮Elmer参考，后续按THERMAL-REF处理能量与出生离散问题
+  THERMAL-REF:
+    execution_status: elmer_ref_c_plan7_and_final_plan8_completed
+    acceptance_result: not_admitted_energy_audit_failed_and_reference_convergence_unverified
+    evidence_level: solver_result_unvalidated
+    allowed_use: 与THERMAL-0.7同物理输入的独立粗网格诊断；不得据此裁决求解器优劣或提供正式结构热载荷
+    evidence: simulation/thermal-ref/results/REF-C/assessment.json
+    verification_evidence: simulation/thermal-ref/results/verification/assessment.json
+    mechanism_evidence: simulation/thermal-ref/results/plan7/assessment.json
+    upstream_dependencies:
+    - G-INPUTS
+    - THERMAL-0.7-BOUNDARY-NEUMANN
+    next_action: Plan8后停止局部热机制诊断；将剩余空间场差异登记为模型形式不确定性，不调η、不启动REF-M/F/VF
+  THERMAL-REF-PLAN7:
+    execution_status: birth_only_source_off_replay_and_paired_preborn_completed
+    acceptance_result: mechanisms_partly_identified_birth_energy_gate_failed_ref_m_blocked
+    evidence_level: solver_result_unvalidated
+    allowed_use: 40s焓缺陷定量归因及同C网格预出生消融；不能裁决求解器正确性或提供正式结构热载荷
+    evidence: simulation/thermal-ref/results/plan7/assessment.json
+    verification_evidence: simulation/thermal-ref/results/plan7/components/assessment.json
+    upstream_dependencies:
+    - THERMAL-REF
+    diagnostic_iterations_used: 1
+    diagnostic_iterations_maximum: 2
+    next_action: 已由Plan8完成最后一次诊断；历史实物裁决策略被无实物Route B替代
+  THERMAL-REF-PLAN8:
+    execution_status: partition_ledgers_common_probes_and_paired_constant_control_completed
+    acceptance_result: diagnostic_checks_passed_local_field_disagreement_persists
+    evidence_level: solver_disagreement_physical_unvalidated
+    allowed_use: 分区反力热账和共同空间观测的机制排除；仅可输入明确标记的非正式敏感性链
+    evidence: simulation/thermal-ref/results/plan8/assessment.json
+    upstream_dependencies:
+    - THERMAL-REF-PLAN7
+    diagnostic_iterations_used: 2
+    diagnostic_iterations_maximum: 2
+    next_action: 停止热求解器逐点对齐；转入STRUCT-UNCERTAINTY，不依赖实测，不运行REF-M/F/VF
+  METALLURGY-0:
+    execution_status: executor_and_historical_diagnostics_completed
+    acceptance_result: current_joint_not_physically_validated
+    evidence_level: literature_analogue_and_design_assumption
+    allowed_use: 风险识别；禁止宣称当前接头组织或连接质量已验证
+    upstream_dependencies:
+    - G-INPUTS
+    - THERMAL-0.4R1
+    next_action: Route B只报告峰温、t8/5、冷却速率和阈值体积等热风险指标；不得声称真实组织比例
+  EXP-THERMAL:
+    execution_status: protocol_only_deferred_outside_current_route
+    acceptance_result: not_executed
+    evidence_level: protocol_only
+    allowed_use: 未来可选试验准备；非当前Route B依赖
+    upstream_dependencies:
+    - G-INPUTS
+    next_action: 当前无采集条件，保留协议，不生成模拟实测数据
+  THERMAL-NUMERICAL-GATE:
+    execution_status: evaluated_after_final_plan8
+    acceptance_result: not_passed
+    evidence_level: solver_disagreement_physical_unvalidated
+    allowed_use: 通过后可标记solver_verified并提供正式THERMAL-1热载荷；非正式Route B研究不授予该标签
+    upstream_dependencies:
+    - THERMAL-0.7-BOUNDARY-NEUMANN
+    - THERMAL-REF
+    - THERMAL-REF-PLAN7
+    - THERMAL-REF-PLAN8
+    next_action: 已完成dt=0.05 s复核和最小元素焓账探针；同材元素账闭合，跨材料共享节点在热演化同时发生时出现非闭合，下一步分离出生步与导热步的节点装配审计，保留原能量与收敛门
+  THERMAL-PHYSICAL-CALIBRATION:
+    execution_status: protocol_only
+    acceptance_result: not_executed
+    evidence_level: none
+    allowed_use: 通过后方可标记 calibrated/physical_validated 并进入 Route A
+    upstream_dependencies:
+    - EXP-THERMAL
+    next_action: 有实验条件时执行；不是 Route B 数值研究的绝对依赖
+  THERMAL-1:
+    execution_status: blocked
+    acceptance_result: not_admitted
+    evidence_level: none
+    allowed_use: 不允许正式结构耦合
+    upstream_dependencies:
+    - THERMAL-NUMERICAL-GATE
+    optional_physical_dependency: THERMAL-PHYSICAL-CALIBRATION
+    next_action: 数值 Gate 通过后可进入 solver_verified Route B；物理校准通过才可使用 calibrated/validated
+      标签
+  STRUCT-0-PREP:
+    execution_status: swept_mesh_and_synthetic_sector_dress_rehearsal_completed
+    acceptance_result: ready_pending_admitted_thermal_history
+    evidence_level: executed_swept_mesh_and_synthetic_sector_rehearsal
+    allowed_use: 结构执行链工程准备；合成PFEP_FE无工程意义，不得冒充实际焊接残余位置度
+    evidence: simulation/structural-v4/results/struct0-prep/struct0-prep-plan6-assessment.json
+    mesh_evidence: simulation/structural-v4/results/struct0-prep/continuous-swept-plan6-admitted.json
+    upstream_dependencies:
+    - G-INPUTS
+    next_action: 等待获准整圈热历史；不得接入当前未准入局部热场
+  STRUCT-0:
+    execution_status: not_executed
+    acceptance_result: blocked_by_thermal_only
+    evidence_level: none
+    allowed_use: 无
+    upstream_dependencies:
+    - THERMAL-1
+    - STRUCT-0-PREP
+    next_action: 前置通过后执行 Continuous 整件基线
+  STRUCT-UNCERTAINTY:
+    execution_status: 432_paired_reduced_inherent_strain_sensitivity_cases_completed
+    acceptance_result: no_resolved_robust_winner
+    evidence_level: solver_disagreement_physical_unvalidated
+    allowed_use: 同一3D座体链下跨热历史、物性、约束、基础刚度及C/M网格的条件性位置度敏感性；不是整件焊后残余预测
+    evidence: simulation/structural-v4/results/struct-uncertainty/assessment.json
+    upstream_dependencies:
+    - THERMAL-REF-PLAN8
+    formal: false
+    experimental_data_required: false
+    next_action: 保留Continuous、6P、8P-FAIR_B；数字结构研究优先约束情景和候选尺度热历史映射，不能凭本轮小位置度值宣称Ø0.05验收
+  STRUCT-1:
+    execution_status: static_screening_only
+    acceptance_result: formal_comparison_not_executed
+    evidence_level: solver_result_static_screening
+    allowed_use: 当前载荷和支承下的静力筛查
+    upstream_dependencies:
+    - STRUCT-0
+    next_action: 在统一可信热场下比较至多两个候选
+  SERVICE:
+    execution_status: load_builder_and_conditional_weld_group_screening_completed
+    acceptance_result: not_executed
+    evidence_level: component_unit_verification
+    allowed_use: 单位载荷与参考包络敏感性；无整件性能或寿命结论
+    upstream_dependencies:
+    - STRUCT-1
+    next_action: 补齐实际载荷包络后计算轴向、径向、倾覆、模态和疲劳风险
+  PROCESS-CONTROL:
+    execution_status: surrogate_prototypes_completed
+    acceptance_result: formal_study_not_executed
+    evidence_level: synthetic_demo
+    allowed_use: 算法演示和拒绝逻辑验证
+    upstream_dependencies:
+    - STRUCT-1
+    next_action: 冻结App、视觉网络和无意义Monte Carlo扩展；后续只按真实已有证据完善数字追溯
+  EXP-FINAL:
+    execution_status: deferred_outside_current_route
+    acceptance_result: not_executed
+    evidence_level: none
+    allowed_use: 无
+    upstream_dependencies:
+    - PROCESS-CONTROL
+    next_action: 无实物Route B不安排CMM、NDT或洁净度试验；仅保留验收流程和洁净度控制设计
+  ROUTE-B-DESIGN:
+    execution_status: six_candidates_108_capacity_process_cases_and_precision_inverse_budget_completed
+    acceptance_result: historical_conditional_recommendation_superseded_by_R4
+    current_design_evidence: false
+    evidence_level: design_assumption_reference_envelope
+    allowed_use: 原沉积效率范围内的承载—净热输入—弧燃时间条件选型及公差反算；禁止替代整件位置度与焊接质量验收
+    evidence:
+    - studies/ROUTE-B-DESIGN/results/assessment.json
+    - studies/COMPETITION-DESIGN/results/robust-selection.json
+    upstream_dependencies:
+    - LOAD-BASIS-0
+    - STRUCT-UNCERTAINTY
+    formal: false
+    experimental_data_required: false
+    next_action: 历史条件选型不作为当前冻结；按COMPETITION-R4有效接头与同状态制造结果重新决定布局
+  TOOLING-ACCESS:
+    execution_status: occ_swept_shield_torch_envelopes_and_cone_force_checks_completed
+    acceptance_result: limited_geometry_routes_available_cleanliness_and_repeatability_open
+    evidence_level: design_assumption_with_occ_geometry_checks
+    allowed_use: 列明刚性实体的退出/焊枪包络和锥面载荷情景；不能替代完整工装、洁净和位置度验收
+    evidence: studies/TOOLING-ACCESS/results/assessment.json
+    upstream_dependencies:
+    - ROUTE-B-DESIGN
+    formal: false
+    experimental_data_required: false
+    next_action: 设计覆盖周边落物路径的可收拢挡边，补独立倾斜约束、主动退锥和六支承实体；保留底口开放与工具包络假设
+  DECISION:
+    execution_status: conditional_capacity_heat_input_selection_completed
+    acceptance_result: historical_recommendation_superseded_by_R4_joint_reselection
+    current_design_evidence: false
+    evidence_level: design_assumption_reference_envelope
+    allowed_use: 竞赛数字设计推荐和阶段设计评审；不等同产品工程放行
+    upstream_dependencies:
+    - ROUTE-B-DESIGN
+    - TOOLING-ACCESS
+    - SERVICE
+    optional_physical_dependencies:
+    - EXP-FINAL
+    next_action: 8P为现行主方案；采用身份与计算通过状态分开，后续由COMPETITION-R4有效接头、制造和承载结果修订工艺
+  COMPETITION-R4:
+    physical_object: 8P-R2-t15八翼柔顺槽座体现行主方案
+    record_role: current_competition_baseline
+    current_design_evidence: true
+    competition_entry_document_complete: true
+    competition_entry: deliverables/焊接固定题-参赛设计报告包.zip
+    current_precoat_pWPS: project/precoat-process-design.yaml
+    baseline_source: project/submission-baseline.yaml
+    physical_experiments_required_for_document_delivery: false
+    execution_status: public_evidence_and_local_forming_review_thermal_history_unqualified
+    final_release: blocked_pending_joint_manufacturing_and_strength_evidence
+    acceptance_result: not_accepted_connection_and_full_state_verification_required
+    evidence_level: numerical_design_verification_in_progress
+    evidence:
+    - simulation/competition-r4/results/design-repair-status-20261005.json
+    - simulation/competition-r4/results/route4-reselection/route4-audit.json
+    - studies/COMPETITION-DESIGN/results/precoat-input-budget.json
+    - studies/COMPETITION-DESIGN/results/postweld-isolation.json
+    allowed_use: 已完成控形失败场及子项、分工序接头候选；有效接头后的完整状态链才可冻结
+    upstream_dependencies:
+    - COMPETITION-DESIGN
+    - SCHAEFFLER-MAP
+    next_action: 本轮目录棒材/一次分道/有限原生冷态去料准备已实现；新独立审核仍不准入制造性能FE。待适用熔合、高温响应、真实熔凝参考及合格冷态/完整初始拓扑形成后再审核有限链；不重跑功能基准或扩大搜索/平台。

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">顶部抽吸、过滤接口与转运退位</text>
+<text x="50" y="99" class="small">当前工位不安装随动轻击；抽吸头工作位固定，转运前正向径退，四口反馈齐全才允许壳体上提</text>
+<text x="1020" y="65" class="section">HJ-009</text>
+<text x="65" y="150" class="section">俯视工作/退位包络（单位mm，NTS）</text>
+<circle cx="320" cy="406" r="212.0" fill="#f5f7f8" stroke="#334155"/>
+<circle cx="320" cy="406" r="198.75" fill="#ffffff" stroke="#334155"/>
+<circle cx="320" cy="406" r="119.25" fill="none" stroke="#bbc5ce"/>
+<line x1="466.15897167125934" y1="259.84102832874066" x2="516.7524618651569" y2="209.24753813484313" stroke="#176b7b" stroke-width="4"/>
+<circle cx="466.15897167125934" cy="259.84102832874066" r="13.25" fill="#99c4ce" stroke="#334155"/>
+<circle cx="494.26646622342463" cy="231.73353377657537" r="13.25" fill="none" stroke="#b45d36"/>
+<text x="474.15897167125934" y="249.84102832874066" class="small">E1</text>
+<line x1="173.84102832874063" y1="259.84102832874066" x2="123.24753813484318" y2="209.24753813484313" stroke="#176b7b" stroke-width="4"/>
+<circle cx="173.84102832874063" cy="259.84102832874066" r="13.25" fill="#99c4ce" stroke="#334155"/>
+<circle cx="145.7335337765754" cy="231.73353377657537" r="13.25" fill="none" stroke="#b45d36"/>
+<text x="181.84102832874063" y="249.84102832874066" class="small">E2</text>
+<line x1="173.8410283287406" y1="552.1589716712593" x2="123.2475381348431" y2="602.7524618651569" stroke="#176b7b" stroke-width="4"/>
+<circle cx="173.8410283287406" cy="552.1589716712593" r="13.25" fill="#99c4ce" stroke="#334155"/>
+<circle cx="145.73353377657534" cy="580.2664662234246" r="13.25" fill="none" stroke="#b45d36"/>
+<text x="181.8410283287406" y="542.1589716712593" class="small">E3</text>
+<line x1="466.15897167125934" y1="552.1589716712595" x2="516.7524618651568" y2="602.7524618651569" stroke="#176b7b" stroke-width="4"/>
+<circle cx="466.15897167125934" cy="552.1589716712595" r="13.25" fill="#99c4ce" stroke="#334155"/>
+<circle cx="494.2664662234246" cy="580.2664662234247" r="13.25" fill="none" stroke="#b45d36"/>
+<text x="474.15897167125934" y="542.1589716712595" class="small">E4</text>
+<text x="65" y="679" class="small">实色：R78工作位；空圈：R93退位；4头Ø外≤10；壳外R80</text>
+<text x="72" y="712" class="small">头中心z210、喉Ø4；口下缘≥z205；不伸入z115焊缝近区</text>
+<text x="620" y="153" class="small">4个口45°起，每90°；朝下并向内15°。</text>
+<text x="620" y="182" class="small">各5.5～7，总22～28 L/min。</text>
+<text x="620" y="211" class="small">喉Ø4→ID6支管→ID12总管；支管软段≥100。</text>
+<text x="620" y="240" class="small">316L头，外径≤10；4个径向导轨行程15。</text>
+<text x="620" y="269" class="small">导轨装在R105上口外框，安装端z220。</text>
+<text x="620" y="298" class="small">各座30×20、2-M5/孔距20；调位误差≤0.5。</text>
+<text x="620" y="327" class="small">工作中心R78±0.5；退位R93±0.5。</text>
+<text x="620" y="356" class="small">退位最内包络≥87.5，避开R80钢壳。</text>
+<text x="620" y="385" class="small">软管固定防擦，最小弯曲R≥15；不自由拖曳。</text>
+<text x="620" y="414" class="small">两端正向销；中途弹簧抱杆锁保持当前位置。</text>
+<text x="620" y="443" class="small">各口双位置反馈；缺退位信号禁止壳体上提。</text>
+<text x="620" y="472" class="small">干式金属捕集杯→预滤→H13→流量/压差→抽气。</text>
+<text x="620" y="501" class="small">滤器在工位外；过滤排气禁止接回氩保护。</text>
+<text x="620" y="530" class="small">前吹30 s，流量稳定≥5 s才起弧。</text>
+<text x="620" y="559" class="small">末弧保持≥120 s且热区&lt;55℃、清盘合格。</text>
+<text x="620" y="588" class="small">关补氩→四口径退15确认→壳体上提140。</text>
+<text x="620" y="617" class="small">工作位抽烟；退态不计捕烟，清盘独立回收。</text>
+<text x="620" y="646" class="small">气水分路及故障保持逻辑见HJ-023/HJ-C-03。</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：316L / 过滤组件</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
+</svg>

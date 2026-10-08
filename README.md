@@ -1,42 +1,53 @@
-# Hanjie · 焊接固定题工艺设计
+# Hanjie · 焊接固定题工艺设计说明书
 
-主方案：独立CI-A1高镍预制、低碳Ni99第二层、8P低热输入GTAW及铜环实体屏障。当前已整理完整参赛设计报告文件；有效接头、完整孔形及完整强度验证仍未全部通过，具体见正文0、4、5。
+本项目交付 QT450-10 主轴承座与 Q235B 壳体的工艺设计说明书，附 WPS 设计卡及工程图。主方案冻结为 **8P-R2-t15 八翼柔顺槽座体、壳外 CI-A1 高镍首层预制、低碳 Ni99 第二层、低热输入脉冲 GTAW 最终组焊**，采用已有详细设计的门架、内锥胀套、托环和铜环颗粒屏障。完整圆环及短梁截面计算保留为比较附件。
 
-- [参赛设计报告包ZIP](deliverables/焊接固定题-参赛设计报告包.zip)
-- [说明书与工程图合订本](deliverables/competition-entry/01-工艺设计说明书与工程图.pdf)
-- [工艺规程与检验卡](deliverables/competition-entry/02-工艺规程与检验卡.pdf)
-- [21张工程图](deliverables/competition-entry/03-工程图集.pdf)
-- [正文源文件](deliverables/report/technical-report-v4-unified.md)
-- [独立预制设计参数](project/precoat-process-design.yaml)
-- [后续修复计划](deliverables/competition-route.md)
+## 阅读入口
 
-首层每翼单主轨迹：110 A、23 V参考、100 mm/min、名义熔敷率0.17 g/s；计入末段缓降后沉积15.329235 g/件。八个公差角点加名义实体已完成独立STEP重读，最大槽176.157710 mm³/翼；120 mm/min仍有供料不足情景，保留100基线。第二层75 A、11 V参考、2 mm/s、Ø1.20裸棒送丝7.20±0.20 mm/s。以上为设计pWPS，试制确认后冻结生产窗口。最终随动轻击作为选配，不计控形/强度收益。
+| 文件 | 内容 |
+| --- | --- |
+| [说明书与工程图合订本](deliverables/competition-entry/01-焊接工艺设计说明书与工程图.pdf) | 说明书正文、五维技术方案、工艺卡及 HJ-001～023 主图 |
+| [工艺规程与检验卡](deliverables/competition-entry/02-工艺规程与检验卡.pdf) | 分工序操作参数、检测频次、判据及处置 |
+| [工程图集](deliverables/competition-entry/03-工程图集.pdf) | 23 张八翼主方案及工装、洁净、预制公差和检测图 |
+| [说明书正文](deliverables/competition-entry/06-焊接工艺设计说明书-正文.pdf) | 单独正文、图表及参考文献 |
+| [参赛设计报告包](deliverables/焊接固定题-参赛设计报告包.zip) | 主 PDF、工艺卡、23 主图、名义与分层 STEP、九组公差实体和关键计算 |
+| [可编辑与历史附件](deliverables/焊接固定题-可编辑与历史附件.zip) | 可编辑源快照、字体许可证、源图、圆环比较和历史失败摘要 |
+| [本次材料清单](deliverables/competition-entry/验证与交付状态.json) | 实际页数、收录文件及各项设计验证状态 |
 
-本次新增HJ-019真实公差断面、HJ-020专用UT可达图及HJ-021关键零件明细；HJ-P-01按8件/8 h目标配置单头整线、8/9/24个首层/第二层预留/延迟PT位置。143.58元/件为直接运行费假设情景。首层冷态尚未取得，当前完整制造链、Ø0.05 mm及完整承载验证均未通过；历史52.084 μm超差保留。
+## 制造与控形
 
-重建参赛报告文件：
+高温预制、清渣、层面修整及轴承孔最终加工在壳外完成，随后清洗干燥并入壳。最终组焊采用八段对称跳焊，焊序为 1→5→3→7→2→6→4→8。每翼真实外缘路径为 **18 mm**，两端各 1 mm 分配给起止过渡，稳定有效连接按 **16 mm/翼、128 mm/道**核算。两道实际路径 288 mm；名义净线能量 300 J/mm 对应净热 86.4 kJ、弧燃 174.545 s、耗丝 628.364 mm。有效焊长用于接头容量，实际路径用于热量、时间和焊材。
 
-```powershell
-python cad/parametric/build_precoat_tolerance_family.py
-python cad/parametric/inspect_precoat_tolerance_steps.py
-python studies/COMPETITION-DESIGN/pilot_production_resources.py
-python cad/parametric/build_engineering_supplements.py
-python cad/parametric/export_drawing_pdfs.py
-python -c "import sys;from pathlib import Path;sys.path.insert(0,'src');from hanjie.reporting.current_status import write_status_artifacts;write_status_artifacts(Path.cwd())"
+本轮第二层采用DMNA099目录Ø1.143×914.4 mm直棒，采购验收±0.020、配套送进8.00±0.20 mm/s；每翼两轨用同一180±0.5 mm定长棒。最终一次分道修订为根3.42/盖3.78±0.05 mm/s，理想最差喉厚余58.677 μm，实际轮廓与连续熔合分别确认。
+
+孔轴控形依靠径向柔顺槽、内锥胀套背承、门架拘束、对称焊序及逐段能量控制。位置度按完全冷却、孔内与壳底工装全部解除后的独立 A/B 基准评价。完整预算为 28＋2＋6.5＋13.5＝50 μm；有限微珩最大局部径向去除 3 μm，用于孔径精整。铜环、接料盘、向上气幕和顶部排烟覆盖组焊、冷却及受控撤工具过程。
+
+## 计算状态与后续边界
+
+主方案已经建立名义几何、曲面两层实体、九组公差实体、工艺守恒及工装/尺寸预算。既有最终组焊—冷却—卸夹算例最大位置度预算为 52.084 μm，超目标 2.084 μm；该结果保留原工艺与实体身份。现行材料链的首次连续熔合、可继承的冷态制造状态、完全卸夹孔形及同状态承载仍按实际状态登记，未写成通过。
+
+报告与工程图按无实物路线完成。公开原始研究及供方资料按首次界面、组织、重熔留层和容量分别迁移，截面成形、制造接口与容量需求核算继续推进；一个来源无需包办全部输入。现行热史的两时间步均在0.5 s越无蒸发适用域，共同0.375 s峰温差8.67%，该热史不能继承到下游力学。宏观制造计算按已冻结表示逐项审查输入，取得资格后沿有效接头、真实切削存留、完全卸夹及同状态承载顺序执行。试制时按工艺卡完成工程确认。
+
+已复核旧QT删除/再加入PEEQ差0，新增保留原生二进制历史的冷态整单元去料准备；本件仍无合格冷态及后续层/壳体/工装初始拓扑，整链不可执行。见[本轮输入独立审核](docs/review/second-round-input-independent-audit-20261008.md)与[实际接口说明](docs/review/native-interface-adaptation-20261008.md)。新制造性能FE数0。
+
+04名义装配STEP为13个导入根、33个实体，覆盖既有名义力链、固定铜盘和根道枪丝包络；已移出停用轻击器。焊缝禁入体和四个见证片占位计入实体数。HJ-022外耳、长压钩、支柱及转运指，HJ-023副压环、横臂、R340驱动/制动副架和抽吸退位机构以工程图及净隙核算为准，未加入04装配。详见[装配覆盖记录](cad/generated/competition-design/assembly-coverage-20261008.json)。
+
+## 历史入口
+
+[比赛交付旧目录](deliverables/比赛交付-20261008/00-历史快照说明.md)和[论文格式旧目录](deliverables/论文格式交付-20261008/00-历史快照说明.md)均为历史快照。前者保留11份STEP指针，后者保留11份完整旧STEP及旧版正文；本次提交入口为上表的competition-entry。
+
+## 维护与重新生成
+
+[参赛基准参数](project/submission-baseline.yaml)是本次对象、焊长和交付路径的机器输入；[说明书正文源稿](deliverables/report/technical-report-v4-unified.md)、[工艺卡目录](deliverables/process)及[比赛内容与完善顺序](deliverables/competition-route.md)是维护入口。PDF路径以[报告配置](project/report.yaml)为准，仓库根目录为维护源，附件中的源文件为导出快照，修改后统一重新构建：
+
+```bash
+python cad/parametric/export_drawing_pdfs.py --paper-grayscale
 python deliverables/report/build_technical_report_pdf.py --competition-entry --with-drawings
 python deliverables/build_competition_entry.py
 ```
 
-文件齐备与工程性能分别记录。`python deliverables/build_submission.py`仍保留有效接头、完全卸夹精度与完整强度的工程发布检查，不用参赛报告打包结果替代其通过。`deliverables/submission`为历史技术包，勿与当前参赛设计报告包混用。
+主包只收当前方案，历史计算原件保留在仓库与单独附件。各 PDF 页数以本次文件和材料清单为准。
 
-校方报名、身份信息及盖章材料单独办理；工具不发送邮件、不代签。技术文件中保留匿名。
+## 校方提交
 
-## 历史研究记录（按原日期保留）
-
-**2026-09-08 工装几何推进**：已读取既有 BREP 检查防护盘上/下退出、六种焊枪包络和锥面压入情景。三候选均排除整盘上撤；底口开放时下撤与所列实体无干涉。30°/45° 弯头后竖直枪体保留为几何候选；原心轴整段入孔会穿透，名义退让 5 mm 后为孔缘接触，已改为内置锥驱动开缝圆柱胀套并配置 1.00 mm 主动回退行程。入口 `python studies/TOOLING-ACCESS/run.py`。
-
-**2026-09-06 V4.3**：修正非均匀异材公共面导热的串联热阻离散，并完成 THERMAL-0.4R1 全量重跑与审计；七个真实三维实体的静力筛查已完成，Continuous、6P、8P-FAIR_B 进入后续比较。
-
-**2026-09-08 无实物条件选型**：新增六候选 108 组承载—沉积截面—名义净热输入核算及精度预算反算，按参考载荷与设计筛查许用值给出低热输入优先项与 6P/8P 自动切换边界。执行入口 `python studies/ROUTE-B-DESIGN/run.py`。
-
-
+原比赛文件的焊接赛道节点为 2026 年 10 月 20 日前报名、10 月 25 日（含当日）提交。报名、盖章、审核推荐及校内节点由团队与校方办理，见[提交核对清单](deliverables/submission-checklist.md)。身份文件与匿名技术作品分别整理。

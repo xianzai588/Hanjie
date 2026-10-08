@@ -64,9 +64,9 @@ process:
   deposition_efficiency_range:
   - 0.9
   - 0.98
-  minimum_leg_mm: 3.5
+  minimum_leg_mm: 3.8
   clearance_leg_mm: 4.3
-  feed_policy: 送丝3.50±0.05 mm/s，实际分辨率≤0.01；速度与丝径公差均入守恒边界
+  feed_policy: 根道3.42±0.05、盖面3.78±0.05 mm/s，实际分辨率≤0.01；平均3.60仅作总量核算，速度与丝径公差沿用
   filler_candidate: CI-A1高镍独立MMA首层主线＋中间修整＋低碳裸Ni99第二层＋NiFe55最终两道连接；采用窗口由有效接头确定
   filler_source: https://certilas.com/en/product/nife-55-tig
   wire_entry_offset_xyz_mm:
@@ -77,7 +77,10 @@ process:
   release_below_c: 55.0
   measurement_temperature_c: 20.0
   measurement_temperature_band_c: 1.0
-  feed_nominal_mm_s: 3.5
+  feed_nominal_mm_s: 3.6
+  feed_role: 两道平均供料仅作总量核算；实际根/盖分道
+  pass_feed_mm_s: {root: 3.42, cover: 3.78}
+  finite_process_revision_source: studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
   feed_tolerance_mm_s: 0.05
   wire_diameter_tolerance_mm: 0.01
   travel_relative_tolerance: 0.02

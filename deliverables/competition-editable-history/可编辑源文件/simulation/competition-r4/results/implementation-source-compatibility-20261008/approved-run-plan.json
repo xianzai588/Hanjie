@@ -1,0 +1,38 @@
+{
+  "scope": "approved one local source-assembly correction, current width only",
+  "cases": [
+    {
+      "name": "dt0125",
+      "dt_s": 0.125
+    },
+    {
+      "name": "dt00625",
+      "dt_s": 0.0625
+    }
+  ],
+  "stop_time_s": 1.0,
+  "wall_clock_review_after_s": 600,
+  "source": "visible_surface, midpoint actual born polygons and internal front",
+  "unchanged_inputs": {
+    "current_A": 110,
+    "voltage_V": 23,
+    "design_efficiency": 0.8,
+    "net_reference_W": 2024,
+    "speed_mm_min": 100,
+    "mass_rate_g_s": 0.17,
+    "initial_QT_C": 300,
+    "Gaussian_one_over_e_half_width_mm": 3.2,
+    "growth_rise_length_mm": 3.2,
+    "liquid_transport_factor": 1,
+    "Ni_conductivity_reference_scale": 0.75
+  },
+  "same_comparison": "prior visible-surface/original-width branch; no return to factor3",
+  "stop_conditions": [
+    "original nonlinear residual/line-search failure",
+    "original temperature guard at2800C or minimum-principle failure",
+    "source hits any unborn Ni polygon",
+    "source Gaussian power exceeds its analytic total"
+  ],
+  "no_mechanical_transfer": true,
+  "no_process_or_material_qualification_assigned": true
+}

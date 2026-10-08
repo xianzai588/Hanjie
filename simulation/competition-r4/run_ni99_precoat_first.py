@@ -192,6 +192,14 @@ def run(a):
             liquid_transport_scope='factor3 is a literature method setting for SS316L, not a measured CI-A1 coefficient or strict physical bound; no material calibration assigned')
         input_data['phase_resolved_cooling_dt_s']=getattr(a,'phase_resolved_cooling_dt_s',None)
         input_data['phase_resolved_cooling_policy']='after the identical arc, use specified cooling dt while any material is above its solidus, then ordinary2s cooling; actual nodal states for solidification-reference replay'
+        if a.source_model=='visible_surface':
+            input_data.update(source_policy='midpoint first-ray incidence on actual clipped free polygons and actual internal birth front; parent P1 load moments; fixed analytic normalization',
+                surface_grid_step_mm=a.surface_grid_step,
+                surface_normalization='fixed pi*width^2 first actual-born visible surface; missed incident flux recorded without redistribution',
+                source_depth_mm_effective=None,inactive_source_parameters=['source_drop','depth'],
+                source_parameter_scope='planar Gaussian width is an uncalibrated effective flux hypothesis; no electrode-diameter or gun-standoff calibration assigned',
+                power_policy='given 0.8 electrical net-budget reference split into incoming enthalpy, intercepted surface heat and un-intercepted incident remainder; no extra efficiency multiplier',
+                source_birth_compatibility='clipped source surface at midpoint; implicit capacity at step end; retained enthalpy at step start; all use one mass-controlled P1 birth level set')
     if all_wings:
         input_data.update(scope='actual eight-wing sequential first-layer thermal history on the complete QT seat; retained mechanical replay follows separately',
             wing_sequence=[row['wing'] for row in tracks],
@@ -508,10 +516,20 @@ def run(a):
                         projection=cross[:,2]*orient
                         expose=wet&(projection>1e-10)
                         if a.source_model=='visible_surface':
-                            from visible_surface_flux import load
-                            q,per_owner,source_diag=load(x,face,xyz,active_owner,projection,wet,source,a.width,remaining,a.surface_grid_step)
+                            from visible_surface_flux import load,load_birth
+                            if conservative:
+                                q,per_owner,source_diag=load_birth(x,e,m,face,oa,ob,birth,source_front,source,a.width,remaining,a.surface_grid_step)
+                            else:
+                                q,per_owner,source_diag=load(x,face,xyz,active_owner,projection,wet,source,a.width,remaining,a.surface_grid_step)
                             arc_QT=float(per_owner[m[:len(per_owner)]==1].sum());arc_Ni=float(per_owner[m[:len(per_owner)]==3].sum())
                             (out/'source-quadrature-last.json').write_text(json.dumps(source_diag,indent=2),encoding='utf8')
+                            if conservative:
+                                source_diag.update(step_end_time_s=float(time_s+dt),source_midpoint_time_s=float(time_s+dt/2),
+                                    midpoint_deposit_volume_mm3=float((volume*source_factor)[m==3].sum()),
+                                    capacity_step_end_deposit_volume_mm3=float((volume*factor)[m==3].sum()),
+                                    capacity_step_start_deposit_volume_mm3=float((volume*old_fraction)[m==3].sum()))
+                                with (out/'source-birth-compatibility.jsonl').open('a',encoding='utf8') as source_log:
+                                    source_log.write(json.dumps(source_diag,ensure_ascii=False)+'\n')
                         else:
                             sf=face[expose];sq=np.einsum('qj,fjk->fqk',bary,xyz[expose])
                             density=np.exp(-np.sum((sq[:,:,:2]-np.asarray(source)[:2])**2,axis=2)/a.width**2)/(np.pi*a.width**2)

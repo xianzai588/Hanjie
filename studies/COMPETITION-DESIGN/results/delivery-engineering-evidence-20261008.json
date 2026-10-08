@@ -1,0 +1,368 @@
+{
+  "role": "selected_saved_engineering_calculations_with_current_instruction_source",
+  "current_instruction_source": "project/submission-baseline.yaml",
+  "saved_calculation_source": "studies/COMPETITION-DESIGN/results/assessment.json",
+  "snapshot_process_inputs_are_not_current_instructions": true,
+  "current_precision": {
+    "official_position_tolerance_diameter_mm": 0.05,
+    "datum_A": "壳体下端独立安装面",
+    "datum_B": "壳体内壁独立双轴向测量带、按A法向定向",
+    "measurement_temperature_C": [
+      19,
+      21
+    ],
+    "measurement_state": "孔内及壳底全部约束解除",
+    "diameter_allocations_um": {
+      "manufacturing_assembly_and_positioning": 28,
+      "measurement_expanded_uncertainty": 2,
+      "limited_honing_axis_change": 6.5,
+      "welding_thermal_residual": 13.5
+    },
+    "maximum_local_radial_honing_removal_um": 3,
+    "bore_size_control_mm": [
+      40,
+      40.025
+    ],
+    "radial_clamping_suballocation_um": 6.5,
+    "clamping_scope": "包含在28 μm非热直径分配；不与微珩6.5 μm直径重复相加",
+    "mechanism": "径向柔顺槽、精密内锥胀套背承、对称跳焊及能量控制；禁止焊后精镗纠正孔轴",
+    "datum_execution_card": "deliverables/process/shell-datum-and-cmm-execution-card.md",
+    "A_flatness_mm": 0.002,
+    "B_measurement_bands_z_mm": [
+      [
+        20,
+        30
+      ],
+      [
+        170,
+        180
+      ]
+    ],
+    "B_scan_z_mm": [
+      22,
+      25,
+      28,
+      172,
+      175,
+      178
+    ],
+    "bore_scan_z_mm": [
+      100.5,
+      104,
+      107.5,
+      111,
+      114.5
+    ],
+    "position_uncertainty_design_U_um": 1.64,
+    "position_uncertainty_qualification_limit_U_um": 2
+  },
+  "current_weld_ledger": {
+    "segment_count": 8,
+    "segment_length_mm": 18.0,
+    "effective_segment_length_mm": 16.0,
+    "start_allowance_mm": 1.0,
+    "end_allowance_mm": 1.0,
+    "angular_pitch_degrees": 45.0,
+    "pass_count": 2,
+    "sequence": [
+      1,
+      5,
+      3,
+      7,
+      2,
+      6,
+      4,
+      8
+    ],
+    "length_per_pass_mm": 144.0,
+    "effective_length_per_pass_mm": 128.0,
+    "total_arc_length_mm": 288.0,
+    "choice_reason": "真实外缘18 mm以内包含两端各1 mm过渡；稳定承载按16 mm，热量及耗丝按实际18 mm"
+  },
+  "current_verification": {
+    "nominal_geometry_valid": true,
+    "tolerance_geometry_valid": true,
+    "first_interface_continuous_fusion_verified": false,
+    "final_bilateral_continuous_fusion_verified": false,
+    "complete_manufacturing_state_verified": false,
+    "fully_released_residual_position_verified": false,
+    "fully_released_bore_size_verified": false,
+    "same_state_strength_verified": false,
+    "historic_residual_axis_diameter_um": 15.583947,
+    "historic_total_budget_um": 52.083947,
+    "current_joint_capacity_source": "studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json",
+    "principle": "参数预算与几何资格不代替收敛有效接头及连续制造残余状态；实物试制为后续工程确认",
+    "current_source_diagnosis": "simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json"
+  },
+  "fixture": {
+    "positive_return_stroke_required_mm": 0.2835640909808895,
+    "positive_return_stroke_available_mm": 1.0,
+    "nominal_average_band_pressure_mpa": 0.060561241663582725,
+    "cone_force_scenarios": [
+      {
+        "mu": 0.0,
+        "drive_force_for_radial_limit_n": 17.632698070846494,
+        "self_lock_possible": false
+      },
+      {
+        "mu": 0.05,
+        "drive_force_for_radial_limit_n": 22.834010678869994,
+        "self_lock_possible": false
+      },
+      {
+        "mu": 0.1,
+        "drive_force_for_radial_limit_n": 28.128682638949762,
+        "self_lock_possible": false
+      },
+      {
+        "mu": 0.2,
+        "drive_force_for_radial_limit_n": 39.00834273005274,
+        "self_lock_possible": true
+      }
+    ],
+    "contact_pressure_caliber": "名义平均带压；峰值接触应力由试制阶段重复装夹试验评价"
+  },
+  "shield_control": {
+    "type": "四瓣水冷紫铜衬环＋闭合低析出FFKM密封＋受控氩气喷流幕＋顶部排烟",
+    "ring_material": "C11000；每瓣下Ø1.10/上Ø1.40水道，8路并联等流量，总≥0.60 L/min，入口20±2℃；有效换热50～150 W/(m²K)",
+    "gas_curtain_flow_range_l_min": [
+      10.0,
+      15.0
+    ],
+    "flow_interlock": "氩气流量未落入10～15 L/min窗口时安全联锁禁止起弧",
+    "ring_contact_design": "四瓣铜环与闭合FFKM密封；冷热压缩及全周撤出包络见尺寸化核算"
+  },
+  "datum_holder_transfer": {
+    "support_count": 6,
+    "point_load_limit_N": 100.0,
+    "span_mm": 86.3937979737193,
+    "minimum_effective_width_mm": 11.879999999999995,
+    "section_I_mm4": 7919.999999999997,
+    "E_lower_MPa": 180000,
+    "elastic_deflection_bound_mm": 0.0009423424937096811,
+    "scope": "six positive outer grip supports; simply supported developed arc, full circumference weakened by grip depth; not measured repeatability"
+  },
+  "old_tooling_nominal_geometry": {
+    "shape_validity": {
+      "shell": true,
+      "seat": true,
+      "upper_fixture": true,
+      "weld_keepout": true,
+      "upper_portal": true,
+      "torch": true,
+      "wire_guide": true,
+      "peener": true,
+      "cartridge": true,
+      "external_datum_holder": true
+    },
+    "witness_intersections_mm3": {
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "witness_minimum_clearance_mm": 0.39000000000000057,
+    "cartridge_intersections_mm3": {
+      "shell": 0.0,
+      "seat": 0.0,
+      "upper_fixture": 0.0
+    },
+    "bottom_sweep_intersections_mm3": {
+      "upper_shell_travel_0": 0.0,
+      "upper_seat_travel_0": 0.0,
+      "upper_fixed_core_travel_0": 0.0,
+      "upper_opened_portal_travel_0": 0.0,
+      "upper_shell_travel_1": 0.0,
+      "upper_seat_travel_1": 0.0,
+      "upper_fixed_core_travel_1": 0.0,
+      "upper_opened_portal_travel_1": 0.0,
+      "upper_shell_travel_5": 0.0,
+      "upper_seat_travel_5": 0.0,
+      "upper_fixed_core_travel_5": 0.0,
+      "upper_opened_portal_travel_5": 0.0,
+      "upper_shell_travel_15": 0.0,
+      "upper_seat_travel_15": 0.0,
+      "upper_fixed_core_travel_15": 0.0,
+      "upper_opened_portal_travel_15": 0.0,
+      "upper_shell_travel_40": 0.0,
+      "upper_seat_travel_40": 0.0,
+      "upper_fixed_core_travel_40": 0.0,
+      "upper_opened_portal_travel_40": 0.0,
+      "upper_shell_travel_80": 0.0,
+      "upper_seat_travel_80": 0.0,
+      "upper_fixed_core_travel_80": 0.0,
+      "upper_opened_portal_travel_80": 0.0,
+      "upper_shell_travel_120": 0.0,
+      "upper_seat_travel_120": 0.0,
+      "upper_fixed_core_travel_120": 0.0,
+      "upper_opened_portal_travel_120": 0.0,
+      "upper_shell_travel_200": 0.0,
+      "upper_seat_travel_200": 0.0,
+      "upper_fixed_core_travel_200": 0.0,
+      "upper_opened_portal_travel_200": 0.0,
+      "upper_shell_travel_260": 0.0,
+      "upper_seat_travel_260": 0.0,
+      "upper_fixed_core_travel_260": 0.0,
+      "upper_opened_portal_travel_260": 0.0,
+      "upper_shell_0": 0.0,
+      "upper_seat_0": 0.0,
+      "holder_post_0": 0.0,
+      "upper_shell_0.5": 0.0,
+      "upper_seat_0.5": 0.0,
+      "holder_post_0.5": 0.0,
+      "upper_shell_1": 0.0,
+      "upper_seat_1": 0.0,
+      "holder_post_1": 0.0,
+      "upper_shell_5": 0.0,
+      "upper_seat_5": 0.0,
+      "holder_post_5": 0.0,
+      "upper_shell_20": 0.0,
+      "upper_seat_20": 0.0,
+      "holder_post_20": 0.0,
+      "upper_shell_50": 0.0,
+      "upper_seat_50": 0.0,
+      "holder_post_50": 0.0,
+      "upper_shell_80": 0.0,
+      "upper_seat_80": 0.0,
+      "holder_post_80": 0.0,
+      "upper_shell_140": 0.0,
+      "upper_seat_140": 0.0,
+      "holder_post_140": 0.0
+    },
+    "bottom_route_allowed": true,
+    "route": "fixed lower fixture; upper lift then housing/holder lift",
+    "housing_lift_mm": 140.0,
+    "upper_lift_mm": 260.0,
+    "pan_to_lifted_bottom_clearance_mm": 40.5,
+    "upper_tail_to_lifted_mouth_clearance_mm": 19.80000000000001,
+    "holder_bottom_to_fixed_core_clearance_mm": 4.799999999999997,
+    "withdrawal_stroke_mm": 140.0,
+    "root_flange_space_pass": true,
+    "poses": [
+      {
+        "tool": "torch",
+        "lift_mm": 0.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      },
+      {
+        "tool": "wire_guide",
+        "lift_mm": 0.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 6.88395279116749,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": true,
+        "clear": true
+      },
+      {
+        "tool": "peener",
+        "lift_mm": 0.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 9.458959261837698,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": true,
+        "clear": true
+      },
+      {
+        "tool": "torch",
+        "lift_mm": 40.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      },
+      {
+        "tool": "wire_guide",
+        "lift_mm": 40.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      },
+      {
+        "tool": "peener",
+        "lift_mm": 40.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      },
+      {
+        "tool": "torch",
+        "lift_mm": 120.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      },
+      {
+        "tool": "wire_guide",
+        "lift_mm": 120.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      },
+      {
+        "tool": "peener",
+        "lift_mm": 120.0,
+        "intersections_mm3": {
+          "shell": 0.0,
+          "seat": 0.0,
+          "upper_fixture": 0.0,
+          "weld_keepout": 0.0,
+          "upper_portal": 0.0
+        },
+        "intentional_bead_contact": false,
+        "clear": true
+      }
+    ],
+    "torch_feed_intersection_mm3": 0.0,
+    "torch_feed_clearance_mm": 2.168704991344306,
+    "torch_shell_radial_bound_mm": 0.75,
+    "torch_upper_radial_bound_mm": 13.75,
+    "nominal_vertical_drop_coverage": true,
+    "coverage_requires_ring_alignment": true
+  },
+  "geometry_scope": "旧详细工装名义几何及退出包络；新增浮动/压钩/抽头接口另见HJ-009/022/023，不声称原CAD或FE已经覆盖新增机构。"
+}

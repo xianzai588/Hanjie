@@ -19,6 +19,9 @@ def register_project_fonts(root: Path) -> Tuple[str,str]:
     bold_override = os.getenv(overrides["bold"])
     if regular_override and bold_override:
         pairs.append((regular_override,bold_override))
+    portable = root / "assets/fonts"
+    pairs.append((str(portable / "NotoSerifSC-Regular.ttf"),
+                  str(portable / "NotoSansSC-Bold.ttf")))
     pairs.extend((item["regular"],item["bold"]) for item in config["font_candidates"])
     for regular,bold in pairs:
         if Path(regular).is_file() and Path(bold).is_file():
@@ -26,5 +29,10 @@ def register_project_fonts(root: Path) -> Tuple[str,str]:
             pdfmetrics.registerFont(TTFont("HanjieCN-Bold",bold))
             pdfmetrics.registerFontFamily("HanjieCN",normal="HanjieCN",bold="HanjieCN-Bold",
                                           italic="HanjieCN",boldItalic="HanjieCN-Bold")
+            sans = portable / "NotoSansSC-Regular.ttf"
+            if sans.is_file():
+                pdfmetrics.registerFont(TTFont("HanjieCN-Sans", str(sans)))
+                pdfmetrics.registerFontFamily("HanjieCN-Sans", normal="HanjieCN-Sans",
+                    bold="HanjieCN-Bold", italic="HanjieCN-Sans", boldItalic="HanjieCN-Bold")
             return "HanjieCN","HanjieCN-Bold"
     raise FileNotFoundError("未找到可用中文字体；请配置 HANJIE_PDF_FONT_REGULAR/BOLD 或 project/report.yaml")

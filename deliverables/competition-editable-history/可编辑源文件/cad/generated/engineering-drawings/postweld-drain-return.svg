@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">微珩回液、失吸容量与回收瓶接口</text>
+<text x="50" y="99" class="small">全湿段回流计入容量；瓶内库存由干式自由出液接口隔开；止回阀不计减益</text>
+<text x="1020" y="65" class="section">HJ-018</text>
+<text x="65" y="150" class="section">液路布置（高程与管长按标注，NTS）</text>
+<rect x="110" y="200" width="215" height="35" fill="#dbe6eb" stroke="#334155"/>
+<polygon points="126.00,246.00 126.00,344.00 309.00,344.00 309.00,246.00 298.00,246.00 298.00,330.00 138.00,330.00 138.00,246.00" fill="#eaf4f5" stroke="#334155"/>
+<text x="75" y="184" class="small">上下Ø60罩；下杯接触中心环，无孔壁滑擦</text>
+<text x="142" y="275" class="small">在作残液≤2 mL</text>
+<text x="142" y="302" class="small">ID44±0.20</text>
+<text x="75" y="375" class="small">液深16±0.10，底厚2；上唇z99.90</text>
+<text x="75" y="402" class="small">杯底z81.90；专用冷态工位，壳底开放</text>
+<line x1="309" y1="333" x2="449" y2="385" stroke="#176b7b" stroke-width="4"/>
+<line x1="449" y1="385" x2="526" y2="419" stroke="#176b7b" stroke-width="4"/>
+<line x1="526" y1="419" x2="526" y2="455" stroke="#176b7b" stroke-width="4"/>
+<polygon points="482.00,425.00 482.00,563.00 650.00,563.00 650.00,425.00 638.00,425.00 638.00,551.00 494.00,551.00 494.00,425.00" fill="#eaf4f5" stroke="#334155"/>
+<line x1="494" y1="492" x2="638" y2="492" stroke="#0284c7" stroke-width="2"/>
+<line x1="542" y1="458" x2="542" y2="490" stroke="#0284c7" stroke-width="1"/>
+<text x="557" y="472" class="small">气隙≥20</text>
+<text x="546" y="520" class="small">最高故障液位</text>
+<text x="357" y="344" class="small">湿段总长≤1 m</text>
+<text x="357" y="370" class="small">ID3.90～4.10</text>
+<text x="343" y="590" class="small">瓶最高故障液位低于杯出口≥150</text>
+<text x="343" y="617" class="small">管末端不得浸液；高液位停止供液</text>
+<text x="75" y="659" class="small">管线连续下坡固定；杯液位/净差压/瓶液位异常时0.10 s内停进给与供液</text>
+<text x="75" y="690" class="small">撤出前排尽并干燥、封回液口；不打开含液屏障，不以整腔冲洗补救</text>
+<text x="715" y="170" class="small">容量最不利：ID43.80、液深15.90</text>
+<text x="715" y="202" class="small">工具占位≤3.0 mL；杯在作液≤2.0</text>
+<text x="715" y="234" class="small">净容积20.957 mL</text>
+<text x="715" y="266" class="small">Ø4.10×1 m全管回流13.203 mL</text>
+<text x="715" y="298" class="small">上罩及接头回流≤1.0 mL</text>
+<text x="715" y="330" class="small">供液阀下游可排液≤0.50 mL</text>
+<text x="715" y="362" class="small">60 mL/min×0.10 s＝0.10 mL</text>
+<text x="715" y="394" class="small">在作2＋储备2亦计入故障需求</text>
+<text x="715" y="426" class="small">合计18.803，余量2.155 mL</text>
+<text x="715" y="458" class="small">瓶故障液位以下容量≥200 mL</text>
+<text x="715" y="490" class="small">净驱动差压≥2.5 kPa，扣测量U</text>
+<text x="715" y="522" class="small">Δp＝p杯−p瓶＋ρg(z杯−z出液)</text>
+<text x="715" y="554" class="small">计算流量154.510 mL/min</text>
+<text x="715" y="586" class="small">牛顿液μ≤5 mPa·s，局部K≤10</text>
+<text x="715" y="618" class="small">非牛顿UT凝胶用独立回收资格</text>
+<text x="715" y="650" class="small">每件封闭供液筒≤35 mL；作业中不续液</text>
+<text x="715" y="682" class="small">开工前瓶存液≤100；单循环最高151.703</text>
+<text x="715" y="714" class="small">装机验收湿段、死腔、液位及停机延迟</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：316L / 回液软管</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
+</svg>

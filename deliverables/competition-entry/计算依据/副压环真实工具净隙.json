@@ -1,0 +1,32 @@
+{
+  "configuration": "HJ023 fixed external actuator / 150 independent withdrawal",
+  "checked_poses": 192,
+  "nominal_minimum_gaps_mm": {
+    "ring": 6.714880412970387,
+    "rods": 3.9156114508159243,
+    "beams": 0.9156114508159194
+  },
+  "complete_vertical_tool_sweep_projected_minimum_mm": {
+    "pass_name": "cover",
+    "wing": 1,
+    "end": 1,
+    "arm": 22.5,
+    "min_gap": 0.9156114508159359,
+    "components": {
+      "tungsten": 11.528181260828763,
+      "nozzle": 4.158055948049999,
+      "body": 1.2306493741967053,
+      "wire": 2.115611450815936,
+      "wire-elbow": 0.9156114508159359
+    }
+  },
+  "dimensional_allowance_mm": 0.65,
+  "segment_transition_lift_mm": 150,
+  "parked_tools_z_bounds_mm": [
+    265.2,
+    370.0
+  ],
+  "parked_tools_to_working_arm_z_clearance_mm": 20.2,
+  "parked_tools_to_retracted_arm_z_clearance_mm": 5.0,
+  "note": "Nominal CAD distances use the existing torch/wire; projection is a conservative full vertical sweep bound. Arm local placement tolerance ±0.50, tool pose ±0.05, feature size allowance 0.10. No FE or physical clearance measurement."
+}

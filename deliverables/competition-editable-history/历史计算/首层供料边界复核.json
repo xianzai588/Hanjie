@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-08",
+  "sources": [
+    "project/submission-baseline.yaml",
+    "simulation/competition-r4/results/mma-eight-wing-phase-front-t4-end80-r12-20261007/actual-eight-wing-thermal-audit.json"
+  ],
+  "role": "independent analytical deposition-law sensitivity and arc-energy accounting",
+  "scope": {
+    "supply_laws": "q(I)=q_steady*(I/I_steady)^p, p=1 or 2; model scenarios, not a CI-A1 measured lower bound",
+    "mass_requirement": "longest/widest/deepest rectangular envelope plus registered temporary protection; shortest path independently minimizes supply",
+    "local_coverage": "Total supply does not establish local contour, continuous fusion, dilution or retained-layer properties",
+    "heat_law": "eta*U*I integrated over main ramp and protection arcs; never changed to I**2",
+    "heat_comparison": "Ring eight-window design and historical eight-wing thermal input have different geometry/path identities; this is total-energy accounting, not a temperature or performance comparison"
+  },
+  "inputs": {
+    "steady_supply_scenario_g_s": 0.15,
+    "shortest_path_mm": 23.5,
+    "density_g_mm3": 0.00889,
+    "maximum_envelope_volume_mm3": 269.01,
+    "maximum_temporary_protection_volume_mm3": 23.796072933822128,
+    "maximum_demand_g": 2.6030459883816786
+  },
+  "speed_cases": [
+    {
+      "nominal_speed_mm_min": 75.0,
+      "maximum_speed_mm_min": 76.5,
+      "shortest_main_arc_time_s": 18.43137254901961,
+      "laws": {
+        "I": {
+          "main_arc_mass_g": 2.7401604278074867,
+          "protection_arc_mass_g": 0.12954545454545455,
+          "total_mass_g": 2.869705882352941,
+          "margin_g": 0.26665989397126255,
+          "relative_margin_percent": 10.244148400045972,
+          "minimum_steady_supply_g_s": 0.13606164334064322,
+          "conditional_total_supply_sufficient": true
+        },
+        "I_squared": {
+          "main_arc_mass_g": 2.720077783179388,
+          "protection_arc_mass_g": 0.1146694214876033,
+          "total_mass_g": 2.834747204666991,
+          "margin_g": 0.23170121628531248,
+          "relative_margin_percent": 8.90115723346716,
+          "minimum_steady_supply_g_s": 0.13773958313264137,
+          "conditional_total_supply_sufficient": true
+        }
+      },
+      "linear_minus_squared_supply_g": 0.03495867768595007,
+      "steady_nominal_net_line_energy_J_mm": 1619.2000000000003,
+      "nominal_net_heat_eight_windows_J": 322220.8
+    },
+    {
+      "nominal_speed_mm_min": 80.0,
+      "maximum_speed_mm_min": 81.6,
+      "shortest_main_arc_time_s": 17.279411764705884,
+      "laws": {
+        "I": {
+          "main_arc_mass_g": 2.567366310160428,
+          "protection_arc_mass_g": 0.12954545454545455,
+          "total_mass_g": 2.6969117647058822,
+          "margin_g": 0.09386577632420368,
+          "relative_margin_percent": 3.6059976175280894,
+          "minimum_steady_supply_g_s": 0.1447792632176952,
+          "conditional_total_supply_sufficient": true
+        },
+        "I_squared": {
+          "main_arc_mass_g": 2.547283665532329,
+          "protection_arc_mass_g": 0.1146694214876033,
+          "total_mass_g": 2.661953087019932,
+          "margin_g": 0.05890709863825361,
+          "relative_margin_percent": 2.2630064509492787,
+          "minimum_steady_supply_g_s": 0.1466806083702887,
+          "conditional_total_supply_sufficient": true
+        }
+      },
+      "linear_minus_squared_supply_g": 0.03495867768595007,
+      "steady_nominal_net_line_energy_J_mm": 1518.0000000000002,
+      "nominal_net_heat_eight_windows_J": 302790.4
+    }
+  ],
+  "heat_total_comparison": {
+    "ring_nominal_first_layer_kJ": 322.2208,
+    "historical_eight_wing_first_layer_kJ": 184.6759274758545,
+    "ring_minus_historical_kJ": 137.54487252414546,
+    "ratio": 1.7447904792146165,
+    "increase_percent": 74.47904792146164
+  },
+  "cross_checks": {
+    "ramp_integral_vs_simpson_max_absolute_error": 1.1102230246251565e-16,
+    "recomputed_demand_minus_registered_g": -4.440892098500626e-16,
+    "recomputed_ring_heat_minus_registered_J": 0.0
+  }
+}

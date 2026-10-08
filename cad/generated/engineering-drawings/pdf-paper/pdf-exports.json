@@ -1,0 +1,149 @@
+{
+  "generated_at": "2026-10-08",
+  "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
+  "status": "design-review; not manufacturing release",
+  "page_size": "A4/A3 landscape, vector; actual page box in each sheet",
+  "sheet_count": 23,
+  "palette": "black lines and text; grayscale fills",
+  "combined": "pdf-paper/HJ-DRW-drawing-set.pdf",
+  "sheets": [
+    {
+      "pdf": "pdf-paper/bearing-seat.pdf",
+      "title": "接头布局、座体尺寸与独立基准",
+      "source": "bearing-seat.svg",
+      "number": 1
+    },
+    {
+      "pdf": "pdf-paper/joint-detail.pdf",
+      "title": "两道脉冲TIG截面与设计pWPS",
+      "source": "joint-detail.svg",
+      "number": 2
+    },
+    {
+      "pdf": "pdf-paper/fixture-assembly.pdf",
+      "title": "胀套定位、端面夹紧与主动回退",
+      "source": "fixture-assembly.svg",
+      "number": 3
+    },
+    {
+      "pdf": "pdf-paper/protected-process-assembly.pdf",
+      "title": "连续防护、承力组件与退出路径",
+      "source": "protected-process-assembly.svg",
+      "number": 4
+    },
+    {
+      "pdf": "pdf-paper/inspection-and-release.pdf",
+      "title": "焊接顺序、测量基准与放行卡",
+      "source": "inspection-and-release.svg",
+      "number": 5
+    },
+    {
+      "pdf": "pdf-paper/sleeve-detail.pdf",
+      "title": "固定反向锥—上退六指胀套制造详图",
+      "source": "sleeve-detail.svg",
+      "number": 6
+    },
+    {
+      "pdf": "pdf-paper/gas-water-detail.pdf",
+      "title": "四瓣铜环、闭合密封与独立气水路",
+      "source": "gas-water-detail.svg",
+      "number": 7
+    },
+    {
+      "pdf": "pdf-paper/workstation.pdf",
+      "title": "自动焊接工作站与小批资源配置",
+      "source": "workstation.svg",
+      "number": 8
+    },
+    {
+      "pdf": "pdf-paper/top-extraction.pdf",
+      "title": "顶部抽吸、过滤接口与转运退位",
+      "source": "top-extraction.svg",
+      "number": 9
+    },
+    {
+      "pdf": "pdf-paper/copper-retreat.pdf",
+      "title": "铜瓣接缝、滑动桥及整环下密封座",
+      "source": "copper-retreat.svg",
+      "number": 10
+    },
+    {
+      "pdf": "pdf-paper/water-route.pdf",
+      "title": "密封穿盘分配块与铜瓣运动水路",
+      "source": "water-route.svg",
+      "number": 11
+    },
+    {
+      "pdf": "pdf-paper/carrier-detail.pdf",
+      "title": "下托承力柱、整体法兰与预紧连接",
+      "source": "carrier-detail.svg",
+      "number": 12
+    },
+    {
+      "pdf": "pdf-paper/portal-transfer.pdf",
+      "title": "固定反锥、上止挡门架与A基准保持转运",
+      "source": "portal-transfer.svg",
+      "number": 13
+    },
+    {
+      "pdf": "pdf-paper/datum-holder-detail.pdf",
+      "title": "A基准托环与六点正向转运详图",
+      "source": "datum-holder-detail.svg",
+      "number": 14
+    },
+    {
+      "pdf": "pdf-paper/postweld-isolation.pdf",
+      "title": "PT/UT独立接液盘与短孔微珩全收集装置",
+      "source": "postweld-isolation.svg",
+      "number": 15
+    },
+    {
+      "pdf": "pdf-paper/postweld-cartridge.pdf",
+      "title": "接液盘充气密封槽、支架与密闭撤出筒",
+      "source": "postweld-cartridge.svg",
+      "number": 16
+    },
+    {
+      "pdf": "pdf-paper/HJ-DRW-017-precoat-section.pdf",
+      "title": "HJ-017 名义曲面预制与法向修整断面",
+      "source": "cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf",
+      "number": 17
+    },
+    {
+      "pdf": "pdf-paper/postweld-drain-return.pdf",
+      "title": "微珩回液、失吸容量与回收瓶接口",
+      "source": "postweld-drain-return.svg",
+      "number": 18
+    },
+    {
+      "pdf": "pdf-paper/HJ-DRW-019.pdf",
+      "title": "HJ-019 真实公差与法向修整截面",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-019.pdf",
+      "number": 19
+    },
+    {
+      "pdf": "pdf-paper/HJ-DRW-020.pdf",
+      "title": "HJ-020 异种接头专用UT可达与覆盖",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-020.pdf",
+      "number": 20
+    },
+    {
+      "pdf": "pdf-paper/HJ-DRW-021.pdf",
+      "title": "HJ-021 关键零件明细与制造配合",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-021.pdf",
+      "number": 21
+    },
+    {
+      "pdf": "pdf-paper/HJ-DRW-022.pdf",
+      "title": "HJ-022 壳体基准加工与保基准接口",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-022.pdf",
+      "number": 22
+    },
+    {
+      "pdf": "pdf-paper/HJ-DRW-023.pdf",
+      "title": "HJ-023 浮动压紧与气水抽吸管路",
+      "source": "cad/generated/engineering-supplements-20261007/HJ-DRW-023.pdf",
+      "number": 23
+    }
+  ]
+}

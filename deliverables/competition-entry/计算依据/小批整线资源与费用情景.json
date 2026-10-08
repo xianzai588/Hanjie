@@ -22,19 +22,20 @@
   "operating_cost_scenario": {
     "labor_CNY": 109.3882022,
     "first_electrode_CNY": 10.283362063786742,
-    "second_wire_CNY": 3.852500070021742,
-    "final_wire_CNY": 2.895730470122528,
-    "argon_CNY": 3.079338901333333,
+    "second_wire_CNY": 5.004625343957419,
+    "final_wire_CNY": 2.9784656264117424,
+    "argon_CNY": 3.227338901333333,
     "furnace_and_arc_electricity_CNY": 2.084964903964647,
     "PT_UT_consumable_reserve_CNY": 12
   },
-  "direct_operating_cost_scenario_CNY": 143.584098609229,
+  "direct_operating_cost_scenario_CNY": 144.96695903945388,
   "furnace_energy_scenario_kWh_part": 2.463095916666667,
-  "argon_scenario_m3_part": 0.38491736266666665,
+  "argon_scenario_m3_part": 0.4034173626666666,
   "nominal_material_purchase_basis_g": {
     "CI_A1_deposited": 15.329235374588933,
-    "low_C_Ni99_feed": 11.166666869628239,
-    "NiFe55_feed": 10.07210598303488
+    "low_C_Ni99_feed": 11.256698121264616,
+    "NiFe55_feed": 10.359880439693018,
+    "low_C_Ni99_two_stock_rods": 16.682084479858062
   },
   "legacy_weld_station_intervals_WIP_demand": {
     "single_head": {
@@ -51,5 +52,18 @@
   "actual_capacity_verified": false,
   "second_layer_thermal_reservation_qualified": false,
   "cost_excludes": "equipment capital, tooling depreciation, wash/milling machine power, material rejects, destructive sampling and fatigue qualification",
-  "production_choice": "single-head final GTAW for8parts/8h trial design; double-head brings no bottleneck benefit at3600s design interval"
+  "production_choice": "single-head final GTAW for8parts/8h trial design; double-head brings no bottleneck benefit at3600s design interval",
+  "second_stock_purchase_basis": "2 x 914.4 mm stock rods per part; unused remainder retained without a cost credit; no extra 15% factor",
+  "finite_cost_update_20261008": {
+    "affected_only": [
+      "second_wire_CNY",
+      "final_wire_CNY"
+    ],
+    "sources": [
+      "studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json",
+      "studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json"
+    ],
+    "thermal_resource_or_cycle_rerun": false,
+    "dedicated_4_person_8h_cost_CNY": 215.5787568394539
+  }
 }

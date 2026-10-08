@@ -1,0 +1,46 @@
+[
+  {
+    "case": "dt0125",
+    "runtime_s": 37.49979769997299,
+    "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+    "result": {
+      "partial": true,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "time_s": 0.5,
+      "stages": [],
+      "maximum_temperature_C": 2810.3027325651747,
+      "maximum_QT_C": 2050.7053813324255,
+      "elapsed_s": 37.376648299978115,
+      "nominal_interface_area_mm2": 131.39999344617922,
+      "actual_area_above_both_solidus_mm2": 14.45355537217213,
+      "both_solidus_threshold_C": 1340.0,
+      "final_active_minimum_C": 298.5974597572755,
+      "active_temperature_range_check_pass": false,
+      "mesh_time_convergence_verified": false,
+      "PMZ_capacity_assigned": false
+    },
+    "mechanical_transfer_allowed": false
+  },
+  {
+    "case": "dt00625",
+    "runtime_s": 70.2828479000018,
+    "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+    "result": {
+      "partial": true,
+      "error": "active temperature exceeds2800 C conservative guard below Ni boiling; vaporization is outside this enthalpy model",
+      "time_s": 0.5,
+      "stages": [],
+      "maximum_temperature_C": 2823.076424863274,
+      "maximum_QT_C": 2071.436073724753,
+      "elapsed_s": 70.23890570004005,
+      "nominal_interface_area_mm2": 131.39999344617922,
+      "actual_area_above_both_solidus_mm2": 14.45355537217213,
+      "both_solidus_threshold_C": 1340.0,
+      "final_active_minimum_C": 298.57093949378805,
+      "active_temperature_range_check_pass": false,
+      "mesh_time_convergence_verified": false,
+      "PMZ_capacity_assigned": false
+    },
+    "mechanical_transfer_allowed": false
+  }
+]

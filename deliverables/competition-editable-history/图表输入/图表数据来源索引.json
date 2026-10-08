@@ -1,0 +1,39 @@
+{
+  "geometry": "cad\\generated\\independent-precoat-curved\\geometry-audit.json",
+  "phase": "simulation\\competition-r4\\results\\design-precoat-materials-20261006\\gibbs-checked\\phase-fractions.csv",
+  "fixture": {
+    "source": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\fixture-axis-solid-core-h1.5\\fields.npz",
+    "section": "y=0",
+    "radial_u_min_um": 0.0,
+    "radial_u_max_um": 4.027888564154504,
+    "von_mises_max_MPa": 30.79236119650783,
+    "stress_representation": "Kelvin"
+  },
+  "position": {
+    "components_um": [
+      [
+        28,
+        2,
+        6.5,
+        12
+      ],
+      [
+        28,
+        2,
+        6.5,
+        13.5
+      ],
+      [
+        28,
+        2,
+        6.5,
+        15.583947
+      ]
+    ],
+    "uncertainty_um": 2,
+    "limit_um": 50,
+    "historic_is_current_validation": false
+  },
+  "capacity": "studies\\COMPETITION-DESIGN\\results\\delivery-joint-capacity-20261008.json",
+  "operation": "Presentation from saved data; no new solver or changed design parameters."
+}

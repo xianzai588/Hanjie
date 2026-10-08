@@ -21,6 +21,10 @@ def collect_tooling_status(root: Path) -> Dict[str, Any]:
     # BREP不能靠文件名判定版本；只校核本次几何证据实际依赖的实体。
     for path, expected in inputs["structured_inputs"].items():
         actual = yaml.safe_load((root/path).read_text(encoding="utf-8"))
+        if path == "cad/parametric/geometry.json":
+            # 历史身份元数据不改变几何；保留全部尺寸、夹具及工艺字段的比较。
+            actual = {key: value for key, value in actual.items() if key != "provenance"}
+            expected = {key: value for key, value in expected.items() if key != "provenance"}
         if actual != expected:
             raise ValueError("工装检查输入已变化，请重跑 studies/TOOLING-ACCESS/run.py")
     for path, expected in inputs["geometry_sha256"].items():
@@ -242,8 +246,13 @@ def write_status_artifacts(root: Path) -> Path:
     tolerance = _json(root/'cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json')
     pilot = _json(root/'studies/COMPETITION-DESIGN/results/pilot-production-20261007.json')
     diagnosis = _json(root/'output/review/phase-interface-diagnosis-20261007/diagnosis.json')
+    assembly = _json(root/'cad/generated/competition-design/assembly-coverage-20261008.json')
+    section = _json(root/'studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json')
+    forming = _json(root/'studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json')
+    supply = _json(root/'studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json')
+    native = _json(root/'simulation/competition-r4/results/native-interface-adaptation-20261008/interface-readback.json')
     status = {
-        'updated_at':'2026-10-07', 'current_stage':'first_layer_cold_state_unqualified',
+        'updated_at':'2026-10-08', 'current_stage':'stock_supply_pass_allocation_and_native_cut_preparation_manufacturing_inputs_unqualified',
         'artifact_role':'engineering_design_report',
         'route':'CI-A1 ENi-CI SMAW first layer / bare low-C Ni99 second layer / 8P-R2-t15 low-input GTAW / copper barrier',
         'process_sources':['project/precoat-process-design.yaml','project/process-r3.yaml'],
@@ -251,6 +260,52 @@ def write_status_artifacts(root: Path) -> Path:
         'microhone_maximum_radial_removal_um':3,
         'first_layer_nominal_speed_mm_min':100,
         'speed120_adopted':False,
+        'assembly_geometry':{
+            'imported_roots':assembly['imported_roots'],
+            'imported_solids':assembly['imported_solids'],
+            'imported_shape_valid':assembly['imported_shape_valid'],
+            'peener_in_current_assembly':assembly['peener_in_current_assembly'],
+            'scope':assembly['scope'],
+            'not_modeled':assembly['not_modeled'],
+            'source':'cad/generated/competition-design/assembly-coverage-20261008.json'},
+        'no_physical_design_route':{
+            'physical_experiments_required_for_document_delivery':False,
+            'public_sources_may_be_combined_by_design_question':True,
+            'independent_geometry_and_capacity_work_allowed':True,
+            'evidence_transfer_source':'docs/review/evidence-transfer-20261008.md',
+            'macroscopic_plan_source':'docs/review/macroscopic-manufacturing-plan-20261008.md',
+            'macroscopic_manufacturing_inputs_qualified':False},
+        'local_forming':{
+            'analysis_executed':True,
+            'original_feed_mm_s':3.5,
+            'original_ideal_equal_leg_throat_margin_um':section['original_supply_envelope']['equal_leg_throat_margin_mm']*1000,
+            'ideal_equal_leg_throat_margin_um':forming['original_comparison']['revised_equal_leg_minimum_throat_margin_um'],
+            'pass_feed_mm_s':{'root':3.42,'cover':3.78},
+            'feed_tolerance_each_mm_s':0.05,
+            'revision_adopted_for_design_pWPS':True,
+            'section_area_range_mm2':forming['total_tolerance_ranges']['total_section_area_mm2'],
+            'nominal_wire_length_mm':forming['nominal']['total_consumed_wire_mm'],
+            'coupled_profile_bounds_are_independent_manufacturing_window':False,
+            'original_straight_both_legs_ratio_limit_at_min_area':section['original_supply_envelope']['straight_max_leg_ratio_at_min_area'],
+            'local_distribution_or_contour_guarantee':False,
+            'single_feed_contrast_mm_s':3.68,
+            'single_feed_contrast_adopted':False,
+            'feed_contrast_rejection_reason':'上供料端脚长比1.05时长脚4.396508 mm超过4.30三角包络；给定储料凸面亦超包络',
+            'geometric_throat_requirement_mm':section['current_requirements']['minimum_geometric_throat_mm'],
+            'fusion_or_material_capacity_assigned':False,
+            'source':'studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json',
+            'historical_source':'studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json'},
+        'second_layer_supply':{
+            'catalogue_size_documented':True,
+            'product':supply['identity']['product'],
+            'diameter_mm':1.143,'incoming_diameter_tolerance_mm':0.020,
+            'tolerance_role':'design purchase and incoming acceptance; not supplier guarantee',
+            'feed_mm_s':8.00,'feed_tolerance_mm_s':0.20,
+            'rod_preparation':supply['rod_preparation'],
+            'current_voltage_is_supplier_qualified_window':False,
+            'local_coverage_and_continuous_fusion_verified':False,
+            'source':'studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json'},
+        'native_interfaces':native,
         'tolerance_geometry':{
             'cases':len(tolerance['cases']),
             'exported_solids_valid':all(c['all_solids_valid'] for c in tolerance['exported_STEP_reopen_check']),
@@ -266,6 +321,22 @@ def write_status_artifacts(root: Path) -> Path:
             'native_run_audit':'output/review/native-manufacturing-stop-20261007/native-stop-audit.json',
             'diagnosis_performed':bool(diagnosis)},
         'current_route_fusion_verified':False,
+        'first_interface_input_availability':{
+            'user_confirmed_matching_supplier_or_procedure_data_available':False,
+            'confirmed_date':'2026-10-08',
+            'required_input_table':'docs/review/minimum-first-interface-inputs-20261008.md',
+            'dependent_calculations_on_hold':True},
+        'source_compatibility_repair':{
+            'geometry_and_power_assembly_repaired':True,
+            'physical_parameters_changed':False,
+            'case_time_steps_s':[0.125,0.0625],
+            'stop_time_s':0.5,
+            'peak_temperatures_C':[2810.3027325651747,2823.076424863274],
+            'common_time_0_375_peak_difference_pct':8.670202528649158,
+            'time_accuracy_qualified':False,
+            'temperature_domain_qualified':False,
+            'mechanical_transfer_allowed':False,
+            'source':'simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json'},
         'position_actual_family_pass':False,
         'bore_actual_family_pass':False,
         'complete_strength_verified':False,
@@ -278,7 +349,7 @@ def write_status_artifacts(root: Path) -> Path:
                           'current_manufacturing_evidence':False,
                           'position_source':'simulation/competition-r4/results/verification.json',
                           'service_source':'simulation/competition-r4/results/service-verification.json'},
-        'next_action':'取得适用热源与高温本构依据，闭合首层一翼冷态；继承残余状态完成实际修整、第二层、最终孔加工、组焊、完全卸夹与同状态承载。',
+        'next_action':'本轮目录棒材、一次根盖分道和原生冷态去料准备已落实。新独立输入审核不准入制造性能FE：适用熔合/高温响应/真实熔凝参考及本件合格冷态仍缺，第二层/壳体/工装原生初始拓扑未定义。保留具体断点；新适用输入或工程变化后审核再推进，不重跑已过功能基准或扩大候选/平台。',
         'historical_results_current_design_evidence':False,
     }
     output = root/"deliverables/report/generated"
@@ -291,13 +362,20 @@ def write_status_artifacts(root: Path) -> Path:
            f"当前工程图{status['drawing_count']}张。首层100 mm/min候选保留；120 mm/min因公差槽供料不足尚未采用。",'',
            '| 工程项目 | 当前结果 |','| --- | --- |',
            '| 公差实体 | 八个角点加名义实体；九组STEP重读，每组17个有效实体 |',
+           '| 04名义装配覆盖 | 13根、33实体，停用轻击器已移出；新增HJ-022/023接口以图纸与净隙核算为准 |',
+           '| 第二层供货 | DMNA099目录Ø1.143×914.4 mm直棒；采购验收±0.020、送进8.00±0.20；180±0.5 mm/翼、两轨同棒，采购两根 |',
+           '| 一次分道成形 | 根3.42/盖3.78±0.05；面积7.538777～9.007008 mm²；理想喉厚余58.677 μm；采用设计pWPS，未授予实际成形/熔合资格 |',
+           '| 原生接口 | 旧QT删除/再加入PEEQ差0已复用；新增冷态整单元去料准备，实际冷态与后续装配网格尚缺，未运行再平衡或整链 |',
            f"| 最大槽容积/填槽质量 | {tolerance['maximum_actual_pocket_volume_one_wing_mm3']:.6f} mm³/翼；{tolerance['maximum_pocket_fill_mass_g']:.6f} g/翼 |",
            '| 首层冷态制造状态 | 原生仅接受至0.125 s，自研仅接受至7.625 s；尚未取得可继承冷态 |',
+           '| 本轮源面修复 | 同中点出生域的截切自由面/内部前沿加载；功率和物性不变 |',
+           '| 本轮适用性 | 两步长0.5 s越2800℃无蒸发守卫；共同0.375 s峰温差8.67%，未达时间资格，不进入机械 |',
            '| 完整连接、位置度、孔径与强度 | 当前制造链均未验证通过 |',
            '| 历史位置度 | 52.084 μm > 50 μm；失败事实保留，不能继承为新链通过 |',
            '| 精度分配 | 28+2+6.5+13.5=50 μm；微珩径向去除上限3 μm |',
+           '| 无实物证据路线 | 公开来源按问题组合；几何、容量与接口继续，未获输入资格的制造计算停止 |',
            '| 小批整线 | 8件/8 h设计目标；首层8、第二层预留9、延迟PT24个位置；未确认实际产能 |',
-           '| 直接运行费用情景 | 143.58元/件；不含设备、折旧、废品与破坏/疲劳试验 |','',
+           f"| 直接运行费用情景 | {pilot['direct_operating_cost_scenario_CNY']:.2f}元/件；只更新两项焊材费，原人工/气量/资源不重算；设备、折旧等另计 |",'',
            status['next_action'],'',
            '名义公差实体、热历史与冷态残余状态分别登记，历史计算不代替当前有效制造链。']
     markdown_path.write_text('\n'.join(lines)+'\n',encoding="utf-8")

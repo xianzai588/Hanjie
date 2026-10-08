@@ -1,0 +1,284 @@
+"""把 generated/engineering-drawings 下的 SVG 工程图忠实导出为提交级 PDF 图包。
+
+转换器只做渲染搬运：不改动任何几何、尺寸、注记与 design-review 状态。
+SVG 由 generate_engineering_drawings.py 程序化生成，仅含 line/circle/rect/
+polygon/text 五种元素，样式集中于 <style> 块，因此按“CSS 类 → PDF 属性”
+映射重绘即可保持矢量保真。
+"""
+
+from __future__ import annotations
+
+import datetime as _dt
+import json
+import re
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+from reportlab.lib.colors import HexColor, Color
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.pdfgen.canvas import Canvas
+
+ROOT = Path(__file__).resolve().parents[2]
+SVG_DIR = ROOT / "cad" / "generated" / "engineering-drawings"
+PDF_DIR = SVG_DIR / "pdf"
+PAPER_GRAYSCALE = "--paper-grayscale" in __import__("sys").argv
+if PAPER_GRAYSCALE:
+    PDF_DIR = SVG_DIR / "pdf-paper"
+NS = "{http://www.w3.org/2000/svg}"
+COMBINED_NAME = "HJ-DRW-drawing-set.pdf"
+import sys
+sys.path.insert(0,str(ROOT/"src"))
+from hanjie.reporting.fonts import register_project_fonts
+
+
+def register_fonts() -> None:
+    register_project_fonts(ROOT)
+
+
+def parse_css(css_text: str) -> dict[str, dict[str, str]]:
+    rules: dict[str, dict[str, str]] = {}
+    for match in re.finditer(r"([^{}]+)\{([^}]*)\}", css_text):
+        declarations: dict[str, str] = {}
+        for part in match.group(2).split(";"):
+            if ":" in part:
+                key, value = part.split(":", 1)
+                declarations[key.strip()] = value.strip()
+        for selector in match.group(1).split(","):
+            rules[selector.strip()] = declarations
+    return rules
+
+
+def color(value: str | None, role: str = "fill"):
+    if not value or value == "none":
+        return None
+    parsed=HexColor(value)
+    if not PAPER_GRAYSCALE:
+        return parsed
+    if role in {"stroke","text"}:
+        return Color(0,0,0)
+    gray=0.2126*parsed.red+0.7152*parsed.green+0.0722*parsed.blue
+    return Color(gray,gray,gray)
+
+
+def monochrome_pdf(source: Path, destination: Path) -> None:
+    """Change only PDF color operators; keep CAD paths, text, and page geometry."""
+    from pypdf import PdfReader, PdfWriter
+    from pypdf.generic import ContentStream, FloatObject, NameObject
+    reader=PdfReader(source)
+    writer=PdfWriter()
+    for page in reader.pages:
+        contents=ContentStream(page.get_contents(),reader)
+        operations=[]
+        in_text=False
+        fill_gray=0.0
+        stack=[]
+        for operands,operator in contents.operations:
+            if operator==b'q':stack.append(fill_gray)
+            elif operator==b'Q' and stack:fill_gray=stack.pop()
+            if operator==b'BT':
+                in_text=True
+                operations.append((operands,operator))
+                operations.append(([FloatObject(0)],b'g'))
+                continue
+            if operator==b'ET':
+                in_text=False
+                operations.append((operands,operator))
+                operations.append(([FloatObject(fill_gray)],b'g'))
+                continue
+            if operator in (b'RG',b'G',b'K'):
+                operations.append(([FloatObject(0)],b'G'))
+                continue
+            if operator in (b'rg',b'g',b'k'):
+                values=[float(v) for v in operands]
+                if operator==b'rg':gray=0.2126*values[0]+0.7152*values[1]+0.0722*values[2]
+                elif operator==b'k':
+                    c,m,y,k=values;gray=0.2126*(1-c)*(1-k)+0.7152*(1-m)*(1-k)+0.0722*(1-y)*(1-k)
+                else:gray=values[0]
+                if not in_text:fill_gray=gray
+                operations.append(([FloatObject(0 if in_text else gray)],b'g'))
+                continue
+            operations.append((operands,operator))
+        contents.operations=operations
+        page[NameObject('/Contents')]=contents
+        writer.add_page(page)
+    metadata={key:str(value) for key,value in (reader.metadata or {}).items() if value is not None}
+    metadata['/Author']=''
+    writer.add_metadata(metadata)
+    with destination.open('wb') as stream:writer.write(stream)
+
+
+def dash_array(value: str | None, scale: float) -> list[float] | None:
+    if not value or value == "none":
+        return None
+    return [float(v) * scale for v in value.replace(",", " ").split()]
+
+
+def style_for(rules: dict[str, dict[str, str]], tag: str, cls: str, attrib: dict) -> dict:
+    merged: dict[str, str] = {}
+    merged.update(rules.get(tag, {}))
+    if cls:
+        merged.update(rules.get(f".{cls}", {}))
+    for key, value in attrib.items():
+        if key in ("stroke", "fill", "stroke-width", "stroke-dasharray", "font-size", "font-weight"):
+            merged[key] = value
+    return merged
+
+
+def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float, rules: dict[str, dict[str, str]]) -> str:
+    root = ET.parse(svg_path).getroot()
+    view_box = [float(v) for v in root.get("viewBox").split()]
+    vw, vh = view_box[2], view_box[3]
+    scale = min(page_pw / vw, page_ph / vh)
+    off_x = (page_pw - vw * scale) / 2
+    off_y = (page_ph - vh * scale) / 2
+
+    def X(x: float) -> float:
+        return off_x + x * scale
+
+    def Y(y: float) -> float:
+        return off_y + (vh - y) * scale
+
+    title = ""
+    for element in root:
+        tag = element.tag.replace(NS, "")
+        if tag == "style":
+            continue
+        attrib = dict(element.attrib)
+        cls = attrib.get("class", "")
+        style = style_for(rules, tag, cls, attrib)
+        stroke = color(style.get("stroke"),"stroke")
+        fill = color(style.get("fill"))
+        width = max(float(style.get("stroke-width", "1")) * scale, 0.35)
+        dash = dash_array(style.get("stroke-dasharray"), scale)
+        if tag == "text":
+            if not title and cls == "title":
+                title = element.text or ""
+            size = float(style.get("font-size", "14").removesuffix("px")) * scale
+            canvas.setFont("HanjieCN-Bold" if style.get("font-weight") == "700" else "HanjieCN",size)
+            canvas.setFillColor(color(style.get("fill") or "#111827","text"))
+            text = element.text or ""
+            anchor = attrib.get("text-anchor", "start")
+            if anchor == "middle":
+                canvas.drawCentredString(X(float(attrib["x"])), Y(float(attrib["y"])), text)
+            elif anchor == "end":
+                canvas.drawRightString(X(float(attrib["x"])), Y(float(attrib["y"])), text)
+            else:
+                canvas.drawString(X(float(attrib["x"])), Y(float(attrib["y"])), text)
+            continue
+        if stroke:
+            canvas.setStrokeColor(stroke)
+        canvas.setLineWidth(width)
+        if dash:
+            canvas.setDash(dash)
+        else:
+            canvas.setDash()
+        if fill:
+            canvas.setFillColor(fill)
+        if tag == "line":
+            canvas.line(X(float(attrib["x1"])), Y(float(attrib["y1"])), X(float(attrib["x2"])), Y(float(attrib["y2"])))
+        elif tag == "circle":
+            canvas.circle(X(float(attrib["cx"])), Y(float(attrib["cy"])), float(attrib["r"]) * scale, stroke=1, fill=1 if fill else 0)
+        elif tag == "ellipse":
+            cx, cy = float(attrib["cx"]), float(attrib["cy"])
+            rx, ry = float(attrib["rx"]), float(attrib["ry"])
+            canvas.ellipse(X(cx-rx), Y(cy+ry), X(cx+rx), Y(cy-ry), stroke=1, fill=1 if fill else 0)
+        elif tag == "rect":
+            rx = float(attrib.get("rx", "0")) * scale
+            x = X(float(attrib.get("x", "0")))
+            y = Y(float(attrib.get("y", "0")) + float(attrib.get("height", "0")))
+            w, h = float(attrib.get("width", "0")) * scale, float(attrib.get("height", "0")) * scale
+            if rx > 0:
+                canvas.roundRect(x, y, w, h, rx, stroke=1, fill=1 if fill else 0)
+            else:
+                canvas.rect(x, y, w, h, stroke=1, fill=1 if fill else 0)
+        elif tag == "polygon":
+            points = re.findall(r"(-?[\d.]+),(-?[\d.]+)", attrib["points"])
+            path = canvas.beginPath()
+            for index, (px, py) in enumerate(points):
+                if index == 0:
+                    path.moveTo(X(float(px)), Y(float(py)))
+                else:
+                    path.lineTo(X(float(px)), Y(float(py)))
+            path.close()
+            canvas.drawPath(path, stroke=1, fill=1 if fill else 0)
+    return title
+
+
+def main() -> None:
+    register_fonts()
+    manifest = json.loads((SVG_DIR / "drawing-manifest.json").read_text(encoding="utf-8"))
+    svg_paths = [SVG_DIR / name for name in manifest["drawings"] + manifest.get("supplemental_drawings", [])]
+    # 合并图集页序按图号 HJ-001..008 排列；补充详图不再整体垫底。
+    def hj_number(path):
+        match = re.search(r">HJ-(\d{3})</text>", path.read_text(encoding="utf-8"))
+        return int(match.group(1)) if match else 999
+    svg_paths.sort(key=hj_number)
+    if not svg_paths:
+        raise FileNotFoundError(f"未找到 SVG 图纸: {SVG_DIR}")
+    PDF_DIR.mkdir(parents=True, exist_ok=True)
+    page_pw, page_ph = landscape(A4)
+    today = _dt.date.today().isoformat()
+    sheets: list[dict[str, str]] = []
+
+    total_count=len(svg_paths)+len(manifest.get('external_pdf_sheets',[]))
+    for index, svg_path in enumerate(svg_paths, start=1):
+        root = ET.parse(svg_path).getroot()
+        style_element = root.find(f"{NS}style")
+        rules = parse_css(style_element.text or "") if style_element is not None else {}
+        pdf_path = PDF_DIR / (svg_path.stem + ".pdf")
+        canvas = Canvas(str(pdf_path), pagesize=landscape(A4))
+        canvas.setAuthor('')
+        title = export_sheet(svg_path, canvas, page_pw, page_ph, rules)
+        canvas.setFont("HanjieCN",7)
+        canvas.setFillColor(Color(0,0,0) if PAPER_GRAYSCALE else HexColor("#475569"))
+        canvas.drawCentredString(
+            page_pw / 2, 10,
+            f"HJ 参赛工艺设计图集 · {today} · 第 {hj_number(svg_path)}/{total_count} 页",
+        )
+        canvas.showPage()
+        canvas.save()
+        # 报告插图来自同一矢量图纸，避免再次手工绘制产生尺寸分叉。
+        import pymupdf
+        with pymupdf.open(pdf_path) as preview:
+            preview_path=(PDF_DIR/(svg_path.stem+".png")) if PAPER_GRAYSCALE else svg_path.with_suffix(".png")
+            preview[0].get_pixmap(dpi=150).save(str(preview_path))
+        sheets.append({"pdf": f"{PDF_DIR.name}/{pdf_path.name}", "title": title, "source": svg_path.name,
+                       "number":hj_number(svg_path)})
+
+    # HJ-017 is a validated vector PDF from the curved CAD workflow. Keep
+    # its paths and text intact rather than feeding its complex SVG into
+    # the simple five-element drawing renderer.
+    from pypdf import PdfWriter
+    for external in manifest.get('external_pdf_sheets',[]):
+        source_pdf=ROOT/external['pdf']
+        destination=PDF_DIR/source_pdf.name
+        import shutil
+        if PAPER_GRAYSCALE:
+            monochrome_pdf(source_pdf,destination)
+        else:
+            shutil.copyfile(source_pdf,destination)
+        sheets.append(dict(pdf=f'{PDF_DIR.name}/{destination.name}',title=external['title'],
+                           source=external['pdf'],number=external['number']))
+    sheets.sort(key=lambda item:item['number'])
+    combined=PdfWriter()
+    for drawing in sheets:combined.append(SVG_DIR/drawing['pdf'])
+    combined.add_metadata({'/Title':'QT450-10/Q235B 工艺设计工程图集','/Author':'',
+                           '/Subject':'当前候选几何与后序液路设计；焊接采用状态见说明书'})
+    with (PDF_DIR/COMBINED_NAME).open('wb') as stream:combined.write(stream)
+
+    manifest = {
+        "generated_at": today,
+        "source": "cad/parametric/generate_engineering_drawings.py 生成的 SVG（本脚本仅渲染，不改几何）",
+        "status": "design-review; not manufacturing release",
+        "page_size": "A4/A3 landscape, vector; actual page box in each sheet",
+        "sheet_count": len(sheets),
+        "palette": "black lines and text; grayscale fills" if PAPER_GRAYSCALE else "source SVG colors",
+        "combined": f"{PDF_DIR.name}/{COMBINED_NAME}",
+        "sheets": sheets,
+    }
+    (PDF_DIR / "pdf-exports.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"已导出 {len(sheets)} 张 PDF 至 {PDF_DIR}")
+
+
+if __name__ == "__main__":
+    main()

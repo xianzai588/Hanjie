@@ -10,7 +10,7 @@
     "inspection-and-release.svg",
     "gas-water-detail.svg",
     "workstation.svg",
-    "following-peener.svg",
+    "top-extraction.svg",
     "copper-retreat.svg",
     "water-route.svg",
     "carrier-detail.svg",
@@ -23,6 +23,9 @@
   "drawing_count": 16,
   "supplemental_drawings": [
     "sleeve-detail.svg"
+  ],
+  "reserve_drawings": [
+    "following-peener-reserve.svg"
   ],
   "external_pdf_sheets": [
     {
@@ -44,6 +47,16 @@
       "number": 21,
       "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-021.pdf",
       "title": "HJ-021 关键零件明细与制造配合"
+    },
+    {
+      "number": 22,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-022.pdf",
+      "title": "HJ-022 壳体基准加工与保基准接口"
+    },
+    {
+      "number": 23,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-023.pdf",
+      "title": "HJ-023 浮动压紧与气水抽吸管路"
     }
   ],
   "excluded": "本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"

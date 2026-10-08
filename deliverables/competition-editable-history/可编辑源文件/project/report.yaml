@@ -1,0 +1,16 @@
+version: REPORT-ENGINEERING-20261008
+pdf:
+  paper_pdf: output/pdf/焊接工艺设计说明书-正文.pdf
+  manual_pdf: output/pdf/焊接工艺设计说明书-含工艺卡.pdf
+  combined_pdf: output/pdf/焊接工艺设计说明书与工程图.pdf
+  drawing_pdf: cad/generated/engineering-drawings/pdf-paper/HJ-DRW-drawing-set.pdf
+  drawing_manifest: cad/generated/engineering-drawings/pdf-paper/pdf-exports.json
+  font_candidates:
+  - regular: C:/Windows/Fonts/simsun.ttc
+    bold: C:/Windows/Fonts/simhei.ttf
+  - regular: /usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc
+    bold: /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc
+  environment_overrides:
+    regular: HANJIE_PDF_FONT_REGULAR
+    bold: HANJIE_PDF_FONT_BOLD
+  page_footer: ''

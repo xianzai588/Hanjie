@@ -37,10 +37,10 @@
 <text x="620" y="394" class="small">锥/肩精研Ra≤0.2；根过渡R0.2</text>
 <text x="620" y="426" class="small">胀套根环Ø46/Ø38.6×10，z145.4～155.4</text>
 <text x="620" y="458" class="small">胀套向下设置；预载≤100 N；止挡承热反力</text>
-<text x="620" y="490" class="small">M12只设置及回退；压环球铰独立500 N</text>
+<text x="620" y="490" class="small">M12径向浮动；独立三点压环500 N</text>
 <text x="620" y="522" class="small">开上止挡→胀套上退1→上提260</text>
 <text x="620" y="554" class="small">上承力筒Ø70/Ø24、长244.6，连接z400门架</text>
-<text x="620" y="586" class="small">变形检查不省略；轻击为选配，不得依靠加工纠轴</text>
+<text x="620" y="586" class="small">浮动及压环接口见HJ-023；不装随动轻击</text>
 <text x="620" y="618" class="small">固定锥局部压缩及门架柔度见53号核算</text>
 <text x="620" y="650" class="small">外圆同轴≤0.003，回程/重复性按HJ-F-01</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
@@ -48,7 +48,7 @@
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
 <text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
-<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
 <text x="572" y="742" class="small">比例：NTS（不按比例）</text>
 <text x="572" y="764" class="small">视图NTS；不得量图取值</text>
 <text x="772" y="742" class="small">材料：17-4PH胀套 / 45钢整体芯柱</text>

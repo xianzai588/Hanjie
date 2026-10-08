@@ -1,0 +1,63 @@
+{
+  "version": "COMPETITION-R4",
+  "source": "project/competition-design.yaml",
+  "status": "competition design; not manufacturing release",
+  "drawings": [
+    "bearing-seat.svg",
+    "joint-detail.svg",
+    "fixture-assembly.svg",
+    "protected-process-assembly.svg",
+    "inspection-and-release.svg",
+    "gas-water-detail.svg",
+    "workstation.svg",
+    "top-extraction.svg",
+    "copper-retreat.svg",
+    "water-route.svg",
+    "carrier-detail.svg",
+    "portal-transfer.svg",
+    "datum-holder-detail.svg",
+    "postweld-isolation.svg",
+    "postweld-cartridge.svg",
+    "postweld-drain-return.svg"
+  ],
+  "drawing_count": 16,
+  "supplemental_drawings": [
+    "sleeve-detail.svg"
+  ],
+  "reserve_drawings": [
+    "following-peener-reserve.svg"
+  ],
+  "external_pdf_sheets": [
+    {
+      "number": 17,
+      "pdf": "cad/generated/independent-precoat-curved/HJ-DRW-017-precoat-section.pdf",
+      "title": "HJ-017 名义曲面预制与法向修整断面"
+    },
+    {
+      "number": 19,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-019.pdf",
+      "title": "HJ-019 真实公差与法向修整截面"
+    },
+    {
+      "number": 20,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-020.pdf",
+      "title": "HJ-020 异种接头专用UT可达与覆盖"
+    },
+    {
+      "number": 21,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-021.pdf",
+      "title": "HJ-021 关键零件明细与制造配合"
+    },
+    {
+      "number": 22,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-022.pdf",
+      "title": "HJ-022 壳体基准加工与保基准接口"
+    },
+    {
+      "number": 23,
+      "pdf": "cad/generated/engineering-supplements-20261007/HJ-DRW-023.pdf",
+      "title": "HJ-023 浮动压紧与气水抽吸管路"
+    }
+  ],
+  "excluded": "本目录其他SVG/PDF为历史版本；补充详图与核心图集一并导出"
+}

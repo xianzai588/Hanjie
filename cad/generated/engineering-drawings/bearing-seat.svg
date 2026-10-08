@@ -3,7 +3,7 @@
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
 <text x="50" y="68" class="title">接头布局、座体尺寸与独立基准</text>
-<text x="50" y="99" class="small">主设计：8P-R2-t15，八段各18 mm；焊后孔轴位置度在精整前检验</text>
+<text x="50" y="99" class="small">8P-R2-t15柔顺槽主设计；每段实际18 / 稳定有效16；焊后孔轴在精整前检验</text>
 <text x="1020" y="65" class="section">HJ-001</text>
 <line x1="434.207258143282" y1="423.836145374138" x2="528.9399999999999" y2="423.836145374138" stroke="#334155" stroke-width="1"/>
 <line x1="533.3215125066739" y1="421.9352121159538" x2="533.2271690233483" y2="422.0337853974419" stroke="#334155" stroke-width="1"/>
@@ -4659,7 +4659,7 @@
 <circle cx="310" cy="395" r="240.0" fill="none" stroke="#7a939f"/>
 <line x1="50" y1="395" x2="570" y2="395" stroke="#7a939f" stroke-width="0.7"/>
 <line x1="310" y1="145" x2="310" y2="645" stroke="#7a939f" stroke-width="0.7"/>
-<text x="65" y="150" class="section">俯视：真实BREP边界投影</text>
+<text x="65" y="150" class="section">俯视：座体轮廓投影</text>
 <text x="260" y="400" class="section">Ø40</text>
 <text x="115" y="671" class="note">壳体 Ø160 / 内径名义 Ø150；H200；t5</text>
 <text x="510.0" y="400.0" class="section">1</text>
@@ -4670,22 +4670,23 @@
 <text x="160.04310985675772" y="544.9568901432422" class="section">6</text>
 <text x="304.99999999999994" y="605.0" class="section">7</text>
 <text x="449.9568901432422" y="544.9568901432423" class="section">8</text>
-<text x="640" y="167" class="small">材料：QT450-10座体 / Q235B壳体</text>
-<text x="640" y="205" class="small">座体厚15；中心环外径82；32处转接R2</text>
-<text x="640" y="243" class="small">外缘直径149.94～149.98（设计限值）</text>
-<text x="640" y="281" class="small">壳体内径150.00～150.02（设计限值）</text>
-<text x="640" y="319" class="small">径向装配间隙0.01～0.04，不能靠间隙定心</text>
-<text x="640" y="357" class="small">座体底面距壳体下端100（工序设计尺寸）</text>
-<text x="640" y="395" class="small">焊前候选孔40.006～40.008；最终40.000～40.0</text>
-<text x="640" y="411" class="small">25</text>
-<text x="640" y="433" class="small">A：壳体下端独立安装面</text>
-<text x="640" y="471" class="small">B：壳体内壁双测量带所建立的轴线</text>
-<text x="640" y="509" class="small">B定向按A法向约束；不以胀套轴冒充B</text>
-<text x="640" y="547" class="small">Ø40孔轴：位置度 Ø0.05，相对A、B</text>
-<text x="640" y="585" class="small">测量长度15；不默认扩展到整根主轴</text>
-<text x="640" y="623" class="small">C仅周向识别焊段，不加入位置度基准框</text>
-<text x="640" y="661" class="small">八槽宽4±0.05，圆端R2，最深R39</text>
-<text x="640" y="699" class="small">槽位22.5°起，每45°；翼间其余区域留空</text>
+<text x="640" y="147" class="section">八翼主设计尺寸与基准</text>
+<text x="640" y="183" class="small">材料：QT450-10座体 / Q235B壳体</text>
+<text x="640" y="214" class="small">座体厚15；中心环外径82；32处转接R2</text>
+<text x="640" y="245" class="small">外缘直径149.94～149.98（设计限值）</text>
+<text x="640" y="276" class="small">壳体内径150.00～150.02（设计限值）</text>
+<text x="640" y="307" class="small">径向装配间隙0.01～0.04；独立工装定心</text>
+<text x="640" y="338" class="small">座体底面距壳体下端100（工序设计尺寸）</text>
+<text x="640" y="369" class="note">焊前候选孔：40.006～40.008</text>
+<text x="640" y="400" class="note">最终孔尺寸：40.000～40.025</text>
+<text x="640" y="431" class="small">A：壳体下端独立安装面</text>
+<text x="640" y="462" class="small">B1：z20～30；B2：z170～180，全周各10</text>
+<text x="640" y="493" class="small">B按A法向定向；焊前加工及测线见HJ-022</text>
+<text x="640" y="524" class="small">Ø40孔轴：位置度 Ø0.05，相对A、B</text>
+<text x="640" y="555" class="small">测量长度15，按实际孔长评价</text>
+<text x="640" y="586" class="small">C用于周向识别焊段，不列入位置度基准框</text>
+<text x="640" y="617" class="small">八槽宽4±0.05，圆端R2，最深R39</text>
+<text x="640" y="648" class="small">槽位22.5°起，每45°；翼间其余区域留空</text>
 <line x1="113" y1="588" x2="267" y2="437" stroke="#334155" stroke-width="1.2"/>
 <rect x="95" y="588" width="32" height="32" fill="none" stroke="#334155"/>
 <rect x="127" y="588" width="80" height="32" fill="none" stroke="#334155"/>
@@ -4703,7 +4704,7 @@
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
 <text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
-<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
 <text x="572" y="742" class="small">比例：NTS（不按比例）</text>
 <text x="572" y="764" class="small">视图NTS；不得量图取值</text>
 <text x="772" y="742" class="small">材料：QT450-10 / Q235B</text>

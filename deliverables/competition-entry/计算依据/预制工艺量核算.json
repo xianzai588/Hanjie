@@ -1,4 +1,5 @@
 {
+  "version": "DELIVERY-PRECOAT-20261008",
   "parameters": {
     "state": "competition_design_pWPS_pending_process_qualification",
     "main_route": "CI-A1独立预制—低碳Ni99第二层—8P低热GTAW—铜环实体屏障",
@@ -15,6 +16,19 @@
       "track_radius_mm": 71.98,
       "track_length_per_wing_mm": 19.28169543353246,
       "tracks_per_wing": 1,
+      "arc_duration_per_wing_s": 11.569017260119475,
+      "deposited_mass_per_wing_g": 1.9161544218236166,
+      "net_power_W_for_design_accounting": 2024.0,
+      "net_line_energy_J_mm_calculated": 1214.4,
+      "reference_line_energy_J_mm_rounded": 1215.0,
+      "geometry_model_path": "cad/generated/mma-mass-envelope/CI-A1-single-track-end80-r12",
+      "end_control": {
+        "ramp_duration_s": 1.2,
+        "final_current_A": 80.0,
+        "melting_rate_current_exponent": 2,
+        "rate_basis": "末段准稳态I与I²熔化关系的低供料情景，未移植E7018或其他产品的系数；以实际熔敷称量核验",
+        "source": "KOBELCO目录346页，CI-A1直径3.2电流80～130 A；90A候选时间减半仍超温，按3.2mm面内扩散尺度限定末次修订"
+      },
       "preheat_interpass_C": [
         200,
         300
@@ -34,16 +48,47 @@
     "second": {
       "method": "GTAW",
       "polarity": "DCEN",
-      "filler": "低碳WWNA99类ERNi-CI裸棒",
-      "diameter_mm": 1.2,
+      "filler": "低碳DMNA099／ERNi-CI裸棒，原TDS供货0.045 inch×36 inch；设计采购验收Ø1.143±0.020 mm",
+      "product_identity_basis": "原供方Weldwire现官网所链Duramax DMNA099／ERNi-CI；旧WWNA99商名与现供货标识须明确",
+      "product_TDS_path": "docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf",
+      "product_TDS_url": "https://www.weldwire.net/_files/ugd/f42bc4_2132a75a538c4a2e90fd6dea7426a91b.pdf",
+      "product_TDS_page": 1,
+      "diameter_supply_basis": "原TDS第1页的0.045 inch×36 inch，精确换算Ø1.143 mm×914.4 mm；不以公制1.20代替英制尺寸",
+      "stock_length_mm": 914.4,
+      "rod_feed_interface": {
+        "cut_blank_length_per_wing_mm": 180.0,
+        "cut_blank_length_tolerance_mm": 0.5,
+        "cut_blank_length_acceptance_mm": [
+          179.5,
+          180.5
+        ],
+        "blanks_per_part": 8,
+        "blanks_per_stock_rod": 4,
+        "same_blank_for_both_tracks": true,
+        "inactive_clamping_tail_min_mm": 15.0,
+        "front_trim_allowance_mm": 2.0,
+        "cutting_loss_per_blank_mm": 1.0,
+        "stock_rods_per_part": 2,
+        "minimum_accepted_stock_length_mm": 726.0,
+        "minimum_available_feed_stroke_mm": 162.0,
+        "exchange": "每翼两轨使用同一180 mm定长棒；离弧换翼时换棒，计入既有第二层清理换翼预留；夹持、送进和更换时间为本设计设备接口要求，现机执行能力尚未核实"
+      },
+      "diameter_tolerance_basis": "本设计冻结的采购/来料验收要求±0.020 mm，非原厂公布公差；由既有CAD最大槽口投影与1.75 mm覆盖任务反算总供料允许负偏差0.040505 mm后取一半以内，实际逐批测径验收，不符合者不投入该pWPS",
+      "diameter_acceptance_mm": [
+        1.123,
+        1.163
+      ],
+      "diameter_mm": 1.143,
       "diameter_tolerance_mm": 0.02,
       "current_A": 75.0,
       "voltage_V_reference": 11.0,
+      "current_voltage_basis": "保留200～300℃预热薄层短弧的75 A/11 V设计选值及247.5 J/mm热账，分别低于原TDS 0.045 inch推荐下限5 A/2 V；参考弧压须按短弧实际记录控制，热账正余量不证明熔合，目录范围不直接搬入本槽，参数尚未取得生产资格",
       "travel_mm_s": 2.0,
       "travel_relative_tolerance": 0.02,
       "efficiency_for_design_accounting": 0.6,
-      "feed_mm_s": 7.2,
+      "feed_mm_s": 8.0,
       "feed_tolerance_mm_s": 0.2,
+      "feed_basis": "按7.20×(1.20/1.143)^2=7.936016 mm/s保留原截面积供料，再取可执行8.00 mm/s；名义体积供料增加0.80625%，原±0.20 mm/s绝对送进控制不变",
       "deposition_efficiency_range": [
         0.9,
         0.98
@@ -70,41 +115,86 @@
         1.6
       ],
       "second_deposited_top_min_mm": 1.75,
-      "final_union_remelt_limit_mm": 0.4
+      "final_union_remelt_limit_mm": 0.4,
+      "QT_corner_radius_mm": [
+        1.4,
+        1.6
+      ],
+      "first_machining_radius_policy": "R_actual_QT - actual_normal_retained; nominal0.80mm; corner range0.65..0.95mm"
     },
     "production_window_frozen": false,
     "fusion_verified": false,
     "full_manufacturing_verified": false,
     "sources": {
       "product": "KOBELCO catalogue pp344-347,551",
-      "reference_heat": "El-Banna2000 Table3, DOI10.1016/S0167-577X(99)00204-9",
+      "reference_heat": "历史El-Banna2000 Table3参数锚，原表数值本轮未复核；现行1214.4 J/mm由选定工艺输入守恒得到，见evidence-transfer-20261008.md",
       "second_feed": "actual arc length and wire-volume conservation; arc parameters are design proposals, not supplier-qualified parameters"
-    }
-  },
-  "budgets": {
-    "first": {
-      "arc_power_W": 2530.0,
-      "net_power_W": 2024.0,
-      "gross_line_J_mm": 1518.0,
-      "net_line_J_mm": 1214.3999999999999,
-      "total_arc_s": 92.5521380809558,
-      "total_net_heat_kJ": 187.32552747585453
     },
-    "second": {
-      "arc_power_W": 825.0,
-      "net_power_W": 495.0,
-      "gross_line_J_mm": 412.5,
-      "net_line_J_mm": 247.5,
-      "total_arc_s": 154.25417570736258,
-      "total_net_heat_kJ": 76.35581697514448
-    }
+    "tolerance_geometry_evidence": "cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json"
   },
-  "first_deposit_mass_per_wing_g": 1.9667329342202868,
-  "second_added_volume_per_wing_mm3": [
-    130.23904890078424,
-    166.79698833325162
+  "first": {
+    "actual_path_mm": 154.25356346825967,
+    "arc_time_s": 92.5521380809558,
+    "net_heat_kJ": 184.67592747585456,
+    "deposited_mass_g": 15.329235374588933,
+    "arc_efficiency": 0.8,
+    "heat_current_exponent": 1,
+    "mass_current_exponent": 2,
+    "mass_law_scope": "Conservative uncalibrated I-squared end-ramp feed scenario; not a measured electrode deposition law"
+  },
+  "second": {
+    "actual_path_mm": 308.50835141472515,
+    "arc_time_s": 154.25417570736258,
+    "net_heat_kJ": 76.35581697514446,
+    "wire_length_mm": 1234.0334056589006,
+    "consumed_wire_mass_g": 11.256698121264616,
+    "stock_purchase_mass_g": 16.682084479858062,
+    "stock_purchase_length_mm": 1828.8,
+    "entering_enthalpy_nominal_eta_range_kJ": [
+      11.260897179419645,
+      12.261865817590277
+    ],
+    "parent_pool_and_loss_remainder_kJ": [
+      64.0939511575542,
+      65.09491979572483
+    ],
+    "current_supply_source": "studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json"
+  },
+  "first_supply_sensitivity": [
+    {
+      "speed_mm_min": 100.0,
+      "speed_factor": 1.0,
+      "low_feed_g_s": 0.15,
+      "deposited_mass_per_wing_g": 1.6907244898443674,
+      "maximum_slot_demand_g": 1.5660420419,
+      "remaining_mass_per_wing_g": 0.12468244794436734
+    },
+    {
+      "speed_mm_min": 100.0,
+      "speed_factor": 1.02,
+      "low_feed_g_s": 0.15,
+      "deposited_mass_per_wing_g": 1.6566979684910748,
+      "maximum_slot_demand_g": 1.5660420419,
+      "remaining_mass_per_wing_g": 0.09065592659107469
+    },
+    {
+      "speed_mm_min": 120.0,
+      "speed_factor": 1.0,
+      "low_feed_g_s": 0.15,
+      "deposited_mass_per_wing_g": 1.4014990583413807,
+      "maximum_slot_demand_g": 1.5660420419,
+      "remaining_mass_per_wing_g": -0.1645429835586194
+    },
+    {
+      "speed_mm_min": 120.0,
+      "speed_factor": 1.02,
+      "low_feed_g_s": 0.15,
+      "deposited_mass_per_wing_g": 1.3731436238803034,
+      "maximum_slot_demand_g": 1.5660420419,
+      "remaining_mass_per_wing_g": -0.19289841801969665
+    }
   ],
-  "second_nominal_retained_CAD_volume_per_wing_mm3": 78.68592165130511,
-  "scope": "工艺设计供料与能量预算；天然轮廓、熔合及有效生产窗口按工艺评定确认",
-  "accepted_joint": false
+  "geometry_source": "cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json",
+  "state": "Supply and net source energy accounting; not fusion, dilution or manufacturing residual-state verification",
+  "legacy_correction": "Includes final 1.2 s current ramp; replaces obsolete no-ramp 187.325527 kJ / 15.733863 g bookkeeping."
 }

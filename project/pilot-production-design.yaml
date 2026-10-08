@@ -18,10 +18,14 @@ second_reservation_is_verified_heat_history: false
 final_machining_planning_s: 900
 wash_dry_pack_planning_s: 600
 delayed_PT_wait_s: 86400
+delayed_PT_scope: 第二层全部焊道结束并按规定缓冷至室温后的一次终端延迟PT；首层为冷态修整后PT
+delayed_PT_start_event: 记录工件完成第二层缓冷并降至室温的时刻；24h等待与冷却历时不重叠
+delayed_PT_basis: 本设计保留的终端检查窗口；已核对铸铁教材、电极TDS及TWI指导未规定各层均等待24h
 delayed_PT_manual_s: 480
 delayed_PT_elapsed_upper_s: 4080
 assembly_planning_s: 120
 final_single_head_station_s: 462.5
+final_preflow_min_s: 30
 final_PT_manual_s: 480
 final_PT_elapsed_upper_s: 4080
 UT_station_s: 600
@@ -51,3 +55,6 @@ cost_scenarios:
   furnace_average_power_is_measured: false
   reserved_PT_UT_consumables_CNY_part: 12
   capital_tooling_and_reject_cost_included: false
+final_single_head_station_s_scope: 旧字段名保留；462.5为焊接子程序，不含装配120、末弧保持至少120及实际退出/温控延长
+minimum_complete_fixture_cycle_s: 702.5
+cost_scenario_additional_duration_scope: 已计前吹30s及最低末弧120s；额外冷却/退出按实际阀态通气计费，37L/min每延长1min追加0.296元

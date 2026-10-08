@@ -1,0 +1,86 @@
+{
+  "version": "DELIVERY-8P-20261008",
+  "process": {
+    "fixed_feed_mm_s": 3.6,
+    "minimum_area_mm2": 7.22,
+    "area_range_mm2": [
+      7.538776571061034,
+      9.007008017697238
+    ],
+    "equivalent_leg_range_mm": [
+      3.8829825060283323,
+      4.244292171304242
+    ],
+    "gross_energy_per_pass_j_mm": 545.4545454545455,
+    "net_energy_per_pass_j_mm": 300.00000000000006,
+    "weld_length_mm": 144.00000000001867,
+    "arc_on_time_s": 174.54545454545456,
+    "total_net_heat_j": 86400.0,
+    "wire_length_mm": 628.3636363636364,
+    "deposited_volume_range_mm3": [
+      1085.5838262327889,
+      1297.0091545484024
+    ],
+    "actual_weld_length_per_pass_mm": 144.0,
+    "effective_connection_length_mm": 128.0,
+    "actual_segment_length_mm": 18.0,
+    "stable_segment_length_mm": 16.0,
+    "total_actual_path_mm": 288.0,
+    "start_transition_mm": 1.0,
+    "end_transition_mm": 1.0,
+    "feed_role": "两等长道次平均量，仅用于总耗丝；实际按根/盖分道执行",
+    "pass_feed_mm_s": {
+      "root": 3.42,
+      "cover": 3.78
+    }
+  },
+  "spec": {
+    "pass_count": 2,
+    "sequence": [
+      1,
+      5,
+      3,
+      7,
+      2,
+      6,
+      4,
+      8
+    ],
+    "wire_diameter_mm": 1.6,
+    "deposition_efficiency_range": [
+      0.9,
+      0.98
+    ],
+    "minimum_leg_mm": 3.8,
+    "clearance_leg_mm": 4.3,
+    "feed_policy": "根3.42/盖3.78±0.05 mm/s，平均3.60只作总量核算",
+    "filler_candidate": "CI-A1高镍独立MMA首层主线＋中间修整＋低碳裸Ni99第二层＋NiFe55最终两道连接；采用窗口由有效接头确定",
+    "filler_source": "https://certilas.com/en/product/nife-55-tig",
+    "wire_entry_offset_xyz_mm": [
+      -1.3,
+      0.0,
+      -1.3
+    ],
+    "hold_after_arc_s": 120.0,
+    "release_below_c": 55.0,
+    "measurement_temperature_c": 20.0,
+    "measurement_temperature_band_c": 1.0,
+    "feed_nominal_mm_s": 3.6,
+    "feed_tolerance_mm_s": 0.05,
+    "wire_diameter_tolerance_mm": 0.01,
+    "travel_relative_tolerance": 0.02,
+    "wire_guide_design": "根道枪靶R74.50/z117.30、棒端R73.20/z116.00；盖面枪靶R74.00/z118.00、棒端R72.70/z116.70；棒材沿(-0.35,+0.93,+0.11225)伸长15 mm后导管竖直到z220，枪/丝实际净隙2.169 mm",
+    "nominal_leg_mm": 4.0,
+    "minimum_effective_throat_mm": 2.68700576850888,
+    "stable_segment_length_mm": 16.0,
+    "contour_envelope_source": "studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json",
+    "pass_feed_mm_s": {
+      "root": 3.42,
+      "cover": 3.78
+    },
+    "local_forming_verified": false,
+    "geometric_keepout_equation": "x>=0,y>=0,x+y<=4.30 mm from virtual root",
+    "feed_3p68_contrast_adopted": false
+  },
+  "capacity_source": "studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json"
+}

@@ -1,0 +1,107 @@
+"""Export only the adopted nominal assembly and its actual entity coverage."""
+from pathlib import Path
+import json
+import sys
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "src"))
+
+from hanjie.domain.competition_design import run_design
+from OCP.BRepCheck import BRepCheck_Analyzer
+from OCP.IFSelect import IFSelect_RetDone
+from OCP.STEPControl import STEPControl_Writer, STEPControl_Reader, STEPControl_AsIs
+from OCP.TopAbs import TopAbs_SOLID
+from OCP.TopExp import TopExp_Explorer
+
+
+def solid_count(shape):
+    explorer = TopExp_Explorer(shape, TopAbs_SOLID)
+    count = 0
+    while explorer.More():
+        count += 1
+        explorer.Next()
+    return count
+
+
+def main():
+    _, bodies, _ = run_design(ROOT, assembly_only=True)
+    identities = {
+        "shell": ("product", "题定Q235B机壳名义实体；不含HJ-022焊前精加工分区与压钩"),
+        "seat": ("product", "8P-R2-t15八翼QT座体名义实体；不证明首次/最终界面连续熔合"),
+        "upper_fixture": ("fixture_envelope", "既有孔内芯组、胀套及上驱动包络；不含HJ-023浮动设置副机构"),
+        "weld_keepout": ("keepout", "用于工具净隙检查的焊缝预留禁入体；不是已成形或已熔合焊缝"),
+        "upper_portal": ("fixture", "既有460方顶板、Ø110通孔、四门柱及闭合轴向止挡；不含R340外副架"),
+        "torch": ("tool_envelope", "既有根道工具姿态的TIG焊枪包络（following_tools leg=2.8）；不是完整两道/转位扫掠"),
+        "wire_guide": ("tool_envelope", "同根道姿态的前置送丝导向包络；不是完整两道/转位扫掠"),
+        "cartridge": ("fixture", "既有固定下承载筒柱/法兰、承托盘/支点、铜瓣及背环/盘沿/下止挡和水接头包络的合成根"),
+        "external_datum_holder": ("fixture", "既有A基准外托环及六外握槽；不含HJ-022外耳、长压钩/支柱或实际六转运指"),
+    }
+    for i in range(1, 5):
+        identities[f"qualification_witness_{i}"] = (
+            "witness_placeholder", "固定盘下方名义见证片实体位置；不是已试验样品或质检报告")
+    writer = STEPControl_Writer()
+    roots = []
+    for index, (name, shape) in enumerate(bodies.items(), 1):
+        if not BRepCheck_Analyzer(shape).IsValid():
+            raise ValueError(f"Invalid assembly shape: {name}")
+        if writer.Transfer(shape, STEPControl_AsIs) != IFSelect_RetDone:
+            raise ValueError(f"STEP conversion failed: {name}")
+        role, scope = identities[name]
+        roots.append({"transfer_index": index, "identity": name, "role": role,
+                      "source_solid_count": solid_count(shape), "coverage": scope})
+    folder = ROOT / "cad/generated/competition-design"
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / "competition-assembly-r4.step"
+    staging = target.with_name("competition-assembly-new.step")
+    if writer.Write(str(staging)) != IFSelect_RetDone:
+        raise ValueError("STEP write failed")
+    reader = STEPControl_Reader()
+    if reader.ReadFile(str(staging)) != IFSelect_RetDone:
+        raise ValueError("Exported STEP cannot be read")
+    imported_roots = reader.NbRootsForTransfer()
+    reader.TransferRoots()
+    imported_shape = reader.OneShape()
+    imported_solids = solid_count(imported_shape)
+    if imported_roots != len(roots) or imported_solids != sum(row["source_solid_count"] for row in roots):
+        raise ValueError("Exported STEP entity counts differ from the source assembly")
+    if not BRepCheck_Analyzer(imported_shape).IsValid():
+        raise ValueError("Exported STEP geometry is invalid")
+    staging.replace(target)
+    coverage = {
+        "updated_at": "2026-10-08",
+        "step_source": target.relative_to(ROOT).as_posix(),
+        "construction_source": "src/hanjie/domain/competition_design.py:run_design(assembly_only=True)",
+        "export_entry": "studies/COMPETITION-DESIGN/export_current_assembly.py",
+        "scope": "04仅覆盖既有名义力链、固定铜盘与工具包络；新增夹持/副压环/气水抽吸接口以HJ-022/023及净隙数据为准。",
+        "imported_roots": imported_roots,
+        "imported_solids": imported_solids,
+        "imported_shape_valid": True,
+        "source_roots": roots,
+        "current_tools": ["torch", "wire_guide"],
+        "peener_in_current_assembly": False,
+        "removed_root": "peener（停用轻击器，原跟随轻击研究保留为历史）",
+        "not_modeled": [
+            "HJ-022：外耳、三只随行壳体长压钩、Ø12支柱、锁销、弹簧压头及六只转运指",
+            "HJ-023：M12径向浮动滑板/球面座、独立副压环、三内杆/球座、横臂及R340三外驱动/导轨/制动与静锁副架",
+            "HJ-023：上口补氩、四只R78抽吸头及其径退机构、阀组、软管及工位外过滤系统",
+        ],
+        "interface_sources": [
+            "cad/generated/engineering-supplements-20261007/HJ-DRW-022.pdf",
+            "cad/generated/engineering-supplements-20261007/HJ-DRW-023.pdf",
+            "cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json",
+            "docs/review/pressure-interface-design-20261008.md",
+        ],
+        "geometry_meaning": "禁入体与见证片也计入STEP根/实体数；实体数量不是零件清单或接头/制造性能通过证据。",
+        "assessment_recomputed": False,
+        "full_engineering_matrix_run": False,
+    }
+    output = folder / "assembly-coverage-20261008.json"
+    output.write_text(json.dumps(coverage, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"step": coverage["step_source"], "coverage": output.relative_to(ROOT).as_posix(),
+                      "roots": imported_roots, "solids": imported_solids, "valid": True,
+                      "current_tools": coverage["current_tools"], "assessment_recomputed": False},
+                     ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

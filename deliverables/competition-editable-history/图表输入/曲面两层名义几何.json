@@ -1,0 +1,51 @@
+{
+  "source_seat": "simulation/competition-r4/geometry/8P-R2-t15.step",
+  "pocket_depth_mm": 1.5,
+  "first_flat_retained_mm": 0.7,
+  "QT_corner_radius_mm": 1.5,
+  "first_machining_corner_radius_mm": 0.8,
+  "inner_radius_mm": 68.98,
+  "outer_radius_mm": 74.98,
+  "finished_z_mm": 115.0,
+  "nominal_original_seat_volume_mm3": 138366.51682309574,
+  "material_volumes_mm3": {
+    "QT450-10": 137058.990739865,
+    "first_CI_A1": 678.0372248940265,
+    "second_bare_Ni99": 629.4873732104409
+  },
+  "replacement_volume_error_mm3": -0.0014851262676529586,
+  "replacement_relative_volume_error": 1.0733277831599398e-08,
+  "geometric_integration_relative_tolerance": 1e-07,
+  "material_volume_tags": {
+    "QT450-10": [
+      18
+    ],
+    "first_CI_A1": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "second_bare_Ni99": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "QT_first_geometric_interface_area_mm2": 1053.45350762636,
+  "first_second_geometric_interface_area_mm2": 883.7981122087652,
+  "second_QT_shared_face_area_mm2": 0,
+  "conformal_nominal_geometry_pass": true,
+  "fusion_assigned": false,
+  "PMZ_capacity_assigned": false,
+  "scope": "Nominal R1.5 pocket and 0.7mm normal-offset first layer; geometric surfaces are not proven fused areas. Depth/thickness tolerance family and thermomechanical birth/machining remain to be computed."
+}

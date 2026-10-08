@@ -1,0 +1,346 @@
+version: SUBMISSION-8P-20261008
+purpose: 焊接固定题工艺设计说明书、pWPS及工程图；八翼柔顺槽主设计
+source_document: competition/original-files/welding/第一届辽宁省大学生材料焊接与铸造工艺设计大赛实施方案.pdf
+source_pages:
+  fixed_geometry_and_limits: 3
+  five_design_dimensions:
+  - 3
+  - 4
+  report_and_drawing_submission: 5
+geometry:
+  primary_object: 8P-R2-t15八翼径向柔顺槽座体与壳体
+  assembly_step: cad/generated/competition-design/competition-assembly-r4.step
+  assembly_coverage_source: cad/generated/competition-design/assembly-coverage-20261008.json
+  assembly_imported_roots: 13
+  assembly_imported_solids: 33
+  assembly_scope: 既有名义力链、固定铜盘和根道枪丝包络；HJ-022/023新增接口以工程图和净隙核算为准
+  seat_step: cad/generated/independent-precoat-curved/precoat-stack-R15-R08.step
+  manifest: simulation/competition-r4/geometry/8P-R2-t15-manifest.json
+  drawing: cad/generated/engineering-drawings/bearing-seat.svg
+  shell:
+    material: Q235B
+    outside_diameter_mm: 160.0
+    wall_thickness_mm: 5.0
+    height_mm: 200.0
+    nominal_inside_diameter_mm: 150.0
+  seat:
+    material: QT450-10
+    shape: 中心连续环、八翼及八径向柔顺槽
+    nominal_bore_diameter_mm: 40.0
+    outside_radius_mm: 74.98
+    thickness_mm: 15.0
+    bottom_z_mm: 100.0
+    slot_width_mm: 4.0
+    slot_root_radius_mm: 2.0
+    thickness_and_height_basis: 题面未指定，设计选定
+weld_layout:
+  segment_count: 8
+  segment_length_mm: 18.0
+  effective_segment_length_mm: 16.0
+  start_allowance_mm: 1.0
+  end_allowance_mm: 1.0
+  angular_pitch_degrees: 45.0
+  pass_count: 2
+  sequence:
+  - 1
+  - 5
+  - 3
+  - 7
+  - 2
+  - 6
+  - 4
+  - 8
+  length_per_pass_mm: 144.0
+  effective_length_per_pass_mm: 128.0
+  total_arc_length_mm: 288.0
+  choice_reason: 真实外缘18 mm以内包含两端各1 mm过渡；稳定承载按16 mm，热量及耗丝按实际18 mm
+material_route:
+  chain:
+  - QT450-10
+  - CI-A1高镍独立SMAW首层
+  - 低碳Ni99第二层
+  - NiFe55最终焊缝
+  - Q235B
+  source: project/precoat-process-design.yaml
+  first_layer:
+    method: SMAW/MMA
+    polarity: DCEP
+    electrode: KOBELCO CI-A1 ENi-CI
+    diameter_mm: 3.2
+    current_A: 110.0
+    voltage_V_reference: 23.0
+    travel_mm_s: 1.6666666666666667
+    efficiency_for_design_accounting: 0.8
+    deposited_mass_rate_g_s: 0.17
+    track_radius_mm: 71.98
+    track_length_per_wing_mm: 19.28169543353246
+    tracks_per_wing: 1
+    arc_duration_per_wing_s: 11.569017260119475
+    deposited_mass_per_wing_g: 1.9161544218236166
+    net_power_W_for_design_accounting: 2024.0
+    net_line_energy_J_mm_calculated: 1214.4
+    reference_line_energy_J_mm_rounded: 1215.0
+    geometry_model_path: cad/generated/mma-mass-envelope/CI-A1-single-track-end80-r12
+    end_control:
+      ramp_duration_s: 1.2
+      final_current_A: 80.0
+      melting_rate_current_exponent: 2
+      rate_basis: 末段准稳态I与I²熔化关系的低供料情景，未移植E7018或其他产品的系数；以实际熔敷称量核验
+      source: KOBELCO目录346页，CI-A1直径3.2电流80～130 A；90A候选时间减半仍超温，按3.2mm面内扩散尺度限定末次修订
+    preheat_interpass_C:
+    - 200
+    - 300
+    furnace_setpoint_C: 300
+    drying_C:
+    - 70
+    - 100
+    drying_min:
+    - 30
+    - 60
+    hot_peening: 逐道趁热轻击熔敷金属，不击QT/熔合线，不计强度收益
+    cooling: 转200℃保温炉保温2 h，再随炉缓冷；引用同类试验作为设计制度，按本件金相与裂纹评定确认
+  second_layer:
+    method: GTAW
+    polarity: DCEN
+    filler: 低碳DMNA099／ERNi-CI裸棒，原TDS供货0.045 inch×36 inch；设计采购验收Ø1.143±0.020 mm
+    filler_reference_TDS: docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf
+    diameter_supply_qualified: false
+    diameter_mm: 1.143
+    diameter_tolerance_mm: 0.02
+    current_A: 75.0
+    voltage_V_reference: 11.0
+    travel_mm_s: 2.0
+    travel_relative_tolerance: 0.02
+    efficiency_for_design_accounting: 0.6
+    feed_mm_s: 8.0
+    feed_tolerance_mm_s: 0.2
+    deposition_efficiency_range:
+    - 0.9
+    - 0.98
+    track_length_per_wing_mm: 38.563543926840644
+    tracks_per_wing: 2
+    preheat_interpass_C:
+    - 200
+    - 300
+    argon_L_min:
+    - 8
+    - 12
+    cooling: 独立保温缓冷，冷态检查后完成最终连接面与孔加工
+    product_identity_basis: 原供方Weldwire现官网所链Duramax DMNA099／ERNi-CI；旧WWNA99商名与现供货标识须明确
+    product_TDS_path: docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf
+    product_TDS_url: https://www.weldwire.net/_files/ugd/f42bc4_2132a75a538c4a2e90fd6dea7426a91b.pdf
+    product_TDS_page: 1
+    diameter_supply_basis: 原TDS第1页的0.045 inch×36 inch，精确换算Ø1.143 mm×914.4 mm；不以公制1.20代替英制尺寸
+    stock_length_mm: 914.4
+    rod_feed_interface:
+      cut_blank_length_per_wing_mm: 180.0
+      cut_blank_length_tolerance_mm: 0.5
+      cut_blank_length_acceptance_mm:
+      - 179.5
+      - 180.5
+      blanks_per_part: 8
+      blanks_per_stock_rod: 4
+      same_blank_for_both_tracks: true
+      inactive_clamping_tail_min_mm: 15.0
+      front_trim_allowance_mm: 2.0
+      cutting_loss_per_blank_mm: 1.0
+      stock_rods_per_part: 2
+      minimum_accepted_stock_length_mm: 726.0
+      minimum_available_feed_stroke_mm: 162.0
+      exchange: 每翼两轨使用同一180 mm定长棒；离弧换翼时换棒，计入既有第二层清理换翼预留；夹持、送进和更换时间为本设计设备接口要求，现机执行能力尚未核实
+    diameter_tolerance_basis: 本设计冻结的采购/来料验收要求±0.020 mm，非原厂公布公差；由既有CAD最大槽口投影与1.75 mm覆盖任务反算总供料允许负偏差0.040505
+      mm后取一半以内，实际逐批测径验收，不符合者不投入该pWPS
+    diameter_acceptance_mm:
+    - 1.123
+    - 1.163
+    current_voltage_basis: 保留200～300℃预热薄层短弧的75 A/11 V设计选值及247.5 J/mm热账，分别低于原TDS 0.045
+      inch推荐下限5 A/2 V；参考弧压须按短弧实际记录控制，热账正余量不证明熔合，目录范围不直接搬入本槽，参数尚未取得生产资格
+    feed_basis: 按7.20×(1.20/1.143)^2=7.936016 mm/s保留原截面积供料，再取可执行8.00 mm/s；名义体积供料增加0.80625%，原±0.20
+      mm/s绝对送进控制不变
+    catalogue_nominal_diameter_documented: true
+    actual_batch_acceptance_completed: false
+  manufacturing_order:
+  - 座体及真实曲面浅槽加工
+  - 壳外首层预制、清渣与保温缓冷
+  - 冷态法向修整及表面检查
+  - 低碳第二层双轨预制、保温缓冷及延迟检查
+  - 连接面与孔最终加工、清洗干燥
+  - 入壳定心、铜环及气幕就位
+  - 八段两道对称组焊
+  - 冷却与完全卸夹、孔轴及连接检验
+  - 有限微珩如需要、复检和干态洁净封存
+  precoat_ledger:
+    first_deposited_mass_g: 15.329235374588933
+    first_net_heat_kJ: 184.675927
+    first_arc_time_s: 92.5521380809558
+    second_actual_path_mm: 308.50835141472515
+    second_arc_time_s: 154.25417570736258
+    second_net_heat_kJ: 76.35581697514446
+final_GTAW:
+  method: 自动脉冲GTAW
+  polarity: DCEN
+  peak_current_A: 100.0
+  base_current_A: 50.0
+  peak_duty_fraction: 0.5
+  frequency_Hz: 20.0
+  reference_voltage_V: 12.0
+  travel_speed_mm_s: 1.65
+  wire_diameter_mm: 1.6
+  wire_feed_mm_s: 3.6
+  wire_feed_role: 两等长道次平均量，仅用于总耗丝；实际按根/盖分道执行
+  pass_feed_mm_s:
+    root: 3.42
+    cover: 3.78
+  pass_feed_tolerance_mm_s: 0.05
+  filler: NiFe55类TIG实心棒，按批次证书确认
+  shielding_gas: Ar
+  shielding_flow_L_min:
+  - 8
+  - 12
+  start_temperature_C:
+  - 15
+  - 35
+  interpass_limit_C: 100.0
+  nominal_net_energy_J_mm: 300.0
+  evaluation_energy_range_J_mm:
+  - 250
+  - 350
+  model_arc_efficiency: 0.55
+  net_energy_kJ: 86.4
+  nominal_arc_time_s: 174.54545454545456
+  nominal_wire_consumption_length_mm: 628.3636363636364
+  nominal_wire_preparation_length_mm_at_15pct: 722.6181818181818
+  minimum_total_leg_mm: 3.8
+  nominal_leg_mm: 4.0
+  maximum_geometric_envelope_leg_mm: 4.3
+  tool_keepout_equation: x>=0,y>=0,x+y<=4.30 mm；x从钢内壁向内，y从座体加工平面向上
+  local_forming_source: studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
+  original_forming_source: studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json
+  geometric_revision_adopted_for_design_pWPS: true
+  local_contour_and_continuous_fusion_qualified: false
+  feed_3p68_contrast_adopted: false
+  final_peening_enabled: false
+  calculation_basis: 18 mm实际、16 mm稳定有效；轴向和弯曲正应力同号叠加，详见当前焊缝组计算
+precision:
+  official_position_tolerance_diameter_mm: 0.05
+  datum_A: 壳体下端独立安装面
+  datum_B: 壳体内壁独立双轴向测量带、按A法向定向
+  measurement_temperature_C:
+  - 19
+  - 21
+  measurement_state: 孔内及壳底全部约束解除
+  diameter_allocations_um:
+    manufacturing_assembly_and_positioning: 28
+    measurement_expanded_uncertainty: 2
+    limited_honing_axis_change: 6.5
+    welding_thermal_residual: 13.5
+  maximum_local_radial_honing_removal_um: 3
+  bore_size_control_mm:
+  - 40
+  - 40.025
+  radial_clamping_suballocation_um: 6.5
+  clamping_scope: 包含在28 μm非热直径分配；不与微珩6.5 μm直径重复相加
+  mechanism: 径向柔顺槽、精密内锥胀套背承、对称跳焊及能量控制；禁止焊后精镗纠正孔轴
+  datum_execution_card: deliverables/process/shell-datum-and-cmm-execution-card.md
+  A_flatness_mm: 0.002
+  B_measurement_bands_z_mm:
+  - - 20
+    - 30
+  - - 170
+    - 180
+  B_scan_z_mm:
+  - 22
+  - 25
+  - 28
+  - 172
+  - 175
+  - 178
+  bore_scan_z_mm:
+  - 100.5
+  - 104
+  - 107.5
+  - 111
+  - 114.5
+  position_uncertainty_design_U_um: 1.64
+  position_uncertainty_qualification_limit_U_um: 2
+cleanliness:
+  requirement: 焊渣、飞溅不得进入产品内腔
+  primary_barrier: 水冷铜卡环、捕获连续密封和刚性朝上接料盘
+  auxiliary_measures: 底部气幕和顶部局部排烟；气流不替代实体阻粒
+  source_control: 药皮焊接、清渣和切削在入壳前完成
+  gas_water_execution_card: deliverables/process/gas-water-fault-execution-card.md
+  suction_heads_count: 4
+  suction_work_radius_mm: 78
+  suction_work_z_mm: 210
+  suction_retract_mm: 15
+  suction_retracted_radius_mm: 93
+  preflow_min_s: 30
+  torch_postflow_min_s: 15
+fixture_pressure_interface:
+  drawing: HJ-023
+  design_basis: docs/review/pressure-interface-design-20261008.md
+  clearance_basis: cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json
+  ring_ID_OD_thickness_mm:
+  - 74
+  - 104
+  - 12
+  foot_radius_mm: 37
+  foot_angles_degrees:
+  - 0
+  - 120
+  - 240
+  drive_radius_mm: 340
+  drive_angles_degrees:
+  - 22.5
+  - 157.5
+  - 292.5
+  ideal_net_drive_forces_N:
+  - 146.4466
+  - 207.1068
+  - 146.4466
+  calibrated_total_force_N: 500
+  calibrated_total_force_tolerance_N: 20
+  inner_arm_section_mm:
+  - 3
+  - 20
+  ball_seat_maximum_diameter_mm: 14
+  independent_ring_lift_mm: 150
+  torch_and_wire_transition_lift_mm: 150
+  core_lift_mm: 260
+  shell_and_holder_lift_mm: 140
+  nominal_minimum_tool_gap_mm: 0.9156114508159194
+  dimensional_and_pose_allowance_mm: 0.65
+  conservative_tool_clearance_mm: 0.25
+  scope: 冻结工具实体及限定工序路径的几何与局部力学；不替代整工装热态资格
+verification:
+  nominal_geometry_valid: true
+  tolerance_geometry_valid: true
+  first_interface_continuous_fusion_verified: false
+  final_bilateral_continuous_fusion_verified: false
+  complete_manufacturing_state_verified: false
+  fully_released_residual_position_verified: false
+  fully_released_bore_size_verified: false
+  same_state_strength_verified: false
+  historic_residual_axis_diameter_um: 15.583947
+  historic_total_budget_um: 52.083947
+  current_joint_capacity_source: studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json
+  principle: 参数预算与几何资格不代替收敛有效接头及连续制造残余状态；实物试制为后续工程确认
+  current_source_diagnosis: simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json
+comparison:
+  ring_role: 完整圆环只作历史冷态刚度比较，不移植八翼结果或8 K解析假设为制造证明
+submission:
+  paper_source: deliverables/report/technical-report-v4-unified.md
+  paper_pdf: output/pdf/焊接工艺设计说明书-正文.pdf
+  manual_pdf: output/pdf/焊接工艺设计说明书-含工艺卡.pdf
+  combined_pdf: output/pdf/焊接工艺设计说明书与工程图.pdf
+  entry_directory: deliverables/competition-entry
+  zip: deliverables/焊接固定题-参赛设计报告包.zip
+  attachment_zip: deliverables/焊接固定题-可编辑与历史附件.zip
+  current_calculation_files:
+  - studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json
+  - simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json
+  - cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json
+  - studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json
+  - studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
+  - simulation/competition-r4/results/native-interface-adaptation-20261008/interface-readback.json
+  package_manifest: deliverables/competition-entry/验证与交付状态.json

@@ -1,0 +1,6 @@
+说明书图中的固定反锥下承力主体场读取既有计算，原始NPZ保留在项目中，不复制到本附件。
+原项目路径：E:/AI/bisai/Hanjie/simulation/competition-r4/results/fixture-axis-solid-core-h1.5/fields.npz
+项目相对路径：simulation/competition-r4/results/fixture-axis-solid-core-h1.5/fields.npz
+原场分量：x、e、u、stress；stress采用Kelvin记号。
+对象与边界：整体固定反锥/柱根；5 kN侧向力、170 kN·mm支承矩及双头各200 N附加载荷，E180 GPa。
+正文图从保存场绘制y=0截面，未重算或扩展为整门架与焊后工件场。

@@ -1,0 +1,94 @@
+{
+  "model_id": "HJ-S01-complete-ring-nominal",
+  "units": "mm",
+  "geometry_state": "Nominal uncoated QT450-10 complete ring and Q235B shell; separate solids before welding",
+  "nominal_dimensions": {
+    "seat_inner_radius_mm": 20.0,
+    "seat_outer_radius_mm": 74.98,
+    "seat_bottom_z_mm": 100.0,
+    "seat_thickness_mm": 15.0,
+    "shell_inner_radius_mm": 75.0,
+    "shell_outer_radius_mm": 80.0,
+    "shell_bottom_z_mm": 0.0,
+    "shell_height_mm": 200.0,
+    "bore_axis_position_tolerance_diameter_mm": 0.05
+  },
+  "materials": {
+    "QT450-10": {
+      "volume_mm3": 246080.97140524446,
+      "density_kg_m3": 7200.0,
+      "mass_kg": 1.7717829941177603
+    },
+    "Q235B": {
+      "volume_mm3": 486946.8613064182,
+      "density_kg_m3": 7850.0,
+      "mass_kg": 3.8225328612553833
+    }
+  },
+  "density_basis": "Existing repository engineering design densities; mass is nominal CAD volume times density, not measured mass",
+  "total_nominal_mass_kg": 5.594315855373143,
+  "analytic_volume_mm3": {
+    "seat": 246080.97140524446,
+    "shell": 486946.86130641797
+  },
+  "nominal_radial_clearance_mm": 0.019999999999982053,
+  "nominal_diametral_clearance_mm": 0.04,
+  "seat_shell_intersection_volume_mm3": 0.0,
+  "exported_STEP_reopen_check": [
+    {
+      "file": "ring-seat-QT450-10.step",
+      "solid_count": 1,
+      "all_solids_valid": true,
+      "solids": [
+        {
+          "valid": true,
+          "volume_mm3": 246080.97140524982
+        }
+      ]
+    },
+    {
+      "file": "ring-assembly-QT450-10-Q235B.step",
+      "solid_count": 2,
+      "all_solids_valid": true,
+      "solids": [
+        {
+          "valid": true,
+          "volume_mm3": 246080.97140524982
+        },
+        {
+          "valid": true,
+          "volume_mm3": 486946.861306428
+        }
+      ]
+    }
+  ],
+  "datum_scheme": {
+    "A": "Independent shell lower installation face z=0",
+    "B": "Axis established from shell inner cylindrical wall, oriented with respect to A",
+    "position_requirement": "Bearing bore axis within a diameter 0.05 cylindrical zone relative to A|B over the 15 mm bore length"
+  },
+  "candidate_connection_geometry": {
+    "segment_count": 8,
+    "segment_length_mm": 18.0,
+    "total_segment_length_mm": 144.0,
+    "actual_path_length_one_segment_mm": 20.0,
+    "pass_count": 2,
+    "actual_total_path_length_mm": 320.0,
+    "full_circumference_at_seat_outer_radius_mm": 471.1132343323254,
+    "full_circumference_to_segment_length_ratio": 3.271619682863371,
+    "segment_length_scope": "Nominal connection-arc design; no weld solid, fused area, heat history, or qualified pWPS assigned"
+  },
+  "comparison_with_existing_eight_wing": {
+    "source_manifest": "simulation/competition-r4/geometry/8P-R2-t15-manifest.json",
+    "eight_wing_volume_mm3": 138366.51682309574,
+    "eight_wing_mass_kg": 0.9962389211262892,
+    "ring_to_eight_wing_volume_ratio": 1.7784719674620684,
+    "ring_extra_mass_kg": 0.7755440729914708,
+    "scope": "Geometric material comparison only; prior eight-wing thermomechanical/fatigue results keep their original geometry identity"
+  },
+  "precoat_design_scope": "Eight 24mm local curved pockets on this ring; see ring-precoat-design.json and the separate 17-solid retained-layer STEP",
+  "fused_interface_assigned": false,
+  "residual_stress_assigned": false,
+  "position_tolerance_verified_by_geometry": false,
+  "drawing": "HJ-S01-ring-baseline.svg"
+}

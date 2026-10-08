@@ -1,0 +1,377 @@
+{
+  "card": "HJ-S01",
+  "model_id": "ring-eight-local-precoat-windows",
+  "geometry": {
+    "window_count": 8,
+    "window_center_radius_mm": 71.98,
+    "window_arc_length_at_center_mm": 24.0,
+    "arc_length_tolerance_mm": 0.5,
+    "window_angle_rad": 0.333425951653237,
+    "radial_width_mm": 6.0,
+    "width_tolerance_mm": 0.1,
+    "pocket_depth_mm": 1.5,
+    "depth_tolerance_mm": 0.1,
+    "inner_bottom_radius_mm": 1.5,
+    "outer_edge_radius_mm": 74.98,
+    "window_opens_through_outer_edge": true,
+    "seat_thickness_mm": 15.0,
+    "minimum_QT_bottom_ligament_mm": 13.4,
+    "effective_connection_length_mm": 18.0,
+    "actual_final_path_length_mm": 20.0,
+    "first_retained_normal_mm": 0.7,
+    "first_retained_tolerance_mm": 0.05,
+    "first_terminal_wall_normal_min_nominal_mm": 0.7,
+    "second_terminal_inset_angle_rad": 0.010147868947521019,
+    "nominal_second_inner_corner_radius_mm": 0.8,
+    "second_QT_finite_face_contact_area_mm2": 0.0,
+    "retained_material_volumes_mm3": {
+      "QT450-10": 244442.2470286911,
+      "first_CI_A1_retained": 894.5154494913477,
+      "second_Ni_retained": 744.208927061874
+    },
+    "nominal_pocket_volume_per_window_mm3": 204.84054706915288,
+    "partition_closure_error_mm3": -1.1641532182693481e-10,
+    "STEP_reopen_check": {
+      "file": "ring-precoat-eight-windows-17solids.step",
+      "solid_count": 17,
+      "all_solids_valid": true,
+      "solids": [
+        {
+          "valid": true,
+          "volume_mm3": 244442.24702869848
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.81443118633459
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.81443118641945
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.8144311863286
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.8144311864273
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.81443118628343
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.8144311864516
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.81443118628941
+        },
+        {
+          "valid": true,
+          "volume_mm3": 111.81443118644363
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588273477
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588276758
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588273193
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.0261158827666
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588278198
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588277273
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588278474
+        },
+        {
+          "valid": true,
+          "volume_mm3": 93.02611588277367
+        }
+      ]
+    }
+  },
+  "first_layer": {
+    "material": "CI-A1 / ENi-CI coated electrode",
+    "electrode_core_diameter_mm": 3.2,
+    "current_A": 110,
+    "voltage_V": 23,
+    "net_efficiency_design_assumption": 0.8,
+    "speed_mm_min": 75,
+    "speed_tolerance_relative": 0.02,
+    "diagnostic_supply_g_s": [
+      0.15,
+      0.17
+    ],
+    "last_1_2s_current_A": [
+      110,
+      80
+    ],
+    "supply_scales_with_current": true,
+    "main_arc_time_one_window_s": 19.2,
+    "protective_start_arc_time_s": 0.5,
+    "protective_start_current_A": 110,
+    "protective_stop_arc_time_s": 0.5,
+    "protective_stop_current_A": 80,
+    "protective_start_stop_equivalent_time_s": 0.8636363636363636,
+    "protective_arc_scope": "Controlled start/end coverage before final pore machining; actual travel and supply are recorded. Extra arc time does not replace continuous fused-interface acceptance.",
+    "arc_time_one_window_s": 20.2,
+    "arc_time_eight_windows_s": 161.6,
+    "current_equivalent_time_one_window_s": 19.9,
+    "mass_one_window_g": {
+      "low": 2.985,
+      "nominal": 3.1839999999999997,
+      "high": 3.383
+    },
+    "mass_eight_windows_g": {
+      "low": 23.88,
+      "nominal": 25.471999999999998,
+      "high": 27.064
+    },
+    "net_heat_one_window_J": 40277.6,
+    "net_heat_eight_windows_J": 322220.8,
+    "density_basis_g_mm3": 0.00889,
+    "maximum_rectangular_envelope_mm3": 269.01,
+    "maximum_envelope_target_mass_g": 2.3914989,
+    "temporary_inner_land_protection_width_mm": 0.5,
+    "temporary_terminal_protection_length_mm": 1.5,
+    "temporary_protection_maximum_volume_mm3": 23.796072933822128,
+    "temporary_protection_maximum_mass_g": 0.2115470883816787,
+    "total_envelope_and_protection_target_mass_g": 2.603045988381679,
+    "shortest_path_plus_2_percent_main_arc_low_supply_mass_g": 2.7401604278074867,
+    "shortest_path_plus_2_percent_low_supply_mass_g": 2.869705882352941,
+    "shortest_path_independent_envelope_margin_g": 0.2666598939712621,
+    "independent_corner_speed_choice": [
+      {
+        "speed_mm_min": 75.0,
+        "shortest_window_arc_mm": 23.5,
+        "speed_plus_2_percent_arc_time_s": 18.43137254901961,
+        "main_arc_low_supply_mass_g": 2.7401604278074867,
+        "protective_start_stop_arc_time_s": 1.0,
+        "low_supply_mass_g": 2.869705882352941,
+        "maximum_long_window_envelope_and_protection_target_g": 2.603045988381679,
+        "margin_g": 0.2666598939712621,
+        "relative_margin": 0.10244148400045949,
+        "covers_independent_envelope": true
+      },
+      {
+        "speed_mm_min": 80.0,
+        "shortest_window_arc_mm": 23.5,
+        "speed_plus_2_percent_arc_time_s": 17.279411764705884,
+        "main_arc_low_supply_mass_g": 2.567366310160428,
+        "protective_start_stop_arc_time_s": 1.0,
+        "low_supply_mass_g": 2.6969117647058822,
+        "maximum_long_window_envelope_and_protection_target_g": 2.603045988381679,
+        "margin_g": 0.09386577632420323,
+        "relative_margin": 0.03605997617528067,
+        "covers_independent_envelope": true
+      },
+      {
+        "speed_mm_min": 90.0,
+        "shortest_window_arc_mm": 23.5,
+        "speed_plus_2_percent_arc_time_s": 15.359477124183007,
+        "main_arc_low_supply_mass_g": 2.2793761140819964,
+        "protective_start_stop_arc_time_s": 1.0,
+        "low_supply_mass_g": 2.4089215686274508,
+        "maximum_long_window_envelope_and_protection_target_g": 2.603045988381679,
+        "margin_g": -0.19412441975422823,
+        "relative_margin": -0.07457587020001744,
+        "covers_independent_envelope": false
+      },
+      {
+        "speed_mm_min": 100.0,
+        "shortest_window_arc_mm": 23.5,
+        "speed_plus_2_percent_arc_time_s": 13.823529411764707,
+        "main_arc_low_supply_mass_g": 2.048983957219251,
+        "protective_start_stop_arc_time_s": 1.0,
+        "low_supply_mass_g": 2.1785294117647056,
+        "maximum_long_window_envelope_and_protection_target_g": 2.603045988381679,
+        "margin_g": -0.4245165766169734,
+        "relative_margin": -0.1630845473002559,
+        "covers_independent_envelope": false
+      }
+    ],
+    "corner_scope": "Shortest arc controls minimum supply; longest/widest/deepest pocket controls required envelope. Combining their independent extremes is a conservative design screen, not a claim that one actual window simultaneously has both lengths.",
+    "speed_choice_screen": [
+      {
+        "speed_mm_min": 75.0,
+        "speed_plus_2_percent_arc_time_s": 18.823529411764707,
+        "ramp_current_equivalent_time_s": 18.659893048128342,
+        "low_supply_mass_g": 2.798983957219251,
+        "max_envelope_with_0_2mm_overfill_mass_g": 2.3914989,
+        "mass_margin_g": 0.407485057219251,
+        "covers_maximum_envelope": true
+      },
+      {
+        "speed_mm_min": 80.0,
+        "speed_plus_2_percent_arc_time_s": 17.647058823529413,
+        "ramp_current_equivalent_time_s": 17.48342245989305,
+        "low_supply_mass_g": 2.6225133689839573,
+        "max_envelope_with_0_2mm_overfill_mass_g": 2.3914989,
+        "mass_margin_g": 0.23101446898395706,
+        "covers_maximum_envelope": true
+      },
+      {
+        "speed_mm_min": 90.0,
+        "speed_plus_2_percent_arc_time_s": 15.686274509803921,
+        "ramp_current_equivalent_time_s": 15.522638146167557,
+        "low_supply_mass_g": 2.3283957219251334,
+        "max_envelope_with_0_2mm_overfill_mass_g": 2.3914989,
+        "mass_margin_g": -0.06310317807486676,
+        "covers_maximum_envelope": false
+      },
+      {
+        "speed_mm_min": 100.0,
+        "speed_plus_2_percent_arc_time_s": 14.117647058823529,
+        "ramp_current_equivalent_time_s": 13.954010695187165,
+        "low_supply_mass_g": 2.0931016042780746,
+        "max_envelope_with_0_2mm_overfill_mass_g": 2.3914989,
+        "mass_margin_g": -0.29839729572192564,
+        "covers_maximum_envelope": false
+      }
+    ],
+    "motion": "Controlled small weaving covers the full 6mm pocket bottom and inner-land protection; arc start/end coverage is checked locally",
+    "acceptance": "First-piece and each-batch cold weighing qualifies deposited supply; inspect >=0.20mm overfill and all temporary inner/end protection on each window. Retain first-Ni protection until second welding, then remove at final flush machining. Actual material chemistry and dilution govern retained-layer properties"
+  },
+  "second_layer": {
+    "material": "Low-carbon bare Ni alloy rod",
+    "current_A": 75,
+    "voltage_V": 11,
+    "net_efficiency_design_assumption": 0.6,
+    "speed_mm_s": 2.0,
+    "track_radii_mm": [
+      69.98,
+      71.98,
+      73.98
+    ],
+    "common_track_angle_rad": 0.333425951653237,
+    "track_lengths_mm": [
+      23.333148096693527,
+      24.000000000000004,
+      24.666851903306476
+    ],
+    "total_track_length_one_window_mm": 72.0,
+    "arc_time_one_window_s": 36.0,
+    "arc_time_eight_windows_s": 288.0,
+    "wire_diameter_mm": 1.2,
+    "wire_diameter_tolerance_mm": 0.02,
+    "feed_mm_s": 7.2,
+    "feed_tolerance_mm_s": 0.2,
+    "deposit_efficiency_range": [
+      0.9,
+      0.98
+    ],
+    "deposit_volume_one_window_mm3": {
+      "low": 248.0258497356728,
+      "nominal": 275.5593960702645,
+      "high": 305.18967652769976
+    },
+    "deposit_mass_one_window_g": {
+      "low": 2.2049498041501314,
+      "nominal": 2.4497230310646514,
+      "high": 2.713136224331251
+    },
+    "deposit_mass_eight_windows_g": {
+      "low": 17.63959843320105,
+      "nominal": 19.59778424851721,
+      "high": 21.705089794650007
+    },
+    "net_heat_one_window_J": 17820.0,
+    "net_heat_eight_windows_J": 142560.0,
+    "target_effective_bead_width_min_mm": 2.8,
+    "controlled_effective_bead_width_range_mm": [
+      2.8,
+      3.0
+    ],
+    "center_track_spacing_mm": 2.0,
+    "minimum_overlap_mm": 0.8,
+    "radial_coverage_check": "Nominal radii describe the nominal window. Actual inner/outer tracks are 1.0mm from measured edges, center track is at measured mid-radius, and the angles follow measured terminal faces; width is max(2.8mm, measured pitch+0.8mm) and <=3.0mm",
+    "minimum_average_added_height_on_maximum_area_mm": 1.659590831285867,
+    "minimum_total_after_first_retained_0_65_average_mm": 2.309590831285867,
+    "conservative_extended_deposit_area_mm2": 195.25,
+    "minimum_average_added_height_including_edge_overhang_mm": 1.2702988462774536,
+    "required_added_volume_for_1_75mm_total_on_extended_area_mm3": 214.775,
+    "minimum_total_before_final_machining_mm": 1.75,
+    "finished_total_layer_range_mm": [
+      1.4,
+      1.6
+    ],
+    "finished_second_layer_min_mm": 0.65,
+    "acceptance": "Actual local contour >=1.75mm above measured pocket bottom, overlap >=0.8mm, no uncovered QT in final path; supply volume is not a local minimum-thickness measurement",
+    "trajectory_control": {
+      "basis": "Measure each machined pocket before precoat; use its own inner/outer radius and angular end faces",
+      "measured_fields": [
+        "inner_radius_mm",
+        "outer_radius_mm",
+        "window_start_angle_rad",
+        "window_stop_angle_rad"
+      ],
+      "inner_track_radius_formula": "measured_inner_radius_mm + 1.0",
+      "center_track_radius_formula": "(measured_inner_radius_mm + measured_outer_radius_mm) / 2",
+      "outer_track_radius_formula": "measured_outer_radius_mm - 1.0",
+      "track_start_stop_angle": "Use measured window_start_angle_rad/window_stop_angle_rad for all three tracks, rather than the fixed nominal 24/71.98 angle",
+      "protection_geometry": "Inner-land protection 0.5mm normal to actual inner edge; terminal protection 1.5mm normal to each measured terminal face. Protection is not enlarged.",
+      "actual_pitch_range_mm": [
+        1.95,
+        2.05
+      ],
+      "minimum_effective_bead_width_formula_mm": "max(2.8, maximum_measured_adjacent_track_pitch_mm + 0.8)",
+      "maximum_effective_bead_width_mm": 3.0,
+      "wide_6_1mm_window_required_width_min_mm": 2.85,
+      "nominal_track_radii_mm": [
+        69.98,
+        71.98,
+        73.98
+      ],
+      "nominal_three_track_length_one_window_mm": 72.0,
+      "nominal_three_track_length_eight_windows_mm": 576.0,
+      "nominal_accounting_scope": "72/576mm and their mass/arc-time/net-heat quantities refer to nominal 24mm windows; actual track lengths, supply and arc times are recorded and evaluated with the same formulas for each measured window",
+      "qualification": "First-piece macrosections confirm inner corner, terminal coverage, full radial coverage and overlap >=0.8mm on the measured-window path; verify contour and retained layers for each window",
+      "STEP_scope": "The 17-solid STEP is the nominal flush-machined retained-material partition, not a simulation of the melt-pool process at every tolerance corner"
+    }
+  },
+  "combined_nominal": {
+    "arc_time_s": 449.6,
+    "net_heat_J": 464780.8,
+    "deposited_mass_g": 45.06978424851721
+  },
+  "resource_planning": {
+    "planning_basis": "10h thermal occupation per independent layer and 24h delayed PT are conservative scheduling reservations, not a solved ring cooling history",
+    "scenarios": [
+      {
+        "target_supply_interval_s": 3600.0,
+        "planned_residence_each_precoat_stage_s": 36000,
+        "in_process_positions_each_stage": 10,
+        "planned_delay_PT_residence_s": 86400,
+        "delay_positions": 24,
+        "total_precoat_and_delay_positions": 44
+      },
+      {
+        "target_supply_interval_s": 240.0,
+        "planned_residence_each_precoat_stage_s": 36000,
+        "in_process_positions_each_stage": 150,
+        "planned_delay_PT_residence_s": 86400,
+        "delay_positions": 360,
+        "total_precoat_and_delay_positions": 660
+      }
+    ],
+    "meaning": "Two 10-position stages plus 24 delay positions support an hourly supply target. A 240s supply target requires 150+150+360 positions or equivalent parallel capacity, before inspection queues."
+  },
+  "geometry_and_input_scope": "Ring-specific nominal curved pockets, retained material partitions and supply/energy integrals. Actual fused area, cooling phase path and unloaded bore displacement are evaluated separately in the design route."
+}

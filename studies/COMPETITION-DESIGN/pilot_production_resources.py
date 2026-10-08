@@ -9,6 +9,7 @@ OUT=ROOT/'studies/COMPETITION-DESIGN/results/pilot-production-20261007.json'
 def main():
     p=yaml.safe_load((ROOT/'project/pilot-production-design.yaml').read_text(encoding='utf8'))
     card=yaml.safe_load((ROOT/'project/precoat-process-design.yaml').read_text(encoding='utf8'))
+    baseline=yaml.safe_load((ROOT/'project/submission-baseline.yaml').read_text(encoding='utf8'))
     interval=p['shift_s']/p['target_parts_per_shift']
     first=p['first_preheat_s']+p['first_arc_to_cold_s']
     second=p['second_preheat_s_planning']+p['second_arc_to_cold_reserved_s']
@@ -31,13 +32,17 @@ def main():
     c=p['cost_scenarios']
     mass1=card['first']['deposited_mass_per_wing_g']*8
     mass2=math.pi/4*card['second']['diameter_mm']**2*card['second']['feed_mm_s']*card['second']['track_length_per_wing_mm']/card['second']['travel_mm_s']*8*.00889
-    mass3=math.pi/4*1.6**2*3.5*(288/1.65)*.0082
-    argon=(10*p['second_GTAW_arc_s']/60+ (10+15+12)*(p['final_single_head_station_s']+120)/60)/1000
+    final=baseline['final_GTAW']
+    mass3=math.pi/4*final['wire_diameter_mm']**2*final['nominal_wire_consumption_length_mm']*.0082
+    rod=card['second']['rod_feed_interface']
+    purchased_mass2=math.pi/4*card['second']['diameter_mm']**2*card['second']['stock_length_mm']*rod['stock_rods_per_part']*.00889
+    # First preflow overlaps assembly; each 15 s postflow overlaps existing 18 s segment auxiliary actions.
+    argon=(10*p['second_GTAW_arc_s']/60+ (10+15+12)*(p['final_single_head_station_s']+120+p['final_preflow_min_s'])/60)/1000
     furnace=c['first_furnace_average_allocated_kW']*first/3600+c['second_furnace_average_allocated_kW']*second/3600
     arc_kwh=((184675.927/.8)+(76356.57/.6)+(86400/.55))/3.6e6
     costs=dict(labor_CNY=work/3600*c['labor_CNY_h'],
                first_electrode_CNY=mass1/1000/c['SMAW_deposition_efficiency_for_purchasing']*c['consumable_purchase_factor']*c['CI_A1_CNY_kg'],
-               second_wire_CNY=mass2/1000*c['consumable_purchase_factor']*c['low_C_Ni99_CNY_kg'],
+               second_wire_CNY=purchased_mass2/1000*c['low_C_Ni99_CNY_kg'],
                final_wire_CNY=mass3/1000*c['consumable_purchase_factor']*c['NiFe55_CNY_kg'],
                argon_CNY=argon*c['argon_CNY_m3'],furnace_and_arc_electricity_CNY=(furnace+arc_kwh)*c['electricity_CNY_kWh'],
                PT_UT_consumable_reserve_CNY=c['reserved_PT_UT_consumables_CNY_part'])
@@ -51,7 +56,8 @@ def main():
                 resources=resources,active_work_s_part=work,manual_people_at_80pct_design_utilization=people,
                 operating_cost_scenario=costs,direct_operating_cost_scenario_CNY=sum(costs.values()),
                 furnace_energy_scenario_kWh_part=furnace,argon_scenario_m3_part=argon,
-                nominal_material_purchase_basis_g=dict(CI_A1_deposited=mass1,low_C_Ni99_feed=mass2,NiFe55_feed=mass3),
+                nominal_material_purchase_basis_g=dict(CI_A1_deposited=mass1,low_C_Ni99_feed=mass2,low_C_Ni99_two_stock_rods=purchased_mass2,NiFe55_feed=mass3),
+                second_stock_purchase_basis='2 x 914.4 mm stock rods per part; unused remainder retained without a cost credit; no extra 15% factor',
                 legacy_weld_station_intervals_WIP_demand=for_baseline,
                 actual_capacity_verified=False,second_layer_thermal_reservation_qualified=False,
                 cost_excludes='equipment capital, tooling depreciation, wash/milling machine power, material rejects, destructive sampling and fatigue qualification',

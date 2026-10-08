@@ -1,0 +1,332 @@
+{
+  "updated_at": "2026-10-08",
+  "current_stage": "stock_supply_pass_allocation_and_native_cut_preparation_manufacturing_inputs_unqualified",
+  "artifact_role": "engineering_design_report",
+  "route": "CI-A1 ENi-CI SMAW first layer / bare low-C Ni99 second layer / 8P-R2-t15 low-input GTAW / copper barrier",
+  "process_sources": [
+    "project/precoat-process-design.yaml",
+    "project/process-r3.yaml"
+  ],
+  "precision_budget_um": {
+    "datum": 28,
+    "measurement": 2,
+    "microhone_axis": 6.5,
+    "weld_thermal": 13.5,
+    "total": 50
+  },
+  "microhone_maximum_radial_removal_um": 3,
+  "first_layer_nominal_speed_mm_min": 100,
+  "speed120_adopted": false,
+  "assembly_geometry": {
+    "imported_roots": 13,
+    "imported_solids": 33,
+    "imported_shape_valid": true,
+    "peener_in_current_assembly": false,
+    "scope": "04仅覆盖既有名义力链、固定铜盘与工具包络；新增夹持/副压环/气水抽吸接口以HJ-022/023及净隙数据为准。",
+    "not_modeled": [
+      "HJ-022：外耳、三只随行壳体长压钩、Ø12支柱、锁销、弹簧压头及六只转运指",
+      "HJ-023：M12径向浮动滑板/球面座、独立副压环、三内杆/球座、横臂及R340三外驱动/导轨/制动与静锁副架",
+      "HJ-023：上口补氩、四只R78抽吸头及其径退机构、阀组、软管及工位外过滤系统"
+    ],
+    "source": "cad/generated/competition-design/assembly-coverage-20261008.json"
+  },
+  "no_physical_design_route": {
+    "physical_experiments_required_for_document_delivery": false,
+    "public_sources_may_be_combined_by_design_question": true,
+    "independent_geometry_and_capacity_work_allowed": true,
+    "evidence_transfer_source": "docs/review/evidence-transfer-20261008.md",
+    "macroscopic_plan_source": "docs/review/macroscopic-manufacturing-plan-20261008.md",
+    "macroscopic_manufacturing_inputs_qualified": false
+  },
+  "local_forming": {
+    "analysis_executed": true,
+    "original_feed_mm_s": 3.5,
+    "original_ideal_equal_leg_throat_margin_um": 19.729657728945416,
+    "ideal_equal_leg_throat_margin_um": 58.67749273248801,
+    "pass_feed_mm_s": {
+      "root": 3.42,
+      "cover": 3.78
+    },
+    "feed_tolerance_each_mm_s": 0.05,
+    "revision_adopted_for_design_pWPS": true,
+    "section_area_range_mm2": [
+      7.538776571061034,
+      9.007008017697238
+    ],
+    "nominal_wire_length_mm": 628.3636363636364,
+    "coupled_profile_bounds_are_independent_manufacturing_window": false,
+    "original_straight_both_legs_ratio_limit_at_min_area": 1.014739150644164,
+    "local_distribution_or_contour_guarantee": false,
+    "single_feed_contrast_mm_s": 3.68,
+    "single_feed_contrast_adopted": false,
+    "feed_contrast_rejection_reason": "上供料端脚长比1.05时长脚4.396508 mm超过4.30三角包络；给定储料凸面亦超包络",
+    "geometric_throat_requirement_mm": 2.68700576850888,
+    "fusion_or_material_capacity_assigned": false,
+    "source": "studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json",
+    "historical_source": "studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json"
+  },
+  "second_layer_supply": {
+    "catalogue_size_documented": true,
+    "product": "DMNA099 / ERNi-CI",
+    "diameter_mm": 1.143,
+    "incoming_diameter_tolerance_mm": 0.02,
+    "tolerance_role": "design purchase and incoming acceptance; not supplier guarantee",
+    "feed_mm_s": 8.0,
+    "feed_tolerance_mm_s": 0.2,
+    "rod_preparation": {
+      "input": {
+        "cut_blank_length_per_wing_mm": 180.0,
+        "cut_blank_length_tolerance_mm": 0.5,
+        "cut_blank_length_acceptance_mm": [
+          179.5,
+          180.5
+        ],
+        "blanks_per_part": 8,
+        "blanks_per_stock_rod": 4,
+        "same_blank_for_both_tracks": true,
+        "inactive_clamping_tail_min_mm": 15.0,
+        "front_trim_allowance_mm": 2.0,
+        "cutting_loss_per_blank_mm": 1.0,
+        "stock_rods_per_part": 2,
+        "minimum_accepted_stock_length_mm": 726.0,
+        "minimum_available_feed_stroke_mm": 162.0,
+        "exchange": "每翼两轨使用同一180 mm定长棒；离弧换翼时换棒，计入既有第二层清理换翼预留；夹持、送进和更换时间为本设计设备接口要求，现机执行能力尚未核实"
+      },
+      "maximum_consumed_length_one_wing_mm": 161.3372756122925,
+      "maximum_use_plus_tail_and_trim_mm": 178.3372756122925,
+      "blank_length_margin_at_max_use_mm": 1.1627243877074989,
+      "four_maximum_blanks_plus_cut_loss_per_stock_mm": 726.0,
+      "eight_blank_length_mm": 1440.0,
+      "preparation_with_cut_loss_mm": 1448.0,
+      "purchased_full_stock_length_mm": 1828.8,
+      "unused_stock_length_after_blank_preparation_mm": 380.79999999999995,
+      "purchased_full_stock_mass_g": 16.682084479858062,
+      "purchased_mass_diameter_corner_range_g": [
+        16.103392109450056,
+        17.270992073044674
+      ],
+      "prepared_blank_mass_g": 13.13549959043942,
+      "minimum_feed_stroke_mm": 162.0,
+      "old_15pct_length_short_of_actual_preparation_mm": 28.861583492264344,
+      "feed_device_capability_verified": false,
+      "stock_product_exists": true,
+      "purchase_cost_policy": "Conservatively charge two914.4mm rods per part, not old1.15 multiplier; reusable remainder not deducted from part cost"
+    },
+    "current_voltage_is_supplier_qualified_window": false,
+    "local_coverage_and_continuous_fusion_verified": false,
+    "source": "studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json"
+  },
+  "native_interfaces": {
+    "saved_capabilities": {
+      "existing_element_QT_before_PEEQ_range": [
+        0.001174115,
+        0.001174115
+      ],
+      "existing_element_QT_after_PEEQ_range": [
+        0.001174115,
+        0.001174115
+      ],
+      "maximum_existing_QT_PEEQ_difference": 0.0,
+      "native_history_audit": {
+        "native_history": {
+          "substrate_initial_plastic_strain": 0.001174115,
+          "substrate_predeposit_plastic_strain": 0.00257,
+          "deposit_substrate_plastic_difference": 0.0,
+          "coherent_deposit_plastic_max": 0.0,
+          "cold_deposit_plastic_range": [
+            0.001976389,
+            0.002094839
+          ],
+          "retained_substrate_cold_cut_plastic_difference": 0.0,
+          "removed_element_ids": [
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "cut_remaining_integration_points": 480,
+          "cut_original_integration_points": 640,
+          "cut_material_volume_mm3": 10.0,
+          "unload_displacement_difference_mm": 1.2159833e-16,
+          "unload_stress_difference_MPa": 1.2785917e-11,
+          "unload_plastic_difference": 0.0
+        },
+        "actual_binary_cold_restart_difference": {
+          "u": 0.0,
+          "stress": 0.0,
+          "peeq": 0.0,
+          "me": 0.0
+        },
+        "native_plastic_deposition_cut_history_passed": true,
+        "actual_first_layer_joint_passed": false,
+        "full_manufacturing_chain_passed": false,
+        "scope": "Tool manufacturing-history qualification only; substrate plasticity, stress-free new solid addition, physical element removal and cold restart. No calibrated weld source, melting law, deposit mass/reference geometry, PMZ capacity or full component response is qualified here.",
+        "sources": [
+          "https://www.dhondt.de/",
+          "CalculiX 2.23 official manual *MODEL CHANGE / *PLASTIC / *RESTART"
+        ]
+      },
+      "reactivation_restart_binary_bytes": 400680,
+      "binary_header_present": true,
+      "saved_job_finished": true,
+      "new_remove_block_matches_existing_executed_block": true,
+      "new_solver_runs": 0,
+      "scope": "existing-element history and limited continuation generation; no melting/mass/cold-volume/hardening or competition qualification"
+    },
+    "nominal_A_B_cut_geometry": {
+      "datum_registration": {
+        "rotation_columns": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            2.738401242307699e-16
+          ],
+          [
+            0.0,
+            -2.738401242307699e-16,
+            1.0
+          ]
+        ],
+        "translation_in_rotated_frame_mm": [
+          -1.3802802276888766e-14,
+          -2.842170943040401e-14,
+          0.0
+        ],
+        "datum": "actual QT lower plane A and existing bore lower-ring centre B; yaw fixed to original X projection",
+        "datum_A_nodes": 2431,
+        "datum_B_nodes": 53,
+        "datum_A_max_plane_error_mm": 6.73585003684401e-14
+      },
+      "tool_surface": "actual A/B frame: flat z114.20 and normal R0.80 corner; first layer normal .70 mm",
+      "volume_policy": "saved volume_mm3 is the thermal CAD-corrected accounting ledger; native C3D4 reference volume follows original coordinates; actual deformed tetrahedron volume is a third spatial ledger. No ledger is substituted for another",
+      "first_layer_saved_thermal_accounting_volume_mm3": 215.54042990141915,
+      "P1_removed_saved_thermal_accounting_volume_mm3": 130.37014849244335,
+      "whole_element_removed_saved_thermal_accounting_volume_mm3": 130.37014849203777,
+      "saved_thermal_volume_difference_from_P1_mm3": 4.055777935718652e-10,
+      "first_layer_native_reference_volume_mm3": 214.69714550440716,
+      "P1_removed_native_reference_volume_mm3": 129.86008589253993,
+      "whole_element_removed_native_reference_volume_mm3": 129.86008589213594,
+      "first_layer_actual_spatial_volume_mm3": 214.69714550440716,
+      "P1_removed_actual_spatial_volume_mm3": 129.86008589253993,
+      "whole_element_removed_actual_spatial_volume_mm3": 129.86008589213594,
+      "intersected_first_layer_elements": 6,
+      "maximum_smaller_P1_crossing_depth_mm": 1.371321944887427e-09,
+      "source_geometric_zero_tolerance_mm": 1e-09,
+      "CAD_point_coincidence_tolerance_mm": 1e-07,
+      "CAD_point_coincidence_source": "local OCP.Precision.Precision.Confusion_s() and its original API documentation; model units mm",
+      "CAD_volume_error_reference": "cad/generated/independent-precoat-curved/geometry-audit.json: geometric_integration_relative_tolerance",
+      "allowed_CAD_zero_volume_error_mm3": 2.1554042990141914e-05,
+      "classified_CAD_numerical_zero_elements": 6,
+      "classified_CAD_zero_discarded_volume_mm3": 4.0556057762502575e-10,
+      "engineering_crossed_elements": 0,
+      "whole_element_interface_ready": true,
+      "intersected_parent_saved_thermal_accounting_volume_mm3": 0.08396067783174856,
+      "P1_removed_partial_saved_thermal_accounting_volume_mm3": 4.0556057762502575e-10
+    },
+    "geometry_scope": "nominal undeformed mesh only; not an actual cold A/B cut or a physical state transfer",
+    "current_actual_native_cold_restart_available": false,
+    "current_actual_native_cut_executable": false,
+    "current_actual_second_layer_native_interface": false,
+    "current_actual_shell_fixture_native_interface": false,
+    "current_actual_release_and_same_state_service_interface": false,
+    "new_solver_runs": 0,
+    "full_manufacturing_chain_passed": false,
+    "generation_check_fragment": "simulation\\competition-r4\\results\\native-interface-adaptation-20261008\\generation-check-remove-block.txt",
+    "cold_temperature_identity_readback": "simulation/competition-r4/results/native-interface-adaptation-20261008/temperature-identity-readback.json",
+    "temperature_identity_policy": "original furnace manifest chunk, native terminal step and actual thermal time, original nodes/topology, per-node native temperatures, accepted DAT and binary restart are required; equal-sized external snapshots are rejected"
+  },
+  "tolerance_geometry": {
+    "cases": 9,
+    "exported_solids_valid": true,
+    "maximum_pocket_volume_one_wing_mm3": 176.15770957847593,
+    "maximum_pocket_fill_mass_g": 1.566042038152651,
+    "actual_residual_cut_performed": false,
+    "source": "cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json"
+  },
+  "cold_state": {
+    "native_last_accepted_thermal_time_s": 0.125,
+    "custom_last_accepted_thermal_time_s": 7.625,
+    "first_layer_cold_state_qualified": false,
+    "diagnosis_source": "output/review/phase-interface-diagnosis-20261007/diagnosis.json",
+    "native_run_audit": "output/review/native-manufacturing-stop-20261007/native-stop-audit.json",
+    "diagnosis_performed": true
+  },
+  "current_route_fusion_verified": false,
+  "first_interface_input_availability": {
+    "user_confirmed_matching_supplier_or_procedure_data_available": false,
+    "confirmed_date": "2026-10-08",
+    "required_input_table": "docs/review/minimum-first-interface-inputs-20261008.md",
+    "dependent_calculations_on_hold": true
+  },
+  "source_compatibility_repair": {
+    "geometry_and_power_assembly_repaired": true,
+    "physical_parameters_changed": false,
+    "case_time_steps_s": [
+      0.125,
+      0.0625
+    ],
+    "stop_time_s": 0.5,
+    "peak_temperatures_C": [
+      2810.3027325651747,
+      2823.076424863274
+    ],
+    "common_time_0_375_peak_difference_pct": 8.670202528649158,
+    "time_accuracy_qualified": false,
+    "temperature_domain_qualified": false,
+    "mechanical_transfer_allowed": false,
+    "source": "simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json"
+  },
+  "position_actual_family_pass": false,
+  "bore_actual_family_pass": false,
+  "complete_strength_verified": false,
+  "drawing_count": 23,
+  "pilot_production": {
+    "parts_per_8h": 8,
+    "resources": {
+      "first_cycle_positions": 8,
+      "second_cycle_reserved_positions": 9,
+      "delayed_PT_wait_positions": 24,
+      "first_MMA_stations": 1,
+      "second_GTAW_reserved_stations": 1,
+      "milling_stations": 1,
+      "final_weld_stations": 1,
+      "PT_operation_stations": 1,
+      "PT_wait_positions_per_PT_stage": 2,
+      "UT_stations": 1,
+      "CMM_stations": 1
+    },
+    "actual_capacity_verified": false,
+    "direct_operating_cost_scenario_CNY": 144.96695903945388,
+    "source": "studies/COMPETITION-DESIGN/results/pilot-production-20261007.json"
+  },
+  "legacy_results": {
+    "maximum_position_budget_um": 52.084,
+    "allowed_um": 50,
+    "current_manufacturing_evidence": false,
+    "position_source": "simulation/competition-r4/results/verification.json",
+    "service_source": "simulation/competition-r4/results/service-verification.json"
+  },
+  "next_action": "本轮目录棒材、一次根盖分道和原生冷态去料准备已落实。新独立输入审核不准入制造性能FE：适用熔合/高温响应/真实熔凝参考及本件合格冷态仍缺，第二层/壳体/工装原生初始拓扑未定义。保留具体断点；新适用输入或工程变化后审核再推进，不重跑已过功能基准或扩大候选/平台。",
+  "historical_results_current_design_evidence": false
+}

@@ -1,0 +1,17 @@
+{
+  "reference_gaussian_integral": 0.9999999763307433,
+  "intercepted_fraction": 0.574361347041754,
+  "incident_plane_samples": 29584,
+  "visible_samples": 9873,
+  "grid_step_mm": 0.15,
+  "normalization": "fixed analytic pi*w^2; first actual-born upward ray/metal hit; no redistribution",
+  "source_surface_time": "same midpoint cumulative deposited mass as source xy",
+  "birth_front_level": -0.10111820379928275,
+  "actual_upward_triangles": 26442,
+  "actual_cut_front_triangles": 1133,
+  "upward_QT_projected_area_mm2": 9255.391919343625,
+  "upward_Ni_projected_area_mm2": 13.083952867401328,
+  "hit_Ni_birth_level_excess_max": 2.7755575615628914e-17,
+  "parent_shape_partition_error": 2.220446049250313e-16,
+  "nodal_vs_intercepted_power_error_W": 2.2737367544323206e-13
+}

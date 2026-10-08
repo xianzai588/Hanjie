@@ -1,4 +1,4 @@
-"""参赛设计方案的守恒核算、工装几何与工序互锁；设计阶段理论验证已完成。"""
+"""参赛候选方案的守恒核算、工装名义几何与工序互锁。"""
 from __future__ import annotations
 
 import math
@@ -171,7 +171,7 @@ def revolved_section(points):
     return BRepPrimAPI_MakeRevol(face, gp_Ax1(gp_Pnt(0., 0., 0.), gp_Dir(0., 0., 1.))).Shape()
 
 
-def run_design(root):
+def run_design(root, *, assembly_only=False):
     spec = read_spec(root)
     nominal = yaml.safe_load((root / spec["process_source"]).read_text(encoding="utf-8"))["process"]["nominal"]
     manifest = yaml.safe_load((root / spec["geometry_manifest"]).read_text(encoding="utf-8"))
@@ -273,17 +273,23 @@ def run_design(root):
     from hanjie.domain.following_tools import tools as following_tools
     target=(74.5,seat_top+2.3)
     torch, bounds, points=make_torch(torch_spec,nominal,target,30.,True)
-    torch,feed,peener=following_tools(root,2.8,5.)
+    torch,feed,_inactive_peener=following_tools(root,2.8,5.)
     obstacles={"shell":shell,"seat":seat,"upper_fixture":upper,"weld_keepout":weld,"upper_portal":portal}
-    tools={"torch":torch,"wire_guide":feed,"peener":peener}
+    # 最终组焊停用轻击；历史工具构造仍可由原研究脚本使用，当前装配不导出它。
+    tools={"torch":torch,"wire_guide":feed}
+    bodies = {**obstacles,**tools,"cartridge":cartridge,"external_datum_holder":holder}
+    bodies.update({f'qualification_witness_{i+1}':plate for i,plate in enumerate(witness)})
+    if assembly_only:
+        # 单装配整改入口：不重算工艺/承载比较、升降扫掠或历史assessment。
+        return None, bodies, points
     poses = []
     for lift in (0., 40., 120.):
         for name, tool in tools.items():
             moved = translated(tool, lift)
             intersections = {key: common_volume(moved, shape) for key, shape in obstacles.items()}
             poses.append({"tool": name, "lift_mm": lift, "intersections_mm3": intersections,
-                          "intentional_bead_contact": name in {"wire_guide","peener"} and lift==0,
-                          "clear": max(value for key,value in intersections.items() if not (key=="weld_keepout" and name in {"wire_guide","peener"} and lift==0)) < 1e-6})
+                          "intentional_bead_contact": name=="wire_guide" and lift==0,
+                          "clear": max(value for key,value in intersections.items() if not (key=="weld_keepout" and name=="wire_guide" and lift==0)) < 1e-6})
     # Fixed lower cartridge. The upper core/sleeve lift first, then the shell,
     # seat and their independent datum-A holder lift without moving the pan.
     upper_lift=a['upper_fixture_lift_mm'];housing_lift=a['housing_lift_mm']
@@ -358,12 +364,10 @@ def run_design(root):
                            "holder_bottom_to_fixed_core_clearance_mm":holder_to_core_clearance,
                            "withdrawal_stroke_mm":withdrawal_stroke,"root_flange_space_pass":root_space_ok,
                            "poses":poses, "torch_feed_intersection_mm3":common_volume(torch, feed),
-                           "torch_feed_clearance_mm":clearance(torch,feed), "following_tool_check":"simulation/competition-r4/results/peening-verification.json", "torch_shell_radial_bound_mm":shell_r-bounds["radial_upper_bound_mm"],
+                           "torch_feed_clearance_mm":clearance(torch,feed), "peener_in_current_assembly":False, "torch_shell_radial_bound_mm":shell_r-bounds["radial_upper_bound_mm"],
                            "torch_upper_radial_bound_mm":bounds["radial_lower_bound_mm"]-f["upper_envelope_radius_mm"],
                            "nominal_vertical_drop_coverage":s["ring_outer_radius_mm"]+s.get('seal_radial_thickness_mm',0)>=shell_r,
                            "coverage_requires_ring_alignment":True},
               "release":{"design_verified":False,"physical_validation_recommended":True,
                          "product_conformity_claimed":False}}
-    bodies = {**obstacles,**tools,"cartridge":cartridge,"external_datum_holder":holder}
-    bodies.update({f'qualification_witness_{i+1}':plate for i,plate in enumerate(witness)})
     return result, bodies, points

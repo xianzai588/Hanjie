@@ -1,0 +1,140 @@
+{
+  "saved_capabilities": {
+    "existing_element_QT_before_PEEQ_range": [
+      0.001174115,
+      0.001174115
+    ],
+    "existing_element_QT_after_PEEQ_range": [
+      0.001174115,
+      0.001174115
+    ],
+    "maximum_existing_QT_PEEQ_difference": 0.0,
+    "native_history_audit": {
+      "native_history": {
+        "substrate_initial_plastic_strain": 0.001174115,
+        "substrate_predeposit_plastic_strain": 0.00257,
+        "deposit_substrate_plastic_difference": 0.0,
+        "coherent_deposit_plastic_max": 0.0,
+        "cold_deposit_plastic_range": [
+          0.001976389,
+          0.002094839
+        ],
+        "retained_substrate_cold_cut_plastic_difference": 0.0,
+        "removed_element_ids": [
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80
+        ],
+        "cut_remaining_integration_points": 480,
+        "cut_original_integration_points": 640,
+        "cut_material_volume_mm3": 10.0,
+        "unload_displacement_difference_mm": 1.2159833e-16,
+        "unload_stress_difference_MPa": 1.2785917e-11,
+        "unload_plastic_difference": 0.0
+      },
+      "actual_binary_cold_restart_difference": {
+        "u": 0.0,
+        "stress": 0.0,
+        "peeq": 0.0,
+        "me": 0.0
+      },
+      "native_plastic_deposition_cut_history_passed": true,
+      "actual_first_layer_joint_passed": false,
+      "full_manufacturing_chain_passed": false,
+      "scope": "Tool manufacturing-history qualification only; substrate plasticity, stress-free new solid addition, physical element removal and cold restart. No calibrated weld source, melting law, deposit mass/reference geometry, PMZ capacity or full component response is qualified here.",
+      "sources": [
+        "https://www.dhondt.de/",
+        "CalculiX 2.23 official manual *MODEL CHANGE / *PLASTIC / *RESTART"
+      ]
+    },
+    "reactivation_restart_binary_bytes": 400680,
+    "binary_header_present": true,
+    "saved_job_finished": true,
+    "new_remove_block_matches_existing_executed_block": true,
+    "new_solver_runs": 0,
+    "scope": "existing-element history and limited continuation generation; no melting/mass/cold-volume/hardening or competition qualification"
+  },
+  "nominal_A_B_cut_geometry": {
+    "datum_registration": {
+      "rotation_columns": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          2.738401242307699e-16
+        ],
+        [
+          0.0,
+          -2.738401242307699e-16,
+          1.0
+        ]
+      ],
+      "translation_in_rotated_frame_mm": [
+        -1.3802802276888766e-14,
+        -2.842170943040401e-14,
+        0.0
+      ],
+      "datum": "actual QT lower plane A and existing bore lower-ring centre B; yaw fixed to original X projection",
+      "datum_A_nodes": 2431,
+      "datum_B_nodes": 53,
+      "datum_A_max_plane_error_mm": 6.73585003684401e-14
+    },
+    "tool_surface": "actual A/B frame: flat z114.20 and normal R0.80 corner; first layer normal .70 mm",
+    "volume_policy": "saved volume_mm3 is the thermal CAD-corrected accounting ledger; native C3D4 reference volume follows original coordinates; actual deformed tetrahedron volume is a third spatial ledger. No ledger is substituted for another",
+    "first_layer_saved_thermal_accounting_volume_mm3": 215.54042990141915,
+    "P1_removed_saved_thermal_accounting_volume_mm3": 130.37014849244335,
+    "whole_element_removed_saved_thermal_accounting_volume_mm3": 130.37014849203777,
+    "saved_thermal_volume_difference_from_P1_mm3": 4.055777935718652e-10,
+    "first_layer_native_reference_volume_mm3": 214.69714550440716,
+    "P1_removed_native_reference_volume_mm3": 129.86008589253993,
+    "whole_element_removed_native_reference_volume_mm3": 129.86008589213594,
+    "first_layer_actual_spatial_volume_mm3": 214.69714550440716,
+    "P1_removed_actual_spatial_volume_mm3": 129.86008589253993,
+    "whole_element_removed_actual_spatial_volume_mm3": 129.86008589213594,
+    "intersected_first_layer_elements": 6,
+    "maximum_smaller_P1_crossing_depth_mm": 1.371321944887427e-09,
+    "source_geometric_zero_tolerance_mm": 1e-09,
+    "CAD_point_coincidence_tolerance_mm": 1e-07,
+    "CAD_point_coincidence_source": "local OCP.Precision.Precision.Confusion_s() and its original API documentation; model units mm",
+    "CAD_volume_error_reference": "cad/generated/independent-precoat-curved/geometry-audit.json: geometric_integration_relative_tolerance",
+    "allowed_CAD_zero_volume_error_mm3": 2.1554042990141914e-05,
+    "classified_CAD_numerical_zero_elements": 6,
+    "classified_CAD_zero_discarded_volume_mm3": 4.0556057762502575e-10,
+    "engineering_crossed_elements": 0,
+    "whole_element_interface_ready": true,
+    "intersected_parent_saved_thermal_accounting_volume_mm3": 0.08396067783174856,
+    "P1_removed_partial_saved_thermal_accounting_volume_mm3": 4.0556057762502575e-10
+  },
+  "geometry_scope": "nominal undeformed mesh only; not an actual cold A/B cut or a physical state transfer",
+  "current_actual_native_cold_restart_available": false,
+  "current_actual_native_cut_executable": false,
+  "current_actual_second_layer_native_interface": false,
+  "current_actual_shell_fixture_native_interface": false,
+  "current_actual_release_and_same_state_service_interface": false,
+  "new_solver_runs": 0,
+  "full_manufacturing_chain_passed": false,
+  "generation_check_fragment": "simulation\\competition-r4\\results\\native-interface-adaptation-20261008\\generation-check-remove-block.txt",
+  "cold_temperature_identity_readback": "simulation/competition-r4/results/native-interface-adaptation-20261008/temperature-identity-readback.json",
+  "temperature_identity_policy": "original furnace manifest chunk, native terminal step and actual thermal time, original nodes/topology, per-node native temperatures, accepted DAT and binary restart are required; equal-sized external snapshots are rejected"
+}

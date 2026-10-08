@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+<defs><marker id="ar" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7 Z" fill="#24364B"/></marker><pattern id="qt" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#EEF1F3"/><line x1="0" y1="0" x2="0" y2="12" stroke="#82909B" stroke-width="1"/></pattern></defs>
+<style>text{font-family:"NotoSansSC","Noto Sans SC",sans-serif;fill:#24364B;font-size:20px}.title{font-size:31px;font-weight:700}.sub{font-size:20px;fill:#3F6B68}.small{font-size:17px}.line{fill:none;stroke:#24364B;stroke-width:1.5}.dim{fill:none;stroke:#24364B;stroke-width:1}.center{fill:none;stroke:#84929B;stroke-width:1;stroke-dasharray:9 5}.first{fill:#C0AA7C;stroke:#24364B;stroke-width:1.5}.second{fill:#9CB7B2;stroke:#24364B;stroke-width:1.5}</style>
+<rect width="1400" height="1000" fill="#fff"/><rect x="25" y="25" width="1350" height="950" class="line"/>
+<text x="55" y="70" class="title">圆环局部预制窗口 · 两层留层与覆盖设计</text><text x="1280" y="70" class="sub">HJ-S02</text>
+<text x="55" y="109" class="sub">8窗重复；名义成品断面与独立预制工序；单位mm；母件完整环，余底厚≥13.4</text>
+<text x="70" y="163" class="sub">径向名义成品截面（窗口中部）</text>
+<path d="M70 280 H120 A120 120 0 0 0 240 400 H600 V570 H70 Z" fill="url(#qt)" stroke="#24364B" stroke-width="1.5"/>
+<path d="M120 280 A120 120 0 0 0 240 400 H600 V344 H240 A64 64 0 0 1 176 280 Z" class="first"/>
+<path d="M176 280 H600 V344 H240 A64 64 0 0 1 176 280 Z" class="second"/>
+<path d="M70 552 l15 -10 l15 20 l15 -10 M570 552 l15 -10 l15 20" class="line"/>
+<line x1="120" y1="280" x2="120" y2="212" class="dim"/><line x1="600" y1="400" x2="600" y2="212" class="dim"/>
+<line x1="120" y1="226" x2="600" y2="226" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="360" y="210" text-anchor="middle">径宽6.0±0.1</text>
+<line x1="600" y1="280" x2="674" y2="280" class="dim"/><line x1="600" y1="400" x2="674" y2="400" class="dim"/><line x1="659" y1="280" x2="659" y2="400" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="644" y="340" class="small" text-anchor="middle" transform="rotate(-90 644 340)">深1.50±0.10</text>
+<text x="85" y="491">QT450-10；下部省略</text><text x="85" y="529" class="small">R68.98内缘 → R74.98外缘贯通</text>
+<line x1="395" y1="374" x2="448" y2="457" class="dim"/><line x1="448" y1="457" x2="620" y2="457" class="dim"/>
+<text x="446" y="484" class="small">首层：法向0.70±0.05</text>
+<line x1="188" y1="387" x2="164" y2="435" class="dim"/><text x="75" y="452" class="small">QT底角R1.5</text>
+<line x1="197" y1="324" x2="250" y2="306" class="dim"/><text x="254" y="302" class="small">第二层：名义R0.80</text>
+<text x="380" y="330" class="small">Ni第二层</text>
+<text x="740" y="163" class="sub">局部窗口展开（中心R71.98处）</text>
+<rect x="770" y="278" width="384" height="96" class="first"/>
+<rect x="782" y="278" width="360" height="85" class="second"/>
+<line x1="770" y1="278" x2="770" y2="218" class="dim"/><line x1="1154" y1="278" x2="1154" y2="218" class="dim"/><line x1="770" y1="232" x2="1154" y2="232" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="962" y="215" text-anchor="middle">中心弧长24±0.5</text>
+<line x1="787" y1="294" x2="1137" y2="294" class="center"/><line x1="787" y1="326" x2="1137" y2="326" class="center"/><line x1="787" y1="358" x2="1137" y2="358" class="center"/>
+<text x="1180" y="298" class="small">名义R69.98</text><text x="1180" y="330" class="small">名义R71.98</text><text x="1180" y="362" class="small">名义R73.98</text>
+<line x1="818" y1="422" x2="1106" y2="422" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="962" y="410" text-anchor="middle" class="small">有效18（最终实际路径20）</text>
+<text x="744" y="479" class="small">两端首层法向包覆≥0.70，第二层端部内缩</text>
+<text x="744" y="512" class="small">名义STEP二层无QT面接触；公差实件按实测引导</text>
+<text x="744" y="545" class="small">三轨按实测槽缘/中径/起止角；搭接≥0.8</text>
+<text x="744" y="578" class="small">最宽槽熔宽≥2.85且≤3.0；角部首件宏观确认</text>
+<line x1="55" y1="611" x2="1345" y2="611" class="line"/>
+<text x="70" y="650">首层：CI-A1 Ø3.2；110A/23V；75mm/min；两端各0.5s保护；20.2s/窗</text>
+<text x="70" y="688" class="small">最短弧与+2%速度保守供料2.869706g；最大槽＋余高＋保护带2.603046g；余量10.24%</text>
+<text x="70" y="729">第二层：75A/11V；2mm/s；名义三轨72mm/窗（576mm/件）；名义36s/窗</text>
+<text x="70" y="767" class="small">首镍临时保护：内缘外延0.5、两端各1.5；外缘超出部分由可拆铜背衬承托，完成二层后修去</text>
+<text x="70" y="805" class="small">首件/每批冷态称量核验供料；每窗检查余高与保护覆盖；第二层总料高≥1.75再加工齐平</text>
+<text x="70" y="843" class="small">17实体STEP为齐平后名义留层；公差轨迹按实测槽修正，名义实体不代替全公差熔池过程</text>
+<line x1="55" y1="883" x2="1345" y2="883" class="line"/><line x1="705" y1="883" x2="705" y2="975" class="line"/><line x1="1040" y1="883" x2="1040" y2="975" class="line"/>
+<text x="70" y="916" class="small">工艺设计图｜圆环8局部预制窗｜单位mm</text><text x="70" y="947" class="small">供料与能量见ring-precoat-design.json</text><text x="720" y="916" class="small">比例：NTS（不按比例）</text><text x="720" y="947" class="small">实际局部留层按法向测量</text><text x="1055" y="916" class="small">QT / CI-A1 / Ni覆盖层</text><text x="1055" y="947" class="small">HJ-S02 · 独立入壳前预制</text></svg>

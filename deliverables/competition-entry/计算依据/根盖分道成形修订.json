@@ -1,0 +1,1732 @@
+{
+  "date": "2026-10-08",
+  "decision_problem": "One root/cover deposition allocation within the unchanged 4.30 mm triangle",
+  "revision": {
+    "root_feed_mm_s": 3.42,
+    "cover_feed_mm_s": 3.78,
+    "feed_tolerance_each_mm_s": 0.05,
+    "mean_feed_mm_s": 3.5999999999999996,
+    "root_feed_reverse_from_nominal_2p8_triangle_mm_s": 3.422254560898866,
+    "reverse_basis": {
+      "root_equal_leg_target_mm": 2.8,
+      "nominal_eta_used_only_for_design_target": 0.94,
+      "nominal_wire_diameter_mm": 1.6,
+      "nominal_travel_mm_s": 1.65,
+      "feeder_resolution_mm_s": 0.01
+    },
+    "root_feed_reason": "Round the 2.80 mm nominal root target to the existing 0.01 mm/s design resolution; root deposit is not increased.",
+    "cover_feed_reason": "Place the one total-deposition increase in the cover pass. Mean 3.60 replaces the rejected independent 3.68/r/c-window proposal, and retains headroom below the real 4.30 triangle.",
+    "candidate_count": 1,
+    "fixed_tolerance_corner_count": 32,
+    "process_source_changed_by_this_script": false
+  },
+  "unchanged": {
+    "wire_diameter_mm": 1.6,
+    "wire_diameter_tolerance_mm": 0.01,
+    "deposition_efficiency_range": [
+      0.9,
+      0.98
+    ],
+    "travel_mm_s": 1.65,
+    "travel_relative_tolerance": 0.02,
+    "net_energy_per_pass_J_mm": 300.0,
+    "actual_length_each_pass_mm": 144.0,
+    "stable_length_each_segment_mm": 16.0,
+    "total_effective_length_mm": 128.0,
+    "both_legs_minimum_mm": 3.8,
+    "minimum_geometric_throat_mm": 2.68700576850888,
+    "keepout_equation": "x>=0,y>=0,x+y<=4.30 mm",
+    "maximum_coordinate_sum_mm": 4.3,
+    "root_and_cover_paths": "Existing root/cover targets, straight pass path and 150 mm transitions; no weaving or pose change"
+  },
+  "nominal": {
+    "wire_diameter_mm": 1.6,
+    "deposition_efficiency": 0.94,
+    "travel_mm_s": 1.65,
+    "actual_arc_time_each_pass_s": 87.27272727272728,
+    "passes": {
+      "root": {
+        "feed_mm_s": 3.42,
+        "wire_length_mm": 298.4727272727273,
+        "consumed_mass_g": 4.920943208854185,
+        "deposited_volume_mm3": 564.108123941821,
+        "deposited_mass_g": 4.625686616322932,
+        "added_section_area_mm2": 3.9174175273737566,
+        "equivalent_equal_leg_mm": 2.7990775363943587,
+        "entering_wire_enthalpy_J": 5749.728464089405,
+        "net_energy_J": 43200.00000000001,
+        "parent_pool_and_loss_remainder_J": 37450.2715359106
+      },
+      "cover": {
+        "feed_mm_s": 3.78,
+        "wire_length_mm": 329.8909090909091,
+        "consumed_mass_g": 5.438937230838834,
+        "deposited_volume_mm3": 623.4879264620128,
+        "deposited_mass_g": 5.112600996988505,
+        "added_section_area_mm2": 4.3297772670973105,
+        "equivalent_equal_leg_mm": 2.9427121052176717,
+        "entering_wire_enthalpy_J": 6354.963039256711,
+        "net_energy_J": 43200.00000000001,
+        "parent_pool_and_loss_remainder_J": 36845.036960743295
+      }
+    },
+    "total_section_area_mm2": 8.247194794471067,
+    "total_consumed_wire_mm": 628.3636363636364,
+    "total_consumed_wire_mass_g": 10.359880439693018,
+    "total_deposited_mass_g": 9.738287613311437,
+    "total_entering_wire_enthalpy_J": 12104.691503346115,
+    "total_net_energy_J": 86400.00000000001,
+    "total_parent_pool_and_loss_remainder_J": 74295.30849665389
+  },
+  "nominal_geometry_eta_edges": [
+    {
+      "wire_diameter_mm": 1.6,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.65,
+      "actual_arc_time_each_pass_s": 87.27272727272728,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.42,
+          "wire_length_mm": 298.4727272727273,
+          "consumed_mass_g": 4.920943208854185,
+          "deposited_volume_mm3": 540.1035229230203,
+          "deposited_mass_g": 4.428848887968767,
+          "added_section_area_mm2": 3.7507189091876407,
+          "equivalent_equal_leg_mm": 2.738875283464963,
+          "entering_wire_enthalpy_J": 5505.059167745178,
+          "net_energy_J": 43200.00000000001,
+          "parent_pool_and_loss_remainder_J": 37694.940832254826
+        },
+        "cover": {
+          "feed_mm_s": 3.78,
+          "wire_length_mm": 329.8909090909091,
+          "consumed_mass_g": 5.438937230838834,
+          "deposited_volume_mm3": 596.9565253359697,
+          "deposited_mass_g": 4.895043507754952,
+          "added_section_area_mm2": 4.145531425944234,
+          "equivalent_equal_leg_mm": 2.879420575721523,
+          "entering_wire_enthalpy_J": 6084.539080139405,
+          "net_energy_J": 43200.00000000001,
+          "parent_pool_and_loss_remainder_J": 37115.460919860605
+        }
+      },
+      "total_section_area_mm2": 7.8962503351318745,
+      "total_consumed_wire_mm": 628.3636363636364,
+      "total_consumed_wire_mass_g": 10.359880439693018,
+      "total_deposited_mass_g": 9.32389239572372,
+      "total_entering_wire_enthalpy_J": 11589.598247884584,
+      "total_net_energy_J": 86400.00000000001,
+      "total_parent_pool_and_loss_remainder_J": 74810.40175211543
+    },
+    {
+      "wire_diameter_mm": 1.6,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.65,
+      "actual_arc_time_each_pass_s": 87.27272727272728,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.42,
+          "wire_length_mm": 298.4727272727273,
+          "consumed_mass_g": 4.920943208854185,
+          "deposited_volume_mm3": 588.112724960622,
+          "deposited_mass_g": 4.822524344677101,
+          "added_section_area_mm2": 4.084116145559875,
+          "equivalent_equal_leg_mm": 2.858011947336776,
+          "entering_wire_enthalpy_J": 5994.397760433637,
+          "net_energy_J": 43200.00000000001,
+          "parent_pool_and_loss_remainder_J": 37205.60223956637
+        },
+        "cover": {
+          "feed_mm_s": 3.78,
+          "wire_length_mm": 329.8909090909091,
+          "consumed_mass_g": 5.438937230838834,
+          "deposited_volume_mm3": 650.0193275880558,
+          "deposited_mass_g": 5.330158486222059,
+          "added_section_area_mm2": 4.514023108250388,
+          "equivalent_equal_leg_mm": 3.0046707334582896,
+          "entering_wire_enthalpy_J": 6625.38699837402,
+          "net_energy_J": 43200.00000000001,
+          "parent_pool_and_loss_remainder_J": 36574.613001625985
+        }
+      },
+      "total_section_area_mm2": 8.598139253810263,
+      "total_consumed_wire_mm": 628.3636363636364,
+      "total_consumed_wire_mass_g": 10.359880439693018,
+      "total_deposited_mass_g": 10.15268283089916,
+      "total_entering_wire_enthalpy_J": 12619.784758807657,
+      "total_net_energy_J": 86400.00000000001,
+      "total_parent_pool_and_loss_remainder_J": 73780.21524119235
+    }
+  ],
+  "pass_tolerance_ranges": {
+    "root": {
+      "wire_length_mm": [
+        288.3422459893049,
+        309.01669758812614
+      ],
+      "consumed_mass_g": [
+        4.694682856669311,
+        5.1586662683142634
+      ],
+      "deposited_mass_g": [
+        4.22521457100238,
+        5.055492942947978
+      ],
+      "added_section_area_mm2": [
+        3.5782643724613643,
+        4.28141340019307
+      ],
+      "equivalent_equal_leg_mm": [
+        2.6751689189512367,
+        2.926230818029593
+      ],
+      "entering_wire_enthalpy_J": [
+        5251.941711755958,
+        6283.977728084336
+      ],
+      "net_energy_J": [
+        42352.941176470595,
+        44081.63265306123
+      ],
+      "parent_pool_and_loss_remainder_J": [
+        36315.39394752682,
+        38615.325973478495
+      ]
+    },
+    "cover": {
+      "wire_length_mm": [
+        319.144385026738,
+        341.07606679035246
+      ],
+      "consumed_mass_g": [
+        5.196192004562768,
+        5.693859310560123
+      ],
+      "deposited_mass_g": [
+        4.676572804106491,
+        5.579982124348921
+      ],
+      "added_section_area_mm2": [
+        3.96051219859967,
+        4.725594617504167
+      ],
+      "equivalent_equal_leg_mm": [
+        2.814431451856545,
+        3.074278652791307
+      ],
+      "entering_wire_enthalpy_J": [
+        5812.979995504368,
+        6935.917780565708
+      ],
+      "net_energy_J": [
+        42352.941176470595,
+        44081.63265306123
+      ],
+      "parent_pool_and_loss_remainder_J": [
+        35689.020171613345,
+        38031.38816794444
+      ]
+    }
+  },
+  "total_tolerance_ranges": {
+    "total_section_area_mm2": [
+      7.538776571061034,
+      9.007008017697238
+    ],
+    "total_consumed_wire_mm": [
+      607.4866310160429,
+      650.0927643784786
+    ],
+    "total_consumed_wire_mass_g": [
+      9.890874861232078,
+      10.852525578874387
+    ],
+    "total_deposited_mass_g": [
+      8.90178737510887,
+      10.635475067296898
+    ],
+    "total_entering_wire_enthalpy_J": [
+      11064.921707260326,
+      13219.895508650045
+    ],
+    "total_net_energy_J": [
+      84705.88235294119,
+      88163.26530612246
+    ],
+    "total_parent_pool_and_loss_remainder_J": [
+      72004.41411914016,
+      76646.71414142294
+    ]
+  },
+  "contour_joint_geometry_bounds": [
+    {
+      "area_mm2": 7.538776571061034,
+      "straight_ratio_limit_from_two_legs": 1.0441518796483427,
+      "straight_ratio_limit_from_throat": 1.3445734963359044,
+      "straight_ratio_limit_from_triangle": 1.2263263027967448,
+      "straight_joint_ratio_limit": 1.0441518796483427,
+      "straight_boundary_profile": {
+        "leg_long_mm": 3.967777142663702,
+        "leg_short_mm": 3.8000000000000003,
+        "ratio": 1.0441518796483427,
+        "geometric_throat_mm": 2.7444026384081734,
+        "section_area_mm2": 7.538776571061034,
+        "max_coordinate_sum_mm": 3.967777142663702,
+        "both_minimum_legs_pass": true,
+        "geometric_throat_pass": true,
+        "triangular_keepout_pass": true,
+        "fusion_verified": false
+      },
+      "equal_leg_concavity_limit_from_throat_mm": 0.1842732045266855,
+      "equal_leg_concavity_limit_from_triangle_mm": 0.42086586865887404,
+      "equal_leg_joint_concavity_limit_mm": 0.1842732045266855,
+      "equal_leg_concave_boundary_profile": {
+        "leg_long_mm": 4.060601665023589,
+        "leg_short_mm": 4.060601665023589,
+        "ratio": 1.0,
+        "signed_normal_sag_mm": 0.1842732045266855,
+        "chord_throat_mm": 2.8712789730355657,
+        "geometric_throat_mm": 2.68700576850888,
+        "conservative_throat_lower_mm": 2.68700576850888,
+        "section_area_mm2": 7.538776571061034,
+        "max_coordinate_sum_mm": 4.060601665023589,
+        "both_minimum_legs_pass": true,
+        "geometric_throat_pass": true,
+        "triangular_keepout_pass": true,
+        "fusion_verified": false
+      },
+      "equal_leg_straight_profile": {
+        "leg_long_mm": 3.8829825060283323,
+        "leg_short_mm": 3.8829825060283323,
+        "ratio": 1.0,
+        "geometric_throat_mm": 2.745683261241368,
+        "section_area_mm2": 7.538776571061034,
+        "max_coordinate_sum_mm": 3.8829825060283323,
+        "both_minimum_legs_pass": true,
+        "geometric_throat_pass": true,
+        "triangular_keepout_pass": true,
+        "fusion_verified": false
+      },
+      "non_throat_area_allowance_before_3p80_triangle_mm2": 0.31877657106103463,
+      "scope": "Reverse geometry bounds for this specified profile family and actual section area. Not statistical forming limits or a guaranteed response to feeder/torch errors."
+    },
+    {
+      "area_mm2": 9.007008017697238,
+      "straight_ratio_limit_from_two_legs": 1.2475080356921382,
+      "straight_ratio_limit_from_throat": 1.9933473609602945,
+      "straight_ratio_limit_from_triangle": 1.0264229788443784,
+      "straight_joint_ratio_limit": 1.0264229788443784,
+      "straight_boundary_profile": {
+        "leg_long_mm": 4.3,
+        "leg_short_mm": 4.189306054742902,
+        "ratio": 1.0264229788443784,
+        "geometric_throat_mm": 3.000657556568105,
+        "section_area_mm2": 9.007008017697238,
+        "max_coordinate_sum_mm": 4.3,
+        "both_minimum_legs_pass": true,
+        "geometric_throat_pass": true,
+        "triangular_keepout_pass": true,
+        "fusion_verified": false
+      },
+      "equal_leg_concavity_limit_from_throat_mm": 1.3235630865789514,
+      "equal_leg_concavity_limit_from_triangle_mm": 0.058704329495689926,
+      "equal_leg_joint_concavity_limit_mm": 0.058704329495689926,
+      "equal_leg_concave_boundary_profile": {
+        "leg_long_mm": 4.3,
+        "leg_short_mm": 4.3,
+        "ratio": 1.0,
+        "signed_normal_sag_mm": 0.058704329495689926,
+        "chord_throat_mm": 3.040559159102154,
+        "geometric_throat_mm": 2.9818548296064638,
+        "conservative_throat_lower_mm": 2.981854829606464,
+        "section_area_mm2": 9.007008017697238,
+        "max_coordinate_sum_mm": 4.3,
+        "both_minimum_legs_pass": true,
+        "geometric_throat_pass": true,
+        "triangular_keepout_pass": true,
+        "fusion_verified": false
+      },
+      "equal_leg_straight_profile": {
+        "leg_long_mm": 4.244292171304242,
+        "leg_short_mm": 4.244292171304242,
+        "ratio": 1.0,
+        "geometric_throat_mm": 3.0011677756662047,
+        "section_area_mm2": 9.007008017697238,
+        "max_coordinate_sum_mm": 4.244292171304242,
+        "both_minimum_legs_pass": true,
+        "geometric_throat_pass": true,
+        "triangular_keepout_pass": true,
+        "fusion_verified": false
+      },
+      "non_throat_area_allowance_before_3p80_triangle_mm2": 1.7870080176972385,
+      "scope": "Reverse geometry bounds for this specified profile family and actual section area. Not statistical forming limits or a guaranteed response to feeder/torch errors."
+    }
+  ],
+  "original_comparison": {
+    "original_area_range_mm2": [
+      7.326416667650864,
+      8.760240674746626
+    ],
+    "original_equal_leg_throat_margin_um": 19.729657728945416,
+    "revised_equal_leg_minimum_throat_margin_um": 58.67749273248801,
+    "revised_equivalent_total_equal_leg_range_mm": [
+      3.8829825060283323,
+      4.244292171304242
+    ],
+    "original_unallocated_area_margin_mm2": 0.10641666765086466,
+    "revised_unallocated_area_margin_mm2": 0.31877657106103463,
+    "original_nominal_wire_mm": 610.909090909091,
+    "revised_nominal_wire_mm": 628.3636363636364,
+    "revised_15pct_preparation_wire_mm": 722.6181818181818,
+    "extra_nominal_wire_mm": 17.454545454545382,
+    "original_root_feed_mm_s": 3.5,
+    "revised_root_feed_mm_s": 3.42,
+    "original_cover_feed_mm_s": 3.5,
+    "revised_cover_feed_mm_s": 3.78
+  },
+  "heat_ledger": {
+    "density_kg_m3": 8200.000000000002,
+    "entering_specific_enthalpy_J_kg": 1243000.0,
+    "entering_temperature_design_C": 1470.0,
+    "enthalpy_basis": "名义物性为保守工程输入，不作为供方实測接头性能；历史结果以各运行input.json为准; Paek等JOM2021 Fig2/10.1007/s11837-020-04487-9，Fe-Ni二元边界；55～58%Ni低碳实际配混，考虑C/Si/Mn与读图差异取1420～1460设计包络；潜热275 kJ/kg工程估值",
+    "nominal_total_net_energy_J": 86400.0,
+    "nominal_total_entering_wire_enthalpy_at_eta_edges_J": [
+      11589.598247884584,
+      12619.784758807657
+    ],
+    "extra_entering_wire_enthalpy_at_eta_edges_J": [
+      321.93328466346065,
+      350.54957663354435
+    ],
+    "extra_entering_wire_enthalpy_per_actual_total_path_J_mm": [
+      1.1178239050814607,
+      1.2171860299775845
+    ],
+    "nominal_parent_pool_and_loss_remainder_at_eta_edges_J": [
+      74810.40175211542,
+      73780.21524119235
+    ],
+    "thermal_scope": "Saved NiFe55 engineering Cp and latent-heat inputs, not supplier high-temperature properties. Incoming retained-wire H is deducted once from arc-net heat; heated discarded material belongs to loss. A positive remainder alone does not prove fusion.",
+    "current_and_voltage_or_travel_changed": false,
+    "changed_pass_heat_partition_requires_fusion_remelt_and_residual_qualification": true
+  },
+  "tooling_reuse": {
+    "source": "cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json",
+    "checked_poses_reused": 192,
+    "new_clearance_run": false,
+    "actual_pose_shape_unchanged": true,
+    "root_target_R_z_mm": [
+      74.5,
+      117.3
+    ],
+    "root_wire_tip_R_z_mm": [
+      73.2,
+      116.0
+    ],
+    "cover_target_R_z_mm": [
+      74.0,
+      118.0
+    ],
+    "cover_wire_tip_R_z_mm": [
+      72.7,
+      116.7
+    ],
+    "nominal_minimum_gap_mm": 0.9156114508159194,
+    "dimensional_allowance_mm": 0.65,
+    "lower_bound_gap_mm": 0.2656114508159194,
+    "geometry_condition": "All actual deposited contours, including toes, remain inside the existing triangular envelope; no new tooling qualification granted"
+  },
+  "layer_survival": {
+    "root_remelt_design_limit_mm": 0.3,
+    "two_pass_union_remelt_design_limit_mm": 0.4,
+    "minimum_second_before_final_mm": 0.6499999999999999,
+    "conditional_second_after_final_mm": 0.2499999999999999,
+    "conditional_total_after_final_mm": 0.9999999999999999,
+    "physical_remelt_result_available": false,
+    "scope": "Unchanged geometry budget only. Lower root deposit moves wire H out of the root pass at the same arc power; it cannot be claimed to lower remelt. New cover partition may reheat/remelt the root and must be separately qualified."
+  },
+  "local_distribution_gap": {
+    "supply_to_profile_relation_qualified": false,
+    "actual_non_throat_area_or_below_face_gap_fill_known": false,
+    "maximum_unallocated_area_at_low_supply_mm2": 0.31877657106103463,
+    "comparison_only_full_15mm_height_0p04mm_gap_area_mm2": 0.6,
+    "scope": "0.60 mm2 is the geometry of a fully filled 15 mm contact-height gap, not a predicted capillary penetration. It exceeds the low-supply allowance; neither gap fill nor parent-metal contribution is invented to close the account."
+  },
+  "acceptance_joint_rules": [
+    "At each actual qualified section in every stable 16 mm segment, both measured toes minus their actual expanded uncertainty are at least 3.80 mm.",
+    "The whole actual contour plus outward measurement uncertainty lies within x>=0,y>=0,x+y<=4.30 mm. Checking only toe lengths is insufficient.",
+    "Root-to-surface minimum distance minus its actual uncertainty is at least 2.6870057685 mm; effective throat additionally excludes unfused or unacceptable defect regions.",
+    "For the specified concave-parabola family only, calculate its actual area/ratio/concavity with the saved analytic polynomial routine; satisfy both legs, exact minimum root distance and maximum coordinate sum jointly. No independent ratio/concavity manufacturing window is assigned.",
+    "For a general surface use measured chord distance a0 and inward normal deviation c with a0-c-U>=2.6870057685 mm as a sufficient throat check. Actual profile area, under-face gap fill and start/end redistribution are recorded separately from total feed.",
+    "Two-side continuous fusion, root remelt<=0.30 mm and the two-pass remelt union<=0.40 mm remain separate qualification targets. The 1 mm ends are not counted in the 128 mm capacity length."
+  ],
+  "decision": {
+    "proposed_action": "Adopt this one allocation as the engineering-design pWPS candidate; do not assign a robust production forming window or fusion/performance qualification.",
+    "conditional_profile_geometry_feasible": true,
+    "actual_forming_window_verified": false,
+    "continuous_final_bilateral_fusion_verified": false,
+    "effective_throat_verified": false,
+    "remelt_limits_verified": false,
+    "manufacturing_residual_position_verified": false,
+    "extra_candidates_allowed_by_this_record": false
+  },
+  "fixed_corners": [
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 4.886302565104792,
+          "deposited_volume_mm3": 536.3015010480868,
+          "deposited_mass_g": 4.397672308594313,
+          "added_section_area_mm2": 3.724315979500603,
+          "equivalent_equal_leg_mm": 2.7292181955646577,
+          "entering_wire_enthalpy_J": 5466.306679582731,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38615.325973478495
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.408281474136758,
+          "deposited_volume_mm3": 593.5918691125709,
+          "deposited_mass_g": 4.867453326723082,
+          "added_section_area_mm2": 4.1221657577261865,
+          "equivalent_equal_leg_mm": 2.8712943972104936,
+          "entering_wire_enthalpy_J": 6050.24448511679,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38031.38816794444
+        }
+      },
+      "total_section_area_mm2": 7.84648173722679,
+      "total_consumed_wire_mm": 632.2820037105752,
+      "total_consumed_wire_mass_g": 10.294584039241549,
+      "total_deposited_mass_g": 9.265125635317395,
+      "total_entering_wire_enthalpy_J": 11516.551164699522,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76646.71414142294
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 4.886302565104792,
+          "deposited_volume_mm3": 536.3015010480868,
+          "deposited_mass_g": 4.397672308594313,
+          "added_section_area_mm2": 3.724315979500603,
+          "equivalent_equal_leg_mm": 2.7292181955646577,
+          "entering_wire_enthalpy_J": 5466.306679582731,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38615.325973478495
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.553275615534525,
+          "deposited_volume_mm3": 609.5058602415942,
+          "deposited_mass_g": 4.997948053981072,
+          "added_section_area_mm2": 4.232679585011071,
+          "equivalent_equal_leg_mm": 2.909529028901781,
+          "entering_wire_enthalpy_J": 6212.449431098473,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37869.183221962754
+        }
+      },
+      "total_section_area_mm2": 7.956995564511674,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.439578180639316,
+      "total_deposited_mass_g": 9.395620362575386,
+      "total_entering_wire_enthalpy_J": 11678.756110681203,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76484.50919544125
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.03129670650256,
+          "deposited_volume_mm3": 552.2154921771101,
+          "deposited_mass_g": 4.528167035852304,
+          "added_section_area_mm2": 3.8348298067854873,
+          "equivalent_equal_leg_mm": 2.7694150309354093,
+          "entering_wire_enthalpy_J": 5628.511625564414,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38453.12102749681
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.408281474136758,
+          "deposited_volume_mm3": 593.5918691125709,
+          "deposited_mass_g": 4.867453326723082,
+          "added_section_area_mm2": 4.1221657577261865,
+          "equivalent_equal_leg_mm": 2.8712943972104936,
+          "entering_wire_enthalpy_J": 6050.24448511679,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38031.38816794444
+        }
+      },
+      "total_section_area_mm2": 7.956995564511674,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.439578180639318,
+      "total_deposited_mass_g": 9.395620362575386,
+      "total_entering_wire_enthalpy_J": 11678.756110681205,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76484.50919544125
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.03129670650256,
+          "deposited_volume_mm3": 552.2154921771101,
+          "deposited_mass_g": 4.528167035852304,
+          "added_section_area_mm2": 3.8348298067854873,
+          "equivalent_equal_leg_mm": 2.7694150309354093,
+          "entering_wire_enthalpy_J": 5628.511625564414,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38453.12102749681
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.553275615534525,
+          "deposited_volume_mm3": 609.5058602415942,
+          "deposited_mass_g": 4.997948053981072,
+          "added_section_area_mm2": 4.232679585011071,
+          "equivalent_equal_leg_mm": 2.909529028901781,
+          "entering_wire_enthalpy_J": 6212.449431098473,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37869.183221962754
+        }
+      },
+      "total_section_area_mm2": 8.067509391796559,
+      "total_consumed_wire_mm": 650.0927643784786,
+      "total_consumed_wire_mass_g": 10.584572322037085,
+      "total_deposited_mass_g": 9.526115089833375,
+      "total_entering_wire_enthalpy_J": 11840.961056662887,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76322.30424945956
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.694682856669311,
+          "deposited_volume_mm3": 515.2700696344365,
+          "deposited_mass_g": 4.22521457100238,
+          "added_section_area_mm2": 3.5782643724613643,
+          "equivalent_equal_leg_mm": 2.6751689189512367,
+          "entering_wire_enthalpy_J": 5251.941711755958,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 37100.99946471464
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.196192004562768,
+          "deposited_volume_mm3": 570.3137565983525,
+          "deposited_mass_g": 4.676572804106491,
+          "added_section_area_mm2": 3.96051219859967,
+          "equivalent_equal_leg_mm": 2.814431451856545,
+          "entering_wire_enthalpy_J": 5812.979995504368,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36539.961180966224
+        }
+      },
+      "total_section_area_mm2": 7.538776571061034,
+      "total_consumed_wire_mm": 607.4866310160429,
+      "total_consumed_wire_mass_g": 9.890874861232078,
+      "total_deposited_mass_g": 8.90178737510887,
+      "total_entering_wire_enthalpy_J": 11064.921707260326,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73640.96064568087
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.694682856669311,
+          "deposited_volume_mm3": 515.2700696344365,
+          "deposited_mass_g": 4.22521457100238,
+          "added_section_area_mm2": 3.5782643724613643,
+          "equivalent_equal_leg_mm": 2.6751689189512367,
+          "entering_wire_enthalpy_J": 5251.941711755958,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 37100.99946471464
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.335500101199839,
+          "deposited_volume_mm3": 585.6036696438847,
+          "deposited_mass_g": 4.801950091079855,
+          "added_section_area_mm2": 4.066692150304755,
+          "equivalent_equal_leg_mm": 2.8519088871507643,
+          "entering_wire_enthalpy_J": 5968.82396321226,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36384.11721325833
+        }
+      },
+      "total_section_area_mm2": 7.644956522766119,
+      "total_consumed_wire_mm": 616.0427807486633,
+      "total_consumed_wire_mass_g": 10.030182957869151,
+      "total_deposited_mass_g": 9.027164662082235,
+      "total_entering_wire_enthalpy_J": 11220.765674968217,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73485.11667797297
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.833990953306382,
+          "deposited_volume_mm3": 530.5599826799687,
+          "deposited_mass_g": 4.350591857975744,
+          "added_section_area_mm2": 3.6844443241664493,
+          "equivalent_equal_leg_mm": 2.7145696985586683,
+          "entering_wire_enthalpy_J": 5407.78567946385,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36945.155497006745
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.196192004562768,
+          "deposited_volume_mm3": 570.3137565983525,
+          "deposited_mass_g": 4.676572804106491,
+          "added_section_area_mm2": 3.96051219859967,
+          "equivalent_equal_leg_mm": 2.814431451856545,
+          "entering_wire_enthalpy_J": 5812.979995504368,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36539.961180966224
+        }
+      },
+      "total_section_area_mm2": 7.644956522766119,
+      "total_consumed_wire_mm": 616.0427807486632,
+      "total_consumed_wire_mass_g": 10.030182957869151,
+      "total_deposited_mass_g": 9.027164662082235,
+      "total_entering_wire_enthalpy_J": 11220.765674968217,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73485.11667797297
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.833990953306382,
+          "deposited_volume_mm3": 530.5599826799687,
+          "deposited_mass_g": 4.350591857975744,
+          "added_section_area_mm2": 3.6844443241664493,
+          "equivalent_equal_leg_mm": 2.7145696985586683,
+          "entering_wire_enthalpy_J": 5407.78567946385,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36945.155497006745
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.335500101199839,
+          "deposited_volume_mm3": 585.6036696438847,
+          "deposited_mass_g": 4.801950091079855,
+          "added_section_area_mm2": 4.066692150304755,
+          "equivalent_equal_leg_mm": 2.8519088871507643,
+          "entering_wire_enthalpy_J": 5968.82396321226,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36384.11721325833
+        }
+      },
+      "total_section_area_mm2": 7.751136474471204,
+      "total_consumed_wire_mm": 624.5989304812836,
+      "total_consumed_wire_mass_g": 10.16949105450622,
+      "total_deposited_mass_g": 9.1525419490556,
+      "total_entering_wire_enthalpy_J": 11376.60964267611,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73329.27271026507
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 4.886302565104792,
+          "deposited_volume_mm3": 583.9727455856946,
+          "deposited_mass_g": 4.788576513802696,
+          "added_section_area_mm2": 4.055366288789546,
+          "equivalent_equal_leg_mm": 2.8479347916655486,
+          "entering_wire_enthalpy_J": 5952.200606656752,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38129.43204640447
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.408281474136758,
+          "deposited_volume_mm3": 646.3555908114661,
+          "deposited_mass_g": 5.300115844654022,
+          "added_section_area_mm2": 4.488580491746292,
+          "equivalent_equal_leg_mm": 2.996191079269242,
+          "entering_wire_enthalpy_J": 6588.04399490495,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37493.58865815628
+        }
+      },
+      "total_section_area_mm2": 8.543946780535839,
+      "total_consumed_wire_mm": 632.2820037105752,
+      "total_consumed_wire_mass_g": 10.294584039241549,
+      "total_deposited_mass_g": 10.088692358456719,
+      "total_entering_wire_enthalpy_J": 12540.244601561702,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75623.02070456075
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 4.886302565104792,
+          "deposited_volume_mm3": 583.9727455856946,
+          "deposited_mass_g": 4.788576513802696,
+          "added_section_area_mm2": 4.055366288789546,
+          "equivalent_equal_leg_mm": 2.8479347916655486,
+          "entering_wire_enthalpy_J": 5952.200606656752,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38129.43204640447
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.553275615534525,
+          "deposited_volume_mm3": 663.6841589297359,
+          "deposited_mass_g": 5.442210103223835,
+          "added_section_area_mm2": 4.608917770345388,
+          "equivalent_equal_leg_mm": 3.036088855862222,
+          "entering_wire_enthalpy_J": 6764.6671583072275,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37316.965494754
+        }
+      },
+      "total_section_area_mm2": 8.664284059134935,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.439578180639316,
+      "total_deposited_mass_g": 10.230786617026531,
+      "total_entering_wire_enthalpy_J": 12716.86776496398,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75446.39754115847
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.03129670650256,
+          "deposited_volume_mm3": 601.3013137039644,
+          "deposited_mass_g": 4.930670772372508,
+          "added_section_area_mm2": 4.175703567388641,
+          "equivalent_equal_leg_mm": 2.8898801246379207,
+          "entering_wire_enthalpy_J": 6128.823770059028,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37952.8088830022
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.408281474136758,
+          "deposited_volume_mm3": 646.3555908114661,
+          "deposited_mass_g": 5.300115844654022,
+          "added_section_area_mm2": 4.488580491746292,
+          "equivalent_equal_leg_mm": 2.996191079269242,
+          "entering_wire_enthalpy_J": 6588.04399490495,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37493.58865815628
+        }
+      },
+      "total_section_area_mm2": 8.664284059134934,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.439578180639318,
+      "total_deposited_mass_g": 10.230786617026531,
+      "total_entering_wire_enthalpy_J": 12716.867764963978,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75446.39754115848
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.03129670650256,
+          "deposited_volume_mm3": 601.3013137039644,
+          "deposited_mass_g": 4.930670772372508,
+          "added_section_area_mm2": 4.175703567388641,
+          "equivalent_equal_leg_mm": 2.8898801246379207,
+          "entering_wire_enthalpy_J": 6128.823770059028,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37952.8088830022
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.553275615534525,
+          "deposited_volume_mm3": 663.6841589297359,
+          "deposited_mass_g": 5.442210103223835,
+          "added_section_area_mm2": 4.608917770345388,
+          "equivalent_equal_leg_mm": 3.036088855862222,
+          "entering_wire_enthalpy_J": 6764.6671583072275,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37316.965494754
+        }
+      },
+      "total_section_area_mm2": 8.78462133773403,
+      "total_consumed_wire_mm": 650.0927643784786,
+      "total_consumed_wire_mass_g": 10.584572322037085,
+      "total_deposited_mass_g": 10.372880875596344,
+      "total_entering_wire_enthalpy_J": 12893.490928366256,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75269.7743777562
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.694682856669311,
+          "deposited_volume_mm3": 561.0718536019419,
+          "deposited_mass_g": 4.6007891995359245,
+          "added_section_area_mm2": 3.8963323166801525,
+          "equivalent_equal_leg_mm": 2.7915344585658093,
+          "entering_wire_enthalpy_J": 5718.780975023154,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36634.16020144744
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.196192004562768,
+          "deposited_volume_mm3": 621.0083127404283,
+          "deposited_mass_g": 5.0922681644715135,
+          "added_section_area_mm2": 4.312557727364085,
+          "equivalent_equal_leg_mm": 2.9368546873701753,
+          "entering_wire_enthalpy_J": 6329.689328438091,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36023.2518480325
+        }
+      },
+      "total_section_area_mm2": 8.208890044044239,
+      "total_consumed_wire_mm": 607.4866310160429,
+      "total_consumed_wire_mass_g": 9.890874861232078,
+      "total_deposited_mass_g": 9.693057364007437,
+      "total_entering_wire_enthalpy_J": 12048.470303461245,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72657.41204947994
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.694682856669311,
+          "deposited_volume_mm3": 561.0718536019419,
+          "deposited_mass_g": 4.6007891995359245,
+          "added_section_area_mm2": 3.8963323166801525,
+          "equivalent_equal_leg_mm": 2.7915344585658093,
+          "entering_wire_enthalpy_J": 5718.780975023154,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36634.16020144744
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.335500101199839,
+          "deposited_volume_mm3": 637.6573291677855,
+          "deposited_mass_g": 5.228790099175842,
+          "added_section_area_mm2": 4.4281758969985106,
+          "equivalent_equal_leg_mm": 2.97596233074228,
+          "entering_wire_enthalpy_J": 6499.3860932755715,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 35853.555083195024
+        }
+      },
+      "total_section_area_mm2": 8.324508213678662,
+      "total_consumed_wire_mm": 616.0427807486633,
+      "total_consumed_wire_mass_g": 10.030182957869151,
+      "total_deposited_mass_g": 9.829579298711767,
+      "total_entering_wire_enthalpy_J": 12218.167068298724,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72487.71528464247
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.833990953306382,
+          "deposited_volume_mm3": 577.7208700292992,
+          "deposited_mass_g": 4.7373111342402545,
+          "added_section_area_mm2": 4.0119504863145785,
+          "equivalent_equal_leg_mm": 2.8326491086312044,
+          "entering_wire_enthalpy_J": 5888.477739860637,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36464.463436609956
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.196192004562768,
+          "deposited_volume_mm3": 621.0083127404283,
+          "deposited_mass_g": 5.0922681644715135,
+          "added_section_area_mm2": 4.312557727364085,
+          "equivalent_equal_leg_mm": 2.9368546873701753,
+          "entering_wire_enthalpy_J": 6329.689328438091,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36023.2518480325
+        }
+      },
+      "total_section_area_mm2": 8.324508213678664,
+      "total_consumed_wire_mm": 616.0427807486632,
+      "total_consumed_wire_mass_g": 10.030182957869151,
+      "total_deposited_mass_g": 9.829579298711767,
+      "total_entering_wire_enthalpy_J": 12218.167068298728,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72487.71528464246
+    },
+    {
+      "wire_diameter_mm": 1.59,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.833990953306382,
+          "deposited_volume_mm3": 577.7208700292992,
+          "deposited_mass_g": 4.7373111342402545,
+          "added_section_area_mm2": 4.0119504863145785,
+          "equivalent_equal_leg_mm": 2.8326491086312044,
+          "entering_wire_enthalpy_J": 5888.477739860637,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36464.463436609956
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.335500101199839,
+          "deposited_volume_mm3": 637.6573291677855,
+          "deposited_mass_g": 5.228790099175842,
+          "added_section_area_mm2": 4.4281758969985106,
+          "equivalent_equal_leg_mm": 2.97596233074228,
+          "entering_wire_enthalpy_J": 6499.3860932755715,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 35853.555083195024
+        }
+      },
+      "total_section_area_mm2": 8.440126383313089,
+      "total_consumed_wire_mm": 624.5989304812836,
+      "total_consumed_wire_mass_g": 10.16949105450622,
+      "total_deposited_mass_g": 9.966101233416097,
+      "total_entering_wire_enthalpy_J": 12387.863833136209,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72318.01851980499
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 5.010001534357079,
+          "deposited_volume_mm3": 549.8782171855331,
+          "deposited_mass_g": 4.509001380921372,
+          "added_section_area_mm2": 3.8185987304550912,
+          "equivalent_equal_leg_mm": 2.7635479841881128,
+          "entering_wire_enthalpy_J": 5604.688716485265,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38476.94393657596
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.545194576602941,
+          "deposited_volume_mm3": 608.6189169442251,
+          "deposited_mass_g": 4.990675118942646,
+          "added_section_area_mm2": 4.226520256557119,
+          "equivalent_equal_leg_mm": 2.90741130786723,
+          "entering_wire_enthalpy_J": 6203.40917284571,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37878.223480215514
+        }
+      },
+      "total_section_area_mm2": 8.045118987012211,
+      "total_consumed_wire_mm": 632.2820037105752,
+      "total_consumed_wire_mass_g": 10.55519611096002,
+      "total_deposited_mass_g": 9.49967649986402,
+      "total_entering_wire_enthalpy_J": 11808.097889330975,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76355.16741679148
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 5.010001534357079,
+          "deposited_volume_mm3": 549.8782171855331,
+          "deposited_mass_g": 4.509001380921372,
+          "added_section_area_mm2": 3.8185987304550912,
+          "equivalent_equal_leg_mm": 2.7635479841881128,
+          "entering_wire_enthalpy_J": 5604.688716485265,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38476.94393657596
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.693859310560123,
+          "deposited_volume_mm3": 624.9357779883062,
+          "deposited_mass_g": 5.124473379504112,
+          "added_section_area_mm2": 4.33983179158546,
+          "equivalent_equal_leg_mm": 2.94612687832193,
+          "entering_wire_enthalpy_J": 6369.72041072361,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37711.91224233762
+        }
+      },
+      "total_section_area_mm2": 8.15843052204055,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.703860844917202,
+      "total_deposited_mass_g": 9.633474760425484,
+      "total_entering_wire_enthalpy_J": 11974.409127208875,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76188.85617891359
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.1586662683142634,
+          "deposited_volume_mm3": 566.1950782296142,
+          "deposited_mass_g": 4.642799641482837,
+          "added_section_area_mm2": 3.931910265483432,
+          "equivalent_equal_leg_mm": 2.804250440129566,
+          "entering_wire_enthalpy_J": 5770.999954363167,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38310.632698698064
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.545194576602941,
+          "deposited_volume_mm3": 608.6189169442251,
+          "deposited_mass_g": 4.990675118942646,
+          "added_section_area_mm2": 4.226520256557119,
+          "equivalent_equal_leg_mm": 2.90741130786723,
+          "entering_wire_enthalpy_J": 6203.40917284571,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37878.223480215514
+        }
+      },
+      "total_section_area_mm2": 8.15843052204055,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.703860844917205,
+      "total_deposited_mass_g": 9.633474760425482,
+      "total_entering_wire_enthalpy_J": 11974.409127208877,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76188.85617891359
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.1586662683142634,
+          "deposited_volume_mm3": 566.1950782296142,
+          "deposited_mass_g": 4.642799641482837,
+          "added_section_area_mm2": 3.931910265483432,
+          "equivalent_equal_leg_mm": 2.804250440129566,
+          "entering_wire_enthalpy_J": 5770.999954363167,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 38310.632698698064
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.693859310560123,
+          "deposited_volume_mm3": 624.9357779883062,
+          "deposited_mass_g": 5.124473379504112,
+          "added_section_area_mm2": 4.33983179158546,
+          "equivalent_equal_leg_mm": 2.94612687832193,
+          "entering_wire_enthalpy_J": 6369.72041072361,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37711.91224233762
+        }
+      },
+      "total_section_area_mm2": 8.271742057068892,
+      "total_consumed_wire_mm": 650.0927643784786,
+      "total_consumed_wire_mass_g": 10.852525578874387,
+      "total_deposited_mass_g": 9.767273020986948,
+      "total_entering_wire_enthalpy_J": 12140.720365086778,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 76022.54494103568
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.81353088595092,
+          "deposited_volume_mm3": 528.3143655311986,
+          "deposited_mass_g": 4.332177797355829,
+          "added_section_area_mm2": 3.6688497606333237,
+          "equivalent_equal_leg_mm": 2.7088188424600577,
+          "entering_wire_enthalpy_J": 5384.8970021132955,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36968.0441743573
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.3277359657557675,
+          "deposited_volume_mm3": 584.7515084366086,
+          "deposited_mass_g": 4.79496236918019,
+          "added_section_area_mm2": 4.060774364143115,
+          "equivalent_equal_leg_mm": 2.849833105339018,
+          "entering_wire_enthalpy_J": 5960.138224890977,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36392.802951579615
+        }
+      },
+      "total_section_area_mm2": 7.729624124776439,
+      "total_consumed_wire_mm": 607.4866310160429,
+      "total_consumed_wire_mass_g": 10.141266851706687,
+      "total_deposited_mass_g": 9.12714016653602,
+      "total_entering_wire_enthalpy_J": 11345.035227004271,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73360.84712593691
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.81353088595092,
+          "deposited_volume_mm3": 528.3143655311986,
+          "deposited_mass_g": 4.332177797355829,
+          "added_section_area_mm2": 3.6688497606333237,
+          "equivalent_equal_leg_mm": 2.7088188424600577,
+          "entering_wire_enthalpy_J": 5384.8970021132955,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36968.0441743573
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.470570710146002,
+          "deposited_volume_mm3": 600.4284925770002,
+          "deposited_mass_g": 4.923513639131403,
+          "added_section_area_mm2": 4.1696423095625015,
+          "equivalent_equal_leg_mm": 2.8877819549136676,
+          "entering_wire_enthalpy_J": 6119.927453440333,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36233.013723030264
+        }
+      },
+      "total_section_area_mm2": 7.838492070195825,
+      "total_consumed_wire_mm": 616.0427807486633,
+      "total_consumed_wire_mass_g": 10.28410159609692,
+      "total_deposited_mass_g": 9.255691436487233,
+      "total_entering_wire_enthalpy_J": 11504.82445555363,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73201.05789738757
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.956365630341155,
+          "deposited_volume_mm3": 543.9913496715901,
+          "deposited_mass_g": 4.46072906730704,
+          "added_section_area_mm2": 3.777717706052709,
+          "equivalent_equal_leg_mm": 2.7487152293581483,
+          "entering_wire_enthalpy_J": 5544.68623066265,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36808.254945807945
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.3277359657557675,
+          "deposited_volume_mm3": 584.7515084366086,
+          "deposited_mass_g": 4.79496236918019,
+          "added_section_area_mm2": 4.060774364143115,
+          "equivalent_equal_leg_mm": 2.849833105339018,
+          "entering_wire_enthalpy_J": 5960.138224890977,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36392.802951579615
+        }
+      },
+      "total_section_area_mm2": 7.838492070195825,
+      "total_consumed_wire_mm": 616.0427807486632,
+      "total_consumed_wire_mass_g": 10.284101596096923,
+      "total_deposited_mass_g": 9.25569143648723,
+      "total_entering_wire_enthalpy_J": 11504.824455553626,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73201.05789738757
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.9,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.956365630341155,
+          "deposited_volume_mm3": 543.9913496715901,
+          "deposited_mass_g": 4.46072906730704,
+          "added_section_area_mm2": 3.777717706052709,
+          "equivalent_equal_leg_mm": 2.7487152293581483,
+          "entering_wire_enthalpy_J": 5544.68623066265,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36808.254945807945
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.470570710146002,
+          "deposited_volume_mm3": 600.4284925770002,
+          "deposited_mass_g": 4.923513639131403,
+          "added_section_area_mm2": 4.1696423095625015,
+          "equivalent_equal_leg_mm": 2.8877819549136676,
+          "entering_wire_enthalpy_J": 6119.927453440333,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36233.013723030264
+        }
+      },
+      "total_section_area_mm2": 7.94736001561521,
+      "total_consumed_wire_mm": 624.5989304812836,
+      "total_consumed_wire_mass_g": 10.426936340487156,
+      "total_deposited_mass_g": 9.384242706438442,
+      "total_entering_wire_enthalpy_J": 11664.613684102984,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 73041.26866883821
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 5.010001534357079,
+          "deposited_volume_mm3": 598.7562809353583,
+          "deposited_mass_g": 4.9098015036699385,
+          "added_section_area_mm2": 4.158029728717766,
+          "equivalent_equal_leg_mm": 2.8837578708059963,
+          "entering_wire_enthalpy_J": 6102.883269061734,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37978.74938399949
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.545194576602941,
+          "deposited_volume_mm3": 662.7183762281562,
+          "deposited_mass_g": 5.434290685070882,
+          "added_section_area_mm2": 4.602210946028863,
+          "equivalent_equal_leg_mm": 3.033879017373258,
+          "entering_wire_enthalpy_J": 6754.8233215431055,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37326.809331518125
+        }
+      },
+      "total_section_area_mm2": 8.76024067474663,
+      "total_consumed_wire_mm": 632.2820037105752,
+      "total_consumed_wire_mass_g": 10.55519611096002,
+      "total_deposited_mass_g": 10.34409218874082,
+      "total_entering_wire_enthalpy_J": 12857.70659060484,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75305.55871551762
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 300.1113172541744,
+          "consumed_mass_g": 5.010001534357079,
+          "deposited_volume_mm3": 598.7562809353583,
+          "deposited_mass_g": 4.9098015036699385,
+          "added_section_area_mm2": 4.158029728717766,
+          "equivalent_equal_leg_mm": 2.8837578708059963,
+          "entering_wire_enthalpy_J": 6102.883269061734,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37978.74938399949
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.693859310560123,
+          "deposited_volume_mm3": 680.4856249206,
+          "deposited_mass_g": 5.579982124348921,
+          "added_section_area_mm2": 4.725594617504167,
+          "equivalent_equal_leg_mm": 3.074278652791307,
+          "entering_wire_enthalpy_J": 6935.917780565708,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37145.71487249552
+        }
+      },
+      "total_section_area_mm2": 8.883624346221932,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.703860844917202,
+      "total_deposited_mass_g": 10.48978362801886,
+      "total_entering_wire_enthalpy_J": 13038.801049627442,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75124.464256495
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.1586662683142634,
+          "deposited_volume_mm3": 616.5235296278021,
+          "deposited_mass_g": 5.055492942947978,
+          "added_section_area_mm2": 4.28141340019307,
+          "equivalent_equal_leg_mm": 2.926230818029593,
+          "entering_wire_enthalpy_J": 6283.977728084336,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37797.654924976894
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 332.17068645640074,
+          "consumed_mass_g": 5.545194576602941,
+          "deposited_volume_mm3": 662.7183762281562,
+          "deposited_mass_g": 5.434290685070882,
+          "added_section_area_mm2": 4.602210946028863,
+          "equivalent_equal_leg_mm": 3.033879017373258,
+          "entering_wire_enthalpy_J": 6754.8233215431055,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37326.809331518125
+        }
+      },
+      "total_section_area_mm2": 8.883624346221932,
+      "total_consumed_wire_mm": 641.1873840445269,
+      "total_consumed_wire_mass_g": 10.703860844917205,
+      "total_deposited_mass_g": 10.48978362801886,
+      "total_entering_wire_enthalpy_J": 13038.801049627442,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 75124.46425649502
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.617,
+      "actual_arc_time_each_pass_s": 89.05380333951763,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 309.01669758812614,
+          "consumed_mass_g": 5.1586662683142634,
+          "deposited_volume_mm3": 616.5235296278021,
+          "deposited_mass_g": 5.055492942947978,
+          "added_section_area_mm2": 4.28141340019307,
+          "equivalent_equal_leg_mm": 2.926230818029593,
+          "entering_wire_enthalpy_J": 6283.977728084336,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37797.654924976894
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 341.07606679035246,
+          "consumed_mass_g": 5.693859310560123,
+          "deposited_volume_mm3": 680.4856249206,
+          "deposited_mass_g": 5.579982124348921,
+          "added_section_area_mm2": 4.725594617504167,
+          "equivalent_equal_leg_mm": 3.074278652791307,
+          "entering_wire_enthalpy_J": 6935.917780565708,
+          "net_energy_J": 44081.63265306123,
+          "parent_pool_and_loss_remainder_J": 37145.71487249552
+        }
+      },
+      "total_section_area_mm2": 9.007008017697238,
+      "total_consumed_wire_mm": 650.0927643784786,
+      "total_consumed_wire_mass_g": 10.852525578874387,
+      "total_deposited_mass_g": 10.635475067296898,
+      "total_entering_wire_enthalpy_J": 13219.895508650045,
+      "total_net_energy_J": 88163.26530612246,
+      "total_parent_pool_and_loss_remainder_J": 74943.3697974724
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.81353088595092,
+          "deposited_volume_mm3": 575.2756424673051,
+          "deposited_mass_g": 4.717260268231903,
+          "added_section_area_mm2": 3.9949697393562857,
+          "equivalent_equal_leg_mm": 2.826648099554059,
+          "entering_wire_enthalpy_J": 5863.554513412255,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36489.386663058336
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.3277359657557675,
+          "deposited_volume_mm3": 636.7294202976403,
+          "deposited_mass_g": 5.2211812464406515,
+          "added_section_area_mm2": 4.42173208540028,
+          "equivalent_equal_leg_mm": 2.973796255764769,
+          "entering_wire_enthalpy_J": 6489.9282893257305,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 35863.01288714486
+        }
+      },
+      "total_section_area_mm2": 8.416701824756565,
+      "total_consumed_wire_mm": 607.4866310160429,
+      "total_consumed_wire_mass_g": 10.141266851706687,
+      "total_deposited_mass_g": 9.938441514672554,
+      "total_entering_wire_enthalpy_J": 12353.482802737984,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72352.3995502032
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.37,
+          "wire_length_mm": 288.3422459893049,
+          "consumed_mass_g": 4.81353088595092,
+          "deposited_volume_mm3": 575.2756424673051,
+          "deposited_mass_g": 4.717260268231903,
+          "added_section_area_mm2": 3.9949697393562857,
+          "equivalent_equal_leg_mm": 2.826648099554059,
+          "entering_wire_enthalpy_J": 5863.554513412255,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36489.386663058336
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.470570710146002,
+          "deposited_volume_mm3": 653.7999141394001,
+          "deposited_mass_g": 5.361159295943081,
+          "added_section_area_mm2": 4.540277181523612,
+          "equivalent_equal_leg_mm": 3.01339581917929,
+          "entering_wire_enthalpy_J": 6663.92100485725,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 35689.020171613345
+        }
+      },
+      "total_section_area_mm2": 8.535246920879898,
+      "total_consumed_wire_mm": 616.0427807486633,
+      "total_consumed_wire_mass_g": 10.28410159609692,
+      "total_deposited_mass_g": 10.078419564174984,
+      "total_entering_wire_enthalpy_J": 12527.475518269504,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72178.40683467168
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.956365630341155,
+          "deposited_volume_mm3": 592.3461363090648,
+          "deposited_mass_g": 4.857238317734333,
+          "added_section_area_mm2": 4.1135148354796165,
+          "equivalent_equal_leg_mm": 2.868279915029081,
+          "entering_wire_enthalpy_J": 6037.547228943776,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36315.39394752682
+        },
+        "cover": {
+          "feed_mm_s": 3.73,
+          "wire_length_mm": 319.144385026738,
+          "consumed_mass_g": 5.3277359657557675,
+          "deposited_volume_mm3": 636.7294202976403,
+          "deposited_mass_g": 5.2211812464406515,
+          "added_section_area_mm2": 4.42173208540028,
+          "equivalent_equal_leg_mm": 2.973796255764769,
+          "entering_wire_enthalpy_J": 6489.9282893257305,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 35863.01288714486
+        }
+      },
+      "total_section_area_mm2": 8.535246920879896,
+      "total_consumed_wire_mm": 616.0427807486632,
+      "total_consumed_wire_mass_g": 10.284101596096923,
+      "total_deposited_mass_g": 10.078419564174984,
+      "total_entering_wire_enthalpy_J": 12527.475518269506,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72178.40683467168
+    },
+    {
+      "wire_diameter_mm": 1.61,
+      "deposition_efficiency": 0.98,
+      "travel_mm_s": 1.6829999999999998,
+      "actual_arc_time_each_pass_s": 85.56149732620322,
+      "passes": {
+        "root": {
+          "feed_mm_s": 3.4699999999999998,
+          "wire_length_mm": 296.89839572192517,
+          "consumed_mass_g": 4.956365630341155,
+          "deposited_volume_mm3": 592.3461363090648,
+          "deposited_mass_g": 4.857238317734333,
+          "added_section_area_mm2": 4.1135148354796165,
+          "equivalent_equal_leg_mm": 2.868279915029081,
+          "entering_wire_enthalpy_J": 6037.547228943776,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 36315.39394752682
+        },
+        "cover": {
+          "feed_mm_s": 3.8299999999999996,
+          "wire_length_mm": 327.70053475935833,
+          "consumed_mass_g": 5.470570710146002,
+          "deposited_volume_mm3": 653.7999141394001,
+          "deposited_mass_g": 5.361159295943081,
+          "added_section_area_mm2": 4.540277181523612,
+          "equivalent_equal_leg_mm": 3.01339581917929,
+          "entering_wire_enthalpy_J": 6663.92100485725,
+          "net_energy_J": 42352.941176470595,
+          "parent_pool_and_loss_remainder_J": 35689.020171613345
+        }
+      },
+      "total_section_area_mm2": 8.653792017003228,
+      "total_consumed_wire_mm": 624.5989304812836,
+      "total_consumed_wire_mass_g": 10.426936340487156,
+      "total_deposited_mass_g": 10.218397613677414,
+      "total_entering_wire_enthalpy_J": 12701.468233801026,
+      "total_net_energy_J": 84705.88235294119,
+      "total_parent_pool_and_loss_remainder_J": 72004.41411914016
+    }
+  ],
+  "sources": [
+    "studies/COMPETITION-DESIGN/delivery_section_envelope.py",
+    "studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json",
+    "deliverables/process/joint-process-card.json",
+    "project/submission-baseline.yaml",
+    "src/hanjie/domain/following_tools.py",
+    "src/hanjie/domain/tooling_access.py:83",
+    "cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json"
+  ]
+}

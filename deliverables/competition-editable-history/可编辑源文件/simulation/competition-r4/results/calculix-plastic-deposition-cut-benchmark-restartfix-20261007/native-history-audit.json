@@ -1,0 +1,55 @@
+{
+  "native_history": {
+    "substrate_initial_plastic_strain": 0.001174115,
+    "substrate_predeposit_plastic_strain": 0.00257,
+    "deposit_substrate_plastic_difference": 0.0,
+    "coherent_deposit_plastic_max": 0.0,
+    "cold_deposit_plastic_range": [
+      0.001976389,
+      0.002094839
+    ],
+    "retained_substrate_cold_cut_plastic_difference": 0.0,
+    "removed_element_ids": [
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "cut_remaining_integration_points": 480,
+    "cut_original_integration_points": 640,
+    "cut_material_volume_mm3": 10.0,
+    "unload_displacement_difference_mm": 1.2159833e-16,
+    "unload_stress_difference_MPa": 1.2785917e-11,
+    "unload_plastic_difference": 0.0
+  },
+  "actual_binary_cold_restart_difference": {
+    "u": 0.0,
+    "stress": 0.0,
+    "peeq": 0.0,
+    "me": 0.0
+  },
+  "native_plastic_deposition_cut_history_passed": true,
+  "actual_first_layer_joint_passed": false,
+  "full_manufacturing_chain_passed": false,
+  "scope": "Tool manufacturing-history qualification only; substrate plasticity, stress-free new solid addition, physical element removal and cold restart. No calibrated weld source, melting law, deposit mass/reference geometry, PMZ capacity or full component response is qualified here.",
+  "sources": [
+    "https://www.dhondt.de/",
+    "CalculiX 2.23 official manual *MODEL CHANGE / *PLASTIC / *RESTART"
+  ]
+}

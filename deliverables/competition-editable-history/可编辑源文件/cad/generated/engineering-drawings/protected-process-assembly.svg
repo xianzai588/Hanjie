@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">连续防护、承力组件与退出路径</text>
+<text x="50" y="99" class="small">下工装固定；枪丝/副环先各升150，芯组再升260；抽头退位后壳随A托环升140，盘朝上</text>
+<text x="1020" y="65" class="section">HJ-004</text>
+<rect x="110.0" y="220.0" width="11.25" height="450.0" fill="#cbd5e1" stroke="#334155"/>
+<rect x="121.29499999999999" y="411.25" width="123.70500000000001" height="33.75" fill="#efd18b" stroke="#334155"/>
+<rect x="213.5" y="445.0" width="18.0" height="22.5" fill="#9baeb7" stroke="#334155"/>
+<rect x="121.70000000000002" y="446.125" width="6.75" height="20.25" fill="#d9ad83" stroke="#334155"/>
+<rect x="121.20500000000001" y="447.25" width="0.49499999999999744" height="8.4375" fill="#059669" stroke="#334155"/>
+<circle cx="125.07500000000002" cy="463.0" r="1.6875" fill="#ffffff" stroke="#2563eb"/>
+<rect x="458.75" y="220.0" width="11.25" height="450.0" fill="#cbd5e1" stroke="#334155"/>
+<rect x="335.0" y="411.25" width="123.70500000000001" height="33.75" fill="#efd18b" stroke="#334155"/>
+<rect x="348.5" y="445.0" width="18.0" height="22.5" fill="#9baeb7" stroke="#334155"/>
+<rect x="451.54999999999995" y="446.125" width="6.75" height="20.25" fill="#d9ad83" stroke="#334155"/>
+<rect x="458.29999999999995" y="447.25" width="0.49499999999999744" height="8.4375" fill="#059669" stroke="#334155"/>
+<circle cx="454.92499999999995" cy="463.0" r="1.6875" fill="#ffffff" stroke="#2563eb"/>
+<rect x="121.70000000000002" y="466.6" width="6.75" height="3.375" fill="#8cb6ae" stroke="#334155"/>
+<rect x="123.5" y="472.9225" width="16.875" height="13.5" fill="#4f9ea3" stroke="#334155"/>
+<rect x="451.54999999999995" y="466.6" width="6.75" height="3.375" fill="#8cb6ae" stroke="#334155"/>
+<rect x="439.625" y="472.9225" width="16.875" height="13.5" fill="#4f9ea3" stroke="#334155"/>
+<rect x="123.5" y="470.6725" width="333.0" height="2.25" fill="#4f9ea3" stroke="#334155"/>
+<rect x="209.0" y="458.5" width="162.0" height="31.5" fill="#9baeb7" stroke="#334155"/>
+<rect x="128.0" y="490.0" width="324.0" height="225.0" fill="#9baeb7" stroke="#334155"/>
+<rect x="211.25" y="175.0" width="157.5" height="236.25" fill="#8cb6ae" stroke="#334155"/>
+<line x1="380.0" y1="481.0" x2="380.0" y2="692.5" stroke="#176b7b" stroke-width="3"/>
+<polygon points="373.25,683.50 386.75,683.50 380.00,697.00" fill="#176b7b" stroke="#334155"/>
+<text x="65" y="155" class="small">同轴工序剖面，翼片方向简化投影</text>
+<text x="65" y="698" class="small">枪丝/副环各升150→止挡开/套退1/铜退1.10→芯组升260→四头退15→壳环升140</text>
+<text x="640" y="167" class="small">刚性盘Ø148；底板1；底面z87.59</text>
+<text x="640" y="205" class="small">C11000四瓣铜环149.60/143.60，z90.5～99.5</text>
+<text x="640" y="243" class="small">上圈Ø2.50；独立整环下圈Ø1.00</text>
+<text x="640" y="281" class="small">水道Ø1.10/1.40，≥0.60 L/min；气水隔离</text>
+<text x="640" y="319" class="small">气道3×2；12孔Ø1.0向上；10～15 L/min</text>
+<text x="640" y="357" class="small">静态密封与盘面截留颗粒；气幕辅助导流</text>
+<text x="640" y="395" class="small">胀套上提后至抬起壳口净隙19.8；固定反锥不升降</text>
+<text x="640" y="433" class="small">焊枪30°弯头＋竖直枪体；喷嘴Ø10</text>
+<text x="640" y="471" class="small">送丝按HJ-002；当前顶部抽吸详HJ-009</text>
+<text x="640" y="509" class="small">所建模焊枪／送丝最小间距 2.17</text>
+<text x="640" y="547" class="small">执行互锁：防护在位、底口开放、轨迹确认</text>
+<text x="640" y="585" class="small">上止挡打开/胀套上退→上部上提→抽口径退→壳体上提</text>
+<text x="640" y="623" class="small">干态内窥与全表面颗粒检测纳入验收</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：C11000 / 304</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
+</svg>

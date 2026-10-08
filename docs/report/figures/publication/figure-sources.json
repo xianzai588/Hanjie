@@ -1,0 +1,172 @@
+{
+  "purpose": "比赛说明书插图；可编辑脚本与矢量输出",
+  "palette": {
+    "navy": "#24364B",
+    "teal": "#3F6B68",
+    "ochre": "#A48352",
+    "background": "white"
+  },
+  "fonts": {
+    "sans": "assets/fonts/NotoSansSC-Regular.ttf",
+    "serif": "assets/fonts/NotoSerifSC-Regular.ttf"
+  },
+  "figure_text_size_pt": "7.0–9.2，正文图注在排版文件内另设",
+  "figures": {
+    "design-route": {
+      "description": "基准圆环、八翼候选及分工序制造路线",
+      "files": [
+        "design-route.png",
+        "design-route.svg",
+        "design-route.pdf"
+      ],
+      "width_mm": 170,
+      "height_mm": 100.0,
+      "png_dpi": 300,
+      "sources": [
+        "project/submission-baseline.yaml",
+        "deliverables/process/ring-final-welding-card.json",
+        "project/competition-design.yaml"
+      ],
+      "kind": "design_schematic",
+      "scale": "俯视形态示意，非加工尺寸图",
+      "comparison": "连续圆环为基准，八翼开口为创新候选；八段焊缝是焊缝布局",
+      "primary_calculation_object": "完整圆环座体",
+      "ring_actual_path_per_segment_mm": 20,
+      "ring_effective_segment_length_mm": 18,
+      "ring_total_actual_path_mm": 320,
+      "ring_net_heat_kJ": 96,
+      "ring_arc_on_s": 193.93939393939394
+    },
+    "process-comparison": {
+      "description": "四种主流工艺的定性条件比较",
+      "files": [
+        "process-comparison.png",
+        "process-comparison.svg",
+        "process-comparison.pdf"
+      ],
+      "width_mm": 170,
+      "height_mm": 95.0,
+      "png_dpi": 300,
+      "sources": [
+        "deliverables/report/technical-report-v4-unified.md §1.1",
+        "deliverables/process/ring-final-welding-card.json",
+        "https://www.twi-global.com/technical-knowledge/job-knowledge/tungsten-inert-gas-tig-or-gta-welding-006",
+        "https://www.twi-global.com/technical-knowledge/job-knowledge/plasma-arc-welding-007",
+        "https://www.twi-global.com/technical-knowledge/faqs/faq-what-are-the-common-defects-in-laser-welding-of-structural-steels-and-how-do-i-avoid-them",
+        "https://www.twi-global.com/technical-knowledge/faqs/faq-what-is-pulsed-mig-mag-welding-and-what-are-its-advantages-over-conventional-mig-mag-processes"
+      ],
+      "kind": "qualitative_evidence_comparison",
+      "primary_object": "完整圆环座体",
+      "score": null,
+      "scope": "通用工艺机理结合本接头设计条件；不作同实体已验证性能排名"
+    },
+    "precision-budget": {
+      "description": "50微米直径位置度预算",
+      "files": [
+        "precision-budget.png",
+        "precision-budget.svg",
+        "precision-budget.pdf"
+      ],
+      "width_mm": 170,
+      "height_mm": 85.0,
+      "png_dpi": 300,
+      "sources": [
+        "project/submission-baseline.yaml precision",
+        "deliverables/process/ring-final-welding-card.json precision_budget",
+        "deliverables/report/technical-report-v4-unified.md §4.1"
+      ],
+      "kind": "design_allocation",
+      "primary_object": "完整圆环座体",
+      "unit": "μm, diameter",
+      "values": {
+        "nonthermal": 28.0,
+        "measurement_U_target": 2.0,
+        "limited_honing_axis_allocation": 6.5,
+        "thermal_residual_limit": 13.5,
+        "sum": 50.0
+      },
+      "measured_pass_claim": false
+    },
+    "station-resources": {
+      "description": "完整圆环小批试制的预制缓冷和检测资源规划",
+      "files": [
+        "station-resources.png",
+        "station-resources.svg",
+        "station-resources.pdf"
+      ],
+      "width_mm": 170,
+      "height_mm": 95.0,
+      "png_dpi": 300,
+      "sources": [
+        "deliverables/process/ring-final-welding-card.json resource_planning",
+        "deliverables/process/ring-final-welding-card.md §5",
+        "deliverables/process/pilot-production-and-resource-card.md"
+      ],
+      "kind": "capacity_planning",
+      "calculated_object": "完整圆环座体",
+      "target_parts_per_shift": 8,
+      "shift_h": 8,
+      "feed_interval_s": 3600,
+      "thermal_slot_reserved_h_each_layer": 10,
+      "thermal_slot_basis_h": {
+        "cooling_300_to_20_at_50C_per_h": 5.6,
+        "hold": 2,
+        "heating_and_transfer_reserve": 2.4
+      },
+      "positions": {
+        "first_cycle_reserved": 10,
+        "second_cycle_reserved": 10,
+        "delayed_PT_wait": 24,
+        "total": 44
+      },
+      "heat_slots_are_planning_not_thermal_history_results": true,
+      "actual_capacity_verified": false
+    },
+    "precoat-section": {
+      "description": "铸铁到钢壳的分层材料链及加工顺序",
+      "files": [
+        "precoat-section.png",
+        "precoat-section.svg",
+        "precoat-section.pdf"
+      ],
+      "width_mm": 170,
+      "height_mm": 95.0,
+      "png_dpi": 300,
+      "sources": [
+        "project/submission-baseline.yaml material_route",
+        "cad/generated/ring-baseline/ring-precoat-design.json",
+        "deliverables/process/ring-final-welding-card.json"
+      ],
+      "kind": "section_schematic",
+      "primary_object": "完整圆环座体8个局部预制窗口",
+      "not_to_scale": true,
+      "material_chain": [
+        "QT450-10",
+        "CI-A1首层",
+        "低碳Ni99第二层",
+        "NiFe55最终焊缝",
+        "Q235B"
+      ],
+      "precoat_window": {
+        "count": 8,
+        "center_radius_mm": 71.98,
+        "center_arc_length_mm": 24.0,
+        "arc_length_tolerance_mm": 0.5,
+        "radial_width_mm": 6.0,
+        "radial_width_tolerance_mm": 0.1,
+        "groove_depth_mm": 1.5,
+        "groove_depth_tolerance_mm": 0.1,
+        "inner_bottom_radius_mm": 1.5,
+        "outer_boundary": "贯通至实际座体外缘，不留裸露QT窄边",
+        "first_layer_machining_excess_height_mm": 0.2,
+        "maximum_rectangular_volume_with_excess_mm3": 269.01,
+        "design_density_g_mm3": 0.00889,
+        "maximum_first_layer_demand_per_window_g": 2.3914989
+      },
+      "first_layer_travel_speed_mm_min": 80,
+      "second_layer_paths": 3,
+      "actual_macrosection_claim": false,
+      "machining_sequence": "两层壳外预制及检查后，最终孔和连接面加工，清洗干燥后入壳组焊"
+    }
+  }
+}

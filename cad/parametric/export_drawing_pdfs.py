@@ -14,13 +14,16 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from reportlab.lib.colors import HexColor
+from reportlab.lib.colors import HexColor, Color
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.pdfgen.canvas import Canvas
 
 ROOT = Path(__file__).resolve().parents[2]
 SVG_DIR = ROOT / "cad" / "generated" / "engineering-drawings"
 PDF_DIR = SVG_DIR / "pdf"
+PAPER_GRAYSCALE = "--paper-grayscale" in __import__("sys").argv
+if PAPER_GRAYSCALE:
+    PDF_DIR = SVG_DIR / "pdf-paper"
 NS = "{http://www.w3.org/2000/svg}"
 COMBINED_NAME = "HJ-DRW-drawing-set.pdf"
 import sys
@@ -45,10 +48,63 @@ def parse_css(css_text: str) -> dict[str, dict[str, str]]:
     return rules
 
 
-def color(value: str | None):
+def color(value: str | None, role: str = "fill"):
     if not value or value == "none":
         return None
-    return HexColor(value)
+    parsed=HexColor(value)
+    if not PAPER_GRAYSCALE:
+        return parsed
+    if role in {"stroke","text"}:
+        return Color(0,0,0)
+    gray=0.2126*parsed.red+0.7152*parsed.green+0.0722*parsed.blue
+    return Color(gray,gray,gray)
+
+
+def monochrome_pdf(source: Path, destination: Path) -> None:
+    """Change only PDF color operators; keep CAD paths, text, and page geometry."""
+    from pypdf import PdfReader, PdfWriter
+    from pypdf.generic import ContentStream, FloatObject, NameObject
+    reader=PdfReader(source)
+    writer=PdfWriter()
+    for page in reader.pages:
+        contents=ContentStream(page.get_contents(),reader)
+        operations=[]
+        in_text=False
+        fill_gray=0.0
+        stack=[]
+        for operands,operator in contents.operations:
+            if operator==b'q':stack.append(fill_gray)
+            elif operator==b'Q' and stack:fill_gray=stack.pop()
+            if operator==b'BT':
+                in_text=True
+                operations.append((operands,operator))
+                operations.append(([FloatObject(0)],b'g'))
+                continue
+            if operator==b'ET':
+                in_text=False
+                operations.append((operands,operator))
+                operations.append(([FloatObject(fill_gray)],b'g'))
+                continue
+            if operator in (b'RG',b'G',b'K'):
+                operations.append(([FloatObject(0)],b'G'))
+                continue
+            if operator in (b'rg',b'g',b'k'):
+                values=[float(v) for v in operands]
+                if operator==b'rg':gray=0.2126*values[0]+0.7152*values[1]+0.0722*values[2]
+                elif operator==b'k':
+                    c,m,y,k=values;gray=0.2126*(1-c)*(1-k)+0.7152*(1-m)*(1-k)+0.0722*(1-y)*(1-k)
+                else:gray=values[0]
+                if not in_text:fill_gray=gray
+                operations.append(([FloatObject(0 if in_text else gray)],b'g'))
+                continue
+            operations.append((operands,operator))
+        contents.operations=operations
+        page[NameObject('/Contents')]=contents
+        writer.add_page(page)
+    metadata={key:str(value) for key,value in (reader.metadata or {}).items() if value is not None}
+    metadata['/Author']=''
+    writer.add_metadata(metadata)
+    with destination.open('wb') as stream:writer.write(stream)
 
 
 def dash_array(value: str | None, scale: float) -> list[float] | None:
@@ -90,7 +146,7 @@ def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float,
         attrib = dict(element.attrib)
         cls = attrib.get("class", "")
         style = style_for(rules, tag, cls, attrib)
-        stroke = color(style.get("stroke"))
+        stroke = color(style.get("stroke"),"stroke")
         fill = color(style.get("fill"))
         width = max(float(style.get("stroke-width", "1")) * scale, 0.35)
         dash = dash_array(style.get("stroke-dasharray"), scale)
@@ -99,7 +155,7 @@ def export_sheet(svg_path: Path, canvas: Canvas, page_pw: float, page_ph: float,
                 title = element.text or ""
             size = float(style.get("font-size", "14").removesuffix("px")) * scale
             canvas.setFont("HanjieCN-Bold" if style.get("font-weight") == "700" else "HanjieCN",size)
-            canvas.setFillColor(fill or HexColor("#111827"))
+            canvas.setFillColor(color(style.get("fill") or "#111827","text"))
             text = element.text or ""
             anchor = attrib.get("text-anchor", "start")
             if anchor == "middle":
@@ -174,7 +230,7 @@ def main() -> None:
         canvas.setAuthor('')
         title = export_sheet(svg_path, canvas, page_pw, page_ph, rules)
         canvas.setFont("HanjieCN",7)
-        canvas.setFillColor(HexColor("#475569"))
+        canvas.setFillColor(Color(0,0,0) if PAPER_GRAYSCALE else HexColor("#475569"))
         canvas.drawCentredString(
             page_pw / 2, 10,
             f"HJ 参赛工艺设计图集 · {today} · 第 {hj_number(svg_path)}/{total_count} 页",
@@ -184,8 +240,9 @@ def main() -> None:
         # 报告插图来自同一矢量图纸，避免再次手工绘制产生尺寸分叉。
         import pymupdf
         with pymupdf.open(pdf_path) as preview:
-            preview[0].get_pixmap(dpi=150).save(str(svg_path.with_suffix(".png")))
-        sheets.append({"pdf": f"pdf/{pdf_path.name}", "title": title, "source": svg_path.name,
+            preview_path=(PDF_DIR/(svg_path.stem+".png")) if PAPER_GRAYSCALE else svg_path.with_suffix(".png")
+            preview[0].get_pixmap(dpi=150).save(str(preview_path))
+        sheets.append({"pdf": f"{PDF_DIR.name}/{pdf_path.name}", "title": title, "source": svg_path.name,
                        "number":hj_number(svg_path)})
 
     # HJ-017 is a validated vector PDF from the curved CAD workflow. Keep
@@ -196,8 +253,11 @@ def main() -> None:
         source_pdf=ROOT/external['pdf']
         destination=PDF_DIR/source_pdf.name
         import shutil
-        shutil.copyfile(source_pdf,destination)
-        sheets.append(dict(pdf=f'pdf/{destination.name}',title=external['title'],
+        if PAPER_GRAYSCALE:
+            monochrome_pdf(source_pdf,destination)
+        else:
+            shutil.copyfile(source_pdf,destination)
+        sheets.append(dict(pdf=f'{PDF_DIR.name}/{destination.name}',title=external['title'],
                            source=external['pdf'],number=external['number']))
     sheets.sort(key=lambda item:item['number'])
     combined=PdfWriter()
@@ -212,7 +272,8 @@ def main() -> None:
         "status": "design-review; not manufacturing release",
         "page_size": "A4/A3 landscape, vector; actual page box in each sheet",
         "sheet_count": len(sheets),
-        "combined": f"pdf/{COMBINED_NAME}",
+        "palette": "black lines and text; grayscale fills" if PAPER_GRAYSCALE else "source SVG colors",
+        "combined": f"{PDF_DIR.name}/{COMBINED_NAME}",
         "sheets": sheets,
     }
     (PDF_DIR / "pdf-exports.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")

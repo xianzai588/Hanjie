@@ -2,8 +2,8 @@
 <style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
 <rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
 <rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
-<text x="50" y="68" class="title">自动焊接工作站与工装资源配置</text>
-<text x="50" y="99" class="small">孔内工装保持至温度释放门；上提转运后同一A托环保持至20±1℃，测量前再解除</text>
+<text x="50" y="68" class="title">自动焊接工作站与小批资源配置</text>
+<text x="50" y="99" class="small">主线：8件/8 h，供料3600 s；焊接子程序462.5 s；完整夹具循环≥702.5 s＋退出/温控延长</text>
 <text x="1020" y="65" class="section">HJ-008</text>
 <rect x="60" y="240" width="200" height="140" fill="#e7f1f5" stroke="#334155"/>
 <text x="75" y="280" class="section">装配</text>
@@ -17,8 +17,8 @@
 <text x="935" y="280" class="section">独立检测</text>
 <text x="75" y="320" class="small">清洗、装夹120 s</text>
 <text x="290" y="320" class="small">两道8段</text>
-<text x="290" y="347" class="small">1头，站占用462.5 s</text>
-<text x="505" y="320" class="small">保持胀套和压环</text>
+<text x="290" y="347" class="small">1头，焊接子程序462.5 s</text>
+<text x="505" y="320" class="small">末弧保持至少120 s</text>
 <text x="720" y="320" class="small">底座保持至20±1℃</text>
 <text x="935" y="320" class="small">CMM独立A/B</text>
 <text x="935" y="347" class="small">微珩前/后各CMM360 s</text>
@@ -29,17 +29,18 @@
 <line x1="905" y1="310" x2="918" y2="310" stroke="#176b7b" stroke-width="3"/>
 <rect x="345" y="430" width="500" height="95" fill="#f8fafc" stroke="#334155"/>
 <text x="368" y="463" class="small">机器人沿线移位；固定定位窝，工件/水管不旋转</text>
-<text x="368" y="498" class="small">安全PLC：防护门、夹紧、气幕、保护气、漏水、轨迹</text>
-<text x="80" y="590" class="small">焊接站462.5 s；装配120；需微珩时CMM2×360 s（≥2站）＋微珩200 s（≥1站）</text>
-<text x="80" y="625" class="small">固定定位窝数按 N≥ceil[(120＋工装释放时刻＋60)/462.5]；环境缓冲位另计</text>
-<text x="80" y="660" class="small">PT单件33～68 min：≥9等待位；UT600 s/件：≥2工位；检测人员≥5当量</text>
-<text x="80" y="691" class="small">逐件干态300 s：≥1位置；1800 s液体提取只用于牺牲样，独立实验室</text>
+<text x="368" y="498" class="small">完整循环≥120＋462.5＋120＝702.5 s；80%站上限≤4.10件/h</text>
+<text x="80" y="565" class="small">首层8独立温控位＋第二层9预留位＋延迟PT24位＝41位；PT/转运/环境冷却另配</text>
+<text x="80" y="596" class="small">4人轮岗；MMA、第二层GTAW、铣削、最终单头、PT、UT、CMM及干态内窥各1站</text>
+<text x="80" y="625" class="small">固定窝按 N≥ceil[(120＋释放时刻＋60)/3600]；环境冷却位按真实占用/3600向上取整</text>
+<text x="80" y="654" class="small">每阶段PT≥2等待位；UT600、CMM360、干态300 s；微珩分支CMM2×360＋微珩200 s</text>
+<text x="80" y="682" class="small">462.5 s供料属焊接子程序扩产对照（6.23/h）；完整站另计退出/温控与PT等资源</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
 <line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
 <text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
-<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
 <text x="572" y="742" class="small">比例：NTS（不按比例）</text>
 <text x="572" y="764" class="small">视图NTS；不得量图取值</text>
 <text x="772" y="742" class="small">材料：装配材料见明细</text>

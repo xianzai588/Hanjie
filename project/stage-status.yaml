@@ -1,23 +1,86 @@
 version: STAGE-STATUS-1.0
-updated: '2026-10-06'
+updated: '2026-10-08'
 authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
 route_b:
   selected: true
   experimental_data_required: false
-  objective: 固定题工艺设计的数值与工程验证；正式冻结依据R4完全冷却、卸夹及精度核验
+  objective: 焊接固定题报告与工程图交付；以有效接头和完整制造状态支撑设计判断
+  submission_object: 8P-R2-t15八翼柔顺槽座体与八段两道连接
+  submission_baseline_source: project/submission-baseline.yaml
   current_research_stage: COMPETITION-R4
-  main_route: 独立CI-A1高镍预制—8P低热输入GTAW—铜环实体屏障
+  active_submission_stage: COMPETITION-DELIVERY-20261008
+  main_route: CI-A1独立高镍首层—低碳Ni99第二层—8P低热GTAW—铜环实体屏障
+  adopted_fixture: 原详细设计门架、内锥胀套、托环与铜环
   active_plan: deliverables/competition-route.md
+  next_action: 本轮有限工程与当前交付已通过新独立定向终审，工程文件冻结；适用新输入或真实工程变化时审查，再决定有限制造链。无变化不重复读取、重问、打包或计算。
   historical_next_actions_are_active: false
-  dormant_comparators: [CI-A2, 6P, Continuous, laser, external_plug, microplasma]
+  dormant_comparators:
+  - complete_ring
+  - short_beam_fixture
+  - CI-A2
+  - 6P
+  - Continuous
+  - laser
+  - external_plug
+  - microplasma
   candidate_state_source: deliverables/process/current-candidate-state.md
   thermal_diagnostic_budget_exhausted: true
   frozen_work:
   - app_expansion
   - vision_network_expansion
   - uncalibrated_monte_carlo
-  supersedes: 历史Plan7以实物热电偶裁决的退出策略；物理验证协议保留但不作为当前计划依赖
+  - general_solidification_solver_expansion
+  - finite_strain_solver_expansion
+  - new_candidate_expansion
+  supersedes: 圆环替换主结构与短梁替换完整工装；实物确认协议保留为后续实施，不阻断报告与工程图交付
 stages:
+  COMPETITION-DELIVERY-20261008:
+    physical_object: 8P-R2-t15八翼柔顺槽座体；每翼18 mm实际路径、16 mm稳定有效连接
+    execution_status: finite_supply_pass_allocation_native_interface_and_affected_delivery_review_complete
+    acceptance_result: document_package_complete_core_joint_manufacturing_precision_and_strength_unaccepted
+    evidence_level: engineering_design_with_registered_calculation_status
+    experimental_data_required: false
+    current_design_evidence: true
+    evidence:
+    - project/submission-baseline.yaml
+    - deliverables/report/technical-report-v4-unified.md
+    - deliverables/process/calculation-index.md
+    - deliverables/process/current-candidate-state.md
+    - simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json
+    - deliverables/process/shell-datum-and-cmm-execution-card.md
+    - deliverables/process/gas-water-fault-execution-card.md
+    - cad/generated/engineering-supplements-20261007/pressure-interface-clearance.json
+    - docs/review/final-delivery-audit-20261008.md
+    - docs/review/evidence-transfer-20261008.md
+    - docs/review/macroscopic-manufacturing-plan-20261008.md
+    - docs/review/macroscopic-input-independent-review-20261008.md
+    - studies/COMPETITION-DESIGN/results/section-forming-envelope-20261008.json
+    - cad/generated/competition-design/assembly-coverage-20261008.json
+    - docs/review/final-limited-correction-audit-20261008.md
+    - studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json
+    - studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
+    - docs/review/native-interface-adaptation-20261008.md
+    - docs/review/second-round-input-independent-audit-20261008.md
+    - docs/review/second-round-final-delivery-audit-20261008.md
+    allowed_use: 参赛说明书、分工序pWPS和当前工程图；文件成套与实际指标资格分别验收
+    upstream_dependencies: []
+    next_action: 当前102页/46项主包及240项编辑历史包已独立定向审阅，6处同步缺陷全部闭合。文件冻结，新制造FE0；整体性能仍未验收。下一步仅由适用新来源或工程变化触发，记录元数据更新不重启审核。
+  SUBMISSION-RING-20261008:
+    physical_object: 完整圆环比较对象；局部预制窗与8×20 mm两道组焊
+    record_role: dormant_comparator
+    current_design_evidence: false
+    execution_status: nominal_geometry_process_cards_and_analytical_screening_completed
+    acceptance_result: joint_manufacturing_precision_and_strength_not_verified
+    evidence_level: engineering_design_inputs_and_analytical_screening
+    experimental_data_required: false
+    evidence:
+    - cad/generated/ring-baseline/geometry-quality-and-mass.json
+    - cad/generated/ring-baseline/ring-precoat-design.json
+    - studies/COMPETITION-DESIGN/results/ring-control-screening.json
+    - studies/COMPETITION-DESIGN/results/ring-fixture-feasibility.json
+    allowed_use: 圆环名义几何、供料热量及解析条件比较；假设冻结温差不代表制造残余响应
+    upstream_dependencies: []
+    next_action: 保留历史比较，停止加入活动主链
   COMPETITION-R3:
     execution_status: full_part_thermal_structural_solver_completed_coarse_and_independent_mesh_check
     acceptance_result: design_checks_passed_physical_performance_unverified
@@ -293,12 +356,17 @@ stages:
     - SERVICE
     optional_physical_dependencies:
     - EXP-FINAL
-    next_action: 当前8P仅为可复用候选；采用与提交结论由COMPETITION-R4有效接头、制造和承载闭环决定
+    next_action: 8P为现行主方案；采用身份与计算通过状态分开，后续由COMPETITION-R4有效接头、制造和承载结果修订工艺
   COMPETITION-R4:
+    physical_object: 8P-R2-t15八翼柔顺槽座体现行主方案
+    record_role: current_competition_baseline
+    current_design_evidence: true
     competition_entry_document_complete: true
     competition_entry: deliverables/焊接固定题-参赛设计报告包.zip
     current_precoat_pWPS: project/precoat-process-design.yaml
-    execution_status: in_progress_literature_anchored_first_interface_model_revision
+    baseline_source: project/submission-baseline.yaml
+    physical_experiments_required_for_document_delivery: false
+    execution_status: public_evidence_and_local_forming_review_thermal_history_unqualified
     final_release: blocked_pending_joint_manufacturing_and_strength_evidence
     acceptance_result: not_accepted_connection_and_full_state_verification_required
     evidence_level: numerical_design_verification_in_progress
@@ -311,4 +379,4 @@ stages:
     upstream_dependencies:
     - COMPETITION-DESIGN
     - SCHAEFFLER-MAP
-    next_action: 文献净热依据已验证；修正一翼沉积包络/源分布的温区适用性，停止追加材料与功率扫描。有效热连接及保留状态成立后推进制造链，PMZ容量仅单独约束完整强度结论
+    next_action: 本轮目录棒材/一次分道/有限原生冷态去料准备已实现；新独立审核仍不准入制造性能FE。待适用熔合、高温响应、真实熔凝参考及合格冷态/完整初始拓扑形成后再审核有限链；不重跑功能基准或扩大搜索/平台。

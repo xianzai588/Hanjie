@@ -46,7 +46,7 @@
 <rect x="655" y="500" width="205" height="70" fill="#eaf4f5" stroke="#334155"/>
 <rect x="945" y="500" width="150" height="70" fill="#eaf4f5" stroke="#334155"/>
 <text x="95" y="540" class="small">A：壳体下端安装面</text>
-<text x="385" y="540" class="small">B：内壁双测量带轴线</text>
+<text x="385" y="540" class="small">B1 z20～30 / B2 z170～180</text>
 <text x="675" y="540" class="small">C：只识别周向焊段</text>
 <text x="965" y="540" class="small">冷态复测</text>
 <line x1="280" y1="535" x2="350" y2="535" stroke="#176b7b" stroke-width="2"/>
@@ -57,7 +57,7 @@
 <polygon points="930.00,535.00 922.00,530.00 922.00,540.00" fill="#176b7b" stroke="#334155"/>
 <text x="70" y="625" class="section">三、工序检验与处置条件</text>
 <text x="90" y="660" class="small">Ø40孔轴：位置度 Ø0.05，相对A、B；测量长度15 mm</text>
-<text x="90" y="686" class="small">焊脚 z≥3.50；单段18；八段总长144 mm</text>
+<text x="90" y="686" class="small">稳定焊脚 z≥3.80；实际18/段；稳定16/段，总有效128 mm</text>
 <text x="630" y="660" class="small">外缘 Ø149.94～149.98；壳体内径 Ø150.00～150.02</text>
 <text x="630" y="686" class="small">检查记录需绑定图号、批次、温度曲线和复测结果</text>
 <line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
@@ -65,7 +65,7 @@
 <line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
 <line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
 <text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
-<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书§7执行</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
 <text x="572" y="742" class="small">比例：NTS（不按比例）</text>
 <text x="572" y="764" class="small">视图NTS；不得量图取值</text>
 <text x="772" y="742" class="small">材料：装配材料见明细</text>

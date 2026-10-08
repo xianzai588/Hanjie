@@ -15,7 +15,9 @@ process:
     heat_input_j_per_mm: 300
     preheat_c: 20
     interpass_limit_c: 100
-    filler_feed_rate_mm_s: 3.5
+    filler_feed_rate_mm_s: 3.6
+    filler_feed_role: 两道等长平均核算，执行根3.42/盖3.78±0.05 mm/s
+    pass_feed_mm_s: {root: 3.42, cover: 3.78}
     filler_diameter_mm: 1.6
     shielding_gas: 99.999% Ar
     gas_flow_rate_l_min: 10.0

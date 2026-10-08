@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<style>text{font-family:"Microsoft YaHei";font-size:17px;fill:#183247}.title{font-size:28px;font-weight:700}.small{font-size:14px}.section{font-size:21px;font-weight:700;fill:#176b7b}</style>
+<rect x="0" y="0" width="1200" height="800" fill="#ffffff" stroke="#334155"/>
+<rect x="25" y="25" width="1150" height="750" fill="#ffffff" stroke="#334155"/>
+<text x="50" y="68" class="title">铜瓣接缝、滑动桥及整环下密封座</text>
+<text x="50" y="99" class="small">本页为HJ-004/HJ-007配套装配详图；关键尺寸单独标注，不采用未注公差</text>
+<text x="1020" y="65" class="section">HJ-010</text>
+<text x="65" y="155" class="section">A：上槽接缝展开（NTS）</text>
+<rect x="75" y="210" width="185" height="80" fill="#d9ad83" stroke="#334155"/>
+<rect x="340" y="210" width="185" height="80" fill="#d9ad83" stroke="#334155"/>
+<rect x="185" y="228" width="220" height="35" fill="#8cb6ae" stroke="#334155"/>
+<circle cx="210" cy="245" r="5" fill="#334155" stroke="#334155"/>
+<line x1="350" y1="280" x2="400" y2="280" stroke="#176b7b" stroke-width="3"/>
+<text x="355" y="312" class="small">滑动端 →</text>
+<text x="75" y="340" class="small">接缝2.00±0.05；桥316L厚0.50±0.02</text>
+<text x="75" y="370" class="small">单端固定／另一端袋槽长6；初始搭接4</text>
+<text x="75" y="400" class="small">桥面按槽底配作；最小铜内壁0.510</text>
+<text x="75" y="430" class="small">退位最坏接缝0.324；搭接仍≥2.374</text>
+<text x="65" y="487" class="section">B：整环座与闭底盘（NTS）</text>
+<rect x="245" y="525" width="240" height="38" fill="#d9ad83" stroke="#334155"/>
+<rect x="245" y="574" width="240" height="20" fill="#8cb6ae" stroke="#334155"/>
+<rect x="355" y="589" width="58" height="10" fill="#ffffff" stroke="#334155"/>
+<circle cx="385" cy="602" r="8" fill="#059669" stroke="#334155"/>
+<rect x="165" y="618" width="320" height="16" fill="#4f9ea3" stroke="#334155"/>
+<rect x="375" y="634" width="110" height="70" fill="#4f9ea3" stroke="#334155"/>
+<rect x="477" y="594" width="8" height="24" fill="#4f9ea3" stroke="#334155"/>
+<line x1="280" y1="574" x2="280" y2="652" stroke="#334155" stroke-width="3"/>
+<text x="65" y="545" class="small">铜底z90.50</text>
+<text x="65" y="577" class="small">座顶90.40</text>
+<text x="65" y="607" class="small">下圈静封盘</text>
+<text x="65" y="660" class="small">闭底盲螺纹</text>
+<text x="620" y="150" class="small">整环座17-4PH H900；149.60/143.60</text>
+<text x="620" y="177" class="small">厚1.50±0.02；顶z90.40±0.02</text>
+<text x="620" y="204" class="small">铜底z90.50±0.02；最小净隙0.06</text>
+<text x="620" y="231" class="small">底槽R72.8；深0.40±0.01，宽1.40±0.02</text>
+<text x="620" y="258" class="small">座底z88.90；盘顶名义z88.59（配作）</text>
+<text x="620" y="285" class="small">受载状态实测下圈压缩0.28～0.29</text>
+<text x="620" y="312" class="small">8内耳宽10、R65～72，22.5°＋45°等分</text>
+<text x="620" y="339" class="small">8×ISO10642 M3×6：R69.00±0.05</text>
+<text x="620" y="366" class="small">头齐平或凹0～0.02；锥座配作≤0.15</text>
+<text x="620" y="393" class="small">含钻尖盲深≤5.5；底厚≥1.40/侧壁≥0.90</text>
+<text x="620" y="420" class="small">盘底环内R66.50±0.05、厚6.00±0.02</text>
+<text x="620" y="447" class="small">盘厚1.00±0.02；M3实测总长≤6.30</text>
+<text x="620" y="474" class="small">R73.7～74整环止挡高0.31配作，旁路预紧</text>
+<text x="620" y="501" class="small">每瓣2铜端口凸台2×4×6，距接缝3°</text>
+<text x="620" y="528" class="small">水路84°弧＋两端各3.5直道；独立检漏</text>
+<text x="620" y="555" class="small">桥袋槽径深0.53 +0.01/0；距水道≥0.50</text>
+<text x="620" y="582" class="small">8柔性铜热带，合计导热≥0.75 W/K</text>
+<text x="620" y="609" class="small">座≤48℃；附加2 W计入单瓣10 W包络</text>
+<text x="620" y="636" class="small">铜瓣先退1.10±0.05；座与盘保持静止</text>
+<text x="620" y="663" class="small">热带与软管固定留运动弯；禁止自由拖曳</text>
+<text x="620" y="690" class="small">退位确认后壳体上提；盘固定朝上、颗粒留盘</text>
+<line x1="50" y1="719" x2="1150" y2="719" stroke="#334155" stroke-width="1.5"/>
+<line x1="560" y1="719" x2="560" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="760" y1="719" x2="760" y2="775" stroke="#334155" stroke-width="1.5"/>
+<line x1="950" y1="719" x2="950" y2="775" stroke="#334155" stroke-width="1.5"/>
+<text x="50" y="742" class="small">工艺设计图 · 单位mm · 未注公差±0.10</text>
+<text x="50" y="764" class="small">关键配合按尺寸；检验按说明书及对应卡</text>
+<text x="572" y="742" class="small">比例：NTS（不按比例）</text>
+<text x="572" y="764" class="small">视图NTS；不得量图取值</text>
+<text x="772" y="742" class="small">材料：C11000 / 17-4PH</text>
+<text x="772" y="764" class="small">工序与零件见明细</text>
+<text x="962" y="742" class="small">工艺设计图 / 修订5</text>
+<text x="962" y="764" class="small">试制检验按说明书执行</text>
+</svg>
