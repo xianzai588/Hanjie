@@ -1,0 +1,48 @@
+{
+  "case": "8p-thermal-tool-bore008-h1125-dt025-s05",
+  "mesh": {
+    "h_mm": 1.125,
+    "dt_s": 0.25,
+    "nodes": 50975,
+    "tetrahedra": 188351
+  },
+  "source_fields": [
+    "simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\fields.npz",
+    "simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\free-release-fields.npz",
+    "simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\measurement.json"
+  ],
+  "saved_hottest_snapshot_index": 3,
+  "saved_hottest_time_s": 9.75,
+  "saved_snapshot_element_max_C": 1492.021484375,
+  "alltime_nodal_peak_C": 1639.5787000200276,
+  "maximum_residual_von_mises_MPa": 404.06137915813775,
+  "labelled_region_maxima": {
+    "焊趾邻域": {
+      "element_index": 78586,
+      "value_MPa": 404.06137915813775,
+      "location_mm": [
+        49.75541582040274,
+        56.52538849064748,
+        117.46948521054898
+      ]
+    },
+    "槽根邻域": {
+      "element_index": 171192,
+      "value_MPa": 149.68592119443804,
+      "location_mm": [
+        40.41263781121296,
+        9.814697019657482,
+        114.6648340366791
+      ]
+    }
+  },
+  "region_scope": "Weld-toe vicinity: r>69,z113..121; slot-root vicinity: QT r30..61. Labels are region maxima, not extrapolated notch stresses.",
+  "position_diameter_um": 15.583947181967877,
+  "files": [
+    "temperature-snapshot.png",
+    "residual-stress.png",
+    "bore-displacement.png"
+  ],
+  "dpi": 300,
+  "physical_simulations_run": 0
+}
