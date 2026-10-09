@@ -1,0 +1,22 @@
+{
+  "h_mm": 0.84375,
+  "dt_s": 0.25,
+  "weld_h_mm": 1.0,
+  "initial_bore_mm": 40.008,
+  "nodes": 95474,
+  "tetrahedra": 392512,
+  "material_element_counts": {
+    "0": 208674,
+    "1": 171745,
+    "2": 12093
+  },
+  "interface_patch": {
+    "method": "16-neighbour distance-weighted least-norm interpolation with exact constant and linear reproduction; planar QT and curved steel patches",
+    "maximum_affine_coordinate_error_mm": 2.3028661758020767e-13,
+    "maximum_host_weight_L1": 1.3085233446511286,
+    "rigid_translation_and_rotation_patch_pass": true
+  },
+  "mesh_generation_elapsed_s": 23.46879919999992,
+  "smoke_scope": "Mesh generation and unchanged affine interface patch only; no thermal/mechanical step or full solve.",
+  "full_run_started": false
+}
