@@ -41,39 +41,17 @@ second:
   method: GTAW
   polarity: DCEN
   filler: 低碳DMNA099／ERNi-CI裸棒，原TDS供货0.045 inch×36 inch；设计采购验收Ø1.143±0.020 mm
-  product_identity_basis: 原供方Weldwire现官网所链Duramax DMNA099／ERNi-CI；旧WWNA99商名与现供货标识须明确
-  product_TDS_path: docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf
-  product_TDS_url: https://www.weldwire.net/_files/ugd/f42bc4_2132a75a538c4a2e90fd6dea7426a91b.pdf
-  product_TDS_page: 1
-  diameter_supply_basis: 原TDS第1页的0.045 inch×36 inch，精确换算Ø1.143 mm×914.4 mm；不以公制1.20代替英制尺寸
-  stock_length_mm: 914.4
-  rod_feed_interface:
-    cut_blank_length_per_wing_mm: 180.0
-    cut_blank_length_tolerance_mm: 0.5
-    cut_blank_length_acceptance_mm: [179.5, 180.5]
-    blanks_per_part: 8
-    blanks_per_stock_rod: 4
-    same_blank_for_both_tracks: true
-    inactive_clamping_tail_min_mm: 15.0
-    front_trim_allowance_mm: 2.0
-    cutting_loss_per_blank_mm: 1.0
-    stock_rods_per_part: 2
-    minimum_accepted_stock_length_mm: 726.0
-    minimum_available_feed_stroke_mm: 162.0
-    exchange: 每翼两轨使用同一180 mm定长棒；离弧换翼时换棒，计入既有第二层清理换翼预留；夹持、送进和更换时间为本设计设备接口要求，现机执行能力尚未核实
-  diameter_tolerance_basis: 本设计冻结的采购/来料验收要求±0.020 mm，非原厂公布公差；由既有CAD最大槽口投影与1.75 mm覆盖任务反算总供料允许负偏差0.040505 mm后取一半以内，实际逐批测径验收，不符合者不投入该pWPS
-  diameter_acceptance_mm: [1.123, 1.163]
+  filler_reference_TDS: docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf
+  diameter_supply_qualified: false
   diameter_mm: 1.143
   diameter_tolerance_mm: 0.02
-  current_A: 75.0
-  voltage_V_reference: 11.0
-  current_voltage_basis: 保留200～300℃预热薄层短弧的75 A/11 V设计选值及247.5 J/mm热账，分别低于原TDS 0.045 inch推荐下限5 A/2 V；参考弧压须按短弧实际记录控制，热账正余量不证明熔合，目录范围不直接搬入本槽，参数尚未取得生产资格
-  travel_mm_s: 2.0
+  current_A: 85.0
+  voltage_V_reference: 14.0
+  travel_mm_s: 2.88
   travel_relative_tolerance: 0.02
   efficiency_for_design_accounting: 0.6
-  feed_mm_s: 8.0
-  feed_tolerance_mm_s: 0.2
-  feed_basis: 按7.20×(1.20/1.143)^2=7.936016 mm/s保留原截面积供料，再取可执行8.00 mm/s；名义体积供料增加0.80625%，原±0.20 mm/s绝对送进控制不变
+  feed_mm_s: 11.52
+  feed_tolerance_mm_s: 0.29
   deposition_efficiency_range:
   - 0.9
   - 0.98
@@ -86,6 +64,41 @@ second:
   - 8
   - 12
   cooling: 独立保温缓冷，冷态检查后完成最终连接面与孔加工
+  product_identity_basis: 原供方Weldwire现官网所链Duramax DMNA099／ERNi-CI；旧WWNA99商名与现供货标识须明确
+  product_TDS_path: docs/sources/Weldwire-Duramax-DMNA099-ERNi-CI-TDS.pdf
+  product_TDS_url: https://www.weldwire.net/_files/ugd/f42bc4_2132a75a538c4a2e90fd6dea7426a91b.pdf
+  product_TDS_page: 1
+  diameter_supply_basis: 原TDS第1页的0.045 inch×36 inch，精确换算Ø1.143 mm×914.4 mm；不以公制1.20代替英制尺寸
+  stock_length_mm: 914.4
+  rod_feed_interface:
+    cut_blank_length_per_wing_mm: 180.0
+    cut_blank_length_tolerance_mm: 0.5
+    cut_blank_length_acceptance_mm:
+    - 179.5
+    - 180.5
+    blanks_per_part: 8
+    blanks_per_stock_rod: 4
+    same_blank_for_both_tracks: true
+    inactive_clamping_tail_min_mm: 15.0
+    front_trim_allowance_mm: 2.0
+    cutting_loss_per_blank_mm: 1.0
+    stock_rods_per_part: 2
+    minimum_accepted_stock_length_mm: 726.0
+    minimum_available_feed_stroke_mm: 162.0
+    exchange: 每翼两轨使用同一180 mm定长棒；翼间离弧换棒，装机验收夹持、行程与换棒时间。
+  diameter_tolerance_basis: 本设计冻结的采购/来料验收要求±0.020 mm，非原厂公布公差；由既有CAD最大槽口投影与1.75 mm覆盖任务反算总供料允许负偏差0.040505 mm后取一半以内，实际逐批测径验收，不符合者不投入该pWPS
+  diameter_acceptance_mm:
+  - 1.123
+  - 1.163
+  current_voltage_basis: 85 A/14 V位于原TDS的80～110 A/13～16 V内；200～300℃壳外双轨预制，实际电弧积分和接头按PQR冻结。
+  feed_basis: 名义送进/焊速比4.00；11.52±0.29 mm/s保持供料任务；最大消耗161.365 mm/翼，最短棒余尾裕量1.135 mm。
+  catalogue_nominal_diameter_documented: true
+  actual_batch_acceptance_completed: false
+  current_tolerance_A: 5.0
+  voltage_control_range_V:
+  - 13.0
+  - 15.0
+  net_line_energy_J_mm: 247.91666666666669
 machining:
   first_retained_mm:
   - 0.65
@@ -98,14 +111,13 @@ machining:
   QT_corner_radius_mm:
   - 1.4
   - 1.6
-  first_machining_radius_policy: R_actual_QT - actual_normal_retained; nominal0.80mm;
-    corner range0.65..0.95mm
+  first_machining_radius_policy: R_actual_QT - actual_normal_retained; nominal0.80mm; corner range0.65..0.95mm
 production_window_frozen: false
 fusion_verified: false
 full_manufacturing_verified: false
 sources:
   product: KOBELCO catalogue pp344-347,551
   reference_heat: 历史El-Banna2000 Table3参数锚，原表数值本轮未复核；现行1214.4 J/mm由选定工艺输入守恒得到，见evidence-transfer-20261008.md
-  second_feed: actual arc length and wire-volume conservation; arc parameters are
-    design proposals, not supplier-qualified parameters
+  second_feed: actual arc length and wire-volume conservation; arc parameters are design proposals, not supplier-qualified
+    parameters
 tolerance_geometry_evidence: cad/generated/precoat-tolerance-family-20261007/geometry-and-feed-audit.json

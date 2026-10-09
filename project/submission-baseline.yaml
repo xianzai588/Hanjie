@@ -107,13 +107,13 @@ material_route:
     diameter_supply_qualified: false
     diameter_mm: 1.143
     diameter_tolerance_mm: 0.02
-    current_A: 75.0
-    voltage_V_reference: 11.0
-    travel_mm_s: 2.0
+    current_A: 85.0
+    voltage_V_reference: 14.0
+    travel_mm_s: 2.88
     travel_relative_tolerance: 0.02
     efficiency_for_design_accounting: 0.6
-    feed_mm_s: 8.0
-    feed_tolerance_mm_s: 0.2
+    feed_mm_s: 11.52
+    feed_tolerance_mm_s: 0.29
     deposition_efficiency_range:
     - 0.9
     - 0.98
@@ -147,18 +147,20 @@ material_route:
       stock_rods_per_part: 2
       minimum_accepted_stock_length_mm: 726.0
       minimum_available_feed_stroke_mm: 162.0
-      exchange: 每翼两轨使用同一180 mm定长棒；离弧换翼时换棒，计入既有第二层清理换翼预留；夹持、送进和更换时间为本设计设备接口要求，现机执行能力尚未核实
-    diameter_tolerance_basis: 本设计冻结的采购/来料验收要求±0.020 mm，非原厂公布公差；由既有CAD最大槽口投影与1.75 mm覆盖任务反算总供料允许负偏差0.040505
-      mm后取一半以内，实际逐批测径验收，不符合者不投入该pWPS
+      exchange: 每翼两轨使用同一180 mm定长棒；翼间离弧换棒，装机验收夹持、行程与换棒时间。
+    diameter_tolerance_basis: 本设计冻结的采购/来料验收要求±0.020 mm，非原厂公布公差；由既有CAD最大槽口投影与1.75 mm覆盖任务反算总供料允许负偏差0.040505 mm后取一半以内，实际逐批测径验收，不符合者不投入该pWPS
     diameter_acceptance_mm:
     - 1.123
     - 1.163
-    current_voltage_basis: 保留200～300℃预热薄层短弧的75 A/11 V设计选值及247.5 J/mm热账，分别低于原TDS 0.045
-      inch推荐下限5 A/2 V；参考弧压须按短弧实际记录控制，热账正余量不证明熔合，目录范围不直接搬入本槽，参数尚未取得生产资格
-    feed_basis: 按7.20×(1.20/1.143)^2=7.936016 mm/s保留原截面积供料，再取可执行8.00 mm/s；名义体积供料增加0.80625%，原±0.20
-      mm/s绝对送进控制不变
+    current_voltage_basis: 85 A/14 V位于原TDS的80～110 A/13～16 V内；200～300℃壳外双轨预制，实际电弧积分和接头按PQR冻结。
+    feed_basis: 名义送进/焊速比4.00；11.52±0.29 mm/s保持供料任务；最大消耗161.365 mm/翼，最短棒余尾裕量1.135 mm。
     catalogue_nominal_diameter_documented: true
     actual_batch_acceptance_completed: false
+    current_tolerance_A: 5.0
+    voltage_control_range_V:
+    - 13.0
+    - 15.0
+    net_line_energy_J_mm: 247.91666666666669
   manufacturing_order:
   - 座体及真实曲面浅槽加工
   - 壳外首层预制、清渣与保温缓冷
@@ -168,14 +170,14 @@ material_route:
   - 入壳定心、铜环及气幕就位
   - 八段两道对称组焊
   - 冷却与完全卸夹、孔轴及连接检验
-  - 有限微珩如需要、复检和干态洁净封存
+  - 无微珩主路线：孔径直接验收、干态洁净封存；局部欠尺寸满足备用预算时才有限微珩并复检
   precoat_ledger:
     first_deposited_mass_g: 15.329235374588933
     first_net_heat_kJ: 184.675927
     first_arc_time_s: 92.5521380809558
     second_actual_path_mm: 308.50835141472515
-    second_arc_time_s: 154.25417570736258
-    second_net_heat_kJ: 76.35581697514446
+    second_arc_time_s: 107.12095535233513
+    second_net_heat_kJ: 76.48436212156729
 final_GTAW:
   method: 自动脉冲GTAW
   polarity: DCEN
@@ -232,14 +234,14 @@ precision:
   diameter_allocations_um:
     manufacturing_assembly_and_positioning: 28
     measurement_expanded_uncertainty: 2
-    limited_honing_axis_change: 6.5
-    welding_thermal_residual: 13.5
+    limited_honing_axis_change: 0
+    welding_thermal_residual: 20
   maximum_local_radial_honing_removal_um: 3
   bore_size_control_mm:
   - 40
   - 40.025
   radial_clamping_suballocation_um: 6.5
-  clamping_scope: 包含在28 μm非热直径分配；不与微珩6.5 μm直径重复相加
+  clamping_scope: 夹紧径向6.5 μm包含在28 μm非热直径分配；主路线微珩项0，备用微珩轴变直径6.5 μm另计。
   mechanism: 径向柔顺槽、精密内锥胀套背承、对称跳焊及能量控制；禁止焊后精镗纠正孔轴
   datum_execution_card: deliverables/process/shell-datum-and-cmm-execution-card.md
   A_flatness_mm: 0.002
@@ -263,6 +265,11 @@ precision:
   - 114.5
   position_uncertainty_design_U_um: 1.64
   position_uncertainty_qualification_limit_U_um: 2
+  fallback_honing_branch:
+    maximum_local_radial_removal_um: 3
+    axis_change_diameter_allocation_um: 6.5
+    welding_thermal_residual_allocation_um: 13.5
+    budget_um: 28+2+6.5+13.5=50
 cleanliness:
   requirement: 焊渣、飞溅不得进入产品内腔
   primary_barrier: 水冷铜卡环、捕获连续密封和刚性朝上接料盘
@@ -324,8 +331,9 @@ verification:
   historic_residual_axis_diameter_um: 15.583947
   historic_total_budget_um: 52.083947
   current_joint_capacity_source: studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json
-  principle: 参数预算与几何资格不代替收敛有效接头及连续制造残余状态；实物试制为后续工程确认
+  principle: 设计给出设定假设下的明确计算结论；接头PQR、首件孔径、位置度与三级网格按第9章关闭。保留真实计算与实测状态。
   current_source_diagnosis: simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json
+  final_entry_position_source: studies/COMPETITION-DESIGN/results/final-entry-position-gci-20261009.json
 comparison:
   ring_role: 完整圆环只作历史冷态刚度比较，不移植八翼结果或8 K解析假设为制造证明
 submission:
@@ -343,4 +351,5 @@ submission:
   - studies/COMPETITION-DESIGN/results/second-layer-supply-decision-20261008.json
   - studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
   - simulation/competition-r4/results/native-interface-adaptation-20261008/interface-readback.json
+  - studies/COMPETITION-DESIGN/results/final-entry-position-gci-20261009.json
   package_manifest: deliverables/competition-entry/验证与交付状态.json

@@ -451,14 +451,15 @@ precision:
     fixture_axis_setting: 0.002
     sleeve_centering: 0.002
     clamp_elastic_shift: 0.0065
-    thermal_residual_target: 0.006
+    thermal_residual_target: 0.010
     release_shift_target: 0.0005
   status: 径向非热分配14 μm，基准/轴线/定心各2、夹紧6.5、搬运0.5、支点1；固定锥/柱实体有限元与根部连接分别验证，局部压缩另用于2000接触密度匹配。
   measurement_expanded_uncertainty_diameter_target_mm: 0.002
-  honing_axis_allocation_diameter_mm: 0.0065
-  bore_finish_strategy: 焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；欠尺寸孔必须走有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴
+  honing_axis_allocation_diameter_mm: 0.0
+  fallback_honing_axis_allocation_diameter_mm: 0.0065
+  bore_finish_strategy: 焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；无微珩为主路线；欠尺寸孔仅在备用预算合格时进入有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴
   finish_allowance_diameter_mm:
   - 0
   - 0
-  post_weld_machining: 不预留固定余量；局部单边去除≤0.003、直径≤0.006；含微珩位置度另计0.0065，预算28+2+6.5+P≤50 μm；无需微珩且禁止精整分支28+2+P≤50 μm；均不得以机加工修正孔轴
+  post_weld_machining: 不预留固定余量；局部单边去除≤0.003、直径≤0.006；主路线28+2+0+20=50 μm；备用微珩位置度另计0.0065，预算28+2+6.5+13.5=50 μm；均不得以机加工修正孔轴
   conformity_rule: 测得位置度直径＋同口径扩展不确定度≤0.05 mm

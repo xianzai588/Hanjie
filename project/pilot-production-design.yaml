@@ -9,7 +9,8 @@ first_clean_handle_allowance_s: 480
 middle_normal_machining_planning_s: 600
 middle_PT_manual_s: 480
 middle_PT_elapsed_upper_s: 4080
-second_GTAW_arc_s: 154.254176
+second_GTAW_arc_s: 107.120955
+second_GTAW_gas_budget_reserved_arc_s: 154.254176
 second_GTAW_clean_handle_allowance_s: 480
 second_GTAW_station_reserved_s: 2700
 second_preheat_s_planning: 2160
