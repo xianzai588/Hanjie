@@ -14,7 +14,6 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT, TA_RIGHT
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.platypus import SimpleDocTemplate, Paragraph as ReportLabParagraph, Spacer, Table, TableStyle, PageBreak, Image, KeepTogether, CondPageBreak
-from reportlab.platypus.tableofcontents import TableOfContents
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "deliverables/report/technical-report-v4-unified.md"
@@ -33,6 +32,33 @@ PAPER = ROOT / REPORT_CONFIG.get("paper_pdf", "output/pdf/焊接工艺设计说�
 TEXT_WIDTH = 160 * mm
 INK = colors.black
 NAVY = INK
+CARD_FILES = ("manufacturing-and-inspection-card.md", "independent-precoat-design-card.md", "first-layer-input-card.md", "precoat-tolerance-and-feed-card.md", "joint-process-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md", "pilot-production-and-resource-card.md", "shell-datum-and-cmm-execution-card.md", "gas-water-fault-execution-card.md", "calculation-index.md")
+
+
+def navigation_paragraph(text, style, key, level):
+    paragraph=Paragraph(inline(text),style)
+    paragraph.navigation=dict(key=key,title=paragraph.getPlainText(),level=level)
+    return paragraph
+
+
+def navigation_catalog(story):
+    result=[]
+    for flowable in story:
+        if hasattr(flowable,'navigation'):result.append(flowable.navigation)
+        if isinstance(flowable,KeepTogether):result.extend(navigation_catalog(flowable._content))
+    return result
+
+
+def external_catalog():
+    manifest=json.loads((ROOT/REPORT_CONFIG['drawing_manifest']).read_text(encoding='utf8'))
+    names=['八翼柔顺槽座体零件图','异种连接角焊缝详图','八翼座体焊接装配图','定位承力与退出工装总装图','首批试制焊接工作站布置图']
+    entries=[dict(key='appendix-b',title='附录B 按比例工程图 HJ-F01～05',level=0,external=True,offset=0)]
+    entries += [dict(key=f'drawing-{i+1}',title=f'HJ-F{i+1:02d} {name}',level=1,external=True,offset=i) for i,name in enumerate(names)]
+    entries.append(dict(key='appendix-c',title='附录C 工艺与工装功能示意（NTS）',level=0,external=True,offset=manifest['sheet_count']))
+    illustrations=json.loads((ROOT/REPORT_CONFIG['illustration_pdf']).with_name('illustrations.json').read_text(encoding='utf8'))
+    entries += [dict(key=f'illustration-{item["number"]}',title=f'附图I{item["number"]:02d} {item["title"]}',level=1,external=True,
+                     offset=manifest['sheet_count']+item['number']-1) for item in illustrations['items']]
+    return entries
 
 
 class Paragraph(ReportLabParagraph):
@@ -73,6 +99,7 @@ class Paragraph(ReportLabParagraph):
 
 class ManualDocTemplate(SimpleDocTemplate):
     def beforeDocument(self):
+        self.navigation_pages = {}
         # The declared page margins are the text margins, without Frame's
         # implicit six-point padding on each side.
         for template in self.pageTemplates:
@@ -83,41 +110,54 @@ class ManualDocTemplate(SimpleDocTemplate):
                 frame._reset()
 
     def afterFlowable(self, flowable):
-        if not isinstance(flowable, Paragraph):
-            return
-        title = flowable.getPlainText()
-        style = flowable.style.name
-        if style == "H2" and re.match(r'^\d{1,2}\s+', title):
-            self.notify("TOCEntry", (0, title, self.page))
-        elif style in {"AbstractTitle", "ReferencesTitle", "AppendixTitle"}:
-            self.notify("TOCEntry", (0, title, self.page))
-        elif style == "CardH1":
-            self.notify("TOCEntry", (1, title, self.page))
+        if hasattr(flowable, 'navigation'):
+            entry = flowable.navigation
+            self.navigation_pages[entry['key']] = self.page
+            self.canv.bookmarkPage(entry['key'])
+            self.canv.addOutlineEntry(entry['title'], entry['key'], entry['level'], closed=False)
 
 
-def cover_and_contents():
+def cover_and_contents(catalog, pages):
     center = ParagraphStyle("CoverCN", fontName=REGULAR_FONT, fontSize=14,
                             leading=24, alignment=TA_CENTER, wordWrap="CJK", textColor=INK)
     title = ParagraphStyle("CoverTitle", parent=center, fontName=BOLD_FONT,
                            fontSize=20, leading=31, spaceAfter=12)
     contents_title = ParagraphStyle("ContentsTitle", parent=center, fontName=BOLD_FONT,
                                     fontSize=16, leading=25, spaceAfter=15)
-    toc = TableOfContents()
-    toc.levelStyles = [
-        ParagraphStyle("ContentsCN", fontName=REGULAR_FONT, fontSize=12, leading=21,
-                       wordWrap="CJK", textColor=INK, leftIndent=0, firstLineIndent=0),
-        ParagraphStyle("ContentsCardCN", fontName=REGULAR_FONT, fontSize=10.5, leading=18,
-                       wordWrap="CJK", textColor=INK, leftIndent=12, firstLineIndent=0),
-    ]
+    toc_styles = [ParagraphStyle(f'ContentsLevel{i}', fontName=BOLD_FONT if i==0 else REGULAR_FONT,
+        fontSize=11, leading=16, wordWrap='CJK', alignment=TA_LEFT,
+        leftIndent=i*7*mm, firstLineIndent=0, spaceBefore=0, spaceAfter=0) for i in range(2)]
+    page_style=ParagraphStyle('ContentsPage',fontName=REGULAR_FONT,fontSize=11,leading=16,alignment=TA_RIGHT)
+    rows=[]
+    for entry in catalog:
+        label=escape(entry['title'])
+        if not entry.get('external'):
+            label=f'<link href="#{entry["key"]}" color="#000000">{label}</link>'
+        rows.append([Paragraph(label,toc_styles[entry['level']]),
+                     Paragraph(str(pages.get(entry['key'],'—')),page_style)])
+    table_style=TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),
+        ('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),0),
+        ('TOPPADDING',(0,0),(-1,-1),1),('BOTTOMPADDING',(0,0),(-1,-1),1)])
+    heights=Table(rows,colWidths=[TEXT_WIDTH-13*mm,13*mm],style=table_style).wrap(TEXT_WIDTH,245*mm)[1]
+    count=max(1,int(__import__('math').ceil(heights/(225*mm))))
+    # Balance the contents pages rather than spilling a single final entry.
+    chunks=[];start=0
+    for page in range(count):
+        end=round(len(rows)*(page+1)/count)
+        while end<len(rows) and catalog[end-1]['level']==0 and catalog[end]['level']==1:
+            end-=1
+        chunk=rows[start:end];start=end
+        chunks += [Paragraph('目录' if page==0 else '目录（续）',contents_title),
+                   Table(chunk,colWidths=[TEXT_WIDTH-13*mm,13*mm],style=table_style),PageBreak()]
     review = [Spacer(1, 8*mm), Paragraph('修订审阅稿', center)] if '--review' in sys.argv else []
     return [Spacer(1, 25*mm),
             Paragraph("第一届辽宁省大学生材料焊接与铸造工艺设计大赛", center),
             Spacer(1, 32*mm),
             Paragraph("QT450-10主轴承座与Q235B壳体<br/>焊接工艺设计", title),
-            Spacer(1, 14*mm), Paragraph("焊接固定题", center),
-            Paragraph("配套pWPS及工程图", center),
+            Spacer(1, 14*mm), Paragraph("参赛赛道：焊接工艺设计赛道·固定题目", center),
+            Paragraph("作品类型：工艺设计说明书（含 pWPS 与工程图）", center),
             Spacer(1, 38*mm), Paragraph("2026年10月", center),
-            *review, PageBreak(), Paragraph("目录", contents_title), toc, PageBreak()]
+            *review, PageBreak(), *chunks]
 
 
 SUPERSCRIPT = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5",
@@ -396,12 +436,15 @@ def build_story(source: Path = SOURCE) -> list:
                 continue
             normalized=re.sub(r'\s+','',title)
             if not is_card and normalized in ('摘要','设计概要'):
-                story.append(Paragraph(title,abstract_title))
+                paragraph=navigation_paragraph(title,abstract_title,f'body-{line_index}',0)
             elif not is_card and normalized in ('参考文献','参考资料'):
                 if story and not isinstance(story[-1],PageBreak):story.append(PageBreak())
-                story.append(Paragraph(title,references_title))
+                paragraph=navigation_paragraph(title,references_title,f'body-{line_index}',0)
             else:
-                story.append(Paragraph(inline(title),headings[level]))
+                paragraph=Paragraph(inline(title),headings[level])
+                if (not is_card and level in (2,3)) or (is_card and level==1):
+                    paragraph=navigation_paragraph(title,headings[level],f'{source.stem}-{line_index}',1 if is_card or level==3 else 0)
+            story.append(paragraph)
         else:
             is_reference=bool(re.match(r'^\[\d+\]',line))
             is_keyword=bool(re.match(r'^(?:关键词|关键字)\s*[：:]',line.replace('**','')))
@@ -502,28 +545,36 @@ def main() -> int:
         raise ValueError("证据登记校验失败：" + "; ".join(errors))
     register_project_fonts(ROOT)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    doc = ManualDocTemplate(str(OUT), pagesize=A4, leftMargin=25 * mm, rightMargin=25 * mm,
-                            topMargin=25 * mm, bottomMargin=23 * mm,
-                            title="QT450-10主轴承座与Q235B壳体焊接工艺设计",author="")
+    def content(include_cards):
+        story=build_story()
+        if include_cards:
+            appendix_style=ParagraphStyle('AppendixTitle',fontName=BOLD_FONT,fontSize=14,leading=22,
+                spaceAfter=10,keepWithNext=True,textColor=INK,wordWrap='CJK')
+            story += [PageBreak(),navigation_paragraph('附录A 工艺规程与检验卡',appendix_style,'appendix-a',0)]
+            for index,card in enumerate(CARD_FILES):
+                story += ([] if index==0 else [PageBreak()])+build_story(ROOT/'deliverables/process'/card)
+        return story
+
+    def render(path,include_cards,include_external):
+        catalog=navigation_catalog(content(include_cards))+(external_catalog() if include_external else [])
+        pages={}
+        for target in (BytesIO(),str(path)):
+            doc=ManualDocTemplate(target,pagesize=A4,leftMargin=25*mm,rightMargin=25*mm,
+                topMargin=25*mm,bottomMargin=23*mm,
+                title='QT450-10主轴承座与Q235B壳体焊接工艺设计',author='')
+            doc.build(cover_and_contents(catalog,pages)+content(include_cards),onFirstPage=on_page,onLaterPages=on_page)
+            located=dict(doc.navigation_pages)
+            for entry in catalog:
+                if entry.get('external'):located[entry['key']]=doc.page+1+entry['offset']
+            if pages and located!=pages:raise ValueError('目录页码在两次排版间发生变化')
+            pages=located
+        return catalog,pages
+
     if '--competition-entry' in sys.argv:
-        paper_doc = ManualDocTemplate(str(PAPER), pagesize=A4, leftMargin=25*mm, rightMargin=25*mm,
-                        topMargin=25*mm, bottomMargin=23*mm,
-                        title='QT450-10主轴承座与Q235B壳体焊接工艺设计', author='')
-        paper_doc.multiBuild(cover_and_contents()+build_story(),onFirstPage=on_page,onLaterPages=on_page)
+        render(PAPER,False,False)
         print(f'参赛正文已生成：{PAPER}')
-    # 工艺卡与正文使用同一套字体、表格和页码样式。
-    story = cover_and_contents() + build_story()
-    # The workshop cards belong in the readable manual, not only in loose attachments.
-    appendix_style=ParagraphStyle('AppendixTitle',fontName=BOLD_FONT,fontSize=14,leading=22,
-                                  spaceAfter=12,keepWithNext=True,textColor=INK,wordWrap='CJK')
-    story += [PageBreak(),Paragraph('附录A 工艺规程与检验卡',appendix_style)]
-    for card_index,card in enumerate(("manufacturing-and-inspection-card.md", "independent-precoat-design-card.md", "first-layer-input-card.md", "precoat-tolerance-and-feed-card.md", "joint-process-card.md", "copper-shield-card.md", "fixture-load-and-transfer-card.md", "NDT-inspection-card.md", "cleanliness-inspection-card.md", "bore-compensation-and-finish-card.md", "clean-shield-engineering-detail.md", "pilot-production-and-resource-card.md", "shell-datum-and-cmm-execution-card.md", "gas-water-fault-execution-card.md", "calculation-index.md")):
-        story += ([] if card_index==0 else [PageBreak()]) + build_story(ROOT / "deliverables/process" / card)
-    if "--include-research-status" in sys.argv:
-        generated_status = write_status_artifacts(ROOT)
-        story += [PageBreak()]+build_story(generated_status)
-    doc.multiBuild(story,onFirstPage=on_page,onLaterPages=on_page)
-    print(f"说明书与工艺卡已生成：{OUT}")
+    catalog,pages=render(OUT,True,'--with-drawings' in sys.argv)
+    print(f'说明书与工艺卡已生成：{OUT}')
     if '--with-drawings' in sys.argv:
         if '--review' not in sys.argv and '--competition-entry' not in sys.argv:
             raise ValueError('--with-drawings仅用于统一审阅稿；正式包按build_submission发布')
@@ -544,9 +595,9 @@ def main() -> int:
             with fitz.open(path) as pdf:pdf.save(tmp,garbage=4,deflate=True)
             tmp.replace(path)
         bundle=PdfWriter();bundle.append(OUT)
-        bundle.append(drawing_out,outline_item='附录B 按比例工程图 HJ-F01～05')
+        bundle.append(drawing_out)
         if REPORT_CONFIG.get('illustration_pdf'):
-            bundle.append(ROOT/REPORT_CONFIG['illustration_pdf'],outline_item='附录C 工艺与工装功能示意（NTS）')
+            bundle.append(ROOT/REPORT_CONFIG['illustration_pdf'])
         bundle.add_metadata({'/Title':'QT450-10/Q235B 工艺设计说明书与工程图（修订审阅稿）',
                              '/Author':'','/Subject':f"当前MMA首层候选、工艺规程与{manifest['sheet_count']}张工程图"})
         combined=ROOT/'output/pdf/焊接工艺设计说明书与工程图-修订审阅稿.pdf'
@@ -555,6 +606,17 @@ def main() -> int:
             bundle.add_metadata({'/Title':'QT450-10主轴承座与Q235B壳体焊接工艺设计说明书与工程图','/Author':'',
                                  '/Subject':f"8P-R2-t15柔顺槽主方案、工艺规程及{manifest['sheet_count']}张工程图"})
         with combined.open('wb') as stream:bundle.write(stream)
+        with fitz.open(combined) as pdf:
+            pdf.set_toc([[entry['level']+1,entry['title'],pages[entry['key']]] for entry in catalog])
+            contents_end=min(pages.values())-1
+            for entry in catalog:
+                if not entry.get('external'):continue
+                for page in list(pdf)[1:contents_end]:
+                    for rect in page.search_for(entry['title']):
+                        page.insert_link({'kind':fitz.LINK_GOTO,'from':rect,'page':pages[entry['key']]-1,'to':fitz.Point(0,0)})
+            revised=combined.with_suffix('.navigation.pdf')
+            pdf.save(revised,garbage=4,deflate=True)
+        revised.replace(combined)
         compact_pdf(combined)
         print(f'说明书与工程图合订本已生成：{combined}')
     return 0
