@@ -3,7 +3,9 @@
   "cases": [
     "8p-thermal-tool-bore008-h15-dt025-s05",
     "8p-thermal-tool-bore008-h1125-dt025-s05",
-    "8p-thermal-tool-bore008-h15-dt0125-s025"
+    "8p-thermal-tool-bore008-h15-dt0125-s025",
+    "8p-thermal-tool-bore008-h084375-dt025-s05",
+    "8p-thermal-tool-bore008-h15-single-dt025-s05"
   ],
   "input_results": [
     {
@@ -44,108 +46,105 @@
         39.99761789203367,
         40.023579223700125
       ]
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h084375-dt025-s05",
+      "h_mm": 0.84375,
+      "dt_s": 0.25,
+      "nodes": 95474,
+      "tetrahedra": 392512,
+      "elapsed_s": 41559.6966747,
+      "position_diameter_um": 14.69894854120452,
+      "bore_two_point_range_mm": [
+        39.998139787648284,
+        40.02187842939179
+      ]
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h15-single-dt025-s05",
+      "h_mm": 1.5,
+      "dt_s": 0.25,
+      "nodes": 32925,
+      "tetrahedra": 118585,
+      "elapsed_s": 17129.692075599996,
+      "position_diameter_um": 18.038889052315113,
+      "bore_two_point_range_mm": [
+        39.996823322938525,
+        40.02304667270516
+      ]
     }
   ],
   "nominal_h_ratio": 1.3333333333333333,
   "spatial": {
-    "1": {
-      "assumed_order": 1,
-      "extrapolated_um": 23.327402627509343,
-      "fine_grid_correction_um": 7.743455445541468,
-      "safety_factor": 3,
-      "GCI_fine_percent": 149.06599762802176,
-      "GCI_fine_absolute_um": 23.230366336624403,
-      "fine_grid_error_band_um": [
-        -7.646419154656526,
-        38.81431351859228
-      ]
-    },
-    "2": {
-      "assumed_order": 2,
-      "extrapolated_um": 18.90257094434279,
-      "fine_grid_correction_um": 3.3186237623749144,
-      "safety_factor": 3,
-      "GCI_fine_percent": 63.885427554866475,
-      "GCI_fine_absolute_um": 9.955871287124744,
-      "fine_grid_error_band_um": [
-        5.628075894843134,
-        25.539818469092623
-      ]
-    }
+    "classification": "oscillatory",
+    "epsilon21_um": 0.8849986407633565,
+    "epsilon32_um": -2.5811518151804886,
+    "signed_difference_ratio": -2.916560202797728,
+    "nominal_ratio_apparent_order": 3.7207911498089423,
+    "richardson_extrapolated_um": null,
+    "method": "Non-monotonic range estimate, TMR uncertainty summary equation (14)",
+    "maximum_solution_difference_um": 2.5811518151804886,
+    "range_factor": 3,
+    "GCI_fine_percent": 52.68033576575077,
+    "GCI_fine_absolute_um": 7.743455445541466,
+    "fine_grid_error_band_um": [
+      6.955493095663055,
+      22.442403986745987
+    ],
+    "asymptotic_convergence_passed": false
   },
   "temporal": {
-    "1": {
-      "assumed_order": 1,
-      "extrapolated_um": 14.47999964773652,
-      "correction_from_dt025_um": 1.477204280949131,
-      "GCI_coarse_absolute_um": 4.431612842847393
-    },
-    "2": {
-      "assumed_order": 2,
-      "extrapolated_um": 13.987598220753476,
-      "correction_from_dt025_um": 0.9848028539660874,
-      "GCI_coarse_absolute_um": 2.954408561898262
-    }
+    "assumed_order": 2,
+    "correction_from_dt025_um": 0.9848028539660874,
+    "numerical_uncertainty_um": 2.954408561898262,
+    "scope": "Combined temporal protocol; coarse spatial grid only"
   },
-  "combined_p2_q2": {
-    "point_prediction_um": 19.88737379830888,
-    "total_budget_point_um": 49.88737379830888,
-    "error_band_about_existing_fine_solution_um": [
-      2.6736673329448717,
-      28.494227030990885
+  "combined": {
+    "time_adjusted_point_um": 15.683751395170608,
+    "total_budget_point_um": 45.68375139517061,
+    "error_band_about_fine_solution_um": [
+      4.001084533764793,
+      25.39681254864425
     ],
     "total_budget_error_band_um": [
-      32.67366733294487,
-      58.494227030990885
+      34.001084533764796,
+      55.39681254864425
     ],
     "point_below_20_um": true,
-    "GCI_upper_below_20_um": false
+    "uncertainty_upper_below_20_um": false
+  },
+  "single_head_comparison": {
+    "case": "8p-thermal-tool-bore008-h15-single-dt025-s05",
+    "paired_case": "8p-thermal-tool-bore008-h15-dt025-s05",
+    "same_h_mm": 1.5,
+    "same_dt_s": 0.25,
+    "paired_position_um": 13.002795366787389,
+    "single_position_um": 18.038889052315113,
+    "difference_um": 5.0360936855277245,
+    "relative_increase_percent": 38.7308539699952,
+    "single_total_budget_point_um": 48.03888905231511,
+    "uncertainty_scope": "No independent single-head spatial or temporal error estimate is available"
   },
   "model_assumptions": [
-    "Two spatial grids do not determine observed order or asymptotic convergence.",
-    "p=1 and p=2 are sensitivity assumptions; q=1/q=2 likewise.",
-    "dt refinement also refines structural/event steps; correction represents the combined temporal protocol.",
-    "The h parameter changes parent-solid sizing while weld_h remains 1 mm; GCI uses the nominal h ratio and is provisional.",
-    "Spatial/time corrections are assumed separable; only one temporal comparison exists.",
-    "GCI is a numerical error indicator, not a statistical confidence interval or a material/process uncertainty bound.",
-    "The saved final-weld cases represent their original process and cold-start assumptions; precoat residual stress is a trial-plan assumption.",
-    "All saved bore minima are below 40.000 mm; direct-size acceptance is a first-article condition, not a completed FE result."
+    "The three spatial solutions oscillate; no monotonic Richardson limit is reported.",
+    "The apparent order uses nominal parent-grid ratios; weld_h remains 1 mm and the family is not uniformly refined.",
+    "Non-monotonic range uncertainty is an engineering estimate, not an asymptotic convergence certificate.",
+    "q=2 and spatial/time separability remain assumptions; the only temporal comparison is on h=1.5 mm.",
+    "The time comparison also changes structural/event update steps.",
+    "The single-head case has one grid; paired uncertainty is not transferred as a validated single-head bound.",
+    "Material, contact, heat-source and precoat residual assumptions are verified in the trial plan.",
+    "The saved bore is before final clamped forming; full-release size and forming-induced axis change require first-article calibration."
   ],
-  "method_source": "https://www.grc.nasa.gov/www/wind/valid/tutorial/spatconv.html",
+  "method_source": "https://tmbwg.github.io/turbmodels/Papers/uncertainty_summary.pdf",
   "third_grid": {
     "case": "8p-thermal-tool-bore008-h084375-dt025-s05",
     "h_mm": 0.84375,
     "dt_s": 0.25,
+    "nodes": 95474,
+    "tetrahedra": 392512,
+    "elapsed_s": 41559.6966747,
     "other_worker_arguments_unchanged": true,
-    "complete_run_started": false,
-    "wall_time_count_exponent": 1.0424263867231682,
-    "smoke": {
-      "h_mm": 0.84375,
-      "dt_s": 0.25,
-      "weld_h_mm": 1.0,
-      "initial_bore_mm": 40.008,
-      "nodes": 95474,
-      "tetrahedra": 392512,
-      "material_element_counts": {
-        "0": 208674,
-        "1": 171745,
-        "2": 12093
-      },
-      "interface_patch": {
-        "method": "16-neighbour distance-weighted least-norm interpolation with exact constant and linear reproduction; planar QT and curved steel patches",
-        "maximum_affine_coordinate_error_mm": 2.3028661758020767e-13,
-        "maximum_host_weight_L1": 1.3085233446511286,
-        "rigid_translation_and_rotation_patch_pass": true
-      },
-      "mesh_generation_elapsed_s": 23.46879919999992,
-      "smoke_scope": "Mesh generation and unchanged affine interface patch only; no thermal/mechanical step or full solve.",
-      "full_run_started": false
-    },
-    "estimated_wall_time_hours": 15.902141263610277,
-    "planning_range_hours": [
-      11.926605947707708,
-      23.853211895415416
-    ],
-    "wall_time_scope": "Empirical same-host solve-time/count trend from two saved runs; memory and host contention can change it."
+    "complete_run_started": true,
+    "complete": true
   }
 }

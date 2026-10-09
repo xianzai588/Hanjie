@@ -1,0 +1,75 @@
+{
+  "layout": 8,
+  "h_mm": 0.84375,
+  "dt_s": 0.25,
+  "nodes": 95474,
+  "tetrahedra": 392512,
+  "peak_C": 1550.3922431426572,
+  "final_max_C": 20.498458987343813,
+  "released": true,
+  "max_newton_iterations": 10,
+  "max_equilibrium_residual_N": 0.04993285638083947,
+  "max_mandrel_reaction_N": 2777.6727202391094,
+  "input_J": 86940.00000000001,
+  "loss_J": 85239.44007725378,
+  "stored_J": 1700.818762408488,
+  "energy_balance_relative": -2.9772217880253135e-06,
+  "copper_max_C": 23.393380336453234,
+  "seal_band_max_C": 112.56229135679712,
+  "seal_thermal_limits_pass": true,
+  "elapsed_s": 41854.1753944,
+  "linear_solver": "Intel MKL PARDISO Cholesky mtype=2, upper-triangular CSR",
+  "linear_solver_fallbacks": 0,
+  "fit": {
+    "position_diameter_mm": 0.014917406110669709,
+    "bore_radius_mm": 20.00464265871007,
+    "bore_axis_slopes": [
+      -0.00012384054875974008,
+      0.00020529660464154982
+    ],
+    "bore_axis_center_in_datum_frame_mm": [
+      0.004012105720312148,
+      -0.004082022834579229
+    ],
+    "bore_axis_z_reference_mm": 107.51858512556004,
+    "datum_A_origin_mm": [
+      -0.12235812900363806,
+      -0.08573000013208461,
+      0.0
+    ],
+    "datum_frame": [
+      [
+        -0.800596685902852,
+        -0.599203593548445,
+        0.0
+      ],
+      [
+        0.599203593548445,
+        -0.800596685902852,
+        0.0
+      ],
+      [
+        -0.0,
+        -0.0,
+        1.0
+      ]
+    ],
+    "datum_B_center_in_A_frame_mm": [
+      -0.059625490182327795,
+      -0.1413463246223614
+    ],
+    "bore_fit_rms_mm": 0.0026789130922131366,
+    "datum_a_fit_rms_mm": 0.0,
+    "evidence_level": "solver_verified_measurement_scenario",
+    "official_cmm_equivalence_confirmed": false
+  },
+  "imbalance_fraction": 0.05,
+  "preheat_C": 20.0,
+  "method": "full-part tetrahedral implicit thermal + incremental temperature-dependent J2; nonconforming interpolated weld ties; compression-only mandrel; deposition birth and thermal annealing",
+  "material_basis": "project temperature curves are engineering estimates; temperature-dependent NiFe extrapolation recorded in inputs",
+  "peak_nodal_C": 1656.3747535441873,
+  "filler_volume_above_1200C_mm3": 412.7956314657505,
+  "max_von_mises_MPa": 393.67103808035944,
+  "active_filler_volume_above_1200C_mm3": 412.7956314657505,
+  "active_peak_scope": "element-mean temperature observed only after deposition activation; 1200 C is the constitutive annealing threshold"
+}

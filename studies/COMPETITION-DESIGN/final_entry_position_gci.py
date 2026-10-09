@@ -1,4 +1,4 @@
-"""Use only the three saved final-weld cases; optionally prepare one finer mesh."""
+"""Estimate numerical uncertainty from saved cases; do not launch a solve."""
 from pathlib import Path
 import argparse
 import json
@@ -18,55 +18,78 @@ def estimate():
     a, b, t = [row['fit']['position_diameter_mm'] * 1000 for row in rows]
     r = rows[0]['h_mm'] / rows[1]['h_mm']
     rt = rows[0]['dt_s'] / rows[2]['dt_s']
-    spatial = {}
-    temporal = {}
-    for p in (1, 2):
-        correction = (b - a) / (r**p - 1)
-        band = 3 * abs(correction)
-        spatial[str(p)] = dict(assumed_order=p, extrapolated_um=b+correction,
-            fine_grid_correction_um=correction, safety_factor=3,
-            GCI_fine_percent=100*band/abs(b), GCI_fine_absolute_um=band,
-            fine_grid_error_band_um=[b-band, b+band])
-        fine_correction = (t-a)/(rt**p-1)
-        coarse_correction = rt**p*fine_correction
-        temporal[str(p)] = dict(assumed_order=p, extrapolated_um=t+fine_correction,
-            correction_from_dt025_um=coarse_correction,
-            GCI_coarse_absolute_um=3*abs(coarse_correction))
-    point = spatial['2']['extrapolated_um'] + temporal['2']['correction_from_dt025_um']
-    absolute_error = spatial['2']['GCI_fine_absolute_um'] + temporal['2']['GCI_coarse_absolute_um']
-    count_exponent = math.log(rows[1]['elapsed_s']/rows[0]['elapsed_s']) / math.log(rows[1]['tetrahedra']/rows[0]['tetrahedra'])
+    def completed(case):
+        folder = RESULTS / case
+        worker = json.loads((folder/'worker-status.json').read_text(encoding='utf8'))
+        measurement = json.loads((folder/'measurement.json').read_text(encoding='utf8'))
+        progress = json.loads((folder/'progress.json').read_text(encoding='utf8'))
+        if worker['stage'] != 'complete' or not measurement['released'] or not progress['released']:
+            raise RuntimeError(f'{case}: complete full-release result required')
+        return measurement, progress
+    fine, fine_progress = completed(CASE)
+    single_case = '8p-thermal-tool-bore008-h15-single-dt025-s05'
+    single, single_progress = completed(single_case)
+    f = fine['fit']['position_diameter_mm']*1000
+    single_um = single['fit']['position_diameter_mm']*1000
+    epsilon21, epsilon32 = b-f, a-b
+    ratio = epsilon32/epsilon21
+    if ratio >= 0:
+        raise RuntimeError('Saved sequence classification changed; re-evaluate the uncertainty method')
+    # Equal nominal ratios: q(p)=0 even with s=-1. This is a diagnostic
+    # apparent order of oscillation amplitudes, not a monotonic convergence order.
+    apparent_order = math.log(abs(ratio))/math.log(r)
+    delta_m = max(abs(b-f), abs(a-b), abs(a-f))
+    band = 3*delta_m  # TMR uncertainty summary, equation (14), non-monotonic branch.
+    spatial = dict(classification='oscillatory', epsilon21_um=epsilon21,
+        epsilon32_um=epsilon32, signed_difference_ratio=ratio,
+        nominal_ratio_apparent_order=apparent_order, richardson_extrapolated_um=None,
+        method='Non-monotonic range estimate, TMR uncertainty summary equation (14)',
+        maximum_solution_difference_um=delta_m, range_factor=3,
+        GCI_fine_percent=100*band/abs(f), GCI_fine_absolute_um=band,
+        fine_grid_error_band_um=[f-band,f+band], asymptotic_convergence_passed=False)
+    q = 2
+    coarse_correction = rt**q*(t-a)/(rt**q-1)
+    time_band = 3*abs(coarse_correction)
+    temporal = dict(assumed_order=q, correction_from_dt025_um=coarse_correction,
+        numerical_uncertainty_um=time_band, scope='Combined temporal protocol; coarse spatial grid only')
+    point = f+coarse_correction
+    absolute_error = band+time_band
     report = dict(source='simulation/competition-r4/results/verification.json',
-        cases=source['cases'][:3], input_results=[dict(case=c, h_mm=row['h_mm'],
+        cases=source['cases'][:3]+[CASE,single_case], input_results=[dict(case=c, h_mm=row['h_mm'],
             dt_s=row['dt_s'], nodes=row['nodes'], tetrahedra=row['tetrahedra'],
             elapsed_s=row['elapsed_s'], position_diameter_um=row['fit']['position_diameter_mm']*1000,
             bore_two_point_range_mm=[row['fit']['sampled_bore_two_point_diameter_min_mm'],
                 row['fit']['sampled_bore_two_point_diameter_max_mm']]) for c,row in zip(source['cases'],rows)],
         nominal_h_ratio=r, spatial=spatial, temporal=temporal,
-        combined_p2_q2=dict(point_prediction_um=point, total_budget_point_um=30+point,
-            error_band_about_existing_fine_solution_um=[b-absolute_error,b+absolute_error],
-            total_budget_error_band_um=[30+b-absolute_error,30+b+absolute_error],
-            point_below_20_um=point<=20, GCI_upper_below_20_um=b+absolute_error<=20),
-        model_assumptions=['Two spatial grids do not determine observed order or asymptotic convergence.',
-            'p=1 and p=2 are sensitivity assumptions; q=1/q=2 likewise.',
-            'dt refinement also refines structural/event steps; correction represents the combined temporal protocol.',
-            'The h parameter changes parent-solid sizing while weld_h remains 1 mm; GCI uses the nominal h ratio and is provisional.',
-            'Spatial/time corrections are assumed separable; only one temporal comparison exists.',
-            'GCI is a numerical error indicator, not a statistical confidence interval or a material/process uncertainty bound.',
-            'The saved final-weld cases represent their original process and cold-start assumptions; precoat residual stress is a trial-plan assumption.',
-            'All saved bore minima are below 40.000 mm; direct-size acceptance is a first-article condition, not a completed FE result.'],
-        method_source='https://www.grc.nasa.gov/www/wind/valid/tutorial/spatconv.html',
-        third_grid=dict(case=CASE,h_mm=rows[1]['h_mm']/r,dt_s=.25,
-            other_worker_arguments_unchanged=True,complete_run_started=False,
-            wall_time_count_exponent=count_exponent))
-    if (RESULTS/CASE/'mesh-smoke-summary.json').exists():
-        smoke=json.loads((RESULTS/CASE/'mesh-smoke-summary.json').read_text(encoding='utf8'))
-        count=smoke['tetrahedra']
-        predicted=rows[1]['elapsed_s']*(count/rows[1]['tetrahedra'])**count_exponent
-        report['third_grid'].update(smoke=smoke, estimated_wall_time_hours=predicted/3600,
-            planning_range_hours=[.75*predicted/3600,1.5*predicted/3600],
-            wall_time_scope='Empirical same-host solve-time/count trend from two saved runs; memory and host contention can change it.')
+        combined=dict(time_adjusted_point_um=point, total_budget_point_um=30+point,
+            error_band_about_fine_solution_um=[f-absolute_error,f+absolute_error],
+            total_budget_error_band_um=[30+f-absolute_error,30+f+absolute_error],
+            point_below_20_um=point<=20, uncertainty_upper_below_20_um=f+absolute_error<=20),
+        single_head_comparison=dict(case=single_case, paired_case=source['cases'][0],
+            same_h_mm=1.5, same_dt_s=.25, paired_position_um=a,single_position_um=single_um,
+            difference_um=single_um-a, relative_increase_percent=100*(single_um/a-1),
+            single_total_budget_point_um=30+single_um,
+            uncertainty_scope='No independent single-head spatial or temporal error estimate is available'),
+        model_assumptions=['The three spatial solutions oscillate; no monotonic Richardson limit is reported.',
+            'The apparent order uses nominal parent-grid ratios; weld_h remains 1 mm and the family is not uniformly refined.',
+            'Non-monotonic range uncertainty is an engineering estimate, not an asymptotic convergence certificate.',
+            'q=2 and spatial/time separability remain assumptions; the only temporal comparison is on h=1.5 mm.',
+            'The time comparison also changes structural/event update steps.',
+            'The single-head case has one grid; paired uncertainty is not transferred as a validated single-head bound.',
+            'Material, contact, heat-source and precoat residual assumptions are verified in the trial plan.',
+            'The saved bore is before final clamped forming; full-release size and forming-induced axis change require first-article calibration.'],
+        method_source='https://tmbwg.github.io/turbmodels/Papers/uncertainty_summary.pdf',
+        third_grid=dict(case=CASE,h_mm=fine['h_mm'],dt_s=fine['dt_s'],
+            nodes=fine['nodes'],tetrahedra=fine['tetrahedra'],elapsed_s=fine_progress['elapsed_s'],
+            other_worker_arguments_unchanged=True,complete_run_started=True,complete=True))
+    for case, measurement, progress in [(CASE,fine,fine_progress),(single_case,single,single_progress)]:
+        fit=measurement['fit']
+        report['input_results'].append(dict(case=case,h_mm=measurement['h_mm'],dt_s=measurement['dt_s'],
+            nodes=measurement['nodes'],tetrahedra=measurement['tetrahedra'],elapsed_s=progress['elapsed_s'],
+            position_diameter_um=fit['position_diameter_mm']*1000,
+            bore_two_point_range_mm=[fit['sampled_bore_two_point_diameter_min_mm'],fit['sampled_bore_two_point_diameter_max_mm']]))
     OUTPUT.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
-    print(json.dumps({k:report[k] for k in ['spatial','temporal','combined_p2_q2','third_grid']},ensure_ascii=False))
+    print(json.dumps({k:report[k] for k in ['spatial','temporal','combined','single_head_comparison']},ensure_ascii=False))
 
 
 def mesh_smoke():
