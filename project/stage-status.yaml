@@ -1,18 +1,18 @@
 version: STAGE-STATUS-1.0
-updated: '2026-10-08'
+updated: '2026-10-09'
 authority: 当前阶段执行、验收和用途总账；不得用“已执行”替代“已通过”
 route_b:
   selected: true
   experimental_data_required: false
-  objective: 焊接固定题报告与工程图交付；以有效接头和完整制造状态支撑设计判断
+  objective: 将已有8P成果整理为参赛作品；计算结论与试制评定计划明确分列
   submission_object: 8P-R2-t15八翼柔顺槽座体与八段两道连接
   submission_baseline_source: project/submission-baseline.yaml
   current_research_stage: COMPETITION-R4
   active_submission_stage: COMPETITION-DELIVERY-20261008
   main_route: CI-A1独立高镍首层—低碳Ni99第二层—8P低热GTAW—铜环实体屏障
   adopted_fixture: 原详细设计门架、内锥胀套、托环与铜环
-  active_plan: deliverables/competition-route.md
-  next_action: 本轮有限工程与当前交付已通过新独立定向终审，工程文件冻结；适用新输入或真实工程变化时审查，再决定有限制造链。无变化不重复读取、重问、打包或计算。
+  active_plan: deliverables/FINAL-ENTRY-STATUS.md
+  next_action: 只做8P参赛定稿，2026-10-18冻结：既有终焊算例Richardson/GCI、一个三级网格准备、只读场云图、根盖耗丝及85 A/14 V第二层与无微珩卡稿同步、正文和PDF。禁止首层仿真、制造链拼接、原生重启、扫描、新求解器与测试扩张；只维护deliverables/FINAL-ENTRY-STATUS.md，图纸重画和包清理留待Run B。
   historical_next_actions_are_active: false
   dormant_comparators:
   - complete_ring
@@ -64,7 +64,7 @@ stages:
     - docs/review/second-round-final-delivery-audit-20261008.md
     allowed_use: 参赛说明书、分工序pWPS和当前工程图；文件成套与实际指标资格分别验收
     upstream_dependencies: []
-    next_action: 当前102页/46项主包及240项编辑历史包已独立定向审阅，6处同步缺陷全部闭合。文件冻结，新制造FE0；整体性能仍未验收。下一步仅由适用新来源或工程变化触发，记录元数据更新不重启审核。
+    next_action: 只做8P参赛定稿，2026-10-18冻结：既有终焊算例Richardson/GCI、一个三级网格准备、只读场云图、根盖耗丝及85 A/14 V第二层与无微珩卡稿同步、正文和PDF。禁止首层仿真、制造链拼接、原生重启、扫描、新求解器与测试扩张；只维护deliverables/FINAL-ENTRY-STATUS.md，图纸重画和包清理留待Run B。
   SUBMISSION-RING-20261008:
     physical_object: 完整圆环比较对象；局部预制窗与8×20 mm两道组焊
     record_role: dormant_comparator
