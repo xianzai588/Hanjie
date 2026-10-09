@@ -11,7 +11,15 @@
   "total_actual_path_mm": 288.0000000000375,
   "nominal_net_heat_kJ": 86.40000000001125,
   "arc_time_s": 174.5454545454773,
-  "wire_length_mm": 610.9090909091706,
+  "pass_wire_feed_mm_s": {
+    "root": 3.42,
+    "cover": 3.78
+  },
+  "pass_wire_length_mm": {
+    "root": 298.4727272727662,
+    "cover": 329.89090909095205
+  },
+  "wire_length_mm": 628.3636363637182,
   "static_reference_loads": {
     "radial_N": 5000,
     "axial_N": 5000,
@@ -291,10 +299,10 @@
   "selected_minimum_leg_mm": 3.8,
   "supply_geometry": {
     "equivalent_leg_range_mm": [
-      3.8279019495412534,
-      4.185747406317449
+      3.8829825060283323,
+      4.244292171304242
     ],
-    "margin_above_selected_minimum_mm": 0.02790194954125358,
+    "margin_above_selected_minimum_mm": 0.08298250602833246,
     "scope": "Volume conservation supports geometric filling only; continuous fusion and effective throat must be verified separately."
   },
   "revision": "Exclude both transitions from capacity; add axial normal stress to bending. Raise stable minimum leg from 3.50 to 3.80 mm within the existing calculated 3.828..4.186 mm feed envelope; nominal leg remains 4.00 mm. Heat/path/feed settings unchanged.",
