@@ -32,7 +32,17 @@ def section_axis_envelope(a,b,hole,section_count=3,angular_count=12):
  centres=np.asarray(centres)
  sections=lh.reshape(section_count,angular_count,3);half=angular_count//2
  diameters=np.linalg.norm(sections[:,:half,:]-sections[:,half:,:],axis=2)
+ radii=np.linalg.norm(sections[:,:,:2]-centres[:,None,:],axis=2)
+ section_metrology=[dict(section_index=i,z_in_A_frame_mm=float(section[:,2].mean()),
+     two_point_diameter_min_mm=float(diameters[i].min()),
+     two_point_diameter_max_mm=float(diameters[i].max()),
+     two_point_diameter_mean_mm=float(diameters[i].mean()),
+     two_point_diameter_spread_mm=float(np.ptp(diameters[i])),
+     least_squares_radial_peak_to_valley_mm=float(np.ptp(radii[i])),
+     scope='Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation')
+     for i,section in enumerate(sections)]
  return dict(section_axis_envelope_diameter_mm=float(2*np.linalg.norm(centres,axis=1).max()),section_centres_relative_B_mm=centres.tolist(),
+     per_section_metrology=section_metrology,
      sampled_bore_two_point_diameter_min_mm=float(diameters.min()),
      sampled_bore_two_point_diameter_max_mm=float(diameters.max()),
      sampled_section_diameter_spreads_mm=np.ptp(diameters,axis=1).tolist(),

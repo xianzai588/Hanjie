@@ -1,0 +1,1025 @@
+{
+  "source": "Existing fully released fields; primary angular phase. LS radial range is not minimum-zone roundness.",
+  "cases": [
+    {
+      "case": "8p-thermal-tool-bore008-h15-dt025-s05",
+      "diameter_min_mm": 39.99796003292328,
+      "diameter_max_mm": 40.02303642719259,
+      "axial_mean_diameter_span_um": 17.2176295105686,
+      "maximum_section_diameter_span_um": 8.061578100210909,
+      "maximum_least_squares_radial_peak_to_valley_um": 4.097343680498966,
+      "sections": [
+        {
+          "section_index": 0,
+          "z_in_A_frame_mm": -100.14021449427462,
+          "two_point_diameter_min_mm": 39.99796013236969,
+          "two_point_diameter_max_mm": 40.00305625025721,
+          "two_point_diameter_mean_mm": 40.00115853014563,
+          "two_point_diameter_spread_mm": 0.005096117887518403,
+          "least_squares_radial_peak_to_valley_mm": 0.0026225144456546445,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 1,
+          "z_in_A_frame_mm": -100.60895225557552,
+          "two_point_diameter_min_mm": 39.99914924995144,
+          "two_point_diameter_max_mm": 40.003521168493414,
+          "two_point_diameter_mean_mm": 40.00185813611259,
+          "two_point_diameter_spread_mm": 0.004371918541977493,
+          "least_squares_radial_peak_to_valley_mm": 0.0023832325477215477,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 2,
+          "z_in_A_frame_mm": -101.07765679472529,
+          "two_point_diameter_min_mm": 40.000560874715454,
+          "two_point_diameter_max_mm": 40.00399799575955,
+          "two_point_diameter_mean_mm": 40.00256427849814,
+          "two_point_diameter_spread_mm": 0.0034371210440937716,
+          "least_squares_radial_peak_to_valley_mm": 0.0021583244912655175,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 3,
+          "z_in_A_frame_mm": -101.5463281503573,
+          "two_point_diameter_min_mm": 40.001450998293514,
+          "two_point_diameter_max_mm": 40.004687445934415,
+          "two_point_diameter_mean_mm": 40.00326528161678,
+          "two_point_diameter_spread_mm": 0.003236447640901474,
+          "least_squares_radial_peak_to_valley_mm": 0.002106356877014548,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 4,
+          "z_in_A_frame_mm": -102.01496822849383,
+          "two_point_diameter_min_mm": 40.002340960464174,
+          "two_point_diameter_max_mm": 40.00550760085247,
+          "two_point_diameter_mean_mm": 40.00395473193836,
+          "two_point_diameter_spread_mm": 0.003166640388293729,
+          "least_squares_radial_peak_to_valley_mm": 0.0020501344498811136,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 5,
+          "z_in_A_frame_mm": -102.48406442136546,
+          "two_point_diameter_min_mm": 40.00230755232737,
+          "two_point_diameter_max_mm": 40.005409317230196,
+          "two_point_diameter_mean_mm": 40.00403948858443,
+          "two_point_diameter_spread_mm": 0.003101764902822879,
+          "least_squares_radial_peak_to_valley_mm": 0.0018685661010735544,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 6,
+          "z_in_A_frame_mm": -102.95286030548284,
+          "two_point_diameter_min_mm": 40.002657748559,
+          "two_point_diameter_max_mm": 40.0058591307473,
+          "two_point_diameter_mean_mm": 40.00447682199058,
+          "two_point_diameter_spread_mm": 0.003201382188294133,
+          "least_squares_radial_peak_to_valley_mm": 0.0016900133807915552,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 7,
+          "z_in_A_frame_mm": -103.4216491440942,
+          "two_point_diameter_min_mm": 40.00382555918404,
+          "two_point_diameter_max_mm": 40.00634453713935,
+          "two_point_diameter_mean_mm": 40.00511685897789,
+          "two_point_diameter_spread_mm": 0.002518977955311641,
+          "least_squares_radial_peak_to_valley_mm": 0.0015477221747524084,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 8,
+          "z_in_A_frame_mm": -103.89042371443155,
+          "two_point_diameter_min_mm": 40.00467192686917,
+          "two_point_diameter_max_mm": 40.006838685816746,
+          "two_point_diameter_mean_mm": 40.00572866225553,
+          "two_point_diameter_spread_mm": 0.00216675894757401,
+          "least_squares_radial_peak_to_valley_mm": 0.0013921507066214645,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 9,
+          "z_in_A_frame_mm": -104.35918826254334,
+          "two_point_diameter_min_mm": 40.005433216527216,
+          "two_point_diameter_max_mm": 40.00731581156539,
+          "two_point_diameter_mean_mm": 40.0063052187866,
+          "two_point_diameter_spread_mm": 0.0018825950381753387,
+          "least_squares_radial_peak_to_valley_mm": 0.0012078671775697103,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 10,
+          "z_in_A_frame_mm": -104.82796322497843,
+          "two_point_diameter_min_mm": 40.00579998417324,
+          "two_point_diameter_max_mm": 40.007811395341314,
+          "two_point_diameter_mean_mm": 40.006722738050534,
+          "two_point_diameter_spread_mm": 0.0020114111680769042,
+          "least_squares_radial_peak_to_valley_mm": 0.0012331267628873377,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 11,
+          "z_in_A_frame_mm": -105.29664500542047,
+          "two_point_diameter_min_mm": 40.006152697065566,
+          "two_point_diameter_max_mm": 40.00829940623273,
+          "two_point_diameter_mean_mm": 40.00708375415491,
+          "two_point_diameter_spread_mm": 0.0021467091671638627,
+          "least_squares_radial_peak_to_valley_mm": 0.0011223371017479167,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 12,
+          "z_in_A_frame_mm": -105.76541725896162,
+          "two_point_diameter_min_mm": 40.00683286760333,
+          "two_point_diameter_max_mm": 40.0088430871508,
+          "two_point_diameter_mean_mm": 40.00765567352176,
+          "two_point_diameter_spread_mm": 0.0020102195474720475,
+          "least_squares_radial_peak_to_valley_mm": 0.0011022080388762845,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 13,
+          "z_in_A_frame_mm": -106.23414130980979,
+          "two_point_diameter_min_mm": 40.00740620542651,
+          "two_point_diameter_max_mm": 40.009338985191,
+          "two_point_diameter_mean_mm": 40.008205666825226,
+          "two_point_diameter_spread_mm": 0.001932779764487691,
+          "least_squares_radial_peak_to_valley_mm": 0.0010493201098569216,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 14,
+          "z_in_A_frame_mm": -106.70294001367017,
+          "two_point_diameter_min_mm": 40.00783461444812,
+          "two_point_diameter_max_mm": 40.00982115480529,
+          "two_point_diameter_mean_mm": 40.00871257957029,
+          "two_point_diameter_spread_mm": 0.0019865403571657225,
+          "least_squares_radial_peak_to_valley_mm": 0.001118237094338781,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 15,
+          "z_in_A_frame_mm": -107.17171413747194,
+          "two_point_diameter_min_mm": 40.008185200136175,
+          "two_point_diameter_max_mm": 40.01048576559615,
+          "two_point_diameter_mean_mm": 40.009228943804594,
+          "two_point_diameter_spread_mm": 0.002300565459975701,
+          "least_squares_radial_peak_to_valley_mm": 0.0012271965398618079,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 16,
+          "z_in_A_frame_mm": -107.64037834257631,
+          "two_point_diameter_min_mm": 40.00858953435213,
+          "two_point_diameter_max_mm": 40.011155995519744,
+          "two_point_diameter_mean_mm": 40.009750176492,
+          "two_point_diameter_spread_mm": 0.002566461167610612,
+          "least_squares_radial_peak_to_valley_mm": 0.0013485530681762725,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 17,
+          "z_in_A_frame_mm": -108.10913239807944,
+          "two_point_diameter_min_mm": 40.00900603959274,
+          "two_point_diameter_max_mm": 40.01168443003391,
+          "two_point_diameter_mean_mm": 40.01023052863458,
+          "two_point_diameter_spread_mm": 0.0026783904411686876,
+          "least_squares_radial_peak_to_valley_mm": 0.0014608154746191815,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 18,
+          "z_in_A_frame_mm": -108.57791853776503,
+          "two_point_diameter_min_mm": 40.0092575201885,
+          "two_point_diameter_max_mm": 40.012386609465466,
+          "two_point_diameter_mean_mm": 40.010723911813876,
+          "two_point_diameter_spread_mm": 0.003129089276967534,
+          "least_squares_radial_peak_to_valley_mm": 0.001773273775143025,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 19,
+          "z_in_A_frame_mm": -109.04666249265262,
+          "two_point_diameter_min_mm": 40.009687277441614,
+          "two_point_diameter_max_mm": 40.01308666139537,
+          "two_point_diameter_mean_mm": 40.01124681079136,
+          "two_point_diameter_spread_mm": 0.00339938395375583,
+          "least_squares_radial_peak_to_valley_mm": 0.0018677084919893616,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 20,
+          "z_in_A_frame_mm": -109.51538456831565,
+          "two_point_diameter_min_mm": 40.010078530608105,
+          "two_point_diameter_max_mm": 40.01391368612508,
+          "two_point_diameter_mean_mm": 40.011797940762115,
+          "two_point_diameter_spread_mm": 0.003835155516973998,
+          "least_squares_radial_peak_to_valley_mm": 0.00201717590257644,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 21,
+          "z_in_A_frame_mm": -109.98414487358211,
+          "two_point_diameter_min_mm": 40.01057015560488,
+          "two_point_diameter_max_mm": 40.01442878354219,
+          "two_point_diameter_mean_mm": 40.012315774039,
+          "two_point_diameter_spread_mm": 0.0038586279373120647,
+          "least_squares_radial_peak_to_valley_mm": 0.002106739940856528,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 22,
+          "z_in_A_frame_mm": -110.45287062967266,
+          "two_point_diameter_min_mm": 40.01079833367186,
+          "two_point_diameter_max_mm": 40.01529610205869,
+          "two_point_diameter_mean_mm": 40.01280977905819,
+          "two_point_diameter_spread_mm": 0.004497768386833911,
+          "least_squares_radial_peak_to_valley_mm": 0.0023589141648656664,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 23,
+          "z_in_A_frame_mm": -110.9215631755826,
+          "two_point_diameter_min_mm": 40.01094631197845,
+          "two_point_diameter_max_mm": 40.01569041142183,
+          "two_point_diameter_mean_mm": 40.01319539089042,
+          "two_point_diameter_spread_mm": 0.004744099443378502,
+          "least_squares_radial_peak_to_valley_mm": 0.00260566647568794,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 24,
+          "z_in_A_frame_mm": -111.39030628355773,
+          "two_point_diameter_min_mm": 40.0116913772836,
+          "two_point_diameter_max_mm": 40.01655211668134,
+          "two_point_diameter_mean_mm": 40.01382963405019,
+          "two_point_diameter_spread_mm": 0.004860739397742009,
+          "least_squares_radial_peak_to_valley_mm": 0.0026251809218251765,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 25,
+          "z_in_A_frame_mm": -111.85903089628003,
+          "two_point_diameter_min_mm": 40.012203781851966,
+          "two_point_diameter_max_mm": 40.0174024395771,
+          "two_point_diameter_mean_mm": 40.014435751037496,
+          "two_point_diameter_spread_mm": 0.005198657725131284,
+          "least_squares_radial_peak_to_valley_mm": 0.0027430851627805453,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 26,
+          "z_in_A_frame_mm": -112.32777816083149,
+          "two_point_diameter_min_mm": 40.01252689813482,
+          "two_point_diameter_max_mm": 40.018250165613914,
+          "two_point_diameter_mean_mm": 40.015020599219646,
+          "two_point_diameter_spread_mm": 0.005723267479091021,
+          "least_squares_radial_peak_to_valley_mm": 0.003029057063571372,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 27,
+          "z_in_A_frame_mm": -112.7965276744078,
+          "two_point_diameter_min_mm": 40.012947092771526,
+          "two_point_diameter_max_mm": 40.018975773363024,
+          "two_point_diameter_mean_mm": 40.015538439538496,
+          "two_point_diameter_spread_mm": 0.006028680591498414,
+          "least_squares_radial_peak_to_valley_mm": 0.0031076914435139713,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 28,
+          "z_in_A_frame_mm": -113.26521624492499,
+          "two_point_diameter_min_mm": 40.01340052590026,
+          "two_point_diameter_max_mm": 40.019773930806366,
+          "two_point_diameter_mean_mm": 40.01600954715899,
+          "two_point_diameter_spread_mm": 0.006373404906106828,
+          "least_squares_radial_peak_to_valley_mm": 0.00329051682729542,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 29,
+          "z_in_A_frame_mm": -113.73392054282454,
+          "two_point_diameter_min_mm": 40.013741167777354,
+          "two_point_diameter_max_mm": 40.02054370136305,
+          "two_point_diameter_mean_mm": 40.01655188605636,
+          "two_point_diameter_spread_mm": 0.006802533585698711,
+          "least_squares_radial_peak_to_valley_mm": 0.0035513038200285507,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 30,
+          "z_in_A_frame_mm": -114.2026389263475,
+          "two_point_diameter_min_mm": 40.01413835535007,
+          "two_point_diameter_max_mm": 40.021389944573194,
+          "two_point_diameter_mean_mm": 40.01713611712264,
+          "two_point_diameter_spread_mm": 0.007251589223123744,
+          "least_squares_radial_peak_to_valley_mm": 0.0038062046849915987,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 31,
+          "z_in_A_frame_mm": -114.67137428310717,
+          "two_point_diameter_min_mm": 40.01445317205066,
+          "two_point_diameter_max_mm": 40.02222005562041,
+          "two_point_diameter_mean_mm": 40.01775067169738,
+          "two_point_diameter_spread_mm": 0.00776688356975086,
+          "least_squares_radial_peak_to_valley_mm": 0.004071546466462905,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 32,
+          "z_in_A_frame_mm": -115.14012650207978,
+          "two_point_diameter_min_mm": 40.01496845143646,
+          "two_point_diameter_max_mm": 40.02303002953667,
+          "two_point_diameter_mean_mm": 40.0183761596562,
+          "two_point_diameter_spread_mm": 0.008061578100210909,
+          "least_squares_radial_peak_to_valley_mm": 0.004097343680498966,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        }
+      ]
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h1125-dt025-s05",
+      "diameter_min_mm": 39.99744993150646,
+      "diameter_max_mm": 40.02268295068234,
+      "axial_mean_diameter_span_um": 17.13816504219068,
+      "maximum_section_diameter_span_um": 7.722892517577407,
+      "maximum_least_squares_radial_peak_to_valley_um": 3.9399800840058674,
+      "sections": [
+        {
+          "section_index": 0,
+          "z_in_A_frame_mm": -100.13879129975197,
+          "two_point_diameter_min_mm": 39.997455761494486,
+          "two_point_diameter_max_mm": 40.00354200440288,
+          "two_point_diameter_mean_mm": 40.00107363687941,
+          "two_point_diameter_spread_mm": 0.006086242908395434,
+          "least_squares_radial_peak_to_valley_mm": 0.003048482138421349,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 1,
+          "z_in_A_frame_mm": -100.60755957687964,
+          "two_point_diameter_min_mm": 39.99830718455789,
+          "two_point_diameter_max_mm": 40.00397786809345,
+          "two_point_diameter_mean_mm": 40.001649051052595,
+          "two_point_diameter_spread_mm": 0.0056706835355626595,
+          "least_squares_radial_peak_to_valley_mm": 0.002884499555584341,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 2,
+          "z_in_A_frame_mm": -101.0763228319805,
+          "two_point_diameter_min_mm": 39.99899623534306,
+          "two_point_diameter_max_mm": 40.00441844313867,
+          "two_point_diameter_mean_mm": 40.00223090288326,
+          "two_point_diameter_spread_mm": 0.0054222077956112,
+          "least_squares_radial_peak_to_valley_mm": 0.0027377623592172995,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 3,
+          "z_in_A_frame_mm": -101.54508104087692,
+          "two_point_diameter_min_mm": 39.99980502230093,
+          "two_point_diameter_max_mm": 40.004858505092514,
+          "two_point_diameter_mean_mm": 40.00280884669572,
+          "two_point_diameter_spread_mm": 0.005053482791581132,
+          "least_squares_radial_peak_to_valley_mm": 0.0026296513416603773,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 4,
+          "z_in_A_frame_mm": -102.01388222000121,
+          "two_point_diameter_min_mm": 40.00054942247556,
+          "two_point_diameter_max_mm": 40.00534292308519,
+          "two_point_diameter_mean_mm": 40.003243006713575,
+          "two_point_diameter_spread_mm": 0.004793500609629575,
+          "least_squares_radial_peak_to_valley_mm": 0.002461438893011092,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 5,
+          "z_in_A_frame_mm": -102.48264780577445,
+          "two_point_diameter_min_mm": 40.001452089394796,
+          "two_point_diameter_max_mm": 40.005787837725045,
+          "two_point_diameter_mean_mm": 40.003815160879476,
+          "two_point_diameter_spread_mm": 0.004335748330248634,
+          "least_squares_radial_peak_to_valley_mm": 0.0022321521826818014,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 6,
+          "z_in_A_frame_mm": -102.9513960654911,
+          "two_point_diameter_min_mm": 40.00205500185534,
+          "two_point_diameter_max_mm": 40.00621560131352,
+          "two_point_diameter_mean_mm": 40.00435526142602,
+          "two_point_diameter_spread_mm": 0.00416059945818148,
+          "least_squares_radial_peak_to_valley_mm": 0.002110959831945536,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 7,
+          "z_in_A_frame_mm": -103.42011962915659,
+          "two_point_diameter_min_mm": 40.00276454727526,
+          "two_point_diameter_max_mm": 40.00659093461795,
+          "two_point_diameter_mean_mm": 40.00483481018597,
+          "two_point_diameter_spread_mm": 0.0038263873426842565,
+          "least_squares_radial_peak_to_valley_mm": 0.0019849516621590624,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 8,
+          "z_in_A_frame_mm": -103.88895882206144,
+          "two_point_diameter_min_mm": 40.003746019075635,
+          "two_point_diameter_max_mm": 40.00708218122008,
+          "two_point_diameter_mean_mm": 40.005398903333464,
+          "two_point_diameter_spread_mm": 0.003336162144442767,
+          "least_squares_radial_peak_to_valley_mm": 0.0017947387080994304,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 9,
+          "z_in_A_frame_mm": -104.35770510031465,
+          "two_point_diameter_min_mm": 40.004374678357294,
+          "two_point_diameter_max_mm": 40.00752299481617,
+          "two_point_diameter_mean_mm": 40.00590559068909,
+          "two_point_diameter_spread_mm": 0.0031483164588763657,
+          "least_squares_radial_peak_to_valley_mm": 0.0016956634184310815,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 10,
+          "z_in_A_frame_mm": -104.82645587286872,
+          "two_point_diameter_min_mm": 40.00493641437119,
+          "two_point_diameter_max_mm": 40.00801868178452,
+          "two_point_diameter_mean_mm": 40.00641494027594,
+          "two_point_diameter_spread_mm": 0.003082267413333284,
+          "least_squares_radial_peak_to_valley_mm": 0.0015848320601712373,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 11,
+          "z_in_A_frame_mm": -105.29526983217256,
+          "two_point_diameter_min_mm": 40.00571682297616,
+          "two_point_diameter_max_mm": 40.0085385894513,
+          "two_point_diameter_mean_mm": 40.006971211090686,
+          "two_point_diameter_spread_mm": 0.0028217664751366556,
+          "least_squares_radial_peak_to_valley_mm": 0.0014713533907908527,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 12,
+          "z_in_A_frame_mm": -105.76399670164899,
+          "two_point_diameter_min_mm": 40.00628858691878,
+          "two_point_diameter_max_mm": 40.00892790726504,
+          "two_point_diameter_mean_mm": 40.007483567230466,
+          "two_point_diameter_spread_mm": 0.0026393203462617976,
+          "least_squares_radial_peak_to_valley_mm": 0.0013626240135984347,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 13,
+          "z_in_A_frame_mm": -106.23273192918282,
+          "two_point_diameter_min_mm": 40.00692118234311,
+          "two_point_diameter_max_mm": 40.00942479553136,
+          "two_point_diameter_mean_mm": 40.00800480703639,
+          "two_point_diameter_spread_mm": 0.002503613188245879,
+          "least_squares_radial_peak_to_valley_mm": 0.001294801333010298,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 14,
+          "z_in_A_frame_mm": -106.70146144210798,
+          "two_point_diameter_min_mm": 40.007474514245395,
+          "two_point_diameter_max_mm": 40.00985267017645,
+          "two_point_diameter_mean_mm": 40.00851617111155,
+          "two_point_diameter_spread_mm": 0.0023781559310549483,
+          "least_squares_radial_peak_to_valley_mm": 0.0012942411998011494,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 15,
+          "z_in_A_frame_mm": -107.17027026287603,
+          "two_point_diameter_min_mm": 40.008023821014376,
+          "two_point_diameter_max_mm": 40.010378209939006,
+          "two_point_diameter_mean_mm": 40.00908387613517,
+          "two_point_diameter_spread_mm": 0.002354388924629802,
+          "least_squares_radial_peak_to_valley_mm": 0.0013117555349388965,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 16,
+          "z_in_A_frame_mm": -107.63903064534172,
+          "two_point_diameter_min_mm": 40.00844023909628,
+          "two_point_diameter_max_mm": 40.01103119686152,
+          "two_point_diameter_mean_mm": 40.00963050048742,
+          "two_point_diameter_spread_mm": 0.002590957765242763,
+          "least_squares_radial_peak_to_valley_mm": 0.0013997670220149416,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 17,
+          "z_in_A_frame_mm": -108.10775874481111,
+          "two_point_diameter_min_mm": 40.00883393732257,
+          "two_point_diameter_max_mm": 40.011544600250495,
+          "two_point_diameter_mean_mm": 40.01014530445923,
+          "two_point_diameter_spread_mm": 0.0027106629279245453,
+          "least_squares_radial_peak_to_valley_mm": 0.0014876461430120003,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 18,
+          "z_in_A_frame_mm": -108.5764784237565,
+          "two_point_diameter_min_mm": 40.00922487875419,
+          "two_point_diameter_max_mm": 40.01209943374841,
+          "two_point_diameter_mean_mm": 40.01066834082199,
+          "two_point_diameter_spread_mm": 0.002874554994221512,
+          "least_squares_radial_peak_to_valley_mm": 0.0015913968881093865,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 19,
+          "z_in_A_frame_mm": -109.04525767047336,
+          "two_point_diameter_min_mm": 40.009713008858306,
+          "two_point_diameter_max_mm": 40.012890018967184,
+          "two_point_diameter_mean_mm": 40.01120731865192,
+          "two_point_diameter_spread_mm": 0.0031770101088781644,
+          "least_squares_radial_peak_to_valley_mm": 0.0017392938111235878,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 20,
+          "z_in_A_frame_mm": -109.51401113855792,
+          "two_point_diameter_min_mm": 40.01005532868751,
+          "two_point_diameter_max_mm": 40.013619209371534,
+          "two_point_diameter_mean_mm": 40.01175752688215,
+          "two_point_diameter_spread_mm": 0.003563880684026799,
+          "least_squares_radial_peak_to_valley_mm": 0.0018937313463354144,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 21,
+          "z_in_A_frame_mm": -109.9827262867315,
+          "two_point_diameter_min_mm": 40.01046767782273,
+          "two_point_diameter_max_mm": 40.01409518049236,
+          "two_point_diameter_mean_mm": 40.01223589555927,
+          "two_point_diameter_spread_mm": 0.0036275026696301893,
+          "least_squares_radial_peak_to_valley_mm": 0.0019881766807969825,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 22,
+          "z_in_A_frame_mm": -110.45145381424005,
+          "two_point_diameter_min_mm": 40.010851812245235,
+          "two_point_diameter_max_mm": 40.01459134245365,
+          "two_point_diameter_mean_mm": 40.01271455851899,
+          "two_point_diameter_spread_mm": 0.003739530208413555,
+          "least_squares_radial_peak_to_valley_mm": 0.002087859836688466,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 23,
+          "z_in_A_frame_mm": -110.92020135575001,
+          "two_point_diameter_min_mm": 40.01131808967947,
+          "two_point_diameter_max_mm": 40.01569235709732,
+          "two_point_diameter_mean_mm": 40.01329605043189,
+          "two_point_diameter_spread_mm": 0.0043742674178517404,
+          "least_squares_radial_peak_to_valley_mm": 0.002334402283338477,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 24,
+          "z_in_A_frame_mm": -111.38897800332116,
+          "two_point_diameter_min_mm": 40.01164765462412,
+          "two_point_diameter_max_mm": 40.01638113461639,
+          "two_point_diameter_mean_mm": 40.01378365586843,
+          "two_point_diameter_spread_mm": 0.00473347999226803,
+          "least_squares_radial_peak_to_valley_mm": 0.0024765927751602135,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 25,
+          "z_in_A_frame_mm": -111.85769439309774,
+          "two_point_diameter_min_mm": 40.011885640353235,
+          "two_point_diameter_max_mm": 40.016867621633864,
+          "two_point_diameter_mean_mm": 40.01421588513057,
+          "two_point_diameter_spread_mm": 0.0049819812806291,
+          "least_squares_radial_peak_to_valley_mm": 0.0026587448850570183,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 26,
+          "z_in_A_frame_mm": -112.32641339989341,
+          "two_point_diameter_min_mm": 40.01214435636334,
+          "two_point_diameter_max_mm": 40.01762163099469,
+          "two_point_diameter_mean_mm": 40.01470136446094,
+          "two_point_diameter_spread_mm": 0.005477274631346063,
+          "least_squares_radial_peak_to_valley_mm": 0.0029217847103168992,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 27,
+          "z_in_A_frame_mm": -112.79512042844685,
+          "two_point_diameter_min_mm": 40.012827833847744,
+          "two_point_diameter_max_mm": 40.018452999626476,
+          "two_point_diameter_mean_mm": 40.01534736010819,
+          "two_point_diameter_spread_mm": 0.0056251657787314,
+          "least_squares_radial_peak_to_valley_mm": 0.0029866885917364527,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 28,
+          "z_in_A_frame_mm": -113.26390466353956,
+          "two_point_diameter_min_mm": 40.01331299209375,
+          "two_point_diameter_max_mm": 40.01907529049057,
+          "two_point_diameter_mean_mm": 40.01592356650454,
+          "two_point_diameter_spread_mm": 0.0057622983968173,
+          "least_squares_radial_peak_to_valley_mm": 0.0030769045275640394,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 29,
+          "z_in_A_frame_mm": -113.73263162690819,
+          "two_point_diameter_min_mm": 40.01371969170772,
+          "two_point_diameter_max_mm": 40.01943505054462,
+          "two_point_diameter_mean_mm": 40.01640105383838,
+          "two_point_diameter_spread_mm": 0.005715358836901885,
+          "least_squares_radial_peak_to_valley_mm": 0.0031742362606266283,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 30,
+          "z_in_A_frame_mm": -114.20133448172692,
+          "two_point_diameter_min_mm": 40.0141256417738,
+          "two_point_diameter_max_mm": 40.020595357855996,
+          "two_point_diameter_mean_mm": 40.01697725128961,
+          "two_point_diameter_spread_mm": 0.0064697160821935995,
+          "least_squares_radial_peak_to_valley_mm": 0.0034773501987714894,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 31,
+          "z_in_A_frame_mm": -114.67003133233213,
+          "two_point_diameter_min_mm": 40.01454042249777,
+          "two_point_diameter_max_mm": 40.021703128239984,
+          "two_point_diameter_mean_mm": 40.017587722802936,
+          "two_point_diameter_spread_mm": 0.007162705742217668,
+          "least_squares_radial_peak_to_valley_mm": 0.0037056708794196425,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 32,
+          "z_in_A_frame_mm": -115.13872219783256,
+          "two_point_diameter_min_mm": 40.014953714818425,
+          "two_point_diameter_max_mm": 40.022676607336,
+          "two_point_diameter_mean_mm": 40.0182118019216,
+          "two_point_diameter_spread_mm": 0.007722892517577407,
+          "least_squares_radial_peak_to_valley_mm": 0.003939980084005867,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        }
+      ]
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h15-dt0125-s025",
+      "diameter_min_mm": 39.99761789203367,
+      "diameter_max_mm": 40.023579223700125,
+      "axial_mean_diameter_span_um": 17.707256078196565,
+      "maximum_section_diameter_span_um": 8.362163743605322,
+      "maximum_least_squares_radial_peak_to_valley_um": 4.262598917602389,
+      "sections": [
+        {
+          "section_index": 0,
+          "z_in_A_frame_mm": -100.14620423897811,
+          "two_point_diameter_min_mm": 39.99761789203367,
+          "two_point_diameter_max_mm": 40.00301798672708,
+          "two_point_diameter_mean_mm": 40.00102376713203,
+          "two_point_diameter_spread_mm": 0.005400094693413848,
+          "least_squares_radial_peak_to_valley_mm": 0.002765358732151668,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 1,
+          "z_in_A_frame_mm": -100.61494099051397,
+          "two_point_diameter_min_mm": 39.99885475470923,
+          "two_point_diameter_max_mm": 40.0034913815935,
+          "two_point_diameter_mean_mm": 40.00174228851603,
+          "two_point_diameter_spread_mm": 0.004636626884270356,
+          "least_squares_radial_peak_to_valley_mm": 0.0025141247048310333,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 2,
+          "z_in_A_frame_mm": -101.08364312785928,
+          "two_point_diameter_min_mm": 40.00031304918588,
+          "two_point_diameter_max_mm": 40.003978699872576,
+          "two_point_diameter_mean_mm": 40.00246713556004,
+          "two_point_diameter_spread_mm": 0.0036656506866989957,
+          "least_squares_radial_peak_to_valley_mm": 0.002295064154477444,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 3,
+          "z_in_A_frame_mm": -101.55231069089514,
+          "two_point_diameter_min_mm": 40.0012348628859,
+          "two_point_diameter_max_mm": 40.00469862683739,
+          "two_point_diameter_mean_mm": 40.00318660676714,
+          "two_point_diameter_spread_mm": 0.0034637639514869534,
+          "least_squares_radial_peak_to_valley_mm": 0.0022326128935112877,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 4,
+          "z_in_A_frame_mm": -102.02094566976064,
+          "two_point_diameter_min_mm": 40.00215667659944,
+          "two_point_diameter_max_mm": 40.005540851283804,
+          "two_point_diameter_mean_mm": 40.003894490244896,
+          "two_point_diameter_spread_mm": 0.0033841746843634724,
+          "least_squares_radial_peak_to_valley_mm": 0.0021684310142653374,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 5,
+          "z_in_A_frame_mm": -102.49005559384925,
+          "two_point_diameter_min_mm": 40.00212889926217,
+          "two_point_diameter_max_mm": 40.00542794003419,
+          "two_point_diameter_mean_mm": 40.00398601202469,
+          "two_point_diameter_spread_mm": 0.0032990407720205894,
+          "least_squares_radial_peak_to_valley_mm": 0.00197738173269002,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 6,
+          "z_in_A_frame_mm": -102.95885350751583,
+          "two_point_diameter_min_mm": 40.002482188234254,
+          "two_point_diameter_max_mm": 40.00588724001618,
+          "two_point_diameter_mean_mm": 40.00443603591312,
+          "two_point_diameter_spread_mm": 0.0034050517819252946,
+          "least_squares_radial_peak_to_valley_mm": 0.001792517424053841,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 7,
+          "z_in_A_frame_mm": -103.42764310775931,
+          "two_point_diameter_min_mm": 40.00370267728796,
+          "two_point_diameter_max_mm": 40.006373247265415,
+          "two_point_diameter_mean_mm": 40.00509406962272,
+          "two_point_diameter_spread_mm": 0.0026705699774538516,
+          "least_squares_radial_peak_to_valley_mm": 0.0016310883892209915,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 8,
+          "z_in_A_frame_mm": -103.89641769244686,
+          "two_point_diameter_min_mm": 40.00457560837124,
+          "two_point_diameter_max_mm": 40.006874955858876,
+          "two_point_diameter_mean_mm": 40.00572305328424,
+          "two_point_diameter_spread_mm": 0.0022993474876358277,
+          "least_squares_radial_peak_to_valley_mm": 0.0014630858564395055,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 9,
+          "z_in_A_frame_mm": -104.36518189532985,
+          "two_point_diameter_min_mm": 40.00537477946364,
+          "two_point_diameter_max_mm": 40.00735909798946,
+          "two_point_diameter_mean_mm": 40.006315795385795,
+          "two_point_diameter_spread_mm": 0.0019843185258210383,
+          "least_squares_radial_peak_to_valley_mm": 0.001263731765639875,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 10,
+          "z_in_A_frame_mm": -104.83395729793408,
+          "two_point_diameter_min_mm": 40.00575850511777,
+          "two_point_diameter_max_mm": 40.00787111878864,
+          "two_point_diameter_mean_mm": 40.006744608171644,
+          "two_point_diameter_spread_mm": 0.0021126136708744525,
+          "least_squares_radial_peak_to_valley_mm": 0.0012926434366775652,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 11,
+          "z_in_A_frame_mm": -105.30263715006792,
+          "two_point_diameter_min_mm": 40.00611072689948,
+          "two_point_diameter_max_mm": 40.0083717079503,
+          "two_point_diameter_mean_mm": 40.00711682049646,
+          "two_point_diameter_spread_mm": 0.0022609810508242845,
+          "least_squares_radial_peak_to_valley_mm": 0.0011826663804548332,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 12,
+          "z_in_A_frame_mm": -105.77140893246042,
+          "two_point_diameter_min_mm": 40.00682138525701,
+          "two_point_diameter_max_mm": 40.00892096896087,
+          "two_point_diameter_mean_mm": 40.007702875492264,
+          "two_point_diameter_spread_mm": 0.0020995837038597642,
+          "least_squares_radial_peak_to_valley_mm": 0.001149576685257614,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 13,
+          "z_in_A_frame_mm": -106.24013107347402,
+          "two_point_diameter_min_mm": 40.00746288440527,
+          "two_point_diameter_max_mm": 40.00942856947037,
+          "two_point_diameter_mean_mm": 40.00826765769411,
+          "two_point_diameter_spread_mm": 0.001965685065101752,
+          "least_squares_radial_peak_to_valley_mm": 0.001068017559006762,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 14,
+          "z_in_A_frame_mm": -106.7089319602823,
+          "two_point_diameter_min_mm": 40.00791071987534,
+          "two_point_diameter_max_mm": 40.00991316307951,
+          "two_point_diameter_mean_mm": 40.00878965861138,
+          "two_point_diameter_spread_mm": 0.002002443204169424,
+          "least_squares_radial_peak_to_valley_mm": 0.0011345148469175115,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 15,
+          "z_in_A_frame_mm": -107.17770675100314,
+          "two_point_diameter_min_mm": 40.00827346454931,
+          "two_point_diameter_max_mm": 40.010597940830934,
+          "two_point_diameter_mean_mm": 40.00932096589135,
+          "two_point_diameter_spread_mm": 0.0023244762816219122,
+          "least_squares_radial_peak_to_valley_mm": 0.0012477130887766918,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 16,
+          "z_in_A_frame_mm": -107.64636737558226,
+          "two_point_diameter_min_mm": 40.00868053487775,
+          "two_point_diameter_max_mm": 40.01128502393109,
+          "two_point_diameter_mean_mm": 40.00985766298789,
+          "two_point_diameter_spread_mm": 0.0026044890533398757,
+          "least_squares_radial_peak_to_valley_mm": 0.001372136045741712,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 17,
+          "z_in_A_frame_mm": -108.11512243331306,
+          "two_point_diameter_min_mm": 40.00911115164427,
+          "two_point_diameter_max_mm": 40.01182934327834,
+          "two_point_diameter_mean_mm": 40.010351696395745,
+          "two_point_diameter_spread_mm": 0.002718191634073719,
+          "least_squares_radial_peak_to_valley_mm": 0.0014851498233561244,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 18,
+          "z_in_A_frame_mm": -108.58390998699137,
+          "two_point_diameter_min_mm": 40.00935910004016,
+          "two_point_diameter_max_mm": 40.0125546710596,
+          "two_point_diameter_mean_mm": 40.010857608046486,
+          "two_point_diameter_spread_mm": 0.0031955710194395692,
+          "least_squares_radial_peak_to_valley_mm": 0.0018182990770583274,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 19,
+          "z_in_A_frame_mm": -109.05265342964132,
+          "two_point_diameter_min_mm": 40.00980172526793,
+          "two_point_diameter_max_mm": 40.01327915532312,
+          "two_point_diameter_mean_mm": 40.01139532717886,
+          "two_point_diameter_spread_mm": 0.0034774300551916326,
+          "least_squares_radial_peak_to_valley_mm": 0.0019138119596462388,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 20,
+          "z_in_A_frame_mm": -109.52137417439496,
+          "two_point_diameter_min_mm": 40.01020496778004,
+          "two_point_diameter_max_mm": 40.01413391470865,
+          "two_point_diameter_mean_mm": 40.01196335814986,
+          "two_point_diameter_spread_mm": 0.003928946928610344,
+          "least_squares_radial_peak_to_valley_mm": 0.0020711805624387125,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 21,
+          "z_in_A_frame_mm": -109.99013480960139,
+          "two_point_diameter_min_mm": 40.010711883100754,
+          "two_point_diameter_max_mm": 40.01466471984548,
+          "two_point_diameter_mean_mm": 40.01249605798543,
+          "two_point_diameter_spread_mm": 0.003952836744723243,
+          "least_squares_radial_peak_to_valley_mm": 0.002166199866888263,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 22,
+          "z_in_A_frame_mm": -110.45885755673652,
+          "two_point_diameter_min_mm": 40.01093608196372,
+          "two_point_diameter_max_mm": 40.01556480394462,
+          "two_point_diameter_mean_mm": 40.01300329367746,
+          "two_point_diameter_spread_mm": 0.004628721980900252,
+          "least_squares_radial_peak_to_valley_mm": 0.002433154559899009,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 23,
+          "z_in_A_frame_mm": -110.92754803312243,
+          "two_point_diameter_min_mm": 40.011077635428066,
+          "two_point_diameter_max_mm": 40.0159796650882,
+          "two_point_diameter_mean_mm": 40.01339856711695,
+          "two_point_diameter_spread_mm": 0.004902029660136975,
+          "least_squares_radial_peak_to_valley_mm": 0.0026938819015533966,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 24,
+          "z_in_A_frame_mm": -111.39629136697461,
+          "two_point_diameter_min_mm": 40.01184637326585,
+          "two_point_diameter_max_mm": 40.01686984651333,
+          "two_point_diameter_mean_mm": 40.01405232253396,
+          "two_point_diameter_spread_mm": 0.005023473247483423,
+          "least_squares_radial_peak_to_valley_mm": 0.002714547443606108,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 25,
+          "z_in_A_frame_mm": -111.86501490869391,
+          "two_point_diameter_min_mm": 40.01238540928404,
+          "two_point_diameter_max_mm": 40.01774874666944,
+          "two_point_diameter_mean_mm": 40.01467705778051,
+          "two_point_diameter_spread_mm": 0.00536333738539696,
+          "least_squares_radial_peak_to_valley_mm": 0.0028350923228011027,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 26,
+          "z_in_A_frame_mm": -112.3337618386036,
+          "two_point_diameter_min_mm": 40.01271355135449,
+          "two_point_diameter_max_mm": 40.01862338734843,
+          "two_point_diameter_mean_mm": 40.01527918904246,
+          "two_point_diameter_spread_mm": 0.005909835993939794,
+          "least_squares_radial_peak_to_valley_mm": 0.0031342220643786334,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 27,
+          "z_in_A_frame_mm": -112.8025116859282,
+          "two_point_diameter_min_mm": 40.013143458740046,
+          "two_point_diameter_max_mm": 40.0193739108964,
+          "two_point_diameter_mean_mm": 40.01581159816388,
+          "two_point_diameter_spread_mm": 0.006230452156351873,
+          "least_squares_radial_peak_to_valley_mm": 0.003212660335481843,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 28,
+          "z_in_A_frame_mm": -113.27119819341091,
+          "two_point_diameter_min_mm": 40.01360945300883,
+          "two_point_diameter_max_mm": 40.02020329936587,
+          "two_point_diameter_mean_mm": 40.01629602195977,
+          "two_point_diameter_spread_mm": 0.006593846357034749,
+          "least_squares_radial_peak_to_valley_mm": 0.003407688792865571,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 29,
+          "z_in_A_frame_mm": -113.7399006072949,
+          "two_point_diameter_min_mm": 40.01395620262385,
+          "two_point_diameter_max_mm": 40.020998928425286,
+          "two_point_diameter_mean_mm": 40.016854047969645,
+          "two_point_diameter_spread_mm": 0.0070427258014333916,
+          "least_squares_radial_peak_to_valley_mm": 0.0036845343782125894,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 30,
+          "z_in_A_frame_mm": -114.20861769758899,
+          "two_point_diameter_min_mm": 40.014354200200174,
+          "two_point_diameter_max_mm": 40.02187958755513,
+          "two_point_diameter_mean_mm": 40.01745520460927,
+          "two_point_diameter_spread_mm": 0.007525387354952784,
+          "least_squares_radial_peak_to_valley_mm": 0.003951230659183125,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 31,
+          "z_in_A_frame_mm": -114.6773524307999,
+          "two_point_diameter_min_mm": 40.01467321131069,
+          "two_point_diameter_max_mm": 40.02273635523123,
+          "two_point_diameter_mean_mm": 40.01808753686518,
+          "two_point_diameter_spread_mm": 0.008063143920537641,
+          "least_squares_radial_peak_to_valley_mm": 0.004239598721579085,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        },
+        {
+          "section_index": 32,
+          "z_in_A_frame_mm": -115.14610469119464,
+          "two_point_diameter_min_mm": 40.01521097469062,
+          "two_point_diameter_max_mm": 40.02357313843422,
+          "two_point_diameter_mean_mm": 40.01873102321023,
+          "two_point_diameter_spread_mm": 0.008362163743605322,
+          "least_squares_radial_peak_to_valley_mm": 0.004262598917602389,
+          "scope": "Sampled antipodal diameter and radial peak-to-valley about the least-squares circle; not a minimum-zone ISO roundness evaluation"
+        }
+      ]
+    }
+  ]
+}

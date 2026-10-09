@@ -6,12 +6,6 @@
     "nodes": 50975,
     "tetrahedra": 188351
   },
-  "source_fields": [
-    "simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\fields.npz",
-    "simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\free-release-fields.npz",
-    "simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\measurement.json"
-  ],
-  "saved_hottest_snapshot_index": 3,
   "saved_hottest_time_s": 9.75,
   "saved_snapshot_element_max_C": 1492.021484375,
   "alltime_nodal_peak_C": 1639.5787000200276,
@@ -36,13 +30,14 @@
       ]
     }
   },
-  "region_scope": "Weld-toe vicinity: r>69,z113..121; slot-root vicinity: QT r30..61. Labels are region maxima, not extrapolated notch stresses.",
+  "section_method": "Exact tetrahedron/plane intersections, piecewise constant saved element field",
   "position_diameter_um": 15.583947181967877,
+  "bore_schematic_centre_amplification": 500,
+  "dpi": 300,
+  "physical_simulations_run": 0,
   "files": [
     "temperature-snapshot.png",
     "residual-stress.png",
     "bore-displacement.png"
-  ],
-  "dpi": 300,
-  "physical_simulations_run": 0
+  ]
 }
