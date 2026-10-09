@@ -5,6 +5,7 @@ from html import escape
 from io import BytesIO
 from pathlib import Path
 import json
+import math
 import re
 import sys
 
@@ -58,6 +59,8 @@ def external_catalog():
     illustrations=json.loads((ROOT/REPORT_CONFIG['illustration_pdf']).with_name('illustrations.json').read_text(encoding='utf8'))
     entries += [dict(key=f'illustration-{item["number"]}',title=f'附图I{item["number"]:02d} {item["title"]}',level=1,external=True,
                      offset=manifest['sheet_count']+item['number']-1) for item in illustrations['items']]
+    for entry in entries:
+        entry['title']=Paragraph(inline(entry['title']),ParagraphStyle('NavigationTitle',fontName=REGULAR_FONT,wordWrap='CJK')).getPlainText()
     return entries
 
 
@@ -95,6 +98,35 @@ class Paragraph(ReportLabParagraph):
             if hasattr(atom.frag,'lineBreak'):finish(True)
         if current:finish()
         return ParaLines(kind=1,lines=lines)
+
+
+class FormTable(Table):
+    """Identify workshop tables for balanced form endings."""
+    pass
+
+
+def flowable_height(flowable):
+    if isinstance(flowable,KeepTogether):return sum(flowable_height(f) for f in flowable._content)
+    if isinstance(flowable,(PageBreak,CondPageBreak)):return 0
+    return flowable.wrap(TEXT_WIDTH,245*mm)[1]+flowable.getSpaceBefore()+flowable.getSpaceAfter()
+
+
+def keep_form_closing(story):
+    height=0
+    for index in range(len(story)-1,-1,-1):
+        flowable=story[index]
+        item_height=flowable_height(flowable)
+        if isinstance(flowable,FormTable) and item_height+height>210*mm:
+            # Preserve all rows and repeat the header on the closing page.
+            reserve=max(0,120*mm-height)
+            pieces=flowable.split(TEXT_WIDTH,item_height-reserve)
+            if len(pieces)==2 and flowable_height(pieces[0])<=210*mm:
+                story[index:index+1]=[pieces[0],PageBreak(),pieces[1]]
+            break
+        height+=item_height
+        if height>=115*mm:
+            if height<=210*mm:story[index:]=[KeepTogether(story[index:])]
+            break
 
 
 class ManualDocTemplate(SimpleDocTemplate):
@@ -139,7 +171,7 @@ def cover_and_contents(catalog, pages):
         ('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),0),
         ('TOPPADDING',(0,0),(-1,-1),1),('BOTTOMPADDING',(0,0),(-1,-1),1)])
     heights=Table(rows,colWidths=[TEXT_WIDTH-13*mm,13*mm],style=table_style).wrap(TEXT_WIDTH,245*mm)[1]
-    count=max(1,int(__import__('math').ceil(heights/(225*mm))))
+    count=max(1,int(math.ceil(heights/(225*mm))))
     # Balance the contents pages rather than spilling a single final entry.
     chunks=[];start=0
     for page in range(count):
@@ -199,6 +231,9 @@ def inline(text: str, superscript_references: bool = True) -> str:
         text=re.sub(variable_subscript,lambda m:m[1]+_SUB_TOKEN+m[2]+_SUB_TOKEN,text)
     # 数学减号 U+2212 在中文字体子集中缺字形，统一为 ASCII 连字符以保证 PDF 可读。
     text = text.replace("\u2212","-")
+    # Keep Chinese punctuation and Latin/number spacing consistent in prose.
+    text=re.sub(r'(?<=[\u4e00-\u9fff])(?=[A-Za-z0-9])|(?<=[A-Za-z0-9])(?=[\u4e00-\u9fff])',' ',text)
+    text=re.sub(r'(?<=\d)\s*(?=μm|µm|mm(?:/s|/min)?|MPa|GPa|kPa|kN|kJ|kg|J/mm|L/min|℃|°C|[AVWsgh](?![A-Za-z]))',' ',text)
     text = text.replace("ṁ","m_dot")  # The project CJK font lacks U+1E41.
     text = escape(text)
     for token, tag in ((_SUP_TOKEN, "super"), (_SUB_TOKEN, "sub")):
@@ -226,6 +261,7 @@ def inline(text: str, superscript_references: bool = True) -> str:
     nodes=re.split(r'(<[^>]+>)',text)
     for index in range(0,len(nodes),2):
         nodes[index]=protected.sub(protect_short,nodes[index])
+        nodes[index]=re.sub(r'位置度|焊脚|焊趾|槽根|孔径|孔轴|热输入|层间温度',lambda m:'<nobr>'+m[0]+'</nobr>',nodes[index])
     return ''.join(nodes)
 
 
@@ -286,35 +322,50 @@ def equation_flowable(latex: str, style: ParagraphStyle):
     return table
 
 
-def build_story(source: Path = SOURCE) -> list:
-    is_card=source.parent==ROOT/'deliverables/process'
+_STYLE_CACHE = {}
+
+
+def report_styles(is_card):
+    if is_card in _STYLE_CACHE:return _STYLE_CACHE[is_card]
     body = ParagraphStyle("CardBodyCN" if is_card else "BodyCN", fontName=REGULAR_FONT,
-                          fontSize=9.5 if is_card else 12, leading=14 if is_card else 19.5,
+                          fontSize=9.5 if is_card else 12, leading=12.5 if is_card else 17.6,
                           wordWrap="CJK", alignment=TA_LEFT if is_card else TA_JUSTIFY,
-                          firstLineIndent=0 if is_card else 24, spaceAfter=4 if is_card else 5,
+                          firstLineIndent=0 if is_card else 24, spaceAfter=3 if is_card else 4,
                           textColor=INK, allowOrphans=0, allowWidows=0)
     no_indent = ParagraphStyle("NoIndentCN",parent=body,firstLineIndent=0)
     cell = ParagraphStyle("CellCN", parent=body, fontName=REGULAR_FONT,
-                          fontSize=9 if is_card else 10.5, leading=13 if is_card else 15,
+                          fontSize=9 if is_card else 10.5, leading=11.8 if is_card else 14,
                           firstLineIndent=0, alignment=TA_LEFT, spaceAfter=0)
     header_cell = ParagraphStyle("HeaderCellCN", parent=cell, fontName=BOLD_FONT, textColor=INK)
     table_caption = ParagraphStyle("TableCaptionCN", parent=body, fontName=REGULAR_FONT,
                                    fontSize=10.5, leading=15, alignment=TA_CENTER, firstLineIndent=0,
-                                   keepWithNext=True, spaceBefore=7, spaceAfter=6)
+                                   keepWithNext=True, spaceBefore=5, spaceAfter=4)
     figure_caption = ParagraphStyle("FigureCaptionCN", parent=table_caption,
-                                    keepWithNext=False, spaceBefore=5, spaceAfter=7)
-    reference = ParagraphStyle("ReferenceCN", parent=body, fontSize=10.5, leading=16,
-                               firstLineIndent=0, alignment=TA_LEFT, spaceAfter=4)
+                                    keepWithNext=False, spaceBefore=4, spaceAfter=5)
+    reference = ParagraphStyle("ReferenceCN", parent=body, fontSize=10.5, leading=14.5,
+                               firstLineIndent=0, alignment=TA_LEFT, spaceAfter=3)
     abstract_title = ParagraphStyle("AbstractTitle",parent=no_indent,fontName=BOLD_FONT,
                                     fontSize=14,leading=22,alignment=TA_CENTER,
-                                    spaceBefore=8,spaceAfter=12,keepWithNext=True)
+                                    spaceBefore=7,spaceAfter=10,keepWithNext=True)
     references_title = ParagraphStyle("ReferencesTitle",parent=abstract_title,alignment=TA_LEFT)
     keyword = ParagraphStyle("KeywordCN",parent=body,firstLineIndent=0,alignment=TA_LEFT,
                              spaceBefore=5,spaceAfter=10)
     headings = {i: ParagraphStyle(f"CardH{i}" if is_card else f"H{i}", parent=no_indent,
-                fontName=BOLD_FONT,fontSize=14 if i<=2 else 12,
-                leading=22 if i<=2 else 19,spaceBefore=12,spaceAfter=8,
+                fontName=BOLD_FONT,fontSize=(12 if i<=2 else 11) if is_card else (14 if i<=2 else 12),
+                leading=(17 if i<=2 else 15) if is_card else (21 if i<=2 else 18),spaceBefore=8,spaceAfter=5,
                 textColor=INK,keepWithNext=True) for i in range(1,7)}
+    result=dict(body=body,no_indent=no_indent,cell=cell,header_cell=header_cell,
+        table_caption=table_caption,figure_caption=figure_caption,reference=reference,
+        abstract_title=abstract_title,references_title=references_title,keyword=keyword,headings=headings)
+    _STYLE_CACHE[is_card]=result
+    return result
+
+
+def build_story(source: Path = SOURCE) -> list:
+    is_card=source.parent==ROOT/'deliverables/process'
+    styles=report_styles(is_card)
+    body,no_indent,cell,header_cell,table_caption,figure_caption,reference,abstract_title,references_title,keyword,headings = (
+        styles[key] for key in ('body','no_indent','cell','header_cell','table_caption','figure_caption','reference','abstract_title','references_title','keyword','headings'))
     story = []
     table_rows = []
     pending_caption = None
@@ -327,19 +378,31 @@ def build_story(source: Path = SOURCE) -> list:
         rows = [[Paragraph(inline(value), header_cell if i==0 else cell)
                  for value in row + [""] * (n - len(row))] for i,row in enumerate(table_rows)]
         widths=[TEXT_WIDTH/n]*n
+        # Use the same proportions for tables with the same engineering role.
+        proportions={
+            (3,'步骤'):(.15,.50,.35),
+            (3,'分配项'):(.29,.17,.54),
+            (3,'假设或项目'):(.25,.34,.41),
+            (4,'排序及等级'):(.18,.17,.41,.24),
+            (4,'编号'):(.09,.22,.40,.29),
+            (4,'载荷级'):(.22,.20,.36,.22),
+        }
+        if (n,table_rows[0][0]) in proportions:
+            widths=[TEXT_WIDTH*w for w in proportions[(n,table_rows[0][0])]]
         if n==2:widths=[TEXT_WIDTH*40/170,TEXT_WIDTH*130/170]
         if n==3 and table_rows[0][0]=='项目':widths=[TEXT_WIDTH*30/170,TEXT_WIDTH*70/170,TEXT_WIDTH*70/170]
         if n==3 and table_rows[0][0]=='工序':widths=[TEXT_WIDTH*25/170,TEXT_WIDTH*48/170,TEXT_WIDTH*97/170]
         if n==3 and table_rows[0][1]=='当前设计输入及用途':widths=[TEXT_WIDTH*30/170,TEXT_WIDTH*90/170,TEXT_WIDTH*50/170]
         if n==4 and table_rows[0][0]=='输入':widths=[TEXT_WIDTH*25/170,TEXT_WIDTH*35/170,TEXT_WIDTH*35/170,TEXT_WIDTH*75/170]
-        table = Table(rows, colWidths=widths, repeatRows=1, hAlign="LEFT")
+        table = (FormTable if is_card else Table)(rows, colWidths=widths, repeatRows=1, hAlign="CENTER")
         table.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ("LINEABOVE", (0, 0), (-1, 0), 0.9, NAVY),
             ("LINEBELOW", (0, 0), (-1, 0), 0.5, NAVY),
             ("LINEBELOW", (0, -1), (-1, -1), 0.9, NAVY),
-            ("TOPPADDING", (0, 0), (-1, -1), 5),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+            ("LINEBELOW", (0, "splitlast"), (-1, "splitlast"), 0.5, NAVY),
+            ("TOPPADDING", (0, 0), (-1, -1), 2.3 if is_card else 3),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 2.3 if is_card else 3),
         ]))
         height=table.wrap(TEXT_WIDTH,245*mm)[1]
         # Keep a section heading with the opening of its captioned table.
@@ -362,8 +425,8 @@ def build_story(source: Path = SOURCE) -> list:
             story.append(table)
             pending_caption=None
         else:
-            story.append(KeepTogether([table]) if len(rows)<=7 and height<=90*mm else table)
-        story.append(Spacer(1, 6))
+            story.append(table)
+        story.append(Spacer(1, 4))
         table_rows.clear()
 
     source_lines=source.read_text(encoding="utf-8").splitlines()
@@ -412,7 +475,7 @@ def build_story(source: Path = SOURCE) -> list:
             image_path = ROOT / illustration[2]
             if not image_path.is_file():
                 image_path = (source.parent / illustration[2]).resolve()
-            height = 135*mm if image_path.name == 'residual-stress.png' else (105*mm if not is_card else 100*mm)
+            height = 145*mm if image_path.parent.name=='final-entry' else (105*mm if not is_card else 100*mm)
             figure = figure_image(image_path,max_height=height)
             caption=illustration[1]
             for next_index in range(line_index+1,len(source_lines)):
@@ -425,13 +488,16 @@ def build_story(source: Path = SOURCE) -> list:
             figure_prefix=[]
             if story and isinstance(story[-1],Paragraph) and re.fullmatch(r'(?:Card)?H[1-6]',story[-1].style.name):
                 figure_prefix.append(story.pop())
-            story.extend([KeepTogether(figure_prefix+[figure,Paragraph(inline(caption),figure_caption)]),Spacer(1,6)])
+            story.extend([KeepTogether(figure_prefix+[figure,Paragraph(inline(caption),figure_caption)]),Spacer(1,4)])
             continue
         if not line or line in {"---", "$$"} or line.startswith("```"):
             continue
         heading = re.match(r"^(#{1,6}) (.*)$", line)
         if heading:
             level,title=len(heading[1]),heading[2]
+            if is_card and level==1 and not title.startswith('HJ-'):
+                identifier=re.search(r'规程号\s*(HJ-[A-Z0-9-]+)',source.read_text(encoding='utf8'))
+                if identifier:title=identifier[1]+' '+title
             if source==SOURCE and level==1:
                 continue
             normalized=re.sub(r'\s+','',title)
@@ -460,15 +526,24 @@ def build_story(source: Path = SOURCE) -> list:
     if formula_lines is not None:raise ValueError('Unclosed display-formula block')
     flush_table()
     if pending_caption is not None:story.append(pending_caption)
+    if is_card:keep_form_closing(story)
     return story
 
 
-def on_page(canvas, doc) -> None:
-    if doc.page == 1:
-        return
+def page_furniture(canvas, number, width, height, cover=False):
+    canvas.saveState()
     canvas.setFillColor(INK)
-    canvas.setFont(REGULAR_FONT,9)
-    canvas.drawCentredString(A4[0]/2,13*mm,str(doc.page))
+    canvas.setFont(REGULAR_FONT,8.5)
+    canvas.drawCentredString(width/2,6*mm,f'轴承座焊接工艺设计 · {number}')
+    if not cover:
+        canvas.setStrokeColor(colors.HexColor('#767676'))
+        canvas.setLineWidth(.35)
+        canvas.line(25*mm,height-5*mm,width-25*mm,height-5*mm)
+    canvas.restoreState()
+
+
+def on_page(canvas, doc) -> None:
+    page_furniture(canvas,doc.page,*A4,cover=doc.page==1)
 
 
 def validate_report_numbers(source=SOURCE):
@@ -553,6 +628,8 @@ def main() -> int:
             story += [PageBreak(),navigation_paragraph('附录A 工艺规程与检验卡',appendix_style,'appendix-a',0)]
             for index,card in enumerate(CARD_FILES):
                 story += ([] if index==0 else [PageBreak()])+build_story(ROOT/'deliverables/process'/card)
+        if include_cards and '--include-research-status' in sys.argv:
+            story += [PageBreak()]+build_story(write_status_artifacts(ROOT))
         return story
 
     def render(path,include_cards,include_external):
@@ -607,6 +684,21 @@ def main() -> int:
                                  '/Subject':f"8P-R2-t15柔顺槽主方案、工艺规程及{manifest['sheet_count']}张工程图"})
         with combined.open('wb') as stream:bundle.write(stream)
         with fitz.open(combined) as pdf:
+            from reportlab.pdfgen import canvas as pdfcanvas
+            footer_buffer=BytesIO()
+            footer=pdfcanvas.Canvas(footer_buffer,pagesize=(420*mm,297*mm))
+            manual_pages=len(PdfReader(OUT).pages)
+            for index in range(manual_pages,len(pdf)):
+                page_furniture(footer,index+1,pdf[index].rect.width,pdf[index].rect.height)
+                footer.showPage()
+            footer.save()
+            with fitz.open(stream=footer_buffer.getvalue(),filetype='pdf') as overlay:
+                for index in range(manual_pages,len(pdf)):
+                    page=pdf[index]
+                    for block in page.get_text('blocks'):
+                        if '参赛工艺设计图集' in block[4]:page.add_redact_annot(fitz.Rect(block[:4]),fill=(1,1,1))
+                    page.apply_redactions(images=0,graphics=0)
+                    page.show_pdf_page(page.rect,overlay,index-manual_pages)
             pdf.set_toc([[entry['level']+1,entry['title'],pages[entry['key']]] for entry in catalog])
             contents_end=min(pages.values())-1
             for entry in catalog:

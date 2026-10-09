@@ -22,8 +22,8 @@ OUT = ROOT / 'docs/report/figures/paper'
 FONT = FontProperties(fname=str(ROOT / 'assets/fonts/NotoSerifSC-Regular.ttf'))
 plt.rcParams.update({
     'font.family': FONT.get_name(), 'axes.unicode_minus': False,
-    'font.size': 10.5, 'axes.labelsize': 10.5, 'xtick.labelsize': 9.5,
-    'ytick.labelsize': 9.5, 'legend.fontsize': 9.5, 'axes.linewidth': .7,
+    'font.size': 11, 'axes.labelsize': 11, 'xtick.labelsize': 10.5,
+    'ytick.labelsize': 10.5, 'legend.fontsize': 10.5, 'axes.linewidth': .7,
     'axes.spines.top': False, 'axes.spines.right': False,
     'lines.linewidth': 1.2, 'pdf.fonttype': 42, 'ps.fonttype': 42,
     'savefig.dpi': 300, 'hatch.linewidth': .5,
@@ -59,15 +59,15 @@ def section():
     ax.plot(x, ni1, color='black', linewidth=1)
     ax.plot([x.min(), x.max()], [ztop, ztop], color='black', linewidth=1)
     ax.axvline(71.0, color='.3', ls='--', lw=.8, ymax=.80)
-    ax.text(71.08, 113.16, 'R71.0', fontsize=9, va='bottom')
+    ax.text(71.08, 113.16, 'R71.0', fontsize=10.5, va='bottom')
     arrow = {'arrowstyle': '->', 'color': 'black', 'lw': .7}
     ax.annotate('R1.50', xy=(69.40, float(np.interp(69.4, x, qt))), xytext=(67.05, 113.62), arrowprops=arrow)
     ax.annotate('R0.80', xy=(69.95, float(np.interp(69.95, x, ni1))), xytext=(67.05, 115.50), arrowprops=arrow)
     for low, high, label in [(113.50,114.20,'0.70±0.05'),(114.20,115.00,'0.80')]:
         ax.annotate('', xy=(73.08, low), xytext=(73.08, high), arrowprops={'arrowstyle':'<->','lw':.65})
-        ax.text(73.26, (low+high)/2, label, va='center', fontsize=9.5, bbox={'facecolor':'white','edgecolor':'none','pad':1})
+        ax.text(73.26, (low+high)/2, label, va='center', fontsize=10.5, bbox={'facecolor':'white','edgecolor':'none','pad':1})
     ax.annotate('', xy=(68.98,115.40), xytext=(74.98,115.40), arrowprops={'arrowstyle':'<->','lw':.65})
-    ax.text(71.98,115.52,'6.00',ha='center',fontsize=10)
+    ax.text(71.98,115.52,'6.00',ha='center',fontsize=10.5)
     ax.set(xlim=(66.9,75.1), ylim=(113.0,115.85), xlabel='半径 r / mm', ylabel='高度 z / mm')
     ax.set_aspect('equal', adjustable='box')
     ax.set_xticks([68,70,72,74]); ax.set_yticks([113,114,115])
@@ -91,7 +91,7 @@ def phase():
     ax.set_xlim(0,1450); ax.set_xticks([0,300,600,900,1200,1400])
     ax.grid(axis='y',color='.88',linewidth=.5); ax.set_axisbelow(True)
     ax.legend(frameon=False,loc='upper right')
-    ax.text(.98,.62,'抑制石墨的亚稳分支\n允许石墨平衡分支：0%',transform=ax.transAxes,ha='right',fontsize=9.5)
+    ax.text(.98,.62,'抑制石墨的亚稳分支\n允许石墨平衡分支：0%',transform=ax.transAxes,ha='right',fontsize=10.5)
     save(fig,'design-precoat-phase')
     return source
 
@@ -125,9 +125,9 @@ def fixture(source):
         ax.add_collection(coll); ax.autoscale(); ax.set_aspect('equal')
         ax.set(xlabel='x / mm',ylabel='z / mm')
         ax.xaxis.set_major_locator(MaxNLocator(3)); ax.yaxis.set_major_locator(MaxNLocator(4))
-        ax.set_title(label,fontsize=10,pad=12)
+        ax.set_title(label,fontsize=10.5,pad=12)
         cb=fig.colorbar(coll,ax=ax,fraction=.075,pad=.05,shrink=.90)
-        cb.ax.tick_params(labelsize=9); cb.locator=MaxNLocator(5); cb.update_ticks()
+        cb.ax.tick_params(labelsize=10.5); cb.locator=MaxNLocator(5); cb.update_ticks()
     save(fig,'fixture-axis-solid-fe')
     return {'source':str(source),'section':'y=0','radial_u_min_um':float(u[:,0].min()*1000),'radial_u_max_um':float(u[:,0].max()*1000),'von_mises_max_MPa':float(vm.max()),'stress_representation':'Kelvin'}
 
@@ -144,11 +144,11 @@ def budget():
         ax.barh(labels,vals,left=left,color=shade,edgecolor='.2',linewidth=.6,label=name,hatch=hatch,height=.56)
         for i,v in enumerate(vals):
             if j != 1:
-                ax.text(left[i]+v/2,i,f'{v:.2f}'.rstrip('0').rstrip('.'),ha='center',va='center',fontsize=9.5,bbox={'facecolor':shade,'edgecolor':'none','pad':.8})
+                ax.text(left[i]+v/2,i,f'{v:.2f}'.rstrip('0').rstrip('.'),ha='center',va='center',fontsize=10.5,bbox={'facecolor':shade,'edgecolor':'none','pad':.8})
         left += vals
-    for i,v in enumerate(left):ax.text(v+.6,i,f'{v:.2f}'.rstrip('0').rstrip('.'),va='center',fontsize=9.5)
+    for i,v in enumerate(left):ax.text(v+.6,i,f'{v:.2f}'.rstrip('0').rstrip('.'),va='center',fontsize=10.5)
     ax.axvline(50,color='black',ls='--',lw=.9)
-    ax.text(50,-.6,'50 μm上限',ha='center',fontsize=9.5)
+    ax.text(50,-.6,'50 μm上限',ha='center',fontsize=10.5)
     ax.set_xlim(0,57.5);ax.set_ylim(2.52,-.88)
     ax.set_xlabel('位置度直径分配 / μm'); ax.set_xticks([0,10,20,30,40,50])
     fig.legend(loc='lower center',ncol=2,frameon=False,bbox_to_anchor=(.53,.006),columnspacing=1.8,handlelength=2)
@@ -159,7 +159,7 @@ def capacity():
     source=ROOT/'studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json'
     data=json.loads(source.read_text(encoding='utf8'))
     keys=['6P_16mm_leg_3.8','8P_leg_3.8','Continuous_leg_3.8']
-    labels=['6段×16 mm','8段×16 mm','全周连续']
+    labels=['6段×\n16 mm','8段×\n16 mm','全周连续']
     fig,axes=plt.subplots(1,2,figsize=(6.3,3.45))
     fig.subplots_adjust(left=.105,right=.98,bottom=.18,top=.90,wspace=.42)
     for ax,key,title,unit in [(axes[0],'required_nominal_static_capacity_MPa','(a) 静载计算','等效应力 / MPa'),
@@ -167,12 +167,12 @@ def capacity():
         vals=[data['rows'][k][key] for k in keys]
         bars=ax.bar(np.arange(3),vals,color=['white','.72','white'],edgecolor='black',linewidth=.7,width=.57)
         bars[0].set_hatch('///');bars[2].set_hatch('..')
-        for i,v in enumerate(vals):ax.text(i,v+1,f'{v:.2f}',ha='center',fontsize=10)
-        ax.set_xticks(np.arange(3),labels,fontsize=8.9);ax.set_ylim(0,max(vals)*1.26)
+        for i,v in enumerate(vals):ax.text(i,v+1,f'{v:.2f}',ha='center',fontsize=10.5)
+        ax.set_xticks(np.arange(3),labels,fontsize=10.5);ax.set_ylim(0,max(vals)*1.26)
         ax.set_ylabel(unit);ax.set_title(title,fontsize=10.5,pad=10)
         ax.grid(axis='y',color='.88',linewidth=.5);ax.set_axisbelow(True)
     axes[1].axhline(30,color='.25',ls='--',lw=.9)
-    axes[1].text(.97,.72,'预设目标：30 MPa\n$N_C=2×10^6$',transform=axes[1].transAxes,ha='right',fontsize=9.5,
+    axes[1].text(.97,.72,'预设目标：30 MPa\n$N_C=2×10^6$',transform=axes[1].transAxes,ha='right',fontsize=10.5,
                  bbox={'facecolor':'white','edgecolor':'none','pad':1})
     save(fig,'joint-capacity')
     return source

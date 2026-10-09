@@ -8,7 +8,7 @@ from matplotlib.patches import FancyBboxPatch
 
 ROOT=Path(__file__).resolve().parents[2]
 font_manager.fontManager.addfont(str(ROOT/'assets/fonts/NotoSansSC-Regular.ttf'))
-plt.rcParams.update({'font.family':'Noto Sans SC','font.size':10})
+plt.rcParams.update({'font.family':'Noto Sans SC','font.size':12})
 fig,ax=plt.subplots(figsize=(7.1,3.6))
 ax.set(xlim=(0,10),ylim=(0,6));ax.axis('off')
 boxes=[(2,5,'来料与浅槽加工\n材料、组织、槽形'),(7.6,5,'壳外CI-A1首层\n预热—清渣—缓冷'),
