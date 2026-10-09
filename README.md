@@ -6,13 +6,10 @@
 
 | 文件 | 内容 |
 | --- | --- |
-| [说明书与工程图合订本](deliverables/competition-entry/01-焊接工艺设计说明书与工程图.pdf) | 说明书正文、五维技术方案、工艺卡及 HJ-001～023 主图 |
-| [工艺规程与检验卡](deliverables/competition-entry/02-工艺规程与检验卡.pdf) | 分工序操作参数、检测频次、判据及处置 |
-| [工程图集](deliverables/competition-entry/03-工程图集.pdf) | 23 张八翼主方案及工装、洁净、预制公差和检测图 |
-| [说明书正文](deliverables/competition-entry/06-焊接工艺设计说明书-正文.pdf) | 单独正文、图表及参考文献 |
-| [参赛设计报告包](deliverables/焊接固定题-参赛设计报告包.zip) | 主 PDF、工艺卡、23 主图、名义与分层 STEP、九组公差实体和关键计算 |
-| [可编辑与历史附件](deliverables/焊接固定题-可编辑与历史附件.zip) | 可编辑源快照、字体许可证、源图、圆环比较和历史失败摘要 |
-| [本次材料清单](deliverables/competition-entry/验证与交付状态.json) | 实际页数、收录文件及各项设计验证状态 |
+| [单一主PDF](deliverables/competition-entry/01-焊接工艺设计说明书与工程图.pdf) | 正文、工艺卡、5张按比例工程图与18张NTS工艺附图 |
+| [完整参赛ZIP](deliverables/焊接固定题-参赛设计报告包.zip) | 主PDF、两份匿名STEP、阅读说明和材料清单 |
+| [评委阅读说明](deliverables/competition-entry/00-提交与阅读说明.txt) | 章节与图纸阅读导航 |
+| [材料清单](deliverables/competition-entry/材料清单.json) | 最终文件和页数组成 |
 
 ## 制造与控形
 
@@ -41,12 +38,14 @@
 [参赛基准参数](project/submission-baseline.yaml)是本次对象、焊长和交付路径的机器输入；[说明书正文源稿](deliverables/report/technical-report-v4-unified.md)、[工艺卡目录](deliverables/process)及[比赛内容与完善顺序](deliverables/competition-route.md)是维护入口。PDF路径以[报告配置](project/report.yaml)为准，仓库根目录为维护源，附件中的源文件为导出快照，修改后统一重新构建：
 
 ```bash
-python cad/parametric/export_drawing_pdfs.py --paper-grayscale
+python cad/parametric/final_entry_drawings.py
+python cad/parametric/final_entry_illustrations.py
+python docs/report/plot_final_entry_fields_readable.py
 python deliverables/report/build_technical_report_pdf.py --competition-entry --with-drawings
 python deliverables/build_competition_entry.py
 ```
 
-主包只收当前方案，历史计算原件保留在仓库与单独附件。各 PDF 页数以本次文件和材料清单为准。
+主包只收当前方案，历史计算原件保留在仓库。Run A导出保存在competition-entry-runA-snapshot，旧可编辑附件为开发快照，提交使用上列参赛ZIP。各PDF页数以本次材料清单为准。
 
 ## 校方提交
 

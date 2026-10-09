@@ -3,8 +3,9 @@ pdf:
   paper_pdf: output/pdf/焊接工艺设计说明书-正文.pdf
   manual_pdf: output/pdf/焊接工艺设计说明书-含工艺卡.pdf
   combined_pdf: output/pdf/焊接工艺设计说明书与工程图.pdf
-  drawing_pdf: cad/generated/engineering-drawings/pdf-paper/HJ-DRW-drawing-set.pdf
-  drawing_manifest: cad/generated/engineering-drawings/pdf-paper/pdf-exports.json
+  drawing_pdf: cad/generated/final-entry-drawings/HJ-F-drawing-set.pdf
+  drawing_manifest: cad/generated/final-entry-drawings/pdf-exports.json
+  illustration_pdf: cad/generated/final-entry-drawings/process-illustrations.pdf
   font_candidates:
   - regular: C:/Windows/Fonts/simsun.ttc
     bold: C:/Windows/Fonts/simhei.ttf

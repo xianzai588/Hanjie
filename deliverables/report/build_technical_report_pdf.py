@@ -542,7 +542,10 @@ def main() -> int:
             tmp=path.with_suffix('.compact.pdf')
             with fitz.open(path) as pdf:pdf.save(tmp,garbage=4,deflate=True)
             tmp.replace(path)
-        bundle=PdfWriter();bundle.append(OUT);bundle.append(drawing_out)
+        bundle=PdfWriter();bundle.append(OUT)
+        bundle.append(drawing_out,outline_item='附录B 按比例工程图 HJ-F01～05')
+        if REPORT_CONFIG.get('illustration_pdf'):
+            bundle.append(ROOT/REPORT_CONFIG['illustration_pdf'],outline_item='附录C 工艺与工装功能示意（NTS）')
         bundle.add_metadata({'/Title':'QT450-10/Q235B 工艺设计说明书与工程图（修订审阅稿）',
                              '/Author':'','/Subject':f"当前MMA首层候选、工艺规程与{manifest['sheet_count']}张工程图"})
         combined=ROOT/'output/pdf/焊接工艺设计说明书与工程图-修订审阅稿.pdf'
