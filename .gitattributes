@@ -9,3 +9,6 @@
 *.pdf binary
 *.png binary
 *.zip binary
+# Small anonymous submission exports are self-contained package artifacts.
+# Keep editable CAD sources under the LFS rules above.
+deliverables/competition-entry/*.step -filter -diff -merge -text

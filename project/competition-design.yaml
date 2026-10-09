@@ -8,8 +8,8 @@ process_source: project/process-r3.yaml
 candidate_state_source: deliverables/process/current-candidate-state.md
 independent_precoat_input_source: project/precoat-process-design.yaml
 postweld_drain:
-  inside_diameter_min_mm: 3.90
-  inside_diameter_max_mm: 4.10
+  inside_diameter_min_mm: 3.9
+  inside_diameter_max_mm: 4.1
   line_length_max_m: 1.0
   local_loss_K_max: 10.0
   newtonian_viscosity_max_Pa_s: 0.005
@@ -17,19 +17,18 @@ postweld_drain:
   net_differential_pressure_min_Pa: 2500.0
   supply_limit_ml_min: 60.0
   capacity_factor: 2.0
-  scope: 牛顿型微珩液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶
+  scope: 牛顿型孔成形液；杯口至回收瓶入口净差压，扣除不确定度；不适用于非牛顿UT凝胶
   fault_containment:
     cup_inside_diameter_mm: 44.0
-    cup_inside_diameter_tolerance_mm: 0.20
+    cup_inside_diameter_tolerance_mm: 0.2
     cup_liquid_depth_mm: 16.0
-    cup_liquid_depth_tolerance_mm: 0.10
+    cup_liquid_depth_tolerance_mm: 0.1
     tool_displacement_max_ml: 3.0
     operating_inventory_max_ml: 2.0
     fittings_and_upper_tool_drainback_max_ml: 1.0
-    supply_downstream_of_shutoff_max_ml: 0.50
-    shutdown_latency_max_s: 0.10
+    supply_downstream_of_shutoff_max_ml: 0.5
+    shutdown_latency_max_s: 0.1
     reserve_ml: 2.0
-    # 整段满液回流计入；不以止回阀成功关闭减少故障容积。
     return_wet_length_max_m: 1.0
     bottle_max_liquid_below_cup_outlet_mm: 150.0
     discharge_air_gap_min_mm: 20.0
@@ -79,19 +78,23 @@ process:
   measurement_temperature_band_c: 1.0
   feed_nominal_mm_s: 3.6
   feed_role: 两道平均供料仅作总量核算；实际根/盖分道
-  pass_feed_mm_s: {root: 3.42, cover: 3.78}
+  pass_feed_mm_s:
+    root: 3.42
+    cover: 3.78
   finite_process_revision_source: studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
   feed_tolerance_mm_s: 0.05
   wire_diameter_tolerance_mm: 0.01
   travel_relative_tolerance: 0.02
-  wire_guide_design: 根道枪靶R74.50/z117.30、棒端R73.20/z116.00；盖面枪靶R74.00/z118.00、棒端R72.70/z116.70；棒材沿(-0.35,+0.93,+0.11225)伸长15
-    mm后导管竖直到z220，枪/丝实际净隙2.169 mm
+  wire_guide_design: 根道枪靶R74.50/z117.30、棒端R73.20/z116.00；盖面枪靶R74.00/z118.00、棒端R72.70/z116.70；棒材沿(-0.35,+0.93,+0.11225)伸长15 mm后导管竖直到z220，枪/丝实际净隙2.169
+    mm
 thermal_regime:
   method: 最终组焊低温短道GTAW（不预热）
   design_basis: 本段只描述入壳最终组焊；MMA首层按HJ-W-00C/00D独立预热、道间及缓冷，首层PMZ/HAZ单独核查
   substrate_condition: QT450-10力学牌号合格；铁素体主导、珠光体面积分数≤20%、无原始白口/游离渗碳体网；20%为项目采购与方法资格窗口
   bore_fit_basis: QT原有Ø40主轴承孔，不增加轴套；20℃40.000～40.025为设计尺寸控制等级H7，非官方尺寸公差；ISO 286-2表格支持公差数值，不推导机型轴承配合或产品寿命
-  candidate_manufacturing_bore_window_mm: [40.006, 40.008]
+  candidate_manufacturing_bore_window_mm:
+  - 40.006
+  - 40.008
   manufacturing_bore_window_state: historical_window_pending_candidate_verification
   start_temperature_c: 20.0
   start_temperature_min_c: 15.0
@@ -134,20 +137,26 @@ peening:
   maximum_tracking_speed_mm_s: 18
   maximum_tracking_acceleration_mm_s2: 300
   minimum_contact_width_mm: 0.72
-  tool_operation: 100 Hz；实际压痕接触宽0.72～1.09 mm、深≤0.05，轨迹重叠≥75%；测温至指令总延迟≤20 ms；停弧后0.20 s内焊枪与送丝上提40 mm，轻击轴继续扫完段尾；轻击结束先升焊枪到120
-    mm，再升轻击头；气动驱动行程≤2 mm并限冲击峰值200 N
+  tool_operation: 100 Hz；实际压痕接触宽0.72～1.09 mm、深≤0.05，轨迹重叠≥75%；测温至指令总延迟≤20 ms；停弧后0.20 s内焊枪与送丝上提40 mm，轻击轴继续扫完段尾；轻击结束先升焊枪到120 mm，再升轻击头；气动驱动行程≤2 mm并限冲击峰值200
+    N
   working_pose_error_per_tool_mm: 0.05
 fixture:
   type: 整体固定反向锥芯＋上提释放六指胀套＋独立球铰压环＋固定承力柱
-  manufacturing_bore_window_mm: [40.010, 40.014]
-  candidate_manufacturing_bore_window_mm: [40.006, 40.008]
+  manufacturing_bore_window_mm:
+  - 40.01
+  - 40.014
+  candidate_manufacturing_bore_window_mm:
+  - 40.006
+  - 40.008
   manufacturing_bore_window_state: historical_window_pending_candidate_verification
   datum_holder_transfer_support_count: 6
   datum_holder_support_pitch_radius_mm: 82.5
   datum_holder_point_load_limit_N: 100.0
   datum_holder_outer_grip_slot_depth_mm: 3.0
   datum_holder_outer_grip_slot_width_mm: 8.2
-  datum_holder_outer_grip_slot_z_mm: [-12.2, -9.8]
+  datum_holder_outer_grip_slot_z_mm:
+  - -12.2
+  - -9.8
   bore_limits_mm:
   - 40.0
   - 40.025
@@ -265,8 +274,7 @@ shield:
     outlet: 顶部开口集气罩，局部抽气22～28 L/min；单头护气8～12＋气幕10～15合计18～27；外侧通风独立
     flow_interlock: 氩气流量未落入10～15 L/min窗口时安全联锁禁止起弧
   material_candidate: 四瓣紫铜卡环＋闭合低析出FFKM密封圈＋1 mm刚性不锈钢接料盘；水路双重隔离，清洗后装配
-  joint_design: 铜瓣接缝2.00±0.05；上圈316L滑动桥厚0.50±0.02；袋槽径向深0.53 +0.01/0按实测槽底配作，参考桥面R72.925，一端固定、另一端在6 mm袋槽内滑动，初始搭接4 mm。下圈槽设在独立连续17-4PH
-    H900密封座底面：厚1.50、z88.90～90.40，与铜底净隙0.10±0.04；槽0.40±0.01×1.40±0.02、R72.8；密封座至盘面按圈配作名义0.31、实测压缩0.28～0.29。8内耳沉头M3固定到闭底加强环，不开贯通孔；整环下圈随盘保持静止，铜瓣单独径向退位。圈自由内径上145.85/下144.60±0.10；截径上2.47～2.53/下0.99～1.01。；8个ISO10642
+  joint_design: 铜瓣接缝2.00±0.05；上圈316L滑动桥厚0.50±0.02；袋槽径向深0.53 +0.01/0按实测槽底配作，参考桥面R72.925，一端固定、另一端在6 mm袋槽内滑动，初始搭接4 mm。下圈槽设在独立连续17-4PH H900密封座底面：厚1.50、z88.90～90.40，与铜底净隙0.10±0.04；槽0.40±0.01×1.40±0.02、R72.8；密封座至盘面按圈配作名义0.31、实测压缩0.28～0.29。8内耳沉头M3固定到闭底加强环，不开贯通孔；整环下圈随盘保持静止，铜瓣单独径向退位。圈自由内径上145.85/下144.60±0.10；截径上2.47～2.53/下0.99～1.01。；8个ISO10642
     M3×6移至R69.00±0.05，头按实物配沉孔，齐平或凹0～0.02；盘底R66.5～74加强环厚6、底z81.59，盘面锥座局部配作≤0.15；含钻尖盲深≤5.5，加强环厚6.00±0.02/内R66.50±0.05、盘厚1.00±0.02；底厚≥1.40、内侧壁厚≥0.90；螺钉实测总长≤6.30、孔底净隙≥0.20。；含92°头锥、凹入0.02及槽深/厚度极限，沉头至下密封槽保留钢壁≥0.68，不切穿密封槽。
   withdrawal: 下承力柱、整体固定反向锥芯、铜环和接料盘均固定；打开上部机械止挡，胀套正向上退1 mm并收拢，再整体上提260 mm；壳体连独立A基准托环上提140 mm后横移，托环保持原定位到完全冷态；解除托环后CMM。
   seal_radial_thickness_mm: 0.625
@@ -307,8 +315,8 @@ shield:
     lower_gland_local_bending_MPa: 5.246866255776769
     copper_sector_gap_mm: 2
     sector_gap_tolerance_mm: 0.05
-    upper_bridge_material: 316L; 0.50 +/-0.02 mm radial thickness; one end fixed, other end slides in a 6 mm pocket; pocket
-      radial depth 0.53 +0.01/0 from actual gland floor
+    upper_bridge_material: 316L; 0.50 +/-0.02 mm radial thickness; one end fixed, other end slides in a 6 mm pocket; pocket radial depth 0.53
+      +0.01/0 from actual gland floor
     upper_bridge_minimum_copper_inner_wall_mm: 0.5099999999999909
     upper_bridge_pocket_removed_volume_mm3: 111.3
     minimum_sector_gap_during_retraction_mm: 0.32365440327094097
@@ -320,10 +328,10 @@ shield:
     port_boss_angle_from_seam_deg: 3
     port_tube_outer_diameter_mm: 1.8
     port_tube_insertion_mm: 3
-    water_bulkheads: 4 welded sealed 316L blocks at R55/45+90i deg, 12 radial x16 tangential, z83.59..99; 4 hose ports per
-      block and independent down-facing supply/return
-    microtube_design: PFA TLM0201 or equivalent, OD2/ID1; manufacturer recommended static bend R10, design installed R>=12
-      with 1.15 mm stroke qualification; each hose <=100 mm
+    water_bulkheads: 4 welded sealed 316L blocks at R55/45+90i deg, 12 radial x16 tangential, z83.59..99; 4 hose ports per block and independent
+      down-facing supply/return
+    microtube_design: PFA TLM0201 or equivalent, OD2/ID1; manufacturer recommended static bend R10, design installed R>=12 with 1.15 mm stroke
+      qualification; each hose <=100 mm
     copper_water_port_radial_stagger_mm: 10
     water_port_local_xyz_mm:
     - - 58
@@ -338,24 +346,23 @@ shield:
     - - 52
       - 8
       - 94
-    water_port_union: custom 316L M4x0.5 compression union, OD<=5 and length<=8; PFA insertion >=4, low-outgassing ferrule;
-      machined Cu5x5x5 L-port block and integral M4 nipple, no cyclic metal bending; round nut OD5 with flats4.5, engagement>=2;
-      installed PFA outside envelope<=2.20 mm
+    water_port_union: custom 316L M4x0.5 compression union, OD<=5 and length<=8; PFA insertion >=4, low-outgassing ferrule; machined Cu5x5x5 L-port
+      block and integral M4 nipple, no cyclic metal bending; round nut OD5 with flats4.5, engagement>=2; installed PFA outside envelope<=2.20
+      mm
     microtube_Re_upper: 2273.6420441699333
     microtube_pair_pressure_drop_Pa: 10725.769924849008
     hydraulic_design_upper_Pa: 53452.381642712004
     pump_differential_design_minimum_Pa: 80000
-    microtube_hydraulic_envelope: effective bore >=0.95 mm; each circuit two hoses <=105 mm each; per-channel 0.075..0.07875
-      L/min; Darcy f=0.06 and local K=15 design bounds cover microtube transition; water channel laminar check uses maximum
-      flow
+    microtube_hydraulic_envelope: effective bore >=0.95 mm; each circuit two hoses <=105 mm each; per-channel 0.075..0.07875 L/min; Darcy f=0.06
+      and local K=15 design bounds cover microtube transition; water channel laminar check uses maximum flow
     channel_arc_angle_deg: 84
     channel_straight_length_each_end_mm: 3.5
     actual_copper_minimum_with_ports_kg: 0.06929384537701755
     lower_ring_incident_heat_limit_W: 2
     lower_ring_copper_link_W_K: 0.75
     lower_ring_temperature_bound_C: 47.666666666666664
-    shell_copper_heat_transfer_reference: effective conductance normalized to nominal full circumference; actual copper gap
-      area is not presented as a meshed contact surface
+    shell_copper_heat_transfer_reference: effective conductance normalized to nominal full circumference; actual copper gap area is not presented
+      as a meshed contact surface
     lower_face_cold_compression_mm: 0.29
     lower_face_retained_compression_mm: 0.2243586
     lower_face_hot_max_compression_fraction: 0.298819211552254
@@ -424,8 +431,7 @@ shield:
     water_effective_W_K: 5.772551963934611
     water_lumped_design_W_K: 5.6
     copper_upper_bound_C: 44.53229150946162
-    copper_upper_bound_scope: single isolated quarter, shell 180C, inlet 22C, h 150 W/m2K, all 10 W incident heat in this
-      quarter
+    copper_upper_bound_scope: single isolated quarter, shell 180C, inlet 22C, h 150 W/m2K, all 10 W incident heat in this quarter
     copper_upper_bound_incident_radiation_W: 10
     copper_upper_bound_water_heat_W: 31.545208113246268
     steel_copper_effective_h_W_m2K:
@@ -434,13 +440,11 @@ shield:
     copper_effective_area_mm2: 4241.150082346221
     seal_radial_force_design_limit_N: 1500
     checks_pass: true
-  lower_backing_ring: 连续密封座≤48℃，8柔性铜热带至铜瓣，合计导热≥0.75 W/K；入射与传热≤2 W包含在单瓣10 W热负荷包络内。轴向密封压紧≤1000 N，承力止挡旁路多余螺钉预紧；0.31间距在受载状态配垫测量。
-    盘上R73.7～74.0整环金属止挡高名义0.31按圈配作，形成连续承力支承，铜瓣不接触该止挡。
+  lower_backing_ring: 连续密封座≤48℃，8柔性铜热带至铜瓣，合计导热≥0.75 W/K；入射与传热≤2 W包含在单瓣10 W热负荷包络内。轴向密封压紧≤1000 N，承力止挡旁路多余螺钉预紧；0.31间距在受载状态配垫测量。 盘上R73.7～74.0整环金属止挡高名义0.31按圈配作，形成连续承力支承，铜瓣不接触该止挡。
   water_port_design: 每条84°弧道＋两端各≥3.5 mm直道；8个2×4×6铜内凸台，距接缝3°；每凸台上下水路端口分别引出，8供8回软管固定且留1.15 mm运动余量。
-  water_bulkhead_design: 4个316L密封穿盘分配块，R55/45°起等分90°；12径向×16切向，z83.59～99.00；块体与盘板连续气密焊接，4微管口分配2供2回、下方独立水路。铜凸台不直接开M5，钎接OD1.80铜微管插入3
-    mm，ID对应1.10/1.40；柔性PFA管SMC TLM0201或等效PFA，OD2/ID1，四瓣各4根合16根，上层水平Ω弯实装最小弯曲半径≥12（供方静态推荐10，往复首件确认）、额定≥0.3 MPa/60℃；布置内腔R43～69、z90.8～98.2，软管固定防擦并留1.15
-    mm移动余量。首件按压力/运动/析出/洁净验收，不以铜接头直接弯折补行程。 各铜内凸台两级铜微管口在径向错开10 mm后转Ø2压紧接口，避免2 mm层间距直接布置大接头；两根每水路微管各≤100 mm，支路压差设计≥0.08 MPa；每路流量0.075～0.07875
-    L/min；微管有效内径≥0.95，长度极限各105 mm。；定制316L M4×0.5压紧接头外包络≤Ø5×8，PFA插入≥4、低析出卡套；铜微管接5×5×5机加工L孔转向块，禁止往复弯折。局部端口坐标(58,±8,92)/(52,±8,94)，相邻孔中心距6.325，独立纵孔由盘下引入，端口不串通。；圆螺母Ø5双平面4.5、啮合≥2，含公差/温升/弯曲实装微管外径包络≤2.20。；转向块径向Ø1.80插管孔深1.50、内部水孔ID对应1.10/1.40交汇，切向整体M4螺纹凸嘴长3.50，PFA止口插入4；块与铜凸台同动，不设旋转接头。；固定块压紧帽端面齐平，独立下引孔(x52/58,y±3)，PFA插入4后至转向流道净隙≥0.5。
+  water_bulkhead_design: 4个316L密封穿盘分配块，R55/45°起等分90°；12径向×16切向，z83.59～99.00；块体与盘板连续气密焊接，4微管口分配2供2回、下方独立水路。铜凸台不直接开M5，钎接OD1.80铜微管插入3 mm，ID对应1.10/1.40；柔性PFA管SMC
+    TLM0201或等效PFA，OD2/ID1，四瓣各4根合16根，上层水平Ω弯实装最小弯曲半径≥12（供方静态推荐10，往复首件确认）、额定≥0.3 MPa/60℃；布置内腔R43～69、z90.8～98.2，软管固定防擦并留1.15 mm移动余量。首件按压力/运动/析出/洁净验收，不以铜接头直接弯折补行程。
+    各铜内凸台两级铜微管口在径向错开10 mm后转Ø2压紧接口，避免2 mm层间距直接布置大接头；两根每水路微管各≤100 mm，支路压差设计≥0.08 MPa；每路流量0.075～0.07875 L/min；微管有效内径≥0.95，长度极限各105 mm。；定制316L M4×0.5压紧接头外包络≤Ø5×8，PFA插入≥4、低析出卡套；铜微管接5×5×5机加工L孔转向块，禁止往复弯折。局部端口坐标(58,±8,92)/(52,±8,94)，相邻孔中心距6.325，独立纵孔由盘下引入，端口不串通。；圆螺母Ø5双平面4.5、啮合≥2，含公差/温升/弯曲实装微管外径包络≤2.20。；转向块径向Ø1.80插管孔深1.50、内部水孔ID对应1.10/1.40交汇，切向整体M4螺纹凸嘴长3.50，PFA止口插入4；块与铜凸台同动，不设旋转接头。；固定块压紧帽端面齐平，独立下引孔(x52/58,y±3)，PFA插入4后至转向流道净隙≥0.5。
 precision:
   limit_diameter_mm: 0.05
   bore_length_mm: 15
@@ -451,15 +455,13 @@ precision:
     fixture_axis_setting: 0.002
     sleeve_centering: 0.002
     clamp_elastic_shift: 0.0065
-    thermal_residual_target: 0.010
+    thermal_residual_target: 0.01
     release_shift_target: 0.0005
   status: 径向非热分配14 μm，基准/轴线/定心各2、夹紧6.5、搬运0.5、支点1；固定锥/柱实体有限元与根部连接分别验证，局部压缩另用于2000接触密度匹配。
   measurement_expanded_uncertainty_diameter_target_mm: 0.002
   honing_axis_allocation_diameter_mm: 0.0
-  fallback_honing_axis_allocation_diameter_mm: 0.0065
-  bore_finish_strategy: 焊前候选孔40.006～40.008（完整核验后冻结）；20±0.2℃孔径方法U≤0.0005，最小值减U≥40.000且最大值加U≤40.025时不精整、焊接孔轴设计额度≤0.020；无微珩为主路线；欠尺寸孔仅在备用预算合格时进入有限微珩分支，焊接孔轴额度≤0.0135，最大局部径向去除≤0.003、直径增量≤0.006，最小测量至40.0005～40.0010即停止；精整前后独立CMM与干态洁净检查，禁止用精整纠正孔轴
-  finish_allowance_diameter_mm:
-  - 0
-  - 0
-  post_weld_machining: 不预留固定余量；局部单边去除≤0.003、直径≤0.006；主路线28+2+0+20=50 μm；备用微珩位置度另计0.0065，预算28+2+6.5+13.5=50 μm；均不得以机加工修正孔轴
+  fallback_honing_axis_allocation_diameter_mm: null
+  bore_finish_strategy: 主路线为入壳装夹态一次孔成形、完全卸夹后零去料，位置度28+2+0+20=50 μm；孔轴按独立A/B验收，孔成形沿已有孔轴稳向。 成品全孔40.000～40.025 mm，孔径方法U≤0.0005 mm；首件核定留量、终点及解除夹持的回弹。
+  finish_allowance_diameter_mm: null
+  post_weld_machining: 孔内工具退出，A托环保持壳体装夹；闭底全收集工位沿原孔轴一次成形，抽尽干燥后完全卸夹。非热轴变计入28 μm总项，卸夹后零去料。
   conformity_rule: 测得位置度直径＋同口径扩展不确定度≤0.05 mm

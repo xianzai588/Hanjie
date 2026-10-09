@@ -12,8 +12,8 @@ plt.rcParams.update({'font.family':'Noto Sans SC','font.size':10})
 fig,ax=plt.subplots(figsize=(7.1,3.6))
 ax.set(xlim=(0,10),ylim=(0,6));ax.axis('off')
 boxes=[(2,5,'来料与浅槽加工\n材料、组织、槽形'),(7.6,5,'壳外CI-A1首层\n预热—清渣—缓冷'),
-       (7.6,3,'首层法向修整\nNi99双轨—缓冷—延迟PT'),(2,3,'连接面与孔加工\n清洗干燥—封存'),
-       (2,1,'入壳定位与屏障\n八段两道GTAW—冷却'),(7.6,1,'受控退夹与最终检验\nCMM—孔径—NDT—洁净')]
+       (7.6,3,'首层法向修整\nNi99双轨—缓冷—延迟PT'),(2,3,'连接面与孔预加工\n清洗干燥—封存'),
+       (2,1,'入壳定位与屏障\n八段两道GTAW—冷却'),(7.6,1,'保夹转运—一次孔成形\n全收集—完全卸夹检验')]
 for x,y,label in boxes:
     ax.add_patch(FancyBboxPatch((x-1.75,y-.55),3.5,1.1,boxstyle='round,pad=.04,rounding_size=.07',
         fc='#f0f3f5',ec='#40586a',lw=1))

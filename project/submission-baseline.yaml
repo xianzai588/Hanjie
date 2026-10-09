@@ -166,11 +166,11 @@ material_route:
   - 壳外首层预制、清渣与保温缓冷
   - 冷态法向修整及表面检查
   - 低碳第二层双轨预制、保温缓冷及延迟检查
-  - 连接面与孔最终加工、清洗干燥
+  - 连接面与孔预加工、清洗干燥
   - 入壳定心、铜环及气幕就位
   - 八段两道对称组焊
-  - 冷却与完全卸夹、孔轴及连接检验
-  - 无微珩主路线：孔径直接验收、干态洁净封存；局部欠尺寸满足备用预算时才有限微珩并复检
+  - 冷却、退工具与A托环保夹转运
+  - A托环保夹转运、闭底一次孔成形、回收干燥；完全卸夹独立A/B验收，卸夹后零去料
   precoat_ledger:
     first_deposited_mass_g: 15.329235374588933
     first_net_heat_kJ: 184.675927
@@ -236,12 +236,12 @@ precision:
     measurement_expanded_uncertainty: 2
     limited_honing_axis_change: 0
     welding_thermal_residual: 20
-  maximum_local_radial_honing_removal_um: 3
+  maximum_local_radial_honing_removal_um: null
   bore_size_control_mm:
   - 40
   - 40.025
   radial_clamping_suballocation_um: 6.5
-  clamping_scope: 夹紧径向6.5 μm包含在28 μm非热直径分配；主路线微珩项0，备用微珩轴变直径6.5 μm另计。
+  clamping_scope: 夹紧径向6.5 μm含在28 μm非热直径项；装夹态孔成形的导向、定位、夹紧与转运共同按该总项验收；完全卸夹后去料项0。
   mechanism: 径向柔顺槽、精密内锥胀套背承、对称跳焊及能量控制；禁止焊后精镗纠正孔轴
   datum_execution_card: deliverables/process/shell-datum-and-cmm-execution-card.md
   A_flatness_mm: 0.002
@@ -270,6 +270,9 @@ precision:
     axis_change_diameter_allocation_um: 6.5
     welding_thermal_residual_allocation_um: 13.5
     budget_um: 28+2+6.5+13.5=50
+    enabled: false
+    state: 'retired: 3 um radial removal cannot close 25-26 um bore-form span'
+  bore_forming_route: 入壳装夹态一次成形，沿已有孔轴稳向；完全卸夹后零去料。留量与回弹由首件校准。
 cleanliness:
   requirement: 焊渣、飞溅不得进入产品内腔
   primary_barrier: 水冷铜卡环、捕获连续密封和刚性朝上接料盘

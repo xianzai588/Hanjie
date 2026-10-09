@@ -1,0 +1,32 @@
+{
+  "design": "8P-R2-t15",
+  "edition": "2026-10-09",
+  "main_pdf_pages": 96,
+  "body_pdf_pages": 33,
+  "manual_pdf_pages": 73,
+  "scaled_engineering_drawings": 5,
+  "nts_process_illustrations": 18,
+  "files": [
+    {
+      "path": "00-提交与阅读说明.txt",
+      "purpose": "评委阅读导航"
+    },
+    {
+      "path": "01-焊接工艺设计说明书与工程图.pdf",
+      "purpose": "完整参赛作品：说明书、工艺卡、工程图和工艺附图",
+      "pages": 96
+    },
+    {
+      "path": "02-八翼名义装配.step",
+      "purpose": "名义装配几何辅助"
+    },
+    {
+      "path": "03-八翼曲面两层座体.step",
+      "purpose": "两层预制名义几何辅助"
+    },
+    {
+      "path": "材料清单.json",
+      "purpose": "本包文件及页数组成"
+    }
+  ]
+}

@@ -372,7 +372,8 @@ def build_story(source: Path = SOURCE) -> list:
             image_path = ROOT / illustration[2]
             if not image_path.is_file():
                 image_path = (source.parent / illustration[2]).resolve()
-            figure = figure_image(image_path,max_height=105*mm if not is_card else 100*mm)
+            height = 135*mm if image_path.name == 'residual-stress.png' else (105*mm if not is_card else 100*mm)
+            figure = figure_image(image_path,max_height=height)
             caption=illustration[1]
             for next_index in range(line_index+1,len(source_lines)):
                 following=source_lines[next_index].strip()
