@@ -397,7 +397,12 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
         if not checkpoint_path.exists():raise ValueError('no continuation checkpoint exists')
         cp=np.load(checkpoint_path,allow_pickle=False)
         meta=json.loads(str(cp['metadata']))
-        if meta['version']!=1 or meta['inputs']!=json.loads((output/'input.json').read_text(encoding='utf8')):
+        checkpoint_inputs=meta['inputs'].copy()
+        current_inputs=json.loads((output/'input.json').read_text(encoding='utf8'))
+        # Thread count is an execution setting; retain exact checks of every physics input.
+        checkpoint_threads=checkpoint_inputs.pop('solver_threads')
+        current_threads=current_inputs.pop('solver_threads')
+        if meta['version']!=1 or checkpoint_inputs!=current_inputs:
             raise ValueError('checkpoint physics/parameters do not match the current run')
         if not np.array_equal(cp['x'],x) or not np.array_equal(cp['e'],e):
             raise ValueError('checkpoint mesh differs')
@@ -448,6 +453,8 @@ def run(n,h,dt,output,imbalance=0.,preheat=20.,stop_time=None,thermal_only=False
             tool_boundary_trace=list(cp['tool_boundary_trace'])
         clock-=meta['elapsed_s']
         print('resumed converged state',t,flush=True)
+        if checkpoint_threads!=current_threads:
+            print('resumed runtime threads',checkpoint_threads,'->',current_threads,flush=True)
         cp.close()
     def save_continuation(state):
         if not checkpoint or thermal_only:return

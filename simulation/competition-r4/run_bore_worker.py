@@ -13,12 +13,12 @@ JOBS['8p-thermal-tool-h200-bore008-h15-dt025-s05']=(40.008,1.5,.25,.5,5,25)
 JOBS['8p-thermal-tool-ref2-bore008-h15-dt025-s05']=(40.008,1.5,.25,.5,5,25)
 JOBS['8p-thermal-tool-bore008-h084375-dt025-s05']=(40.008,.84375,.25,.5,5,25)
 JOBS['8p-thermal-tool-bore008-h06328125-dt025-s05']=(40.008,.6328125,.25,.5,5,25)
-def main(name,after_case=None):
+def main(name,after_case=None,threads=2):
  os.chdir(ROOT)
  folder=ROOT/'simulation/competition-r4/results'/name
  folder.mkdir(parents=True,exist_ok=True)
  def status(stage,**extra):
-  (folder/'worker-status.json').write_text(json.dumps(dict(pid=os.getpid(),case=name,stage=stage,**extra),indent=2),encoding='utf8')
+  (folder/'worker-status.json').write_text(json.dumps(dict(pid=os.getpid(),case=name,stage=stage,solver_threads=threads,**extra),indent=2),encoding='utf8')
  try:
   if after_case is not None:
    status('queued_after_reference_case',after_case=after_case)
@@ -36,7 +36,7 @@ def main(name,after_case=None):
         '--seat-path','simulation/competition-r4/geometry/8P-R2-t15.step','--contact-density','2000',
         '--copper-h','50','--source-r','74.8','--source-radius','1.270170592','--source-depth','.923760431',
         '--weld-h','1','--unilateral-pads','--material-enthalpy','--paired-opposed',
-        '--pardiso-symmetric','--threads','2','--checkpoint','--output',str(folder)]
+        '--pardiso-symmetric','--threads',str(threads),'--checkpoint','--output',str(folder)]
   if 'thermal-tool' in name:
    args+=['--fixture-contact-h','200' if 'h200-' in name else '2000',
           '--fixture-refinement','2' if 'ref2-' in name else '1']
@@ -45,7 +45,7 @@ def main(name,after_case=None):
   subprocess.run([sys.executable,'-X','utf8','simulation/competition-r4/run_verified.py',*args],check=True)
   status('complete_shell_clamp_release')
   subprocess.run([sys.executable,'-X','utf8','simulation/competition-r4/release_cold_shell.py',
-                  '--case',str(folder),'--threads','2'],check=True)
+                  '--case',str(folder),'--threads',str(threads)],check=True)
   status('independent_metrology_samples')
   from postprocess import measure
   row,_,_=measure(folder,free_shell=True)
@@ -57,4 +57,5 @@ def main(name,after_case=None):
 if __name__=='__main__':
  parser=argparse.ArgumentParser();parser.add_argument('--case',choices=JOBS,required=True)
  parser.add_argument('--after-case',choices=JOBS)
- a=parser.parse_args();main(a.case,a.after_case)
+ parser.add_argument('--threads',type=int,choices=range(1,9),default=2)
+ a=parser.parse_args();main(a.case,a.after_case,a.threads)
