@@ -12,6 +12,7 @@ for name,settings in list(JOBS.items()):
 JOBS['8p-thermal-tool-h200-bore008-h15-dt025-s05']=(40.008,1.5,.25,.5,5,25)
 JOBS['8p-thermal-tool-ref2-bore008-h15-dt025-s05']=(40.008,1.5,.25,.5,5,25)
 JOBS['8p-thermal-tool-bore008-h084375-dt025-s05']=(40.008,.84375,.25,.5,5,25)
+JOBS['8p-thermal-tool-bore008-h06328125-dt025-s05']=(40.008,.6328125,.25,.5,5,25)
 def main(name,after_case=None):
  os.chdir(ROOT)
  folder=ROOT/'simulation/competition-r4/results'/name
