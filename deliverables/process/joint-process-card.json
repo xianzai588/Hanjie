@@ -95,7 +95,9 @@
     },
     "postflow_before_lift_s": 15,
     "minimum_net_clearance_mm": 0.25,
+    "clearance_failure_disposition": "保持停机锁定；加大40 mm中间位周向避让角，先核对12°～15°候选全程包络，再冷态复验净隙与到位联锁合格后冻结",
     "cold_full_path_acceptance_required": true,
-    "dual_station_qualified": false
+    "dual_station_qualified": false,
+    "dual_station_role": "首件位置度不满足或余量不足时的第一优先纠正措施；先完成兼容段对退出轨迹、承载架、枪腕、软缆、送丝及共时钟联锁的整机冷态资格"
   }
 }
