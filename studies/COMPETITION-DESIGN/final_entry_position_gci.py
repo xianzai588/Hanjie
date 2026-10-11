@@ -47,7 +47,7 @@ def estimate():
         maximum_solution_difference_um=delta_m, range_factor=3,
         GCI_fine_percent=100*band/abs(f), GCI_fine_absolute_um=band,
         fine_grid_error_band_um=[f-band,f+band], asymptotic_convergence_passed=False)
-    q = 2
+    q = 1
     coarse_correction = rt**q*(t-a)/(rt**q-1)
     time_band = 3*abs(coarse_correction)
     temporal = dict(assumed_order=q, correction_from_dt025_um=coarse_correction,
@@ -73,7 +73,7 @@ def estimate():
         model_assumptions=['The three spatial solutions oscillate; no monotonic Richardson limit is reported.',
             'The apparent order uses nominal parent-grid ratios; weld_h remains 1 mm and the family is not uniformly refined.',
             'Non-monotonic range uncertainty is an engineering estimate, not an asymptotic convergence certificate.',
-            'q=2 and spatial/time separability remain assumptions; the only temporal comparison is on h=1.5 mm.',
+            'q=1 follows the backward-Euler thermal discretization; spatial/time separability remains an assumption and the only temporal comparison is on h=1.5 mm.',
             'The time comparison also changes structural/event update steps.',
             'The single-head case has one grid; paired uncertainty is not transferred as a validated single-head bound.',
             'Material, contact, heat-source and precoat residual assumptions are verified in the trial plan.',

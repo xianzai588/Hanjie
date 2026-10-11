@@ -94,21 +94,21 @@
     "asymptotic_convergence_passed": false
   },
   "temporal": {
-    "assumed_order": 2,
-    "correction_from_dt025_um": 0.9848028539660874,
-    "numerical_uncertainty_um": 2.954408561898262,
+    "assumed_order": 1,
+    "correction_from_dt025_um": 1.477204280949131,
+    "numerical_uncertainty_um": 4.431612842847393,
     "scope": "Combined temporal protocol; coarse spatial grid only"
   },
   "combined": {
-    "time_adjusted_point_um": 15.683751395170608,
-    "total_budget_point_um": 45.68375139517061,
+    "time_adjusted_point_um": 16.176152822153654,
+    "total_budget_point_um": 46.176152822153654,
     "error_band_about_fine_solution_um": [
-      4.001084533764793,
-      25.39681254864425
+      2.523880252815662,
+      26.87401682959338
     ],
     "total_budget_error_band_um": [
-      34.001084533764796,
-      55.39681254864425
+      32.523880252815665,
+      56.87401682959338
     ],
     "point_below_20_um": true,
     "uncertainty_upper_below_20_um": false
@@ -129,7 +129,7 @@
     "The three spatial solutions oscillate; no monotonic Richardson limit is reported.",
     "The apparent order uses nominal parent-grid ratios; weld_h remains 1 mm and the family is not uniformly refined.",
     "Non-monotonic range uncertainty is an engineering estimate, not an asymptotic convergence certificate.",
-    "q=2 and spatial/time separability remain assumptions; the only temporal comparison is on h=1.5 mm.",
+    "q=1 follows the backward-Euler thermal discretization; spatial/time separability remains an assumption and the only temporal comparison is on h=1.5 mm.",
     "The time comparison also changes structural/event update steps.",
     "The single-head case has one grid; paired uncertainty is not transferred as a validated single-head bound.",
     "Material, contact, heat-source and precoat residual assumptions are verified in the trial plan.",

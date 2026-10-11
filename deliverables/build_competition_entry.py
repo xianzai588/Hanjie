@@ -37,7 +37,7 @@ def build():
            '03-八翼曲面两层座体.step':'cad/generated/independent-precoat-curved/precoat-stack-R15-R08.step'}
     for dest,src in steps.items():
         content=(ROOT/src).read_text(encoding='utf8')
-        content,n=re.subn(r"FILE_NAME\s*\(.*?\);", "FILE_NAME('8P-R2-t15','2026-10-10T00:00:00',(''),(''),'Open CASCADE','Engineering design','');",content,count=1,flags=re.S)
+        content,n=re.subn(r"FILE_NAME\s*\(.*?\);", "FILE_NAME('8P-R2-t15','2026-10-11T00:00:00',(''),(''),'Open CASCADE','Engineering design','');",content,count=1,flags=re.S)
         if n!=1:raise ValueError('STEP header not found')
         header=content.split('DATA;',1)[0]
         if any(t.lower() in header.lower() for t in ['haha','Claude','Codex','C:/Users','E:\\AI']):raise ValueError('STEP identity remains')
@@ -58,7 +58,7 @@ def build():
 """
     (OUT/'00-提交与阅读说明.txt').write_text(note,encoding='utf8')
     files=[dict(path='00-提交与阅读说明.txt',purpose='评委阅读导航'),dict(path=name,purpose='完整参赛作品：说明书、工艺卡、工程图和工艺附图',pages=pages),dict(path='02-八翼名义装配.step',purpose='名义装配几何辅助'),dict(path='03-八翼曲面两层座体.step',purpose='两层预制名义几何辅助')]
-    manifest=dict(design='8P-R2-t15',edition='2026-10-10',main_pdf_pages=pages,body_pdf_pages=paper_pages,
+    manifest=dict(design='8P-R2-t15',edition='2026-10-11',main_pdf_pages=pages,body_pdf_pages=paper_pages,
         manual_pdf_pages=manual_pages,navigation_bookmarks=bookmarks,main_pdf_sections=sections,scaled_engineering_drawings=5,nts_process_illustrations=18,files=files+[dict(path='材料清单.json',purpose='本包文件及页数组成')])
     (OUT/'材料清单.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')
     expected={f['path'] for f in manifest['files']}

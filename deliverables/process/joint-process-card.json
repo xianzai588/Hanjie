@@ -82,5 +82,20 @@
     "geometric_keepout_equation": "x>=0,y>=0,x+y<=4.30 mm from virtual root",
     "feed_3p68_contrast_adopted": false
   },
-  "capacity_source": "studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json"
+  "capacity_source": "studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json",
+  "execution_path": {
+    "station": "single_head",
+    "intermediate_lift_mm": 40,
+    "total_lift_mm": 150,
+    "parking_angles_from_segment1_deg": {
+      "2": 55,
+      "4": 125,
+      "6": 235,
+      "8": 325
+    },
+    "postflow_before_lift_s": 15,
+    "minimum_net_clearance_mm": 0.25,
+    "cold_full_path_acceptance_required": true,
+    "dual_station_qualified": false
+  }
 }

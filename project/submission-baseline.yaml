@@ -316,6 +316,8 @@ fixture_pressure_interface:
   ball_seat_maximum_diameter_mm: 14
   independent_ring_lift_mm: 150
   torch_and_wire_transition_lift_mm: 150
+  torch_and_wire_intermediate_lift_mm: 40
+  torch_and_wire_parking_angles_deg: {2: 55, 4: 125, 6: 235, 8: 325}
   core_lift_mm: 260
   shell_and_holder_lift_mm: 140
   nominal_minimum_tool_gap_mm: 0.9156114508159194
@@ -336,7 +338,7 @@ verification:
   current_joint_capacity_source: studies/COMPETITION-DESIGN/results/delivery-joint-capacity-20261008.json
   principle: 设计给出设定假设下的明确计算结论；接头PQR、首件孔径、位置度与三级网格按第9章关闭。保留真实计算与实测状态。
   current_source_diagnosis: simulation/competition-r4/results/implementation-source-compatibility-20261008/compatibility-and-domain-audit.json
-  final_entry_position_source: studies/COMPETITION-DESIGN/results/final-entry-position-gci-20261009.json
+  final_entry_position_source: simulation/competition-r4/results/8p-thermal-tool-bore008-h06328125-dt025-s05/four-grid-position-comparison.json
 comparison:
   ring_role: 完整圆环只作历史冷态刚度比较，不移植八翼结果或8 K解析假设为制造证明
 submission:
@@ -355,4 +357,5 @@ submission:
   - studies/COMPETITION-DESIGN/results/final-pass-forming-revision-20261008.json
   - simulation/competition-r4/results/native-interface-adaptation-20261008/interface-readback.json
   - studies/COMPETITION-DESIGN/results/final-entry-position-gci-20261009.json
+  - simulation/competition-r4/results/8p-thermal-tool-bore008-h06328125-dt025-s05/four-grid-position-comparison.json
   package_manifest: deliverables/competition-entry/验证与交付状态.json

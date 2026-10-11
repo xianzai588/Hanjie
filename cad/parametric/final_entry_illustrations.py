@@ -9,7 +9,11 @@ OUT=ROOT/'cad/generated/final-entry-drawings'
 FONT=ROOT/'assets/fonts/NotoSansSC-Regular.ttf'
 
 def display_text(text):
-    text=text.replace('微珩','孔成形').replace('2026-10-08','2026-10-10')
+    text=text.replace('微珩','孔成形').replace('2026-10-08','2026-10-11')
+    text=text.replace('退位另须温度<55℃、颗粒检查合格；枪丝先升150，再副环升150。',
+        '退位：<55℃且颗粒合格；枪丝升40、避让至150，再副环升150。')
+    text=text.replace('段间枪丝升150后转位：全工具z≥265.2～370，越工作臂顶245。',
+        '枪丝先升40周向避让，再升至150转位；角度及许可见HJ-C-03。')
     text=text.replace('89.415','89.41')  # Display the unrounded result already tabulated in HJ-W-00E.
     text=text.replace('0.075～0.07875 L/min','75.00～78.75 mL/min')
     text=text.replace('外圆同轴≤0.003','外圆同轴≤3.0 μm')

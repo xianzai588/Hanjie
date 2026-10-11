@@ -28,5 +28,28 @@
   ],
   "parked_tools_to_working_arm_z_clearance_mm": 20.2,
   "parked_tools_to_retracted_arm_z_clearance_mm": 5.0,
-  "note": "Nominal CAD distances use the existing torch/wire; projection is a conservative full vertical sweep bound. Arm local placement tolerance ±0.50, tool pose ±0.05, feature size allowance 0.10. No FE or physical clearance measurement."
+  "note": "Nominal CAD distances use the existing torch/wire; projection is a conservative full vertical sweep bound. Arm local placement tolerance ±0.50, tool pose ±0.05, feature size allowance 0.10. No FE or physical clearance measurement.",
+  "single_head_path_revision": {
+    "date": "2026-10-11",
+    "intermediate_lift_mm": 40,
+    "total_lift_mm": 150,
+    "parking_angles_from_segment1_deg": {
+      "2": 55,
+      "4": 125,
+      "6": 235,
+      "8": 325
+    },
+    "pressure_continuous_projection_min_mm": 0.9156114508159376,
+    "net_after_existing_dimensional_allowance_mm": 0.2656114508159376,
+    "extraction_vertical_projection_with_OD11_envelope_mm": 1.3742713661148187,
+    "intermediate_rotation_radial_gap_lower_bound_mm": 1.132824765599679,
+    "additional_tool_allowance_mm": 0.15,
+    "direct_lift_counterexample": {
+      "segment": 2,
+      "root_lift_mm": 85,
+      "minimum_gap_mm": 0,
+      "overlap_mm3": 2.0180546666228523
+    },
+    "scope": "Existing rigid torch/wire and specified head envelopes; full purchased equipment cold-path acceptance required; no new FE"
+  }
 }

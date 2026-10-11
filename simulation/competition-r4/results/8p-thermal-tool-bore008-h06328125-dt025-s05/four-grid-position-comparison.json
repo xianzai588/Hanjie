@@ -1,0 +1,434 @@
+{
+  "created_local": "2026-10-11T08:07:10.076107",
+  "measurement_state": "independent A/B, fully unclamped shell, retained six coordinate gauges only",
+  "grids": [
+    {
+      "case": "8p-thermal-tool-bore008-h15-dt025-s05",
+      "measurement_path": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h15-dt025-s05\\measurement.json",
+      "h_mm": 1.5,
+      "position_diameter_mm": 0.013002795366787388,
+      "position_diameter_um": 13.002795366787389,
+      "worker_stage": "complete",
+      "progress_released": true,
+      "measurement_released": true,
+      "free_release_fields_saved": true,
+      "release": {
+        "source_fields": "fields.npz",
+        "source_temperature_max_C": 20.49853578239692,
+        "scope": "shell annular axial datum clamp retained during ambient cooling, removed before CMM; six coordinate gauges only",
+        "original_bottom_axially_fixed_nodes": 245,
+        "remaining_gauge_dofs": [
+          1234,
+          1235,
+          1340,
+          21447,
+          21448,
+          21449
+        ],
+        "gauge_nodes": [
+          7149,
+          411,
+          446
+        ],
+        "recovered_interface_equilibrium_residual_N": 0.014848821911344073,
+        "link_force_recovery": [
+          {
+            "axis": 0,
+            "iterations": 50,
+            "residual_N": 0.009901757540940989
+          },
+          {
+            "axis": 1,
+            "iterations": 50,
+            "residual_N": 0.009674233736937269
+          },
+          {
+            "axis": 2,
+            "iterations": 51,
+            "residual_N": 0.00537139752376743
+          }
+        ],
+        "release_equilibrium_residual_N": 2.068178730699255e-09,
+        "release_iterations": 5,
+        "residual_history_N": [
+          136.13559892169962,
+          2.4811767298928684,
+          0.15335788198443265,
+          0.0016108760904286,
+          2.068178730699255e-09
+        ],
+        "maximum_incremental_displacement_mm": 0.007975591852923123,
+        "maximum_incremental_equivalent_plastic_strain": 2.9585899971695633e-06,
+        "bottom_face_displacement_range_mm": 0.0032226271359483156,
+        "retained_gauge_reaction_norm_N": 1.2911637726757478e-11,
+        "elapsed_s": 18.772220099999686,
+        "free_shell_release_pass": true
+      },
+      "max_equilibrium_residual_N": 0.04997478338887591,
+      "energy_balance_relative": -1.915247786764742e-06,
+      "sampling": {
+        "selected_protocol": {
+          "angular_count": 384,
+          "section_count": 33,
+          "phase_fraction": 0.5,
+          "datum_angular_count": 192
+        },
+        "refined_response_differences_mm": {
+          "position_diameter_mm": 8.471336487609823e-06,
+          "straight_fitted_axis_position_mm": 8.471336487609823e-06,
+          "section_axis_envelope_diameter_mm": 6.130619198928267e-08,
+          "sampled_bore_two_point_diameter_min_mm": 9.944641021775169e-08,
+          "sampled_bore_two_point_diameter_max_mm": 1.3109099242569755e-05,
+          "maximum_sampled_section_ovalization_mm": 1.3109099242569755e-05
+        },
+        "phase_response_differences_mm": {
+          "position_diameter_mm": 2.0658122681233015e-08,
+          "straight_fitted_axis_position_mm": 2.0658122681233015e-08,
+          "section_axis_envelope_diameter_mm": 6.864709979279016e-09,
+          "sampled_bore_two_point_diameter_min_mm": 9.944641021775169e-08,
+          "sampled_bore_two_point_diameter_max_mm": 6.39765591614605e-06,
+          "maximum_sampled_section_ovalization_mm": 5.910545944232126e-06
+        },
+        "response_difference_limit_mm": 0.0001,
+        "sampling_stability_pass": true,
+        "scope": "refinement and phase stability of the same piecewise interpolated FE displacement field; no new FE solution or experimental data"
+      }
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h1125-dt025-s05",
+      "measurement_path": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h1125-dt025-s05\\measurement.json",
+      "h_mm": 1.125,
+      "position_diameter_mm": 0.015583947181967877,
+      "position_diameter_um": 15.583947181967877,
+      "worker_stage": "complete",
+      "progress_released": true,
+      "measurement_released": true,
+      "free_release_fields_saved": true,
+      "release": {
+        "source_fields": "fields.npz",
+        "source_temperature_max_C": 20.49848513157329,
+        "scope": "shell annular axial datum clamp retained during ambient cooling, removed before CMM; six coordinate gauges only",
+        "original_bottom_axially_fixed_nodes": 429,
+        "remaining_gauge_dofs": [
+          37048,
+          37049,
+          37052,
+          37065,
+          37066,
+          37067
+        ],
+        "gauge_nodes": [
+          12355,
+          12349,
+          12350
+        ],
+        "recovered_interface_equilibrium_residual_N": 0.015478531739344988,
+        "link_force_recovery": [
+          {
+            "axis": 0,
+            "iterations": 49,
+            "residual_N": 0.01048976807876407
+          },
+          {
+            "axis": 1,
+            "iterations": 50,
+            "residual_N": 0.009902497808025153
+          },
+          {
+            "axis": 2,
+            "iterations": 50,
+            "residual_N": 0.0056116172019935245
+          }
+        ],
+        "release_equilibrium_residual_N": 0.0008922328066795492,
+        "release_iterations": 4,
+        "residual_history_N": [
+          100.1079885838195,
+          1.7338834196960822,
+          0.07522892690724885,
+          0.0008922328066795492
+        ],
+        "maximum_incremental_displacement_mm": 0.007838456635586525,
+        "maximum_incremental_equivalent_plastic_strain": 2.721005168422469e-06,
+        "bottom_face_displacement_range_mm": 0.003186431025188072,
+        "retained_gauge_reaction_norm_N": 1.3789128542216144e-11,
+        "elapsed_s": 19.384860999998637,
+        "free_shell_release_pass": true
+      },
+      "max_equilibrium_residual_N": 0.04993671414233239,
+      "energy_balance_relative": -2.4257992964786983e-06,
+      "sampling": {
+        "selected_protocol": {
+          "angular_count": 384,
+          "section_count": 33,
+          "phase_fraction": 0.5,
+          "datum_angular_count": 192
+        },
+        "refined_response_differences_mm": {
+          "position_diameter_mm": 1.6699788656093784e-08,
+          "straight_fitted_axis_position_mm": 8.05158828426876e-06,
+          "section_axis_envelope_diameter_mm": 1.6699788656093784e-08,
+          "sampled_bore_two_point_diameter_min_mm": 1.864188289601998e-05,
+          "sampled_bore_two_point_diameter_max_mm": 1.809168680466655e-05,
+          "maximum_sampled_section_ovalization_mm": 1.809168680466655e-05
+        },
+        "phase_response_differences_mm": {
+          "position_diameter_mm": 5.00622383305116e-09,
+          "straight_fitted_axis_position_mm": 4.200626704461974e-08,
+          "section_axis_envelope_diameter_mm": 5.00622383305116e-09,
+          "sampled_bore_two_point_diameter_min_mm": 5.829988026562205e-06,
+          "sampled_bore_two_point_diameter_max_mm": 6.343346335313527e-06,
+          "maximum_sampled_section_ovalization_mm": 6.273733610839827e-06
+        },
+        "response_difference_limit_mm": 0.0001,
+        "sampling_stability_pass": true,
+        "scope": "refinement and phase stability of the same piecewise interpolated FE displacement field; no new FE solution or experimental data"
+      }
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h084375-dt025-s05",
+      "measurement_path": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h084375-dt025-s05\\measurement.json",
+      "h_mm": 0.84375,
+      "position_diameter_mm": 0.01469894854120452,
+      "position_diameter_um": 14.69894854120452,
+      "worker_stage": "complete",
+      "progress_released": true,
+      "measurement_released": true,
+      "free_release_fields_saved": true,
+      "release": {
+        "source_fields": "fields.npz",
+        "source_temperature_max_C": 20.498458987343813,
+        "scope": "shell annular axial datum clamp retained during ambient cooling, removed before CMM; six coordinate gauges only",
+        "original_bottom_axially_fixed_nodes": 646,
+        "remaining_gauge_dofs": [
+          63185,
+          63187,
+          63188,
+          63462,
+          63463,
+          63464
+        ],
+        "gauge_nodes": [
+          21154,
+          21062,
+          21061
+        ],
+        "recovered_interface_equilibrium_residual_N": 0.015177163411760562,
+        "link_force_recovery": [
+          {
+            "axis": 0,
+            "method": "actual k*A*(L*u - saved birth reference)",
+            "residual_N": 0.010291831891382034
+          },
+          {
+            "axis": 1,
+            "method": "actual k*A*(L*u - saved birth reference)",
+            "residual_N": 0.009728794069598578
+          },
+          {
+            "axis": 2,
+            "method": "actual k*A*(L*u - saved birth reference)",
+            "residual_N": 0.005456652041147467
+          }
+        ],
+        "release_equilibrium_residual_N": 0.0008772509084903935,
+        "release_iterations": 4,
+        "residual_history_N": [
+          81.03225204154813,
+          2.0654321200076207,
+          0.12324518890262898,
+          0.0008772509084903935
+        ],
+        "maximum_incremental_displacement_mm": 0.014050291791531016,
+        "maximum_incremental_equivalent_plastic_strain": 4.013326718166242e-06,
+        "bottom_face_displacement_range_mm": 0.004902884387316208,
+        "retained_gauge_reaction_norm_N": 2.2518196560401374e-11,
+        "elapsed_s": 30.619193200000154,
+        "free_shell_release_pass": true
+      },
+      "max_equilibrium_residual_N": 0.04993285638083947,
+      "energy_balance_relative": -2.9772217880253135e-06,
+      "sampling": {
+        "selected_protocol": {
+          "angular_count": 384,
+          "section_count": 33,
+          "phase_fraction": 0.5,
+          "datum_angular_count": 192
+        },
+        "refined_response_differences_mm": {
+          "position_diameter_mm": 4.429845456947745e-08,
+          "straight_fitted_axis_position_mm": 1.797206166593776e-06,
+          "section_axis_envelope_diameter_mm": 4.429845456947745e-08,
+          "sampled_bore_two_point_diameter_min_mm": 3.1749523543567193e-06,
+          "sampled_bore_two_point_diameter_max_mm": 1.227520137092597e-06,
+          "maximum_sampled_section_ovalization_mm": 2.336893565768605e-06
+        },
+        "phase_response_differences_mm": {
+          "position_diameter_mm": 3.2366858958646216e-08,
+          "straight_fitted_axis_position_mm": 3.1657249790345565e-09,
+          "section_axis_envelope_diameter_mm": 3.2366858958646216e-08,
+          "sampled_bore_two_point_diameter_min_mm": 2.9815489241968862e-06,
+          "sampled_bore_two_point_diameter_max_mm": 1.227520137092597e-06,
+          "maximum_sampled_section_ovalization_mm": 1.3458114338504856e-06
+        },
+        "response_difference_limit_mm": 0.0001,
+        "sampling_stability_pass": true,
+        "scope": "refinement and phase stability of the same piecewise interpolated FE displacement field; no new FE solution or experimental data"
+      }
+    },
+    {
+      "case": "8p-thermal-tool-bore008-h06328125-dt025-s05",
+      "measurement_path": "E:\\AI\\bisai\\Hanjie\\simulation\\competition-r4\\results\\8p-thermal-tool-bore008-h06328125-dt025-s05\\measurement.json",
+      "h_mm": 0.6328125,
+      "position_diameter_mm": 0.017411479029004653,
+      "position_diameter_um": 17.411479029004653,
+      "worker_stage": "complete",
+      "progress_released": true,
+      "measurement_released": true,
+      "free_release_fields_saved": true,
+      "release": {
+        "source_fields": "fields.npz",
+        "source_temperature_max_C": 20.498245190134128,
+        "scope": "shell annular axial datum clamp retained during ambient cooling, removed before CMM; six coordinate gauges only",
+        "original_bottom_axially_fixed_nodes": 1028,
+        "remaining_gauge_dofs": [
+          109128,
+          109129,
+          109130,
+          109676,
+          109678,
+          109679
+        ],
+        "gauge_nodes": [
+          36376,
+          36559,
+          36558
+        ],
+        "recovered_interface_equilibrium_residual_N": 0.01381497766738866,
+        "link_force_recovery": [
+          {
+            "axis": 0,
+            "method": "actual k*A*(L*u - saved birth reference)",
+            "residual_N": 0.009328542511899688
+          },
+          {
+            "axis": 1,
+            "method": "actual k*A*(L*u - saved birth reference)",
+            "residual_N": 0.008798576223501678
+          },
+          {
+            "axis": 2,
+            "method": "actual k*A*(L*u - saved birth reference)",
+            "residual_N": 0.005139743086318493
+          }
+        ],
+        "release_equilibrium_residual_N": 9.274472740197999e-10,
+        "release_iterations": 5,
+        "residual_history_N": [
+          79.41930525235192,
+          2.108568615062963,
+          0.11890973918951916,
+          0.001322404751005849,
+          9.274472740197999e-10
+        ],
+        "maximum_incremental_displacement_mm": 0.015355083198090156,
+        "maximum_incremental_equivalent_plastic_strain": 4.853293357890842e-06,
+        "bottom_face_displacement_range_mm": 0.005395096247464799,
+        "retained_gauge_reaction_norm_N": 3.2751153419228877e-11,
+        "elapsed_s": 54.63665279999259,
+        "free_shell_release_pass": true
+      },
+      "max_equilibrium_residual_N": 0.04992414390875822,
+      "energy_balance_relative": -3.847646905888399e-06,
+      "sampling": {
+        "selected_protocol": {
+          "angular_count": 384,
+          "section_count": 33,
+          "phase_fraction": 0.0,
+          "datum_angular_count": 192
+        },
+        "refined_response_differences_mm": {
+          "position_diameter_mm": 5.345106943860367e-09,
+          "straight_fitted_axis_position_mm": 6.755521054779834e-07,
+          "section_axis_envelope_diameter_mm": 5.345106943860367e-09,
+          "sampled_bore_two_point_diameter_min_mm": 6.014294818612598e-06,
+          "sampled_bore_two_point_diameter_max_mm": 1.3619164036526854e-06,
+          "maximum_sampled_section_ovalization_mm": 1.4860650665582398e-06
+        },
+        "phase_response_differences_mm": {
+          "position_diameter_mm": 3.5303067656700104e-09,
+          "straight_fitted_axis_position_mm": 1.1758697508745808e-08,
+          "section_axis_envelope_diameter_mm": 3.5303067656700104e-09,
+          "sampled_bore_two_point_diameter_min_mm": 2.51794028116592e-06,
+          "sampled_bore_two_point_diameter_max_mm": 1.3619164036526854e-06,
+          "maximum_sampled_section_ovalization_mm": 1.4860650665582398e-06
+        },
+        "response_difference_limit_mm": 0.0001,
+        "sampling_stability_pass": true,
+        "scope": "refinement and phase stability of the same piecewise interpolated FE displacement field; no new FE solution or experimental data"
+      }
+    }
+  ],
+  "adjacent_signed_increment_um": [
+    2.5811518151804886,
+    -0.8849986407633565,
+    2.712530487800132
+  ],
+  "adjacent_absolute_increment_um": [
+    2.5811518151804886,
+    0.8849986407633565,
+    2.712530487800132
+  ],
+  "adjacent_relative_difference_percent": [
+    16.56288862533575,
+    6.020829573506585,
+    15.578978002279436
+  ],
+  "relative_difference_denominator": "finer-grid position diameter",
+  "latest_to_previous_amplitude_ratio": 3.06501090833364,
+  "spatial": {
+    "method": "existing nonmonotonic three-times-range estimate; latest three solutions; no monotonic Richardson extrapolation",
+    "method_implementation": "studies/COMPETITION-DESIGN/final_entry_position_gci.py",
+    "latest_signed_difference_ratio": -0.3262631128917162,
+    "range_um": 2.712530487800132,
+    "numerical_uncertainty_um": 8.137591463400396,
+    "relative_uncertainty_percent": 46.73693400683831,
+    "method_source": "https://tmbwg.github.io/turbmodels/Papers/uncertainty_summary.pdf, equation (14), citing Eca and Hoekstra (2009)"
+  },
+  "temporal": {
+    "assumed_order": 1,
+    "correction_from_dt025_um": 1.477204280949131,
+    "numerical_uncertainty_um": 4.431612842847393,
+    "scope": "Combined temporal protocol; coarse spatial grid only",
+    "order_basis": "simulation/competition-r4/run_verified.py:537; backward Euler, nominal first order",
+    "postprocessing_source": "studies/COMPETITION-DESIGN/final_entry_position_gci.py, q=1 rerun; same formulas applied to existing fourth-grid comparison"
+  },
+  "combined": {
+    "raw_fine_total_budget_um": 47.41147902900465,
+    "time_adjusted_point_um": 18.888683309953784,
+    "time_adjusted_total_budget_um": 48.888683309953784,
+    "total_budget_error_band_about_raw_fine_um": [
+      34.84227472275686,
+      59.980683335252444
+    ],
+    "raw_fine_position_um": 17.411479029004653,
+    "thermal_error_band_about_raw_fine_um": [
+      4.842274722756864,
+      29.980683335252444
+    ]
+  },
+  "assumptions": [
+    "Nominal parent-metal h only; weld zone fixed at 1.00 mm; not global uniform refinement",
+    "q=1 follows the backward-Euler thermal equation; spatial/temporal separability assumed; combined temporal protocol at coarse spatial grid only",
+    "Dual-source sequence does not qualify single-head discretization error",
+    "Sampling stability concerns the same interpolated FE field; no experimental measurement"
+  ],
+  "conclusions": {
+    "oscillation_decays": false,
+    "asymptotic_convergence_demonstrated": false,
+    "adjacent_difference_within_5_percent": false,
+    "uncertainty_budget_upper_within_50_um": false,
+    "calculated_point_within_50_um": true,
+    "statement": "Calculated point is within budget; numerical uncertainty is not closed; first-article fully released CMM calibrates the response."
+  }
+}
