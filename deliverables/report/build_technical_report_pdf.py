@@ -249,13 +249,13 @@ def inline(text: str, superscript_references: bool = True) -> str:
     # Protect scalar values and short units, while leaving long English prose,
     # hyperlinks and filenames available to wrap normally.
     scalar=r"[+−-]?\d+(?:\.\d+)?(?:[±～~-]\d+(?:\.\d+)?)?"
-    unit=r"(?:μm|µm|mm/s|mm/min|J/mm|L/min|MPa|GPa|kPa|kN|kg|kJ|mm|cm|min|℃|°C|%|s|h|g|J|W|N|A|V|元/件)"
+    unit=r"(?:μm|µm|mm/s|mm/min|J/mm|L/min|MPa|GPa|kPa|kN|kg|kJ|mg|mL|mm|cm|min|℃|°C|%|s|h|g|J|W|N|A|V|元/件)"
     technical=r"(?<![A-Za-z0-9_./\\-])[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)*(?![A-Za-z0-9_./\\-])"
     protected=re.compile(r"(?:"+technical+r")|(?:"+scalar+r"(?:\s*"+unit+r")?[，。；：,.;:）)]*)")
     def protect_short(match):
         value=match.group(0)
         if value[0].isalpha():
-            is_technical=len(value)<=15 and (any(c.isdigit() for c in value) or sum(c.isupper() for c in value)>=2 or value in ('Feret', 'Miner'))
+            is_technical=len(value)<=15 and (any(c.isdigit() for c in value) or sum(c.isupper() for c in value)>=2 or value in ('Feret', 'Miner', 'dt'))
             return '<nobr>'+value+'</nobr>' if is_technical else value
         return '<nobr>'+value+'</nobr>' if len(value)<=24 else value
     nodes=re.split(r'(<[^>]+>)',text)

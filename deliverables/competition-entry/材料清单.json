@@ -1,9 +1,9 @@
 {
   "design": "8P-R2-t15",
   "edition": "2026-10-11",
-  "main_pdf_pages": 87,
-  "body_pdf_pages": 32,
-  "manual_pdf_pages": 64,
+  "main_pdf_pages": 88,
+  "body_pdf_pages": 33,
+  "manual_pdf_pages": 65,
   "navigation_bookmarks": 90,
   "main_pdf_sections": {
     "封面与目录": {
@@ -13,22 +13,22 @@
     },
     "设计概要与九章正文及参考文献": {
       "start": 5,
-      "end": 33,
-      "pages": 29
+      "end": 34,
+      "pages": 30
     },
     "附录A工艺规程与检验卡": {
-      "start": 34,
-      "end": 64,
+      "start": 35,
+      "end": 65,
       "pages": 31
     },
     "附录B按比例工程图": {
-      "start": 65,
-      "end": 69,
+      "start": 66,
+      "end": 70,
       "pages": 5
     },
     "附录C工艺与工装功能示意": {
-      "start": 70,
-      "end": 87,
+      "start": 71,
+      "end": 88,
       "pages": 18
     }
   },
@@ -42,7 +42,7 @@
     {
       "path": "01-焊接工艺设计说明书与工程图.pdf",
       "purpose": "完整参赛作品：说明书、工艺卡、工程图和工艺附图",
-      "pages": 87
+      "pages": 88
     },
     {
       "path": "02-八翼名义装配.step",
